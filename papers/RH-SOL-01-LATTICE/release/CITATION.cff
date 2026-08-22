@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this work, cite the Zenodo DOI 10.5281/zenodo.22060296."
+title: "Integer-Lattice Encoding of Riemann-Zeta Argand Loops: Persistence of Dirichlet Frequencies under Binary Geometric Quantization"
+type: article
+version: 0.1.1
+date-released: 2026-08-22
+doi: 10.5281/zenodo.22060296
+url: "https://doi.org/10.5281/zenodo.22060296"
+authors:
+  - family-names: "Malachevsky"
+    given-names: "Alex"
+    orcid: "https://orcid.org/0009-0008-6009-3196"
+keywords:
+  - Riemann zeta function
+  - Argand loops
+  - integer lattice
+  - spectral analysis
+  - Dirichlet frequencies
+  - Nyquist aliasing
+  - Riemann-Siegel formula
+license: CC-BY-4.0
