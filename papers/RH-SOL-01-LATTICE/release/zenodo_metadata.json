@@ -1,0 +1,31 @@
+{
+  "title": "Integer-Lattice Encoding of Riemann-Zeta Argand Loops: Persistence of Dirichlet Frequencies under Binary Geometric Quantization",
+  "doi": "10.5281/zenodo.22060296",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "A computational note on a binary integer-lattice encoding of consecutive Riemann-zeta Argand loops. Across 10,000 loops, the double-centered lattice tensor preserves a strong Dirichlet-frequency comb near omega = log m, with residual log(m/k) intermodulation structure and a 36.3% out-of-sample variance reduction under cross-fit removal of a predeclared known-frequency dictionary. The note also develops a local Nyquist interpretation of the scale T = 2*pi*m^2 and the reciprocal first-fold map m* = T/(2*pi*m), while explicitly distinguishing an identifiability boundary from a power-onset law. No claim of a proof of the Riemann Hypothesis is made.",
+  "creators": [
+    {
+      "name": "Malachevsky, Alex",
+      "orcid": "0009-0008-6009-3196"
+    }
+  ],
+  "keywords": [
+    "Riemann zeta function",
+    "Riemann hypothesis",
+    "Argand loops",
+    "integer lattice",
+    "spectral analysis",
+    "Dirichlet frequencies",
+    "Nyquist aliasing",
+    "Riemann-Siegel formula",
+    "sampling theory",
+    "human-AI scientific collaboration"
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "version": "0.1.1",
+  "publication_date": "2026-08-22",
+  "notes": "Series subtitle: Reflections on the Riemann Hypothesis with Commander Sol: a human-AI computational note. AI assistance is disclosed in the package. Creator: Alex Malachevsky, ORCID 0009-0008-6009-3196."
+}
