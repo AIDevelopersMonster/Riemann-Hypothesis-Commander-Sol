@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Riemann Hypothesis with Commander Sol"
+message: "If you use a specific RH-SOL article, cite that article's DOI. For the programme repository, cite this record."
+type: software
+authors:
+  - family-names: Malachevsky
+    given-names: Alex
+    orcid: https://orcid.org/0009-0008-6009-3196
+version: 0.1.0
+repository-code: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
