@@ -16,10 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from zeta_argand import load_zero_table, sample_argand_loop, save_loop
-from shifted_lattice import (
-    filled_area,
-    scan_translations_fast,
-)
+from shifted_lattice import filled_area, scan_translations_fast
 
 
 def main() -> None:
@@ -49,11 +46,24 @@ def main() -> None:
     )
     args = ap.parse_args()
 
+    if args.stop < args.start:
+        raise ValueError("stop must be >= start")
+
     zeros = load_zero_table(args.zero_table) if args.zero_table else None
     args.out.mkdir(parents=True, exist_ok=True)
     rows = []
+    n_loops = args.stop - args.start + 1
 
-    for n in range(args.start, args.stop + 1):
+    # One compact tensor per (fill rule, q), shape (N, q, q).
+    # This avoids thousands of tiny files in a 10,000-loop calibration run.
+    tensors: dict[tuple[str, int], np.ndarray] = {
+        (rule, q): np.empty((n_loops, q, q), dtype=np.int32)
+        for rule in args.rules
+        for q in args.q
+    }
+    gammas = np.empty((n_loops, 2), dtype=np.float64)
+
+    for row_index, n in enumerate(range(args.start, args.stop + 1)):
         loop = sample_argand_loop(
             n,
             dps=args.dps,
@@ -64,6 +74,8 @@ def main() -> None:
             max_depth=args.max_depth,
             zeros=zeros,
         )
+        gammas[row_index] = (loop.metadata.gamma0, loop.metadata.gamma1)
+
         if args.save_loops:
             save_loop(loop, args.out / "loops" / f"loop_{n:06d}.npz")
 
@@ -77,10 +89,7 @@ def main() -> None:
                     boundary_tol=args.boundary_tol,
                 )
                 values = np.array([c.count for c in counts], dtype=np.int32)
-                np.savez_compressed(
-                    args.out / f"loop_{n:06d}_{rule}_q{q}.npz",
-                    counts=values.reshape(q, q),
-                )
+                tensors[(rule, q)][row_index] = values.reshape(q, q)
                 rows.append(
                     {
                         "loop": n,
@@ -100,6 +109,16 @@ def main() -> None:
                     }
                 )
         print(f"loop {n}: vertices={loop.metadata.vertices}")
+
+    for (rule, q), tensor in tensors.items():
+        np.savez_compressed(
+            args.out / f"counts_{rule}_q{q}.npz",
+            counts=tensor,
+            loop_index=np.arange(args.start, args.stop + 1, dtype=np.int32),
+            gammas=gammas,
+            q=np.int32(q),
+            rule=np.array(rule),
+        )
 
     with (args.out / "summary.csv").open(
         "w", encoding="utf-8", newline=""
@@ -123,6 +142,7 @@ def main() -> None:
         "python": platform.python_version(),
         "numpy": np.__version__,
         "mpmath": mp.__version__,
+        "tensor_layout": "counts[N, dy_index, dx_index] on midpoint shifts ((i+1/2)/q,(j+1/2)/q)",
     }
     (args.out / "manifest.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8"
