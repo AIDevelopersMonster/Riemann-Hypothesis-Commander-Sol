@@ -76,6 +76,8 @@ def main() -> None:
     ap.add_argument("--rules", nargs="+", choices=["winding", "even-odd"], default=["winding", "even-odd"])
     ap.add_argument("--B", type=int, default=20000, help="jitter surrogates for scalar area/translation-mean controls")
     ap.add_argument("--seed", type=int, default=20260822)
+    ap.add_argument("--expected-start", type=int)
+    ap.add_argument("--expected-stop", type=int)
     ap.add_argument("--out-prefix", type=Path, required=True)
     args = ap.parse_args()
 
@@ -85,10 +87,14 @@ def main() -> None:
         gamma1 = z["gamma1"].astype(float)
         cube = {key: z[key].copy() for key in z.files if key.startswith("area_") or key.startswith("counts_")}
 
-    if len(loops) != 10000 or int(loops[0]) != 1 or int(loops[-1]) != 10000:
-        raise SystemExit("control suite expects the EXP-01 calibration range loops 1..10000")
-    if len(loops) % 1000:
-        raise SystemExit("spectral analysis requires a loop count divisible by 1000")
+    if len(loops) < 1000 or len(loops) % 1000:
+        raise SystemExit("control suite requires a loop count that is a positive multiple of 1000")
+    if len(np.unique(loops)) != len(loops) or (len(loops) > 1 and not np.all(np.diff(loops) == 1)):
+        raise SystemExit("dataset loop indices must be unique and contiguous")
+    if args.expected_start is not None and int(loops[0]) != args.expected_start:
+        raise SystemExit(f"unexpected first loop: {loops[0]} != {args.expected_start}")
+    if args.expected_stop is not None and int(loops[-1]) != args.expected_stop:
+        raise SystemExit(f"unexpected last loop: {loops[-1]} != {args.expected_stop}")
 
     if args.legacy_time_csv:
         time_proxy = load_legacy_time(args.legacy_time_csv, loops)
