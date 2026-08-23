@@ -12,6 +12,17 @@ Set-Location $RepoRoot
 if ($ChunkSize -le 0) { throw "ChunkSize must be positive" }
 if ($MaxJobs -le 0) { throw "MaxJobs must be positive" }
 
+Write-Host "=== PYTHON PREFLIGHT ==="
+& $Python -c "import sys; print(sys.executable); import mpmath, numpy, scipy; print('mpmath=' + mpmath.__version__); print('numpy=' + numpy.__version__); print('scipy=' + scipy.__version__)"
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "Required packages are missing from the selected Python environment."
+    Write-Host "Install them with:"
+    Write-Host ("  {0} -m pip install -r requirements.txt" -f $Python)
+    Write-Host "Then rerun this script."
+    throw "Python dependency preflight failed"
+}
+
 $ZeroTable = Join-Path $RepoRoot "data\zeros\lmfdb_zeta_zeros_1_10001.csv"
 $OutDir = Join-Path $RepoRoot "data\derived\rh-sol-02-exp01"
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
@@ -42,7 +53,6 @@ Write-Host ("Chunks total: {0}; already present: {1}; pending: {2}" -f $Ranges.C
 function Complete-OneJob {
     param([System.Management.Automation.Job]$Job)
 
-    # Surface all stdout/stderr from the worker before checking its status.
     Receive-Job -Job $Job -ErrorAction Continue
 
     if ($Job.State -ne 'Completed') {
@@ -64,8 +74,6 @@ function Complete-OneJob {
 
 $Jobs = @()
 foreach ($Range in $Pending) {
-    # Count queued/not-started jobs as active too; otherwise Start-Job can queue
-    # the whole experiment before State changes to Running.
     while ($Jobs.Count -ge $MaxJobs) {
         $Done = Wait-Job -Job $Jobs -Any
         Complete-OneJob -Job $Done
@@ -73,8 +81,6 @@ foreach ($Range in $Pending) {
         $Jobs = @($Jobs | Where-Object { $_.Id -ne $Done.Id })
     }
 
-    # Do not call this variable $Args: $args is a PowerShell automatic variable
-    # (case-insensitive) and becomes empty inside a Start-Job script block.
     $PythonArguments = @(
         "scripts\exp01_build_chunk.py",
         "--start", [string]$Range.Start,
