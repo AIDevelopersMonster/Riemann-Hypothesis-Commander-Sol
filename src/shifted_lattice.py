@@ -23,6 +23,7 @@ def _closed_vertices(vertices: np.ndarray) -> np.ndarray:
     return v
 
 def polygon_area(vertices: np.ndarray) -> float:
+    """Absolute shoelace area; exact filled area only for simple polygons."""
     v = _closed_vertices(vertices)
     x0, y0 = v[:-1, 0], v[:-1, 1]
     x1, y1 = v[1:, 0], v[1:, 1]
@@ -91,6 +92,34 @@ def interior_mask(points: np.ndarray, vertices: np.ndarray, *, rule: FillRule = 
         raise ValueError(f"unknown fill rule: {rule}")
     return inside & ~on_boundary
 
+def filled_area(vertices: np.ndarray, *, rule: FillRule = "winding") -> float:
+    """Area of the polygonal filled region under the declared fill rule.
+
+    Shapely is imported lazily. The closed polyline is noded at crossings,
+    polygonized into planar faces, and one representative point per face is
+    classified by the same winding/even-odd rule used for lattice points.
+    """
+    try:
+        from shapely.geometry import LineString
+        from shapely.ops import polygonize, unary_union
+    except ImportError as exc:
+        raise RuntimeError("filled_area requires shapely>=2") from exc
+    v = _closed_vertices(vertices)
+    faces = list(polygonize(unary_union(LineString(v))))
+    total = 0.0
+    for face in faces:
+        rp = face.representative_point()
+        p = np.array([[rp.x, rp.y]], dtype=float)
+        if rule == "winding":
+            keep = winding_numbers(p, v)[0] != 0
+        elif rule == "even-odd":
+            keep = bool(even_odd_inside(p, v)[0])
+        else:
+            raise ValueError(f"unknown fill rule: {rule}")
+        if keep:
+            total += float(face.area)
+    return total
+
 def shifted_lattice_points(vertices: np.ndarray, delta: Sequence[float]) -> np.ndarray:
     v = _closed_vertices(vertices)
     dx, dy = map(float, delta)
@@ -111,6 +140,10 @@ def shifted_count(vertices: np.ndarray, delta: Sequence[float], *, rule: FillRul
     points = shifted_lattice_points(vertices, delta)
     return int(np.count_nonzero(interior_mask(points, vertices, rule=rule, boundary_tol=boundary_tol)))
 
+def interior_lattice_points(vertices: np.ndarray, delta: Sequence[float] = (0.0, 0.0), *, rule: FillRule = "winding", boundary_tol: float = 1e-10) -> np.ndarray:
+    points = shifted_lattice_points(vertices, delta)
+    return points[interior_mask(points, vertices, rule=rule, boundary_tol=boundary_tol)]
+
 def translation_grid(q: int) -> np.ndarray:
     if q <= 0:
         raise ValueError("q must be positive")
@@ -123,6 +156,36 @@ def scan_translations(vertices: np.ndarray, q: int, *, rule: FillRule = "winding
     for dx, dy in translation_grid(q):
         out.append(ShiftCount(float(dx), float(dy), shifted_count(vertices, (dx, dy), rule=rule, boundary_tol=boundary_tol)))
     return out
+
+def scan_translations_fast(vertices: np.ndarray, q: int, *, rule: FillRule = "winding", boundary_tol: float = 1e-10) -> list[ShiftCount]:
+    """Evaluate all q^2 midpoint translations in one fine-grid classification.
+
+    The union of lattices Z^2 + ((i+1/2)/q,(j+1/2)/q) is a Cartesian grid of
+    spacing 1/q. Each fine-grid point is tagged by its translation residue and
+    classified only once.
+    """
+    if q <= 0:
+        raise ValueError("q must be positive")
+    v = _closed_vertices(vertices)
+    xmin, ymin = np.min(v[:, 0]), np.min(v[:, 1])
+    xmax, ymax = np.max(v[:, 0]), np.max(v[:, 1])
+    bx = np.arange(math.floor(xmin) - 1, math.ceil(xmax) + 1, dtype=float)
+    by = np.arange(math.floor(ymin) - 1, math.ceil(ymax) + 1, dtype=float)
+    frac = (np.arange(q, dtype=float) + 0.5) / q
+
+    xs = (bx[:, None] + frac[None, :]).ravel()
+    x_index = np.tile(np.arange(q, dtype=np.int32), len(bx))
+    ys = (by[:, None] + frac[None, :]).ravel()
+    y_index = np.tile(np.arange(q, dtype=np.int32), len(by))
+
+    xx, yy = np.meshgrid(xs, ys, indexing="xy")
+    ii, jj = np.meshgrid(x_index, y_index, indexing="xy")
+    points = np.column_stack([xx.ravel(), yy.ravel()])
+    inside = interior_mask(points, v, rule=rule, boundary_tol=boundary_tol)
+    codes = jj.ravel()[inside] * q + ii.ravel()[inside]
+    counts = np.bincount(codes, minlength=q * q)
+    deltas = translation_grid(q)
+    return [ShiftCount(float(dx), float(dy), int(counts[k])) for k, (dx, dy) in enumerate(deltas)]
 
 def translation_mean(counts: Iterable[ShiftCount]) -> float:
     vals = [c.count for c in counts]
