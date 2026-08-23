@@ -13,7 +13,7 @@ if ($ChunkSize -le 0) { throw "ChunkSize must be positive" }
 if ($MaxJobs -le 0) { throw "MaxJobs must be positive" }
 
 Write-Host "=== PYTHON PREFLIGHT ==="
-& $Python -c "import sys; print(sys.executable); import mpmath, numpy, scipy; print('mpmath=' + mpmath.__version__); print('numpy=' + numpy.__version__); print('scipy=' + scipy.__version__)"
+& $Python -c "import sys; print(sys.executable); import mpmath, numpy, scipy, shapely; print('mpmath=' + mpmath.__version__); print('numpy=' + numpy.__version__); print('scipy=' + scipy.__version__); print('shapely=' + shapely.__version__)"
 if ($LASTEXITCODE -ne 0) {
     Write-Host ""
     Write-Host "Required packages are missing from the selected Python environment."
