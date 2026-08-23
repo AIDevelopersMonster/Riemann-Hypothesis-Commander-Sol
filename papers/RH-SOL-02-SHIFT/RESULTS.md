@@ -145,11 +145,113 @@ The following are now fixed in the research branch:
 
 The published full-analysis archive does not contain ordered Argand-loop vertices, so the 10,000-loop SHIFT field cannot be recovered from the old binary incidence table alone; real loop boundaries must be regenerated.
 
-### Next executable milestone
+---
 
-1. Acquire and checksum zero ordinates 1–10001.
-2. Generate EXP-01 calibration chunks for loops 1–10000 with q=8,16,32 and both fill rules.
-3. Merge chunks into the canonical calibration NPZ.
-4. Build the q=16 primary shift-persistence map using the frozen scalar spectral score.
-5. Run q=8/q=32 and even-odd sensitivity controls.
-6. Only after calibration metrics are frozen, open loops 10001–20000 as an independent height holdout.
+## 2026-08-23 — EXP-01 full q=16 winding shift map
+
+A full calibration cube was generated for loops 1–10000 from LMFDB zero ordinates 1–10001. The cube contains q=8,16,32 midpoint translation fields under both winding and even-odd fill conventions.
+
+Canonical local cube fingerprint:
+
+- artifact: `calibration_1_10000.npz`;
+- size: `4,444,748` bytes;
+- SHA-256: `229e4fe632bfa5cc6821c0edb93eaff982052e2d85378b489c2b7a1018ba473c`.
+
+The primary q=16 winding map was evaluated over all 256 midpoint shifts using the zero-pair midpoint time proxy and the frozen Dirichlet-comb score.
+
+Observed map summary:
+
+- median comb score: `2.0413200073`;
+- mean comb score: `2.0414418651`;
+- minimum: `2.0332254345`;
+- maximum: `2.0507165357`;
+- fraction above the previously frozen unshifted scalar baseline `2.0335818528`: `255/256 = 0.99609375`;
+- raw jitter `p < 0.05`: `256/256`;
+- Benjamini-Hochberg `q < 0.05`: `256/256`.
+
+Strongest midpoint shift: `delta = (0.09375, 0.65625)`, score `2.0507165357`.
+
+Weakest midpoint shift: `delta = (0.15625, 0.28125)`, score `2.0332254345`.
+
+### Primary interpretation
+
+The scalar Dirichlet-frequency comb is **persistent rather than localized** on the q=16 translation torus. The total score range across all translations is only about `0.01749`, so the phenomenon is not concentrated near the original integer lattice placement.
+
+However, the frozen unshifted scalar baseline used the RH-SOL-01 legacy `t_near` time proxy, whereas this q=16 map used the zero-pair midpoint proxy. Therefore the statement `255/256 above the frozen baseline` is descriptive rather than a strictly matched effect-size comparison. The within-map persistence conclusion does not depend on that mismatch.
+
+---
+
+## 2026-08-23 — EXP-01 translation zero-mode decomposition
+
+The q=16 winding count field was decomposed as
+
+`C_n(delta) = Cbar_n + R_n(delta)`,
+
+where `Cbar_n` is the finite-q translation mean and `R_n(delta)` is the translation-dependent residual.
+
+### Geometry calibration
+
+The finite-q mean is an extremely accurate approximation to the filled loop area:
+
+- mean absolute error `|Cbar_n - Area(D_n)|`: `0.0085078858`;
+- RMS error: `0.0122167606`;
+- maximum absolute error over 10,000 loops: `0.1080490658`;
+- correlation between finite-q mean and filled area: `0.9999999306`.
+
+### Variance decomposition
+
+Across loop index and translation:
+
+- translation-zero-mode variance: `1074.6317692218`;
+- translation-residual mean square: `0.6023357590`;
+- fraction assigned to the zero mode by this decomposition: `0.9994398097`.
+
+Thus approximately `99.944%` of the scalar-count variance is translation-invariant at q=16, and only about `0.056%` lies in the translation-dependent residual.
+
+### Spectral result for area and finite-q mean
+
+Filled area itself carries the same predeclared log-integer comb:
+
+- area comb score: `2.0415415257`;
+- jitter-null median: `0.9284268041`;
+- null 99th percentile: `1.2903242914`;
+- empirical upper-tail p-value: `4.99975e-05`;
+- best common frequency shift: `-0.0015`.
+
+The finite-q translation mean gives essentially the same result:
+
+- comb score: `2.0412438312`;
+- empirical upper-tail p-value: `4.99975e-05`;
+- best common frequency shift: `-0.0015`.
+
+### Residual lattice component
+
+After removing the translation zero mode, the residual score map is much weaker and heterogeneous:
+
+- median residual comb score: `0.8827632779`;
+- mean: `0.8985318642`;
+- minimum: `0.7540767766`;
+- maximum: `1.1520954487`;
+- raw jitter `p < 0.05`: `154/256 = 0.6015625`;
+- BH `q < 0.05`: `138/256 = 0.5390625`.
+
+Strongest residual shift: `delta = (0.03125, 0.90625)`, residual score `1.1520954487`, BH `q = 0.00039998`.
+
+Weakest residual shift: `delta = (0.65625, 0.78125)`, residual score `0.7540767766`, raw `p = 0.8700065`.
+
+### Scientific interpretation
+
+The dominant explanation of SHIFT persistence is now clear at the scalar-count level: the primary Dirichlet-frequency architecture is carried by the **translation zero mode**, numerically indistinguishable from the continuous filled area at q=16 resolution. The integer lattice is therefore not required for the dominant scalar spectral signal.
+
+A weaker translation-dependent lattice residual remains detectable at a substantial subset of shifts, including `138/256` cells after BH correction under the present diagnostic jitter-null family. This residual must not yet be promoted to a separate arithmetic discovery: q=8/q=32 stability, fill-rule sensitivity, geometry/order/phase controls and a matched-time comparison are still required.
+
+This result does **not** establish that the full RH-SOL-01 binary spatial tensor is reducible to area. It establishes the stronger and narrower statement that the scalar loop-count comb used for SHIFT is dominated by an area-like translation-invariant component.
+
+### Revised status after EXP-01 primary run
+
+- **H1 translation-average calibration: strongly supported at q=16.**
+- **H2 shift persistence of the scalar log-integer comb: supported on the full q=16 midpoint torus.**
+- **H3 translation-averaged persistence: supported in the calibration range, with the translation mean converging to area.**
+- **H4 fill-rule robustness: not yet resolved on the full calibration range.**
+
+The next controls are q=8/q=32, even-odd q=16, residual-map stability, and a matched time-proxy analysis before opening the 10001–20000 holdout.
