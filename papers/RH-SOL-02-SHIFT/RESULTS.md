@@ -102,10 +102,54 @@ The q x q midpoint family is now evaluated through a single grid of spacing `1/q
 
 No conclusion has yet been drawn for H2/H3, the persistence of the Dirichlet `log m` spectrum under shift. A ten-loop sample is far too short for that question.
 
+---
+
+## 2026-08-23 — EXP-01 scalar-count baseline frozen before the shift map
+
+Before generating the full shifted dataset, the spectral observable was reduced to the scalar loop count
+
+`C_n(0) = number of interior integer-lattice points in loop n`
+
+using the published RH-SOL-01 10,000-loop incidence table. This checks that the spatial tensor is not required merely to recover the logarithmic temporal architecture.
+
+The spectral score deliberately mirrors RH-SOL-01: 1000-loop blocks, linear detrending, median-normalized rFFT energy, smooth conversion from loop-index frequency to physical angular frequency, and block aggregation by mean `log1p` energy.
+
+For `m = 2..13`:
+
+- scalar comb score at the exact targets `omega = log(m)`: `2.0335818528`;
+- independent ±0.2 per-target jitter null, `B=20000`, seed `20260822`;
+- null median: `0.9264314803`;
+- null 95th percentile: `1.1664037953`;
+- null 99th percentile: `1.2870944662`;
+- empirical upper-tail p-value: `4.99975e-05` (no surrogate exceeded the observed score);
+- best common frequency shift: approximately `-0.0015`, with score `2.0446975953`.
+
+The strongest scalar-count peaks remain near `log 2`, `log 3`, `log 4`, `log 5`, ... . Therefore EXP-01 can use the compact field `C_n(delta)` rather than reconstructing a full spatial occupancy tensor for every lattice translation.
+
+Machine-readable baseline:
+
+- `analysis/exp01_baseline_count_summary.json`
+- `analysis/exp01_baseline_count_comb.csv`
+
+This baseline was frozen **before** inspecting the full shift-persistence map.
+
+### EXP-01 implementation status
+
+The following are now fixed in the research branch:
+
+- `src/dirichlet_spectrum.py` — frozen scalar spectral score;
+- `scripts/fetch_lmfdb_zeros.py` — external zero-table acquisition;
+- `scripts/exp01_build_chunk.py` — resumable chunk generator;
+- `scripts/exp01_merge_chunks.py` — contiguous chunk merger;
+- `scripts/exp01_analyze_shift_map.py` — q x q comb-score map, jitter null and Benjamini-Hochberg correction.
+
+The published full-analysis archive does not contain ordered Argand-loop vertices, so the 10,000-loop SHIFT field cannot be recovered from the old binary incidence table alone; real loop boundaries must be regenerated.
+
 ### Next executable milestone
 
-1. Run the upstream convergence audit on a larger calibration subset.
-2. Freeze the curve-resolution/boundary ambiguity rule.
-3. Generate the q=16 calibration tensor/count field over loops 1–10000, with q=8 and q=32 controls.
-4. Apply a predeclared shift-persistence spectral score to `C_n(delta)` across loop index n.
-5. Only after the score is frozen, open loops 10001–20000 as the first independent height holdout.
+1. Acquire and checksum zero ordinates 1–10001.
+2. Generate EXP-01 calibration chunks for loops 1–10000 with q=8,16,32 and both fill rules.
+3. Merge chunks into the canonical calibration NPZ.
+4. Build the q=16 primary shift-persistence map using the frozen scalar spectral score.
+5. Run q=8/q=32 and even-odd sensitivity controls.
+6. Only after calibration metrics are frozen, open loops 10001–20000 as an independent height holdout.
