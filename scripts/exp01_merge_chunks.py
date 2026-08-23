@@ -35,8 +35,10 @@ def main():
             if arrays[0].ndim >= 1 and arrays[0].shape[0] == first_len:
                 payload[key] = np.concatenate(arrays, axis=0)[order]
 
+        # Store portable chunk identifiers only. Absolute local paths are not
+        # scientific provenance and should never leak into published manifests.
         metadata = {
-            "chunks": [str(path) for path in files],
+            "chunks": [path.name for path in files],
             "n_loops": int(len(sorted_loops)),
             "start": int(sorted_loops[0]),
             "stop": int(sorted_loops[-1]),
