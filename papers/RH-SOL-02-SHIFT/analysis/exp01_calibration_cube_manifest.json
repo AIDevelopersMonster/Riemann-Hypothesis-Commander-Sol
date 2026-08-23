@@ -1,0 +1,122 @@
+{
+  "artifact": "calibration_1_10000.npz",
+  "size_bytes": 4444748,
+  "sha256": "229e4fe632bfa5cc6821c0edb93eaff982052e2d85378b489c2b7a1018ba473c",
+  "arrays": {
+    "area_even_odd": {
+      "shape": [
+        10000
+      ],
+      "dtype": "float64"
+    },
+    "area_winding": {
+      "shape": [
+        10000
+      ],
+      "dtype": "float64"
+    },
+    "counts_even_odd_q16": {
+      "shape": [
+        10000,
+        16,
+        16
+      ],
+      "dtype": "int16"
+    },
+    "counts_even_odd_q32": {
+      "shape": [
+        10000,
+        32,
+        32
+      ],
+      "dtype": "int16"
+    },
+    "counts_even_odd_q8": {
+      "shape": [
+        10000,
+        8,
+        8
+      ],
+      "dtype": "int16"
+    },
+    "counts_winding_q16": {
+      "shape": [
+        10000,
+        16,
+        16
+      ],
+      "dtype": "int16"
+    },
+    "counts_winding_q32": {
+      "shape": [
+        10000,
+        32,
+        32
+      ],
+      "dtype": "int16"
+    },
+    "counts_winding_q8": {
+      "shape": [
+        10000,
+        8,
+        8
+      ],
+      "dtype": "int16"
+    },
+    "gamma0": {
+      "shape": [
+        10000
+      ],
+      "dtype": "float64"
+    },
+    "gamma1": {
+      "shape": [
+        10000
+      ],
+      "dtype": "float64"
+    },
+    "loops": {
+      "shape": [
+        10000
+      ],
+      "dtype": "int32"
+    },
+    "vertices": {
+      "shape": [
+        10000
+      ],
+      "dtype": "int32"
+    },
+    "metadata_json": {
+      "shape": [],
+      "dtype": "<U2617"
+    }
+  },
+  "metadata": {
+    "chunks": [
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_00001_00500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_00501_01000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_01001_01500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_01501_02000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_02001_02500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_02501_03000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_03001_03500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_03501_04000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_04001_04500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_04501_05000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_05001_05500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_05501_06000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_06001_06500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_06501_07000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_07001_07500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_07501_08000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_08001_08500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_08501_09000.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_09001_09500.npz",
+      "C:\\Users\\CHUWI\\Documents\\GitHub\\Riemann-Hypothesis-Commander-Sol\\data\\derived\\rh-sol-02-exp01\\chunk_09501_10000.npz"
+    ],
+    "n_loops": 10000,
+    "start": 1,
+    "stop": 10000
+  }
+}
