@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prime-Successor Algebra — interactive proof demo</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#17213b;--text:#edf2ff;--muted:#a9b6d6;--line:#2a3a62;--accent:#8dd6ff;--ok:#90f0b1;--warn:#ffd58a;--bad:#ff9aa8;--chip:#202d4e}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#172443 0,#0b1020 42%);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif} main{max-width:1180px;margin:auto;padding:32px 20px 64px} h1{font-size:clamp(30px,5vw,58px);line-height:1.04;margin:0 0 10px} h2{font-size:26px;margin:0 0 14px}.sub{color:var(--muted);max-width:850px}.doi{display:inline-block;margin:8px 0 28px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--accent)} .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}.tab{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:12px;cursor:pointer}.tab.active{background:var(--accent);color:#08101f;border-color:transparent;font-weight:700}.pane{display:none}.pane.active{display:block}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{grid-column:span 6;background:linear-gradient(180deg,var(--panel),#0f172b);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 50px #0005}.wide{grid-column:1/-1}.third{grid-column:span 4} label{display:block;color:var(--muted);font-size:13px;margin-bottom:5px} input,select{width:100%;padding:10px 12px;background:#0b1224;color:var(--text);border:1px solid var(--line);border-radius:10px;font:inherit} button.go{margin-top:14px;padding:11px 15px;border:0;border-radius:11px;background:var(--accent);color:#071020;font-weight:800;cursor:pointer}.math{font-family:"Cambria Math","STIX Two Math",serif;font-size:20px}.chain{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0}.node{background:var(--chip);border:1px solid var(--line);padding:7px 11px;border-radius:999px}.arrow{color:var(--accent);font-weight:800}.hilite{border-color:var(--ok);box-shadow:0 0 0 2px #90f0b122}.stat{font-size:28px;font-weight:800}.muted{color:var(--muted)}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)} code{background:#091124;border:1px solid var(--line);padding:2px 5px;border-radius:6px}.support{display:flex;gap:6px;flex-wrap:wrap}.prime{padding:5px 8px;border-radius:8px;background:var(--chip);border:1px solid var(--line)}.new{background:#173d2c;border-color:#3f9e68;color:#bfffd4}.meter{height:18px;background:#0a1122;border:1px solid var(--line);border-radius:999px;position:relative;overflow:hidden;margin:18px 0}.barA,.barB{position:absolute;height:100%;left:0;top:0}.barA{background:#5a7ba8}.barB{background:#3ea86d55;border-right:3px solid var(--ok)}.jump{position:absolute;top:-5px;width:2px;height:28px;background:var(--warn)}.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}.phase{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.phase>div{padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}footer{margin-top:30px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}@media(max-width:800px){.card,.third{grid-column:1/-1}.phase{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<h1>Prime-Successor Algebra</h1>
+<p class="sub">Самостоятельная интерактивная демонстрация к статье «Размышлизмы о следующем простом с Commander Sol». Она визуализирует два механизма доказательств: кодирование конечного prime-successor сегмента одним натуральным и dilation collapse для <span class="math">R(n)=rad(n!)</span>.</p>
+<div class="doi">DOI 10.5281/zenodo.22077920</div>
+<div class="tabs"><button class="tab active" data-tab="segment">1 · Successor → order</button><button class="tab" data-tab="collapse">2 · Dilation collapse</button><button class="tab" data-tab="phase">3 · Phase diagram</button></div>
+
+<section id="segment" class="pane active">
+<div class="grid">
+<div class="card third"><label>Левый простой p</label><select id="pSel"></select></div>
+<div class="card third"><label>Правый простой q</label><select id="qSel"></select></div>
+<div class="card third"><label>Действие</label><button class="go" id="segGo">Построить кодирующее число</button></div>
+<div class="card wide"><h2>Finite-support coding</h2><div id="segChain" class="chain"></div><p class="muted">Prime support выбранного числа <span class="math">m</span> — это ровно конечный successor-отрезок. В first-order формуле нам не нужно вычислять транзитивное замыкание: конечный путь хранится в делителях одного натурального.</p></div>
+<div class="card"><div class="muted">Кодирующее произведение</div><div id="mVal" class="stat"></div><div id="mNote" class="muted"></div></div>
+<div class="card"><div class="muted">Логический вывод</div><p id="segConclusion" class="math"></p></div>
+</div></section>
+
+<section id="collapse" class="pane">
+<div class="grid">
+<div class="card third"><label>x</label><input id="xVal" type="number" min="1" max="60" value="7"></div>
+<div class="card third"><label>y (должно быть > x)</label><input id="yVal" type="number" min="2" max="80" value="11"></div>
+<div class="card third"><label>Действие</label><button class="go" id="colGo">Найти масштаб t</button></div>
+<div class="card wide"><h2>Dilation collapse для cumulative radical</h2><p class="math">x&lt;y ⇒ ∃t : R(tx) ∣ R(ty) и R(tx) ≠ R(ty)</p><div class="meter" id="meter"><div class="barB" id="barB"></div><div class="barA" id="barA"></div><div class="jump" id="jump"></div></div><div class="legend"><span><i class="dot" style="background:#5a7ba8"></i>tx</span><span><i class="dot" style="background:#3ea86d"></i>ty</span><span><i class="dot" style="background:#ffd58a"></i>prime jump j</span></div></div>
+<div class="card"><div class="muted">Найдено</div><div id="found" class="stat"></div><p id="ineq" class="math"></p></div>
+<div class="card"><div class="muted">Почему divisibility стала строгой</div><div id="supports"></div></div>
+<div class="card wide"><p id="collapseConclusion"></p></div>
+</div></section>
+
+<section id="phase" class="pane"><div class="card wide"><h2>Четыре различаемых уровня</h2><div class="phase"><div><b>Prime symmetry</b><p class="muted">(N,×)<br>Простые — атомы, но переставимы.</p></div><div><b>Pointwise individualization</b><p class="muted">(N,×,φ)<br>Каждый элемент имеет parameter-free имя.</p></div><div><b>Uniform prime orientation</b><p class="muted">(N,×,S<sub>P</sub>) ≡ (N,×,&lt;<sub>P</sub>)<br>Разрешимый уровень Maurin.</p></div><div><b>Full magnitude</b><p class="muted">(N,×,R)<br>Dilation collapse восстанавливает ordinary order, затем addition.</p></div></div><p class="warn">Стрелка через φ — концептуальная: статья не утверждает, что φ уже определяет или не определяет prime order. Это оставшийся вопрос.</p></div></section>
+
+<footer>Демонстрация конечна и вычислительна, поэтому служит иллюстрацией доказательств, а не их заменой. Для больших произведений используется JavaScript BigInt. Автор: Alex Malachevsky · ORCID 0009-0008-6009-3196 · Commander Sol collaboration.</footer>
+</main>
+<script>
+function primesUpTo(n){const a=new Array(n+1).fill(true);a[0]=a[1]=false;for(let p=2;p*p<=n;p++)if(a[p])for(let k=p*p;k<=n;k+=p)a[k]=false;return a.map((v,i)=>v?i:null).filter(x=>x)}
+const primes=primesUpTo(5000);
+const pSel=document.getElementById('pSel'),qSel=document.getElementById('qSel');
+primes.filter(p=>p<=97).forEach(p=>{pSel.add(new Option(p,p));qSel.add(new Option(p,p))});pSel.value='5';qSel.value='23';
+function productBig(arr){return arr.reduce((a,b)=>a*BigInt(b),1n)}
+function renderSegment(){let p=+pSel.value,q=+qSel.value;if(p>q){[p,q]=[q,p];pSel.value=p;qSel.value=q}const seg=primes.filter(r=>r>=p&&r<=q);const chain=document.getElementById('segChain');chain.innerHTML='';seg.forEach((r,i)=>{const n=document.createElement('span');n.className='node '+((i===0||i===seg.length-1)?'hilite':'');n.textContent=r;chain.appendChild(n);if(i<seg.length-1){const a=document.createElement('span');a.className='arrow';a.textContent='→';chain.appendChild(a)}});const m=productBig(seg);const s=m.toString();document.getElementById('mVal').textContent=s.length<45?s:(s.slice(0,18)+'…'+s.slice(-12));document.getElementById('mNote').textContent=`m имеет ${seg.length} простых делителей; ${s.length} десятичных цифр.`;document.getElementById('segConclusion').innerHTML=`Segment(m; ${p}, ${q}) ⇒ ${p} ≤<sub>P</sub> ${q}.`;}
+renderSegment();document.getElementById('segGo').onclick=renderSegment;
+
+function firstPrimeInInterval(a,b){for(const p of primes){if(p>a&&p<=b)return p;if(p>b)break}return null}
+function supportR(n){return primes.filter(p=>p<=n)}
+function renderSupport(title,arr,markFrom){const d=document.createElement('div');d.innerHTML=`<b>${title}</b>`;const s=document.createElement('div');s.className='support';arr.forEach(p=>{const e=document.createElement('span');e.className='prime '+(p>markFrom?'new':'');e.textContent=p;s.appendChild(e)});d.appendChild(s);return d}
+function collapse(){const x=+document.getElementById('xVal').value,y=+document.getElementById('yVal').value;const out=document.getElementById('collapseConclusion');if(!(x>=1&&y>x)){out.innerHTML='<span class="bad">Нужно выбрать 1 ≤ x < y.</span>';return}let t=1,j=null;while(t<=500&&!(j=firstPrimeInInterval(t*x,t*y)))t++;if(!j){out.innerHTML='<span class="bad">В демонстрационном диапазоне масштаб не найден.</span>';return}const a=t*x,b=t*y;document.getElementById('found').textContent=`t = ${t}, j = ${j}`;document.getElementById('ineq').textContent=`${a} = tx < ${j} = j ≤ ty = ${b}`;const max=b;document.getElementById('barA').style.width=(100*a/max)+'%';document.getElementById('barB').style.width='100%';document.getElementById('jump').style.left=(100*j/max)+'%';const sa=supportR(a),sb=supportR(b);const supports=document.getElementById('supports');supports.innerHTML='';supports.appendChild(renderSupport(`supp R(${a})`,sa,a));supports.appendChild(renderSupport(`supp R(${b})`,sb,a));const fresh=sb.filter(p=>p>a);out.innerHTML=`Prime jump <b>${j}</b> ${fresh.length>1?'(в интервале есть и другие новые простые)':''} лежит между tx и ty. Поэтому <span class="math">R(${a}) ∣ R(${b})</span> и значения не равны. Масштабирование превратило внешний факт <span class="math">${x}&lt;${y}</span> в first-order различимую строгую делимость значений R.`;}
+document.getElementById('colGo').onclick=collapse;collapse();
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.pane').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')});
+</script></body></html>
