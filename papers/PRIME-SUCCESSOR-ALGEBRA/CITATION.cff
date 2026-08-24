@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Prime-Successor Algebra between Symmetry, Rigidity and Full Arithmetic"
+message: "If you use this manuscript or its demonstration, please cite the Zenodo record."
+type: article
+authors:
+  - family-names: Malachevsky
+    given-names: Alex
+    orcid: "https://orcid.org/0009-0008-6009-3196"
+doi: "10.5281/zenodo.22077920"
+date-released: "2026-08-24"
+repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
+license: MIT
