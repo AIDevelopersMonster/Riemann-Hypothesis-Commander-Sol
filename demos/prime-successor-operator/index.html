@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Prime-Successor Operator Lab</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a31;--panel2:#18223d;--text:#eef3ff;--muted:#9fb0d0;--accent:#7dd3fc;--ok:#86efac;--warn:#fde68a;--bad:#fda4af;--line:#2c3a61}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#090d18,#101a35 55%,#0b1020);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.45}
+main{max-width:1180px;margin:auto;padding:28px 18px 60px} h1{font-size:clamp(30px,5vw,56px);line-height:1.03;margin:.15em 0}.sub{color:var(--muted);max-width:900px;font-size:18px}.tag{display:inline-block;border:1px solid var(--line);background:#0d1530;border-radius:999px;padding:6px 10px;margin:4px 6px 4px 0;color:var(--accent);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:20px}.card{background:rgba(18,26,49,.94);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 12px 40px #0005}.wide{grid-column:1/-1}.card h2{margin:.1em 0 .4em;font-size:22px}.card h3{margin:1em 0 .35em}.muted{color:var(--muted)}
+button,select,input{background:#0c1530;color:var(--text);border:1px solid #40527d;border-radius:10px;padding:9px 12px;font:inherit}button{cursor:pointer}button:hover{border-color:var(--accent)}.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.pill{padding:5px 9px;border-radius:999px;border:1px solid var(--line);display:inline-block;margin:3px 3px 3px 0}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.eq{font-family:Cambria Math,STIX Two Math,serif;background:#0b1328;border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0;overflow:auto}.result{background:#0d1530;border-left:4px solid var(--accent);padding:12px;border-radius:8px;margin-top:10px}.result.okb{border-left-color:var(--ok)}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left}th{color:#c8d7f2}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}.node{background:#101b39;border:1px solid #3d507b;border-radius:12px;padding:10px 13px}.arrow{color:var(--accent);font-size:22px}.target{border:1px dashed var(--accent);background:#0d1934}.small{font-size:13px}.bar{height:10px;background:#0b1328;border-radius:8px;overflow:hidden;margin-top:5px}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#7dd3fc,#86efac)}
+footer{margin-top:30px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body><main>
+<div class="tag">Standalone · no external libraries</div><div class="tag">Companion to DOI 10.5281/zenodo.22077920</div>
+<h1>Prime-Successor Operator Lab</h1>
+<p class="sub">A finite interactive model of the two key facts: the standard regular operator lift preserves every permutation of prime coordinates, while an additional operator can be too symmetric, arbitrarily rigid, or so strong that it simply imports ordinary magnitude.</p>
+
+<div class="grid">
+<section class="card wide">
+<h2>1. Unitary implementation of a prime permutation</h2>
+<p class="muted">We truncate the free commutative monoid on four prime generators to total degree ≤ 3. The left shifts become finite partial shifts. Because prime permutations preserve total degree, the conjugacy identity remains exact in this truncation.</p>
+<div class="controls"><label>Swap prime coordinates:</label><select id="swap"><option value="1,2">3 ↔ 5</option><option value="0,3">2 ↔ 7</option><option value="0,1">2 ↔ 3</option><option value="2,3">5 ↔ 7</option></select><button onclick="runSymmetry()">Verify conjugacy</button></div>
+<div class="eq">U<sub>σ</sub> L<sub>p</sub> U<sub>σ</sub><sup>*</sup> = L<sub>σ(p)</sub></div>
+<div id="symResult" class="result"></div>
+<div id="mapping"></div>
+</section>
+
+<section class="card">
+<h2>2. Weight operator D<sub>w</sub></h2>
+<p class="muted">On n=∏p<sup>vₚ(n)</sup>, set E<sub>w</sub>(n)=Σvₚ(n)w(p) and D<sub>w</sub>δₙ=E<sub>w</sub>(n)δₙ.</p>
+<div class="controls"><button onclick="setMode('equal')">Equal weights</button><button onclick="setMode('random')">Distinct arbitrary</button><button onclick="setMode('log')">log p</button></div>
+<div id="weights"></div><div id="weightVerdict" class="result"></div>
+</section>
+
+<section class="card">
+<h2>3. Three regimes</h2>
+<div class="flow"><span class="node">full symmetry</span><span class="arrow">→</span><span class="node">rigidity</span><span class="arrow">→</span><span class="node target">desired orientation</span><span class="arrow">→</span><span class="node">full magnitude</span></div>
+<p class="small muted">The target is not merely “trivial stabilizer.” It must recover the <em>standard</em> prime-successor chain by one intrinsic rule, without encoding the whole number line.</p>
+</section>
+
+<section class="card wide">
+<h2>4. Why “another operator” must carry genuinely new information</h2>
+<div class="grid">
+<div><h3 class="bad">Too weak</h3><p><b>DΩ</b> with w(p)=1 sees only multiplicative depth Ω(n). Every prime permutation still stabilizes it.</p></div>
+<div><h3 class="warn">Rigid but arbitrary</h3><p>Distinct weights destroy all prime permutations, but the induced ordering can be any ordering we chose in advance.</p></div>
+<div><h3 class="bad">Too strong</h3><p><b>Hlog</b> with w(p)=log p gives E(n)=log n. Correct orientation appears because the full ordinary magnitude was imported.</p></div>
+<div><h3 class="ok">Open target</h3><p><b>D*</b> should break symmetry, give a uniform local/spectral successor rule, and avoid hidden nextPrime or ordinary magnitude.</p></div>
+</div>
+</section>
+
+<section class="card wide">
+<h2>5. Prime-Successor Operator Problem</h2>
+<table><thead><tr><th>Requirement</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>P1 · Prime-blind</td><td>No pₖ, π(n), S<sub>ℙ</sub>, or nextPrime in the definition.</td></tr>
+<tr><td>P2 · Symmetry breaking</td><td>The prime-permutation stabilizer of the full datum is trivial.</td></tr>
+<tr><td>P3 · Uniform readability</td><td>One invariant rule Φ(Lₚ,L_q,D*) detects exactly q=p<sub>next</sub>.</td></tr>
+<tr><td>P4 · Magnitude-blind</td><td>The datum is not just an injective monotone encoding of n.</td></tr>
+<tr><td>P5 · Dynamic nontriviality</td><td>Preferably no sequential scan through p+1,…,p<sub>next</sub>.</td></tr>
+</tbody></table>
+</section>
+</div>
+<footer>This page is an illustration of the proofs in “Reflections on the Prime-Successor Operator with Commander Sol.” The finite truncation is used only to visualize the exact symmetry mechanism; the theorem itself is infinite-dimensional.</footer>
+</main>
+<script>
+const primes=[2,3,5,7], degree=3;
+function genBasis(k,d,prefix=[],out=[]){if(k===1){out.push([...prefix,d]);return out;}for(let e=0;e<=d;e++)genBasis(k-1,d-e,[...prefix,e],out);return out}
+const basis=genBasis(primes.length,degree), key=v=>v.join(','), index=new Map(basis.map((v,i)=>[key(v),i]));
+function permFromSwap(a,b){const perm=[0,1,2,3];[perm[a],perm[b]]=[perm[b],perm[a]];return perm}
+function applyPerm(v,perm){const w=Array(v.length).fill(0);for(let i=0;i<v.length;i++)w[perm[i]]=v[i];return w}
+function shift(v,j){if(v.reduce((a,b)=>a+b,0)>=degree)return null;const w=[...v];w[j]++;return w}
+function composeAction(v,steps){let x=v;for(const s of steps){if(x===null)return null;x=s(x)}return x}
+function runSymmetry(){const [a,b]=document.getElementById('swap').value.split(',').map(Number),perm=permFromSwap(a,b),inv=permFromSwap(a,b);let failures=0,rows=[];
+for(let j=0;j<primes.length;j++){for(const v of basis){const lhs=composeAction(v,[x=>applyPerm(x,inv),x=>shift(x,j),x=>x&&applyPerm(x,perm)]);const rhs=shift(v,perm[j]);if((lhs===null)!=(rhs===null)|| (lhs&&key(lhs)!==key(rhs)))failures++;}}
+const sigma=primes.map((p,i)=>`${p}→${primes[perm[i]]}`).join(', ');document.getElementById('symResult').className='result okb';document.getElementById('symResult').innerHTML=`<b class="ok">Exact check passed.</b> ${basis.length} basis states × ${primes.length} generators; failures = <b>${failures}</b>.<br><span class="mono">σ: ${sigma}</span>`;
+for(let j=0;j<primes.length;j++){rows.push(`<tr><td>L<sub>${primes[j]}</sub></td><td>Uσ L<sub>${primes[j]}</sub> Uσ* = L<sub>${primes[perm[j]]}</sub></td></tr>`)}document.getElementById('mapping').innerHTML='<table><thead><tr><th>Generator</th><th>Conjugated generator</th></tr></thead><tbody>'+rows.join('')+'</tbody></table>'}
+function factorial(n){let x=1;for(let i=2;i<=n;i++)x*=i;return x}
+function setMode(mode){let w,verdict,cls;if(mode==='equal'){w=[1,1,1,1];verdict=`All weights coincide. Finite stabilizer size = ${factorial(primes.length)}. The operator sees multiplicative degree but cannot orient prime coordinates.`;cls='warn'}else if(mode==='random'){const order=[5,2,7,3];w=primes.map(p=>order.indexOf(p)+1);verdict=`All weights are distinct, so the finite stabilizer is trivial. But the induced order is ${[...primes].sort((a,b)=>w[primes.indexOf(a)]-w[primes.indexOf(b)]).join(' < ')}, not the standard prime order. Rigidity is not orientation.`;cls='warn'}else{w=primes.map(Math.log);verdict=`Weights are log p. Then E(n)=log n: the standard order is recovered because ordinary magnitude has been imported. This is too strong for the minimality problem.`;cls='bad'}
+let max=Math.max(...w),rows=primes.map((p,i)=>`<tr><td>${p}</td><td>${w[i].toFixed(mode==='log'?4:0)}</td><td><div class="bar"><i style="width:${100*w[i]/max}%"></i></div></td></tr>`).join('');document.getElementById('weights').innerHTML='<table><thead><tr><th>prime p</th><th>w(p)</th><th>relative weight</th></tr></thead><tbody>'+rows+'</tbody></table>';document.getElementById('weightVerdict').innerHTML=`<span class="${cls}"><b>${mode==='equal'?'Symmetric':mode==='random'?'Rigid but arbitrary':'Correct but magnitude-loaded'}</b></span><br>${verdict}`}
+runSymmetry();setMode('equal');
+</script>
+</body></html>
