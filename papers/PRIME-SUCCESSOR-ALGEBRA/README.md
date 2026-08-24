@@ -4,14 +4,19 @@ Companion package for:
 
 **Alex Malachevsky, “Размышлизмы о следующем простом с Commander Sol: Prime-Successor Algebra between Symmetry, Rigidity and Full Arithmetic.”**
 
+English publication version:
+
+**Alex Malachevsky, “Reflections on the Next Prime with Commander Sol: Prime-Successor Algebra between Symmetry, Rigidity, and Full Arithmetic.”**
+
 - ORCID: 0009-0008-6009-3196
 - Zenodo DOI: 10.5281/zenodo.22077920
 
 ## Contents
 
-- [`article.md`](article.md) — source manuscript.
+- [`article.md`](article.md) — Russian source manuscript.
+- [`article_en.md`](article_en.md) — English publication manuscript.
 - [`../../demos/prime-successor-algebra/index.html`](../../demos/prime-successor-algebra/index.html) — standalone interactive demonstration.
-- publication DOCX/PDF are generated from the same manuscript source for release.
+- publication DOCX/PDF are generated from the same manuscript sources for release.
 
 ## Demonstrated mechanisms
 
