@@ -1,0 +1,9 @@
+{
+  "zenodo_record": "22060296",
+  "record_doi": "10.5281/zenodo.22060296",
+  "source_file": "Zenodo_Riemann_Zeta_Argand_v0.1.1.zip",
+  "member": "zenodo_zeta_argand_v0.1.1/full_analysis_archive.zip!zeta_gaussian_phase_10000.csv",
+  "output": "C:/Users/CHUWI/Documents/GitHub/Riemann-Hypothesis-Commander-Sol/data/rh-sol-01/zeta_gaussian_phase_10000.csv",
+  "size_bytes": 1944399,
+  "sha256": "1ca04cba2b57f0e7d899fa084ce823e657d2c6c5c8c60019855f1673cb8094bf"
+}

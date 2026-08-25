@@ -1,0 +1,421 @@
+{
+  "experiment": "RH-SOL-02 EXP-01 resolution/fill-rule control suite",
+  "n_loops": 10000,
+  "start": 10001,
+  "stop": 20000,
+  "time_proxy": "zero-pair midpoint",
+  "q_values": [
+    8,
+    16,
+    32
+  ],
+  "rules": [
+    "winding",
+    "even-odd"
+  ],
+  "scalar_jitter_B": 20000,
+  "seed_base": 20260822,
+  "configs": [
+    {
+      "rule": "winding",
+      "q": 8,
+      "geometry_calibration": {
+        "mae": 0.02352383627618763,
+        "rms": 0.034164506509789916,
+        "max_abs": 0.2845735103430229,
+        "correlation": 0.9999996663909976
+      },
+      "variance_decomposition": {
+        "zero_mode_variance": 1748.599124450564,
+        "translation_residual_mean_square": 0.6182659912109375,
+        "fraction_zero_mode": 0.9996465470818039
+      },
+      "area_spectrum": {
+        "score": 3.1843117371667753,
+        "null_median": 0.8909381523407842,
+        "null_q95": 1.2730551066870837,
+        "null_q99": 1.4670184065947864,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.186770720720254
+      },
+      "finite_q_translation_mean_spectrum": {
+        "score": 3.1848603119469256,
+        "null_median": 0.8894088000766044,
+        "null_q95": 1.2811546108675849,
+        "null_q99": 1.4699125468257064,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.1873188042320493
+      },
+      "count_map_score_distribution": {
+        "min": 3.173962508740029,
+        "q01": 3.174194975094211,
+        "q05": 3.175607494979143,
+        "q25": 3.1798641278850286,
+        "median": 3.1821235843381777,
+        "mean": 3.182231168364364,
+        "q75": 3.1852016020409595,
+        "q95": 3.1879233963858478,
+        "q99": 3.1896844098610413,
+        "max": 3.190075956550109,
+        "range": 0.01611344781007995,
+        "std": 0.0036925011129826913
+      },
+      "residual_map_score_distribution": {
+        "min": 0.7623791207971463,
+        "q01": 0.763761239193702,
+        "q05": 0.7964670846844853,
+        "q25": 0.8551357733270053,
+        "median": 0.9371605099943348,
+        "mean": 0.9696030829698872,
+        "q75": 1.0542799159244958,
+        "q95": 1.2980247634094308,
+        "q99": 1.395035069310123,
+        "max": 1.3991972971224438,
+        "range": 0.6368181763252975,
+        "std": 0.15679700896555301
+      }
+    },
+    {
+      "rule": "winding",
+      "q": 16,
+      "geometry_calibration": {
+        "mae": 0.008519876225137757,
+        "rms": 0.012433525197621245,
+        "max_abs": 0.09236658435440859,
+        "correlation": 0.9999999558510526
+      },
+      "variance_decomposition": {
+        "zero_mode_variance": 1748.6162128037683,
+        "translation_residual_mean_square": 0.6197929885864257,
+        "fraction_zero_mode": 0.9996456778922147
+      },
+      "area_spectrum": {
+        "score": 3.1843117371667753,
+        "null_median": 0.8909381523407842,
+        "null_q95": 1.2730551066870837,
+        "null_q99": 1.4670184065947864,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.186770720720254
+      },
+      "finite_q_translation_mean_spectrum": {
+        "score": 3.184134171344873,
+        "null_median": 0.8899472798618646,
+        "null_q95": 1.2685820752817882,
+        "null_q99": 1.4534094363467427,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.18659288819925
+      },
+      "count_map_score_distribution": {
+        "min": 3.1707919711898085,
+        "q01": 3.1750698463345697,
+        "q05": 3.1769489732351364,
+        "q25": 3.179579675564953,
+        "median": 3.1817637264389056,
+        "mean": 3.1819244909012365,
+        "q75": 3.184297302773647,
+        "q95": 3.1870006102374226,
+        "q99": 3.1898210160555047,
+        "max": 3.1910624224903117,
+        "range": 0.0202704513005032,
+        "std": 0.0032853644443848157
+      },
+      "residual_map_score_distribution": {
+        "min": 0.7394658722421336,
+        "q01": 0.7730836193314625,
+        "q05": 0.7915258019106208,
+        "q25": 0.8639144747938386,
+        "median": 0.9272485105831374,
+        "mean": 0.9722291836936834,
+        "q75": 1.0442024826424998,
+        "q95": 1.294282668847289,
+        "q99": 1.4196907117633557,
+        "max": 1.4913024879061638,
+        "range": 0.7518366156640303,
+        "std": 0.15398205075192042
+      }
+    },
+    {
+      "rule": "winding",
+      "q": 32,
+      "geometry_calibration": {
+        "mae": 0.0029271018258983624,
+        "rms": 0.004243807806229637,
+        "max_abs": 0.037131583307541405,
+        "correlation": 0.9999999948516985
+      },
+      "variance_decomposition": {
+        "zero_mode_variance": 1748.6466244435246,
+        "translation_residual_mean_square": 0.6199657551765442,
+        "fraction_zero_mode": 0.9996455853220714
+      },
+      "area_spectrum": {
+        "score": 3.1843117371667753,
+        "null_median": 0.8909381523407842,
+        "null_q95": 1.2730551066870837,
+        "null_q99": 1.4670184065947864,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.186770720720254
+      },
+      "finite_q_translation_mean_spectrum": {
+        "score": 3.1841694675396846,
+        "null_median": 0.8881772277212697,
+        "null_q95": 1.2692245500928498,
+        "null_q99": 1.4472587704921347,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.186628200625259
+      },
+      "count_map_score_distribution": {
+        "min": 3.169574383785207,
+        "q01": 3.174282376489506,
+        "q05": 3.176562410309363,
+        "q25": 3.1797504757301387,
+        "median": 3.182007644878574,
+        "mean": 3.181936146492764,
+        "q75": 3.1841994677748304,
+        "q95": 3.1873288807819864,
+        "q99": 3.189869541514878,
+        "max": 3.1919094458180193,
+        "range": 0.022335062032812214,
+        "std": 0.0033117837104113426
+      },
+      "residual_map_score_distribution": {
+        "min": 0.7270039170182488,
+        "q01": 0.7647655460157506,
+        "q05": 0.7985032623092687,
+        "q25": 0.8614385879480142,
+        "median": 0.9229612392759816,
+        "mean": 0.9720513325994055,
+        "q75": 1.043256880851248,
+        "q95": 1.2989249536144964,
+        "q99": 1.4261408905853878,
+        "max": 1.5404615248080649,
+        "range": 0.813457607789816,
+        "std": 0.15328056390546685
+      }
+    },
+    {
+      "rule": "even-odd",
+      "q": 8,
+      "geometry_calibration": {
+        "mae": 0.0235455645267393,
+        "rms": 0.03421260927163631,
+        "max_abs": 0.2845735103430229,
+        "correlation": 0.9999996649507815
+      },
+      "variance_decomposition": {
+        "zero_mode_variance": 1746.0084551859766,
+        "translation_residual_mean_square": 0.619718115234375,
+        "fraction_zero_mode": 0.9996451917330161
+      },
+      "area_spectrum": {
+        "score": 3.186451903944274,
+        "null_median": 0.8961094740255526,
+        "null_q95": 1.273866592404216,
+        "null_q99": 1.454301693942236,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.1889097472225703
+      },
+      "finite_q_translation_mean_spectrum": {
+        "score": 3.185892724671596,
+        "null_median": 0.8911696397255183,
+        "null_q95": 1.2709890391185774,
+        "null_q99": 1.442708801093381,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.1883499983390133
+      },
+      "count_map_score_distribution": {
+        "min": 3.1764062735292096,
+        "q01": 3.1764294385462306,
+        "q05": 3.177736624677357,
+        "q25": 3.1815569044113685,
+        "median": 3.1840370661530324,
+        "mean": 3.183970443934978,
+        "q75": 3.186630234869711,
+        "q95": 3.1891502344130975,
+        "q99": 3.1909809017895667,
+        "max": 3.1911113417640897,
+        "range": 0.014705068234880159,
+        "std": 0.0036697874190419985
+      },
+      "residual_map_score_distribution": {
+        "min": 0.7665794473974108,
+        "q01": 0.7683052127409968,
+        "q05": 0.8053623343143319,
+        "q25": 0.8592187166109232,
+        "median": 0.9358568535708416,
+        "mean": 0.9723711727618695,
+        "q75": 1.0650987035641908,
+        "q95": 1.2944493980733471,
+        "q99": 1.3959259485446782,
+        "max": 1.400714087720807,
+        "range": 0.6341346403233963,
+        "std": 0.15617705057169162
+      }
+    },
+    {
+      "rule": "even-odd",
+      "q": 16,
+      "geometry_calibration": {
+        "mae": 0.00852004736453549,
+        "rms": 0.012434164231627857,
+        "max_abs": 0.0926605347249847,
+        "correlation": 0.9999999557706544
+      },
+      "variance_decomposition": {
+        "zero_mode_variance": 1746.0280907547608,
+        "translation_residual_mean_square": 0.6211038162231445,
+        "fraction_zero_mode": 0.9996444026550072
+      },
+      "area_spectrum": {
+        "score": 3.186451903944274,
+        "null_median": 0.8961094740255526,
+        "null_q95": 1.273866592404216,
+        "null_q99": 1.454301693942236,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.1889097472225703
+      },
+      "finite_q_translation_mean_spectrum": {
+        "score": 3.186532975576767,
+        "null_median": 0.8932986149266469,
+        "null_q95": 1.279342808584195,
+        "null_q99": 1.4712848797726195,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.1889906936300583
+      },
+      "count_map_score_distribution": {
+        "min": 3.1725181705900547,
+        "q01": 3.17623691709971,
+        "q05": 3.1788330288685454,
+        "q25": 3.1812420522207847,
+        "median": 3.18326019975635,
+        "mean": 3.1834506156649662,
+        "q75": 3.185803255656815,
+        "q95": 3.188322630979133,
+        "q99": 3.1917554099740513,
+        "max": 3.19318230956021,
+        "range": 0.0206641389701554,
+        "std": 0.0031977581729097765
+      },
+      "residual_map_score_distribution": {
+        "min": 0.7414177953440783,
+        "q01": 0.7771574972660656,
+        "q05": 0.7965106468823648,
+        "q25": 0.8676333692240237,
+        "median": 0.92767961407242,
+        "mean": 0.9745967616858592,
+        "q75": 1.046552363519443,
+        "q95": 1.2946290996438317,
+        "q99": 1.41640618406437,
+        "max": 1.4942234818782676,
+        "range": 0.7528056865341893,
+        "std": 0.15213743383098144
+      }
+    },
+    {
+      "rule": "even-odd",
+      "q": 32,
+      "geometry_calibration": {
+        "mae": 0.0029307839104625345,
+        "rms": 0.004259471051093794,
+        "max_abs": 0.037131583307541405,
+        "correlation": 0.9999999948062002
+      },
+      "variance_decomposition": {
+        "zero_mode_variance": 1746.053164003475,
+        "translation_residual_mean_square": 0.6213975583076478,
+        "fraction_zero_mode": 0.9996442396471659
+      },
+      "area_spectrum": {
+        "score": 3.186451903944274,
+        "null_median": 0.8961094740255526,
+        "null_q95": 1.273866592404216,
+        "null_q99": 1.454301693942236,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.1889097472225703
+      },
+      "finite_q_translation_mean_spectrum": {
+        "score": 3.186395412207905,
+        "null_median": 0.8919059012808362,
+        "null_q95": 1.270992111361439,
+        "null_q99": 1.4645339620770648,
+        "empirical_p_ge": 4.999750012499375e-05,
+        "best_common_shift": 0.000250000000000028,
+        "best_common_shift_score": 3.188853041369279
+      },
+      "count_map_score_distribution": {
+        "min": 3.1715027942953635,
+        "q01": 3.1761982619680995,
+        "q05": 3.178306199754027,
+        "q25": 3.1812061073905555,
+        "median": 3.1835392416638206,
+        "mean": 3.183555902147205,
+        "q75": 3.1857049487109164,
+        "q95": 3.188846844618224,
+        "q99": 3.19143529782387,
+        "max": 3.194369434551056,
+        "range": 0.022866640255692516,
+        "std": 0.003243249176482862
+      },
+      "residual_map_score_distribution": {
+        "min": 0.7272564395881544,
+        "q01": 0.770031042943274,
+        "q05": 0.8034023246691372,
+        "q25": 0.8654986346133686,
+        "median": 0.9256532716088514,
+        "mean": 0.9746430352795004,
+        "q75": 1.0450331294784767,
+        "q95": 1.2974467072092672,
+        "q99": 1.4256023250767107,
+        "max": 1.5406180492968315,
+        "range": 0.8133616097086771,
+        "std": 0.15176732096564316
+      }
+    }
+  ],
+  "fill_rule_comparison": {
+    "area": {
+      "fraction_exactly_equal": 0.991,
+      "mean_abs_difference": 0.002783721890251879,
+      "max_abs_difference": 3.4218030043366525,
+      "correlation": 0.9999991370486915
+    },
+    "counts": {
+      "8": {
+        "fraction_cells_exactly_equal": 0.99825625,
+        "fraction_loops_with_any_difference": 0.0064,
+        "mean_abs_cell_difference": 0.0027734375,
+        "max_abs_cell_difference": 5,
+        "translation_mean_correlation": 0.9999991127295934,
+        "translation_mean_mae_between_rules": 0.0027734375
+      },
+      "16": {
+        "fraction_cells_exactly_equal": 0.998237109375,
+        "fraction_loops_with_any_difference": 0.0076,
+        "mean_abs_cell_difference": 0.0027796875,
+        "max_abs_cell_difference": 5,
+        "translation_mean_correlation": 0.9999991350854853,
+        "translation_mean_mae_between_rules": 0.0027796875
+      },
+      "32": {
+        "fraction_cells_exactly_equal": 0.99822998046875,
+        "fraction_loops_with_any_difference": 0.0084,
+        "mean_abs_cell_difference": 0.0027859375,
+        "max_abs_cell_difference": 5,
+        "translation_mean_correlation": 0.999999137422937,
+        "translation_mean_mae_between_rules": 0.0027859375
+      }
+    }
+  },
+  "interpretation_guardrail": "Per-cell q=8/q=32 maps are descriptive resolution controls. The predeclared q=16 winding map retains the full per-cell jitter/BH inference. Do not reinterpret control-map extrema as newly selected primary tests."
+}

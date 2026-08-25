@@ -1,0 +1,32 @@
+{
+  "n_loops": 10000,
+  "start": 10001,
+  "stop": 20000,
+  "q": 16,
+  "rule": "winding",
+  "time_proxy": "zero-pair midpoint",
+  "B": 20000,
+  "seed_base": 20260822,
+  "frozen_unshifted_baseline": 2.0335818528,
+  "median_comb_score": 3.1817637264389056,
+  "min_comb_score": 3.1707919711898085,
+  "max_comb_score": 3.1910624224903117,
+  "mean_comb_score": 3.1819244909012365,
+  "fraction_above_unshifted_baseline": 1.0,
+  "fraction_p_lt_0_05": 1.0,
+  "fraction_q_bh_lt_0_05": 1.0,
+  "strongest_shift": {
+    "dx": 0.96875,
+    "dy": 0.84375,
+    "comb_score": 3.1910624224903117,
+    "p_jitter": 4.999750012499375e-05,
+    "q_bh": 4.999750012499375e-05
+  },
+  "weakest_shift": {
+    "dx": 0.53125,
+    "dy": 0.28125,
+    "comb_score": 3.1707919711898085,
+    "p_jitter": 4.999750012499375e-05,
+    "q_bh": 4.999750012499375e-05
+  }
+}
