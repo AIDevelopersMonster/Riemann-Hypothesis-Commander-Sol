@@ -1,11 +1,10 @@
-# Prime-Successor Fixed-Ball Interior Candidate
+# Prime-Successor Fixed-Ball Interior
 
-Research checkpoint for the Prime-Successor Algebra programme.
+Research result in the Prime-Successor Algebra programme.
 
 **Date:** 2026-08-25  
-**Status:** GitHub research checkpoint; not yet a Zenodo publication.  
-**Repository:** `AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol`  
-**Working branch:** `research/fixed-ball-interior`
+**Status:** proved programme result; Zenodo manuscript stage  
+**Repository:** `AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol`
 
 ## Object
 
@@ -23,38 +22,75 @@ U_\Delta
 where
 
 \[
-B(x)\iff v_{13}(x)\ge 0,
+B(x)\iff v_{13}(x)\ge0,
+\qquad
+u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}
 \]
 
-and the bridge sends each prime atom \(p\) to the Frobenius label
+for prime atoms \(p\).
+
+The purpose is to test whether one fixed 13-adic ball produces a genuine intermediate layer: stronger than pure prime-permutation symmetry, but still too weak to define the standard prime order, prime successor, or an infinite grid-isolation mechanism.
+
+## Main result
+
+The fixed-ball layer satisfies a **formula-relative tail symmetry theorem**.
+
+For every mixed first-order formula \(\Phi\) there exist a finite 13-adic depth \(K_\Phi\) and a finite exceptional set \(F_\Phi\) such that, on the good-prime tail, \(\Phi\) is invariant under every permutation preserving the finite colors
 
 \[
-u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}.
+c_{K_\Phi}(p)=u_p+B_{K_\Phi}
 \]
 
-The goal is to determine whether one fixed 13-adic ball gives a genuine intermediate structure: stronger than pure multiplicative symmetry, but still too weak to define the standard prime order, prime successor, or an infinite grid-isolation mechanism.
+and fixing \(F_\Phi\) and the non-good primes.
 
-## Current mathematical checkpoint
+The proof rests on four components:
 
-The present research stage isolates the following components.
+1. **Target finite-depth normal form.** Formulas in \((\mathbb Q,+,0,B)\) reduce, after the definitional expansion by fixed \(B_m\), to Boolean combinations of rational-linear equalities and fixed-depth ball conditions.
+2. **Private denominator / exact linear separation.** On the good-prime tail, fixed homogeneous linear relations among Frobenius labels are determined by equality patterns.
+3. **Uniform affine-fiber bound.** Every non-structural exact affine fiber for a fixed linear scheme has uniformly bounded size, independently of the target value.
+4. **Target-witness transport.** Alternating source/target quantifiers are handled by a formula-relative back-and-forth argument. Exact equations either pin a target witness through finitely many labels, or leave a non-empty fixed-depth coset cell in which a generic rational with sufficiently many fresh denominator primes avoids all unwanted affine incidences.
 
-1. **Definability of 13.** For \(p\neq 13\), \(u_p\in B\), while \(v_{13}(u_{13})=-11\). Hence the prime 13 is distinguished by the bridge-plus-ball structure.
-2. **Target finite-depth normal form (working theorem).** In the target structure \((\mathbb Q,+,0,B)\), after naming the fixed predicates \(B_m=13^mB\), formulas reduce to Boolean combinations of rational-linear equalities and fixed-depth membership conditions \(L(\bar x)\in B_m\). Each fixed formula therefore uses only finitely many 13-adic depth thresholds.
-3. **No-scale-synchronization programme.** The source chain \(13^k\) is definable in Skolem arithmetic, but the bridge is atom-only: it links the prime atom 13 to \(u_{13}\), not the exponent \(k\) to target depth. The intended no-go statement is that no single mixed first-order formula uniformly realizes \(x\in 13^kB\) from the source parameter \(13^k\).
-4. **Uniform affine-fiber principle (working lemma).** For a fixed rational-linear scheme in finitely many Frobenius labels, exact affine fibers on the good-prime tail should be uniformly bounded, modulo equality patterns and a finite coefficient-exception set, by the previously established private-denominator / linear-separation mechanism.
-5. **Mixed Quantifier Compression (current target theorem).** The desired result is that every mixed formula, on the good-prime tail, sees only a finite 13-adic color partition plus uniformly bounded exact exceptions and finite source-side occupancy/counting data.
+The full proof checkpoint is in [`MIXED_QUANTIFIER_COMPRESSION_PROOF.md`](MIXED_QUANTIFIER_COMPRESSION_PROOF.md).
 
-If item 5 survives adversarial audit, it yields formula-relative tail symmetry and therefore non-definability of the standard prime order and prime-successor relation. It should also force finite grid-isolation rank for every fixed isolator formula.
+## Consequences
+
+The result yields:
+
+\[
+S_{\mathbb P}\notin\operatorname{Def}(\mathcal B_\Delta),
+\qquad
+<_{\mathbb P}\notin\operatorname{Def}(\mathcal B_\Delta),
+\]
+
+and for every fixed isolator formula \(I\),
+
+\[
+\operatorname{GIR}(I)<\infty.
+\]
+
+At the same time, the extension is strictly stronger than pure Skolem arithmetic because prime 13 is definable from the bridge and the fixed ball: for \(p\ne13\), \(u_p\in B\), while \(v_{13}(u_{13})=-11\).
+
+Thus the programme now has a rigorous fixed-ball interior layer between pure prime-permutation symmetry and the previously established right-wall grid-amplification mechanisms.
+
+## Audit history
+
+The initial checkpoint was subjected to an adversarial deep-research review. That review supported the candidate but left a genuine gap at alternating source/target quantifiers. The programme therefore did **not** accept the review's direct `QE + finite colors` argument. The gap was closed instead by the formula-relative target-witness transport argument recorded in the proof file.
+
+The same audit also motivated two corrections:
+
+- the affine statement is a **uniform fiber bound**, not a claim that all far-tail affine fibers are empty;
+- no universal numerical GIR bound such as \(13^{2K}\) is claimed without explicit bookkeeping of equality patterns and bounded exact exceptions.
 
 ## Claim discipline
 
-This checkpoint does **not** claim that the full Mixed Quantifier Compression theorem has passed external or independent verification. The two critical points requiring adversarial proof audit are:
+This result does **not** claim:
 
-- the **Uniform Affine-Fiber Bound** for exact target equalities with parameters;
-- **target-code realizability / elimination across alternating source-target quantifiers**.
+- decidability of the complete theory \(\operatorname{Th}(\mathcal B_\Delta)\);
+- non-interpretability of full arithmetic by every possible interpretation;
+- historical priority for the general model-theoretic mechanisms.
 
-No claim of historical priority is made at this stage.
+Those are separate questions.
 
-## Publication rule
+## Publication status
 
-This directory is the GitHub-stage fixation of the result. A Zenodo article will be prepared only after the two critical audit points above are either proved cleanly or replaced by a corrected theorem.
+The mathematical threshold for a dedicated Zenodo manuscript has been reached on **2026-08-25**. The Zenodo release should follow after a manuscript-level audit of notation, proof dependencies, prior-art language, bibliography, and RU/EN consistency.
