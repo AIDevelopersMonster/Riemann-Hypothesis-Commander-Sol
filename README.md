@@ -4,6 +4,13 @@
 
 A reproducible research repository for computational experiments on Riemann-zeta Argand loops, integer-lattice encodings, Dirichlet-frequency persistence, sampling/aliasing interpretations, null models, and information survival under nonlinear geometric quantization.
 
+## Zenodo mathematical community
+
+**Reflections on Mathematics with Commander Sol**  
+https://zenodo.org/communities/commander-sol-math/
+
+The community collects the broader mathematical publication line, including work on the Riemann Hypothesis, prime structures, Prime-Successor Algebra, operator methods, adelic structures, and related rigorous explorations in the “Reflections / Размышлизмы” format.
+
 ## Published starting point
 
 **RH-SOL-01 · LATTICE**  
