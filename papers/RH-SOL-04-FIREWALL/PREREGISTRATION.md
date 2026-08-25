@@ -17,17 +17,41 @@ and the primary time coordinate remains
 
 `t_n = (gamma_n + gamma_{n+1}) / 2`.
 
-The direct irregular-time spectral estimator and target dictionary are frozen from REALZERO.
+The target dictionary is frozen from REALZERO.
 
-## Primary observed statistic
+## Primary FIREWALL statistic
 
-Use the already-frozen REALZERO comb score on `m=2..13`:
+The FIREWALL surrogate test is target-only by design. It does not scan the full spectrum for each surrogate.
 
-`S_obs = mean score at omega=log(m), m=2..13`.
+For every 1000-loop block and every declared target frequency `omega = log(m)`, first detrend area linearly against the actual time coordinate in that block. Then fit the two-column sinusoidal model
 
-Also report the predeclared sensitivity `m=2..11`.
+`r(t) = a cos(omega t) + b sin(omega t)`
 
-No target retuning is permitted.
+to the detrended residual `r` by ordinary least squares.
+
+Let
+
+`R2(omega) = 1 - SSE_omega / SST`
+
+with `R2` clipped numerically to `[0,1]`.
+
+Define the block target score
+
+`Q_block = mean_m [-log(1 - R2(log(m)) + 1e-15)]`.
+
+The range-level FIREWALL score is the mean of `Q_block` over the 20 blocks.
+
+Primary target dictionary:
+
+- `m = 2..13`.
+
+Predeclared sensitivity:
+
+- `m = 2..11`.
+
+This target-only statistic is frozen before any surrogate inspection. It is used identically for the observed data and every surrogate. It is not numerically identical to the median-normalized full-grid REALZERO score and must not be compared by absolute magnitude to the earlier REALZERO score. Its purpose is efficient exact-target falsification.
+
+No frequency search, common-shift optimization, or target deletion enters the primary FIREWALL score.
 
 ## FIREWALL-01 — within-block circular-offset surrogate
 
@@ -36,8 +60,7 @@ For each 1000-loop block independently, circularly rotate the area sequence by a
 This preserves exactly within each block:
 
 - the multiset of area values;
-- the loop-index cyclic autocorrelation structure;
-- all adjacent differences up to the single wrap boundary;
+- cyclic loop-index autocorrelation;
 - the block mean, variance and empirical distribution;
 - the actual zero-time coordinates themselves.
 
@@ -53,11 +76,9 @@ Primary surrogate count:
 - random seed `20260825`;
 - each block offset sampled uniformly from `1..999`.
 
-For every surrogate compute the same direct irregular-time spectrum and the same exact-target comb score.
-
 Report:
 
-- observed score;
+- observed FIREWALL score;
 - surrogate median;
 - surrogate q95;
 - surrogate q99;
@@ -126,10 +147,10 @@ Then the present arithmetic interpretation is materially weakened and FIREWALL m
 
 After primary scores are recorded, report:
 
-- m=2..11 sensitivity;
-- best common shift distribution for a smaller diagnostic subset if computationally feasible;
-- score correlations with original block means/variances;
-- observed versus surrogate target-local peak positions.
+- `m=2..11` sensitivity under the same target-only statistic;
+- per-block observed target scores;
+- surrogate score distributions;
+- optional best-shift diagnostics only in a separate descriptive analysis.
 
 These cannot replace the primary exact-target statistic.
 
