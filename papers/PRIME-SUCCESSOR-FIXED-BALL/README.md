@@ -3,8 +3,15 @@
 Research result in the Prime-Successor Algebra programme.
 
 **Date:** 2026-08-25  
-**Status:** proved programme result; Zenodo manuscript stage  
+**Status:** proved programme result; manuscript audit passed; Zenodo package assembled  
 **Repository:** `AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol`
+
+## Publication manuscript
+
+**English:** *Reflections on an Interior Layer between Two Walls with Commander Sol: A Fixed 13-adic Ball, Mixed Quantifier Compression, and Formula-Relative Tail Symmetry*  
+**Russian:** *Размышлизмы о внутреннем слое между двумя стенами с Commander Sol: Один фиксированный 13-адический шар, Mixed Quantifier Compression и формульно-локальная симметрия*
+
+Version 1.0, 2026-08-25. DOI pending Zenodo assignment.
 
 ## Object
 
@@ -29,19 +36,11 @@ u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}
 
 for prime atoms \(p\).
 
-The purpose is to test whether one fixed 13-adic ball produces a genuine intermediate layer: stronger than pure prime-permutation symmetry, but still too weak to define the standard prime order, prime successor, or an infinite grid-isolation mechanism.
-
 ## Main result
 
 The fixed-ball layer satisfies a **formula-relative tail symmetry theorem**.
 
-For every mixed first-order formula \(\Phi\) there exist a finite 13-adic depth \(K_\Phi\) and a finite exceptional set \(F_\Phi\) such that, on the good-prime tail, \(\Phi\) is invariant under every permutation preserving the finite colors
-
-\[
-c_{K_\Phi}(p)=u_p+B_{K_\Phi}
-\]
-
-and fixing \(F_\Phi\) and the non-good primes.
+For every mixed first-order formula \(\Phi\) there exist a finite 13-adic depth \(K_\Phi\) and a finite exceptional set \(F_\Phi\) such that \(\Phi\) is invariant on the prime tail under the formula-admissible permutations preserving the finite good-prime colors and the common-label zero-prime class.
 
 The proof rests on four components:
 
@@ -50,11 +49,9 @@ The proof rests on four components:
 3. **Uniform affine-fiber bound.** Every non-structural exact affine fiber for a fixed linear scheme has uniformly bounded size, independently of the target value.
 4. **Target-witness transport.** Alternating source/target quantifiers are handled by a formula-relative back-and-forth argument. Exact equations either pin a target witness through finitely many labels, or leave a non-empty fixed-depth coset cell in which a generic rational with sufficiently many fresh denominator primes avoids all unwanted affine incidences.
 
-The full proof checkpoint is in [`MIXED_QUANTIFIER_COMPRESSION_PROOF.md`](MIXED_QUANTIFIER_COMPRESSION_PROOF.md).
+The proof checkpoint is in [`MIXED_QUANTIFIER_COMPRESSION_PROOF.md`](MIXED_QUANTIFIER_COMPRESSION_PROOF.md).
 
 ## Consequences
-
-The result yields:
 
 \[
 S_{\mathbb P}\notin\operatorname{Def}(\mathcal B_\Delta),
@@ -68,29 +65,16 @@ and for every fixed isolator formula \(I\),
 \operatorname{GIR}(I)<\infty.
 \]
 
-At the same time, the extension is strictly stronger than pure Skolem arithmetic because prime 13 is definable from the bridge and the fixed ball: for \(p\ne13\), \(u_p\in B\), while \(v_{13}(u_{13})=-11\).
+At the same time prime 13 is definable from the bridge and the fixed ball: for \(p\ne13\), \(u_p\in B\), while \(v_{13}(u_{13})=-11\). Thus the programme has a rigorous fixed-ball interior layer between pure prime-permutation symmetry and the previously established right-wall grid-amplification mechanisms.
 
-Thus the programme now has a rigorous fixed-ball interior layer between pure prime-permutation symmetry and the previously established right-wall grid-amplification mechanisms.
+## Audit corrections incorporated
 
-## Audit history
-
-The initial checkpoint was subjected to an adversarial deep-research review. That review supported the candidate but left a genuine gap at alternating source/target quantifiers. The programme therefore did **not** accept the review's direct `QE + finite colors` argument. The gap was closed instead by the formula-relative target-witness transport argument recorded in the proof file.
-
-The same audit also motivated two corrections:
-
-- the affine statement is a **uniform fiber bound**, not a claim that all far-tail affine fibers are empty;
-- no universal numerical GIR bound such as \(13^{2K}\) is claimed without explicit bookkeeping of equality patterns and bounded exact exceptions.
+The final manuscript does not use the rejected shortcut `target QE + finite colors` across alternating source/target quantifiers. It uses direct target-witness transport. The affine theorem is stated as a uniform fiber bound, not eventual emptiness. The GIR theorem asserts a formula-dependent finite bound \(C(I)\), not an unsupported universal number such as \(13^{2K}\). Zero primes, if any, are treated as one exact common-label movable class \(u_p=-1\), so no Lehmer or density assumption is needed for the successor argument.
 
 ## Claim discipline
 
-This result does **not** claim:
-
-- decidability of the complete theory \(\operatorname{Th}(\mathcal B_\Delta)\);
-- non-interpretability of full arithmetic by every possible interpretation;
-- historical priority for the general model-theoretic mechanisms.
-
-Those are separate questions.
+This result does **not** claim decidability of the complete theory, non-interpretability of full arithmetic by every possible interpretation, or historical priority for the general model-theoretic mechanisms.
 
 ## Publication status
 
-The mathematical threshold for a dedicated Zenodo manuscript has been reached on **2026-08-25**. The Zenodo release should follow after a manuscript-level audit of notation, proof dependencies, prior-art language, bibliography, and RU/EN consistency.
+The mathematical publication threshold was reached on **2026-08-25**. The bilingual manuscript has passed the manuscript-level consistency and visual-layout audit and the Zenodo v1.0 package has been assembled. The DOI remains pending until deposition.
