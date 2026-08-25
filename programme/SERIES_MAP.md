@@ -3,8 +3,8 @@
 | ID | Label | Working title | Core question | Status |
 |---|---|---|---|---|
 | RH-SOL-01 | LATTICE | Integer-Lattice Encoding of Riemann-Zeta Argand Loops | Does the Dirichlet `log n` structure survive binary lattice quantization? | Published |
-| RH-SOL-02 | SHIFT | Shifted-Lattice Spectroscopy of Riemann-Zeta Argand Loops | Does the effect survive arbitrary lattice translation? | Active |
-| RH-SOL-03 | REALZERO | Dirichlet Frequencies without Smooth Time | Does the comb survive direct use of actual zero ordinates `gamma_n`? | Planned |
+| RH-SOL-02 | SHIFT | Shifted-Lattice Spectroscopy of Riemann-Zeta Argand Loops | Does the effect survive arbitrary lattice translation? | Research complete; manuscript synthesis pending |
+| RH-SOL-03 | REALZERO | Dirichlet Frequencies without Smooth Time | Does the comb survive direct use of actual zero ordinates `gamma_n`? | Active |
 | RH-SOL-04 | FIREWALL | Falsification Tests for Arithmetic Spectra in Quantized Zeta Geometry | Can geometry-preserving and phase-randomized nulls destroy the effect? | Planned |
 | RH-SOL-05 | POISSON | Poisson Summation and the Moving Integer Lattice of Zeta Argand Domains | Can shifted lattices expose Fourier coefficients of loop interiors? | Planned |
 | RH-SOL-06 | NYQUIST | Nyquist Aliasing, Dirichlet Modes and the Riemann-Siegel Scale | What is the precise status of the sampling/aliasing analogy? | Planned |
