@@ -1,0 +1,218 @@
+{
+  "experiment": "RH-SOL-02 EXP-03 RATE",
+  "status": "exploratory post-view",
+  "x_definition": "x=log(T_median/(2*pi))",
+  "target": "residual_variance_fraction",
+  "fit_scale": "log-space relative-error fit",
+  "all_20_blocks": {
+    "label": "all_20_blocks",
+    "n_blocks": 20,
+    "loop_start": 1,
+    "loop_stop": 20000,
+    "primary_ranking": [
+      {
+        "model": "inv_log_power",
+        "parameters": {
+          "A": 0.21368139779723283,
+          "p": 3.137757448939574
+        },
+        "aicc": -135.60933926337557,
+        "delta_aicc": 0.0,
+        "log_rmse": 0.029960346936567704,
+        "relative_rmse": 0.029930637200520478,
+        "loo_log_rmse": 0.03461071570377954,
+        "loo_relative_rmse": 0.03446110917845836
+      },
+      {
+        "model": "power_T",
+        "parameters": {
+          "A": 0.014291857670165177,
+          "alpha": 0.48215823718583606
+        },
+        "aicc": -117.60863545967062,
+        "delta_aicc": 18.00070380370495,
+        "log_rmse": 0.04698800393314022,
+        "relative_rmse": 0.045973628336937834,
+        "loo_log_rmse": 0.06461876224185846,
+        "loo_relative_rmse": 0.060872955940008626
+      },
+      {
+        "model": "inv_log",
+        "parameters": {
+          "A": 0.0032649191611494573,
+          "p_fixed": 1.0
+        },
+        "aicc": -51.7021022626321,
+        "delta_aicc": 83.90723700074346,
+        "log_rmse": 0.25973117838689924,
+        "relative_rmse": 0.2215468648572746,
+        "loo_log_rmse": 0.27340124035786134,
+        "loo_relative_rmse": 0.23201453715804957
+      },
+      {
+        "model": "inv_sqrt_log",
+        "parameters": {
+          "A": 0.0012278717144435102,
+          "p_fixed": 0.5
+        },
+        "aicc": -43.38676776685231,
+        "delta_aicc": 92.22257149652327,
+        "log_rmse": 0.31974715065531945,
+        "relative_rmse": 0.26705548786608596,
+        "loo_log_rmse": 0.3365759480666176,
+        "loo_relative_rmse": 0.2797526805464155
+      }
+    ],
+    "floor_sensitivity_ranking": [
+      {
+        "model": "floor_inv_log_power",
+        "parameters": {
+          "c": 4.996538847971786e-05,
+          "A": 0.33658080632490056,
+          "p": 3.4326939632743385
+        },
+        "aicc": -134.32531477984776,
+        "delta_aicc": 0.0,
+        "log_rmse": 0.028850358219167337,
+        "relative_rmse": 0.029029853791420174,
+        "loo_log_rmse": 0.03498268914017976,
+        "loo_relative_rmse": 0.03515835988497158
+      },
+      {
+        "model": "floor_power_T",
+        "parameters": {
+          "c": 0.00017132829898605713,
+          "A": 0.04062116305241041,
+          "alpha": 0.7013401575581039
+        },
+        "aicc": -132.93816483721605,
+        "delta_aicc": 1.3871499426317087,
+        "log_rmse": 0.029868402769060113,
+        "relative_rmse": 0.030136639982480704,
+        "loo_log_rmse": 0.040893898169056773,
+        "loo_relative_rmse": 0.04067668277044323
+      }
+    ],
+    "mechanistic_component_fits": {
+      "residual_mean_square": {
+        "C": 0.4396810776716857,
+        "exponent": 0.16814670871348697,
+        "log_rmse": 0.011768018943575724
+      },
+      "zero_mode_variance": {
+        "C": 2.0478720193497733,
+        "exponent": 3.308080661489031,
+        "log_rmse": 0.029057829618581697
+      },
+      "implied_F_decay_exponent_z_minus_r": 3.139933952775544,
+      "direct_inv_log_power_exponent_p": 3.137757448939574,
+      "absolute_exponent_difference": 0.0021765038359697897
+    }
+  },
+  "blocks_2_20_sensitivity": {
+    "label": "blocks_2_20_sensitivity",
+    "n_blocks": 19,
+    "loop_start": 1001,
+    "loop_stop": 20000,
+    "primary_ranking": [
+      {
+        "model": "inv_log_power",
+        "parameters": {
+          "A": 0.18357570066128223,
+          "p": 3.0616304898395175
+        },
+        "aicc": -129.4013689876851,
+        "delta_aicc": 0.0,
+        "log_rmse": 0.029296149619844922,
+        "relative_rmse": 0.029411790954387517,
+        "loo_log_rmse": 0.03236192715683857,
+        "loo_relative_rmse": 0.032520769834021974
+      },
+      {
+        "model": "power_T",
+        "parameters": {
+          "A": 0.010664054370406927,
+          "alpha": 0.4425336399322639
+        },
+        "aicc": -125.9381711909395,
+        "delta_aicc": 3.4631977967455896,
+        "log_rmse": 0.03209155396695508,
+        "relative_rmse": 0.03193467271621385,
+        "loo_log_rmse": 0.03670637906090232,
+        "loo_relative_rmse": 0.03643168347106329
+      },
+      {
+        "model": "inv_log",
+        "parameters": {
+          "A": 0.0031256828921438083,
+          "p_fixed": 1.0
+        },
+        "aicc": -62.565386767452594,
+        "delta_aicc": 66.8359822202325,
+        "log_rmse": 0.18172130151369523,
+        "relative_rmse": 0.17001014444100362,
+        "loo_log_rmse": 0.19181692912536658,
+        "loo_relative_rmse": 0.17903360582812503
+      },
+      {
+        "model": "inv_sqrt_log",
+        "parameters": {
+          "A": 0.0011639840285428036,
+          "p_fixed": 0.5
+        },
+        "aicc": -54.488569444790365,
+        "delta_aicc": 74.91279954289473,
+        "log_rmse": 0.22475749643366688,
+        "relative_rmse": 0.20751448022281607,
+        "loo_log_rmse": 0.23724402326488434,
+        "loo_relative_rmse": 0.21850915693787823
+      }
+    ],
+    "floor_sensitivity_ranking": [
+      {
+        "model": "floor_power_T",
+        "parameters": {
+          "c": 0.0001266462453973187,
+          "A": 0.02378551723278403,
+          "alpha": 0.6036662613662527
+        },
+        "aicc": -126.61100135825208,
+        "delta_aicc": 0.0,
+        "log_rmse": 0.02925021201963222,
+        "relative_rmse": 0.029405514955298966,
+        "loo_log_rmse": 0.0341590314321403,
+        "loo_relative_rmse": 0.034452960829619794
+      },
+      {
+        "model": "floor_inv_log_power",
+        "parameters": {
+          "c": 8.639114105876808e-06,
+          "A": 0.2005900441702216,
+          "p": 3.117028514206188
+        },
+        "aicc": -126.56157773013115,
+        "delta_aicc": 0.04942362812093393,
+        "log_rmse": 0.029288280233632724,
+        "relative_rmse": 0.02941947926888924,
+        "loo_log_rmse": 0.03367977487210809,
+        "loo_relative_rmse": 0.03396934398068474
+      }
+    ],
+    "mechanistic_component_fits": {
+      "residual_mean_square": {
+        "C": 0.447586285734729,
+        "exponent": 0.15921368973661396,
+        "log_rmse": 0.012024248801334696
+      },
+      "zero_mode_variance": {
+        "C": 2.429466012039865,
+        "exponent": 3.2224233423923097,
+        "log_rmse": 0.027913354310449032
+      },
+      "implied_F_decay_exponent_z_minus_r": 3.063209652655696,
+      "direct_inv_log_power_exponent_p": 3.0616304898395175,
+      "absolute_exponent_difference": 0.0015791628161783144
+    }
+  },
+  "guardrail": "The rate law is descriptive over loops 1..20000 and is not an asymptotic theorem. Floor models are post-view sensitivity only."
+}

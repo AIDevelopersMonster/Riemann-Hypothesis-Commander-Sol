@@ -1,0 +1,71 @@
+{
+  "n_loops": 10000,
+  "start": 1,
+  "stop": 10000,
+  "q": 16,
+  "rule": "winding",
+  "time_proxy": "zero-pair midpoint",
+  "B": 20000,
+  "seed_base": 20260822,
+  "geometry_calibration": {
+    "translation_mean_minus_area_mae": 0.008507885790503558,
+    "translation_mean_minus_area_rms": 0.012216760560665433,
+    "translation_mean_minus_area_max_abs": 0.10804906579511453,
+    "translation_mean_area_correlation": 0.999999930586428
+  },
+  "variance_decomposition": {
+    "zero_mode_variance": 1074.6317692218015,
+    "translation_residual_mean_square": 0.602335758972168,
+    "fraction_zero_mode": 0.9994398096598852
+  },
+  "area_spectrum": {
+    "score": 2.041541525722505,
+    "null_median": 0.9284268040737793,
+    "null_q95": 1.169862667602274,
+    "null_q99": 1.2903242914141477,
+    "empirical_p_ge": 4.999750012499375e-05,
+    "best_common_shift": -0.0015000000000000013,
+    "best_common_shift_score": 2.053452076574535
+  },
+  "finite_q_translation_mean_spectrum": {
+    "score": 2.04124383118504,
+    "null_median": 0.9236989734611865,
+    "null_q95": 1.1769339133380228,
+    "null_q99": 1.2957222415970273,
+    "empirical_p_ge": 4.999750012499375e-05,
+    "best_common_shift": -0.0015000000000000013,
+    "best_common_shift_score": 2.053149676478579
+  },
+  "translation_residual_map": {
+    "median_comb_score": 0.8827632779285204,
+    "mean_comb_score": 0.8985318641743903,
+    "min_comb_score": 0.7540767765525375,
+    "max_comb_score": 1.15209544873873,
+    "fraction_p_lt_0_05": 0.6015625,
+    "fraction_q_bh_lt_0_05": 0.5390625,
+    "strongest_shift": {
+      "iy": 14,
+      "ix": 0,
+      "dx": 0.03125,
+      "dy": 0.90625,
+      "residual_comb_score": 1.15209544873873,
+      "p_jitter": 4.999750012499375e-05,
+      "null_median": 0.8046361144574125,
+      "null_q95": 0.9049127381679283,
+      "null_q99": 0.9671161274492498,
+      "q_bh": 0.00039998000099995
+    },
+    "weakest_shift": {
+      "iy": 12,
+      "ix": 10,
+      "dx": 0.65625,
+      "dy": 0.78125,
+      "residual_comb_score": 0.7540767765525375,
+      "p_jitter": 0.8700064996750162,
+      "null_median": 0.7978423367705696,
+      "null_q95": 0.8631934496296001,
+      "null_q99": 0.8896960825926991,
+      "q_bh": 0.8700064996750162
+    }
+  }
+}

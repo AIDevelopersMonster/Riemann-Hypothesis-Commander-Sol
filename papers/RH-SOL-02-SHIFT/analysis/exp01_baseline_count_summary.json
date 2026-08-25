@@ -1,0 +1,22 @@
+{
+  "N_loops": 10000,
+  "observable": "C_n(0)=number of interior integer lattice points per loop",
+  "time_proxy": "RH-SOL-01 zeta_gaussian_phase_10000.csv:t_near",
+  "block_size": 1000,
+  "omega_range": [0.4, 3.5],
+  "omega_step": 0.0005,
+  "comb_m": [2, 13],
+  "comb_score": 2.0335818527661713,
+  "jitter_null_B": 20000,
+  "jitter_half_width": 0.2,
+  "jitter_seed": 20260822,
+  "empirical_p_ge": 4.999750012499375e-05,
+  "null_median": 0.9264314803213,
+  "null_q95": 1.1664037953149493,
+  "null_q99": 1.2870944662321353,
+  "common_shift_best_delta": -0.0015000000000000013,
+  "common_shift_best_score": 2.0446975953255953,
+  "common_shift_zero_score": 2.0335818527661713,
+  "count_mean": 11.5642,
+  "count_variance": 1064.99707836
+}

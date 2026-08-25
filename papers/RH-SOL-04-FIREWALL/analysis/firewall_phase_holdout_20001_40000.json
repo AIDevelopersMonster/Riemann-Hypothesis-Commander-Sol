@@ -1,0 +1,26 @@
+{
+  "B": 5000,
+  "block_size": 1000,
+  "m2_11": {
+    "empirical_p_ge": 0.0001999600079984003,
+    "null_max": 0.025653415383020517,
+    "null_median": 0.023702828175850878,
+    "null_q95": 0.02458859075895677,
+    "null_q99": 0.024940423780241472,
+    "observed": 0.03843732058522577
+  },
+  "m2_13": {
+    "empirical_p_ge": 0.0001999600079984003,
+    "null_max": 0.02307650288554061,
+    "null_median": 0.021308737383205666,
+    "null_q95": 0.02203779370031406,
+    "null_q99": 0.02235777790009856,
+    "observed": 0.034228925875265076
+  },
+  "method": "blockwise loop-index FFT phase randomization with exact magnitude preservation",
+  "n_blocks": 20,
+  "n_loops": 20000,
+  "seed": 20260828,
+  "start": 20001,
+  "stop": 40000
+}

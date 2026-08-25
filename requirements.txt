@@ -1,0 +1,6 @@
+# RH-SOL research runtime
+# Keep broad compatible ranges; exact package versions are recorded in experiment manifests.
+mpmath>=1.3,<2
+numpy>=1.26,<3
+scipy>=1.11,<2
+shapely>=2.1,<3
