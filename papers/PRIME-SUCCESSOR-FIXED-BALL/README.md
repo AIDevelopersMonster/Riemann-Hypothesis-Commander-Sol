@@ -3,19 +3,20 @@
 Research result in the Prime-Successor Algebra programme.
 
 **Date:** 2026-08-25  
-**Status:** proved programme result; manuscript audit passed; Zenodo package assembled  
-**Repository:** `AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol`
+**Current GitHub version:** 1.1  
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.22101603  
+**Status:** proved programme result; post-publication adversarial-review clarifications incorporated
 
 ## Publication manuscript
 
 **English:** *Reflections on an Interior Layer between Two Walls with Commander Sol: A Fixed 13-adic Ball, Mixed Quantifier Compression, and Formula-Relative Tail Symmetry*  
 **Russian:** *Размышлизмы о внутреннем слое между двумя стенами с Commander Sol: Один фиксированный 13-адический шар, Mixed Quantifier Compression и формульно-локальная симметрия*
 
-Version 1.0, 2026-08-25. DOI pending Zenodo assignment.
+The DOI record corresponds to the published v1.0 release. GitHub v1.1 is a clarification revision: the principal theorems and conclusions are unchanged.
 
 ## Object
 
-We study the two-sorted structure
+We study
 
 \[
 \mathcal B_\Delta=
@@ -31,27 +32,14 @@ where
 \[
 B(x)\iff v_{13}(x)\ge0,
 \qquad
-u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}
+u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}.
 \]
-
-for prime atoms \(p\).
 
 ## Main result
 
-The fixed-ball layer satisfies a **formula-relative tail symmetry theorem**.
+For every mixed first-order formula \(\Phi\), there is a finite formula-relative partition of the prime tail such that \(\Phi\) is invariant under every admissible permutation preserving the relevant good-prime colors, the common-label zero-prime class, and a finite exceptional set.
 
-For every mixed first-order formula \(\Phi\) there exist a finite 13-adic depth \(K_\Phi\) and a finite exceptional set \(F_\Phi\) such that \(\Phi\) is invariant on the prime tail under the formula-admissible permutations preserving the finite good-prime colors and the common-label zero-prime class.
-
-The proof rests on four components:
-
-1. **Target finite-depth normal form.** Formulas in \((\mathbb Q,+,0,B)\) reduce, after the definitional expansion by fixed \(B_m\), to Boolean combinations of rational-linear equalities and fixed-depth ball conditions.
-2. **Private denominator / exact linear separation.** On the good-prime tail, fixed homogeneous linear relations among Frobenius labels are determined by equality patterns.
-3. **Uniform affine-fiber bound.** Every non-structural exact affine fiber for a fixed linear scheme has uniformly bounded size, independently of the target value.
-4. **Target-witness transport.** Alternating source/target quantifiers are handled by a formula-relative back-and-forth argument. Exact equations either pin a target witness through finitely many labels, or leave a non-empty fixed-depth coset cell in which a generic rational with sufficiently many fresh denominator primes avoids all unwanted affine incidences.
-
-The proof checkpoint is in [`MIXED_QUANTIFIER_COMPRESSION_PROOF.md`](MIXED_QUANTIFIER_COMPRESSION_PROOF.md).
-
-## Consequences
+Consequently,
 
 \[
 S_{\mathbb P}\notin\operatorname{Def}(\mathcal B_\Delta),
@@ -65,16 +53,31 @@ and for every fixed isolator formula \(I\),
 \operatorname{GIR}(I)<\infty.
 \]
 
-At the same time prime 13 is definable from the bridge and the fixed ball: for \(p\ne13\), \(u_p\in B\), while \(v_{13}(u_{13})=-11\). Thus the programme has a rigorous fixed-ball interior layer between pure prime-permutation symmetry and the previously established right-wall grid-amplification mechanisms.
+Prime 13 is nevertheless parameter-free definable, so the fixed-ball layer breaks the pure prime-permutation symmetry of Skolem arithmetic without reaching the previously exhibited infinite-grid amplification mechanisms.
 
-## Audit corrections incorporated
+## Version 1.1 clarifications
 
-The final manuscript does not use the rejected shortcut `target QE + finite colors` across alternating source/target quantifiers. It uses direct target-witness transport. The affine theorem is stated as a uniform fiber bound, not eventual emptiness. The GIR theorem asserts a formula-dependent finite bound \(C(I)\), not an unsupported universal number such as \(13^{2K}\). Zero primes, if any, are treated as one exact common-label movable class \(u_p=-1\), so no Lehmer or density assumption is needed for the successor argument.
+The post-publication adversarial review was accepted with local corrections. GitHub v1.1 adds:
+
+1. an explicit proof that every fixed depth predicate \(B_m\) is definable in the original target language;
+2. the full private-denominator valuation calculation and a separate injectivity corollary for good labels;
+3. an explicit compatibility calculation for several simultaneous pinning equations in Target-Witness Transport;
+4. a separate **Multiplicity-Blind Bridge Principle**;
+5. treatment of zero primes \(\tau(p)=0\) as one exact common-label movable class \(u_p=-1\), so the prime-successor proof does not depend on Lehmer nonvanishing or on Serre's density theorem;
+6. clarification that the comparison with the "right wall" is a programme-level comparison of grid-amplification behaviour, not a claim that a global interpretability preorder has been established.
+
+The strengthened proof is in [`MIXED_QUANTIFIER_COMPRESSION_PROOF.md`](MIXED_QUANTIFIER_COMPRESSION_PROOF.md). See [`VERSION_1.1_NOTES.md`](VERSION_1.1_NOTES.md) for the change log.
 
 ## Claim discipline
 
-This result does **not** claim decidability of the complete theory, non-interpretability of full arithmetic by every possible interpretation, or historical priority for the general model-theoretic mechanisms.
+Version 1.1 does **not** add claims of:
 
-## Publication status
+- decidability of \(\operatorname{Th}(\mathcal B_\Delta)\);
+- non-interpretability of full arithmetic by every possible interpretation;
+- an explicit effective map \(\Phi\mapsto K_\Phi\);
+- historical priority for the general model-theoretic mechanisms.
 
-The mathematical publication threshold was reached on **2026-08-25**. The bilingual manuscript has passed the manuscript-level consistency and visual-layout audit and the Zenodo v1.0 package has been assembled. The DOI remains pending until deposition.
+## Publication record
+
+Published record: **10.5281/zenodo.22101603**.  
+GitHub v1.1 preserves the published mathematical result and makes the proof dependencies more explicit after adversarial review.
