@@ -75,7 +75,6 @@ def inline_convert(s: str) -> str:
                 result.append(r"\texttt{" + code + "}")
                 i = j + 1
                 continue
-        # Consume ordinary prose up to the next special construct.
         candidates = [p for p in (
             s.find(r"\(", i), s.find("**", i), s.find("*", i), s.find("`", i)
         ) if p != -1]
@@ -91,7 +90,7 @@ def inline_convert(s: str) -> str:
 
 def display_env(content: str) -> str:
     c = content.strip()
-    # Long boxed prose slogans should remain display statements but not acquire a cramped tag.
+    # Long boxed prose slogans remain display statements but do not acquire a cramped tag.
     unnumbered = (r"\boxed" in c and r"\text" in c) or len(c) > 420
     env = "equation*" if unnumbered else "equation"
     return f"\\begin{{{env}}}\n{c}\n\\end{{{env}}}\n"
@@ -104,6 +103,7 @@ def convert(md: str, language: str) -> str:
     display = []
     list_mode = None
     skipped_frontmatter = 0
+    in_abstract = False
 
     def close_list():
         nonlocal list_mode
@@ -135,6 +135,9 @@ def convert(md: str, language: str) -> str:
 
         if line.strip() == "---":
             close_list()
+            if in_abstract:
+                out.append("\\end{SLabstractRU}\n" if language == "ru" else "\\end{SLabstract}\n")
+                in_abstract = False
             out.append("\n")
             continue
 
@@ -147,11 +150,14 @@ def convert(md: str, language: str) -> str:
             close_list()
             title = line[3:].strip()
             if title in {"Abstract", "Аннотация"}:
+                out.append("\\begin{SLabstractRU}\n" if language == "ru" else "\\begin{SLabstract}\n")
+                in_abstract = True
                 continue
-            if title in {"References", "Литература", "Author note", "Авторская заметка"}:
-                out.append(r"\section*{" + inline_convert(title) + "}\n")
-            else:
-                out.append(r"\section*{" + inline_convert(title) + "}\n")
+            if in_abstract:
+                out.append("\\end{SLabstractRU}\n" if language == "ru" else "\\end{SLabstract}\n")
+                in_abstract = False
+            out.append(r"\section*{" + inline_convert(title) + "}\n")
+            if title not in {"References", "Литература", "Author note", "Авторская заметка"}:
                 out.append(r"\addcontentsline{toc}{section}{" + inline_convert(title) + "}\n")
             continue
 
@@ -182,6 +188,8 @@ def convert(md: str, language: str) -> str:
         out.append(inline_convert(line) + "\n")
 
     close_list()
+    if in_abstract:
+        out.append("\\end{SLabstractRU}\n" if language == "ru" else "\\end{SLabstract}\n")
     if in_display:
         raise ValueError("Unclosed display-math block")
 
