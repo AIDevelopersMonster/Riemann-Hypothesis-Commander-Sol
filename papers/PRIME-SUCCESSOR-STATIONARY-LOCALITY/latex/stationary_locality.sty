@@ -1,0 +1,102 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{stationary_locality}[2026/08/26 Stationary Locality publication style]
+
+\RequirePackage[letterpaper,margin=1in]{geometry}
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{microtype}
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\RequirePackage{setspace}
+\RequirePackage{titlesec}
+\RequirePackage{etoolbox}
+
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+\setmathfont{Libertinus Math}
+
+\definecolor{SLAccent}{HTML}{243A5E}
+\definecolor{SLMuted}{HTML}{666666}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=SLAccent,
+  citecolor=SLAccent,
+  urlcolor=SLAccent,
+  pdftitle={Stationary Locality},
+  pdfauthor={Alex Malachevsky}
+}
+
+\setstretch{1.06}
+\setlength{\parindent}{1.3em}
+\setlength{\parskip}{0.15em}
+\setlist{nosep,leftmargin=2em}
+
+\titleformat{\section}{\Large\bfseries\color{SLAccent}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{2.1ex plus .4ex}{1.0ex}
+\titlespacing*{\subsection}{0pt}{1.7ex plus .3ex}{0.7ex}
+\titlespacing*{\subsubsection}{0pt}{1.3ex plus .2ex}{0.5ex}
+
+% Equation-number geometry release gate.
+% Printed tag right edge sits 0.10 in inside the text block.
+% minalignsep keeps at least 18 pt of horizontal breathing room in aligned displays.
+\setlength{\minalignsep}{18pt}
+\makeatletter
+\renewcommand{\tagform@}[1]{%
+  \maketag@@@{\normalfont\hspace{0pt}(\ignorespaces#1\unskip\@@italiccorr)\hspace{0.10in}}%
+}
+\makeatother
+
+% Avoid widows/orphans in a long mathematical preprint.
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+% Keep a theorem/proof heading with what follows whenever possible.
+\newcommand{\SLheading}[1]{\par\addvspace{1.0ex}\noindent\textbf{#1}\par\nobreak\smallskip}
+
+% Publication metadata helpers.
+\newcommand{\SLorcid}{0009-0008-6009-3196}
+\newcommand{\SLversion}{1.0}
+\newcommand{\SLdate}{2026-08-26}
+
+\newcommand{\SLmaketitle}[2]{%
+  \begin{titlepage}
+    \centering
+    \vspace*{0.12\textheight}
+    {\huge\bfseries\color{SLAccent} #1\par}
+    \vspace{1.1em}
+    {\Large #2\par}
+    \vfill
+    {\large Alex Malachevsky\par}
+    \vspace{0.35em}
+    {\normalsize ORCID: \SLorcid\par}
+    \vspace{0.35em}
+    {\normalsize Version \SLversion\quad--\quad \SLdate\par}
+    \vfill
+    {\small Riemann Hypothesis -- Commander Sol research programme\par}
+  \end{titlepage}
+}
+
+\newenvironment{SLabstract}{%
+  \begin{center}\begin{minipage}{0.88\textwidth}
+  \small\noindent\textbf{Abstract.}\ \ignorespaces
+}{%
+  \end{minipage}\end{center}\vspace{1.2em}
+}
+
+\newenvironment{SLabstractRU}{%
+  \begin{center}\begin{minipage}{0.88\textwidth}
+  \small\noindent\textbf{Аннотация.}\ \ignorespaces
+}{%
+  \end{minipage}\end{center}\vspace{1.2em}
+}
