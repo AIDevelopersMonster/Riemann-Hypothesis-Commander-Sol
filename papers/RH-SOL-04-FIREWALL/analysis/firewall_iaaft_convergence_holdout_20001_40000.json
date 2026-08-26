@@ -1,0 +1,38 @@
+{
+  "B": 500,
+  "block_size": 1000,
+  "iterations": 2000,
+  "m2_11": {
+    "empirical_p_ge": 0.001996007984031936,
+    "null_max": 0.024477914678105492,
+    "null_median": 0.021936480353883535,
+    "null_q95": 0.02332360973682858,
+    "null_q99": 0.023985326382414063,
+    "observed": 0.03843732058522577
+  },
+  "m2_13": {
+    "empirical_p_ge": 0.001996007984031936,
+    "null_max": 0.0222939108114169,
+    "null_median": 0.019778925823337713,
+    "null_q95": 0.021011570998667402,
+    "null_q99": 0.02160768188544763,
+    "observed": 0.034228925875265076
+  },
+  "method": "blockwise IAAFT convergence stress test, best spectral-fidelity start",
+  "n_blocks": 20,
+  "n_loops": 20000,
+  "seed": 20260901,
+  "spectral_mismatch": {
+    "fidelity_gate_median_mean_le_0_05": false,
+    "fraction_mean_le_0_02": 0.0,
+    "fraction_mean_le_0_05": 0.0,
+    "max_max_block": 0.2925899950171727,
+    "max_mean": 0.14108556163101552,
+    "median_max_block": 0.20334791871709362,
+    "median_mean": 0.12862451297769012,
+    "q95_mean": 0.13640271924711717
+  },
+  "start": 20001,
+  "starts": 4,
+  "stop": 40000
+}
