@@ -2,10 +2,11 @@
 
 Research continuation of the Prime-Successor Algebra / Two Walls programme.
 
-**Status:** theorem-level checkpoint completed; publication manuscript in preparation  
-**Date:** 2026-08-26
+**Status:** published as version 1.0  
+**Date:** 2026-08-26  
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.22110465
 
-## Working publication title
+## Publication title
 
 **English**  
 *Reflections on Stationary Locality with Commander Sol: Private-Place Bridges, Finite Multi-adic Windows, and Formula-Relative Compression*
@@ -92,12 +93,11 @@ where the place becomes a first-order variable.
 
 This programme result does not assert complete-theory decidability, NIP/stability, global non-interpretability of arithmetic, or infinite GIR for the uniformly indexed atlas. Those remain separate questions.
 
-## Publication threshold
+## Publication
 
-The mathematical core is now at manuscript-assembly stage. Before publication the next tasks are:
+Version 1.0 was deposited on Zenodo on 2026-08-26.
 
-- independent adversarial reread of `FINITE_STATIONARY_LOCALITY_THEOREM.md`;
-- bibliography audit for abelian structures / Baur-Monk background and weak approximation;
-- bilingual RU/EN manuscript assembly;
-- claim-status and notation consistency audit;
-- PDF/DOCX layout audit and Zenodo package generation.
+DOI: **10.5281/zenodo.22110465**  
+Persistent URL: https://doi.org/10.5281/zenodo.22110465
+
+Canonical release metadata is in [`release/`](release/).
