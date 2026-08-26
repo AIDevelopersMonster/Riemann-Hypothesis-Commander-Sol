@@ -3,50 +3,51 @@
 
 **Alex Malachevsky**  
 ORCID: 0009-0008-6009-3196  
-2026
+Версия 1.0 - 2026
 
 ## Аннотация
 
-Мы исследуем двухсортное расширение арифметики Сколема, в котором простые атомы связаны с рациональными метками, а целевая аддитивная группа снабжена конечным набором фиксированных p-адических предикатов интегральности. Мотивирующий пример задаётся метками Рамануджана
+Мы исследуем двухсортное расширение арифметики Сколема, в котором простые атомы связаны с рациональными метками, а аддитивный целевой сорт снабжён конечным набором фиксированных p-адических предикатов интегральности. Мотивирующий пример задаётся метками
 
 \[
-u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}.
+u_p=\frac{\tau(p)^2-p^{11}}{p^{11}},
 \]
 
-Ранее для одного фиксированного p-адического шара было установлено, что такой локальный наблюдатель разрушает часть симметрии простых, но не восстанавливает стандартный порядок и отношение следующего простого. В этой работе мы выделяем механизм этого явления и доказываем конечную multi-place версию.
+где \(\tau\) - функция Рамануджана.
 
-Для целевой структуры
+Основной результат работы - **Finite Stationary Locality Theorem**. Для конечного множества рациональных простых \(S\) рассматривается структура
 
 \[
-\mathcal A_S=(\mathbb Q,+,0,(B_\ell)_{\ell\in S}),
-\qquad B_\ell(x)\iff v_\ell(x)\ge0,
+\mathcal B_{u,S}=
+\Bigl((\mathbb N_{>0},\times),
+      (\mathbb Q,+,0,(B_\ell)_{\ell\in S}),U\Bigr),
+\qquad
+B_\ell(x)\iff v_\ell(x)\ge0.
 \]
 
-где \(S\) конечно, доказывается finite-depth normal form: каждая формула целевого сорта эквивалентна булевой комбинации точных рациональных линейных уравнений и условий фиксированной глубины \(L(\bar x)\in B_{\ell,m}\). Для класса **Private-Place Bridges** точные аффинные отношения между метками простых контролируются приватными знаменательными местами, а незакреплённые target-свидетели можно переносить внутри multi-place cell с помощью свежих private places вне стационарного атласа.
+Предполагается, что вне конечного исключительного множества метки regular primes интегральны во всех стационарных местах \(\ell\in S\), а каждому regular prime инъективно сопоставлено private denominator place \(\lambda(p)\notin S\), имеющее отрицательную valuation на \(u_p\) и неотрицательную valuation на всех остальных regular labels. Допускается конечное число exact common-label defect classes.
 
-Это приводит к **Finite Stationary Locality Theorem**: для каждой фиксированной first-order формулы существует конечное исключительное множество простых и конечный вектор глубин по местам, после чего истинность формулы на хвосте простых инвариантна относительно допустимых перестановок, сохраняющих конечные локальные цветовые классы и точные defect-классы. Отсюда следуют неопределимость стандартного порядка и отношения следующего простого, а также конечность Grid-Isolation Rank для каждого фиксированного isolator.
+Мы доказываем, что для каждой фиксированной first-order формулы существует конечный multi-place depth vector и конечное исключительное множество простых, после удаления которого истинность формулы на хвосте простых инвариантна относительно всех перестановок, сохраняющих конечные локальные цвета и exact defect classes. Доказательство состоит из четырёх механизмов: прямой finite-depth normal form для аддитивного target sort, exact linear separation с помощью private places, fresh-private-place avoidance для незакреплённых target witnesses и finite-fragment back-and-forth для смешанных кванторов.
 
-Для меток Рамануджана гипотезы теоремы выполняются для любого конечного stationary atlas. Более того, даже бесконечное семейство отдельно именованных предикатов \((B_\ell)_{\ell\in\mathbb P}\) остаётся формула-за-формулой конечным: обычная first-order формула содержит лишь конечное число имён мест. Поэтому настоящая следующая граница проходит не между конечным и бесконечным списком именованных локальных окон, а между stationary named atlas и **uniformly indexed atlas**, где место само становится first-order переменной через отношение \(\mathsf B(\ell,x)\).
+Отсюда следуют неопределимость обычного порядка и обычного отношения следующего простого на prime atoms и конечность Grid-Isolation Rank для каждого фиксированного isolator. Для меток Рамануджана условия теоремы выполняются для любого конечного stationary atlas. Более того, бесконечное семейство отдельно именованных предикатов \((B_\ell)_{\ell\in\mathbb P}\) всё ещё остаётся конечным формула-за-формулой, поскольку обычная first-order формула упоминает лишь конечное число имён мест. Поэтому следующая настоящая граница - uniformly indexed relation \(\mathsf B(\ell,x)\), где место становится first-order переменной.
 
 ---
 
-## 1. От одного фиксированного шара к стационарному атласу
+## 1. Вопрос, стоящий за теоремой
 
-Вопрос этой работы состоит не в том, сколько арифметической информации можно добавить к умножению, а в том, можно ли эту информацию переносить и масштабировать.
-
-В структуре
+Мультипликативная структура
 
 \[
 (\mathbb N_{>0},\times)
 \]
 
-простые числа выступают мультипликативными атомами. Любая перестановка простых продолжаетcя до автоморфизма всей структуры, если сохранять показатели в разложении на простые множители. Поэтому определение стандартного порядка или следующего простого требует разрушить эту симметрию согласованным способом.
+обладает огромной симметрией на простых атомах. Любая перестановка простых единственным образом продолжается до автоморфизма всей структуры, если сохранять показатели простых в факторизации каждого положительного целого. Поэтому обычный порядок простых и отношение следующего простого невидимы для чистого умножения.
 
-Один естественный способ — связать каждый простой атом \(p\) с рациональной меткой \(u_p\). В нашем основном примере
+Естественный способ нарушить эту симметрию - связать каждый простой атом \(p\) с рациональной меткой \(u_p\) и позволить аддитивному target sort наблюдать эти метки. В примере Рамануджана
 
 \[
 \Delta(q)=q\prod_{n\ge1}(1-q^n)^{24}
-=\sum_{n\ge1}\tau(n)q^n
+        =\sum_{n\ge1}\tau(n)q^n
 \]
 
 и
@@ -55,29 +56,15 @@ u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}.
 u_p=\frac{\tau(p)^2}{p^{11}}-1.
 \]
 
-Целевой аддитивный сорт может наблюдать эти метки через локальные p-адические окна
+Один фиксированный p-адический шар уже способен различать некоторые метки. Следующий естественный вопрос: могут ли несколько независимых локальных окон совместно создать двумерную систему адресации? При двух местах локальные подгруппы уже не образуют одну цепь, а китайская теорема об остатках позволяет согласовывать независимые локальные условия. Поэтому возникает реальная опасность: одно место может попытаться кодировать строки, другое - столбцы, а сложение - их пересечения.
 
-\[
-B_\ell(x)\iff v_\ell(x)\ge0.
-\]
-
-Один фиксированный наблюдатель способен различать некоторые простые, но фиксированная формула не получает автоматически возможность превратить глубину \(m\) в
-
-\[
-B_{\ell,m}=\{x:v_\ell(x)\ge m\}
-\]
-
-в движущуюся внутреннюю координату.
-
-При нескольких местах возникает потенциально опасная новая геометрия. Для \(\ell_1\) и \(\ell_2\) локальные подгруппы уже не образуют одну цепь; появляется решётка, а китайская теорема об остатках позволяет одновременно удовлетворять независимым локальным условиям. Возникает естественное подозрение: не может ли одно место кодировать строки, другое столбцы, а аддитивная структура — точки их пересечения?
-
-Основной результат показывает, что при Private-Place гипотезах этого не происходит. Конечное число стационарных мест увеличивает число цветов, различимых фиксированной формулой, но не создаёт масштабируемую систему адресации.
+Теорема ниже показывает, что при Private-Place гипотезах этого не происходит. Конечное число stationary windows расширяет конечную палитру цветов, доступных фиксированной формуле, но не превращает локальную глубину в равномерно движущуюся координату.
 
 Это явление мы называем **стационарной локальностью**.
 
 ---
 
-## 2. Двухсортная структура
+## 2. Source sort, target sort и bridge
 
 Пусть
 
@@ -85,7 +72,7 @@ B_{\ell,m}=\{x:v_\ell(x)\ge m\}
 S=\{\ell_1,\dots,\ell_s\}
 \]
 
-— конечное множество рациональных простых.
+- непустое конечное множество рациональных простых.
 
 Source sort:
 
@@ -93,7 +80,7 @@ Source sort:
 \mathcal N=(\mathbb N_{>0},\times).
 \]
 
-Prime atoms first-order определимы как неприводимые неединичные элементы. Любая перестановка prime atoms продолжается до автоморфизма \(\mathcal N\).
+Prime atoms first-order определимы как неприводимые неединичные элементы.
 
 Target sort:
 
@@ -107,21 +94,17 @@ Target sort:
 B_\ell(x)\iff v_\ell(x)\ge0.
 \]
 
-Bridge \(U\) связывает два сорта. На простых он функционален:
+Bridge является графом отображения меток на простых атомах:
 
 \[
-U(p,x)\iff x=u_p.
+\boxed{
+U(n,x)\iff \operatorname{Prime}(n)\land x=u_n.
+}
 \]
 
-Мы требуем **prime-only bridge**:
+Следовательно, composite source element никогда не получает bridge-label. Target видит \(u_p\), но не показатель степени \(p\) в \(p^k\). Это условие будем называть **prime-only** или **multiplicity-blind bridge**.
 
-\[
-U(n,x)\Longrightarrow \operatorname{Prime}(n).
-\]
-
-Это означает, что bridge не передаёт в target sort показатель степени из \(p^k\). Источник может видеть prime powers, но целевой сорт получает только метку самого prime atom.
-
-Обозначим всю структуру через
+Вся структура обозначается
 
 \[
 \mathcal B_{u,S}=\bigl(\mathcal N,\mathcal A_S,U\bigr).
@@ -129,21 +112,21 @@ U(n,x)\Longrightarrow \operatorname{Prime}(n).
 
 ---
 
-## 3. Private-Place Bridges
+## 3. Private-Place Bridge: точные гипотезы
 
-После удаления конечного множества исключительных prime atoms предположим, что оставшиеся простые распадаются на бесконечное множество regular primes \(R\) и конечное число exact defect classes
+После удаления конечного исключительного множества простых предположим, что остальные primes распадаются на бесконечное множество regular primes \(R\) и конечное число exact defect classes
 
 \[
 D_1,\dots,D_t.
 \]
 
-Каждый defect class \(D_j\) имеет одну фиксированную рациональную метку \(\delta_j\).
+Все primes внутри \(D_j\) имеют одну фиксированную рациональную метку \(\delta_j\).
 
-Для regular primes предполагаем следующее.
+Для regular primes требуем следующее.
 
-### H1. Интегральность в стационарных местах
+### H1. Интегральность в stationary places
 
-Для каждого \(p\in R\) и каждого \(\ell\in S\):
+Для каждого \(p\in R\) и каждого \(\ell\in S\)
 
 \[
 v_\ell(u_p)\ge0.
@@ -163,42 +146,42 @@ v_\ell(u_p)\ge0.
 v_{\lambda(p)}(u_p)<0,
 \]
 
-а для всех различных \(p,q\in R\)
+а для различных \(p,q\in R\)
 
 \[
 v_{\lambda(p)}(u_q)\ge0.
 \]
 
-То есть у каждой regular label имеется собственное знаменательное место, не принадлежащее никакой другой regular label.
+### H3. Интегральность defect labels в private places
 
-Поскольку defect labels рациональны и их конечное число, их общий denominator support конечен. После увеличения конечного exceptional set можно также считать, что
+После возможного увеличения конечного exceptional set
 
 \[
 v_{\lambda(p)}(\delta_j)\ge0
 \]
 
-для всех regular \(p\) и всех defect labels.
+для каждого regular \(p\) и каждой defect label \(\delta_j\).
 
-Такую структуру будем называть **Private-Place Bridge над stationary atlas \(S\)**.
+Это условие автоматически достигается конечным исключением: defect labels рациональны, их конечное число, их общий denominator support конечен, а \(\lambda\) инъективно.
+
+Bridge, удовлетворяющий H1-H3 вместе с функциональным prime-only условием раздела 2, будем называть **Private-Place Bridge над stationary atlas \(S\)**.
 
 ---
 
 ## 4. Предикаты фиксированной глубины
 
-Для фиксированного \(m\in\mathbb Z\) положим
+Для каждого фиксированного целого \(m\) положим
 
 \[
 B_{\ell,m}(x)\iff v_\ell(x)\ge m.
 \]
 
-Мы не добавляем variable depth в язык. Для каждого фиксированного \(m\) этот предикат уже определим через \(B_\ell\).
-
-При \(m>0\)
+Они определимы через \(B_\ell\). Если \(m>0\), то
 
 \[
 B_{\ell,m}(x)
 \iff
-\exists y\,(\ell^m y=x\wedge B_\ell(y)),
+\exists y\,(\ell^m y=x\land B_\ell(y)),
 \]
 
 а
@@ -209,7 +192,15 @@ B_{\ell,-m}(x)
 B_\ell(\ell^m x).
 \]
 
-Поскольку \((\mathbb Q,+)\) uniquely divisible, умножение на фиксированный рациональный коэффициент задаётся линейным уравнением. Поэтому target literals можно писать в форме
+Здесь принципиально важно слово «фиксированного»: variable-depth predicate в язык не добавляется.
+
+Поскольку \((\mathbb Q,+)\) uniquely divisible, умножение на фиксированный рациональный коэффициент first-order задаётся линейным уравнением. Поэтому далее свободно используются rational linear forms
+
+\[
+L(\bar x)=a_1x_1+\cdots+a_nx_n+b.
+\]
+
+Базовые target conditions имеют виды
 
 \[
 L(\bar x)=0
@@ -225,57 +216,67 @@ L(\bar x)\in B_{\ell,m}.
 
 ## 5. Local Coverage Lemma
 
-Зафиксируем одно место \(\ell\). Пусть
+Сначала замкнём единственную конечную комбинаторику, необходимую для отрицательных ball conditions.
+
+### Лемма 5.1
+
+Пусть для фиксированного \(\ell\)
 
 \[
 P=a+B_{\ell,m}
 \]
 
-— положительный базовый косет, а
+- положительный базовый косет, а
 
 \[
 C_i=b_i+B_{\ell,n_i}
 \]
 
-— конечное семейство запрещённых косетов.
-
-Два \(\ell\)-адических шара либо не пересекаются, либо один содержится в другом. Поэтому \(C_i\cap P\) либо пусто, либо равно \(P\), либо является proper subcoset внутри \(P\).
-
-Если один из \(C_i\) содержит \(P\), surviving set пуст. Иначе все существенные запреты имеют глубину не меньше \(m\). Пусть
-
-\[
-N=\max_i n_i.
-\]
-
-После refinement до общей глубины \(N\) вопрос покрытия \(P\) решается в конечной фактор-группе
-
-\[
-B_{\ell,m}/B_{\ell,N},
-\]
-
-причём
-
-\[
-\left|B_{\ell,m}/B_{\ell,N}\right|=\ell^{N-m}.
-\]
-
-Следовательно,
+- конечное семейство запрещённых косетов. Тогда условие
 
 \[
 P\setminus\bigcup_iC_i\ne\varnothing
 \]
 
-эквивалентно конечной булевой комбинации условий между центрами вида
+выражается конечной булевой комбинацией fixed-depth отношений между центрами.
+
+### Доказательство
+
+Два \(\ell\)-адических шара либо не пересекаются, либо один содержит другой. Удалим все \(C_i\), не пересекающиеся с \(P\). Если один из оставшихся \(C_i\) содержит \(P\), выжившее множество пусто. В противном случае каждый оставшийся \(C_i\) является proper subball базового шара, поэтому \(n_i>m\).
+
+Если proper forbidden subballs не осталось, cell непуста. Иначе положим
+
+\[
+N=\max_i n_i,
+\]
+
+где максимум берётся только по proper surviving subballs. После refinement до глубины \(N\) вопрос покрытия решается в конечной факторгруппе
+
+\[
+B_{\ell,m}/B_{\ell,N},
+\qquad
+|B_{\ell,m}/B_{\ell,N}|=\ell^{N-m}.
+\]
+
+Взаимное положение конечного числа подкосетов определяется отношениями
 
 \[
 a-b_i\in B_{\ell,k},
 \qquad
-b_i-b_j\in B_{\ell,k}.
+b_i-b_j\in B_{\ell,k}
 \]
 
-Если положительного base coset в данном place нет, конечное число forbidden balls не покрывает всю \(\mathbb Q\): достаточно выбрать \(y\) с достаточно отрицательной \(\ell\)-адической valuation.
+при конечном наборе фиксированных \(k\). Следовательно, непокрытие также выражается конечной булевой комбинацией таких условий. ∎
 
-Важно: конечен не \(\mathbb Q/B_{\ell,m}\), а только refinement quotient \(B_{\ell,m}/B_{\ell,N}\).
+Если положительного базового шара в данном place вообще нет, конечное число запрещённых шаров не покрывает \(\mathbb Q\): достаточно выбрать \(y\) с \(v_\ell(y)\) меньше всех релевантных глубин и valuations центров. Тогда
+
+\[
+v_\ell(y-b_i)=v_\ell(y)
+\]
+
+для всех \(i\).
+
+Конечным объектом здесь является именно refinement quotient \(B_{\ell,m}/B_{\ell,N}\). Фактор \(\mathbb Q/B_{\ell,m}\) конечным не предполагается.
 
 ---
 
@@ -299,163 +300,250 @@ L(\bar x)=0
 
 \[
 L(\bar x)\in B_{\ell,m},
-\qquad \ell\in S,\ m\in\mathbb Z,
+\qquad \ell\in S,\quad m\in\mathbb Z,
 \]
 
-причём для каждой фиксированной формулы используется лишь конечное число пар \((\ell,m)\).
+причём для каждой фиксированной формулы используется лишь конечное число fixed depths.
 
 ### Доказательство
 
-После DNF достаточно устранить один target quantifier \(\exists y\) из конъюнкции литералов.
+После перехода к DNF достаточно устранить один existential target quantifier \(\exists y\) из одной конъюнкции литералов.
 
-Если имеется точное уравнение
+Если присутствует exact equation
 
 \[
 ay+t(\bar x)=0,
 \qquad a\ne0,
 \]
 
-то оно однозначно задаёт
+оно единственным образом задаёт
 
 \[
 y=-a^{-1}t(\bar x),
 \]
 
-и \(y\) устраняется подстановкой.
+и \(y\) устраняется подстановкой. Exact equations с нулевым коэффициентом при \(y\) остаются условиями на \(\bar x\).
 
-Пусть exact equation, закрепляющего \(y\), нет. Каждый positive local literal приводится к
+Предположим, что exact equation не закрепляет \(y\). Каждый positive local literal с \(y\) переписывается как
 
 \[
 y\in a+B_{\ell,m}.
 \]
 
-Для фиксированного \(\ell\) пересекающиеся положительные шары вложены друг в друга, поэтому они сводятся к несовместимости либо одному deepest base coset. Negative ball conditions обрабатываются Local Coverage Lemma.
-
-Так для каждого \(\ell\in S\) получаем непустое локальное открытое множество
+Для одного fixed place пересекающиеся положительные шары вложены, поэтому их конъюнкция либо несовместима, либо сводится к одному наиболее глубокому positive base ball. Negative balls обрабатываются леммой 5.1. В результате в каждом \(\ell\in S\) получаем либо противоречие, либо непустое открытое локальное множество
 
 \[
-U_\ell\subseteq\mathbb Q_\ell,
+U_\ell\subseteq\mathbb Q_\ell.
 \]
 
-либо вся conjunction несовместима.
+Если все \(U_\ell\) непусты, weak approximation для \(\mathbb Q\) даёт rational \(y\), удовлетворяющий всем локальным требованиям одновременно. После очистки знаменателей это же можно получить конечным CRT-аргументом.
 
-Если все \(U_\ell\) непусты, finite weak approximation для \(\mathbb Q\), эквивалентная прямой CRT-конструкции после очистки знаменателей, даёт рациональный \(y\), лежащий одновременно во всех \(U_\ell\).
-
-Exact inequalities
+Наконец, exact inequalities
 
 \[
 y\ne c_1,\dots,y\ne c_r
 \]
 
-удаляют лишь конечное число точек. Любая непустая multi-place cell содержит достаточно глубокий косет
+удаляют конечное число точек. Любая непустая multi-place local cell содержит бесконечный refinement coset, поэтому finite point deletion не может её уничтожить.
 
-\[
-a+\bigcap_{\ell\in S}B_{\ell,M_\ell}
-\]
+Следовательно, projection остаётся в булевой алгебре, порождённой exact linear equations и fixed-depth local conditions. Повторяя аргумент, устраняем все target quantifiers. ∎
 
-и поэтому бесконечна. Конечное удаление точек её не уничтожает.
-
-Повторяя аргумент, устраняем все target quantifiers. ∎
+Общая теория pp-formulas в абелевых группах и модулях служит естественным фоном, но конкретная normal form здесь доказана напрямую.
 
 ---
 
-## 7. Generic Multi-Place Cell
+## 7. Refinement непустой target cell
 
-### Лемма 7.1
+### Лемма 7.1. Generic Multi-Place Cell
 
-Каждая непустая Boolean cell, заданная конечным числом fixed-depth target conditions, содержит refinement coset
+Пусть \(C\subseteq\mathbb Q\) - непустая cell, заданная конечным набором fixed-depth local literals и конечным набором exact inequalities. Тогда существуют \(a\in C\) и finite depth vector
 
 \[
-a+H_{\mathbf M},
+\mathbf M=(M_\ell)_{\ell\in S}
+\]
+
+такие, что
+
+\[
+a+H_{\mathbf M}\subseteq C,
 \qquad
 H_{\mathbf M}=\bigcap_{\ell\in S}B_{\ell,M_\ell}.
 \]
 
 ### Доказательство
 
-Берём одну точку \(a\) внутри cell. Для каждого place выбираем \(M_\ell\) глубже всех границ, встречающихся в конечном наборе литералов. Прибавление элемента из \(H_{\mathbf M}\) не меняет ни одного из этих memberships/non-memberships. ∎
+Выберем \(a\in C\). Для каждого \(\ell\) возьмём \(M_\ell\) глубже всех локальных границ, встречающихся в описании cell. Тогда прибавление элемента из \(H_{\mathbf M}\) не меняет ни одно local membership/non-membership условие.
+
+Если присутствуют exact exclusions \(y\ne c_j\), выберем одно место \(\ell_0\in S\) и увеличим \(M_{\ell_0}\) так, чтобы
+
+\[
+M_{\ell_0}>\max_j v_{\ell_0}(a-c_j).
+\]
+
+Тогда ни одна исключённая точка не попадёт в refinement coset. ∎
 
 ---
 
-## 8. Exact Linear Separation
+## 8. Exact Linear Separation через private places
 
-Рассмотрим фиксированную homogeneous relation
+Зафиксируем homogeneous coefficient scheme
 
 \[
 \sum_{i=1}^r c_i u_{p_i}=0.
 \]
 
-Сгруппируем одинаковые regular primes. Если block с representative \(p\) имеет ненулевой aggregate coefficient \(d\), то вне конечного множества случаев, когда \(\lambda(p)\mid d\),
+Очистим знаменатели фиксированных рациональных коэффициентов и сгруппируем равные regular primes. Пусть \(p\) представляет один equality block, а \(d\ne0\) - его aggregate coefficient.
+
+Вне конечного множества regular primes, для которых \(\lambda(p)\mid d\), имеем
 
 \[
 v_{\lambda(p)}(d u_p)<0.
 \]
 
-Все остальные regular labels и defect labels \(\lambda(p)\)-integral. Поэтому сумма не может быть нулём.
-
-Поскольку \(\lambda\) инъективно, для фиксированных коэффициентов исключений конечное число.
+Все остальные regular labels \(\lambda(p)\)-integral по H2, а defect labels - по H3. Поэтому сумма не может быть равна нулю.
 
 ### Лемма 8.1. Exact Linear Separation
 
-На regular tail фиксированная homogeneous relation может выполняться только тогда, когда aggregate coefficient каждого regular equality block равен нулю, если не считать конечного coefficient-dependent exceptional set и exact defect classes.
+Для каждой фиксированной homogeneous coefficient scheme существует конечное coefficient-dependent exceptional set такое, что на оставшемся regular tail отношение
+
+\[
+\sum_i c_i u_{p_i}=0
+\]
+
+может выполняться только тогда, когда aggregate coefficient каждого regular-prime equality block равен нулю, с учётом фиксированных exact relations между defect labels.
 
 В частности, regular labels инъективны на хвосте.
 
 ---
 
-## 9. Reduced Affine Fibers и bounded-anchor cylinders
+## 9. Affine equations и bounded-anchor cylinders
 
-Наивное утверждение, что
-
-\[
-\sum_i c_i u_{p_i}=t
-\]
-
-имеет uniformly bounded число prime tuples, неверно из-за структурных сокращений equality blocks. Например,
+Наивное утверждение «каждый affine fiber содержит лишь ограниченное число prime tuples» неверно. Например,
 
 \[
 u_{p_1}-u_{p_2}+u_{p_3}=u_q
 \]
 
-имеет все решения
+имеет бесконечное семейство
 
 \[
 (p_1,p_2,p_3)=(r,r,q).
 \]
 
-Поэтому фиксируем equality pattern \(\pi\). Для блока \(C\in\pi\) положим
+Первые две координаты образуют structural zero-sum block.
+
+Зафиксируем equality pattern \(\pi\). Для блока \(C\in\pi\) положим
 
 \[
 d_C=\sum_{i\in C}c_i.
 \]
 
-Блоки с \(d_C=0\) исчезают из reduced equation и остаются свободными.
+Блоки с \(d_C=0\) исчезают из reduced equation.
 
 ### Лемма 9.1. Reduced Affine-Fiber Lemma
 
-Для блоков с \(d_C\ne0\) число regular-prime assignments, удовлетворяющих reduced affine equation, равномерно ограничено величиной, зависящей только от coefficient scheme, после удаления конечного coefficient-dependent exceptional set.
+Для блоков с \(d_C\ne0\) число regular-prime assignments, удовлетворяющих фиксированному reduced affine equation, равномерно ограничено величиной, зависящей только от coefficient scheme, после конечного coefficient-dependent исключения.
 
 ### Доказательство
 
-Пусть имеется одно reduced solution \((q_C)\) и другое \((q'_C)\). После вычитания получаем homogeneous relation. Если некоторый prime второго решения не встречается в первом, его private valuation появляется с ненулевым aggregate coefficient и не может быть компенсирована другими terms. Exact Linear Separation даёт противоречие.
+Пусть \((q_C)\) и \((q'_C)\) - два решения одного reduced equation. Их разность даёт homogeneous relation. Если бы regular prime из второго решения не встречался в первом, его private place видел бы единственный non-zero aggregate negative contribution, тогда как все остальные terms были бы integral. Это противоречит лемме 8.1.
 
-Значит второе решение использует только конечный набор primes из первого решения. Если non-zero blocks всего \(m\), грубой оценки \(m^m\) достаточно. ∎
+Значит, второе решение использует только конечный набор regular primes первого решения. Если non-zero blocks всего \(m\), достаточно грубой оценки \(m^m\). ∎
 
-Таким образом exact affine traces являются конечными объединениями **bounded-anchor cylinders**: zero-sum blocks свободны, а non-zero blocks могут закреплять лишь конечный prime support.
+Поэтому exact affine traces являются конечными объединениями **bounded-anchor cylinders**: zero-sum blocks свободны, non-zero blocks имеют лишь конечное число anchors.
 
 ---
 
-## 10. Fresh-Private-Place Avoidance
+## 10. Coefficient-Adjusted Local Colors
 
-Пусть non-empty target cell содержит
+Local template может содержать рациональные коэффициенты, поэтому глубина цвета должна учитывать их p-адические порядки.
+
+Рассмотрим
+
+\[
+L=\alpha+\sum_i a_i u_{p_i}
+\]
+
+и test
+
+\[
+L\in B_{\ell,m}.
+\]
+
+Если \(p_i\) и \(p_i'\) имеют одинаковый цвет modulo \(B_{\ell,K}\), то
+
+\[
+v_\ell(u_{p_i}-u_{p_i'})\ge K.
+\]
+
+Следовательно,
+
+\[
+v_\ell\left(\sum_i a_i(u_{p_i}-u_{p_i'})\right)
+\ge
+\min_i\bigl(v_\ell(a_i)+K\bigr).
+\]
+
+Поэтому достаточно потребовать
+
+\[
+K\ge \max_i\{m-v_\ell(a_i)\}.
+\]
+
+Для фиксированной формулы \(\Phi\) замкнём конечное семейство target templates относительно линейных подстановок и compatibility consequences, возникающих ниже. Выберем
+
+\[
+K_{\Phi,\ell}\ge0
+\]
+
+не меньше всех соответствующих bounds.
+
+Для regular prime определим цвет
+
+\[
+c_{\mathbf K_\Phi}(p)
+=
+\bigl(u_p+B_{\ell,K_{\Phi,\ell}}\bigr)_{\ell\in S}.
+\]
+
+По H1 число цветов конечно, и
+
+\[
+\#\operatorname{Colors}(\Phi)
+\le
+\prod_{\ell\in S}\ell^{K_{\Phi,\ell}}.
+\]
+
+Именно в этом смысле fixed formula видит только конечную локальную информацию.
+
+---
+
+## 11. Fresh-Private-Place Avoidance
+
+Теперь построим witness, остающийся внутри target cell и одновременно избегающий всех значений фиксированного семейства forbidden affine schemes.
+
+### Лемма 11.1
+
+Пусть непустая finite-depth target cell содержит
 
 \[
 a+H_{\mathbf M}.
 \]
 
-Пусть каждая relevant affine scheme с новой target variable \(y\) содержит не более \(r\) prime labels.
+Пусть каждая релевантная forbidden affine scheme для новой target variable \(y\) использует не более \(r\) prime labels. Тогда существует rational \(y\in a+H_{\mathbf M}\), не равный ни одному значению ни одной такой схемы.
 
-Выбираем regular primes
+### Доказательство
+
+Работаем относительно конечного текущего состояния back-and-forth. Составим finite rational support, включающий:
+
+- stationary places \(S\);
+- denominator support всех fixed rational coefficients;
+- denominators внешних target parameters;
+- denominators всех текущих target coordinates;
+- denominator выбранного центра \(a\);
+- labels конечного числа exceptional fixed source primes.
+
+Поскольку \(R\) бесконечно, а \(\lambda\) инъективно, выберем regular primes
 
 \[
 t_1,\dots,t_{r+1}
@@ -467,13 +555,7 @@ t_1,\dots,t_{r+1}
 q_j=\lambda(t_j)
 \]
 
-вне:
-
-1. stationary atlas \(S\);
-2. denominator support уже названных target parameters;
-3. denominator support rational coefficients в finite template family.
-
-Это возможно, поскольку \(R\) бесконечно, а \(\lambda\) инъективно.
+вне всего этого конечного support.
 
 Положим
 
@@ -481,122 +563,71 @@ q_j=\lambda(t_j)
 D=q_1\cdots q_{r+1}
 \]
 
-и выберем
+и
 
 \[
 L=\prod_{\ell\in S}\ell^{N_\ell},
 \qquad N_\ell\ge M_\ell.
 \]
 
-Пусть
+Определим
 
 \[
 y=a+\frac{L}{D}.
 \]
 
-В каждом stationary place \(\ell\in S\) знаменатель \(D\) — unit, поэтому
+Во всех stationary places знаменатель \(D\) является unit, поэтому
 
 \[
 y\in a+H_{\mathbf M}.
 \]
 
-В каждом fresh private place \(q_j\) центр \(a\) интегрален и
-
-\[
-v_{q_j}(L/D)=-1,
-\]
-
-поэтому
+В каждом fresh private place \(q_j\) число \(a\) integral, \(L\) integral, а \(D\) содержит \(q_j\) в первой степени. Поэтому
 
 \[
 v_{q_j}(y)=-1.
 \]
 
-Рассмотрим forbidden affine value
+Рассмотрим любое forbidden affine value
 
 \[
-z=\alpha+\sum_{i=1}^{r}c_i u_{p_i}.
+z=\alpha+\sum_{i=1}^r c_i u_{p_i}.
 \]
 
-Среди \(t_1,\dots,t_{r+1}\) найдётся \(t_k\), отсутствующий среди \(p_i\). Тогда при \(q_k\) все labels, входящие в \(z\), интегральны; параметры и коэффициенты тоже были выбраны \(q_k\)-integral. Значит
+В нём встречается не более \(r\) prime labels, поэтому хотя бы один из \(t_1,\dots,t_{r+1}\), скажем \(t_k\), отсутствует. В private place \(q_k\) все terms в \(z\) integral, следовательно
 
 \[
 v_{q_k}(z)\ge0,
 \]
 
-тогда как
+тогда как \(v_{q_k}(y)=-1\). Значит \(y\ne z\). Аргумент одновременно работает для всех tuples всех фиксированных схем. ∎
+
+Ключевой счёт здесь чрезвычайно прост:
 
 \[
-v_{q_k}(y)=-1.
-\]
-
-Следовательно,
-
-\[
-y\ne z.
-\]
-
-### Лемма 10.1. Fresh-Private-Place Avoidance
-
-Внутри любой non-empty finite-depth multi-place cell можно выбрать rational witness, одновременно избегающий всех значений любой фиксированной конечной семьи affine schemes, использующих не более \(r\) prime labels.
-
-Ключевой принцип:
-
-\[
-r+1\ \text{fresh private places} > r\ \text{label slots}.
+r+1\text{ fresh private places}>r\text{ slots for prime labels}.
 \]
 
 ---
 
-## 11. Finite Template Closure и Target-Witness Transport
+## 12. Target-Witness Transport
 
-Зафиксируем mixed first-order formula \(\Phi\). Её синтаксис содержит только конечное число coefficients, source terms, bridge occurrences и local depths.
+Зафиксируем first-order формулу \(\Phi\) и её finite template closure. Пусть \(\sigma\) - перестановка prime atoms, фиксирующая конечное exceptional set, сохраняющая каждый regular color class \(c_{\mathbf K_\Phi}\) и каждый exact defect class setwise.
 
-Замкнём этот конечный набор под операциями, возникающими при устранении target variable:
+Для нового target witness \(y\) возможны два случая.
 
-- подстановка из pinning equation;
-- разности simultaneous pinning equations;
-- finite refinements из Theorem 6.1;
-- exact affine consequences после подстановки.
+### 12.1. Pinned case
 
-Получаем finite **template closure** для \(\Phi\).
-
-Выбираем depth vector
-
-\[
-\mathbf K_\Phi=(K_{\Phi,\ell})_{\ell\in S}
-\]
-
-достаточно глубокий для всех fixed-depth templates в closure.
-
-Для regular prime определяем formula-relative color
-
-\[
-c_{\mathbf K_\Phi}(p)
-=
-\bigl(u_p+B_{\ell,K_{\Phi,\ell}}\bigr)_{\ell\in S}.
-\]
-
-По H1 число цветов конечно. При неотрицательных глубинах можно использовать bound
-
-\[
-\prod_{\ell\in S}\ell^{K_{\Phi,\ell}}.
-\]
-
-Пусть \(\sigma\) — перестановка prime atoms, фиксирующая конечный exceptional set, сохраняющая regular color classes и каждый exact defect class.
-
-### Pinned case
-
-Если истинно
+Пусть выполняется exact equation
 
 \[
 ay+t=0,
-\qquad a\ne0,
+\qquad a\ne0.
 \]
 
-то переносим все prime labels в \(t\) через \(\sigma\) и определяем \(y'\) из перенесённого уравнения.
+Переносим все prime coordinates, встречающиеся в \(t\), посредством \(\sigma\) и определяем \(y'\) из transported equation.
 
-Если pinning equations несколько,
+Если одновременно выполняются несколько pinning equations, например
 
 \[
 a_1y+t_1=0,
@@ -604,38 +635,68 @@ a_1y+t_1=0,
 a_2y+t_2=0,
 \]
 
-их совместимость эквивалентна
+их совместимость эквивалентна y-free condition
 
 \[
 a_2t_1-a_1t_2=0.
 \]
 
-Это template без \(y\), включённый в finite closure.
+Finite template closure заранее замкнут относительно всех таких compatibility consequences.
 
-### Free case
+### 12.2. Free case
 
-Если ни один relevant exact instance не закрепляет \(y\), перенесённые local literals задают non-empty finite-depth cell. По Lemma 7.1 она содержит полный refinement coset. Fresh-Private-Place Avoidance выбирает внутри него witness \(y'\), сохраняя local profile и избегая всех exact affine incidences, которые должны оставаться ложными.
+Пусть ни один релевантный exact instance не pin-ит \(y\). Coefficient-adjusted color preservation гарантирует, что transported local literals имеют тот же finite local pattern и задают непустую target cell. По лемме 7.1 она содержит full refinement coset. Лемма 11.1 выбирает в нём witness \(y'\), одновременно избегающий всех exact affine incidences, которые должны оставаться ложными.
 
-Так target witnesses транспортируются для finite fragment, порождённого \(\Phi\).
+Таким образом target witnesses переносятся в обе стороны внутри finite fragment, связанного с \(\Phi\).
 
 ---
 
-## 12. Finite Stationary Locality Theorem
+## 13. Finite-Fragment Back-and-Forth
 
-### Теорема 12.1
+Чтобы mixed-quantifier step был явным, мы не используем никакой предполагаемый global automorphism двухсортной структуры.
 
-Пусть \(S\) конечно и \(\mathcal B_{u,S}\) является Private-Place Bridge, удовлетворяющим гипотезам Section 3. Для каждой parameter-free first-order formula
+Для finite syntactic closure, порождённого \(\Phi\), свяжем два конечных состояния, если:
+
+1. source tuple переносится в другой source tuple multiplicative automorphism, индуцированным \(\sigma\);
+2. все exact target templates из closure имеют одинаковые truth values;
+3. все fixed-depth target templates из closure имеют одинаковые truth values;
+4. все bridge incidences из closure совпадают.
+
+Эта relation обладает следующими back-and-forth свойствами.
+
+### Source forth/back
+
+Если первое состояние содержит source witness \(n\), во втором берём \(\sigma(n)\). Обратный переход использует \(\sigma^{-1}\). Source atomics сохраняются, поскольку prime-coordinate permutations являются автоморфизмами \((\mathbb N_{>0},\times)\).
+
+### Target forth/back
+
+Для target witness используется pinned/free construction раздела 12. В обратную сторону применяется тот же механизм с \(\sigma^{-1}\).
+
+### Atomic and Boolean preservation
+
+Source atomics, target atomics и bridge atomics включены в controlled closure. Boolean connectives сохраняют эквивалентность непосредственно.
+
+Стандартная индукция по subformulas \(\Phi\) теперь доказывает сохранение каждой subformula. Это именно finite-fragment argument: ни coloring, ни exceptional set не обязаны работать сразу для всех формул языка.
+
+---
+
+## 14. Finite Stationary Locality Theorem
+
+### Теорема 14.1
+
+Пусть \(S\ne\varnothing\) конечно и \(\mathcal B_{u,S}\) является Private-Place Bridge structure, удовлетворяющей условиям разделов 2-3. Тогда для каждой parameter-free first-order формулы
 
 \[
 \Phi(\bar p)
 \]
 
-со свободными source variables, ограниченными prime atoms, существуют:
+со свободными source variables, ограниченными prime atoms, существуют конечное exceptional set \(F_\Phi\) и finite depth vector
 
-- конечное исключительное множество простых \(F_\Phi\);
-- конечный multi-place depth vector \(\mathbf K_\Phi\),
+\[
+\mathbf K_\Phi=(K_{\Phi,\ell})_{\ell\in S}
+\]
 
-такие что
+такие, что
 
 \[
 \mathcal B_{u,S}\models\Phi(\bar p)
@@ -643,45 +704,35 @@ a_2t_1-a_1t_2=0.
 \mathcal B_{u,S}\models\Phi(\sigma\bar p)
 \]
 
-для каждой prime permutation \(\sigma\), которая:
+для каждой prime permutation \(\sigma\), которая
 
 1. фиксирует \(F_\Phi\) поточечно;
-2. сохраняет каждый regular color class \(c_{\mathbf K_\Phi}\);
-3. сохраняет каждый exact defect class setwise.
+2. сохраняет каждый regular multi-place color class \(c_{\mathbf K_\Phi}\);
+3. сохраняет каждый exact defect class как множество.
 
 ### Доказательство
 
-Индукция по синтаксису \(\Phi\).
+Строим finite template closure формулы \(\Phi\), выбираем coefficient-adjusted depths раздела 10 и увеличиваем finite exceptional set на все coefficient-, defect- и finite-support исключения, возникающие в разделах 8-12. Finite-fragment back-and-forth раздела 13 сохраняет каждую subformula \(\Phi\), следовательно и саму \(\Phi\). ∎
 
-Каждая перестановка prime atoms продолжается до автоморфизма \((\mathbb N_{>0},\times)\), поэтому source atomic formulas сохраняются. Bridge atom с composite source input ложен до и после transport. Bridge atom на prime — точное target incidence и входит в finite template family.
+Это свойство называется **Formula-Relative Tail Symmetry**.
 
-Boolean connectives сохраняются непосредственно.
-
-Для existential source witness \(n\) берём его образ под multiplicative automorphism, индуцированным \(\sigma\).
-
-Для existential target witness используем Pinned/Free Target-Witness Transport из Section 11.
-
-Universal quantifiers устраняются через negation. Exceptional set увеличивается лишь конечное число раз вдоль конечного syntax tree и finite template closure. ∎
-
-Это и есть **Formula-Relative Tail Symmetry**.
-
-Теорема является formula-relative: она не утверждает существование одной глобальной группы автоморфизмов всей двухсортной структуры. Допустимое tail partition зависит от конкретной формулы.
+Теорема является формульно-локальной и не утверждает существование одной глобальной группы автоморфизмов всей \(\mathcal B_{u,S}\), реализующей все эти перестановки одновременно.
 
 ---
 
-## 13. Порядок и следующий простой
+## 15. Порядок, следующий простой и GIR
 
-### Следствие 13.1. Стандартный порядок простых не определим
+### Следствие 15.1. Prime order не определим
 
-Отношение \(<_{\mathbb P}\) не определимо в \(\mathcal B_{u,S}\).
+Обычный strict order на prime atoms не first-order определим в \(\mathcal B_{u,S}\).
 
 ### Доказательство
 
-У candidate formula существует конечное число movable classes вне finite exceptional set. Поскольку regular tail бесконечен, один класс содержит два различных простых \(p,q\). Их перестановка допустима, но strict linear order не может быть инвариантен относительно такой перестановки. ∎
+У гипотетической defining formula вне конечного exceptional set имеется лишь конечное число movable classes. Бесконечный regular tail содержит два различных prime atoms \(p\ne q\) одного класса. Их swap допустим, но strict linear order не инвариантен относительно такого swap. ∎
 
-### Следствие 13.2. Prime successor не определим
+### Следствие 15.2. Prime successor не определим
 
-Стандартное отношение
+Обычное отношение
 
 \[
 \operatorname{Succ}_{\mathbb P}(p,q)
@@ -691,33 +742,19 @@ Universal quantifiers устраняются через negation. Exceptional se
 
 ### Доказательство
 
-Вне finite exceptional set существует бесконечно много consecutive prime pairs. Ordered movable class pairs конечное число, поэтому один class pair встречается для двух различных consecutive pairs
+Вне любого конечного множества существует бесконечно много consecutive ordinary prime pairs. Formula-relative partition имеет лишь конечное число ordered class pairs. Поэтому один ordered class pair встречается для бесконечно многих consecutive pairs, в частности для двух непересекающихся
 
 \[
 (p,q),\qquad(p',q').
 \]
 
-Простые \(q,q'\) находятся в одном movable class. Меняем их местами, фиксируя \(p\). Hypothetical successor formula сохраняется, но фактический successor меняется. Противоречие. ∎
+Элементы \(q,q'\) лежат в одном movable class. Swap \(q\leftrightarrow q'\), фиксирующий \(p\), сохраняет гипотетическую successor formula, но уничтожает обычное succession. ∎
 
-В этом доказательстве не используется density theorem для возможных zero primes.
+Density theorem для defect primes здесь не используется.
 
----
+### Следствие 15.3. Finite Grid-Isolation Rank
 
-## 14. Grid-Isolation Rank
-
-Для фиксированной формулы \(I(p,q;r)\) говорим, что она изолирует \(n\times n\) grid, если существуют distinct row primes \(p_1,\dots,p_n\), distinct column primes \(q_1,\dots,q_n\) и markers \(r_{ij}\) такие, что
-
-\[
-I(p_k,q_l;r_{ij})
-\iff
-(k,l)=(i,j).
-\]
-
-Супремум таких \(n\) обозначим \(\operatorname{GIR}(I)\).
-
-### Следствие 14.1
-
-Для каждой фиксированной isolator formula \(I\)
+Для каждого fixed isolator \(I(p,q;r)\)
 
 \[
 \operatorname{GIR}(I)<\infty.
@@ -725,65 +762,53 @@ I(p_k,q_l;r_{ij})
 
 ### Доказательство
 
-Применяем Theorem 12.1 к \(I\). Вне finite exceptional set имеется лишь конечное число movable classes. В достаточно большой row family один класс содержит достаточно row primes, чтобы для выбранного column и marker переставить две строки, фиксируя column и marker. Formula-relative invariance заставит один marker изолировать две строки в одном столбце, что противоречит определению isolation. ∎
+Применим теорему 14.1 к \(I\). Вне finite exceptional set имеется конечное число movable classes. В достаточно большой предполагаемой isolated grid некоторый movable class содержит по крайней мере четыре row primes. Зафиксируем одну column и один cell marker. Не более двух из этих четырёх rows могут совпадать с фиксированными column или marker. Выберем две другие строки того же класса и поменяем их местами, оставляя column и marker неподвижными. Formula-relative invariance заставила бы тот же marker изолировать две клетки в одном столбце, противоречие. ∎
 
-Это не утверждение NIP или model-theoretic stability. GIR — более узкий programme invariant, измеряющий конкретную способность uniform cell isolation.
+Grid-Isolation Rank - специальный programme invariant для механизма uniform cell isolation. Его конечность не отождествляется со stability, NIP или другими глобальными model-theoretic свойствами.
 
 ---
 
-## 15. Применение к меткам Рамануджана
+## 16. Специализация к меткам Рамануджана
 
-Пусть
+Проверим абстрактные условия для
 
 \[
 u_p=\frac{\tau(p)^2-p^{11}}{p^{11}}.
 \]
 
-Зафиксируем finite stationary atlas \(S\).
+Зафиксируем конечный непустой stationary atlas \(S\).
 
-### 15.1. Интегральность вне собственного простого
+### 16.1. Интегральность в stationary places
 
-Если \(p\notin S\), то denominator \(p^{11}\) является \(\ell\)-adic unit для каждого \(\ell\in S\). Поэтому
+Если \(p\notin S\) и \(\ell\in S\), то \(p^{11}\) является \(\ell\)-adic unit. Поэтому
 
 \[
 v_\ell(u_p)\ge0.
 \]
 
-Это H1.
+### 16.2. Private denominator для good primes
 
-### 15.2. Private denominator для good prime
-
-Назовём \(p\ge5\) good, если
-
-\[
-\tau(p)\ne0.
-\]
-
-Пусть
+Назовём \(p\ge5\) good prime, если \(\tau(p)\ne0\), и положим
 
 \[
 a=v_p(\tau(p)).
 \]
 
-По оценке Делиня
+Оценка Делиня
 
 \[
-|\tau(p)|\le2p^{11/2}.
+|\tau(p)|\le2p^{11/2}
 \]
 
-Если \(a\ge6\), то \(|\tau(p)|\ge p^6\), откуда
+даёт \(a\le5\): если \(a\ge6\), то
 
 \[
-p^6\le2p^{11/2},
+p^6\le|\tau(p)|\le2p^{11/2},
 \]
 
-то есть \(\sqrt p\le2\), что невозможно при \(p\ge5\). Значит
+откуда \(\sqrt p\le2\), что невозможно при \(p\ge5\).
 
-\[
-a\le5.
-\]
-
-Так как \(2a<11\),
+Поскольку \(2a<11\),
 
 \[
 v_p(\tau(p)^2-p^{11})=2a,
@@ -795,39 +820,33 @@ v_p(\tau(p)^2-p^{11})=2a,
 v_p(u_p)=2a-11<0.
 \]
 
-Для \(q\ne p\) denominator \(u_q\) — степень \(q\), поэтому
+Для \(q\ne p\) denominator \(u_q\) является степенью \(q\), следовательно
 
 \[
 v_p(u_q)\ge0.
 \]
 
-Следовательно, на good-prime tail можно взять
+Значит для good primes вне \(S\) можно взять
 
 \[
 \lambda(p)=p.
 \]
 
-### 15.3. Zero-prime defect class
+### 16.3. Zero primes как один exact defect class
 
-Если
-
-\[
-\tau(p)=0,
-\]
-
-то
+Если \(\tau(p)=0\), то
 
 \[
 u_p=-1.
 \]
 
-Все такие primes, если существуют, образуют один exact common-label defect class.
+Поэтому все такие primes, если они существуют, образуют один exact common-label defect class.
 
-### 15.4. Бесконечно много good primes без плотностной теоремы
+### 16.4. Бесконечный резерв good primes
 
-Для общей теоремы нужен бесконечный резерв regular primes. Его можно получить из классических фактов без density estimate для возможных нулей \(\tau(p)\).
+Абстрактной теореме нужен бесконечный regular reservoir. Для этого не требуется density theorem о возможных нулях \(\tau(p)\).
 
-Для prime \(p\) известна конгруэнция Рамануджана
+Конгруэнция Рамануджана даёт для prime \(p\)
 
 \[
 \tau(p)\equiv1+p^{11}\pmod{691}.
@@ -845,218 +864,157 @@ p\equiv1\pmod{691},
 \tau(p)\equiv2\pmod{691},
 \]
 
-следовательно \(\tau(p)\ne0\). По теореме Дирихле в прогрессии \(1\bmod691\) существует бесконечно много простых.
+следовательно \(\tau(p)\ne0\). По теореме Дирихле primes в прогрессии \(1\pmod{691}\) бесконечны. Значит good-prime reservoir бесконечен.
 
-Значит good regular primes бесконечно много.
+### Следствие 16.1
 
-### Следствие 15.1. Finite stationary Ramanujan atlases
-
-Для каждого конечного \(S\) структура
+Для каждого finite non-empty множества рациональных простых \(S\) структура
 
 \[
 \mathcal B_{\Delta,S}
 =
-\Bigl((\mathbb N_{>0},\times),(\mathbb Q,+,0,(B_\ell)_{\ell\in S}),U_\Delta\Bigr)
+\Bigl((\mathbb N_{>0},\times),
+      (\mathbb Q,+,0,(B_\ell)_{\ell\in S}),
+      U_\Delta\Bigr)
 \]
 
-обладает Formula-Relative Tail Symmetry. Стандартный prime order и prime successor не определимы, а каждый fixed isolator имеет finite GIR.
+обладает Formula-Relative Tail Symmetry. Обычный порядок простых и prime-successor relation в ней не определимы, а каждый fixed isolator имеет конечный GIR.
 
 ---
 
-## 16. Infinite Named Stationary Atlas
+## 17. Infinite Named Stationary Atlas
 
-Рассмотрим язык с отдельным predicate \(B_\ell\) для каждого rational prime:
-
-\[
-\mathcal A_{\mathrm{name}}
-=
-(\mathbb Q,+,0,(B_\ell)_{\ell\in\mathbb P}).
-\]
-
-Язык бесконечен, но каждая first-order formula — конечная строка и потому упоминает лишь конечное множество place symbols
+Рассмотрим target language
 
 \[
-S_\Phi\subset\mathbb P.
+(\mathbb Q,+,0,(B_\ell)_{\ell\in\mathbb P}),
 \]
 
-Для Ramanujan bridge все primes вне \(S_\Phi\) \(S_\Phi\)-integral. Значит finite theorem применяется к каждой \(\Phi\) отдельно.
+где для каждого rational prime имеется отдельный predicate symbol.
 
-### Следствие 16.1
+Язык бесконечен, но каждая ordinary first-order formula является конечной строкой. Поэтому fixed formula \(\Phi\) упоминает лишь конечное множество мест. Обозначим его \(S_\Phi\).
 
-Ramanujan structure с separately named \(B_\ell\) для всех primes остаётся formula-by-formula compressed.
+Для меток Рамануджана primes вне \(S_\Phi\) являются \(S_\Phi\)-integral, поэтому к \(\Phi\) применяется finite theorem.
 
-При этом для good prime \(p\) предикат \(B_p\) индивидуально выделяет \(p\):
+### Следствие 17.1. Infinite Named Stationary Atlas
+
+Ramanujan structure со всеми отдельно именованными \(B_\ell\) остаётся formula-by-formula compressed: у каждой фиксированной формулы есть собственное finite exceptional set и finite local color partition на хвосте простых.
+
+При этом возникает красивое pointwise phenomenon. Если \(p\) good, его собственный named predicate \(B_p\) отличает \(p\) от всех других prime labels:
 
 \[
 q=p
 \iff
-\operatorname{Prime}(q)
-\wedge
-\exists x\bigl(U_\Delta(q,x)\wedge\neg B_p(x)\bigr).
+\operatorname{Prime}(q)\land
+\exists x\bigl(U_\Delta(q,x)\land\neg B_p(x)\bigr).
 \]
 
-Итак, многие prime atoms могут быть индивидуально различимы, хотя единой formula для стандартного порядка или successor по-прежнему нет.
+То есть разные формулы могут индивидуально различать множество отдельных prime atoms, хотя единой формулы, задающей standard order или successor, всё ещё нет.
 
-В programme terminology:
+В терминах программы:
 
 \[
-\boxed{\text{pointwise distinguishability}\ne\text{uniform orientation}.}
+\boxed{
+\text{pointwise distinguishability}\ne\text{uniform orientation}.
+}
 \]
 
 ---
 
-## 17. Где находится следующая граница
+## 18. Следующая граница: Uniformly Indexed Locality
 
-Граница
+Предыдущее следствие показывает, что переход от конечного к бесконечному числу **отдельно именованных** stationary predicates сам по себе не является first-order phase transition.
 
-\[
-|S|<\infty
-\quad\text{versus}\quad
-|S|=\infty
-\]
-
-сама по себе не является first-order phase transition, если места лишь отдельно названы.
-
-Качественно новый язык появляется, если ввести place sort и единое отношение
+Качественно иной язык появляется, когда place становится переменной структуры через единое отношение
 
 \[
 \mathsf B(\ell,x)
 \iff
-v_\ell(x)\ge0,
+v_\ell(x)\ge0.
 \]
 
-где \(\ell\) становится first-order переменной.
-
-Теперь одной формулой можно агрегировать информацию по неограниченному числу places. Например,
+Теперь одна formula может квантифицировать по неограниченному числу places. Для rational \(x\) формула
 
 \[
 \forall\ell\,
-\bigl(\operatorname{Prime}(\ell)\rightarrow\mathsf B(\ell,x)\bigr)
+\bigl(\operatorname{Prime}(\ell)\to\mathsf B(\ell,x)\bigr)
 \]
 
-для rational \(x\) выражает отсутствие любого простого в знаменателе, то есть определяет
+говорит об отсутствии любого prime denominator и поэтому определяет
 
 \[
-\mathbb Z\subset\mathbb Q.
+\mathbb Z\subseteq\mathbb Q.
 \]
 
-Finite-syntax support barrier исчезает.
+Именно здесь перестаёт работать finite syntactic-support mechanism настоящей статьи.
 
-Мы называем это **Uniformly Indexed Atlas Problem**. В этой статье не утверждается, что такая структура имеет GIR∞, определяет prime successor или интерпретирует полную арифметику. Мы лишь указываем точку, где механизм настоящего доказательства перестаёт применяться.
+Мы не утверждаем, что uniformly indexed atlas имеет GIR∞, определяет prime successor или интерпретирует полную арифметику. Это следующая открытая граница.
 
 ---
 
-## 18. Stationary versus scalable information
+## 19. Stationary information и scalable information
 
-Теорема показывает принципиальное различие между локальной информацией и масштабируемой локальной информацией.
+Теорема показывает, что expressive strength нельзя измерять просто числом локальных битов информации.
 
-Fixed-depth predicates
+Для fixed formula конечное число stationary places даёт конечное произведение конечных local color spaces. Добавление новых мест может резко увеличить число цветов, но оно остаётся конечным и связано с синтаксисом данной формулы.
 
-\[
-B_{\ell,m}
-\]
-
-создают конечное число residue/depth colors, релевантных конкретной формуле. Несколько независимых places перемножают число цветов, но для фиксированной формулы оно остаётся конечным.
-
-Поэтому важный переход имеет вид не
+Что действительно отсутствует в доказанном слое - это механизм, превращающий fixed local windows в uniformly variable scale или coordinate. Поэтому естественная рабочая граница имеет вид
 
 \[
-\text{мало информации}\to\text{много информации},
-\]
-
-а скорее
-
-\[
-\boxed{\text{stationary local information}\to\text{uniformly scalable local information}.}
-\]
-
-Настоящая теорема доказывает существование одного строгого внутреннего режима этой фазовой картины. Она не утверждает, что stationary locality является единственным безопасным механизмом и не утверждает, что всякая scalable observable автоматически даёт GIR∞.
-
----
-
-## 19. Связь с классической теорией моделей
-
-Аддитивная target structure лежит в области теории моделей абелевых групп и модулей. Работы Шмелева и Baur-Monk дают классический фон, в котором definability сводится к pp-геометрии и конечным invariant data; abelian structures Фишера дают естественную среду для аддитивных групп с выделенными подгруппами.
-
-В этой работе используется более узкий прямой путь. Нам не нужна полная классификация теории
-
-\[
-(\mathbb Q,+,0,(B_\ell)_{\ell\in S}).
-\]
-
-Local Coverage Lemma и finite weak approximation дают ровно ту target normal form, которая нужна для bridge theorem.
-
-Также finite GIR не следует отождествлять с model-theoretic stability. Pure Skolem arithmetic сама обладает существенной комбинаторной сложностью. GIR измеряет только конкретный механизм uniform cell isolation, введённый в этой программе.
-
-Наконец, наши выводы слабее глобальной non-interpretability: мы доказываем неопределимость стандартного prime order и successor и конечность GIR для каждого фиксированного isolator. Мы не утверждаем decidability полной теории, NIP, stability или невозможность любой интерпретации арифметики.
-
----
-
-## 20. Что теперь находится внутри коридора
-
-Fixed-Ball construction дала одну внутреннюю точку между multiplicative prime symmetry и right-wall grid-amplification mechanisms. Настоящая теорема превращает эту точку в область.
-
-Для Ramanujan bridge имеем семейство
-
-\[
-\{\mathcal B_{\Delta,S}:|S|<\infty\},
-\]
-
-а formula-by-formula также полный named stationary atlas
-
-\[
-(\mathbb Q,+,0,(B_\ell)_{\ell\in\mathbb P}).
-\]
-
-В этом режиме:
-
-- stationary local information различает некоторые primes;
-- каждая fixed formula видит лишь finite local colors;
-- exact affine accidents имеют форму bounded-anchor cylinders;
-- свежие private places остаются доступны вне observed atlas;
-- target witnesses транспортируются;
-- стандартные prime order и successor остаются неопределимыми;
-- каждый fixed grid-isolator имеет finite GIR.
-
-Следующая граница уже не проходит между одним и несколькими p-adic balls и не между конечным и бесконечным списком named balls. Она проходит между stationary names и uniformly quantified local coordinate:
-
-\[
-(B_\ell)_{\ell\in\mathbb P}
+\boxed{
+\text{stationary local information}
 \quad\Big|\quad
-\mathsf B(\ell,x).
+\text{uniformly scalable local information}.
+}
 \]
+
+Теорема устанавливает один строгий регион слева от этой границы. Она не утверждает, что любой scalable observable обязательно даёт GIR∞, и не утверждает, что stationary locality является единственным возможным механизмом compression.
+
+---
+
+## 20. Связь с классической теорией моделей
+
+Target sort относится к классической model theory абелевых групп и модулей. Результаты Шмелевой, теорема Баура об elimination для modules и теория abelian structures Фишера дают естественный фон для positive-primitive geometry с выделенными additive subgroups.
+
+В данной работе необходимая target normal form доказывается напрямую через local coverage и weak approximation, поэтому общий machinery не используется как чёрный ящик.
+
+Source sort - арифметика Сколема. Её model theory не является глобально «ручной» в смысле classical stability theory. Поэтому finite GIR нельзя понимать как stability или NIP. Аналогично, статья доказывает только неопределимость стандартного prime order и prime successor и конечность GIR каждого fixed isolator; она не доказывает decidability complete theory и не утверждает невозможность любой интерпретации арифметики.
 
 ---
 
 ## 21. Заключение
 
-Основной результат можно выразить одной фразой:
+Один fixed p-adic ball дал первую внутреннюю точку между чистой симметрией prime atoms и ранее найденными grid-amplification mechanisms. Настоящая теорема превращает эту точку в целый регион.
+
+Для каждого finite stationary atlas \(S\) Private-Place Bridge обладает Formula-Relative Tail Symmetry. В случае меток Рамануджана это верно для любого конечного атласа и formula-by-formula для полного семейства отдельно именованных local predicates.
+
+Доказательство разделяет два типа информации. Fixed-depth local conditions сжимаются в конечное число formula-relative colors. Exact affine accidents контролируются private denominator places, а non-pinned target witness остаётся подвижным, потому что всегда можно выбрать больше fresh private places, чем фиксированная affine template способна упомянуть prime labels.
+
+Центральный результат можно сжать в одну формулу мысли:
 
 \[
-\boxed{\text{конечное число стационарных локальных окон разрушает симметрию, но не создаёт масштабируемую машину адресации простых}.}
+\boxed{
+\text{конечное число stationary local windows нарушает симметрию, но не создаёт scalable prime-addressing machine}.
+}
 \]
 
-Target half доказательства сводит finite multi-adic additive geometry к fixed-depth local cells. Bridge half использует private denominator places для контроля exact relations и выбирает для non-pinned witness больше свежих private places, чем любая фиксированная affine scheme способна упомянуть.
-
-Вместе эти два механизма дают Formula-Relative Tail Symmetry.
-
-Для Ramanujan labels результат применяется ко всякому finite stationary atlas и formula-by-formula к infinite named atlas. Тем самым фазовая картина Prime-Successor programme становится точнее: решающим ресурсом оказывается не просто локальная информация, а способность сделать сам локальный индекс переменным и масштабируемым внутри first-order формулы.
+Следующий эксперимент начинается там, где сам local place получает право двигаться как first-order variable.
 
 ---
 
 ## Литература
 
-1. W. Szmielew, **Elementary properties of Abelian groups**, *Fundamenta Mathematicae* **41** (1955), 203–271. DOI: 10.4064/fm-41-2-203-271.
+1. W. Szmielew, **Elementary properties of Abelian groups**, *Fundamenta Mathematicae* **41** (1955), 203-271. DOI: 10.4064/fm-41-2-203-271.
 
-2. W. Baur, **Elimination of quantifiers for modules**, *Israel Journal of Mathematics* **25** (1976), 64–70. DOI: 10.1007/BF02756561.
+2. W. Baur, **Elimination of quantifiers for modules**, *Israel Journal of Mathematics* **25** (1976), 64-70. DOI: 10.1007/BF02756561.
 
-3. E. R. Fisher, **Abelian structures. I**, in *Abelian Group Theory*, Lecture Notes in Mathematics **616**, Springer, 1977, 270–322.
+3. E. R. Fisher, **Abelian structures. I**, in *Abelian Group Theory*, Lecture Notes in Mathematics **616**, Springer, 1977, 270-322.
 
-4. S. Ramanujan, **On certain arithmetical functions**, *Transactions of the Cambridge Philosophical Society* **22** (1916), 159–184.
+4. S. Ramanujan, **On certain arithmetical functions**, *Transactions of the Cambridge Philosophical Society* **22** (1916), 159-184.
 
-5. P. Deligne, **Formes modulaires et représentations ℓ-adiques**, Séminaire Bourbaki, Exp. 355, Lecture Notes in Mathematics **179**, Springer, 1971, 139–172.
+5. P. Deligne, **Formes modulaires et représentations ℓ-adiques**, Séminaire Bourbaki, Exp. 355, Lecture Notes in Mathematics **179**, Springer, 1971, 139-172.
 
-6. A. Stonestrom, **Some model theory of Th(N,·)**, *Mathematical Logic Quarterly* **68** (2022). DOI: 10.1002/malq.202100049.
+6. A. Stonestrom, **Some model theory of Th(N,·)**, *Mathematical Logic Quarterly* **68** (2022), 288-303. DOI: 10.1002/malq.202100049.
 
 7. A. Bès and C. Richard, **Undecidable extensions of Skolem arithmetic**, *Journal of Symbolic Logic* **63** (1998). DOI: 10.2307/2586837.
 
@@ -1064,4 +1022,4 @@ Target half доказательства сводит finite multi-adic additive
 
 ## Авторская заметка
 
-Работа входит в исследовательскую программу “Riemann Hypothesis — Commander Sol” и продолжает линию Prime-Successor Algebra / Two Walls. Термины **Private-Place Bridge**, **Finite Stationary Locality**, **Formula-Relative Tail Symmetry**, **bounded-anchor cylinder** и **Grid-Isolation Rank** используются как терминология программы для организации доказанных здесь механизмов.
+Работа входит в исследовательскую программу «Riemann Hypothesis - Commander Sol» и продолжает линию Prime-Successor Algebra / Two Walls. Термины **Private-Place Bridge**, **Finite Stationary Locality**, **Formula-Relative Tail Symmetry**, **bounded-anchor cylinder** и **Grid-Isolation Rank** используются как рабочие термины программы для выделенных здесь механизмов.
