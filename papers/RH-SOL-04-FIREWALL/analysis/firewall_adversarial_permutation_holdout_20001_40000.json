@@ -1,0 +1,232 @@
+{
+  "block_size": 1000,
+  "blocks": [
+    {
+      "block": 1,
+      "dabs": 0.03005005005005005,
+      "dmove": 0.098,
+      "drms": 0.11936895595733861,
+      "espec": 0.043714378949008,
+      "feasible_nonidentity_encountered": 401,
+      "nonidentity_feasible": true,
+      "selected_restart": 18
+    },
+    {
+      "block": 2,
+      "dabs": 0.019777777777777776,
+      "dmove": 0.066,
+      "drms": 0.09345341271004479,
+      "espec": 0.04947250295781126,
+      "feasible_nonidentity_encountered": 303,
+      "nonidentity_feasible": true,
+      "selected_restart": 12
+    },
+    {
+      "block": 3,
+      "dabs": 0.027693693693693695,
+      "dmove": 0.074,
+      "drms": 0.12038438564953564,
+      "espec": 0.04410944404802351,
+      "feasible_nonidentity_encountered": 400,
+      "nonidentity_feasible": true,
+      "selected_restart": 9
+    },
+    {
+      "block": 4,
+      "dabs": 0.030630630630630633,
+      "dmove": 0.092,
+      "drms": 0.12110345754275635,
+      "espec": 0.03998310590308408,
+      "feasible_nonidentity_encountered": 323,
+      "nonidentity_feasible": true,
+      "selected_restart": 18
+    },
+    {
+      "block": 5,
+      "dabs": 0.02120720720720721,
+      "dmove": 0.064,
+      "drms": 0.1029592084108779,
+      "espec": 0.04868971210449509,
+      "feasible_nonidentity_encountered": 362,
+      "nonidentity_feasible": true,
+      "selected_restart": 2
+    },
+    {
+      "block": 6,
+      "dabs": 0.025527527527527526,
+      "dmove": 0.071,
+      "drms": 0.11520474379926686,
+      "espec": 0.049280032999651904,
+      "feasible_nonidentity_encountered": 375,
+      "nonidentity_feasible": true,
+      "selected_restart": 14
+    },
+    {
+      "block": 7,
+      "dabs": 0.025255255255255255,
+      "dmove": 0.07,
+      "drms": 0.11889147248342213,
+      "espec": 0.049828513151975146,
+      "feasible_nonidentity_encountered": 320,
+      "nonidentity_feasible": true,
+      "selected_restart": 2
+    },
+    {
+      "block": 8,
+      "dabs": 0.029809809809809813,
+      "dmove": 0.076,
+      "drms": 0.12772684910313747,
+      "espec": 0.049480012958245494,
+      "feasible_nonidentity_encountered": 489,
+      "nonidentity_feasible": true,
+      "selected_restart": 11
+    },
+    {
+      "block": 9,
+      "dabs": 0.04075875875875876,
+      "dmove": 0.116,
+      "drms": 0.14822244031770512,
+      "espec": 0.049682702822492285,
+      "feasible_nonidentity_encountered": 410,
+      "nonidentity_feasible": true,
+      "selected_restart": 1
+    },
+    {
+      "block": 10,
+      "dabs": 0.03008208208208208,
+      "dmove": 0.079,
+      "drms": 0.12599876786428163,
+      "espec": 0.03904127749958557,
+      "feasible_nonidentity_encountered": 401,
+      "nonidentity_feasible": true,
+      "selected_restart": 10
+    },
+    {
+      "block": 11,
+      "dabs": 0.029553553553553553,
+      "dmove": 0.091,
+      "drms": 0.11689122916348876,
+      "espec": 0.04454603434653806,
+      "feasible_nonidentity_encountered": 406,
+      "nonidentity_feasible": true,
+      "selected_restart": 5
+    },
+    {
+      "block": 12,
+      "dabs": 0.04270670670670671,
+      "dmove": 0.118,
+      "drms": 0.1509294889727402,
+      "espec": 0.04949660638895442,
+      "feasible_nonidentity_encountered": 478,
+      "nonidentity_feasible": true,
+      "selected_restart": 14
+    },
+    {
+      "block": 13,
+      "dabs": 0.028334334334334334,
+      "dmove": 0.076,
+      "drms": 0.12357542028296617,
+      "espec": 0.049393964349149916,
+      "feasible_nonidentity_encountered": 396,
+      "nonidentity_feasible": true,
+      "selected_restart": 12
+    },
+    {
+      "block": 14,
+      "dabs": 0.023927927927927927,
+      "dmove": 0.052,
+      "drms": 0.1169398742664482,
+      "espec": 0.04098144533622778,
+      "feasible_nonidentity_encountered": 320,
+      "nonidentity_feasible": true,
+      "selected_restart": 7
+    },
+    {
+      "block": 15,
+      "dabs": 0.025075075075075077,
+      "dmove": 0.081,
+      "drms": 0.1057790017215762,
+      "espec": 0.048207047138594354,
+      "feasible_nonidentity_encountered": 356,
+      "nonidentity_feasible": true,
+      "selected_restart": 8
+    },
+    {
+      "block": 16,
+      "dabs": 0.021405405405405406,
+      "dmove": 0.061,
+      "drms": 0.10559005336431831,
+      "espec": 0.04811861246669404,
+      "feasible_nonidentity_encountered": 311,
+      "nonidentity_feasible": true,
+      "selected_restart": 2
+    },
+    {
+      "block": 17,
+      "dabs": 0.03150950950950951,
+      "dmove": 0.108,
+      "drms": 0.11973290107247407,
+      "espec": 0.0494142841893687,
+      "feasible_nonidentity_encountered": 309,
+      "nonidentity_feasible": true,
+      "selected_restart": 16
+    },
+    {
+      "block": 18,
+      "dabs": 0.033923923923923925,
+      "dmove": 0.088,
+      "drms": 0.13614462229924407,
+      "espec": 0.04940877288967516,
+      "feasible_nonidentity_encountered": 506,
+      "nonidentity_feasible": true,
+      "selected_restart": 11
+    },
+    {
+      "block": 19,
+      "dabs": 0.026094094094094095,
+      "dmove": 0.071,
+      "drms": 0.11835377147700211,
+      "espec": 0.04795144428173542,
+      "feasible_nonidentity_encountered": 498,
+      "nonidentity_feasible": true,
+      "selected_restart": 10
+    },
+    {
+      "block": 20,
+      "dabs": 0.04053853853853854,
+      "dmove": 0.094,
+      "drms": 0.15343103540081357,
+      "espec": 0.049418728161783915,
+      "feasible_nonidentity_encountered": 620,
+      "nonidentity_feasible": true,
+      "selected_restart": 4
+    }
+  ],
+  "method": "adversarial constrained exact-multiset permutation search",
+  "n_blocks": 20,
+  "n_loops": 20000,
+  "proposals_per_restart": 20000,
+  "range_summary": {
+    "blocks_dabs_ge_0_02": 19,
+    "blocks_dmove_ge_0_10": 3,
+    "blocks_nonidentity_feasible": 20,
+    "max_espec": 0.049828513151975146,
+    "mean_dabs": 0.029193093093093092,
+    "mean_dmove": 0.08230000000000001,
+    "mean_drms": 0.12203405459297192,
+    "mean_espec": 0.04701093114715471
+  },
+  "restarts": 20,
+  "seed": 20260905,
+  "spectral_threshold": 0.05,
+  "start": 20001,
+  "stop": 40000,
+  "t0": 0.02,
+  "target_scores_posthoc": {
+    "adversarial_m2_11": 0.03773732669433139,
+    "adversarial_m2_13": 0.03360467469940894,
+    "observed_m2_11": 0.03843732058522577,
+    "observed_m2_13": 0.034228925875265076
+  },
+  "tend": 1e-05
+}
