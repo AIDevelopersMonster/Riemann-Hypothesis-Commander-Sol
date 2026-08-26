@@ -1,4 +1,4 @@
-# Zenodo Metadata Draft
+# Zenodo Metadata
 
 ## Title
 
@@ -16,6 +16,11 @@ ORCID: 0009-0008-6009-3196
 ## Publication date
 
 2026-08-26
+
+## DOI
+
+**10.5281/zenodo.22110465**  
+https://doi.org/10.5281/zenodo.22110465
 
 ## Resource type
 
@@ -85,8 +90,4 @@ Commander Sol Math / project community, if accepted by the active Zenodo communi
 
 ## License
 
-Use the repository publication license selected for the Prime-Successor series. Do not silently change the license at release time.
-
-## Notes for deposit
-
-Upload both English and Russian PDF/DOCX files, the Markdown sources, a package README, citation metadata, license, and SHA256 checksums. The final DOI is to be inserted only after Zenodo assigns it.
+Use the repository publication license selected for the Prime-Successor series.
