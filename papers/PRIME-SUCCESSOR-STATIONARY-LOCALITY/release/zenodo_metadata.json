@@ -12,6 +12,7 @@
     ],
     "publication_date": "2026-08-26",
     "version": "1.0",
+    "doi": "10.5281/zenodo.22110465",
     "keywords": [
       "prime-successor algebra",
       "stationary locality",
@@ -38,5 +39,5 @@
       {"identifier": "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol", "relation": "isSupplementTo", "scheme": "url"}
     ]
   },
-  "release_notes": "Final DOI and license field must be confirmed at deposit time. This JSON is a deposit draft, not a record of an existing Zenodo publication."
+  "release_notes": "Zenodo DOI assigned: 10.5281/zenodo.22110465."
 }
