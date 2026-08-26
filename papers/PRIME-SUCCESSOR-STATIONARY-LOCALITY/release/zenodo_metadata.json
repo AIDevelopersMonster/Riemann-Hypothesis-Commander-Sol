@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "title": "Reflections on Stationary Locality with Commander Sol: Private-Place Bridges, Finite Multi-adic Windows, and Formula-Relative Compression",
+    "upload_type": "publication",
+    "publication_type": "workingpaper",
+    "description": "This paper develops a finite multi-place extension of the fixed-ball interior construction in the Prime-Successor Algebra / Two Walls programme. It proves a finite-depth normal form for the additive target with finitely many p-adic integrality predicates, introduces Private-Place Bridges, and derives Formula-Relative Tail Symmetry. Consequences include non-definability of the standard prime order and prime-successor relation and finite Grid-Isolation Rank for each fixed isolator. The Ramanujan labels u_p=(tau(p)^2-p^11)/p^11 satisfy the hypotheses for every finite stationary atlas. The next open boundary is uniformly indexed locality B(ell,x), where the place becomes a first-order variable.",
+    "creators": [
+      {
+        "name": "Malachevsky, Alex",
+        "orcid": "0009-0008-6009-3196"
+      }
+    ],
+    "publication_date": "2026-08-26",
+    "version": "1.0",
+    "keywords": [
+      "prime-successor algebra",
+      "stationary locality",
+      "private-place bridge",
+      "formula-relative tail symmetry",
+      "grid-isolation rank",
+      "Skolem arithmetic",
+      "model theory",
+      "abelian groups",
+      "p-adic localization",
+      "Ramanujan tau",
+      "prime order",
+      "prime successor",
+      "multi-adic windows",
+      "Commander Sol"
+    ],
+    "related_identifiers": [
+      {"identifier": "10.5281/zenodo.22077920", "relation": "isSupplementTo", "scheme": "doi"},
+      {"identifier": "10.5281/zenodo.22088969", "relation": "isSupplementTo", "scheme": "doi"},
+      {"identifier": "10.5281/zenodo.22092015", "relation": "isSupplementTo", "scheme": "doi"},
+      {"identifier": "10.5281/zenodo.22093845", "relation": "isSupplementTo", "scheme": "doi"},
+      {"identifier": "10.5281/zenodo.22096375", "relation": "isSupplementTo", "scheme": "doi"},
+      {"identifier": "10.5281/zenodo.22101603", "relation": "isSupplementTo", "scheme": "doi"},
+      {"identifier": "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol", "relation": "isSupplementTo", "scheme": "url"}
+    ]
+  },
+  "release_notes": "Final DOI and license field must be confirmed at deposit time. This JSON is a deposit draft, not a record of an existing Zenodo publication."
+}
