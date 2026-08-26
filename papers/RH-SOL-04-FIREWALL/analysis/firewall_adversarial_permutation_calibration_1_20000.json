@@ -1,0 +1,232 @@
+{
+  "block_size": 1000,
+  "blocks": [
+    {
+      "block": 1,
+      "dabs": 0.020580580580580578,
+      "dmove": 0.053,
+      "drms": 0.10893569711175645,
+      "espec": 0.04830257059022775,
+      "feasible_nonidentity_encountered": 253,
+      "nonidentity_feasible": true,
+      "selected_restart": 0
+    },
+    {
+      "block": 2,
+      "dabs": 0.016458458458458457,
+      "dmove": 0.046,
+      "drms": 0.09455201333852978,
+      "espec": 0.04660874326535171,
+      "feasible_nonidentity_encountered": 285,
+      "nonidentity_feasible": true,
+      "selected_restart": 2
+    },
+    {
+      "block": 3,
+      "dabs": 0.02252652652652653,
+      "dmove": 0.076,
+      "drms": 0.0972424430450305,
+      "espec": 0.047284721438119494,
+      "feasible_nonidentity_encountered": 403,
+      "nonidentity_feasible": true,
+      "selected_restart": 1
+    },
+    {
+      "block": 4,
+      "dabs": 0.027123123123123122,
+      "dmove": 0.072,
+      "drms": 0.11777541435037525,
+      "espec": 0.04908733758158736,
+      "feasible_nonidentity_encountered": 340,
+      "nonidentity_feasible": true,
+      "selected_restart": 13
+    },
+    {
+      "block": 5,
+      "dabs": 0.015275275275275274,
+      "dmove": 0.044,
+      "drms": 0.08598032239450074,
+      "espec": 0.04085465822277134,
+      "feasible_nonidentity_encountered": 287,
+      "nonidentity_feasible": true,
+      "selected_restart": 9
+    },
+    {
+      "block": 6,
+      "dabs": 0.02956156156156156,
+      "dmove": 0.092,
+      "drms": 0.12072027251048523,
+      "espec": 0.045192713972964677,
+      "feasible_nonidentity_encountered": 366,
+      "nonidentity_feasible": true,
+      "selected_restart": 7
+    },
+    {
+      "block": 7,
+      "dabs": 0.020730730730730732,
+      "dmove": 0.055,
+      "drms": 0.10540052862104515,
+      "espec": 0.03811293278530508,
+      "feasible_nonidentity_encountered": 279,
+      "nonidentity_feasible": true,
+      "selected_restart": 15
+    },
+    {
+      "block": 8,
+      "dabs": 0.03119319319319319,
+      "dmove": 0.098,
+      "drms": 0.11522765095965384,
+      "espec": 0.04942877130617577,
+      "feasible_nonidentity_encountered": 361,
+      "nonidentity_feasible": true,
+      "selected_restart": 10
+    },
+    {
+      "block": 9,
+      "dabs": 0.03268068068068068,
+      "dmove": 0.098,
+      "drms": 0.12929687794998215,
+      "espec": 0.04899921594404412,
+      "feasible_nonidentity_encountered": 428,
+      "nonidentity_feasible": true,
+      "selected_restart": 16
+    },
+    {
+      "block": 10,
+      "dabs": 0.03177177177177177,
+      "dmove": 0.093,
+      "drms": 0.1296692848470371,
+      "espec": 0.049723985647523804,
+      "feasible_nonidentity_encountered": 296,
+      "nonidentity_feasible": true,
+      "selected_restart": 16
+    },
+    {
+      "block": 11,
+      "dabs": 0.028356356356356357,
+      "dmove": 0.087,
+      "drms": 0.11353349646595383,
+      "espec": 0.04989499123660235,
+      "feasible_nonidentity_encountered": 397,
+      "nonidentity_feasible": true,
+      "selected_restart": 2
+    },
+    {
+      "block": 12,
+      "dabs": 0.02513913913913914,
+      "dmove": 0.075,
+      "drms": 0.11511327848123568,
+      "espec": 0.04984309571632058,
+      "feasible_nonidentity_encountered": 363,
+      "nonidentity_feasible": true,
+      "selected_restart": 9
+    },
+    {
+      "block": 13,
+      "dabs": 0.020250250250250252,
+      "dmove": 0.053,
+      "drms": 0.10172187735844399,
+      "espec": 0.04937550502278978,
+      "feasible_nonidentity_encountered": 317,
+      "nonidentity_feasible": true,
+      "selected_restart": 13
+    },
+    {
+      "block": 14,
+      "dabs": 0.025083083083083085,
+      "dmove": 0.072,
+      "drms": 0.1132761056920894,
+      "espec": 0.04941331091370074,
+      "feasible_nonidentity_encountered": 322,
+      "nonidentity_feasible": true,
+      "selected_restart": 3
+    },
+    {
+      "block": 15,
+      "dabs": 0.029365365365365364,
+      "dmove": 0.081,
+      "drms": 0.12388830160365102,
+      "espec": 0.04991238484690028,
+      "feasible_nonidentity_encountered": 455,
+      "nonidentity_feasible": true,
+      "selected_restart": 7
+    },
+    {
+      "block": 16,
+      "dabs": 0.020616616616616616,
+      "dmove": 0.062,
+      "drms": 0.0989174480989845,
+      "espec": 0.04973083682134999,
+      "feasible_nonidentity_encountered": 349,
+      "nonidentity_feasible": true,
+      "selected_restart": 15
+    },
+    {
+      "block": 17,
+      "dabs": 0.021453453453453453,
+      "dmove": 0.061,
+      "drms": 0.10590407040612293,
+      "espec": 0.04360359388015573,
+      "feasible_nonidentity_encountered": 357,
+      "nonidentity_feasible": true,
+      "selected_restart": 4
+    },
+    {
+      "block": 18,
+      "dabs": 0.027371371371371373,
+      "dmove": 0.074,
+      "drms": 0.11828462501007912,
+      "espec": 0.047296713714870965,
+      "feasible_nonidentity_encountered": 281,
+      "nonidentity_feasible": true,
+      "selected_restart": 14
+    },
+    {
+      "block": 19,
+      "dabs": 0.031085085085085083,
+      "dmove": 0.098,
+      "drms": 0.11998756449837988,
+      "espec": 0.049601849118538294,
+      "feasible_nonidentity_encountered": 388,
+      "nonidentity_feasible": true,
+      "selected_restart": 9
+    },
+    {
+      "block": 20,
+      "dabs": 0.023327327327327327,
+      "dmove": 0.08,
+      "drms": 0.10516541479580575,
+      "espec": 0.04834020046327925,
+      "feasible_nonidentity_encountered": 453,
+      "nonidentity_feasible": true,
+      "selected_restart": 7
+    }
+  ],
+  "method": "adversarial constrained exact-multiset permutation search",
+  "n_blocks": 20,
+  "n_loops": 20000,
+  "proposals_per_restart": 20000,
+  "range_summary": {
+    "blocks_dabs_ge_0_02": 18,
+    "blocks_dmove_ge_0_10": 0,
+    "blocks_nonidentity_feasible": 20,
+    "max_espec": 0.04991238484690028,
+    "mean_dabs": 0.024997497497497495,
+    "mean_dmove": 0.07350000000000001,
+    "mean_drms": 0.11102963437695709,
+    "mean_espec": 0.04753040662442896
+  },
+  "restarts": 20,
+  "seed": 20260904,
+  "spectral_threshold": 0.05,
+  "start": 1,
+  "stop": 20000,
+  "t0": 0.02,
+  "target_scores_posthoc": {
+    "adversarial_m2_11": 0.049481430955543394,
+    "adversarial_m2_13": 0.04393091811554368,
+    "observed_m2_11": 0.05027641438222484,
+    "observed_m2_13": 0.04463219422177026
+  },
+  "tend": 1e-05
+}
