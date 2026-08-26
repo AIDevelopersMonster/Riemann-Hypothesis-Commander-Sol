@@ -1,0 +1,40 @@
+{
+  "range": [1, 30],
+  "dps": 30,
+  "boundary_tol": 1e-10,
+  "runs": [
+    {
+      "segments": 60,
+      "mismatch_loops": 0,
+      "extra_points": 0,
+      "missing_points": 0,
+      "generated_total": 141,
+      "published_total": 141,
+      "mismatches": []
+    },
+    {
+      "segments": 120,
+      "mismatch_loops": 0,
+      "extra_points": 0,
+      "missing_points": 0,
+      "generated_total": 141,
+      "published_total": 141,
+      "mismatches": []
+    },
+    {
+      "segments": 240,
+      "mismatch_loops": 1,
+      "extra_points": 1,
+      "missing_points": 0,
+      "generated_total": 142,
+      "published_total": 141,
+      "mismatches": [
+        {
+          "loop": 14,
+          "extra": [[4, 1]],
+          "missing": []
+        }
+      ]
+    }
+  ]
+}

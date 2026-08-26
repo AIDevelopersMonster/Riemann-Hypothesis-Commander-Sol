@@ -1,0 +1,92 @@
+{
+  "experiment": "RH-SOL-02 EXP-01 resolution/fill-rule control suite",
+  "n_loops": 10000,
+  "time_proxy": "zero-pair midpoint",
+  "q_values": [8, 16, 32],
+  "rules": ["winding", "even-odd"],
+  "winding": {
+    "q8": {
+      "area_mae": 0.023697931034688365,
+      "area_correlation": 0.9999994598153648,
+      "zero_mode_fraction": 0.9994412851242676,
+      "area_comb_score": 2.041541525722505,
+      "translation_mean_comb_score": 2.0412620811674516,
+      "count_map_median": 2.0421142219665906,
+      "residual_map_median": 0.8853765272730469
+    },
+    "q16": {
+      "area_mae": 0.008507885790503558,
+      "area_correlation": 0.999999930586428,
+      "zero_mode_fraction": 0.9994398096598852,
+      "area_comb_score": 2.041541525722505,
+      "translation_mean_comb_score": 2.04124383118504,
+      "count_map_median": 2.0413200073284696,
+      "residual_map_median": 0.8827632779285204
+    },
+    "q32": {
+      "area_mae": 0.0029675659873921417,
+      "area_correlation": 0.999999991499581,
+      "zero_mode_fraction": 0.9994398924329163,
+      "area_comb_score": 2.041541525722505,
+      "translation_mean_comb_score": 2.0415801593786953,
+      "count_map_median": 2.0413035356559766,
+      "residual_map_median": 0.8793055125459829
+    },
+    "empirical_mae_convergence_order": [1.477888537204672, 1.5195205564718257]
+  },
+  "even_odd": {
+    "q8": {
+      "area_mae": 0.02371729393578069,
+      "area_correlation": 0.9999994575577873,
+      "zero_mode_fraction": 0.9994394525675927,
+      "area_comb_score": 2.042233118713927,
+      "translation_mean_comb_score": 2.0419348146343546,
+      "count_map_median": 2.0425075191381112,
+      "residual_map_median": 0.8863923254778776
+    },
+    "q16": {
+      "area_mae": 0.008505392646167885,
+      "area_correlation": 0.9999999305798766,
+      "zero_mode_fraction": 0.9994380258607446,
+      "area_comb_score": 2.042233118713927,
+      "translation_mean_comb_score": 2.0419554494723617,
+      "count_map_median": 2.041719351906033,
+      "residual_map_median": 0.8879244660175736
+    },
+    "q32": {
+      "area_mae": 0.0029689776556143022,
+      "area_correlation": 0.9999999914461485,
+      "zero_mode_fraction": 0.9994380775722489,
+      "area_comb_score": 2.042233118713927,
+      "translation_mean_comb_score": 2.042294321666257,
+      "count_map_median": 2.0417652414618748,
+      "residual_map_median": 0.8818811573771799
+    },
+    "empirical_mae_convergence_order": [1.4794896689172004, 1.5184116028357109]
+  },
+  "fill_rule_comparison": {
+    "area_fraction_exactly_equal": 0.9912,
+    "area_mean_abs_difference": 0.0011791842981885659,
+    "area_max_abs_difference": 0.9766522111608538,
+    "area_correlation": 0.9999997964030019,
+    "q8": {
+      "fraction_cells_exactly_equal": 0.999,
+      "fraction_loops_with_any_difference": 0.0063,
+      "mean_abs_cell_difference": 0.001171875,
+      "max_abs_cell_difference": 2
+    },
+    "q16": {
+      "fraction_cells_exactly_equal": 0.998991796875,
+      "fraction_loops_with_any_difference": 0.0077,
+      "mean_abs_cell_difference": 0.0011796875,
+      "max_abs_cell_difference": 2
+    },
+    "q32": {
+      "fraction_cells_exactly_equal": 0.99899296875,
+      "fraction_loops_with_any_difference": 0.0085,
+      "mean_abs_cell_difference": 0.00118095703125,
+      "max_abs_cell_difference": 2
+    }
+  },
+  "interpretation": "Resolution and fill-rule controls support the continuous-area zero-mode conclusion. The residual-map score distribution is stable in scale but remains secondary and exploratory. The primary remaining calibration firewall is a matched RH-SOL-01 legacy t_near time-proxy run."
+}

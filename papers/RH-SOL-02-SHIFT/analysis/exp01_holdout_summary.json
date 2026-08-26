@@ -1,0 +1,56 @@
+{
+  "experiment": "RH-SOL-02 EXP-01 independent holdout",
+  "status": "PASS",
+  "range": {"start": 10001, "stop": 20000, "n_loops": 10000},
+  "time_proxy": "zero-pair midpoint",
+  "holdout_cube": {
+    "size_bytes": 4488218,
+    "sha256": "e239db2ba8b50709f803aea3647783ab554534a59bd537fc03b137ec23da27fe"
+  },
+  "primary_q16_winding_shift_map": {
+    "median_comb_score": 3.1817637264389056,
+    "mean_comb_score": 3.1819244909012365,
+    "min_comb_score": 3.1707919711898085,
+    "max_comb_score": 3.1910624224903117,
+    "fraction_p_lt_0_05": 1.0,
+    "fraction_q_bh_lt_0_05": 1.0
+  },
+  "zero_mode": {
+    "area_mae": 0.008519876225137757,
+    "area_correlation": 0.9999999558510526,
+    "fraction_zero_mode": 0.9996456778922147,
+    "area_comb_score": 3.1843117371667753,
+    "area_null_q99": 1.4670184065947864,
+    "area_empirical_p_ge": 4.999750012499375e-05,
+    "area_best_common_shift": 0.000250000000000028,
+    "translation_mean_comb_score": 3.184134171344873
+  },
+  "residual": {
+    "median_comb_score": 0.9272485105831374,
+    "mean_comb_score": 0.9722291836936834,
+    "min_comb_score": 0.7394658722421336,
+    "max_comb_score": 1.4913024879061638,
+    "fraction_p_lt_0_05": 0.7578125,
+    "fraction_q_bh_lt_0_05": 0.7265625,
+    "bh_significant_cells": 186
+  },
+  "resolution_control_winding": {
+    "q8": {"area_mae": 0.02352383627618763, "translation_mean_comb_score": 3.1848603119469256, "count_map_median": 3.1821235843381777, "residual_map_median": 0.9371605099943348},
+    "q16": {"area_mae": 0.008519876225137757, "translation_mean_comb_score": 3.184134171344873, "count_map_median": 3.1817637264389056, "residual_map_median": 0.9272485105831374},
+    "q32": {"area_mae": 0.0029271018258983624, "translation_mean_comb_score": 3.1841694675396846, "count_map_median": 3.182007644878574, "residual_map_median": 0.9229612392759816}
+  },
+  "fill_rule_control": {
+    "area_fraction_exactly_equal": 0.991,
+    "area_correlation": 0.9999991370486915,
+    "q16_fraction_cells_exactly_equal": 0.998237109375,
+    "q16_fraction_loops_with_any_difference": 0.0076,
+    "q16_translation_mean_correlation": 0.9999991350854853
+  },
+  "hypotheses": {
+    "H1_translation_average": "supported",
+    "H2_shift_persistence": "supported",
+    "H3_translation_averaged_persistence": "supported",
+    "H4_fill_rule_robustness": "supported"
+  },
+  "guardrail": "Absolute comb-score differences between calibration and holdout are not interpreted as height-growth evidence in the confirmatory analysis. Height dependence is post-confirmation exploratory work."
+}
