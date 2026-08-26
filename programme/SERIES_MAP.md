@@ -6,7 +6,7 @@
 | RH-SOL-02 | SHIFT | Shifted-Lattice Spectroscopy of Riemann-Zeta Argand Loops | Does the effect survive arbitrary lattice translation? | Research complete; manuscript synthesis pending |
 | RH-SOL-03 | REALZERO | Dirichlet Frequencies without Smooth Time | Does the comb survive direct use of actual zero ordinates `gamma_n`? | Research complete; manuscript synthesis pending |
 | RH-SOL-04 | FIREWALL | Falsification Tests for Arithmetic Spectra in Quantized Zeta Geometry | Can geometry-preserving and phase-randomized nulls destroy the effect? | Research complete; manuscript synthesis pending |
-| RH-SOL-05 | POISSON | Poisson Summation and the Moving Integer Lattice of Zeta Argand Domains | Can shifted lattices expose Fourier coefficients of loop interiors? | Planned |
+| RH-SOL-05 | POISSON | Poisson Summation and the Moving Integer Lattice of Zeta Argand Domains | Can shifted lattices expose Fourier coefficients of loop interiors? | Active |
 | RH-SOL-06 | NYQUIST | Nyquist Aliasing, Dirichlet Modes and the Riemann-Siegel Scale | What is the precise status of the sampling/aliasing analogy? | Planned |
 | RH-SOL-07 | SURVIVAL | How Much Arithmetic Information Survives Geometric Quantization? | How much geometric information can be removed before the spectrum fails? | Planned |
 | RH-SOL-08 | RATE | Rate-Distortion of Dirichlet Spectra under Binary Geometric Encoding | Can a task-specific rate-distortion law be defined? | Planned |
