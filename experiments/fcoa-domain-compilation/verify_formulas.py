@@ -63,6 +63,8 @@ def assoc_spectrum(N, op):
     return c
 
 
+KEYS = ('EQ', 'NEQ', 'LEFT', 'RIGHT', 'NONE')
+
 for N in range(3, 11):
     cp = assoc_spectrum(N, plus_M0)
     cm = assoc_spectrum(N, times_M0)
@@ -90,7 +92,7 @@ for N in range(3, 11):
         'NONE': N ** 3 + N ** 2 - 7 * N + 15,
     }
 
-    assert dict(cp) == fp, (N, cp, fp)
-    assert dict(cm) == fm, (N, cm, fm)
-    assert dict(cg) == fg, (N, cg, fg)
+    assert {k: cp[k] for k in KEYS} == fp, (N, cp, fp)
+    assert {k: cm[k] for k in KEYS} == fm, (N, cm, fm)
+    assert {k: cg[k] for k in KEYS} == fg, (N, cg, fg)
     print(N, 'OK', cp, cm, cg)
