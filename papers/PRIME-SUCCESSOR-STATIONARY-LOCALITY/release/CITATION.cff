@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "Reflections on Stationary Locality with Commander Sol: Private-Place Bridges, Finite Multi-adic Windows, and Formula-Relative Compression"
+message: "Please cite this paper using its Zenodo DOI."
+type: article
+authors:
+  - family-names: Malachevsky
+    given-names: Alex
+    orcid: https://orcid.org/0009-0008-6009-3196
+version: 1.0
+date-released: 2026-08-26
+doi: 10.5281/zenodo.22110465
+url: https://doi.org/10.5281/zenodo.22110465
+repository-code: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
+keywords:
+  - prime-successor algebra
+  - stationary locality
+  - private-place bridge
+  - formula-relative tail symmetry
+  - grid-isolation rank
+  - Skolem arithmetic
+  - p-adic localization
+  - Ramanujan tau
