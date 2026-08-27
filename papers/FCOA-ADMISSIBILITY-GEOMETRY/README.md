@@ -13,6 +13,10 @@ English title:
 - Zenodo DOI: **10.5281/zenodo.22129787**
 - Persistent URL: https://doi.org/10.5281/zenodo.22129787
 
+> **Maintenance boundary:** this publication line owns only `papers/FCOA-ADMISSIBILITY-GEOMETRY/**`, `demos/fcoa-domain-compilation/**`, and `experiments/fcoa-domain-compilation/**`. Other paper/experiment/demo branches in this repository are independent active research and must not be modified from this workspace. See [`WORKSPACE.md`](WORKSPACE.md).
+
+> **Continuity checkpoint:** if this work is resumed in another conversation/session, read [`STATE.md`](STATE.md) before changing the mathematics.
+
 ## Scope
 
 The paper studies partial, role-sensitive operations on a fixed finite carrier
@@ -158,13 +162,15 @@ The typed statement also handles \(A=\varnothing\): sort preservation keeps the 
 
 ## Repository companion contents
 
+- [`WORKSPACE.md`](WORKSPACE.md) — strict ownership boundary and no-touch rules for neighboring branches.
+- [`STATE.md`](STATE.md) — continuity checkpoint: fixed results, hostile-audit corrections, exact formulas, and the next unresolved decision.
 - [`MATHEMATICAL_CORE.md`](MATHEMATICAL_CORE.md) — theorem/proof checkpoint and claim boundaries.
 - [`CITATION.cff`](CITATION.cff) — article citation metadata.
 - [`release/`](release/) — publication and repository recovery notes.
 - [`../../demos/fcoa-domain-compilation/index.html`](../../demos/fcoa-domain-compilation/index.html) — standalone interactive demonstrator.
 - [`../../experiments/fcoa-domain-compilation/verify_formulas.py`](../../experiments/fcoa-domain-compilation/verify_formulas.py) — dependency-free formula checks.
 
-The publication PDF/DOCX package is canonical on Zenodo. GitHub stores the theorem-level companion, reproducibility code, and demonstrator so the mathematical mechanism remains inspectable outside the archival binary package.
+The publication PDF/DOCX/bilingual package is canonical on Zenodo. GitHub stores the theorem-level companion, reproducibility code, continuity state, and demonstrator so the mathematical mechanism remains inspectable without changing the archival publication.
 
 ## Claim discipline
 
