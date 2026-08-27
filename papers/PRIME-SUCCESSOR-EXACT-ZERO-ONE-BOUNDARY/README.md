@@ -2,9 +2,9 @@
 
 Research continuation of the Prime-Successor Algebra / Two Walls programme.
 
-**Status:** release candidate v1.0 — mathematical, adversarial, DOCX and PDF QA passed  
+**Status:** published as version 1.0 — mathematical, adversarial, DOCX and PDF QA passed  
 **Date:** 2026-08-27  
-**Zenodo DOI:** pending assignment
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.22131827
 
 ## Publication title
 
@@ -83,7 +83,8 @@ and \(B_1\) is not definable in the depth-zero structure.
 9. Formula-Relative Tail Symmetry, non-definability of order/successor, finite GIR.
 10. Strict separation from the published depth-one infinite-GIR theorem.
 
-The theorem-level checkpoint is [`THEOREM_ZERO_DEPTH_COMPRESSION.md`](THEOREM_ZERO_DEPTH_COMPRESSION.md).
+The theorem-level checkpoint is in the canonical theorem folder:
+[`../PRIME-SUCCESSOR-ZERO-ONE-BOUNDARY/THEOREM_ZERO_DEPTH_COMPRESSION.md`](../PRIME-SUCCESSOR-ZERO-ONE-BOUNDARY/THEOREM_ZERO_DEPTH_COMPRESSION.md).
 
 ## Immediate predecessor
 
@@ -95,17 +96,9 @@ The earlier Stationary Locality theorem is published at DOI **10.5281/zenodo.221
 
 ## Package contents
 
-- `manuscript/article_en.md` — English canonical manuscript.
-- `manuscript/article_ru.md` — Russian canonical manuscript.
-- `THEOREM_ZERO_DEPTH_COMPRESSION.md` — theorem-level proof checkpoint.
-- `CLAIM_AUDIT.md` — publication claim audit.
-- `FINAL_LINE_BY_LINE_AUDIT.md` — adversarial proof and release audit.
-- `LITERATURE_AUDIT.md` — literature and priority-discipline note.
-- `references.bib` — bibliography data.
-- `verification/` — finite sanity checks.
-- `demo/index.html` — standalone conceptual comparison page.
-- `release/` — publication metadata, manifest and checksums; DOCX/PDF binaries are carried in the Zenodo deposit package.
+The complete checked publication package is archived on Zenodo. The repository keeps the theorem checkpoint and canonical release entry point; the deposit package additionally contains EN/RU manuscripts, DOCX/PDF binaries, audits, metadata, checksums, verification data and the conceptual demo.
 
-## DOI gate
+## Publication record
 
-The new DOI is intentionally omitted until Zenodo assigns it. After assignment, update README, `release/CITATION.cff`, Zenodo metadata, checksums and the deposit archive. No mathematical content needs to be changed merely to insert the DOI.
+Published record: **10.5281/zenodo.22131827**  
+Persistent URL: https://doi.org/10.5281/zenodo.22131827
