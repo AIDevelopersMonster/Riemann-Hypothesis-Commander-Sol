@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from firewall_assignment_surrogates import block_target_scores_matrix, target_omegas
+from firewall_assignment_surrogates import target_omegas
 
 REPS = [(1, 0), (0, 1), (1, 1), (1, -1)]
 TRIMS = [0.0, 0.005, 0.01, 0.02, 0.05]
@@ -33,15 +33,38 @@ def coeff(F: np.ndarray, a: int, b: int) -> np.ndarray:
     return raw * np.exp(-1j * np.pi * (a + b) / q)
 
 
-def phase_metrics(g16: np.ndarray, g32: np.ndarray, mask: np.ndarray) -> dict[str, float]:
-    if not np.any(mask):
-        return {"n": 0, "rms_phase_error": float("nan"), "median_abs_phase_error": float("nan"), "rho_phase": float("nan")}
-    u16 = g16[mask] / np.abs(g16[mask])
-    u32 = g32[mask] / np.abs(g32[mask])
+def phase_metrics(g16: np.ndarray, g32: np.ndarray, mask: np.ndarray) -> dict[str, float | int]:
+    """Phase diagnostics on rows where phase is mathematically defined.
+
+    POISSON-03B intentionally inspects the low-amplitude tail.  Exact-zero
+    Fourier coefficients can occur there, and arg(0) is undefined.  Such rows
+    are excluded from phase normalization rather than allowed to create NaNs.
+    The requested/valid counts are both reported so the diagnostic remains
+    auditable and no target-based selection is introduced.
+    """
+    requested_n = int(np.sum(mask))
+    a16 = np.abs(g16)
+    a32 = np.abs(g32)
+    valid = mask & np.isfinite(a16) & np.isfinite(a32) & (a16 > 0.0) & (a32 > 0.0)
+    valid_n = int(np.sum(valid))
+    invalid_n = requested_n - valid_n
+    if valid_n == 0:
+        return {
+            "n": 0,
+            "requested_n": requested_n,
+            "invalid_phase_count": invalid_n,
+            "rms_phase_error": float("nan"),
+            "median_abs_phase_error": float("nan"),
+            "rho_phase": float("nan"),
+        }
+    u16 = g16[valid] / a16[valid]
+    u32 = g32[valid] / a32[valid]
     z = u16 * np.conj(u32)
     d = np.angle(z)
     return {
-        "n": int(np.sum(mask)),
+        "n": valid_n,
+        "requested_n": requested_n,
+        "invalid_phase_count": invalid_n,
         "rms_phase_error": float(np.sqrt(np.mean(d * d))),
         "median_abs_phase_error": float(np.median(np.abs(d))),
         "rho_phase": float(abs(np.mean(z))),
@@ -96,7 +119,7 @@ def score_group(t: np.ndarray, Y: np.ndarray, block_id: np.ndarray, n_targets: i
             r2 = min(max(float(np.sum(np.abs(proj) ** 2)) / total, 0.0), 1.0)
             qs.append(float(-np.log(max(1.0-r2, 1e-15))))
         vals.append(float(np.mean(qs)))
-    return float(np.mean(vals))
+    return float(np.mean(vals)) if vals else float("nan")
 
 
 def analyze(path: Path) -> dict[str, object]:
@@ -183,16 +206,25 @@ def analyze(path: Path) -> dict[str, object]:
         "top10": minamp >= hi,
     }
     temporal = {}
-    for name, sm in strata3.items():
+    for name, requested in strata3.items():
+        # Phase is undefined at exact zero.  Keep the amplitude-defined stratum
+        # frozen, but drop only rows on which at least one q32 unit phasor is
+        # mathematically undefined.  This is target-blind and reported.
+        sm = requested.copy()
+        for m in REPS:
+            a = np.abs(G32[m])
+            sm &= np.isfinite(a) & (a > 0.0)
         Y = np.column_stack([G32[m][sm] / np.abs(G32[m][sm]) for m in REPS])
         ts, As, bs = t[sm], area[sm], block_id[sm]
-        Yr = residualize_area(As, Y, bs)
+        Yr = residualize_area(As, Y, bs) if np.any(sm) else Y
         temporal[name] = {
+            "requested_n": int(np.sum(requested)),
             "n": int(np.sum(sm)),
-            "m2_13": score_group(ts, Y, bs, 12),
-            "m2_11": score_group(ts, Y, bs, 10),
-            "area_residualized_m2_13": score_group(ts, Yr, bs, 12),
-            "area_residualized_m2_11": score_group(ts, Yr, bs, 10),
+            "undefined_phase_dropped": int(np.sum(requested) - np.sum(sm)),
+            "m2_13": score_group(ts, Y, bs, 12) if np.any(sm) else float("nan"),
+            "m2_11": score_group(ts, Y, bs, 10) if np.any(sm) else float("nan"),
+            "area_residualized_m2_13": score_group(ts, Yr, bs, 12) if np.any(sm) else float("nan"),
+            "area_residualized_m2_11": score_group(ts, Yr, bs, 10) if np.any(sm) else float("nan"),
         }
 
     return {
