@@ -13,7 +13,7 @@ The published and audited chain remains
 \boxed{M0\longrightarrow G1\longrightarrow G2.}
 \]
 
-Nothing in G3/G4 silently revises the Zenodo publication.
+Nothing in G3/G4/Arithmetic-Leakage work silently revises the Zenodo publication.
 
 ## 2. G3 — fixed post-publication result
 
@@ -107,12 +107,6 @@ Confirmed active-sort groups:
 }
 \]
 
-The only nontrivial full-operation automorphism is total generic reversal together with
-
-\[
-\Omega_+\leftrightarrow\Omega_-.
-\]
-
 Hence
 
 \[
@@ -120,22 +114,6 @@ Hence
 \operatorname{VRI}(G4\text{-}C)=\frac{(N-1)!}{2}.
 }
 \]
-
-Exact spectrum:
-
-\[
-\boxed{
-(N^2+N-2,\ 0,\ 2N^2-N,\ 2N(N-1),\ N^3-2N^2+5N+3).
-}
-\]
-
-Commutation size:
-
-\[
-\boxed{3(N-1).}
-\]
-
-For \(N=3\), \(S_2=C_2\) and VRI=1; strict amplification starts at \(N=4\).
 
 ### G4-A
 
@@ -170,59 +148,118 @@ Therefore
 }
 \]
 
-Exact spectrum:
+The exact generic total order is uniformly parameter-free definable in G4-A.
+
+## 5. Arithmetic Leakage Boundary — opened
+
+New file:
+
+- [`ARITHMETIC_LEAKAGE_BOUNDARY.md`](ARITHMETIC_LEAKAGE_BOUNDARY.md)
+
+No new G5 operation cells have been introduced.
+
+### AL0 — Order Wall
+
+The exact G4-A family is uniformly obtainable from finite linear orders by a fixed finite-copy interpretation: one generic ordered copy, two indexed terminal copies \(E^\ast,E^\times\), and finitely many fixed singleton tags.
+
+Therefore every uniformly FO-definable relation on the generic sector reduces to a relation uniformly FO-definable on finite linear orders.
+
+Using the classical non-definability of cardinality parity in FO over finite linear orders, the note derives:
 
 \[
 \boxed{
-(N^2+N-2,\ 0,\ 2N^2-N,\ 2N^2-N,\ N^3-2N^2+4N+3).
+\text{canonical truncated rank addition is not uniformly FO-definable in G4-A,}
 }
-\]
-
-Commutation size remains
-
-\[
-\boxed{3(N-1).}
-\]
-
-### One-sorted definedness caveat
-
-If terminal outputs are retained as isolated points after value erasure, then
-
-\[
-\operatorname{Aut}_{\rm full}(D_{4C})
-\cong S_{N-1}\times\operatorname{Sym}(2N),
 \]
 
 and
 
 \[
-\operatorname{Aut}_{\rm full}(D_{4A})
-\cong S_2\times S_{N-1}\times\operatorname{Sym}(2N).
-\]
-
-All VRI formulas in this line are explicitly active/base-sort indices.
-
-## 5. New fixed consequence — anchored order recovery
-
-G4-C remembers the generic finite order only up to global reversal.
-
-G4-A fixes \(\Omega_+\) by the boundary anchor, so the exact generic total order becomes uniformly parameter-free definable across the finite family:
-
-\[
 \boxed{
-x<y
-\iff
-x,y\in G_N
-\land
-x\otimes_{4A}y=P_1\otimes_{4A}P_0.
+\text{canonical truncated rank multiplication is not uniformly FO-definable in G4-A.}
 }
 \]
 
-Thus G4-A crosses the threshold from anonymous orientation to anchored definable order.
+Thus G4-A is order-memory but not yet additive/multiplicative arithmetic leakage in the uniform family sense.
 
-This is still order-memory, not internal addition or multiplication on indices.
+### Successor is not a higher level than order
 
-## 6. Current status
+In a discrete total order,
+
+\[
+\operatorname{Succ}(x,y)
+\iff
+x<y\land\neg\exists z\,(x<z<y),
+\]
+
+so successor and betweenness are already FO consequences of G4-A order. They must not be treated as an expressive step above exact order.
+
+### Infinite left wall
+
+The natural infinite analogue of G4-A is uniformly interpretable in \((\mathbb N,<)\). By the classical decidability of the first-order theory of \((\mathbb N,<)\), it cannot parameter-free FO-interpret full true arithmetic \((\mathbb N,+,\times)\).
+
+This provides an infinite-carrier calibration of the same left wall.
+
+## 6. First genuine leakage gateway — variable equal-gap geometry
+
+Define externally on generic ranks:
+
+\[
+\operatorname{EqGap}(a,b;c,d)
+\iff
+\operatorname{rk}(b)-\operatorname{rk}(a)
+=
+\operatorname{rk}(d)-\operatorname{rk}(c),
+\]
+
+for forward intervals.
+
+The note proves that over the ordered generic sector, directed equal-gap geometry and truncated addition are FO-interdefinable:
+
+\[
+\boxed{
+\operatorname{Add}(x,y,z)
+\iff
+\operatorname{EqGap}(0_G,y;x,z),
+}
+\]
+
+and conversely
+
+\[
+\boxed{
+\operatorname{EqGap}(a,b;c,d)
+\iff
+\exists s\,
+\bigl(\operatorname{Add}(a,s,b)\land\operatorname{Add}(c,s,d)\bigr).
+}
+\]
+
+Therefore EqGap is not uniformly FO-definable in G4-A, but it is the first natural FCOA-native target whose appearance would cross the order wall into additive/Presburger leakage.
+
+## 7. Revised leakage levels
+
+### AL0 — Order Wall
+
+Uniform total order (hence successor/betweenness), but no uniform canonical rank addition or multiplication.
+
+G4-A is at AL0.
+
+### AL1 — Additive / Presburger Leakage
+
+Uniform variable displacement / EqGap, equivalently truncated rank addition.
+
+### AL2 — Full Arithmetic Leakage
+
+A mechanism strong enough to uniformly define multiplication over the additive ordered structure, or otherwise interpret full first-order arithmetic.
+
+The immediate main-line target is now
+
+\[
+\boxed{AL0\longrightarrow AL1.}
+\]
+
+## 8. Current status
 
 \[
 \mathbf F:\ M0,G1,G2\text{ published/audited checkpoint}
@@ -251,28 +288,25 @@ This is still order-memory, not internal addition or multiplication on indices.
 \]
 
 \[
-\mathbf W:\ \text{Value-Rigidity Index and Bounded-Output Rigidity Amplification terminology}
+\mathbf W:\ \text{Arithmetic Leakage Boundary theorem candidate; hostile audit pending}
 \]
-
-## 7. Main line now moves to Arithmetic Leakage
-
-Do not open a new operation-rich G5 merely to continue the branch numbering.
-
-The next main question is now:
 
 \[
-\boxed{
-\text{After total order becomes uniformly definable, what is the weakest additional FCOA mechanism that first yields genuine arithmetic leakage?}
-}
+\mathbf W:\ \text{Value-Rigidity Index / Bounded-Output Rigidity Amplification terminology}
 \]
 
-The boundary analysis must keep separate at least:
+## 9. Immediate next step
 
-1. exact finite order;
-2. successor / betweenness / distance-style information;
-3. Presburger-like additive structure;
-4. full arithmetic / multiplication-level structure.
+Do not open arbitrary G5 cells.
 
-The immediate task is to define precise leakage levels and prove separation or collapse results between them without importing ordinary arithmetic by analogy.
+Hostile-audit the Arithmetic Leakage Boundary note, especially:
 
-No G5 cells are authorized yet. The next artifact should be an **Arithmetic Leakage Boundary note**, not another ad hoc operation table.
+1. the finite-copy reduction of exact G4-A to finite linear order;
+2. the parity reduction used to rule out uniform rank addition;
+3. the multiplication-to-parity reduction;
+4. the claim that successor adds no FO power once order is already definable;
+5. the infinite decidability obstruction;
+6. EqGap/addition interdefinability and boundary conditions;
+7. the distinction between fixed-finite definability and uniform family definability.
+
+Only after this survives should the main line design the weakest AL0-to-AL1 FCOA mechanism.
