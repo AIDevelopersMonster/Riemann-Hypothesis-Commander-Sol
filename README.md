@@ -9,7 +9,7 @@ A reproducible research repository for computational experiments on Riemann-zeta
 **Reflections on Mathematics with Commander Sol**  
 https://zenodo.org/communities/commander-sol-math/
 
-The community collects the broader mathematical publication line, including work on the Riemann Hypothesis, prime structures, Prime-Successor Algebra, operator methods, adelic structures, and related rigorous explorations in the “Reflections / Размышлизмы” format.
+The community collects the broader mathematical publication line, including work on the Riemann Hypothesis, prime structures, Prime-Successor Algebra, operator methods, adelic structures, FCOA/admissibility geometry, and related rigorous explorations in the “Reflections / Размышлизмы” format.
 
 ## Published starting point
 
@@ -18,6 +18,23 @@ The community collects the broader mathematical publication line, including work
 Author: **Alex Malachevsky**  
 ORCID: **0009-0008-6009-3196**  
 Zenodo DOI: **10.5281/zenodo.22060296**
+
+## Additional published mathematical branches
+
+### FCOA · Admissibility Geometry
+
+**Reflections on Admissibility Geometry with Commander Sol: How a Partial Operation Remembers an Oriented Carrier**  
+Zenodo DOI: **10.5281/zenodo.22129787**  
+GitHub companion: [`papers/FCOA-ADMISSIBILITY-GEOMETRY/`](papers/FCOA-ADMISSIBILITY-GEOMETRY/)  
+Interactive demo: [`demos/fcoa-domain-compilation/`](demos/fcoa-domain-compilation/)
+
+Core progression:
+
+`M0 -> G1 -> G2`
+
+with the central mechanism
+
+`relation -> partial-operation domain -> recoverable structural memory`.
 
 ## Programme map
 
@@ -43,7 +60,7 @@ Each article branch should contain:
 
 ```text
 programme/      programme map, terminology, research questions
-papers/         one folder per RH-SOL article
+papers/         one folder per RH-SOL article and related mathematical publication branches
 src/            reusable research code
 experiments/    executable experiment branches
  data/          source and derived data (large files may be release assets)
@@ -59,6 +76,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-02 · SHIFT — next priority
 - RH-SOL-03 · REALZERO — planned
 - RH-SOL-04 · FIREWALL — planned
+- FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 
 ## AI collaboration disclosure
 
