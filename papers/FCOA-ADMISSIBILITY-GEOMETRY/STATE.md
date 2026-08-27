@@ -5,41 +5,33 @@
 **GitHub role:** theorem/reproducibility/demo companion  
 **Maintenance boundary:** see [`WORKSPACE.md`](WORKSPACE.md)
 
-## 1. What is fixed
+## 1. Publication checkpoint — fixed
 
-The publication checkpoint is the audited chain
+The published and audited chain remains
 
 \[
-M0\longrightarrow G1\longrightarrow G2.
+\boxed{M0\longrightarrow G1\longrightarrow G2.}
 \]
 
-No G3 rule is part of the published checkpoint.
+Nothing in G3/G4 silently revises the Zenodo publication.
 
 ### M0 multiplication
 
-Generic sector:
-
-\[
-G_N=\{P_2,\ldots,P_N\},\qquad N\ge3.
-\]
-
-Automorphisms:
+For \(G_N=\{P_2,\ldots,P_N\}\),
 
 \[
 \operatorname{Aut}(\mathfrak M_N^\times)\cong S_{N-1}.
 \]
 
-Association Spectrum on \((X_N)^3\):
+M0 multiplication Association Spectrum:
 
 \[
-(EQ,NEQ,LEFT,RIGHT,NONE)
-=
-\bigl(4(N-1),0,N^2+2N-2,N^2+N-2,N^3+N^2-4N+9\bigr).
+(4(N-1),0,N^2+2N-2,N^2+N-2,N^3+N^2-4N+9).
 \]
 
-### G1 external skeleton
+### G1
 
-For any binary relation \(A\subseteq G_N^2\),
+For external interaction skeleton \(A\subseteq G_N^2\),
 
 \[
 \operatorname{Aut}(\mathfrak M_N^\times,A)
@@ -47,252 +39,278 @@ For any binary relation \(A\subseteq G_N^2\),
 \operatorname{Aut}(G_N,A).
 \]
 
-For the undirected and directed path skeletons:
+For undirected then directed path:
 
 \[
 S_{N-1}\to C_2\to1.
 \]
 
-But erasing the external relation restores M0 symmetry. Therefore G1 demonstrates **external rigidity**, not internal order memory.
+This is external rigidity; erasing \(A\) restores M0 symmetry.
 
-### G2 domain compilation
+### G2
 
-A single fresh terminal output \(\Omega\) is used for all directed-adjacency cells:
+Directed adjacency is compiled into the operation domain using one terminal value \(\Omega\):
 
 \[
 P_i\otimes_1P_{i+1}=\Omega,
 \qquad 2\le i<N.
 \]
 
-Reverse and non-adjacent generic cells remain undefined. Further composition with \(\Omega\) is undefined.
-
 Then
 
 \[
-\operatorname{Aut}(\otimes_1)=1.
+\operatorname{Aut}(\otimes_1)=1,
 \]
 
-Directed adjacency is uniformly recoverable across the family by the off-diagonal definedness relation on the generic sort:
+and directed adjacency is uniformly recoverable from off-diagonal generic definedness.
+
+G2 spectrum:
 
 \[
-A_{\rm dir}(x,y)
-\iff
-x,y\in G_N,\ x\ne y,\ \operatorname{Def}(x\otimes_1y).
+(5N-6,0,N^2+3N-4,N^2+2N-4,N^3+N^2-7N+15).
 \]
 
-G2 Association Spectrum:
-
-\[
-(EQ,NEQ,LEFT,RIGHT,NONE)
-=
-\bigl(5N-6,0,N^2+3N-4,N^2+2N-4,N^3+N^2-7N+15\bigr).
-\]
-
-The commutation locus is unchanged from M0 and has size
+Commutation size remains
 
 \[
 3(N-1).
 \]
 
-## 2. Important distinctions that must not be collapsed
+## 2. G3 — hostile-audited with repair
 
-### Role distinguishability is not structural rigidity
-
-The base-indexed left/right translations of M0 are injective, while
-
-\[
-\operatorname{Aut}(\otimes)\cong S_{N-1}.
-\]
-
-Different translation profiles can move coherently under automorphisms.
-
-### External rigidity is not internal memory
-
-G1 can be rigid because the relation \(A\) is explicitly named. After erasing \(A\), the symmetry returns. G2 remains rigid after the external relation is removed because the directed skeleton has been compiled into the operation domain.
-
-### Values are not the only structural carrier
-
-All new G2 directed edges have the same value \(\Omega\). Edge identity is not encoded by different outputs. The distinguishing information is in which ordered pairs are defined.
-
-### Uniform successor recovery is not uniform full-order recovery
-
-G2 uniformly recovers the directed adjacency/successor relation. Do not infer from this alone that the transitive full order is uniformly first-order definable on an unbounded or infinite carrier.
-
-## 3. Typed Domain Compilation theorem
-
-Primary formulation:
-
-Let \(G\) be an input sort, \(O=\{\Omega\}\) a singleton output sort, and \(A\subseteq G^2\). Define
-
-\[
-\star_A:G\times G\rightharpoonup O
-\]
-
-by
-
-\[
-x\star_Ay=\Omega\iff A(x,y).
-\]
-
-Then restriction to the input sort gives
-
-\[
-\operatorname{Aut}(G,O;\star_A)
-\cong
-\operatorname{Aut}(G;A).
-\]
-
-The typed version includes \(A=\varnothing\). A one-sorted formulation requires additional hypotheses when the operation has empty range or when unused carrier elements are present.
-
-## 4. Verified finite checkpoints
-
-For \(N=6\):
-
-- M0 addition spectrum: \((5,1,22,22,293)\);
-- M0 multiplication spectrum: \((20,0,46,40,237)\);
-- G2 multiplication spectrum: \((24,0,50,44,225)\).
-
-The formulas are also checked by `../../experiments/fcoa-domain-compilation/verify_formulas.py` for \(N=3,\ldots,10\).
-
-## 5. Hostile-audit corrections incorporated
-
-The following corrections are part of the final checkpoint:
-
-1. M0 addition has one genuine NEQ triple, \((P_1,P_0,P_1)\); claims of NEQ=0 were rejected.
-2. \(x\oplus P_0=y\) defines immediate predecessor, not the whole strict order.
-3. In G2, the new family \((P_i,P_1,P_{i+1})\) contributes \(N-2\) additional EQ triples.
-4. Base-indexed translations remain injective; full-carrier translation injectivity fails because terminal outputs all have empty translations.
-5. The untyped Domain Compilation statement needs an empty-relation/output-distinguishability caveat; the typed theorem is the primary clean formulation.
-
-## 6. Files that represent this publication line
-
-- `README.md` — publication overview and DOI.
-- `WORKSPACE.md` — strict scope boundary; do not touch neighboring branches.
-- `STATE.md` — this continuity checkpoint.
-- `MATHEMATICAL_CORE.md` — theorem/proof checkpoint.
-- `CITATION.cff` — citation metadata.
-- `release/RELEASE_MANIFEST.md` — archival/repository consistency note.
-- `../../demos/fcoa-domain-compilation/index.html` — interactive visual demonstrator.
-- `../../experiments/fcoa-domain-compilation/verify_formulas.py` — exact finite verification.
-
-The publication binaries and bilingual archival package remain canonical on Zenodo under DOI 10.5281/zenodo.22129787.
-
-## 7. Post-publication research branch G3 — opened, not yet audited
-
-The next research question has now been opened explicitly as a new checkpoint, without modifying the published G2 result.
-
-Detailed file:
+Files:
 
 - [`G3_VALUE_GEOMETRY.md`](G3_VALUE_GEOMETRY.md)
+- [`G3_HOSTILE_AUDIT_RECONCILIATION.md`](G3_HOSTILE_AUDIT_RECONCILIATION.md)
 - verifier: `../../experiments/fcoa-domain-compilation/verify_g3.py`
 
-### G3-S — symmetric domain, one anonymous value
-
-For every adjacent generic pair, both orientations are defined with the same terminal value:
+The hostile audit confirms:
 
 \[
-P_i\otimes_S P_{i+1}=\Omega,
+\operatorname{Aut}(\otimes_S)\cong C_2,
 \qquad
-P_{i+1}\otimes_S P_i=\Omega.
+\operatorname{Aut}(\otimes_C)\cong C_2,
+\qquad
+\operatorname{Aut}(\otimes_A)=1.
+\]
+
+G3-S and G3-C have the same spectrum
+
+\[
+(6N-8,0,N^2+4N-6,N^2+3N-6,N^3+N^2-10N+21),
+\]
+
+but different commutation sizes:
+
+\[
+|\operatorname{Comm}_S|=5N-7,
+\qquad
+|\operatorname{Comm}_C|=3(N-1).
+\]
+
+G3-A has spectrum
+
+\[
+(6N-8,0,N^2+4N-6,N^2+4N-6,N^3+N^2-11N+21)
+\]
+
+and commutation size \(3(N-1)\).
+
+### Audit repair
+
+The intrinsic base-sort definedness group of G3-A is not merely \(C_2\). After the anchor makes \((P_1,P_0)\) defined, definedness alone also permits the boundary swap \(P_0\leftrightarrow P_1\). Therefore
+
+\[
+\boxed{
+\operatorname{Aut}(D_A\upharpoonright X_N)
+\cong C_2\times C_2.
+}
+\]
+
+Hence value restoration gives the stronger rigidity jump
+
+\[
+\boxed{C_2\times C_2\longrightarrow1.}
+\]
+
+## 3. Fiber-Transport Theorem — consolidated
+
+See [`FIBER_TRANSPORT_THEOREM.md`](FIBER_TRANSPORT_THEOREM.md).
+
+For a base/domain structure \((B,D)\) and a surjective anonymous terminal-output map
+
+\[
+c:D\to O,
+\]
+
+full-operation carrier automorphisms are exactly the automorphisms of \((B,D)\) preserving the equality partition of domain cells induced by \(c\):
+
+\[
+\boxed{
+\operatorname{Aut}(B,D,O;c)
+\cong
+\operatorname{Stab}_{\operatorname{Aut}(B,D)}(\equiv_c).
+}
+\]
+
+This makes the domain/value split exact: domain geometry first restricts automorphisms, then value-fiber geometry restricts them further.
+
+Working finite invariant:
+
+\[
+\operatorname{VRI}(\star)
+=
+\left[
+\operatorname{Aut}(D_\star\upharpoonright X):
+\pi_X\operatorname{Aut}(\star)
+\right].
+\]
+
+For G3:
+
+\[
+\operatorname{VRI}(S)=1,
+\qquad
+\operatorname{VRI}(C)=1,
+\qquad
+\operatorname{VRI}(A)=4.
+\]
+
+`Value-Rigidity Index` is working terminology only.
+
+## 4. G4 — bounded-output rigidity amplification candidate
+
+Files:
+
+- [`G4_BOUNDED_OUTPUT_AMPLIFICATION.md`](G4_BOUNDED_OUTPUT_AMPLIFICATION.md)
+- verifier: `../../experiments/fcoa-domain-compilation/verify_g4.py`
+
+### G4-C
+
+Define every off-diagonal generic cell, but use only two anonymous terminal values according to external carrier orientation:
+
+\[
+P_i\otimes_{4C}P_j=
+\begin{cases}
+\Omega_+,&i<j,\\
+\Omega_-,&i>j,
+\end{cases}
+\qquad 2\le i,j\le N,\ i\ne j.
+\]
+
+The generic definedness domain is complete, so
+
+\[
+\operatorname{Aut}(D_{4C}\upharpoonright X_N)\cong S_{N-1}.
+\]
+
+The full operation retains only identity and reversal-with-output-swap:
+
+\[
+\boxed{
+\operatorname{Aut}(\otimes_{4C})\cong C_2.
+}
+\]
+
+Therefore
+
+\[
+\boxed{
+\operatorname{VRI}(G4\text{-}C)=\frac{(N-1)!}{2}.
+}
+\]
+
+A fixed two-element anonymous output alphabet thus gives an unbounded, factorially growing value-rigidity index.
+
+G4-C spectrum:
+
+\[
+\boxed{
+(N^2+N-2,\ 0,\ 2N^2-N,\ 2N^2-2N,\ N^3-2N^2+5N+3).
+}
+\]
+
+Commutation size remains
+
+\[
+3(N-1).
+\]
+
+### G4-A
+
+Add the single boundary anchor
+
+\[
+P_1\otimes_{4A}P_0=\Omega_+.
 \]
 
 Candidate results:
 
 \[
-\operatorname{Aut}(\otimes_S)\cong C_2,
+\operatorname{Aut}(\otimes_{4A})=1,
 \]
 
 \[
-(EQ,NEQ,LEFT,RIGHT,NONE)
-=
-(6N-8,0,N^2+4N-6,N^2+3N-6,N^3+N^2-10N+21),
+\operatorname{Aut}(D_{4A}\upharpoonright X_N)
+\cong C_2\times S_{N-1},
+\]
+
+and hence
+
+\[
+\boxed{
+\operatorname{VRI}(G4\text{-}A)=2(N-1)!.
+}
+\]
+
+G4-A spectrum:
+
+\[
+\boxed{
+(N^2+N-2,\ 0,\ 2N^2-N,\ 2N^2-N,\ N^3-2N^2+4N+3).
+}
+\]
+
+Commutation size is still \(3(N-1)\).
+
+## 5. Current statuses
+
+\[
+\mathbf F:\ M0,G1,G2\text{ published/audited checkpoint}
 \]
 
 \[
-|\operatorname{Comm}_{\otimes_S}|=5N-7.
+\mathbf F:\ G3\text{ operation groups, spectra and commutation formulas after hostile audit repair}
 \]
-
-### G3-C — same symmetric domain, two anonymous directional values
-
-Use two distinct terminal values:
 
 \[
-P_i\otimes_C P_{i+1}=\Omega_+,
-\qquad
-P_{i+1}\otimes_C P_i=\Omega_-.
+\mathbf F:\ \operatorname{Aut}(D_A\upharpoonright X_N)=C_2\times C_2
 \]
-
-If \(\Omega_+,\Omega_-\) are anonymous and exchangeable, path reversal extends by swapping them. Candidate result:
 
 \[
-\operatorname{Aut}(\otimes_C)\cong C_2.
+\mathbf F:\ \text{Fiber-Transport theorem in the stated relative typed setup}
 \]
-
-The Association Spectrum is unchanged from G3-S, but
 
 \[
-|\operatorname{Comm}_{\otimes_C}|=3(N-1).
+\mathbf W:\ \text{Value-Rigidity Index terminology}
 \]
-
-This is the first candidate demonstration that a value-fiber change can alter the commutation locus while leaving the domain, Association Spectrum, and automorphism-group size unchanged.
-
-### G3-A — one anchored value fiber
-
-Add one boundary anchor on the already fixed M0 pair:
 
 \[
-P_1\otimes_A P_0=\Omega_+.
+\mathbf W:\ G4\text{ bounded-output amplification theorem candidate}
 \]
 
-Candidate result:
+## 6. Immediate next step
 
-\[
-\operatorname{Aut}(\otimes_A)=1,
-\]
+Do not open G5 yet.
 
-while the definedness reduct on the generic sector still has the path reflection:
+The next action is a hostile audit of G4, with special attention to:
 
-\[
-\operatorname{Aut}(D_{\otimes_A})\cong C_2.
-\]
+1. whether the complete generic definedness domain really has full \(S_{N-1}\) symmetry relative to M0;
+2. whether preserving the two anonymous orientation fibers leaves exactly identity and reversal;
+3. the \(N=3\) edge case, where \(S_2=C_2\) and \(\operatorname{VRI}(G4\text{-}C)=1\);
+4. the exact G4-C and G4-A Association Spectra;
+5. whether the single boundary anchor makes the full operation rigid while the definedness group becomes \(C_2\times S_{N-1}\);
+6. whether the factorial VRI formulas are stated with the correct active-sort scope;
+7. whether any hidden naming/sorting of \(\Omega_+,\Omega_-\) would trivialize the anonymous-output claim.
 
-Candidate spectrum:
-
-\[
-(EQ,NEQ,LEFT,RIGHT,NONE)
-=
-(6N-8,0,N^2+4N-6,N^2+4N-6,N^3+N^2-11N+21).
-\]
-
-The working interpretation is that G3-A carries an orientation component in an **anchored value fiber** which is not reducible to the operation domain alone.
-
-### New working diagnostics
-
-- **Anonymous Output-Swap Lemma:** an orientation coloring by two exchangeable terminal values need not remove a carrier reflection if the reflection can be extended by swapping the outputs.
-- **One-Anchor Lemma:** within that anonymous two-output branch, one value anchor on a structurally fixed pair kills the residual output-swap reflection.
-- **Value-Erasure Test:** compare the automorphism group of the full partial operation with the automorphism group of its definedness reduct. A strict drop under value restoration indicates structural information carried by value fibers rather than domain geometry alone.
-
-These names are working terminology, not priority claims.
-
-### Verification status
-
-`verify_g3.py` checks the G3-S/G3-C/G3-A Association Spectrum and commutation counts for \(N=3,\ldots,10\).
-
-The group statements have direct proofs recorded in `G3_VALUE_GEOMETRY.md`.
-
-**Hostile audit is still pending.** Until two independent audits agree, G3 remains theorem-candidate status and must not be treated as part of the published G2 checkpoint.
-
-## 8. Immediate next step
-
-Do not add any further G4-style cells yet.
-
-The next step is a blind hostile audit of G3 with special attention to:
-
-1. whether anonymous \(\Omega_+,\Omega_-\) are genuinely exchangeable in the exact signature;
-2. whether the one anchor \(P_1\otimes P_0=\Omega_+\) is sufficient and minimal within the stated branch;
-3. exact small-case behavior at \(N=3\);
-4. complete Association Spectrum formulas;
-5. distinction between the automorphism group of the full operation and that of its definedness reduct;
-6. whether any hidden output naming/sorting assumption accidentally trivializes the value-memory claim.
-
-Only after that audit should G3 be promoted from theorem candidate to fixed branch result.
+Only after reconciliation with that audit should G4 be promoted from working theorem candidate to fixed result.
