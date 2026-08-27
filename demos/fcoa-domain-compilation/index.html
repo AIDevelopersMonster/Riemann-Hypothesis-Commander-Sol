@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FCOA Domain Compilation Demo</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0f172a;color:#e2e8f0}.wrap{max-width:1100px;margin:auto;padding:28px}.card{background:#111827;border:1px solid #334155;border-radius:16px;padding:18px;margin:14px 0}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.stage{padding:8px 12px;border:1px solid #475569;border-radius:10px;background:#0b1220;color:#e2e8f0;cursor:pointer}.stage.active{border-color:#7dd3fc;background:#102238}.nodes{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:18px 0}.node{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#1e293b;border:1px solid #64748b;font-weight:700}.edge{font-size:24px;color:#7dd3fc}.muted{color:#94a3b8}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.kpi{background:#0b1220;border:1px solid #334155;border-radius:12px;padding:12px}.big{font-size:24px;font-weight:800}.formula{font-family:ui-monospace,Consolas,monospace;background:#020617;border-radius:10px;padding:12px;overflow:auto}.bar{height:10px;background:#1e293b;border-radius:8px;overflow:hidden;margin-top:5px}.fill{height:100%;background:#7dd3fc}.omega{color:#f0abfc}.good{color:#86efac}.warn{color:#fcd34d}input[type=range]{width:220px}</style>
+</head>
+<body><div class="wrap">
+<h1>FCOA Domain Compilation</h1>
+<p class="muted">Interactive companion to DOI 10.5281/zenodo.22129787. It visualizes the transition M0 → G1a → G1b → G2 without importing arithmetic into the internal language.</p>
+<div class="card"><div class="row">
+<button class="stage active" data-stage="M0">M0</button>
+<button class="stage" data-stage="G1a">G1a · path</button>
+<button class="stage" data-stage="G1b">G1b · directed</button>
+<button class="stage" data-stage="G2">G2 · compiled</button>
+<label>N = <span id="nval">6</span> <input id="n" type="range" min="3" max="12" value="6"></label>
+</div></div>
+<div class="card"><h2 id="title"></h2><div id="nodes" class="nodes"></div><div id="desc"></div></div>
+<div class="kpis">
+<div class="kpi"><div class="muted">Automorphism group</div><div class="big" id="aut"></div></div>
+<div class="kpi"><div class="muted">Carrier-Erasure</div><div class="big" id="erase"></div></div>
+<div class="kpi"><div class="muted">Commutation size</div><div class="big" id="comm"></div></div>
+<div class="kpi"><div class="muted">G2 Ω-edges</div><div class="big" id="edges"></div></div>
+</div>
+<div class="card"><h2>Association Spectrum</h2><div id="spectrum"></div></div>
+<div class="card"><h2>Core mechanism</h2><div class="formula">relation → partial-operation domain → recoverable structural memory</div><p>In G1 the path is an external relation and disappears when erased. In G2 the same directed path is encoded by definedness itself:</p><div class="formula">A_dir(x,y) ⇔ x,y ∈ G_N, x ≠ y, Def(x ⊗₁ y)</div><p>All compiled edges have the same terminal value <span class="omega">Ω</span>, so edge identity is not carried by edge-specific outputs.</p></div>
+<div class="card"><p class="muted">Publication: <a style="color:#7dd3fc" href="https://doi.org/10.5281/zenodo.22129787">https://doi.org/10.5281/zenodo.22129787</a></p></div>
+</div>
+<script>
+let stage='M0';const nEl=document.getElementById('n');
+for(const b of document.querySelectorAll('.stage'))b.onclick=()=>{document.querySelectorAll('.stage').forEach(x=>x.classList.remove('active'));b.classList.add('active');stage=b.dataset.stage;render()};nEl.oninput=render;
+function spec(N,s){if(s==='G2')return{EQ:5*N-6,NEQ:0,LEFT:N*N+3*N-4,RIGHT:N*N+2*N-4,NONE:N**3+N**2-7*N+15};return{EQ:4*(N-1),NEQ:0,LEFT:N*N+2*N-2,RIGHT:N*N+N-2,NONE:N**3+N**2-4*N+9}}
+function render(){const N=+nEl.value;document.getElementById('nval').textContent=N;const g=[];for(let i=2;i<=N;i++)g.push(i);let html='';for(let k=0;k<g.length;k++){html+=`<span class=node>P${g[k]}</span>`;if(k<g.length-1){if(stage==='M0')html+='<span class=edge muted>·</span>';else if(stage==='G1a')html+='<span class=edge>—</span>';else html+='<span class=edge>→</span>'}}document.getElementById('nodes').innerHTML=html;
+let title,desc,aut,erase,edges=0;if(stage==='M0'){title='M0 · sparse operational baseline';desc='Generic points are structurally exchangeable in the multiplication reduct.';aut=`S<sub>${N-1}</sub>`;erase='no generic order memory'}if(stage==='G1a'){title='G1a · external undirected path';desc='The external relation supplies path geometry but not orientation.';aut='C₂';erase='fails after A is erased'}if(stage==='G1b'){title='G1b · external directed path';desc='The expanded structure is rigid, but rigidity is still supplied by an external relation.';aut='{1}';erase='fails after A is erased'}if(stage==='G2'){title='G2 · directed path compiled into operation domain';desc='Exactly the cells Pᵢ ⊗₁ Pᵢ₊₁ are added, all with the same terminal value Ω.';aut='{1}';erase='PASS: A_dir recoverable';edges=N-2}
+document.getElementById('title').textContent=title;document.getElementById('desc').textContent=desc;document.getElementById('aut').innerHTML=aut;document.getElementById('erase').textContent=erase;document.getElementById('comm').textContent=3*(N-1);document.getElementById('edges').textContent=edges;
+const s=spec(N,stage);const total=(N+1)**3;document.getElementById('spectrum').innerHTML=Object.entries(s).map(([k,v])=>`<div style="margin:10px 0"><div class=row><b style="width:70px">${k}</b><span>${v}</span></div><div class=bar><div class=fill style="width:${100*v/total}%"></div></div></div>`).join('')}
+render();
+</script></body></html>
