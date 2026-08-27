@@ -1,7 +1,7 @@
 # G3 Research Checkpoint — Value Geometry after Domain Geometry
 
 **Project:** FCOA Admissibility Geometry  
-**Status:** post-publication research branch; not part of Zenodo DOI 10.5281/zenodo.22129787  
+**Status:** post-publication research branch; hostile-audited with repair; not part of Zenodo DOI 10.5281/zenodo.22129787  
 **Date opened:** 2026-08-27  
 **Branch discipline:** no ordinary arithmetic is imported; all new generic rules are explicit partial-operation cells.
 
@@ -13,7 +13,7 @@ The published G2 branch proves that a directed path can be compiled into the **d
 
 G3 answers this by freezing the generic domain to a **symmetric adjacency path** and asking whether orientation can instead live in the **value fibers**.
 
-The experiment is designed to separate three layers:
+The experiment separates three layers:
 
 \[
 \boxed{
@@ -65,7 +65,7 @@ All new \(\Omega\)-outputs below are terminal: no product with an \(\Omega\)-out
 
 ## 3. G3-S: symmetric-domain constant-value probe
 
-Define a new partial operation \(\otimes_S\) by extending M0 with both orientations of every generic adjacency edge:
+Define \(\otimes_S\) by extending M0 with both orientations of every generic adjacency edge:
 
 \[
 P_i\otimes_S P_{i+1}=\Omega,
@@ -74,13 +74,11 @@ P_{i+1}\otimes_S P_i=\Omega,
 \qquad 2\le i<N.
 \]
 
-Thus the off-diagonal generic domain is the symmetric path
+Thus the off-diagonal generic domain is the undirected path
 
 \[
 P_2-P_3-\cdots-P_N.
 \]
-
-The value on every new cell is the same.
 
 ### Proposition G3-S.1 — residual reflection
 
@@ -90,13 +88,11 @@ The value on every new cell is the same.
 }
 \]
 
-**Proof.** M0 fixes \(P_0,P_1\) and allows arbitrary permutation of \(G_N\). The new off-diagonal definedness relation reduces the generic permutations to automorphisms of the finite undirected path, namely identity and reversal. Because every new edge has the same value \(\Omega\), reversal preserves the operation. \(\square\)
+M0 fixes \(P_0,P_1\) and permits arbitrary generic permutations. The new symmetric adjacency domain reduces this to the automorphism group of the finite path, namely identity and reversal. The unique new terminal output \(\Omega\) is preserved.
 
-So symmetric domain geometry destroys \(S_{N-1}\) but leaves exactly the endpoint reflection.
+For every \(N\ge3\), \(\Omega\) is internally distinguishable from all \(E_i^\ast,E_i^\times\). In particular for \(N=3\), \(\Omega\) has two preimage cells while each E-output has one.
 
 ### Association Spectrum
-
-For every \(N\ge3\), on \((X_N)^3\),
 
 \[
 \boxed{
@@ -109,25 +105,19 @@ NONE &= N^3+N^2-10N+21.
 \end{aligned}}
 \]
 
-Relative to M0, every directed adjacency cell — now there are \(2(N-2)\) of them — contributes one new `EQ`, one new `LEFT`, and one new `RIGHT` state, while removing three `NONE` states.
-
 ### Commutation locus
 
-Because both orientations of each adjacent generic pair are defined and have the same value, all adjacent generic ordered pairs commute. Hence
+The old M0 commuting pairs remain, and every adjacent generic ordered pair now commutes. Hence
 
 \[
-|\operatorname{Comm}_{\otimes_S}|
-=
-3(N-1)+2(N-2)
-=
-\boxed{5N-7}.
+\boxed{
+|\operatorname{Comm}_{\otimes_S}|=5N-7.
+}
 \]
-
-This is the first control branch for value geometry.
 
 ## 4. G3-C: anonymous two-value orientation coloring
 
-Keep **exactly the same generic domain** as G3-S, but replace the common terminal output by two distinct anonymous terminal values:
+Keep exactly the same generic domain as G3-S, but define
 
 \[
 P_i\otimes_C P_{i+1}=\Omega_+,
@@ -138,11 +128,9 @@ P_{i+1}\otimes_C P_i=\Omega_-,
 \qquad 2\le i<N.
 \]
 
-No output is named by a constant symbol and no unary type/color distinguishes \(\Omega_+\) from \(\Omega_-\). They are simply two terminal elements in the same output environment.
+The terminal values \(\Omega_+,\Omega_-\) are distinct but anonymous: not named constants, not externally colored, and not in separate singleton sorts.
 
 ### Proposition G3-C.1 — output-swap obstruction
-
-Despite the asymmetric values on each ordered edge,
 
 \[
 \boxed{
@@ -150,34 +138,25 @@ Despite the asymmetric values on each ordered edge,
 }
 \]
 
-**Proof.** Let
-
-\[
-r(P_i)=P_{N+2-i}
-\qquad(2\le i\le N)
-\]
-
-be path reversal. Extend \(r\) by fixing \(P_0,P_1\), transporting the indexed M0 outputs in the forced way, and swapping
+Path reversal extends to the operation precisely by simultaneously swapping
 
 \[
 \Omega_+\leftrightarrow\Omega_-.
 \]
 
-A forward edge is sent to a reverse edge and its output is simultaneously swapped, so every operation cell is preserved. No other generic permutation survives the undirected path domain. Therefore the automorphism group is again \(C_2\). \(\square\)
-
-This is the key obstruction:
+Thus
 
 \[
 \boxed{
-\text{two unequal anonymous outputs do not by themselves fix an absolute orientation.}
+\text{two unequal anonymous outputs do not by themselves fix absolute orientation.}
 }
 \]
 
-The residual reflection can act simultaneously on the carrier and on the output labels.
+For \(N=3\), each \(\Omega\)-fiber has one preimage cell, so preimage cardinality alone no longer separates \(\Omega_\pm\) from E-outputs. Nevertheless the argument geometry does: \(\Omega_\pm\) arise from off-diagonal generic-generic pairs, \(E_i^\ast\) from \((P_i,P_0)\), and \(E_i^\times\) from diagonal cells. Hence the unordered pair \(\{\Omega_+,\Omega_-\}\) remains structurally separate from the E-output families.
 
-### Value change visible to commutation, invisible to the Association Spectrum
+### Same spectrum, different commutation
 
-The Association Spectrum is **identical** to G3-S:
+The Association Spectrum is identical to G3-S:
 
 \[
 \boxed{
@@ -187,38 +166,19 @@ The Association Spectrum is **identical** to G3-S:
 }
 \]
 
-However, the generic adjacent pairs are no longer commuting because
-
-\[
-P_i\otimes_C P_{i+1}=\Omega_+
-\ne
-\Omega_-=P_{i+1}\otimes_C P_i.
-\]
-
-Therefore
+But adjacent generic pairs no longer commute. Therefore
 
 \[
 \boxed{
-|\operatorname{Comm}_{\otimes_C}|=3(N-1),
+|\operatorname{Comm}_{\otimes_C}|=3(N-1).
 }
 \]
 
-exactly the M0 value.
-
-Thus G3-S and G3-C have:
-
-- the same partial-operation domain;
-- the same Association Spectrum;
-- the same automorphism-group size \(C_2\);
-- but different commutation loci.
-
-So the commutation locus detects a value-fiber distinction that the Association Spectrum and automorphism-group size do not detect here.
+Hence G3-S and G3-C have the same domain, the same Association Spectrum, and the same automorphism-group size, but different commutation loci.
 
 ## 5. G3-A: one anchored output fiber
 
-The anonymous-output obstruction suggests the weakest internal repair: do not name or externally type the two outputs; instead anchor one output by **one additional operation cell on an already structurally fixed boundary pair**.
-
-Extend G3-C by exactly
+Extend G3-C by exactly one cell:
 
 \[
 \boxed{
@@ -226,9 +186,9 @@ P_1\otimes_A P_0=\Omega_+.
 }
 \]
 
-This cell was undefined in M0. No other cell is added.
+No other cell is added.
 
-The choice \((P_1,P_0)\) is deliberate: both \(P_0\) and \(P_1\) are already fixed by the M0 reduct, so the anchor does not arbitrarily privilege one generic point.
+The pair \((P_1,P_0)\) is fixed in the full M0 operation, so the anchor does not privilege a generic point.
 
 ### Proposition G3-A.1 — one-anchor rigidity
 
@@ -240,50 +200,110 @@ For every \(N\ge3\),
 }
 \]
 
-**Proof.** Any automorphism fixes \(P_0\) and \(P_1\), hence fixes the ordered pair \((P_1,P_0)\). Since
+The anchor fixes \(\Omega_+\). Therefore the path reversal can no longer extend by swapping \(\Omega_+\) and \(\Omega_-\). The generic path is consequently fixed pointwise, and then all terminal outputs are fixed by their preimage cells.
+
+### Proposition G3-A.2 — intrinsic definedness reduct
+
+Let
 
 \[
-P_1\otimes_A P_0=\Omega_+,
+D_A(x,y)\iff\operatorname{Def}(x\otimes_A y)
 \]
 
-it follows that \(\Omega_+\) is fixed. Consequently path reversal cannot be extended by swapping \(\Omega_+\) and \(\Omega_-\). The only remaining path automorphism is the identity, hence every generic point is fixed; the M0 output elements are then fixed by their defining cells. \(\square\)
+and restrict first to the active/base sort \(X_N\).
 
-### Proposition G3-A.2 — domain erasure restores reflection
+The hostile audit exposed an important extra symmetry. Once values are erased, the anchor merely adds the defined pair \((P_1,P_0)\). In the resulting binary relation, \(P_0\) and \(P_1\) become symmetric:
 
-Let \(D_A\) be the definedness relation of \(\otimes_A\), forgetting all output values. Then
+- both are loopless;
+- both are bidirectionally adjacent to every generic point;
+- they are bidirectionally adjacent to each other.
+
+Hence the boundary transposition
+
+\[
+s=(P_0\ P_1)
+\]
+
+survives. Independently, generic path reversal
+
+\[
+r(P_i)=P_{N+2-i},\qquad2\le i\le N
+\]
+
+survives. They commute. Therefore
 
 \[
 \boxed{
-\operatorname{Aut}(X_N,D_A)\cong C_2
+\operatorname{Aut}(D_A\upharpoonright X_N)
+\cong C_2\times C_2.
 }
 \]
 
-on the generic sector relative to the fixed M0 boundary roles.
-
-**Reason.** The extra domain cell \((P_1,P_0)\) is fixed under generic path reversal because \(P_0,P_1\) themselves are fixed. The generic off-diagonal domain remains an undirected path. Therefore definedness alone still admits reversal.
-
-Combining G3-A.1 and G3-A.2 gives the first clean value-memory witness in this line:
+If one conditions on the original M0 boundary roles and fixes \(P_0,P_1\) pointwise, the remaining stabilizer is the generic path reflection:
 
 \[
 \boxed{
-\operatorname{Aut}(\text{domain reduct})\cong C_2,
+\operatorname{Stab}(P_0,P_1)\cong C_2.
+}
+\]
+
+Thus the intrinsic Value-Erasure comparison is stronger than first expected:
+
+\[
+\boxed{
+C_2\times C_2
+\longrightarrow
+1
+}
+\]
+
+when values are restored.
+
+The full operation restores two distinctions erased by definedness:
+
+1. the boundary-role distinction \(P_0\) versus \(P_1\);
+2. the orientation of the generic symmetric path.
+
+### Full one-sorted definedness caveat
+
+If terminal outputs are retained in the same universe after values are erased, all of them become isolated points of the binary definedness relation. Hence an independent symmetric factor appears.
+
+With
+
+\[
+|T_S|=2N-1,
 \qquad
-\operatorname{Aut}(\text{full operation})=1.
-}
+|T_C|=|T_A|=2N,
 \]
 
-The missing orientation is therefore not reducible to domain geometry alone; it is carried by the **anchored output fiber**.
+we have
+
+\[
+\operatorname{Aut}_{\rm full}(D_S)
+\cong C_2\times\operatorname{Sym}(T_S),
+\]
+
+\[
+\operatorname{Aut}_{\rm full}(D_C)
+\cong C_2\times\operatorname{Sym}(T_C),
+\]
+
+\[
+\operatorname{Aut}_{\rm full}(D_A)
+\cong (C_2\times C_2)\times\operatorname{Sym}(T_A).
+\]
+
+The active/base-sort comparison is primary for the domain/value question, but the one-sorted factor must be stated when that presentation is used.
 
 ### Association Spectrum
 
-The single anchor creates exactly \(N\) new `RIGHT` triples:
+The anchor creates exactly \(N\) new RIGHT-only triples
 
 \[
-(P_1,P_0,P_c),
-\qquad 1\le c\le N.
+(P_1,P_0,P_c),\qquad1\le c\le N.
 \]
 
-All were `NONE` before the anchor. Therefore
+Therefore
 
 \[
 \boxed{
@@ -300,123 +320,179 @@ The commutation locus remains
 
 \[
 \boxed{
-|\operatorname{Comm}_{\otimes_A}|=3(N-1),
+|\operatorname{Comm}_{\otimes_A}|=3(N-1).
 }
 \]
 
-because the anchor pair and its reverse have unequal results/definedness, and adjacent generic pairs have the unequal values \(\Omega_+,\Omega_-\).
+## 6. Corrected Anonymous Output-Swap Lemma
 
-## 6. Anonymous Output-Swap Lemma
+The unqualified statement "a color-reversing involution always extends by swapping two anonymous outputs" is false.
 
-The G3-C phenomenon is not special to a path.
+A sufficient version is:
 
-Let \(B\) be a base structure on an input carrier \(G\), let \(D\subseteq G^2\) be a domain relation, and suppose an involution \(r\in\operatorname{Aut}(B,D)\) reverses a two-coloring
+Let \(B\) be the full base/domain reduct and let \(D=D_+\sqcup D_-\) be exactly the two terminal-output fibers. Suppose:
 
-\[
-c:D\to\{+,-\}
-\]
+1. \(r\in\operatorname{Aut}(B,D)\) is an involution of the entire base/domain structure;
+2. \(r(D_+)=D_-\) and \(r(D_-)=D_+\);
+3. the values on \(D_+,D_-\) are exactly \(\Omega_+,\Omega_-\);
+4. no additional fixed cell anchors one of these outputs;
+5. every other output fiber admits the permutation forced by \(r\);
+6. \(\Omega_+,\Omega_-\) are anonymous and may be permuted.
 
-in the sense that
-
-\[
-c(r x,r y)=\tau(c(x,y)),
-\]
-
-where \(\tau\) swaps \(+\) and \(-\). Compile the colors using two anonymous terminal outputs \(\Omega_+,\Omega_-\).
-
-Then
+Then extending \(r\) by
 
 \[
-(r,\Omega_+\leftrightarrow\Omega_-)
+\Omega_+\leftrightarrow\Omega_-
 \]
 
-is an automorphism of the compiled operation.
+gives an automorphism of the full partial operation.
 
-Hence an orientation coloring may fail to rigidify the carrier if the value fibers themselves remain exchangeable.
+G3-A is the countermechanism when hypothesis 4 fails.
 
 ## 7. One-Anchor Lemma
 
-Under the hypotheses above, assume there is an ordered pair \(q=(u,v)\) fixed by every candidate carrier automorphism, and add one operation cell
+Assume the only residual full-operation symmetry is
 
 \[
-u\star v=\Omega_+
+C_2=\{1,r\},
 \]
 
-without adding the corresponding \(\Omega_-\)-anchor.
+and every extension of \(r\) requires
 
-Then \(\Omega_+\) is internally fixed by the operation value at \(q\). Any automorphism that would require swapping \(\Omega_+\) and \(\Omega_-\) is eliminated.
+\[
+\Omega_+\leftrightarrow\Omega_-.
+\]
 
-For a residual group exactly \(C_2=\{1,r\}\), this single anchor is sufficient to make the full operation rigid.
+If an ordered pair \((u,v)\) is already fixed pointwise by all candidate carrier automorphisms and one adds
 
-Within the **anonymous two-terminal-value branch**, zero anchors are insufficient in G3-C and one anchor is sufficient in G3-A. This is the only minimality claim made here. It is not a claim that one anchor is necessary if output values are externally named, sorted, or otherwise distinguished.
+\[
+u\star v=\Omega_+,
+\]
+
+then \(\Omega_+\) is fixed, so \(r\) cannot extend.
+
+Within the anonymous two-terminal-value branch, zero anchors are insufficient in G3-C and one anchor is sufficient in G3-A. This is the only minimality claim made here. Naming, sorting, typing, or otherwise distinguishing the outputs can kill the swap with no anchor cell at all.
 
 ## 8. Value-Erasure Test — working formulation
 
-G2 motivated Carrier-Erasure / relation-erasure. G3 suggests a complementary diagnostic.
-
-Given a partial operation \(\star\), form its **definedness reduct** by forgetting output values and retaining only
+Given a partial operation \(\star\), form its definedness reduct
 
 \[
-D_\star(x,y)\iff \operatorname{Def}(x\star y).
+D_\star(x,y)\iff\operatorname{Def}(x\star y).
 \]
 
 Compare
 
 \[
-\operatorname{Aut}(D_\star)
+\operatorname{Aut}(D_\star\upharpoonright X_N)
 \quad\text{with}\quad
 \operatorname{Aut}(\star).
 \]
 
-If the full operation is strictly more rigid than its definedness reduct, then some structural information is carried by value fibers rather than by domain geometry alone.
+If the full operation is strictly more rigid, then some structural information is carried by value fibers rather than by domain geometry alone.
 
-G3-A gives exactly
+The audited G3-A example gives
 
 \[
 \boxed{
-C_2\longrightarrow1
+\operatorname{Aut}(D_A\upharpoonright X_N)\cong C_2\times C_2,
+\qquad
+\operatorname{Aut}(\otimes_A)=1.
 }
 \]
-
-under value restoration.
 
 `Value-Erasure Test` is working terminology, not a priority claim.
 
-## 9. What G3 establishes if the audit survives
-
-The M0-G1-G2-G3 line would then separate four mechanisms:
+## 9. Exact audited comparison
 
 \[
 \boxed{
-\begin{array}{c}
-\text{exchangeability}\\
-\downarrow\\
-\text{external relation geometry}\\
-\downarrow\\
-\text{compiled domain geometry}\\
-\downarrow\\
-\text{anchored value-fiber geometry}
-\end{array}}
-\]
-
-The key new point is that **domain and value geometry can be varied independently enough to move different invariants in different ways**.
-
-In particular:
-
-1. G3-S \(\to\) G3-C changes the commutation locus but not the domain, Association Spectrum, or automorphism-group size.
-2. G3-C \(\to\) G3-A changes automorphism rigidity while leaving generic domain geometry and the commutation locus unchanged.
-3. G3-A is rigid even though its definedness reduct retains the path reflection.
-
-## 10. Current status and next step
-
-The formulas above have been independently enumerated by the local verifier for finite \(N\), and the group statements have direct proofs. They have **not yet undergone the two-model hostile audit protocol** used for M0/G1/G2.
-
-Therefore the branch status is:
-
-\[
-\boxed{
-\text{G3 = theorem candidate / computationally checked / hostile audit pending.}
+\begin{array}{c|c|c|c}
+& G3\text{-}S & G3\text{-}C & G3\text{-}A\\
+\hline
+\operatorname{Aut}(\star)&C_2&C_2&1\\
+\operatorname{Aut}(D_\star\upharpoonright X_N)&C_2&C_2&C_2\times C_2\\
+|\operatorname{Comm}|&5N-7&3(N-1)&3(N-1)
+\end{array}
 }
 \]
 
-Do not merge these claims into the published G2 checkpoint until that audit is complete.
+Association spectra:
+
+\[
+G3\text{-}S=G3\text{-}C:
+\]
+
+\[
+\boxed{
+(6N-8,0,N^2+4N-6,N^2+3N-6,N^3+N^2-10N+21)
+}
+\]
+
+and
+
+\[
+G3\text{-}A:
+\]
+
+\[
+\boxed{
+(6N-8,0,N^2+4N-6,N^2+4N-6,N^3+N^2-11N+21).
+}
+\]
+
+For \(N=3\):
+
+\[
+G3\text{-}S=G3\text{-}C=(10,0,15,12,27),
+\]
+
+\[
+G3\text{-}A=(10,0,15,15,24).
+\]
+
+## 10. Structural conclusions
+
+The audited G3 branch separates two new mechanisms.
+
+First,
+
+\[
+G3\text{-}S\to G3\text{-}C
+\]
+
+changes only the equality pattern of opposite edge values. The domain, Association Spectrum, and automorphism-group size stay fixed, while the commutation locus changes:
+
+\[
+5N-7\to3(N-1).
+\]
+
+Second,
+
+\[
+G3\text{-}C\to G3\text{-}A
+\]
+
+anchors one value fiber. The commutation locus stays fixed, while the full operation becomes rigid. After value erasure the active/base definedness reduct still has
+
+\[
+C_2\times C_2
+\]
+
+symmetry.
+
+Hence domain geometry, commutation geometry, Association Spectrum, and value-fiber rigidity are genuinely different coordinates of the partial-operation structure.
+
+## 11. Status
+
+The operation-level formulas have been computationally checked for finite \(N\), and the G3 branch has undergone one independent hostile audit. The audit confirmed all spectrum and commutation formulas and all full-operation automorphism groups, while repairing the intrinsic G3-A definedness automorphism group and sharpening the output-swap hypotheses.
+
+Current classification:
+
+\[
+\boxed{
+G3 = hostile-audited with repair; proof consolidation complete enough for the next research decision.
+}
+\]
+
+G3 remains post-publication research and is not part of Zenodo DOI 10.5281/zenodo.22129787.
