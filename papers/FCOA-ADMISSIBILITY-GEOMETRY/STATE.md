@@ -177,10 +177,122 @@ The following corrections are part of the final checkpoint:
 
 The publication binaries and bilingual archival package remain canonical on Zenodo under DOI 10.5281/zenodo.22129787.
 
-## 7. Next research decision, not yet executed
+## 7. Post-publication research branch G3 — opened, not yet audited
 
-Do **not** invent additional generic operation values by default.
+The next research question has now been opened explicitly as a new checkpoint, without modifying the published G2 result.
 
-The next legitimate research question, if this line is resumed, is whether to open a new branch beyond G2 and, if so, what minimal extension adds information that is not already reducible to domain geometry while avoiding reconstruction of ordinary arithmetic.
+Detailed file:
 
-That decision belongs to a future explicit research step and must not be silently folded into the published G2 checkpoint.
+- [`G3_VALUE_GEOMETRY.md`](G3_VALUE_GEOMETRY.md)
+- verifier: `../../experiments/fcoa-domain-compilation/verify_g3.py`
+
+### G3-S — symmetric domain, one anonymous value
+
+For every adjacent generic pair, both orientations are defined with the same terminal value:
+
+\[
+P_i\otimes_S P_{i+1}=\Omega,
+\qquad
+P_{i+1}\otimes_S P_i=\Omega.
+\]
+
+Candidate results:
+
+\[
+\operatorname{Aut}(\otimes_S)\cong C_2,
+\]
+
+\[
+(EQ,NEQ,LEFT,RIGHT,NONE)
+=
+(6N-8,0,N^2+4N-6,N^2+3N-6,N^3+N^2-10N+21),
+\]
+
+\[
+|\operatorname{Comm}_{\otimes_S}|=5N-7.
+\]
+
+### G3-C — same symmetric domain, two anonymous directional values
+
+Use two distinct terminal values:
+
+\[
+P_i\otimes_C P_{i+1}=\Omega_+,
+\qquad
+P_{i+1}\otimes_C P_i=\Omega_-.
+\]
+
+If \(\Omega_+,\Omega_-\) are anonymous and exchangeable, path reversal extends by swapping them. Candidate result:
+
+\[
+\operatorname{Aut}(\otimes_C)\cong C_2.
+\]
+
+The Association Spectrum is unchanged from G3-S, but
+
+\[
+|\operatorname{Comm}_{\otimes_C}|=3(N-1).
+\]
+
+This is the first candidate demonstration that a value-fiber change can alter the commutation locus while leaving the domain, Association Spectrum, and automorphism-group size unchanged.
+
+### G3-A — one anchored value fiber
+
+Add one boundary anchor on the already fixed M0 pair:
+
+\[
+P_1\otimes_A P_0=\Omega_+.
+\]
+
+Candidate result:
+
+\[
+\operatorname{Aut}(\otimes_A)=1,
+\]
+
+while the definedness reduct on the generic sector still has the path reflection:
+
+\[
+\operatorname{Aut}(D_{\otimes_A})\cong C_2.
+\]
+
+Candidate spectrum:
+
+\[
+(EQ,NEQ,LEFT,RIGHT,NONE)
+=
+(6N-8,0,N^2+4N-6,N^2+4N-6,N^3+N^2-11N+21).
+\]
+
+The working interpretation is that G3-A carries an orientation component in an **anchored value fiber** which is not reducible to the operation domain alone.
+
+### New working diagnostics
+
+- **Anonymous Output-Swap Lemma:** an orientation coloring by two exchangeable terminal values need not remove a carrier reflection if the reflection can be extended by swapping the outputs.
+- **One-Anchor Lemma:** within that anonymous two-output branch, one value anchor on a structurally fixed pair kills the residual output-swap reflection.
+- **Value-Erasure Test:** compare the automorphism group of the full partial operation with the automorphism group of its definedness reduct. A strict drop under value restoration indicates structural information carried by value fibers rather than domain geometry alone.
+
+These names are working terminology, not priority claims.
+
+### Verification status
+
+`verify_g3.py` checks the G3-S/G3-C/G3-A Association Spectrum and commutation counts for \(N=3,\ldots,10\).
+
+The group statements have direct proofs recorded in `G3_VALUE_GEOMETRY.md`.
+
+**Hostile audit is still pending.** Until two independent audits agree, G3 remains theorem-candidate status and must not be treated as part of the published G2 checkpoint.
+
+## 8. Immediate next step
+
+Do not add any further G4-style cells yet.
+
+The next step is a blind hostile audit of G3 with special attention to:
+
+1. whether anonymous \(\Omega_+,\Omega_-\) are genuinely exchangeable in the exact signature;
+2. whether the one anchor \(P_1\otimes P_0=\Omega_+\) is sufficient and minimal within the stated branch;
+3. exact small-case behavior at \(N=3\);
+4. complete Association Spectrum formulas;
+5. distinction between the automorphism group of the full operation and that of its definedness reduct;
+6. whether any hidden output naming/sorting assumption accidentally trivializes the value-memory claim.
+
+Only after that audit should G3 be promoted from theorem candidate to fixed branch result.
