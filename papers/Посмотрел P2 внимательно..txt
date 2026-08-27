@@ -1,0 +1,140 @@
+Посмотрел P2 внимательно. Его сильнейший вклад — не новый G-ход, а **архитектура управления теорией**: FCOA как лаборатория памяти носителя, обязательный паспорт каждой ветки, разделение domain/value/sort/anchor/erasure и sandbox-relative atomicity. Это я принял. 
+
+При этом я **не принял** его предложение сделать G3-A центральной веткой. G3-A важна, но главная линия уже ушла дальше в G4 и затем должна идти к Arithmetic Leakage. Я это прямо зафиксировал в директорском реестре, чтобы подчинённые ветки не начинали диктовать направление проекта.
+
+Создал пять отдельных GitHub-веток для копий Commander Sol:
+
+* `director/fcoa-rigidity-cost`
+* `director/fcoa-infinite-memory`
+* `director/fcoa-hybrid-memory`
+* `director/fcoa-branch-passport-lab`
+* `director/fcoa-nesting-atomicity`
+
+Все пять реально существуют в репозитории.
+
+Для каждой ветки я уже положил:
+`ROLE_AND_PROMPT.md` — роль, научная задача, запреты, deliverables;
+`SOURCE_CONTEXT.md` — какие файлы основной линии читать, что фиксировано, что лишь кандидат, и каков статус публикации.
+
+И каждому прямо сказано: **он научный руководитель только своего направления и подчиняется главному научному руководителю проекта Commander Sol здесь**.
+
+Названия чатов предлагаю использовать буквально такие, чтобы они не путались:
+
+| GitHub branch                       | Название чата                                                     |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| `director/fcoa-rigidity-cost`       | **FCOA — SOL-RIGIDITY — Rigidity Cost & Skeleton Classification** |
+| `director/fcoa-infinite-memory`     | **FCOA — SOL-INFINITY — Infinite Carrier & FO Memory Boundary**   |
+| `director/fcoa-hybrid-memory`       | **FCOA — SOL-HYBRID — Joint Memory of Partial Operations**        |
+| `director/fcoa-branch-passport-lab` | **FCOA — SOL-PASSPORT — Invariant Lab & Branch Diff Auditor**     |
+| `director/fcoa-nesting-atomicity`   | **FCOA — SOL-NESTING — Sandbox Atomicity & Composition Boundary** |
+
+### Что именно отдал каждой копии
+
+**SOL-RIGIDITY** занимается ценой жёсткости:
+
+$$
+\operatorname{RC}_N(H)
+=
+\min\{|A|:\Aut(G_N,A)\cong H\}.
+$$
+
+Он должен искать минимальные скелеты, классифицировать группы, смотреть trade-off между количеством клеток, density, output alphabet и VRI.
+
+**SOL-INFINITY** получает бесконечный носитель и строгую границу
+
+$$
+\text{successor memory}\quad|\quad\text{full order memory}.
+$$
+
+Ему запрещено выдавать transitive closure за FO и переносить конечную rigidness на бесконечность.
+
+**SOL-HYBRID** ищет настоящий эффект двух операций:
+
+$$
+\Aut(\oplus)\ne1,\qquad
+\Aut(\otimes)\ne1,
+$$
+
+но
+
+$$
+\boxed{\Aut(\oplus,\otimes)=1.}
+$$
+
+Причём M0 ему специально запрещено считать таким примером, потому что там \(\oplus\) уже rigid. Нужна настоящая synergy.
+
+**SOL-PASSPORT** — это не математический конкурент, а моя лаборатория контроля. Он должен автоматически считать для каждой ветки:
+
+$$
+\Aut,\quad \Aut(D),\quad \Comm,\quad
+(EQ,NEQ,LEFT,RIGHT,NONE),
+$$
+
+translations, terminal orbits, erasure tests и главное — **diff между ветками**. Это напрямую выросло из сильнейшей методической идеи P2.
+
+**SOL-NESTING** занимается тем, что P2 хорошо сформулировал про атомарность. Его sandbox:
+
+$$
+\mathfrak S=(X,\Omega,U).
+$$
+
+Он должен строго разделить isolated / indecomposable / atom / irreducible и выяснить, когда атомарность действительно можно понимать как границу nesting. Это интересно, но я не хочу сейчас уводить туда основную линию.
+
+### И главное — зафиксировал иерархию
+
+В нашей основной папке создал:
+
+`papers/FCOA-ADMISSIBILITY-GEOMETRY/DELEGATED_DIRECTIONS.md`
+
+Там прописан **upstream admission filter**. Подчинённый результат попадёт к нам только если он:
+
+* доказан;
+* действительно усиливает текущее знание;
+* не является красивой переформулировкой;
+* прошёл проверки/hostile audit;
+* не тащит скрытую обычную арифметику;
+* точно указывает signature/sorts;
+* выдерживает нужный Erasure Test;
+* достаточно важен, чтобы оправдать усложнение основной линии.
+
+То есть я специально заложил правило:
+
+$$
+\boxed{
+\text{объём работы подчинённого}
+\not\Rightarrow
+\text{важность результата}.
+}
+$$
+
+И ещё одно:
+
+$$
+\boxed{
+\text{интересно локально}
+\not\Rightarrow
+\text{идёт в главную теорию}.
+}
+$$
+
+Главную линию оставляю за собой:
+
+$$
+\boxed{
+G4\ \text{audit}
+\longrightarrow
+\text{bounded-output amplification}
+\longrightarrow
+\text{Arithmetic Leakage boundary}.
+}
+$$
+
+Именно **Arithmetic Leakage я не делегировал**. Это, на мой взгляд, слишком центральный вопрос для FCOA, чтобы отдавать его боковой ветке.
+
+Последний директорский commit:
+
+$$
+\boxed{\texttt{348ebe1ee1687c14cfcc3447b4e0f695f49c8323}}
+$$
+
+Следующий практический шаг простой: ты создаёшь пять чатов с указанными названиями и в каждый вставляешь его `ROLE_AND_PROMPT.md` либо просто говоришь мне в новом чате название направления — по GitHub-контексту там уже будет однозначно понятно, кто он и чем обязан заниматься.
