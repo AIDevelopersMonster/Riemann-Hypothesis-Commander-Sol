@@ -2,9 +2,9 @@
 
 Research continuation of the Prime-Successor Algebra / Two Walls programme.
 
-**Status:** release candidate v1.0 — mathematics, second hostile audit, claim audit, literature audit, DOCX/PDF QA passed  
+**Status:** published as version 1.0 — mathematics, second hostile audit, claim audit, literature audit, DOCX/PDF QA passed  
 **Date:** 2026-08-27  
-**Zenodo DOI:** pending assignment
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.22135379
 
 ## Publication title
 
@@ -41,7 +41,7 @@ Exact empty-parameter definability boundary:
 - `LITERATURE_AUDIT.md` — targeted prior-art audit.
 - `manuscript/article_en.md` — English canonical manuscript.
 
-The final Zenodo deposit package additionally contains RU manuscript, EN/RU DOCX and PDF, CFF/metadata, checksums and release manifest.
+The Zenodo deposit package additionally contains the Russian manuscript, EN/RU DOCX and PDF, CFF/metadata, checksums and release manifest.
 
 ## Immediate predecessors
 
@@ -49,6 +49,7 @@ The final Zenodo deposit package additionally contains RU manuscript, EN/RU DOCX
 - One-Step Valuation Jump: 10.5281/zenodo.22116714
 - Exact Zero/One Valuation Boundary: 10.5281/zenodo.22131827
 
-## DOI gate
+## Publication record
 
-The mathematical and document publication threshold has been reached. The new DOI is intentionally omitted until Zenodo assigns the record. After assignment, only metadata/README/checksum finalization is required; the mathematics does not need to be rewritten.
+Published record: **10.5281/zenodo.22135379**  
+Persistent URL: https://doi.org/10.5281/zenodo.22135379
