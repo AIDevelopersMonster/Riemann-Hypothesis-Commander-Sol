@@ -2,88 +2,155 @@
 
 **To:** main Commander Sol scientific director  
 **From:** SOL-HYBRID scientific supervisor  
-**Status:** internal checkpoint; candidate for hostile audit, not yet recommended for main-line adoption
+**Status:** second internal checkpoint; new theorem candidate found; hostile audit required before adoption
 
-## 1. Main result
+## 1. Main finite result
 
-A balanced hybrid-memory witness exists on the smallest possible active carrier of size three:
+Balanced hybrid rigidity exists on the smallest possible active carrier of size three:
 
 \[
-\operatorname{Aut}(\oplus)\neq1,
+\operatorname{Aut}(\oplus)\ne1,
 \qquad
-\operatorname{Aut}(\otimes)\neq1,
+\operatorname{Aut}(\otimes)\ne1,
 \qquad
+\operatorname{Aut}(\oplus,\otimes)=1.
+\]
+
+Carrier size three is minimal.
+
+## 2. Independent-output results remain sharp
+
+For independently typed/disjoint anonymous output alphabets:
+
+- DD has sharp cell minimum `1+1=2`;
+- strict DV has sharp cell minimum `1+3=4`;
+- strict VV has sharp cell minimum `3+3=6`.
+
+The key lower-bound lemma is that a value partition on at most two operation cells cannot reduce the automorphism group of that operation's definedness reduct.
+
+## 3. New result: shared outputs destroy the old global value bound
+
+If the two operation symbols use a **common anonymous terminal-output sort**, a new mechanism appears.
+
+On
+
+\[
+X=\{a,b,c\},\qquad O=\{u,v\},
+\]
+
+define only
+
+\[
+a\oplus a=u,
+\]
+
+\[
+b\otimes b=u,
+\qquad
+c\otimes c=v.
+\]
+
+The carrier transposition
+
+\[
+r=(b\ c)
+\]
+
+survives in both reducts separately. In the `\oplus` reduct it forces `u` fixed; in the `\otimes` reduct it forces `u\leftrightarrow v`. Therefore the same carrier symmetry has incompatible lifts to the shared output sort, and
+
+\[
 \boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
 \]
 
-Carrier size three is minimal. On two active points, every nontrivial automorphism group contains the unique transposition, so two nonrigid reducts cannot have trivial common stabilizer.
+while the joint definedness reduct still has `C_2` symmetry.
 
-## 2. Three mechanisms all occur at the minimum
+Erasing either operation's value layer restores that `C_2`.
 
-The branch has explicit three-point witnesses for:
+## 4. Sharp global value threshold
 
-1. **DD — domain-domain synergy:** one diagonal defined cell in each operation, at different carrier points. Each reduct has `C_2`; the joint domain reduct is rigid.
-2. **DV — domain-value synergy:** one operation contributes a one-cell domain stabilizer; the second has maximally symmetric diagonal definedness `S_3` but a `1+2` anonymous value partition reducing it to a transverse `C_2`. The joint domain reduct remains nonrigid; restoring values makes the pair rigid.
-3. **VV — value-value synergy:** both domains are the same maximally symmetric diagonal with definedness group `S_3`; two transverse `1+2` value partitions have individual `C_2` stabilizers with trivial intersection.
+Treat all defined operation cells as a tagged disjoint union and color them by their common output value. If there are at most two tagged cells total, every equality partition of the cell set is permutation-invariant, so values cannot reduce joint definedness symmetry.
 
-Thus genuine joint information appears strictly below the single-operation rigidity mechanisms G3-A/G4-A.
+Hence any genuinely value-induced joint effect requires at least three total cells.
 
-## 3. Structural interpretation
-
-The correct first invariant is subgroup position, not automorphism-group size:
+The construction above attains this:
 
 \[
-\operatorname{Aut}(\oplus,\otimes)
-=
-\operatorname{Aut}(\oplus)
-\cap
-\operatorname{Aut}(\otimes)
-\subseteq\operatorname{Sym}(X).
+\boxed{\text{global minimum for value-induced joint memory}=3\text{ cells}.}
 \]
 
-Hybrid memory arises from **transverse residual symmetries**.
+This is strictly below both independent-output DV (`4`) and VV (`6`).
 
-This abstract group-intersection identity is elementary; any publishable content would have to come from the FCOA-specific DD/DV/VV separation, minimal resource accounting, erasure tests, and leakage firewall rather than from the identity itself.
+## 5. Complete threshold classification
 
-## 4. Arithmetic leakage
+For `|X|=3`, exactly three total cells, nonrigid individual reducts, nonrigid joint definedness, and rigid joint valued structure, exhaustive search gives:
 
-The three minimal witnesses are safely below the G4-A order wall:
+\[
+\boxed{48\text{ labeled witnesses}}
+\]
 
-- no directed path or total order is compiled;
-- no successor, betweenness, EqGap, addition, or multiplication graph is present;
-- no external rank calculations enter the operation laws;
-- the phenomenon is finite hybrid rigidity, not a claim of uniform arithmetic interpretation.
+and
 
-Scalable path/value families exist, but they remain quarantined from upstream because uniform order/leakage behavior has not yet been hostile-audited.
+\[
+\boxed{8\text{ isomorphism classes with operation symbols distinguished}.}
+\]
 
-## 5. Passport status
+Up to relabeling, one operation has a single loop `(a,a)`. The other operation occupies one of the four two-cell orbits of the residual transposition `(b c)`:
 
-Completed in branch documents:
+\[
+\{(a,b),(a,c)\},
+\quad
+\{(b,a),(c,a)\},
+\quad
+\{(b,b),(c,c)\},
+\quad
+\{(b,c),(c,b)\}.
+\]
 
-- exact operation tables/domains for DD-3, DV-3, VV-3;
-- full and definedness automorphism groups;
-- commutation loci;
-- Association Spectra;
-- translation-profile status;
-- explicitly jointly recoverable singleton relations;
-- automorphism proof that the target singleton is not recoverable from either reduct alone;
-- carrier minimality for `n<3`;
-- explicit `n=3` witnesses and scalable direct checks through `n=5`;
-- Arithmetic Leakage audit.
+The output of the singleton operation must equal exactly one of the two outputs in the other operation's orbit. Swapping operation symbols gives four additional classes.
 
-## 6. What should be hostile-audited next
+## 6. Structural correction to the branch's first invariant
 
-Before adoption, attack exactly these points:
+The earlier carrier-intersection slogan is incomplete.
 
-1. the active-sort/output-sort automorphism convention and whether any one-sorted output mixing invalidates a claim;
-2. the restricted minimality qualifiers for DV/VV (`maximally symmetric nonempty domain` template);
-3. the definability formulas for the jointly recoverable singleton;
-4. whether translation-profile injectivity statements are stated in the intended FCOA sense;
-5. whether the scalable path family accidentally yields uniform AL0 order memory;
-6. whether a still smaller DV or VV witness exists if the clean-template restrictions are dropped.
+With independently typed outputs, hybrid rigidity is controlled by transverse carrier stabilizers.
 
-## 7. Recommendation
+With a shared output sort, the projected carrier groups may even coincide:
 
-Do **not** merge this into the main mathematical line yet.
+\[
+\pi_X\operatorname{Aut}(\oplus)
+=
+\pi_X\operatorname{Aut}(\otimes)
+\cong C_2,
+\]
 
-The branch has crossed the threshold for a dedicated hostile audit because the core existence/minimal-carrier result is clean and the three requested mechanisms are all represented. If that audit survives, I would recommend upstreaming the finite theorem package while keeping scalable families separate.
+while the joint group is trivial because the common carrier symmetry has incompatible output lifts.
+
+Thus the general organizing object is **compatibility of automorphism lifts across shared sorts**, equivalently a fiber-product/compatibility subgroup of the reduct automorphism groups.
+
+This abstract formulation needs hostile audit before theorem naming.
+
+## 7. Arithmetic leakage
+
+The new three-cell witness remains safely below AL0:
+
+- no carrier order;
+- no successor/betweenness;
+- no EqGap/addition;
+- no multiplication;
+- no external index calculation;
+- only cross-operation equality of anonymous terminal values.
+
+## 8. Recommendation
+
+This result is stronger than the first checkpoint and is now the highest-priority target for hostile audit.
+
+Recommended audit questions:
+
+1. Is the common-output-sort automorphism convention exactly compatible with the FCOA ambient language?
+2. Is the three-total-cell lower bound valid under all allowed one-sorted/typed presentations?
+3. Does any unused-output factor create an overlooked automorphism?
+4. Is the `48 / 8` exhaustive classification correct under operation-preserving isomorphism?
+5. Should the mechanism be classified as a refinement of VV, or as a new class `Joint Fiber Synchronization`?
+6. Can the lift-compatibility principle be stated cleanly as a theorem for arbitrary shared sorts?
+
+I do **not** yet recommend main-line adoption until those points are independently attacked.
