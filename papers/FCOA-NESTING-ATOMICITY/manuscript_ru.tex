@@ -294,6 +294,17 @@ q:X\twoheadrightarrow\bar X
 \]
 — sort-respecting congruence quotient, совместимый с частичными операциями и использующий existential representative semantics для quotient cells, а \(\bar U=q(U)\).
 
+В этом разделе quotient partial operation понимается в следующем явном смысле. Для quotient-классов \(\bar a,\bar b,\bar z\)
+\begin{equation}
+\boxed{
+\bar\omega(\bar a,\bar b)=\bar z
+\iff
+\exists a'\in q^{-1}(\bar a)\;\exists b'\in q^{-1}(\bar b)\;\exists z'\in q^{-1}(\bar z)
+\text{ такие, что }\omega(a',b')=z'.}
+\label{eq:quotsem}
+\end{equation}
+Условие congruence/compatibility гарантирует, что если такая quotient-cell определена, то результирующий класс \(q(z')\) не зависит от выбора представителей, дающих свидетель. Мы не требуем, чтобы каждая пара представителей классов \((\bar a,\bar b)\) лежала в исходной области определения: используемая семантика намеренно existential.
+
 \begin{theorem}[Точный quotient witness criterion]
 Класс \(q(x)\) неатомарен тогда и только тогда, когда существуют \(a,b,z\in X\) и \(\omega\in\Omega\), такие что
 \begin{equation}
@@ -411,11 +422,51 @@ x_0\succ x_1\succ x_2\succ\cdots
 \end{theorem}
 
 \begin{proof}
-Используем well-founded induction по \(x\). Для любого \(y\triangleleft x\) условие forth даёт \(q(y)\bar\triangleleft q(x)\), а индуктивная гипотеза — \(\bar\rho(q(y))=\rho(y)\). Поэтому
+Используем well-founded induction по \(x\). Предположим, что
 \[
-\bar\rho(q(x))\ge \sup_{y\triangleleft x}(\rho(y)+1)=\rho(x).
+\bar\rho(q(y))=\rho(y)
 \]
-В обратную сторону, если \(\bar y\bar\triangleleft q(x)\), back clause даёт \(y\triangleleft x\) с \(q(y)=\bar y\). По индукции \(\bar\rho(\bar y)=\rho(y)\), поэтому каждый член quotient predecessor supremum не превосходит \(\rho(x)\). Следовательно, \(\bar\rho(q(x))\le\rho(x)\), что вместе с первой оценкой даёт \eqref{eq:rankpreserve}.
+для каждого предшественника \(y\triangleleft x\). По определению quotient rank
+\begin{equation}
+\bar\rho(q(x))
+=
+\sup_{\bar y\,\bar\triangleleft\,q(x)}
+\bigl(\bar\rho(\bar y)+1\bigr).
+\label{eq:quotranksup}
+\end{equation}
+
+Сначала получим верхнюю оценку. Возьмём произвольный \(\bar y\bar\triangleleft q(x)\). По back condition существует \(y\triangleleft x\) такое, что \(q(y)=\bar y\). По индуктивной гипотезе
+\[
+\bar\rho(\bar y)=\bar\rho(q(y))=\rho(y),
+\]
+поэтому
+\[
+\bar\rho(\bar y)+1=\rho(y)+1\le\rho(x).
+\]
+Беря supremum в \eqref{eq:quotranksup}, получаем
+\begin{equation}
+\bar\rho(q(x))\le\rho(x).
+\label{eq:rankupper}
+\end{equation}
+
+Для нижней оценки используем определение исходного ранга:
+\[
+\rho(x)=\sup_{y\triangleleft x}\bigl(\rho(y)+1\bigr).
+\]
+Для каждого \(y\triangleleft x\) forth condition даёт \(q(y)\bar\triangleleft q(x)\), а индуктивная гипотеза — \(\rho(y)=\bar\rho(q(y))\). Следовательно,
+\[
+\rho(y)+1
+=
+\bar\rho(q(y))+1
+\le
+\bar\rho(q(x)).
+\]
+Беря supremum по всем исходным предшественникам, получаем
+\begin{equation}
+\rho(x)\le\bar\rho(q(x)).
+\label{eq:ranklower}
+\end{equation}
+Совместно \eqref{eq:rankupper} и \eqref{eq:ranklower} дают \eqref{eq:rankpreserve}.
 \end{proof}
 
 \begin{corollary}[Точное сохранение атомарности]
