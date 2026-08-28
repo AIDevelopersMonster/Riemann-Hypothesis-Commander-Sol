@@ -2,7 +2,7 @@
 
 **To:** main Commander Sol scientific director  
 **From:** FCOA — SOL-INFINITY scientific supervisor  
-**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier + primitive subquadratic theorem + provenance audit R1 + sparse-marker compression + ladder-escape invariant  
+**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier + primitive subquadratic theorem + provenance audit R1 + sparse-marker compression + ladder-escape invariant + derived instability factorisation  
 **Audit:** `HOSTILE_AUDIT_R1.md`  
 **Sparse threshold:** `SPARSE_MEMORY_THRESHOLD.md`  
 **Order-only density theorem:** `ORDER_ONLY_QUADRATIC_BARRIER.md`  
@@ -10,7 +10,8 @@
 **Provenance audit:** `PROVENANCE_AUDIT_R1.md`  
 **Dense-tail candidate:** `EXPONENTIAL_NESTED_TAIL.md`  
 **Sparse-marker theorem:** `SPARSE_MARKER_LADDER.md`  
-**Representation-robust cost theorem:** `LADDER_ESCAPE_INVARIANT.md`
+**Representation-robust cost theorem:** `LADDER_ESCAPE_INVARIANT.md`  
+**Derived-instability theorem:** `DERIVED_INSTABILITY_FACTORISATION.md`
 
 ## Executive result
 
@@ -18,17 +19,28 @@ The infinite branch now has a stable conceptual architecture rather than a seque
 
 The canonical infinite G2 ray remembers successor locally and is rigid, but full transitive order is not FO-definable. Any enrichment that does FO-recover an infinite linear order necessarily crosses into the classical model-theoretic **order property / instability** regime. In the nested-neighborhood architecture this instability is already present in the primitive memory relation as an infinite half-graph.
 
-The main representation-robust quantitative result is:
+The Ladder–Escape theorem shows that primitive half-graph memory has an intrinsic quadratic resolved-prefix cost,
+
+\[
+C_R(E(r))\ge \frac{r(r-1)}2.
+\]
+
+Sparse markers attain equality by paying through witness escape.
+
+The new derived-instability result shows that this quadratic primitive-incidence law is **not universal** once one allows relational factorisation through witness roles: a single atomic binary relation can have bounded ladder depth, only linear primitive incidence density in the full carrier, and still FO-define an infinite order after a fixed existential two-step composition.
+
+However, the quadratic cost reappears as **carrier-role inflation**: resolving the first \(r\) source points requires \(\binom r2\) pair-witness roles.
+
+The memory-cost vector must therefore track at least:
 
 \[
 \boxed{
-C_R(E(r))\ge \frac{r(r-1)}2,
-}
+\text{primitive incidence},
+\quad
+\text{witness escape},
+\quad
+\text{carrier reification / role inflation}.}
 \]
-
-where \(E(r)\) is the intrinsic carrier scale by which the canonical separating witnesses for the first \(r\) ordered rows have appeared.
-
-Sparse-marker ladders attain equality. Thus their tiny initial-window density does not remove the underlying quadratic resolved-prefix witness cost; it pays for compression by moving the indispensable separators farther out.
 
 ## Fixed branch results
 
@@ -41,11 +53,12 @@ Sparse-marker ladders attain equality. Thus their tiny initial-window density do
 7. In the order-only binary class, FO full order forces quadratic pair density.
 8. Primitive non-order nested-tail memory can beat the quadratic finite-window barrier without FO ordinary addition or multiplication.
 9. Source/provenance safety and internal arithmetic leakage are independent gates.
-10. The audited D0L duplication source yields an arithmetic-safe exponential global skeleton.
-11. Sparse marker geometry reduces initial-window density to polylogarithmic and iterated-logarithmic levels.
-12. Raw finite-window tuple density is not a representation-robust memory-cost invariant.
-13. Nested-row order codes canonically contain an infinite half-graph and therefore have the order property.
-14. Canonical separator escape and ladder depth give the correct quantitative repair of the failed density invariant.
+10. Sparse marker geometry reduces initial-window density to polylogarithmic and iterated-logarithmic levels.
+11. Raw finite-window tuple density is not a representation-robust memory-cost invariant.
+12. Nested-row order codes canonically contain an infinite half-graph and therefore have the order property.
+13. Canonical separator escape and ladder depth give the correct quantitative repair of the failed density invariant for primitive Ferrers/nested-row codes.
+14. Derived instability exists: primitive atomic ladder depth can remain bounded while a fixed FO composition defines the full infinite order.
+15. Derived-instability compression trades primitive half-graphs for witness-role reification rather than eliminating the cost.
 
 ## Result A — G2 boundary and stability side
 
@@ -57,9 +70,7 @@ P_2\to P_3\to\cdots,
 
 directed adjacency/successor is uniformly FO-recoverable from G2 operation definedness, but full strict order is not FO-definable. The hostile-audited EF/locality proof is independent of quantifier elimination.
 
-The successor reduct admits only bounded successor-comparison behavior and does not realize unbounded half-graph order patterns. Thus the local-memory side is compatible with stability.
-
-Any FO definition of an infinite linear order, by contrast, immediately yields the order property. Hence the memory transition has a classical reformulation:
+Any FO definition of an infinite linear order yields the order property. Hence the memory transition has the classical reformulation
 
 \[
 \boxed{
@@ -77,8 +88,6 @@ corresponding to
 \longrightarrow
 \text{order property / instability}.}
 \]
-
-This conceptual invariant is stronger than automorphism rigidity and more robust than raw tuple density.
 
 ## Result B — Sparse Memory Threshold
 
@@ -98,8 +107,6 @@ is finite, then FO order is impossible. Therefore
 \Longrightarrow
 |H|=\infty.}
 \]
-
-An infinite active nonlocal core is necessary.
 
 ## Result C — Order-Only Quadratic Barrier
 
@@ -128,19 +135,9 @@ Combining this with the Sparse Memory Threshold gives
 
 for generic interaction cells.
 
-Thus the complete order-in-domain and complete two-value comparison constructions are asymptotically optimal inside the order-only binary class.
-
 ## Result D — Primitive non-order arithmetic-safe memory exists
 
-Nested non-order skeletons can beat the order-only quadratic barrier while remaining below FO arithmetic.
-
-The audited D0L source
-
-\[
-A\mapsto AA
-\]
-
-produces the intrinsic marker scale \(2^n\). Dense nested tails gave \(\Theta(N\log N)\), but sparse markers give much more.
+Primitive non-order skeletons can beat the order-only quadratic barrier while remaining below FO arithmetic. The audited D0L source and its sparse-marker refinements provide the explicit family.
 
 ## Result E — Sparse Marker Ladder
 
@@ -156,51 +153,20 @@ and
 R_1(Q_n,Q_m)\iff Q_m\in M_n.
 \]
 
-Then
-
-\[
-M_0\supsetneq M_1\supsetneq\cdots
-\]
-
-and full carrier order is FO-definable by strict row inclusion.
-
-Let
-
-\[
-L=\lfloor\log_2N\rfloor.
-\]
-
-Inside \([0,N]^2\), only marker columns \(2^0,\ldots,2^L\) are visible, and marker \(2^j\) belongs to exactly \(j+1\) rows. Hence
-
-\[
-C_1(N)=\sum_{j=0}^L(j+1)
-\]
-
-and therefore
+Then full carrier order is FO-definable by strict row inclusion, while
 
 \[
 \boxed{C_1(N)=\Theta((\log N)^2).}
 \]
 
-Every source row is nevertheless globally infinite, so the Infinite Nonlocal Core theorem is fully respected.
-
-For fixed exponential cascade depth \(k\), marker scales
-
-\[
-E_1(n)=2^n,
-\qquad
-E_{k+1}(n)=2^{E_k(n)}
-\]
-
-give
+For fixed exponential cascade depth \(k\),
 
 \[
 \boxed{
-C_k(N)=\Theta((\log^{(k)}N)^2).
-}
+C_k(N)=\Theta((\log^{(k)}N)^2).}
 \]
 
-Thus no finite-level iterated-log lower bound on initial-window density can be universal across this family.
+The tiny finite-window count is paid through witness escape, not through removal of global nonlocality.
 
 ## Result F — Arithmetic leakage remains absent
 
@@ -210,15 +176,7 @@ Each sparse-marker relation is an FO reduct of
 (\mathbb N,<,2^x).
 \]
 
-The branch uses an external unary quantifier-elimination/normal-form theorem for this structure and reproduces the only needed consequence: parity is not FO-definable because every unary formula stabilizes on sufficiently long intervals between consecutive powers of two, while parity alternates.
-
-Therefore addition is not FO-definable, since addition would define parity by
-
-\[
-\operatorname{Even}(x)\iff\exists y\,\operatorname{Add}(y,y,x).
-\]
-
-Multiplication is not FO-definable either: recovered discrete order gives successor, and Julia Robinson's theorem would then recover addition from multiplication plus successor.
+Using the external unary normal-form/QE input for this structure, parity is not FO-definable. Therefore ordinary addition cannot be FO-definable, and multiplication cannot be FO-definable either because discrete order gives successor and Julia Robinson’s theorem would then recover addition from multiplication plus successor.
 
 Hence for every fixed cascade depth considered here,
 
@@ -254,32 +212,27 @@ Then
 \[
 \boxed{
 R(Q_i,s_j)
-\iff
-i\le j.}
+\iff i\le j.}
 \]
 
-Thus the primitive relation itself contains an infinite triangular half-graph. The separators \(s_i\) are pairwise distinct and FO-definable from the relation.
-
-This identifies the nested-row mechanism with the classical model-theoretic **order property** and the graph-theoretic Ferrers/chain condition of nested neighborhoods.
+Thus the primitive relation itself contains an infinite triangular half-graph.
 
 ## Result H — intrinsic resolved-prefix quadratic cost
 
-To resolve the first \(r\) ordered source rows, one needs the distinct canonical separators
+To resolve the first \(r\) ordered source rows, one needs distinct canonical separators
 
 \[
 s_0,\ldots,s_{r-2}.
 \]
 
-By the half-graph theorem, separator \(s_j\) is incident with the first \(j+1\) source rows. Therefore the canonical witnessing substructure contains
+The canonical witnessing substructure contains
 
 \[
 \sum_{j=0}^{r-2}(j+1)
 =\frac{r(r-1)}2
 \]
 
-primitive incidences.
-
-Hence:
+primitive incidences. Therefore
 
 \[
 \boxed{
@@ -291,125 +244,224 @@ Hence:
 
 inside the nested-neighborhood architecture.
 
-The half-graph attains equality.
-
-This is the representation-robust recovery of the quadratic law that initial-window sparsification seemed to destroy.
-
 ## Result I — Ladder–Escape invariant
 
 Let
 
 \[
-e(i)=\operatorname{rk}(s_i)
+e(i)=\operatorname{rk}(s_i),
+\qquad
+E(r)=\max_{0\le i<r-1}e(i),
 \]
 
-be the intrinsic rank of the canonical separator, and define
-
-\[
-E(r)=\max_{0\le i<r-1}e(i).
-\]
-
-Thus \(E(r)\) is the carrier scale by which all canonical witnesses for the first \(r\) source distinctions have appeared.
-
-Define the dual resolution function
+and
 
 \[
 \rho(M)=\max\{r:E(r)\le M\}.
 \]
 
-Then for the intrinsic initial window \([0,M]^2\),
+Then
 
 \[
 \boxed{
 C_R(M)
 \ge
-\frac{\rho(M)(\rho(M)-1)}2.
+\frac{\rho(M)(\rho(M)-1)}2,
 }
 \]
 
-Equivalently,
+or equivalently
 
 \[
 \boxed{
 C_R(E(r))
 \ge
-\frac{r(r-1)}2.
-}
+\frac{r(r-1)}2.}
 \]
 
-This is the exact density–escape tradeoff.
+Sparse marker ladders attain equality.
 
-Sparse marker ladders saturate it:
+## Result J — Derived Instability Factorisation
+
+Let
+
+\[
+S=\{s_0,s_1,s_2,\ldots\}
+\]
+
+and introduce a witness
+
+\[
+w_{ij}
+\]
+
+for each pair \(i<j\). Use one primitive directed relation \(E\) with exactly
+
+\[
+E(s_i,w_{ij})
+\qquad\text{and}\qquad
+E(w_{ij},s_j).
+\]
+
+### Atomic relation remains ladder-shallow
+
+The atomic relation \(E(x,y)\) has no half-graph of length 2. A witness has exactly one incoming and one outgoing edge; a source can have many outgoing edges, but no witness can accept two different source predecessors. This forbids the required 2-by-2 triangular atomic pattern.
+
+### FO composition recovers order
+
+Source and witness roles are FO-definable, and
 
 \[
 \boxed{
-C_{R_a}(E(r))
+\operatorname{Less}_S(x,y)
+:=
+\operatorname{Src}(x)\wedge\operatorname{Src}(y)
+\wedge
+\exists w\,(E(x,w)\wedge E(w,y))
+}
+\]
+
+defines
+
+\[
+s_i<s_j\iff i<j.
+\]
+
+Thus the order property is absent from the primitive atomic relation and appears only after existential composition.
+
+This proves:
+
+\[
+\boxed{
+\text{primitive stability/shallow ladder}
+\not\Rightarrow
+\text{FO-compositional stability}.}
+\]
+
+### Full carrier order
+
+Partition the total universe into finite blocks
+
+\[
+B_j=\{s_j,w_{0j},\ldots,w_{j-1,j}\}
+\]
+
+and order the blocks by \(j\), with
+
+\[
+s_j\prec w_{0j}\prec\cdots\prec w_{j-1,j}.
+\]
+
+This order is FO-definable from \(E\) and has type \(\omega\). Hence after identifying the interpreted universe with the standard carrier, the single primitive relation FO-recovers the full carrier order.
+
+### Primitive incidence density
+
+Every witness contributes exactly two primitive edges. In the block order, the first \(N\) vertices contain
+
+\[
+N-O(\sqrt N)
+\]
+
+witnesses. Therefore
+
+\[
+\boxed{
+C_E(N)=2N+O(\sqrt N)=\Theta(N).}
+\]
+
+So linear primitive incidence density is compatible with derived global order even though the atomic relation has bounded ladder depth.
+
+### Where the quadratic cost went
+
+For the first \(r\) source points, one needs one witness for every pair \(i<j<r\), hence
+
+\[
+\boxed{
+\binom r2
+}
+\]
+
+pair-witness roles.
+
+Therefore the compression trade is
+
+\[
+\boxed{
+\text{primitive half-graph cost}
+\longrightarrow
+\text{quadratic carrier-role reification}.}
+\]
+
+The cost is moved, not erased.
+
+## Result K — no arithmetic leakage in the factorised benchmark
+
+The structure has a finite-dimensional interpretation in pure discrete order: sources are one-coordinate codes and witnesses are ordered-pair codes \((i,j)\) with \(i<j\); primitive edges are coordinate equalities.
+
+The full FO-recovered block order has source ranks
+
+\[
+\operatorname{rk}(s_j)=\frac{j(j+1)}2.
+\]
+
+If ordinary addition in that recovered order were FO-definable, parity of carrier ranks would be FO-definable. Restricting parity to source vertices would define
+
+\[
+\{j:j(j+1)/2\text{ is even}\}
 =
-\frac{r(r-1)}2.
-}
+\{j:j\equiv0\text{ or }3\pmod4\}
 \]
 
-Therefore they are genuinely incidence-optimal within the nested-row architecture. Their low \(C_R(N)\) is paid entirely through witness escape.
+in pure \((\mathbb N,<)\), impossible by quantifier elimination for discrete order since parameter-free unary definable sets are finite or cofinite.
 
-## Result J — half-graph depth as a broader quantitative invariant
+Thus ordinary addition is not FO-definable. Multiplication is not FO-definable either, by Robinson plus recovered successor.
 
-For a binary relation \(R\), define \(\lambda_R(M)\) as the largest \(r\) such that the intrinsic initial window \([0,M]\) contains a half-graph of depth \(r\):
-
-\[
-R(a_i,b_j)
-\iff i\le j.
-\]
-
-For nested-row codes,
-
-\[
-\lambda_R(M)
-\gtrsim
-\rho(M).
-\]
-
-Qualitatively,
+So the factorised benchmark simultaneously has:
 
 \[
 \boxed{
-\sup_M\lambda_R(M)=\infty
+\text{atomic ladder depth bounded},
+\quad
+\Theta(N)\text{ primitive incidences},
+\quad
+\text{FO full order},
+\quad
+\text{no FO }+\text{ or }\times.
 }
 \]
 
-is the primitive order-property signal.
+## Mandatory caveat — two notions of same carrier
 
-Quantitatively, \(\lambda_R(M)\) records how quickly global order memory becomes visible as the carrier scale grows.
+The derived-instability construction is **cardinal same-carrier** but not yet **payload-preserving same-carrier**.
 
-This is a better candidate than tuple density alone for cross-representation comparisons.
+The total universe is still countably infinite and can be collapsed to one \(\omega\)-carrier, but most elements serve as pair-witness roles. Among the first \(N\) vertices only \(\Theta(\sqrt N)\) are source-spine points.
 
-## Corrected programme invariant
+Therefore distinguish:
 
-The infinite branch should stop using
+1. **cardinal same-carrier:** no larger cardinality or external infinite sort;
+2. **payload-preserving same-carrier:** every original generic carrier point remains a peer payload element and is not consumed as a memory witness.
 
-\[
-C_R(N)
-\]
+The factorisation theorem solves the first version only.
 
-alone as “memory cost.”
+## Corrected programme cost vector
 
-For nested-row/Ferrers memory the natural invariant is the Ladder–Escape profile
+No single scalar cost survives all representations studied so far.
+
+The minimum robust description must track at least
 
 \[
 \boxed{
-\mathcal L_R=(E_R(r),\rho_R(M),\lambda_R(M)).
+\mathcal C=
+(
+\text{primitive incidence},
+\text{witness escape},
+\text{carrier-role inflation},
+\text{derived ladder depth}
+).
 }
 \]
 
-or, in compact language,
-
-\[
-\boxed{
-\text{resolved order depth}
-\quad\text{vs}\quad
-\text{witness scale}.}
-\]
-
-Primitive incidence count is then constrained by the universal triangular law.
+Sparse-marker and subdivision-factorisation constructions occupy complementary corners of this vector.
 
 ## Recommendation to main director
 
@@ -423,14 +475,14 @@ The following should now be treated as fixed branch mathematics:
 - Sparse Marker Ladder and fixed-depth iterated-log cascade compression;
 - canonical half-graph theorem for nested-row codes;
 - exact triangular resolved-prefix cost;
-- Ladder–Escape density tradeoff and optimality of sparse marker ladders.
+- Ladder–Escape density tradeoff and optimality of sparse marker ladders;
+- existence of derived instability via atomic half-graph-free incidence factorisation;
+- linear primitive incidence density in the cardinal-same-carrier factorised benchmark;
+- quadratic witness-role inflation as the compensating cost;
+- no FO ordinary addition or multiplication in the factorised benchmark.
 
-The density subdirection is therefore conceptually closed for **nested-neighborhood/Ferrers order codes**.
+The next hard frontier is now sharply stated:
 
-The next frontier is different:
+> Can a **payload-preserving** finite-signature enrichment of the original generic carrier recover full order by derived instability while every primitive relation has uniformly bounded ladder depth, without quadratic witness-role inflation and without FO arithmetic leakage?
 
-> Can a finite-signature primitive architecture FO-recover the full order while every **basic** relation has shallow ladder depth, so that instability/order property appears only after a nontrivial FO composition of primitive relations? If yes, can such a derived-instability architecture beat the intrinsic \(\Theta(r^2)\) resolved-prefix witness cost of primitive half-graphs?
-
-This is the natural boundary between **primitive instability** and **derived instability**.
-
-No finite G4 theorem status is changed by this memo.
+This is the correct next boundary. No finite G4 theorem status is changed by this memo.
