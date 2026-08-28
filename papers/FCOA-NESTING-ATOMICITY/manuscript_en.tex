@@ -1,0 +1,521 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=1in}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.2em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sbx}{\mathfrak S}
+\newcommand{\Atom}{\operatorname{Atom}}
+\newcommand{\Dec}{\operatorname{Dec}}
+\newcommand{\MinNest}{\operatorname{MinNest}}
+\newcommand{\SCC}{\operatorname{SCC}}
+
+\title{Reflections on Sandbox Atomicity with Commander Sol:\\Composition Boundaries, Nesting Rank, and Quotient Safety}
+\author{Alex Malachevsky\\\small ORCID: 0009-0008-6009-3196}
+\date{28 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Atomicity is often spoken of as if it were an intrinsic property of an element. In a partial, typed, and possibly noncommutative composition system this is not meaningful until the admissible compositions and the class of trivial factors are fixed. We formalize a \emph{composition sandbox} \(\Sbx=(X,\Omega,U)\), define directional and bilateral atomicity from incoming partial-operation witnesses, and extract the induced nontrivial factor relation. A bilateral \(U\)-atom is exactly a zero-incoming point of that relation. We then separate this local boundary from the global boundary of the nesting preorder. The exact criterion is graph-theoretic: atoms coincide with all nesting-minimal elements if and only if every minimal strongly connected component is an edge-free singleton. In the well-founded case the factor relation carries the standard ordinal rank, and atoms are exactly rank-zero points.
+
+We next distinguish erasure from carrier identification. Pure erasure of external labels or relations preserves atomicity when operation cells, typing, and \(U\) are unchanged. Ordinary partial-algebra quotients need not preserve atomicity: they may destroy an atom by merging its result fiber with a composite representative, and may create an atom by collapsing a nontrivial factor into the quotient trivial class. Under triviality reflection, quotient atomhood is a fiberwise universal property. Finally, after passing to the factor relation, a standard bounded-morphism forth/back condition gives a transparent sufficient safety contract for exact preservation of well-founded factor rank and atomicity. We make no novelty claim for partial algebras, ordinal ranks, bounded morphisms, or transfer homomorphisms separately; the contribution is the assembled FCOA-specific boundary analysis and the explicit separation between local atomicity, global nesting, erasure, and quotient-induced geometry.
+\end{abstract}
+
+\section{Motivation and claim boundary}
+
+The motivating principle is
+\begin{equation}
+\boxed{\text{atomicity is relative to an admissible composition sandbox}.}
+\label{eq:thesis}
+\end{equation}
+The word ``prime'' is therefore reserved for the classical multiplicative example and is not used as the definition of the general notion.
+
+This note continues the FCOA research programme initiated in \cite{MalachevskyFCOA2026}, where operation values, operation-definedness geometry, external rigidity, and internally recoverable memory were separated. The present paper studies a different structural layer: admissible decomposition and nesting. It does not revise the published M0--G1--G2 checkpoint and does not depend on any unproved continuation of that line.
+
+Several ingredients used below are classical. Partial algebras and congruence notions are established subjects \cite{Gratzer1979,GratzerWenzel1967}; ordinal ranks of well-founded relations are standard set theory \cite{Jech2003}; bounded morphisms are standard relational/modal constructions \cite{BlackburnDeRijkeVenema2001}; and transfer homomorphisms provide factorization-lifting mechanisms in classical factorization theory \cite{GeroldingerHalterKoch2006}. Our aim is not to rename these theories. The point is to identify what they say when the factor relation itself is extracted from a typed family of partial compositions and when ``atomicity'' must survive erasure or carrier identification.
+
+\section{Composition sandboxes}
+
+\begin{definition}[Composition sandbox]
+A \emph{composition sandbox} is a triple
+\begin{equation}
+\Sbx=(X,\Omega,U),
+\label{eq:sandbox}
+\end{equation}
+where \(X\) is a carrier, \(\Omega\) is a declared family of partial binary operations on the appropriate sorts of \(X\), and \(U\subseteq X\) is the declared class of trivial elements or results. Typing is part of the signature. An element is not an admissible factor merely because it belongs to the carrier; it must occur in a declared operation domain.
+\end{definition}
+
+For each \(\omega\in\Omega\), let \(D_\omega\subseteq X\times X\) denote its domain. No associativity, commutativity, identity, cancellation, or closure law is presumed.
+
+\begin{definition}[Decomposition witnesses]
+For \(x\in X\), define
+\begin{equation}
+\Dec_{\Sbx}(x)=\{(\omega,a,b):\omega\in\Omega,\ (a,b)\in D_\omega,\ \omega(a,b)=x\}.
+\label{eq:dec}
+\end{equation}
+A witness is left-nontrivial if \(a\notin U\), right-nontrivial if \(b\notin U\), and two-sided nontrivial if \(a,b\notin U\).
+\end{definition}
+
+Write \(\Dec_U^L(x)\), \(\Dec_U^R(x)\), and \(\Dec_U^{LR}(x)\) for the corresponding subsets of \eqref{eq:dec}.
+
+\begin{definition}[Directional and bilateral atomicity]
+A declared target element \(x\notin U\) is
+\begin{enumerate}[label=(\roman*)]
+\item left-\(U\)-atomic if \(\Dec_U^L(x)=\varnothing\);
+\item right-\(U\)-atomic if \(\Dec_U^R(x)=\varnothing\);
+\item a bilateral \(U\)-atom, or simply a \(U\)-atom in this paper, if
+\begin{equation}
+\Dec_U^{LR}(x)=\varnothing.
+\label{eq:atomdef}
+\end{equation}
+\end{enumerate}
+\end{definition}
+
+The distinction matters in a partial or noncommutative setting. For example, with \(U=\{u\}\) and the sole cell \(a\star u=x\), the element \(x\) is right-\(U\)-atomic but not left-\(U\)-atomic.
+
+\begin{definition}[Isolation and indecomposability]
+An element is \emph{isolated} if it appears in no allowed operation cell as argument or result. It is \emph{indecomposable} if \(\Dec_{\Sbx}(x)=\varnothing\).
+\end{definition}
+
+Thus
+\[
+\text{isolated}\Longrightarrow\text{indecomposable}\Longrightarrow U\text{-atomic},
+\]
+but both converses can fail. This separates the absence of all incidence from the absence of incoming decompositions and from the absence of two-sided nontrivial decompositions.
+
+\section{The induced nontrivial factor relation}
+
+\begin{definition}[Factor relation]
+On the nontrivial carrier \(X\setminus U\), define
+\begin{equation}
+y\triangleleft x
+\label{eq:factorrel}
+\end{equation}
+if there exists a two-sided nontrivial witness \(\omega(a,b)=x\) for which \(y=a\) or \(y=b\).
+\end{definition}
+
+The relation \(\triangleleft\) need not be transitive or antisymmetric. Its reflexive-transitive closure is a preorder; quotienting that preorder by mutual reachability gives the condensation poset of strongly connected components.
+
+\begin{proposition}[Local graph characterization]
+For every declared target element \(x\notin U\),
+\begin{equation}
+\boxed{x\text{ is a }U\text{-atom}\iff x\text{ has indegree }0\text{ in }(X\setminus U,\triangleleft).}
+\label{eq:indegree}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+A two-sided nontrivial decomposition witness exists exactly when one of its nontrivial factors contributes an incoming \(\triangleleft\)-edge to \(x\).
+\end{proof}
+
+\begin{theorem}[Sandbox monotonicity]
+Let \(\Sbx_1=(X,\Omega_1,U)\) and \(\Sbx_2=(X,\Omega_2,U)\) have the same typing and suppose every allowed cell of \(\Sbx_1\) is also an allowed cell of \(\Sbx_2\), with the same value. Then
+\begin{equation}
+\boxed{\Atom(\Sbx_2,U)\subseteq\Atom(\Sbx_1,U).}
+\label{eq:monotonicity}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For every \(x\),
+\[
+\Dec^{LR}_{\Sbx_1,U}(x)\subseteq\Dec^{LR}_{\Sbx_2,U}(x).
+\]
+Hence a point atomic in the larger sandbox is atomic in the smaller one.
+\end{proof}
+
+So enlarging admissible composition can destroy atoms but cannot create them; restricting admissible composition can create atoms but cannot destroy existing ones.
+
+\section{Local atomicity versus global nesting boundary}
+
+Let \(\SCC(x)\) denote the strongly connected component of \(x\) in the factor graph. Call \(x\) \emph{nesting-minimal} if its SCC is minimal in the condensation poset, and write \(\MinNest(\Sbx,U)\) for the union of all minimal SCCs.
+
+\begin{theorem}[Atom implies nesting minimality]
+For every sandbox,
+\begin{equation}
+\boxed{\Atom(\Sbx,U)\subseteq\MinNest(\Sbx,U).}
+\label{eq:atommin}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+An atom has indegree zero. It therefore has no self-loop and cannot lie in a nontrivial SCC. Its SCC is a singleton with no incoming condensation edge, hence minimal.
+\end{proof}
+
+The converse is false in cyclic sandboxes.
+
+\begin{theorem}[Exact minimal-SCC criterion]
+\begin{equation}
+\boxed{
+\Atom(\Sbx,U)=\MinNest(\Sbx,U)
+\iff
+\text{every minimal SCC is an edge-free singleton}.}
+\label{eq:scccriterion}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If a minimal SCC is an edge-free singleton, it has neither an internal incoming edge nor an incoming edge from another SCC; its point is therefore atomic. Conversely, in any non-singleton strongly connected component every vertex has an internal incoming edge. A singleton SCC with a self-loop also has an incoming edge. Such a minimal component contains no atoms.
+\end{proof}
+
+\begin{remark}
+Global acyclicity is sufficient but not necessary for \eqref{eq:scccriterion}. Cycles strictly above the minimal condensation layer do not affect equality of the local and global boundary sets.
+\end{remark}
+
+\begin{example}[Minimal nesting boundary without atoms]
+Let \(U=\{u\}\) and define
+\[
+a\star a=b,\qquad b\star b=a.
+\]
+Then \(\{a,b\}\) is a minimal SCC, but neither \(a\) nor \(b\) is atomic.
+\end{example}
+
+This is the first central correction to the informal slogan ``atoms are minimal elements'': in a general partial-composition system, the correct global boundary object is a minimal SCC, not necessarily an atomic point.
+
+\section{Well-founded nesting and ordinal depth}
+
+\begin{theorem}[Factor rank]
+Assume \(\triangleleft\) is well-founded. Then the classical well-founded recursion theorem gives a unique ordinal-valued rank
+\begin{equation}
+\rho(x)=\sup\{\rho(y)+1:y\triangleleft x\}.
+\label{eq:rank}
+\end{equation}
+For every declared target element,
+\begin{equation}
+\boxed{x\text{ is a }U\text{-atom}\iff\rho(x)=0.}
+\label{eq:rankzero}
+\end{equation}
+Moreover,
+\[
+y\triangleleft x\Longrightarrow\rho(y)<\rho(x).
+\]
+\end{theorem}
+
+\begin{proof}
+Existence and uniqueness of \eqref{eq:rank} are standard for well-founded relations \cite{Jech2003}. Rank zero is equivalent to having no predecessors, which is equivalent to \eqref{eq:atomdef} by Proposition~\ref{eq:indegree}. The strict inequality follows from the defining supremum.
+\end{proof}
+
+The finite DAG picture is therefore a special case of the transfinite one. But well-foundedness is stronger than the exact criterion \eqref{eq:scccriterion}: it excludes every directed cycle and every infinite descending factor chain, whereas atom/minimal equality only constrains the bottom condensation layer.
+
+\section{Trivial-factor transport and irreducibility}
+
+The set \(U\) is merely declared trivial data. It need not act like a group of units. To avoid importing monoid language silently, define the behavior that is actually visible in the sandbox.
+
+For nontrivial carrier elements \(y,z\), write \(y\to_U z\) if some \(u\in U\) and some allowed operation satisfy either
+\[
+\omega(u,y)=z
+\qquad\text{or}\qquad
+\omega(y,u)=z.
+\]
+Let \(\leadsto_U\) be the reflexive-transitive closure and write
+\[
+y\asymp_U z
+\iff
+y\leadsto_U z\text{ and }z\leadsto_U y.
+\]
+
+\begin{definition}[Transport-irreducible]
+A nontrivial target \(x\) is \emph{\(U\)-transport-irreducible} if every decomposition witness of \(x\) has exactly one factor in \(U\), and the non-\(U\) cofactor is \(U\)-associated with \(x\).
+\end{definition}
+
+\begin{definition}[\(U\)-coherence]
+The sandbox is \emph{\(U\)-coherent on the target sort} if
+\begin{enumerate}[label=(\roman*)]
+\item no two-\(U\)-factor cell produces a nontrivial target result;
+\item every one-\(U\)-factor decomposition of a nontrivial target has its non-\(U\) cofactor \(U\)-associated with the result.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Coherent collapse]
+Under \(U\)-coherence,
+\begin{equation}
+\boxed{x\text{ is a }U\text{-atom}\iff x\text{ is }U\text{-transport-irreducible}.}
+\label{eq:irreducible}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If \(x\) is atomic, every decomposition has at least one factor in \(U\). Coherence excludes two trivial factors and makes the remaining cofactor transport-associated with \(x\). Conversely, a transport-irreducible element has no decomposition with two nontrivial factors.
+\end{proof}
+
+Thus ``atomic'' and ``irreducible'' coincide only after an explicit unit-like coherence contract is imposed.
+
+\section{Erasure and terminal-value invariance}
+
+\begin{theorem}[Pure erasure invariance]
+Suppose an erasure forgets only external labels, orders, or relations while preserving the carrier, typing, \(U\), operation domains, and operation values. Then isolation, indecomposability, all directional atomic classes, the factor relation, SCCs, and any well-founded factor rank are unchanged.
+\end{theorem}
+
+\begin{proof}
+Every operation cell and every decomposition witness remains literally unchanged.
+\end{proof}
+
+This result is intentionally stronger than an automorphism statement: the atomicity data are not merely isomorphic after pure erasure; they are represented by the same witness sets.
+
+\begin{theorem}[Terminal value-fiber invariance]
+Suppose two sandboxes have the same carrier, \(U\), operation domains, and the same cells whose results lie in the chosen atomicity target sort. They may differ only in the partition of terminal-result cells among anonymous terminal outputs. Then their atom classes on the target sort are identical.
+\end{theorem}
+
+\begin{proof}
+Atomicity of a target \(x\) depends only on two-sided nontrivial cells whose result is \(x\). Repartitioning terminal-output fibers changes none of these witnesses.
+\end{proof}
+
+Hence terminal values can carry rigidity memory, as in the preceding FCOA line \cite{MalachevskyFCOA2026}, without changing active-result atomicity. This separates two structural coordinates that are easy to conflate.
+
+\section{Ordinary quotient identification can change atomicity}
+
+Let
+\[
+q:X\twoheadrightarrow\bar X
+\]
+be a sort-respecting congruence quotient compatible with the partial operations, using existential representative semantics for quotient cells, and let \(\bar U=q(U)\).
+
+\begin{theorem}[Exact quotient witness criterion]
+For \(x\in X\), the quotient class \(q(x)\) is non-atomic if and only if there exist \(a,b,z\in X\) and \(\omega\in\Omega\) such that
+\begin{equation}
+q(z)=q(x),\qquad \omega(a,b)=z,
+\qquad q(a),q(b)\notin\bar U.
+\label{eq:quotwitness}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+A two-sided nontrivial quotient witness is, by quotient semantics, represented by an allowed source cell whose factor classes are nontrivial and whose result lies in the requested quotient result fiber. This is exactly \eqref{eq:quotwitness}.
+\end{proof}
+
+The formula exposes two different failure modes.
+
+\begin{example}[Result-fiber contamination]
+Let
+\[
+X=\{u,a,b,x,y\},\qquad U=\{u\},
+\]
+with the single nontrivial cell
+\[
+a\star b=y.
+\]
+Then \(x\) is atomic and \(y\) is composite. Identify \(x\sim y\), keeping all other classes singleton. The quotient class \([x]=[y]\) is composite because the witness for \(y\) descends to it. An atomic representative has lost atomicity solely because its result fiber also contains a composite representative.
+\end{example}
+
+\begin{example}[Triviality collapse creates an atom]
+Let
+\[
+X=\{u,a,b,x\},\qquad U=\{u\},
+\]
+with
+\[
+a\star b=x,\qquad u\star b=x.
+\]
+The element \(x\) is non-atomic because of the first cell. If \(a\sim u\), then \([a]=[u]\in\bar U\). The surviving quotient presentation of \([x]\) has a trivial factor, so \([x]\) becomes atomic. Thus an ordinary quotient can manufacture atoms by collapsing a nontrivial factor into the trivial class.
+\end{example}
+
+\begin{definition}[Triviality reflection]
+The quotient is \emph{triviality-reflecting} if
+\begin{equation}
+\boxed{q^{-1}(\bar U)=U.}
+\label{eq:trivreflect}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Fiberwise universal atom criterion]
+Under triviality reflection,
+\begin{equation}
+\boxed{
+q(x)\in\Atom(\bar\Sbx,\bar U)
+\iff
+q^{-1}(q(x))\subseteq\Atom(\Sbx,U).}
+\label{eq:fibercriterion}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:trivreflect}, \(q(a)\notin\bar U\) iff \(a\notin U\). Hence a quotient two-sided nontrivial witness exists exactly when some representative result in the fiber of \(q(x)\) has an original two-sided nontrivial witness. Negating this statement gives \eqref{eq:fibercriterion}.
+\end{proof}
+
+Thus, under triviality reflection, quotient atomhood is not a property of one chosen representative: it is a universal property of the entire result fiber.
+
+\section{Safe quotient maps on the factor frame}
+
+Ordinary quotient compatibility gives a forward property for the factor relation:
+\begin{equation}
+y\triangleleft x\Longrightarrow q(y)\,\bar\triangleleft\,q(x),
+\label{eq:forth}
+\end{equation}
+provided triviality is reflected.
+
+The missing condition is the familiar back clause.
+
+\begin{definition}[Factor-frame bounded morphism]
+Assume triviality reflection. The induced map
+\[
+q:(X\setminus U,\triangleleft)\twoheadrightarrow
+(\bar X\setminus\bar U,\bar\triangleleft)
+\]
+is a \emph{surjective bounded morphism of factor frames} if it satisfies \eqref{eq:forth} and
+\begin{equation}
+\boxed{
+\bar y\,\bar\triangleleft\,q(x)
+\Longrightarrow
+\exists y\in q^{-1}(\bar y)\text{ with }y\triangleleft x
+}
+\label{eq:back}
+\end{equation}
+for every nontrivial representative \(x\).
+\end{definition}
+
+The quantifier over every representative of the result class is essential. Condition \eqref{eq:back} is exactly the standard bounded/p-morphism back condition after the factor relation is treated as the accessibility relation \cite{BlackburnDeRijkeVenema2001}. In the internal research notes we called this ``coherent predecessor lifting'', but no new general morphism concept is claimed.
+
+\begin{theorem}[Well-foundedness preservation]
+If \(\triangleleft\) is well-founded and the induced factor-frame map is a surjective bounded morphism, then \(\bar\triangleleft\) is well-founded.
+\end{theorem}
+
+\begin{proof}
+If the quotient contained an infinite descending chain
+\[
+\bar x_0\succ\bar x_1\succ\bar x_2\succ\cdots,
+\]
+choose any representative \(x_0\) of \(\bar x_0\). Repeated application of the back clause lifts the chain recursively to
+\[
+x_0\succ x_1\succ x_2\succ\cdots
+\]
+in the source factor relation, contradicting well-foundedness.
+\end{proof}
+
+\begin{theorem}[Exact rank preservation]
+Under the same hypotheses, let \(\rho\) and \(\bar\rho\) be the well-founded factor ranks in the source and quotient. Then
+\begin{equation}
+\boxed{\bar\rho(q(x))=\rho(x)}
+\label{eq:rankpreserve}
+\end{equation}
+for every \(x\notin U\).
+\end{theorem}
+
+\begin{proof}
+Proceed by well-founded induction on \(x\). For each predecessor \(y\triangleleft x\), the forth condition gives \(q(y)\bar\triangleleft q(x)\), and the induction hypothesis gives \(\bar\rho(q(y))=\rho(y)\). Hence
+\[
+\bar\rho(q(x))\ge \sup_{y\triangleleft x}(\rho(y)+1)=\rho(x).
+\]
+Conversely, if \(\bar y\bar\triangleleft q(x)\), the back condition provides \(y\triangleleft x\) with \(q(y)=\bar y\). The induction hypothesis gives \(\bar\rho(\bar y)=\rho(y)\), so every term in the quotient predecessor supremum is at most \(\rho(x)\). Thus \(\bar\rho(q(x))\le\rho(x)\), proving \eqref{eq:rankpreserve}.
+\end{proof}
+
+\begin{corollary}[Exact atomicity preservation]
+Under the hypotheses of Theorem 9.3,
+\begin{equation}
+\boxed{x\text{ is a }U\text{-atom}\iff q(x)\text{ is a }\bar U\text{-atom}.}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+In a well-founded factor relation, atomicity is equivalent to rank zero; apply \eqref{eq:rankpreserve}.
+\end{proof}
+
+Bounded morphism is a sufficient contract for exact preservation. We do not claim it is necessary for every quotient that happens to preserve atomhood or well-foundedness.
+
+\section{Relation to transfer homomorphisms}
+
+Transfer homomorphisms in monoid factorization theory lift substantially more than one-step predecessor incidence: they are designed to transfer factorization structure and typically require a lifting condition for a factorization of the image \cite{GeroldingerHalterKoch2006}. Our factor-frame theorem is therefore not presented as a competing generalization.
+
+The relation is conceptual. Starting from arbitrary typed partial operations, we first forget enough structure to retain only the induced factor relation. At this relational level, the bounded-morphism back clause is exactly what is needed for predecessor lifting. In a richer associative monoid setting, a transfer homomorphism preserves correspondingly richer factorization data. This hierarchy helps locate the FCOA construction within established mathematics instead of overstating novelty.
+
+\section{Classical primes as one sandbox}
+
+Consider
+\begin{equation}
+\Sbx_{\mathbb N}=(\mathbb Z_{>0},\{\cdot\},\{1\}).
+\label{eq:classical}
+\end{equation}
+For \(n>1\), a two-sided nontrivial decomposition is exactly
+\[
+a b=n,\qquad a>1,\quad b>1.
+\]
+Hence the bilateral \(\{1\}\)-atoms are precisely the ordinary prime numbers.
+
+The classical example has additional structure absent from the general definition. The element \(1\) is a genuine unit, proper nontrivial factors are smaller than the result, and the factor relation is well-founded by the ordinary magnitude rank. Thus several notions that diverge in a general sandbox collapse in \eqref{eq:classical}. Unique factorization is still a much stronger theorem; it does not follow from atomicity alone.
+
+This is the correct direction of interpretation:
+\[
+\boxed{\text{classical primes are one sandbox instance of atomicity, not its definition}.}
+\]
+
+\section{What the examples teach}
+
+The finite witnesses used throughout the branch isolate different logical failures:
+\begin{enumerate}[leftmargin=2em]
+\item the same carrier and the same \(U\) can make a point atomic or composite depending only on the allowed operation cells;
+\item indecomposable need not mean isolated;
+\item atomic need not mean indecomposable because trivial-factor decompositions may exist;
+\item left- and right-atomicity can diverge;
+\item a minimal SCC can contain no atoms;
+\item changing only terminal value fibers can change rigidity while leaving active atomicity unchanged;
+\item pure erasure preserves atomicity, but quotient identification need not;
+\item ordinary quotients have two independent atomicity failure modes: result-fiber contamination and triviality collapse;
+\item a factor-frame bounded morphism removes both pathologies in the well-founded rank setting.
+\end{enumerate}
+
+These examples are small by design. Their purpose is not computational evidence but logical separation of notions that coincide in familiar arithmetic.
+
+\section{Claim discipline and limitations}
+
+The results of this paper establish statements about typed families of partial binary compositions and the factor relation induced by two-sided nontrivial decomposition witnesses. They do \emph{not} establish:
+\begin{itemize}
+\item existence of atomic decompositions for every element;
+\item uniqueness of factorization or any analogue of the fundamental theorem of arithmetic;
+\item a canonical choice of \(U\) for an arbitrary signature;
+\item associativity, commutativity, cancellation, or unit laws not explicitly declared;
+\item preservation of atomicity by arbitrary quotient identifications;
+\item necessity of the bounded-morphism condition for every rank-preserving quotient;
+\item novelty of partial algebras, strong congruences, well-founded rank, bounded morphisms, or transfer homomorphisms as general theories.
+\end{itemize}
+
+The theorem-level content specific to the present FCOA branch is the assembled boundary picture:
+\begin{equation}
+\boxed{
+\begin{aligned}
+\text{local composition boundary} &\;=\; \text{atomicity},\\
+\text{global nesting boundary} &\;=\; \text{minimal SCC layer},\\
+\text{well-founded depth} &\;=\; \text{ordinal factor rank},\\
+\text{ordinary identification} &\;\text{ may fabricate factor geometry},\\
+\text{bounded factor morphism} &\;\text{ preserves the rank layer exactly}.
+\end{aligned}}
+\label{eq:synthesis}
+\end{equation}
+
+\section{Conclusion}
+
+The phrase ``atomicity is a boundary state of composition'' becomes mathematically precise only after the sandbox is specified. A \(U\)-atom is a local zero-incoming point of the nontrivial factor relation. That local boundary always lies in the minimal condensation layer, but it coincides with the whole global boundary exactly when every minimal SCC is an edge-free singleton. When nesting is well-founded, the same statement becomes rank-theoretic: atoms are exactly the rank-zero points.
+
+The erasure/quotient distinction is equally sharp. Pure erasure does not change the decomposition witnesses at all. Quotient identification can change them indirectly by merging result fibers or by altering which factor classes count as trivial. Under triviality reflection, atomhood is therefore a universal property of the whole result fiber. If the induced map of factor frames also satisfies the standard bounded-morphism back clause, well-founded factor rank is preserved exactly.
+
+The resulting hierarchy gives a reusable language for studying composition boundaries without assuming ordinary divisibility and without promoting familiar arithmetic coincidences to axioms of the general theory.
+
+\section*{Acknowledgement on terminology}
+The term ``Commander Sol'' denotes the AI-assisted research role used in this programme. Mathematical statements are presented in theorem/proof form and are subject to the same claim discipline as the rest of the FCOA series.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
