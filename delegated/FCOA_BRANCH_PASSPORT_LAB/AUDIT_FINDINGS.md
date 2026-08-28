@@ -1,21 +1,64 @@
 # FCOA Branch Passport Laboratory — Audit Findings
 
-**Audit rounds:** P0–P1  
-**Target:** M0–G4 source chain and verifier discipline
+**Audit rounds:** P0–P2  
+**Target:** M0–G4 source chain and verifier/theorem discipline
 
-## Finding P0-01 — G4 definedness automorphism counts were not independently enumerated by `verify_g4.py`
+## Finding P2-01 — G4 headline `bounded output alphabet` requires scope repair
 
-**Severity:** methodological / evidence gap  
-**Status after P1:** **REPAIRED IN PASSPORT LAB**  
-**Theorem status affected:** no contradiction found; G4 still follows its upstream hostile-audit gate
+**Severity:** theorem-level wording/scope  
+**Status:** OPEN REPAIR; no contradiction to automorphism/VRI formulas
 
-The original `verify_g4.py` exhaustively computes Association Spectra, commutation counts and checksums, but its `base_definedness_automorphism_count()` returns the claimed factorial formula itself. Its printed `DefAut4C`, `DefAut4A` and derived VRI values therefore were not independent evidence.
+The G4 construction adds exactly two anonymous orientation values `Omega_+`,`Omega_-`, but the inherited M0 backbone already contains the terminal families `E_i^*` and `E_i^x`, each of cardinality `N-1`.
 
-### P1 repair
+Hence the total terminal-output carrier of the full G4 operation has size
 
-`passport_enumerator.py` now constructs each operation and exhaustively enumerates every permutation of the active/base carrier for `N=3,4,5,6`.
+`2(N-1)+2 = 2N`,
 
-It independently obtains:
+not a constant independent of `N`.
+
+Therefore the strongest safe theorem statement is:
+
+> over the M0 backbone family, a fixed two-element **added anonymous orientation-output alphabet** produces factorially growing value-induced rigidity relative to definedness.
+
+The current construction does not by itself establish factorial VRI with a globally bounded total terminal-output carrier.
+
+**Required upstream repair:** replace unqualified `bounded output alphabet` / `output alphabet fixed at exactly two` language by `bounded added value alphabet`, `two new anonymous orientation values`, or explicitly relativize the statement to the M0 backbone.
+
+---
+
+## Finding P2-02 — Translation fingerprints independently recover G4 rigidity
+
+**Severity:** positive theorem support
+
+For `2 <= i <= N`, the G4-C left translation of `P_i` has orientation multiplicities
+
+`(#Omega_-, #Omega_+) = (i-2, N-i)`.
+
+Because the two orientation outputs are anonymous, the invariant fingerprint is initially
+
+`{i-2,N-i}`,
+
+which determines `i` exactly up to reflection `i <-> N+2-i`. Compatibility leaves only identity and total reversal, giving an independent local route to `Aut(G4-C) ~= C2`.
+
+In G4-A the boundary anchor fixes `Omega_+`, so the pair becomes ordered. It determines every `i` uniquely, yielding a second proof mechanism for `Aut(G4-A)=1`.
+
+This is independent in mechanism from the global Fiber-Transport theorem.
+
+---
+
+## Finding P2-03 — New-output orbit geometry is exact
+
+In G4-C, `Omega_+` and `Omega_-` form one two-element orbit under generic reversal. They are distinguishable as a set from inherited terminal outputs by preimage geometry, but not individually.
+
+In G4-A, the full automorphism group is trivial and the anchor makes `Omega_+` individually distinguishable; all terminal-output orbits are singletons.
+
+---
+
+## Finding P0-01 — G4 definedness automorphism enumeration gap
+
+**Status after P1:** REPAIRED IN PASSPORT LAB.
+
+The original `verify_g4.py` returned the target factorial formula rather than enumerating the definedness group. `passport_enumerator.py` now exhaustively enumerates all base permutations for `N=3,4,5,6` and independently obtains:
 
 | N | G4-C DefAut | G4-C Full | G4-A DefAut | G4-A Full |
 |---:|---:|---:|---:|---:|
@@ -24,85 +67,38 @@ It independently obtains:
 | 5 | 24 | 2 | 48 | 1 |
 | 6 | 120 | 2 | 240 | 1 |
 
-Thus the finite data agree exactly with
-
-`Aut(D_4C | X_N) ~= S_{N-1}`,
-
-`Aut(star_4C) ~= C2`,
-
-`Aut(D_4A | X_N) ~= C2 x S_{N-1}`,
-
-`Aut(star_4A) = 1`.
-
-The independently recovered VRI sequences are:
-
-- G4-C: `1, 3, 12, 60`;
-- G4-A: `4, 12, 48, 240`;
-
-for `N=3,4,5,6`, agreeing with `(N-1)!/2` and `2(N-1)!` respectively.
-
-This closes the specific computational-evidence gap. It does not replace the general proof or the required hostile audit.
+The recovered VRI sequences are G4-C `1,3,12,60` and G4-A `4,12,48,240`, agreeing with `(N-1)!/2` and `2(N-1)!`.
 
 ---
 
-## Finding P1-01 — Independent enumeration also reproduces the G3 hostile-audit repair
+## Finding P1-01 — G3 hostile-audit repair independently reproduced
 
-**Severity:** confirmation / regression protection
-
-Without encoding the expected groups, the same enumerator returns for every `N=3,4,5,6`:
-
-- G3-S: definedness `2`, full `2`;
-- G3-C: definedness `2`, full `2`;
-- G3-A: definedness `4`, full `1`.
-
-For G3-A the four definedness actions are generated by the independent boundary swap `(P_0 P_1)` and generic path reversal. This reproduces the earlier hostile-audit correction
-
-`Aut(D_A | X_N) ~= C2 x C2`
-
-and confirms that only identity extends after restoring values.
+For every `N=3..6` the independent enumerator returns G3-S `2/2`, G3-C `2/2`, G3-A `4/1` for definedness/full base automorphisms. G3-A's definedness group is generated by boundary swap and generic path reversal.
 
 ---
 
-## Finding P0-02 — Multi-coordinate passports are necessary; standard invariants collide
+## Finding P0-02 — Multi-coordinate passports are necessary
 
-**Severity:** structural / design result  
-**Upstream significance:** methods theorem, not a correction
+G3-S and G3-C have the same operation domain, Association Spectrum and automorphism-group order but different commutation geometry. Therefore commutation is an independent mandatory passport coordinate.
 
-G3-S and G3-C show that operation domain + Association Spectrum + automorphism-group order is not a complete discriminator. All agree, while commutation differs:
+## Finding P0-03 — Group order alone is insufficient
 
-`|Comm_S| = 5N-7`,
-
-`|Comm_C| = 3(N-1)`.
-
-Thus commutation geometry is a mandatory independent passport coordinate.
-
----
-
-## Finding P0-03 — Group order alone is insufficient across value-erasure comparisons
-
-G3-C -> G3-A keeps commutation at `3(N-1)` while full-operation symmetry changes `C2 -> 1`; the intrinsic active-sort definedness group of G3-A is `C2 x C2`.
-
-Therefore passports must separately record full-operation automorphisms, active-sort definedness automorphisms, full one-sorted caveats, and stabilizers after fixing inherited roles.
-
----
+G3-C -> G3-A keeps commutation unchanged while changing full rigidity and value-erasure symmetry. Full-operation, active-definedness, one-sorted and stabilizer groups must be recorded separately.
 
 ## Finding P0-04 — Evidence labels are required
 
-The passport schema uses `PROVED`, `ENUM`, `REGRESSION`, `WORKING`, and `OPEN`. A function returning the target formula is not an independent `ENUM` check.
+Use `PROVED`, `ENUM`, `REGRESSION`, `WORKING`, `OPEN`; formula-printing is not independent enumeration.
 
----
+## Finding P0-05 — G4 N=3 coincidence is genuine
 
-## Finding P0-05 — G4 small-case coincidence is genuine
-
-For `N=3`, `G_N` has two points and `S_2=C_2`. Independent enumeration gives G4-C definedness group order `2` and full-operation group order `2`, hence VRI `1`. The smallest case contains no symmetry amplification, exactly as the theorem candidate states.
+`S_2=C_2`; independent enumeration gives VRI(G4-C)=1.
 
 ---
 
 ## Next audit targets
 
-1. translation-profile generator and exact branch deltas;
-2. terminal-output orbit and internal-distinguishability computation;
+1. repair/check the exact G4 theorem statement against P2-01;
+2. test whether the stronger globally bounded-total-output problem is achievable by a modified backbone;
 3. machine-readable branch passport serialization;
-4. Carrier-Erasure and Value-Erasure predicates in executable form;
-5. benchmark diff completion;
-6. hostile audit of G4 proof scope, sorting/anonymity assumptions and theorem statement.
+4. executable Carrier-Erasure/Value-Erasure predicates;
+5. exact translation-diff tables for all benchmark transitions.
