@@ -80,6 +80,39 @@ Unequal value-fiber cardinalities already prevent a fiber swap. The outputs rema
 
 The exact values through generic size seven are calibration data. No asymptotic formula is accepted without proof or a dedicated literature audit.
 
+## C11. “The cyclic-triangle count tau3 determines residual anonymous symmetry.” — FALSE
+
+Already on five generic vertices, tournaments with the same `tau3` may have different pairs
+
+\[
+(|\operatorname{Aut}(T)|,|\operatorname{Anti}(T)|).
+\]
+
+Thus `tau3` is the locality-minimal separator for G4-C versus a rigid tournament, but it is not a complete classifier of `Aut^±`.
+
+## C12. “Taking all anonymous local histograms through n-1 vertices recovers the residual group.” — FALSE
+
+The explicit seven-vertex pair `S7/R7` from `FIBER_PROFILE_HIERARCHY.md` has
+
+\[
+H_k^{\pm}(S_7)=H_k^{\pm}(R_7)
+\quad\text{for every }k=3,4,5,6,
+\]
+
+but
+
+\[
+\operatorname{Aut}^{\pm}(S_7)\cong C_2,
+\qquad
+\operatorname{Aut}^{\pm}(R_7)=1.
+\]
+
+So the missing information is not merely another histogram count. It is cross-subset coherence.
+
+## C13. “The classical seven-local reconstruction theorem is just a stronger histogram theorem.” — FALSE
+
+The classical `(<=7)` half-reconstruction result is subset-indexed: corresponding restrictions on each carrier subset are compared up to converse. This retains overlap coherence. A histogram only records multiplicities of local types and can fail even when every proper order is included.
+
 ## Firewall
 
 None of these counterexamples modifies the published M0–G2 checkpoint. They also do not refute the G4-C construction; they restrict the scope of any minimality or inevitability interpretation attached to it.
