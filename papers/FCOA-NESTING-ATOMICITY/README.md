@@ -1,6 +1,6 @@
 # FCOA Nesting & Atomicity
 
-Publication-ready bilingual companion for:
+Archived bilingual publication companion for:
 
 **Alex Malachevsky, “Reflections on Sandbox Atomicity with Commander Sol: Composition Boundaries, Nesting Rank, and Quotient Safety.”**
 
@@ -10,20 +10,23 @@ Russian title:
 
 - Author: Alex Malachevsky
 - ORCID: `0009-0008-6009-3196`
-- Status: **PUBLICATION_READY** after hostile audit, prior-art repair, bilingual compile, and PDF render inspection
+- Version: **v1.0**
+- Status: **PUBLICATION_READY / ARCHIVAL FREEZE** after hostile audit, prior-art repair, supervisor pre-v1.0 repairs, bilingual compile, and PDF render inspection
 - Date: `2026-08-28`
-- DOI: **not assigned yet** — assign only at Zenodo deposit
+- Zenodo DOI: **`10.5281/zenodo.22140527`**
+- DOI URL: `https://doi.org/10.5281/zenodo.22140527`
 - Branch: `director/fcoa-nesting-atomicity`
 - Upstream FCOA checkpoint: `10.5281/zenodo.22129787`
 
 ## Canonical publication files
 
-- `manuscript_en.tex` — final English manuscript.
-- `manuscript_ru.tex` — final Russian manuscript with the same theorem package and claim ceiling.
+- `manuscript_en.tex` — final English manuscript source.
+- `manuscript_ru.tex` — final Russian manuscript source with the same theorem package and claim ceiling.
 - `references.bib` — verified bibliography / archival bibliography source.
 - `PRIOR_ART_AUDIT.md` — novelty and terminology firewall.
 - `PUBLICATION_AUDIT.md` — final mathematical, bibliography, metadata, compile, and render audit.
-- `RELEASE_CHECKLIST.md` — Zenodo/GitHub release gates.
+- `RELEASE_CHECKLIST.md` — closed v1.0 Zenodo/GitHub release gates.
+- `ZENODO_RELEASE_v1.0.md` — archival DOI/freeze record.
 
 Interactive demonstrator:
 
@@ -67,7 +70,7 @@ If the factor relation is well-founded, its classical ordinal rank obeys
 \boxed{x\text{ atomic}\iff\rho(x)=0.}
 \]
 
-For a triviality-reflecting ordinary quotient,
+For the explicit existential-representative quotient convention used in the paper, a triviality-reflecting ordinary quotient satisfies
 
 \[
 \boxed{
@@ -101,6 +104,10 @@ The demo illustrates the finite mechanisms proved in the paper; it is not used a
 The publication does **not** claim novelty for partial algebras or strong congruences, ordinary monoid atoms/irreducibles, SCC condensation, ordinal rank of well-founded relations, bounded/p-morphisms, or transfer homomorphisms.
 
 The contribution is the assembled FCOA-specific partial-composition boundary analysis and the exact local/global/well-founded/quotient distinctions proved in the manuscripts.
+
+## Archival freeze
+
+The v1.0 mathematical claim set is frozen at DOI `10.5281/zenodo.22140527`. Future work should cite this DOI rather than silently changing the v1.0 theorem package. Any substantive strengthening belongs in a later version or a separate FCOA branch/publication.
 
 Research-development source files remain under:
 
