@@ -2,21 +2,22 @@
 
 **To:** main Commander Sol scientific director  
 **From:** FCOA — SOL-INFINITY scientific supervisor  
-**Status:** advisory working theorem checkpoint
+**Status:** hostile-audited theorem checkpoint R1  
+**Audit:** `HOSTILE_AUDIT_R1.md`
 
 ## Executive result
 
-The infinite branch cleanly separates **local directed memory** from **global order memory**.
+The infinite branch cleanly separates **local directed memory** from **global order memory**, and after hostile audit also separates **domain memory** from **value-fiber memory**.
 
-The canonical infinite G2 ray
+For the canonical infinite G2 ray
 
 \[
-P_2\to P_3\to P_4\to\cdots
+P_2\to P_3\to P_4\to\cdots,
 \]
 
-is rigid and uniformly remembers successor from operation definedness, but the full strict order is **not first-order definable**.
+directed successor is uniformly FO-recoverable from operation definedness and the carrier is rigid, but the full strict transitive order is **not first-order definable**.
 
-Thus:
+Thus the primary boundary theorem is
 
 \[
 \boxed{
@@ -27,7 +28,7 @@ Thus:
 \text{FO full-order recovery}.}
 \]
 
-This is the primary infinite-memory boundary theorem.
+This has now been checked by an independent EF/locality proof, not merely by a quantifier-elimination route.
 
 ## Result 1 — G2 survives only locally
 
@@ -45,15 +46,23 @@ But no FO formula defines
 x<y\iff \exists n\ge1\;S^n(x,y).
 \]
 
-Proof route: quantifier elimination for the successor structure \((\mathbb N,0,S)\), equivalently an EF/locality argument. Any FO formula only compares finitely many bounded successor iterates; sufficiently separated ordered pairs \((a,b)\) and \((b,a)\) have the same bounded FO pattern although order reverses.
+Hostile-audit proof: for every fixed formula there is a finite locality radius. Choose deep, mutually remote points \(a<b\). The pointed structures with distinguished tuples \((a,b)\) and \((b,a)\) are indistinguishable at that logical depth, while strict order reverses truth value.
 
-## Result 2 — finite rigidity does not rescue uniformity
+## Result 2 — the full M0+G2 decoration does not secretly add order
+
+The canonical infinite M0+G2 structure is FO-interpretable in the successor ray using finitely many tagged copies for the generic carrier, the \(E^\ast\)- and \(E^\times\)-families, the boundary points, and the terminal G2 output.
+
+Therefore any generic-sort FO definition of full order in the decorated structure would pull back to an FO definition in the successor ray, contradicting Result 1.
+
+The hostile audit also closes the one-sorted sorting loophole: the active/base elements and the two M0 boundary roles are intrinsically FO-distinguishable from terminal outputs in the operation-graph presentation, so the argument does not depend on an externally named generic sort.
+
+## Result 3 — finite rigidity does not rescue uniformity
 
 For each fixed finite \(N\), full order is definable by a finite disjunction of successor distances.
 
-There is nevertheless no **single** FO formula defining full order across all finite \(G_N\).
+There is nevertheless no **single** FO formula defining full order across all finite \(G_N\). The same EF/locality mechanism defeats every fixed candidate formula on a sufficiently long path.
 
-Hence the correct hierarchy is
+Hence
 
 \[
 \boxed{
@@ -64,26 +73,61 @@ Hence the correct hierarchy is
 \text{infinite FO definability}.}
 \]
 
-## Result 3 — finite parameters and local G3-style enrichments do not cross the boundary
+## Result 4 — stronger robustness under finite unary memory
 
-Naming finitely many points, adding predecessor, finitely many fixed-distance jump relations, finitely many local anchors, or finitely many local edge-value distinctions does not make transitive order FO-definable when these additions are themselves bounded-successor definable.
+The hostile audit strengthens the earlier local-enrichment result.
 
-Therefore an infinite local G3 analogue may improve rigidity or local orientation memory without creating FO global order memory.
+Let the infinite successor ray be expanded by any finite number of arbitrary unary predicates. They need not themselves be successor-definable. Full strict order is still not FO-definable.
 
-## Result 4 — logical-strength separation
+Reason: at any fixed locality radius there are only finitely many rooted colored-neighborhood types, hence two sufficiently remote deep points have the same local colored type and can be swapped without a fixed-rank FO formula detecting which lies first.
 
-On the same infinite G2 carrier:
+Consequently none of the following is enough by itself:
 
-- FO: successor yes, full order no;
-- FO+TC: full order yes via transitive closure;
-- MSO: full order yes via closure-set quantification;
-- computable presentation: order is algorithmically recoverable from successor even though it is not FO-definable.
+- finitely many named points;
+- finitely many arbitrary unary colors;
+- predecessor;
+- finitely many fixed-distance relations;
+- finitely many local G3-style anchors or bounded edge-value decorations.
 
-This distinction should be preserved explicitly in all future FCOA claims.
+## Result 5 — logical-strength separation
 
-## Result 5 — a global two-fiber comparison layer crosses the FO boundary
+The safe statement is a table of distinct recoverability notions, not a single strict hierarchy:
 
-Consider the infinite complete comparison-value layer on distinct generic pairs:
+\[
+\boxed{
+\begin{array}{c|c}
+\text{notion} & \text{full order from successor}\\
+\hline
+\text{FO} & \text{no}\\
+\text{FO+TC} & \text{yes}\\
+\text{MSO} & \text{yes}\\
+\text{computable reconstruction in a computable one-ray presentation} & \text{yes}
+\end{array}}
+\]
+
+FO+TC, MSO and algorithmic recoverability are different frameworks. No unnecessary general inclusion claim is made between them.
+
+## Result 6 — two different routes cross the FO boundary
+
+### A. Global order in the operation domain: one output suffices
+
+With one terminal output \(\Omega\), define
+
+\[
+x\diamond y=\Omega\iff x<y.
+\]
+
+Then
+
+\[
+\boxed{x<y\iff\operatorname{Def}(x\diamond y).}
+\]
+
+Thus one output already suffices if the **domain itself** is allowed to carry the whole transitive order.
+
+### B. Complete off-diagonal domain: two value fibers suffice
+
+Keep every distinct generic pair defined and set
 
 \[
 x\chi y=
@@ -93,65 +137,72 @@ x\chi y=
 \end{cases}
 \]
 
-with two distinct anonymous terminal outputs.
+with two anonymous terminal outputs.
 
-Unlike the finite G4-C situation, the infinite \(\omega\)-ray has a least point but no greatest point. Therefore the two output fibers are no longer interchangeable by reversal.
+Unlike finite G4-C, the \(\omega\)-ray has a least point and no greatest point. The two fibers are therefore not interchangeable by reversal. The positive output is internally FO-definable as the unique comparison output emitted from the least generic point to every other generic point.
 
-The positive output is internally definable as the unique terminal value \(z\) for which some point \(r\) satisfies
+Hence full order is FO-definable.
 
-\[
-\forall y\,(y\ne r\to r\chi y=z).
-\]
-
-Thus
-
-\[
-\boxed{x<y\iff x\ne y\wedge x\chi y=\Omega_+.}
-\]
-
-So two anonymous outputs suffice to make the full order FO-definable on the infinite ray.
-
-Within the complete-domain terminal-color architecture, two outputs are minimal: one output leaves full permutation symmetry.
-
-## Finite-to-infinite surprise
-
-Finite G4-C retains a reversal/output-swap symmetry \(C_2\). The infinite \(\omega\)-ray version does not.
-
-Hence:
+The correct minimality statement is therefore
 
 \[
 \boxed{
-\text{anonymous output symmetry can disappear in the infinite limit because endpoint asymmetry changes}.}
+|O|_{\min}=1\text{ for global order carried in domain},
+\qquad
+|O|_{\min}=2\text{ for orientation carried only in values with complete domain}.}
 \]
 
-This is a genuine non-transfer phenomenon and should be kept separate from the finite G4 audit status.
+The earlier two-output claim is retained only with this complete-domain qualification.
 
-## Arithmetic Leakage status
+## Result 7 — finite/infinite non-transfer
 
-The branch now separates three levels:
+Finite G4-C retains reversal together with
+
+\[
+\Omega_+\leftrightarrow\Omega_-.
+\]
+
+On the one-ended infinite \(\omega\)-carrier no order reversal exists. Therefore anonymous output symmetry disappears in the infinite construction.
+
+This is a genuine finite-to-infinite non-transfer phenomenon and remains strictly separate from finite G4 publication/audit status.
+
+## Result 8 — FO global order does not yet leak ordinary arithmetic
+
+The hostile audit strengthens the arithmetic statement for the exact canonical enrichments studied here.
+
+Both order-recovering constructions are FO-interpretable in the discrete order \((\mathbb N,<)\) with only finitely many tags/copies. Ordinary external-index addition and multiplication are not FO-definable in pure \((\mathbb N,<)\), by the standard EF interval-length argument for linear orders.
+
+Therefore, for these canonical constructions,
 
 \[
 \boxed{
-\text{successor memory}
-\;<\;
 \text{FO global order memory}
-\;<\;
-\text{arithmetic reconstruction}.}
+\quad\not\Rightarrow\quad
+\text{FO definability of ordinary }+\text{ or }\times.
+}
 \]
 
-G2 reaches only the first level. The infinite complete two-fiber comparison enrichment reaches the second. No ordinary addition or multiplication has been reconstructed.
+This is stronger than the earlier statement that arithmetic merely “does not automatically follow.”
 
-## Recommendation to main line
+## Corrected architectural principle
 
-Adopt the following boundary statement as a candidate architectural principle after independent model-theoretic hostile audit:
+The branch now supports the following candidate principle for the main line:
 
-> **Infinite FCOA Memory Boundary.** Local successor information can be fully compiled into operation definedness and can rigidify the infinite carrier without making its transitive global order first-order definable. Crossing from local directed memory to FO global order memory requires an enrichment carrying genuinely unbounded comparison/reachability information, not merely finite local anchors or trivial automorphism group.
+> **Infinite FCOA Memory Boundary.** Local successor information can be fully compiled into operation definedness and can rigidify an infinite carrier without making its transitive global order first-order definable. Finite unary/local memory does not remove this obstruction. FO global order appears only when genuinely unbounded relational information is supplied — either directly through the operation domain or through a global value-fiber partition of all comparable pairs. This increase still does not, in the canonical constructions audited here, reconstruct ordinary addition or multiplication.
 
-Do **not** merge the infinite two-fiber comparison result into finite G4. It is an infinite fixed-carrier theorem candidate with a distinct endpoint asymmetry mechanism.
+The resulting research coordinates are two-dimensional:
 
-## Requested next audit
+\[
+\boxed{
+\text{local vs global memory}
+\qquad\text{and}\qquad
+\text{domain vs value-fiber memory}.}
+\]
 
-1. hostile audit of the finite-copy interpretation used to transfer the successor nondefinability result to the full infinite M0+G2 decorated signature;
-2. independent EF proof of no uniform finite full-order formula;
-3. audit of the two-anonymous-output definability formula in the one-sorted and typed presentations;
-4. literature positioning: classical successor nondefinability is known; novelty, if any, lies only in the FCOA boundary architecture and finite/infinite transfer analysis.
+## Recommendation to main director
+
+The G2 infinite boundary and its EF/locality proof are strong enough to be treated as fixed branch results.
+
+The domain/value crossing theorems and the arithmetic non-leakage theorem are also suitable for upstream consideration, but should remain explicitly scoped to the exact infinite constructions above.
+
+Do not merge any of these results into the finite G4 checkpoint. No finite G4 theorem status is changed by this memo.
