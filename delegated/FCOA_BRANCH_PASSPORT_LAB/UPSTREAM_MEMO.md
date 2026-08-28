@@ -1,71 +1,100 @@
 # FCOA Branch Passport Laboratory — Upstream Memo
 
-**Rounds:** P0–P2  
+**Rounds:** P0–P3  
 **Audience:** main Commander Sol scientific director
 
-## U2-01 — THEOREM-SCOPE REPAIR REQUIRED BEFORE G4 PROMOTION
+## U3-01 — STRONGER ABSOLUTE TWO-OUTPUT THEOREM FOUND
 
-The G4 automorphism and VRI formulas survived independent enumeration and translation-profile audit. However the headline language `bounded output alphabet` is too strong if read as a statement about the full operation.
+The P2 question is now answered positively.
 
-The M0 backbone already contains terminal families `E_i^*` and `E_i^x`, each with `N-1` distinct values. G4 adds two anonymous orientation outputs. Thus
+There exists a pure family of partial operations with total terminal-output carrier exactly
 
-`|T_G4| = 2(N-1)+2 = 2N`.
+`O={Omega_+,Omega_-}`
 
-The total terminal-output alphabet grows with `N`.
+for every carrier size `n`, yet with factorial Value-Rigidity Index.
 
-### Safe corrected theorem
+Let `X_n={x_1,...,x_n}` and define on distinct pairs
 
-> Over the M0 backbone family, two new anonymous orientation values suffice to reduce the projected full-operation symmetry from `S_{N-1}` to `C2`, producing `VRI=(N-1)!/2`; with one boundary anchor, the same two-value layer yields full rigidity and `VRI=2(N-1)!`.
+`x_i star x_j = Omega_+` for `i<j`,
 
-Equivalent safe headline:
+`x_i star x_j = Omega_-` for `i>j`,
 
-> **Bounded added value alphabet can produce unbounded factorial value-rigidity amplification over a fixed backbone scheme.**
+with diagonal undefined.
 
-### Unsafe without further construction
+Then
 
-Do not claim that the present G4 family has a globally bounded total output carrier independent of `N`.
+`Aut(D|X_n) ~= S_n`,
 
-That stronger problem remains open and would require collapsing/removing/replacing the inherited `E_i` output families without destroying the needed backbone geometry.
+because definedness is simply inequality, while
 
-This is a theorem-scope repair, not a refutation of G4's group calculations.
+`Aut(star) ~= C2`,
 
-## U2-02 — Independent translation-fingerprint proof of G4 rigidity
+because a full automorphism must either preserve the finite linear orientation (identity) or reverse it while swapping the two anonymous outputs (unique reversal).
 
-For generic `P_i`, the G4-C left translation contains
+Therefore
 
-`i-2` copies of `Omega_-` and `N-i` copies of `Omega_+`.
+`VRI(star)=n!/2`.
 
-Since the two outputs are anonymous, the invariant is the unordered pair
+This proves the absolute statement:
 
-`{i-2,N-i}`,
+> A globally bounded total terminal-output alphabet of size two can support factorially unbounded value-induced rigidity.
 
-which determines `P_i` exactly up to global reflection `i <-> N+2-i`. Thus translation fingerprints independently force the projected full group down to `C2`.
+No growing M0 terminal-output families are needed for this absolute cardinality theorem.
 
-In G4-A the boundary anchor fixes `Omega_+`, so the pair is ordered and determines every generic index uniquely. This independently forces the full group to `1`.
+### Anchored rigid variant
 
-This gives a second proof route, distinct from Fiber Transport, and should be considered for inclusion in the eventual G4 proof because it makes the mechanism transparent.
+Add only
 
-## U1-01 — Independent small-case automorphism gate PASSED
+`x_1 star_A x_1 = Omega_+`.
 
-For `N=3,4,5,6`, direct enumeration gives G4-C definedness/full orders `2/2, 6/2, 24/2, 120/2` and G4-A `4/1, 12/1, 48/1, 240/1`. Hence the small-case VRI data agree with `(N-1)!/2` and `2(N-1)!`. No counterexample found.
+The same total output carrier of size two is retained. Definedness now fixes `x_1` and otherwise allows arbitrary permutations, so
 
-## U1-02 — G3 hostile-audit repair independently reproduced
+`Aut(D_A|X_n) ~= S_{n-1}`.
 
-For `N=3..6`, G3-S and G3-C give definedness/full `2/2`; G3-A gives `4/1`, reproducing the `C2 x C2` definedness correction.
+The unique nontrivial full symmetry of the unanchored structure, reversal, is destroyed by the anchor. Hence
 
-## U0-02 — Passport methodology
+`Aut(star_A)=1`,
 
-G3 already proves that domain, value fibers, commutation, Association Spectrum, full automorphisms and definedness automorphisms are mutually nonredundant enough that no domain+spectrum+`|Aut|` summary is adequate. Translation fingerprints now add a mechanistically useful local coordinate rather than merely a descriptive statistic.
+`VRI(star_A)=(n-1)!`.
+
+Thus two total terminal outputs suffice even for a rigid full operation with factorial VRI.
+
+### Independent finite check
+
+Formula-blind exhaustive enumeration for `n=3..7` gives:
+
+- unanchored `(DefAut,FullAut)` = `(6,2),(24,2),(120,2),(720,2),(5040,2)`;
+- anchored = `(2,1),(6,1),(24,1),(120,1),(720,1)`.
+
+The proof and finite data agree exactly.
+
+## U3-02 — One-sorted caveat survives cleanly
+
+In the one-sorted universe `U_n=X_n disjoint_union O`, base elements are precisely those that occur as operation arguments; the two output elements never occur as arguments. Hence the active/output partition is internally recoverable for `n>=3` and no hidden sort naming is required.
+
+After value erasure the isolated output pair contributes an independent `S_2`, while in the full operation its swap must be coupled to base reversal. Thus the active-sort VRI is `n!/2`; a separate full one-sorted order ratio would be `n!`. These invariants must remain distinguished.
+
+## U2-01 — G4 theorem-scope repair remains required
+
+The new pure theorem does not retroactively make the original M0-relative G4 phrase `bounded total output alphabet` correct. G4 itself has `2N` terminal outputs because of inherited `E_i^*`,`E_i^x` families. Its safe statement remains `two added anonymous orientation values over M0`.
+
+The pure P3 theorem is a separate stronger absolute output-cardinality result and should be imported upstream as a new checkpoint, not used to blur the G4 accounting.
+
+## U2-02 — Translation-fingerprint proof of G4
+
+For generic `P_i`, the G4-C orientation multiplicity fingerprint is `{i-2,N-i}`, determining the point up to global reversal. The G4-A anchor orders the pair and determines every generic point uniquely. This gives an independent proof route to `C2` and then `1`.
 
 ## Director recommendation
 
-**Do not promote the current wording of G4 unchanged.** Repair the alphabet scope first. After that repair, the core G4 factorial-rigidity result has now passed two independent finite/mechanistic checks:
+P3 has crossed the threshold for upstream mathematical consideration. Recommended architecture:
 
-1. exhaustive carrier-permutation enumeration;
-2. translation-fingerprint reconstruction.
+1. repair G4 wording to `bounded added two-value layer over M0`;
+2. retain G4 as the backbone-relative theorem;
+3. add the pure two-output construction as a distinct absolute theorem/checkpoint;
+4. keep active-sort VRI and full one-sorted ratio explicitly separate.
 
-The most valuable next research question is now the stronger one exposed by the audit:
+The next hard question is no longer whether constant total output cardinality permits factorial VRI — it does. The sharper frontier is minimality:
 
-> Can factorial VRI be achieved with a globally bounded total terminal-output alphabet, rather than merely a bounded two-value layer added over M0?
+> Is two terminal outputs minimal for unbounded VRI, and what is the maximal VRI growth possible with exactly one terminal output?
 
-That is a genuine next mathematical strike, not a wording cleanup.
+That is now the natural next strike.
