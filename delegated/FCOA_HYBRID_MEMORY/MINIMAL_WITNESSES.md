@@ -1,48 +1,50 @@
 # FCOA Hybrid Memory — Minimal Witnesses
 
 **Direction:** SOL-HYBRID — Joint Memory of Partial Operations  
-**Status:** first internal research checkpoint; not upstreamed; not publication-ready  
-**Convention:** this note uses `n=|X|` for the active carrier size, to avoid collision with the main-line parameter `N` in `X_N={P_0,...,P_N}`.
+**Status:** second internal research checkpoint; shared-output minimality classified; hostile audit still required  
+**Convention:** `n=|X|` denotes the active carrier size. Terminal outputs lie in a pure common output sort `O`, are anonymous, and are never operation arguments.
 
-## 1. Automorphism convention
+## 1. Two output semantics must be separated
 
-Let `X` be the active carrier. Terminal outputs are anonymous, used, and never accepted as operation arguments. Automorphisms may permute anonymous outputs only when the induced equality partition of operation cells permits it. Equivalently, on the active sort the Fiber-Transport criterion is used.
+There are two mathematically different regimes.
 
-All groups below are full operation automorphism groups; restriction to `X` is an isomorphism in the displayed witnesses because every terminal output is used and its action is forced by the active permutation.
+### Independent-output regime
 
-For Association Spectra we count triples in `X^3`. Since every operation value is terminal and no terminal value is an admissible argument, every double product on an active triple is undefined. Hence every witness below has
+The output alphabets of `\oplus` and `\otimes` are disjoint/typed independently. Then value memory is controlled separately by the two Fiber-Transport partitions.
+
+### Common-output regime
+
+Both operations map into the same anonymous terminal-output sort `O`, and the same output element may occur as a value of both operations. Then equality of values **across operation symbols** is structural information.
+
+This distinction is decisive for minimality.
+
+For Association Spectra below we count triples in `X^3`. Since all displayed values are terminal and no terminal output is an admissible argument, every double product is undefined. Thus each displayed minimal reduct has spectrum
 
 \[
 (EQ,NEQ,LEFT,RIGHT,NONE)=(0,0,0,0,n^3).
 \]
 
-This deliberately removes associativity artifacts from the hybrid-memory effect.
-
-## 2. Minimal carrier theorem
+## 2. Minimal active-carrier theorem
 
 ### Theorem HM-0
 
 A balanced hybrid-rigidity witness
 
 \[
-\operatorname{Aut}(\oplus)\neq1,
+\operatorname{Aut}(\oplus)\ne1,
 \qquad
-\operatorname{Aut}(\otimes)\neq1,
+\operatorname{Aut}(\otimes)\ne1,
 \qquad
 \operatorname{Aut}(\oplus,\otimes)=1
 \]
 
 requires at least three active points, and three points suffice.
 
-### Proof
-
-For one active point no reduct has a nontrivial active automorphism. For two active points, the only nontrivial subgroup of `S_2` is `S_2` itself. Hence if both reducts are nonrigid, both active automorphism groups contain the unique transposition, so their intersection is nontrivial.
-
-The constructions below realize all three requested synergy mechanisms on three active points. `□`
+For `n=2`, every nontrivial active automorphism subgroup is the unique `S_2`; hence two nonrigid reducts cannot have trivial common active action. The examples below realize the threshold at `n=3`.
 
 ---
 
-## 3. DD-3 — minimal domain-domain witness
+## 3. DD-3 — domain-domain minimum
 
 Let
 
@@ -50,206 +52,17 @@ Let
 X=\{a,b,c\}.
 \]
 
-Define
+Define only
 
 \[
-a\oplus a=\alpha
-\]
-
-and no other `\oplus` cell, while
-
-\[
-b\otimes b=\beta
-\]
-
-and no other `\otimes` cell. The terminal outputs `\alpha,\beta` are distinct operation outputs; each is the unique used value of its own reduct.
-
-### Automorphism groups
-
-The first operation fixes `a` and swaps `b,c`:
-
-\[
-\operatorname{Aut}(\oplus)=\langle(b\ c)\rangle\cong C_2.
-\]
-
-The second fixes `b` and swaps `a,c`:
-
-\[
-\operatorname{Aut}(\otimes)=\langle(a\ c)\rangle\cong C_2.
-\]
-
-Therefore
-
-\[
-\boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
-\]
-
-The same statements hold after Value-Erasure because the values are constant and all information is already in the two domains:
-
-\[
-\operatorname{Aut}(D_\oplus)=C_2,
+a\oplus a=\alpha,
 \qquad
-\operatorname{Aut}(D_\otimes)=C_2,
-\qquad
-\operatorname{Aut}(D_\oplus,D_\otimes)=1.
+b\otimes b=\beta,
 \]
 
-### Jointly recoverable point
+with anonymous terminal outputs.
 
-The point `c` is uniformly definable in the joint three-point structure by
-
-\[
-C(x)\iff
-\neg D_\oplus(x,x)\land\neg D_\otimes(x,x).
-\]
-
-It is not recoverable from either reduct alone, because the corresponding nontrivial automorphism moves `c`.
-
-### Passport
-
-- defined cells: `1+1`;
-- output alphabet: one used terminal output per operation;
-- commutation loci: `{(a,a)}` and `{(b,b)}`;
-- translation-profile injectivity: false for each reduct separately; true for the ordered pair of left profiles and also for the ordered pair of right profiles;
-- Value-Erasure: survives unchanged;
-- external carrier labels: unnecessary; the construction is intrinsic up to isomorphism.
-
-### Cell minimality
-
-If either operation has zero defined cells, its active automorphism group is all of `S_3`; intersecting it with the other required nontrivial automorphism group cannot give `1`. Thus at least one defined cell per operation is necessary. DD-3 attains this lower bound.
-
----
-
-## 4. DV-3 — minimal clean domain-value witness
-
-Again let
-
-\[
-X=\{a,b,c\}.
-\]
-
-Keep
-
-\[
-a\oplus a=\alpha
-\]
-
-as the only `\oplus` cell. Thus `\oplus` contributes pure domain geometry and
-
-\[
-\operatorname{Aut}(\oplus)=\langle(b\ c)\rangle\cong C_2.
-\]
-
-For `\otimes`, use the maximally symmetric diagonal domain
-
-\[
-D_\otimes=\{(a,a),(b,b),(c,c)\}
-\]
-
-with two anonymous terminal values:
-
-\[
-a\otimes a=\beta_0,
-\qquad
-b\otimes b=\beta_1,
-\qquad
-c\otimes c=\beta_0.
-\]
-
-The domain alone has
-
-\[
-\operatorname{Aut}(D_\otimes)=S_3.
-\]
-
-The value fibers have sizes `2` and `1`, so they cannot be exchanged by an automorphism. Hence the singleton fiber fixes `b`, while `a,c` may be swapped:
-
-\[
-\operatorname{Aut}(\otimes)=\langle(a\ c)\rangle\cong C_2.
-\]
-
-Therefore
-
-\[
-\boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
-\]
-
-but after erasing the `\otimes` values,
-
-\[
-\operatorname{Aut}(D_\oplus,D_\otimes)
-=
-\langle(b\ c)\rangle
-\cong C_2.
-\]
-
-Thus the joint rigidity is genuinely domain-value: domain geometry from `\oplus` is insufficient until the value partition of `\otimes` is restored.
-
-### Jointly recoverable point
-
-Let
-
-\[
-A(u)\iff D_\oplus(u,u).
-\]
-
-Then `c` is the unique active point satisfying
-
-\[
-\neg A(x)
-\land
-\exists u\bigl(A(u)\land x\otimes x=u\otimes u\bigr).
-\]
-
-Again the nontrivial automorphism of either reduct moves `c`, so the singleton is not recoverable from either reduct alone.
-
-### Passport
-
-- defined cells: `1+3`;
-- `\otimes` definedness group: `S_3`;
-- full groups: `C_2` and `C_2`, with trivial common stabilizer;
-- commutation loci: size `1` for `\oplus`, size `3` for `\otimes`;
-- translation-profile injectivity: false for `\oplus`, true for `\otimes` on the active carrier;
-- Value-Erasure of `\otimes`: destroys hybrid rigidity;
-- one output value for `\otimes` would be insufficient, because values would then carry no information beyond definedness.
-
-Among nonempty `S_3`-invariant domains in `X^2`, the diagonal is the smallest, with three cells. Thus this is minimal inside the clean template “first reduct domain-only; second reduct has maximally symmetric nonempty domain and value-only symmetry reduction”.
-
----
-
-## 5. VV-3 — minimal clean value-value witness
-
-Let both operation domains be the diagonal
-
-\[
-\Delta_X=\{(a,a),(b,b),(c,c)\}.
-\]
-
-Hence
-
-\[
-\operatorname{Aut}(D_\oplus)=
-\operatorname{Aut}(D_\otimes)=
-\operatorname{Aut}(D_\oplus,D_\otimes)=S_3.
-\]
-
-Give `\oplus` the anonymous value partition
-
-\[
-a\oplus a=\alpha_1,
-\qquad
-b\oplus b=c\oplus c=\alpha_0,
-\]
-
-and give `\otimes` the transverse partition
-
-\[
-b\otimes b=\beta_1,
-\qquad
-a\otimes a=c\otimes c=\beta_0.
-\]
-
-Because each value partition has fiber sizes `1+2`, output swapping is impossible. Thus
+Then
 
 \[
 \operatorname{Aut}(\oplus)=\langle(b\ c)\rangle\cong C_2,
@@ -265,56 +78,351 @@ and
 \boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
 \]
 
-The domain pair itself remains maximally symmetric. Hence all joint memory here is in the pair of value partitions.
+Value-Erasure changes nothing. Total defined-cell cost is `1+1=2`, which is minimal because an empty reduct contributes no restriction capable of killing the other reduct's required nontrivial symmetry.
 
-### Jointly recoverable point
-
-Define `U_\oplus(x)` to mean that the diagonal `\oplus`-value of `x` occurs on no other active diagonal cell, and similarly `U_\otimes(x)`. Then
+The point `c` is jointly definable by
 
 \[
-C(x)\iff\neg U_\oplus(x)\land\neg U_\otimes(x)
+\neg D_\oplus(x,x)\land\neg D_\otimes(x,x).
 \]
 
-selects exactly `c`.
-
-Neither reduct alone can recover `{c}`, because its residual transposition moves `c`.
-
-### Passport
-
-- defined cells: `3+3`;
-- output alphabet: exactly two used anonymous outputs per operation;
-- full groups: `C_2` and `C_2`; joint group `1`;
-- definedness groups: `S_3`, `S_3`, and jointly `S_3`;
-- commutation locus of each operation: the full diagonal, size `3`;
-- translation profiles: injective on the active carrier despite nontrivial automorphisms;
-- Value-Erasure of either reduct destroys joint rigidity; erasing both values restores `S_3`.
-
-For a value-only effect, at least two value fibers are necessary. On three points, the diagonal is the smallest nonempty `S_3`-invariant operation domain, so the `3+3` diagonal construction is minimal inside the clean maximally-domain-symmetric value-value template.
+Neither reduct alone defines `{c}`, since its residual transposition moves `c`.
 
 ---
 
-## 6. Small-case checkpoint
+## 4. A general lower bound for value memory inside one operation
 
-The minimal carrier theorem and the three explicit witnesses give:
+### Lemma HM-V2
 
-| active size `n` | DD witness | DV witness | VV witness |
-|---:|:---:|:---:|:---:|
-| 1 | impossible | impossible | impossible |
-| 2 | impossible | impossible | impossible |
-| 3 | yes | yes | yes |
+Let a partial operation have at most two defined cells and anonymous terminal outputs. Restoring its values cannot reduce the active automorphism group of its definedness reduct.
 
-Scalable witnesses for `n=3,4,5` and all larger `n` are recorded separately in `SYNERGY_CLASSES.md`.
+### Proof
 
-## 7. Current conclusion
+Values contribute only the equality partition of the defined cells. A set of size `0` or `1` has only one partition. A set of size `2` has only the indiscrete partition and the discrete partition; both are invariant under every permutation of the two cells. Therefore every automorphism of the domain preserves the value-equality partition. `□`
 
-The first hybrid-memory threshold is already strictly below G3-A/G4-A type single-operation rigidity:
+Consequently, in the **independent-output regime**, any operation that contributes genuine value rigidity needs at least three defined cells.
+
+---
+
+## 5. DV-I-3 — strict domain-value minimum with independent outputs
+
+Let
+
+\[
+a\oplus a=\alpha
+\]
+
+be the only `\oplus` cell. For `\otimes`, take the diagonal domain and a `2+1` anonymous value partition:
+
+\[
+a\otimes a=\beta_0,
+\qquad
+b\otimes b=\beta_1,
+\qquad
+c\otimes c=\beta_0.
+\]
+
+Then
+
+\[
+\operatorname{Aut}(\oplus)=\langle(b\ c)\rangle\cong C_2,
+\]
+
+\[
+\operatorname{Aut}(D_\otimes)=S_3,
+\qquad
+\operatorname{Aut}(\otimes)=\langle(a\ c)\rangle\cong C_2,
+\]
+
+so
+
+\[
+\boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
+\]
+
+while erasing the `\otimes` values restores a nontrivial joint domain automorphism.
+
+By Lemma HM-V2 the value-bearing reduct needs at least three cells; the other reduct must contribute at least one domain cell to kill its residual nontrivial symmetry. Hence
+
+\[
+\boxed{1+3=4}
+\]
+
+is the global cell minimum for **strict DV with independent output alphabets**.
+
+---
+
+## 6. VV-I-3 — strict value-value minimum with independent outputs
+
+Take both domains equal to the diagonal `\Delta_X` and use transverse `2+1` value partitions:
+
+\[
+a\oplus a=\alpha_1,
+\qquad
+b\oplus b=c\oplus c=\alpha_0,
+\]
+
+\[
+b\otimes b=\beta_1,
+\qquad
+a\otimes a=c\otimes c=\beta_0.
+\]
+
+Then each definedness group is `S_3`, each full reduct has automorphism group `C_2`, and their active carrier actions are transverse:
+
+\[
+\operatorname{Aut}(\oplus)=\langle(b\ c)\rangle,
+\qquad
+\operatorname{Aut}(\otimes)=\langle(a\ c)\rangle,
+\]
+
+\[
+\boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
+\]
+
+By Lemma HM-V2 each independently value-sensitive operation needs at least three cells. Thus
+
+\[
+\boxed{3+3=6}
+\]
+
+is the cell minimum for **VV with independent output alphabets**.
+
+This corrects the earlier wording: the diagonal construction is not merely minimal inside a clean template; it is minimal in the independent-output regime.
+
+---
+
+## 7. JFS-3 — shared-output synchronization beats the three-cell-per-operation wall
+
+The independent-output lower bound is **not** the global lower bound once outputs may be shared across operations.
+
+Let
+
+\[
+X=\{a,b,c\},
+\qquad
+O=\{u,v\}.
+\]
+
+Define exactly three cells:
+
+\[
+\boxed{a\oplus a=u,}
+\]
+
+\[
+\boxed{b\otimes b=u,\qquad c\otimes c=v.}
+\]
+
+All other cells are undefined. The outputs are anonymous; neither `u` nor `v` is named.
+
+### Individual reducts
+
+For `\oplus`, the active transposition
+
+\[
+r=(b\ c)
+\]
+
+preserves the unique domain cell and forces `u` to remain fixed. Since `O={u,v}`, it also fixes `v`. Hence
+
+\[
+\operatorname{Aut}(\oplus)\cong C_2.
+\]
+
+For `\otimes`, the same active transposition survives only together with
+
+\[
+u\leftrightarrow v.
+\]
+
+Hence
+
+\[
+\operatorname{Aut}(\otimes)\cong C_2.
+\]
+
+The two **active projections coincide**:
+
+\[
+\pi_X\operatorname{Aut}(\oplus)
+=
+\pi_X\operatorname{Aut}(\otimes)
+=\langle r\rangle.
+\]
+
+### Joint reduct
+
+In the joint structure the same output permutation must serve both operation symbols. But `\oplus` requires
+
+\[
+u\mapsto u,
+\]
+
+while the nontrivial `\otimes` lift requires
+
+\[
+u\mapsto v.
+\]
+
+These requirements are incompatible. Therefore
+
+\[
+\boxed{\operatorname{Aut}(\oplus,\otimes)=1.}
+\]
+
+although
 
 \[
 \boxed{
-\text{two individually nonrigid partial operations can be jointly rigid on three active points.}
+\operatorname{Aut}(D_\oplus,D_\otimes)
+\cong C_2.
 }
 \]
 
-Moreover, the phenomenon exists in all three requested forms: domain-domain, domain-value, and value-value.
+This is genuinely value-induced joint rigidity.
 
-This is an internal branch result only. It should not enter the main line before hostile audit of the automorphism convention, the minimality qualifiers, and the leakage classification.
+### Double Value-Erasure test
+
+Erase the values of `\oplus` but retain its domain: the transposition `r` survives using the `\otimes` output swap.
+
+Erase the values of `\otimes` but retain its domain: `r` survives because the singleton `\oplus` value imposes no carrier distinction between `b,c`.
+
+Thus
+
+\[
+\boxed{
+\text{erasing either operation's value layer restores }C_2.
+}
+\]
+
+The mechanism is therefore a genuine **shared-output value-value synchronization** effect, even though one reduct has only one defined cell.
+
+### Jointly recoverable active points
+
+`a` is the unique active point with a `\oplus` loop. Among the two `\otimes`-loop points, `b` is characterized by equality with the `\oplus` output:
+
+\[
+B(x)\iff
+D_\otimes(x,x)
+\land
+\exists y\,
+\bigl(D_\oplus(y,y)\land x\otimes x=y\oplus y\bigr).
+\]
+
+Then `c` is the other `\otimes`-loop point. Neither reduct alone separates `b` from `c`.
+
+### Passport
+
+- active carrier: `3` points — minimal;
+- total defined cells: `1+2=3`;
+- global used output alphabet: `|O|=2` — minimal;
+- individual full groups: `C_2`, `C_2`;
+- joint definedness group: `C_2`;
+- joint full group: `1`;
+- commutation loci: one diagonal pair for `\oplus`, two for `\otimes`;
+- Association Spectrum of each reduct on `X^3`: `(0,0,0,0,27)`;
+- `\oplus` translation profiles are not injective; `\otimes` left/right profiles are injective on `X`;
+- no named anchor and no external carrier order are used.
+
+---
+
+## 8. Global three-cell lower bound for any value-induced joint effect
+
+### Theorem HM-JV3
+
+In the relative typed setup with a common anonymous terminal-output sort, any genuinely value-induced joint rigidity requires at least **three total defined cells across all operation symbols**.
+
+### Proof
+
+Tag each operation cell by its operation symbol and take the disjoint union `T` of all defined cells. All value information is the equality partition `\equiv_c` of `T` induced by the common output map.
+
+If `|T|\le2`, every set partition of `T` is invariant under every permutation of `T`. Hence restoring values cannot shrink the joint definedness automorphism group. Therefore no value-induced joint effect exists with at most two total cells.
+
+JFS-3 has `|T|=3`, so the bound is sharp. `□`
+
+Thus the global resource threshold is
+
+\[
+\boxed{
+2\text{ cells for pure DD},
+\qquad
+3\text{ cells for any genuinely value-induced joint memory}.
+}
+\]
+
+---
+
+## 9. Complete classification at the three-cell value threshold
+
+For `|X|=3`, impose:
+
+1. both reducts are nonrigid;
+2. the joint definedness reduct is nonrigid;
+3. the joint valued structure is rigid;
+4. there are exactly three tagged defined cells in total.
+
+Then, up to relabeling `X`, every witness has cell split `1+2` or `2+1`.
+
+The one-cell domain must be a loop, say `(a,a)`, because one off-diagonal ordered cell already fixes all three active points. Its residual symmetry is `r=(b c)`.
+
+The two-cell domain must be one two-element orbit of `r`. There are exactly four geometric possibilities:
+
+\[
+\{(a,b),(a,c)\},
+\]
+
+\[
+\{(b,a),(c,a)\},
+\]
+
+\[
+\{(b,b),(c,c)\},
+\]
+
+\[
+\{(b,c),(c,b)\}.
+\]
+
+On the three tagged cells, the only partition capable of killing `r` has type `2+1` and pairs the singleton-operation cell with exactly one cell of the two-cell operation. Therefore a cross-operation shared output is necessary.
+
+An exhaustive `S_3` search confirms:
+
+\[
+\boxed{48\text{ labeled witnesses}}
+\]
+
+and
+
+\[
+\boxed{8\text{ isomorphism classes with operation symbols distinguished}.}
+\]
+
+These are the four geometries above and the four obtained by exchanging `\oplus` and `\otimes`.
+
+## 10. Revised minimality table
+
+| mechanism / semantics | minimum active points | minimum total cells | minimum value-bearing cells | status |
+|---|---:|---:|---:|---|
+| DD | 3 | 2 = 1+1 | 0 | sharp |
+| DV, independent outputs | 3 | 4 = 1+3 | 3 in one reduct | sharp |
+| VV, independent outputs | 3 | 6 = 3+3 | 3 in each reduct | sharp |
+| shared-output value synchronization | 3 | 3 = 1+2 | global 3-cell partition | sharp |
+
+## 11. Current conclusion
+
+The attempted attack on the old DV/VV minimality succeeded in a precise way.
+
+The three-diagonal-cell lower bound is real **inside one anonymous-output reduct** and therefore remains exact for independent-output DV/VV. But it is not the global hybrid lower bound. A common anonymous output sort permits cross-operation fiber equality, and this creates a new three-cell synchronization mechanism:
+
+\[
+\boxed{
+\pi_X\operatorname{Aut}(\oplus)\cap
+\pi_X\operatorname{Aut}(\otimes)
+\ne1
+\quad\text{while}\quad
+\operatorname{Aut}(\oplus,\otimes)=1.
+}
+\]
+
+The obstruction is not transverse carrier symmetry. It is **incompatible lifting of the same carrier symmetry to the shared output sort**.
