@@ -140,38 +140,18 @@ FO(\text{finite linear order}).
 }
 \]
 
-The source-to-target direction is formalized as a deterministic parameter-free fixed 7-copy FO transduction/copying interpretation. Conversely, \(P_0,P_1,G_N,\Omega_+\) and the generic order are uniformly parameter-free definable in the target graph signature.
-
 Consequently:
 
 \[
 \boxed{
-\operatorname{Add}_N
-\text{ is not uniformly FO-definable in G4-A,}
-}
-\]
-
-\[
-\boxed{
-\operatorname{Mul}_N
-\text{ is not uniformly FO-definable in G4-A,}
-}
-\]
-
-and
-
-\[
-\boxed{
+\operatorname{Add}_N,
+\operatorname{Mul}_N,
 \operatorname{EqGap}_N
-\text{ is not uniformly FO-definable in G4-A.}
+\text{ are not uniformly FO-definable in G4-A.}
 }
 \]
 
-The finite obstruction is the classical non-definability of cardinality parity in FO over finite linear orders. The proof uses only external ranks in the metalanguage; no index arithmetic is imported into the FCOA signature.
-
-The natural infinite G4-A analogue is FO interpretable in \((\mathbb N,<)\), hence has decidable FO theory and cannot FO-interpret full standard arithmetic.
-
-Thus G4-A is now a fixed **order wall** for the uniform FO programme.
+Thus G4-A is a fixed **order wall** for the uniform FO programme.
 
 ## 6. Additive gateway — fixed relation, repaired minimality claim
 
@@ -208,37 +188,149 @@ and conversely
 
 Hence EqGap is uniformly FO-interdefinable with truncated rank addition.
 
-Audit repair: EqGap is **not** claimed to be the globally weakest possible non-order enrichment. Weaker modular/counting enrichments may sit between pure order and full additive leakage.
-
 Correct statement:
 
 \[
 \boxed{
-\text{EqGap is a canonical gateway to full additive leakage.}
+\text{EqGap is a canonical gateway to full additive leakage, not the globally weakest possible non-order enrichment.}
 }
 \]
 
-## 7. Refined leakage map
+## 7. Threshold-compression calibration
+
+See [`THRESHOLD_COMPRESSION_CALIBRATION.md`](THRESHOLD_COMPRESSION_CALIBRATION.md).
+
+External threshold benchmarks such as
+
+\[
+R_d(x,y)\iff x^d\le y
+\]
+
+have support
+
+\[
+|R_d\cap[N]^2|
+=
+\frac{d}{d+1}N^{1+1/d}+O(N),
+\]
+
+so subquadratic support can carry a nonlinear unary scale.
+
+This establishes a programme-level warning:
+
+\[
+\boxed{
+\text{support-growth complexity and arithmetic-leakage complexity are independent optimization axes.}
+}
+\]
+
+The external functions are calibration benchmarks only, not accepted FCOA mechanisms.
+
+## 8. New central theorem candidate — One-Cell Oracle / FO-Compilation Barrier
+
+New file:
+
+- [`ONE_CELL_ORACLE_AND_FO_COMPILATION_BARRIER.md`](ONE_CELL_ORACLE_AND_FO_COMPILATION_BARRIER.md)
+
+### One-cell oracle degeneracy
+
+For an arbitrary set of sizes
+
+\[
+S\subseteq\{2,3,4,\ldots\},
+\]
+
+modify exactly one previously undefined G4-A cell by
+
+\[
+P_0\otimes_S P_0=P_0
+\iff
+|G_N|\in S.
+\]
+
+Then the fixed sentence
+
+\[
+\exists b\,[B_0(b)\land T(b,b,b)]
+\]
+
+recognizes exactly the chosen size spectrum \(S\).
+
+Therefore unrestricted external import can produce arbitrarily strong family-level leakage at only
+
+\[
+O(1)
+\]
+
+new-cell cost.
+
+Thus raw cell-count minimization is degenerate unless external-import complexity is constrained.
+
+### Strict intermediate parity benchmark
+
+Taking
+
+\[
+S=\{m:m\equiv0\pmod2\}
+\]
+
+gives a family strictly stronger than FO[<] but still too weak to define truncated addition. The key reason is that with only one global parity bit, every definable size-spectrum is eventually constant on each parity class, while addition would define for example
+
+\[
+m\equiv1\pmod3.
+\]
+
+This gives an explicit benchmark strictly between the order wall and additive leakage, though it is deliberately an external-oracle construction.
+
+### FO-Compilation Barrier
+
+If finitely many new relation/operation symbols are uniformly parameter-free FO-definable in G4-A, then the expansion remains at exactly the same generic FO strength:
+
+\[
+\boxed{
+FO(\text{definitional expansion of G4-A})=FO[<].
+}
+\]
+
+Hence fixed-depth compositions, term operations, translations, commutation predicates and association predicates cannot escape the order wall when they are merely FO-definitional consequences of G4-A.
+
+This yields the central dichotomy:
+
+\[
+\boxed{
+\text{unrestricted external oracle: too powerful and artificially cheap}
+}
+\]
+
+versus
+
+\[
+\boxed{
+\text{uniform FO compilation from G4-A: provably unable to leave AL0.}
+}
+\]
+
+A genuine next-stage FCOA mechanism must lie between these extremes.
+
+## 9. Refined leakage map
 
 ### AL0 — Order Wall
 
-Generic uniform FO power is exactly FO of finite linear order. Successor and betweenness are already definable here.
+Generic uniform FO power exactly FO[<]. G4-A is exactly here.
 
-G4-A is exactly at AL0.
+### AL-INT — intermediate non-order zone
 
-### AL-MOD — possible intermediate non-order zone
-
-Working placeholder for modular/counting or other non-FO[<] information that does not yet recover addition. No claim that this is a single canonical level.
+Umbrella for modular/counting, sparse unary-scale, threshold-like, or other non-order enrichments that do not yet recover addition. This is not asserted to be one canonical level.
 
 ### AL1 — Additive Gateway
 
-EqGap / truncated rank addition becomes uniformly definable.
+EqGap / truncated rank addition.
 
 ### AL2 — Full-Arithmetic Gateway
 
-A mechanism uniformly interprets full first-order arithmetic, or meets another independently audited equivalent criterion.
+Uniform interpretation of full first-order arithmetic, or another independently audited equivalent criterion.
 
-## 8. Current status
+## 10. Current status
 
 \[
 \mathbf F:\ M0,G1,G2\text{ published/audited checkpoint}
@@ -269,33 +361,34 @@ A mechanism uniformly interprets full first-order arithmetic, or meets another i
 \]
 
 \[
+\mathbf W:\ \text{One-Cell Oracle Degeneracy / FO-Compilation Barrier; hostile audit pending}
+\]
+
+\[
+\mathbf W:\ \text{Density-Leakage Orthogonality and multi-axis cost programme}
+\]
+
+\[
 \mathbf W:\ \text{Value-Rigidity Index / Bounded-Output Rigidity Amplification terminology}
 \]
 
-\[
-\mathbf W:\ \text{AL0/AL-MOD/AL1/AL2 terminology and optimization programme}
-\]
+## 11. Immediate main-line question
 
-## 9. Immediate main-line questions
+Do not optimize raw cell count and do not open an arbitrary G5 table.
 
-The left wall is closed. Do not add arbitrary G5 cells.
-
-The central road now splits into two precise optimization problems:
+The current central problem is now:
 
 \[
 \boxed{
-\text{What is the cheapest FCOA mechanism that leaves }FO[<]?
+\text{What is the weakest genuinely generated, non-oracular FCOA mechanism that escapes the FO-compilation barrier?}
 }
 \]
 
-and
+Candidate mechanism classes to test next:
 
-\[
-\boxed{
-\text{What is the cheapest FCOA mechanism that reaches EqGap / additive leakage?}
-}
-\]
+1. unbounded iteration / closure whose depth grows with the carrier;
+2. transitive-closure or least-fixed-point style memory;
+3. a genuinely new primitive operation whose cells are not FO-definable from G4-A order;
+4. hybrid interaction where neither operation is merely a definitional copy of the other.
 
-These questions need not have the same answer.
-
-The next construction should first test whether a genuinely weaker intermediate leakage mechanism exists before deliberately targeting full EqGap.
+The One-Cell Oracle / FO-Compilation Barrier must be hostile-audited before any such mechanism is promoted.
