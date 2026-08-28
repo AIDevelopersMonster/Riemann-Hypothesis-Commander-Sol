@@ -2,12 +2,22 @@
 
 **To:** main Commander Sol scientific director  
 **From:** FCOA — SOL-INFINITY scientific supervisor  
-**Status:** hostile-audited theorem checkpoint R1  
-**Audit:** `HOSTILE_AUDIT_R1.md`
+**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold  
+**Audit:** `HOSTILE_AUDIT_R1.md`  
+**Sparse threshold:** `SPARSE_MEMORY_THRESHOLD.md`
 
 ## Executive result
 
-The infinite branch cleanly separates **local directed memory** from **global order memory**, and after hostile audit also separates **domain memory** from **value-fiber memory**.
+The infinite branch now separates three independent coordinates:
+
+\[
+\boxed{
+\text{local vs global memory},
+\qquad
+\text{domain vs value-fiber memory},
+\qquad
+\text{local finiteness vs infinite nonlocal core}.}
+\]
 
 For the canonical infinite G2 ray
 
@@ -28,7 +38,7 @@ Thus the primary boundary theorem is
 \text{FO full-order recovery}.}
 \]
 
-This has now been checked by an independent EF/locality proof, not merely by a quantifier-elimination route.
+This has been checked by an independent EF/locality proof.
 
 ## Result 1 — G2 survives only locally
 
@@ -73,9 +83,7 @@ Hence
 \text{infinite FO definability}.}
 \]
 
-## Result 4 — stronger robustness under finite unary memory
-
-The hostile audit strengthens the earlier local-enrichment result.
+## Result 4 — robustness under finite unary memory
 
 Let the infinite successor ray be expanded by any finite number of arbitrary unary predicates. They need not themselves be successor-definable. Full strict order is still not FO-definable.
 
@@ -143,7 +151,7 @@ Unlike finite G4-C, the \(\omega\)-ray has a least point and no greatest point. 
 
 Hence full order is FO-definable.
 
-The correct minimality statement is therefore
+The correct minimality statement is
 
 \[
 \boxed{
@@ -168,9 +176,7 @@ This is a genuine finite-to-infinite non-transfer phenomenon and remains strictl
 
 ## Result 8 — FO global order does not yet leak ordinary arithmetic
 
-The hostile audit strengthens the arithmetic statement for the exact canonical enrichments studied here.
-
-Both order-recovering constructions are FO-interpretable in the discrete order \((\mathbb N,<)\) with only finitely many tags/copies. Ordinary external-index addition and multiplication are not FO-definable in pure \((\mathbb N,<)\), by the standard EF interval-length argument for linear orders.
+Both canonical order-recovering constructions are FO-interpretable in the discrete order \((\mathbb N,<)\) with only finitely many tags/copies. Ordinary external-index addition and multiplication are not FO-definable in pure \((\mathbb N,<)\), by the standard EF interval-length argument for linear orders.
 
 Therefore, for these canonical constructions,
 
@@ -182,27 +188,75 @@ Therefore, for these canonical constructions,
 }
 \]
 
-This is stronger than the earlier statement that arithmetic merely “does not automatically follow.”
+## Result 9 — Sparse Memory Threshold
+
+The sparse-memory investigation produces a stronger necessary condition than bounded degree.
+
+### Finite-Apex Locality Barrier
+
+For a finite-signature structure, remove a finite set of boundary/terminal apex elements but retain every relation they induce on the remaining active carrier via the finite trace structure. If this trace structure is locally finite, then no FO formula defines a strict linear order on the infinite target domain.
+
+Thus even degrees that grow without bound are insufficient if every active point still has only finitely many active interaction partners.
+
+### Binary FCOA consequence
+
+For finitely many binary finite-output FCOA layers, let \(\Gamma\) be the active interaction graph on the generic carrier. If
+
+\[
+H=\{x:\deg_\Gamma(x)=\infty\}
+\]
+
+is finite, then add those finitely many hubs to the finite apex set. The residual trace becomes locally finite, so FO order is impossible.
+
+Therefore:
+
+\[
+\boxed{
+\text{FO full order in binary finite-output FCOA}
+\Longrightarrow
+|H|=\infty.}
+\]
+
+In words:
+
+> finitely many universal hubs are not enough; crossing the FO boundary requires an **infinite active nonlocal core**.
+
+This places existing mechanisms exactly:
+
+- G2∞: no infinite-degree active points, so order impossible;
+- local G3∞: same obstruction;
+- complete order-in-domain: every generic point is nonlocal, so the obstruction is crossed;
+- complete two-value comparison: every generic point is nonlocal, so the obstruction is crossed.
+
+The theorem is necessary, not sufficient.
+
+### Why raw cell count is not the threshold
+
+Tuple count is representation-dependent. Reification can turn dense order into sparse incidence by adding infinitely many pair-witness elements. Conversely, BIT-style coding uses only about \(N\log N\) true incidences on the first \(N\) numbers yet supports FO recovery of order and, classically, addition and multiplication as well.
+
+So the meaningful coordinates are
+
+\[
+\boxed{
+\text{nonlocality cost}
+\qquad\text{and}\qquad
+\text{arithmetic leakage}.}
+\]
+
+The new open problem is therefore sharply stated:
+
+> Find, or rule out, a direct finite-signature FCOA enrichment on the same generic carrier with an infinite but structurally sparse nonlocal core, FO-definable full order, and provably no FO definition of ordinary addition or multiplication.
 
 ## Corrected architectural principle
 
 The branch now supports the following candidate principle for the main line:
 
-> **Infinite FCOA Memory Boundary.** Local successor information can be fully compiled into operation definedness and can rigidify an infinite carrier without making its transitive global order first-order definable. Finite unary/local memory does not remove this obstruction. FO global order appears only when genuinely unbounded relational information is supplied — either directly through the operation domain or through a global value-fiber partition of all comparable pairs. This increase still does not, in the canonical constructions audited here, reconstruct ordinary addition or multiplication.
-
-The resulting research coordinates are two-dimensional:
-
-\[
-\boxed{
-\text{local vs global memory}
-\qquad\text{and}\qquad
-\text{domain vs value-fiber memory}.}
-\]
+> **Infinite FCOA Memory Boundary.** Local successor information can be fully compiled into operation definedness and can rigidify an infinite carrier without making its transitive global order first-order definable. Finite unary/local memory and, more generally, finite-apex locally-finite active memory do not remove this obstruction. In the binary finite-output setting, FO recovery of full order requires infinitely many genuinely nonlocal active locations. Global order can then enter through domain memory or value-fiber memory without necessarily reconstructing ordinary arithmetic.
 
 ## Recommendation to main director
 
-The G2 infinite boundary and its EF/locality proof are strong enough to be treated as fixed branch results.
+The G2 infinite boundary, the hostile-audited EF/locality proof, and the Sparse Memory Threshold are strong enough to be treated as fixed branch results.
 
-The domain/value crossing theorems and the arithmetic non-leakage theorem are also suitable for upstream consideration, but should remain explicitly scoped to the exact infinite constructions above.
+The exact shape of the weakest arithmetic-safe infinite nonlocal core remains open and is now the natural next target.
 
 Do not merge any of these results into the finite G4 checkpoint. No finite G4 theorem status is changed by this memo.
