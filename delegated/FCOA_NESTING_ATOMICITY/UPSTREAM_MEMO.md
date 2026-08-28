@@ -1,105 +1,217 @@
-# FCOA Nesting & Atomicity — Upstream Memo
+# FCOA Nesting & Atomicity — Upstream Memo after Hostile Audit 01
 
 **Direction:** `FCOA — SOL-NESTING — Sandbox Atomicity & Composition Boundary`  
-**Status:** delegated exploratory branch  
+**Status:** delegated branch, hostile-audited with repairs  
 **Scientific authority:** main Commander Sol retains acceptance/rejection authority for the central FCOA line.
 
-## Sharp results worth upstream attention
-
-### 1. Atomicity is monotone in the allowed composition family
-
-For fixed carrier, typing, and trivial class `U`, if sandbox `S1` is a restriction of sandbox `S2`, then
+## Audit verdict
 
 \[
-\operatorname{Atom}(S_2,U)\subseteq\operatorname{Atom}(S_1,U).
+\boxed{\texttt{PASS\_WITH\_REPAIRS}}
 \]
 
-Thus expanding admissible composition can only destroy atoms, while restricting composition can only create them.
+The central thesis survives, but the exact theorem is sharper than the first package.
 
-This is the cleanest theorem-level formulation currently supporting the phrase "atomicity is sandbox-relative".
+## 1. Exact local/global boundary theorem
 
-### 2. Local atomicity and global nesting minimality are different notions
+On the repaired nontrivial factor graph with vertex set
 
-Define the nontrivial factor graph by adding edges from each nontrivial factor to the result of a two-sided nontrivial allowed composition.
+\[
+X\setminus U,
+\]
 
-A bilateral U-atom is exactly an indegree-zero vertex of this graph.
+a bilateral U-atom is exactly a zero-indegree vertex.
 
-If the graph is finite and acyclic, then U-atoms are exactly the minimal points of the transitive nesting order.
-
-If cycles are present, the equivalence fails. The correct global boundary object is a minimal strongly connected nesting class. A minimal SCC can contain no atoms at all.
-
-This appears to be the most important conceptual repair to the original slogan:
+Every atom is nesting-minimal:
 
 \[
 \boxed{
-\text{atomicity = local composition boundary;}
-\quad
-\text{minimal SCC = global nesting boundary in cyclic sandboxes.}
+\operatorname{Atom}(\mathfrak S,U)
+\subseteq
+\operatorname{MinNest}(\mathfrak S,U).
 }
 \]
 
-### 3. Rigidity memory and atomicity separate cleanly
-
-If two sandboxes differ only in the partition/coloring of cells whose outputs are terminal, while all active-result cells are unchanged, then active-carrier atom classes are unchanged.
-
-Therefore G3-style anonymous terminal value-fiber changes may alter automorphism groups, commutation behavior, and Value-Rigidity Index without changing active-result atomicity.
-
-This is a direct bridge to the main FCOA domain/value programme and is likely worth retaining centrally as a warning against conflating rigidity with decomposition structure.
-
-### 4. Pure carrier erasure preserves atomicity
-
-If erasure removes only external labels/order/relations while preserving carrier elements, typing, `U`, and all operation cells and values, all decomposition witness sets remain unchanged. Hence atomicity survives even when external order and role distinguishability are lost.
-
-This gives a precise positive answer to the branch question about Carrier-Erasure, under an explicit "pure erasure" hypothesis.
-
-### 5. Nesting is reconstructible without divisibility
-
-The one-step nontrivial nesting relation is reconstructible from the typed full operation graph, or equivalently from labeled left/right translations plus `U`. No ordinary divisibility predicate is required.
-
-However coarse unlabeled translation summaries such as domain cardinalities do not suffice in general.
-
-### 6. Classical primes are one acyclic special case
-
-In
+The reverse inclusion has an exact criterion:
 
 \[
-(\mathbb Z_{>0},\{\cdot\},\{1\}),
+\boxed{
+\operatorname{Atom}=\operatorname{MinNest}
+\iff
+\text{every minimal SCC is an edge-free singleton}.
+}
 \]
 
-bilateral U-atoms are exactly ordinary prime numbers. The familiar collapse of atomicity, irreducibility, and divisibility-minimality is explained by extra unit behavior and well-foundedness/acyclicity, not by the abstract definition alone.
+This supersedes the earlier emphasis on global acyclicity. Acyclicity is sufficient but not necessary; cycles strictly above the minimal condensation layer do not affect atom/minimal equality.
 
-## Separation examples already constructed
+Thus the sharpened branch thesis is
 
-The branch now contains explicit finite witnesses showing:
+\[
+\boxed{
+\text{atomicity = local zero-incoming composition boundary,}
+}
+\]
 
-- same carrier, same `U`, different allowed cells -> same point atomic in one sandbox and composite in another;
-- indecomposable need not be isolated;
-- U-atomic need not be indecomposable;
-- left- and right-atomicity can diverge;
-- U-atomic need not be U-irreducible when `U` is merely declared trivial rather than unit-like;
-- minimal nesting SCC need not contain any atom;
-- terminal value recoloring can change rigidity while preserving active atomicity;
-- coarse translation-count data do not determine atom classes;
-- terminal results cannot be promoted to factors unless the signature explicitly admits them as arguments.
+while
 
-## Current claim ceiling
+\[
+\boxed{
+\text{minimal SCC layer = global nesting boundary.}
+}
+\]
 
-These results concern finite or abstract typed partial-composition sandboxes. They do **not** establish:
+## 2. Well-founded rank theorem
+
+If the factor relation `triangleleft` is well-founded, the standard well-founded recursion gives
+
+\[
+\rho(x)=\sup\{\rho(y)+1:y\triangleleft x\}.
+\]
+
+Then
+
+\[
+\boxed{x\text{ is a U-atom}\iff\rho(x)=0.}
+\]
+
+Every factor edge strictly raises ordinal rank.
+
+This is the correct infinite replacement for the finite-DAG statement. The ordinal rank theorem itself is classical set theory and is not a novelty claim; the branch contribution is its application to admissible-composition nesting.
+
+## 3. `U`-irreducibility required a firewall
+
+The first package used the word `U`-irreducible too freely. In an arbitrary sandbox, membership in `U` does not supply a unit law.
+
+The repaired unconditional notion is **U-transport-irreducible**. The shorthand **U-irreducible** is allowed only under a declared U-coherence contract:
+
+1. two U-factors cannot produce a nontrivial target result;
+2. every one-U-factor decomposition has its non-U cofactor in the same U-transport class as the result.
+
+Under these hypotheses,
+
+\[
+\boxed{U\text{-atom}\iff U\text{-transport-irreducible}.}
+\]
+
+This repair prevents ordinary monoid intuition from being imported by terminology alone.
+
+## 4. Pure erasure and quotient identification separate sharply
+
+Pure carrier erasure keeps all operation cells fixed and therefore preserves isolation, atomicity, nesting SCCs and well-founded rank exactly.
+
+A genuine quotient
+
+\[
+q:X\twoheadrightarrow\bar X
+\]
+
+is different. It can alter atomicity through carrier identification.
+
+With
+
+\[
+\bar U=q(U)
+\]
+
+and the **triviality-reflection** condition
+
+\[
+q^{-1}(\bar U)=U,
+\]
+
+one obtains the sharp quotient formula
+
+\[
+\boxed{
+q(x)\in\operatorname{Atom}(\bar{\mathfrak S},\bar U)
+\iff
+q^{-1}(q(x))\subseteq\operatorname{Atom}(\mathfrak S,U).
+}
+\]
+
+Hence quotient atomhood becomes a fiberwise universal property.
+
+Two distinct failure modes are now explicit:
+
+- **result-fiber contamination:** an atom can become composite when identified with a composite result;
+- **triviality collapse:** if triviality reflection fails, a composite can become atomic because a nontrivial factor collapses into the quotient trivial class.
+
+This is a substantially stronger answer to the original Carrier-Erasure question than the pure-erasure theorem alone.
+
+## 5. Ordinary quotienting does not preserve nesting rank
+
+An ordinary partial-algebra congruence quotient may turn an acyclic factor graph into one with a self-loop. Therefore no general quotient theorem for well-foundedness or ordinal factor rank is claimed.
+
+A future theorem would require a stronger quotient notion, likely one that reflects definedness/factor incidence strongly enough to prevent new quotient cycles. This is an open obligation, not a hidden assumption.
+
+## 6. Atomicity monotonicity survives the audit
+
+For fixed carrier, typing and `U`, if sandbox `S1` is a restriction of `S2`, then
+
+\[
+\boxed{
+\operatorname{Atom}(S_2,U)
+\subseteq
+\operatorname{Atom}(S_1,U).
+}
+\]
+
+Expanding admissible composition can only destroy atoms; restricting it can only create them.
+
+## 7. Rigidity memory remains orthogonal to active atomicity
+
+If two sandboxes differ only in terminal-output value-fiber partition while active-result cells are unchanged, their active atomicity classes coincide.
+
+Thus G3-style value-fiber rigidity and this branch's composition-boundary atomicity remain distinct structural coordinates.
+
+## 8. Additional hostile-audit repairs
+
+- the factor graph must use every legal nontrivial factor in `X\U`, not only a historically active subset;
+- the left/right reversal theorem requires a side-reversing **anti-automorphism**, not an ordinary automorphism;
+- pure erasure preserves isolation too, because isolation was defined solely by operation-cell incidence.
+
+## 9. Current claim ceiling
+
+The branch establishes an abstract theory of decomposition witnesses and nesting for typed partial-composition sandboxes. It does **not** establish:
 
 - unique factorization;
-- existence of atomic decompositions for every element;
-- a canonical notion of `U` across arbitrary signatures;
-- any equivalence with ordinary divisibility outside the classical multiplicative sandbox;
-- any new result about the published M0-G1-G2 chain itself;
-- any validation of G4, whose main-line hostile audit remains separate.
+- atomic decomposition existence for every element;
+- a canonical `U` for arbitrary signatures;
+- preservation of well-founded rank by arbitrary quotients;
+- classical divisibility outside the integer multiplication sandbox;
+- novelty of ordinal rank or general partial-algebra quotient theory;
+- any revision of M0-G1-G2 or validation of G4.
 
-## Recommendation to main scientific director
+## 10. Upstream recommendation
 
-The strongest candidate for integration into central FCOA memory is not the philosophical phrase "primes are boundary points", but the theorem-level pair:
+The theorem-level material now worth central consideration is:
 
 1. **Sandbox Monotonicity of Atomicity**;
-2. **Acyclic Boundary Theorem:** atoms coincide with nesting-minimal points exactly under an acyclicity/well-foundedness hypothesis, while cycles force minimal SCCs as the correct global boundary object.
+2. **Exact Minimal-SCC Boundary Theorem**;
+3. **Well-Founded Factor Rank Corollary**;
+4. **Terminal Value-Fiber Invariance of Active Atomicity**;
+5. **Triviality-Reflecting Quotient Fiber Criterion**.
 
-A second useful integration result is **Terminal Value-Fiber Invariance of Active Atomicity**, because it orthogonalizes this branch from G3/G4 rigidity amplification.
+The most important conceptual change is that the phrase
 
-No publication threshold is claimed yet. The next research task should be a hostile audit of the definitions, especially `U`-irreducibility, quotient/erasure behavior, and the exact hypotheses needed to replace finite acyclicity by a well-founded rank theorem.
+\[
+\text{“atomicity is a boundary state of composition”}
+\]
+
+can now be made exact without arithmetic:
+
+\[
+\boxed{
+\text{atom}=\text{local boundary};\qquad
+\text{minimal SCC}=\text{global boundary};\qquad
+\text{rank }0=\text{well-founded boundary}.
+}
+\]
+
+## 11. Publication status
+
+The hostile audit materially improved the theory, but publication is **not yet declared ready**. One focused obligation remains scientifically important before publication hardening:
+
+> characterize a strong quotient / composition-reflection condition under which factor well-foundedness and ordinal rank descend safely.
+
+That is now the highest-value next mathematical strike; repeatedly elaborating finite atomicity examples would add less.
