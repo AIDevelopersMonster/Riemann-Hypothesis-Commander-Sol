@@ -2,17 +2,18 @@
 
 **To:** main Commander Sol scientific director  
 **From:** FCOA — SOL-INFINITY scientific supervisor  
-**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier + primitive subquadratic theorem + provenance audit R1  
+**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier + primitive subquadratic theorem + provenance audit R1 + sparse-marker compression  
 **Audit:** `HOSTILE_AUDIT_R1.md`  
 **Sparse threshold:** `SPARSE_MEMORY_THRESHOLD.md`  
 **Order-only density theorem:** `ORDER_ONLY_QUADRATIC_BARRIER.md`  
 **Primitive subquadratic theorem:** `SUBQUADRATIC_PRIMITIVE_SKELETON.md`  
 **Provenance audit:** `PROVENANCE_AUDIT_R1.md`  
-**Best certified primitive candidate:** `EXPONENTIAL_NESTED_TAIL.md`
+**Dense-tail candidate:** `EXPONENTIAL_NESTED_TAIL.md`  
+**Sparse-marker theorem:** `SPARSE_MARKER_LADDER.md`
 
 ## Executive result
 
-The infinite branch now separates six independent coordinates:
+The infinite branch now separates seven independent coordinates:
 
 \[
 \boxed{
@@ -26,31 +27,14 @@ The infinite branch now separates six independent coordinates:
 \quad
 \text{source safety vs internal arithmetic leakage},
 \quad
-\text{source-class complexity vs memory density}.}
+\text{source-class complexity vs memory density},
+\quad
+\text{global nonlocality vs finite-window density}.}
 \]
 
-For the canonical infinite G2 ray
+For the canonical infinite G2 ray, directed successor is uniformly FO-recoverable and the carrier is rigid, but full strict order is not FO-definable. The hostile-audited EF/locality proof survives unchanged.
 
-\[
-P_2\to P_3\to P_4\to\cdots,
-\]
-
-directed successor is uniformly FO-recoverable from operation definedness and the carrier is rigid, but the full strict transitive order is not first-order definable.
-
-Thus the primary boundary theorem remains
-
-\[
-\boxed{
-\operatorname{Aut}=1
-\quad+\quad
-\text{uniform FO successor recovery}
-\quad\not\Rightarrow\quad
-\text{FO full-order recovery}.}
-\]
-
-This has been checked by an independent EF/locality proof.
-
-## Fixed branch results before provenance audit
+## Fixed branch results
 
 1. G2 infinity remembers successor locally but not full order in FO.
 2. Full M0+G2 decoration does not secretly add order.
@@ -58,103 +42,56 @@ This has been checked by an independent EF/locality proof.
 4. Finite unary/local memory remains insufficient.
 5. Finite-apex locally finite active memory cannot FO-define an infinite linear order.
 6. For binary finite-output FCOA, FO full order requires an infinite active nonlocal core.
-7. In the order-only binary class, every basic relation has density either \(O(N)\) or \(\Theta(N^2)\); hence FO order forces quadratic density.
-8. Primitive non-order nested-tail memory can beat the quadratic barrier while preserving nondefinability of ordinary \(+\) and \(\times\).
+7. In the order-only binary class, FO full order forces quadratic pair density.
+8. Primitive non-order nested-tail memory beats the quadratic barrier without FO ordinary addition or multiplication.
+9. The index-blind D0L provenance gate is a defensible source-safety policy.
+10. The exponential dense-tail construction achieves \(\Theta(N\log N)\) and is optimal only within the D0L **nested-tail** architecture.
+11. Sparse marker geometry beats that density by moving separating witnesses far out in the carrier.
 
-## Result 11 — Primitive Subquadratic Skeleton
+## Result 15 — Sparse Marker Ladder
 
-For any strictly increasing cofinal jump map \(f\), define
-
-\[
-R_f(Q_n,Q_m)\iff m\ge f(n).
-\]
-
-Then row inclusion gives the full carrier order:
+Let
 
 \[
-Q_n<Q_k
-\iff
-N_f(k)\subsetneq N_f(n).
+M_n=\{Q_{2^j}:j\ge n\}
 \]
 
-The jump map itself is FO-recoverable as the least point in each row.
-
-The earlier exact witness used
+and define one binary relation
 
 \[
-f(n)=(n+1)^2
+\boxed{R_1(Q_n,Q_m)\iff Q_m\in M_n.}
 \]
 
-and obtained
+The rows satisfy
 
 \[
-C(N)=\frac23N^{3/2}+O(N).
+M_0\supsetneq M_1\supsetneq M_2\supsetneq\cdots
 \]
 
-This already proved logical existence of subquadratic FO-order memory without FO ordinary addition or multiplication.
-
-## Result 12 — Provenance audit repairs the source-safety criterion
-
-The hostile provenance audit rejects two naive policies:
-
-- “finite program = safe” is too weak, because finite programs can compute arbitrary arithmetic;
-- “not arithmetically definable” is too strong, because effective combinatorial skeletons are arithmetically representable in sufficiently rich arithmetic.
-
-The branch therefore adopts a conservative certified source class:
-
-### Index-blind D0L source gate
-
-A threshold sequence is source-certified when
+with
 
 \[
-g(n)=|\sigma^n(w)|
+M_n\setminus M_{n+1}=\{Q_{2^n}\}.
 \]
 
-for a fixed finite alphabet, fixed seed word, and fixed deterministic morphism \(\sigma\) whose letter-replacement rules do not inspect the stage number, carrier indices, counters, parity, divisibility, BIT, addition, multiplication, or other numerical predicates.
-
-This is materially stronger than a generic finite-program gate because D0L systems are a highly restricted parallel-rewriting formalism with tightly constrained growth functions.
-
-Under this declared gate, the previous quadratic substitution passes provenance audit.
-
-## Result 13 — Exponential Nested Tail: best certified primitive candidate
-
-A much simpler D0L source improves the memory density:
-
-\[
-\boxed{A\mapsto AA.}
-\]
-
-With seed \(A\),
-
-\[
-|\sigma^n(A)|=2^n.
-\]
-
-Define
+Hence full carrier order is FO-definable by strict row inclusion:
 
 \[
 \boxed{
-R_{\exp}(Q_n,Q_m)
-\iff
-m\ge2^n.
-}
-\]
-
-The closed form \(2^n\) is used only to describe the proved growth law; the primitive generator is the index-blind duplication morphism.
-
-### FO recovery of order
-
-Rows are strictly nested, so
-
-\[
 Q_n<Q_k
 \iff
-N(k)\subsetneq N(n).
+M_k\subsetneq M_n.}
 \]
 
-Hence full carrier order is FO-definable.
+Once order is recovered, the unique marker removed between consecutive rows is also FO-definable, so the unary marker map
 
-### Exact memory density
+\[
+n\mapsto 2^n
+\]
+
+is internally recovered.
+
+### Visible memory cost
 
 Let
 
@@ -162,141 +99,208 @@ Let
 L=\lfloor\log_2N\rfloor.
 \]
 
-Then
+Only markers
 
 \[
-C(N)=\sum_{n=0}^{L}(N-2^n+1)
+2^0,2^1,\ldots,2^L
 \]
 
-and therefore
+appear in the initial window \([0,N]^2\). Marker \(2^j\) belongs to exactly \(j+1\) rows. Therefore
 
 \[
-\boxed{
-C(N)=N\log_2N+O(N)=\Theta(N\log N).
-}
+C_1(N)=\sum_{j=0}^L(j+1)
+=\frac{(L+1)(L+2)}2,
 \]
 
-This is the first source-certified nearly linear candidate in the branch.
-
-### Arithmetic leakage status
-
-The structure is FO-interdefinable with
+so
 
 \[
-(\mathbb N,<,2^x).
+\boxed{C_1(N)=\Theta((\log N)^2).}
 \]
 
-Published model-theoretic work gives decidability/quantifier-elimination analysis for this structure and, in particular, rules out definability of parity. Therefore ordinary addition cannot be FO-definable, since addition would define parity by
+Thus initial-window incidence count can be subpolynomial while FO still recovers the entire infinite order.
+
+### No contradiction with the Sparse Memory Threshold
+
+Every row is globally infinite. Hence every source point has infinite Gaifman degree and
 
 \[
-\operatorname{Even}(x)\iff\exists y(y+y=x).
+H=G_\omega.
 \]
 
-Multiplication cannot be FO-definable either: discrete order gives successor, and Julia Robinson’s definability theorem would then recover addition from multiplication plus successor.
+The Infinite Nonlocal Core requirement is fully satisfied. The low finite-window count arises because most witnesses lie far beyond the current numerical window.
 
-Thus, subject to publication-hardening of the exact primary QE citation,
-
-\[
-\boxed{
-R_{\exp}\Rightarrow_{\rm FO}<,
-\qquad
-R_{\exp}\not\Rightarrow_{\rm FO}+,
-\qquad
-R_{\exp}\not\Rightarrow_{\rm FO}\times.
-}
-\]
-
-Current status:
+Therefore:
 
 \[
 \boxed{
-\text{SOURCE GATE: PASS},
-\qquad
-\text{INTERNAL LEAKAGE: PASS with one external citation-hardening obligation}.}
+\text{global nonlocality}
+\not\asymp
+\text{finite-window tuple density}.}
 \]
 
-## Result 14 — D0L nested-tail optimality
+This is now a fixed architectural lesson of the infinite branch.
+
+## Result 16 — Arithmetic leakage remains absent
+
+The marker relation is FO-definable in
+
+\[
+\mathcal E=(\mathbb N,<,e),
+\qquad e(n)=2^n,
+\]
+
+by
+
+\[
+R_1(n,m)\iff\exists j\,(n\le j\wedge e(j)=m).
+\]
+
+Thus the sparse-marker structure is an FO reduct of the same exponential order structure used for the dense-tail candidate.
+
+The branch isolates one external model-theoretic dependency: the unary quantifier-elimination/normal-form analysis for \((\mathbb N,<,2^x)\), which implies parity is not FO-definable. The branch reproduces the parity consequence directly from the stated normal form: on a long interval strictly between consecutive powers of two, every one-variable formula stabilizes, while parity alternates.
+
+Hence ordinary addition is not FO-definable, because addition would define parity by
+
+\[
+\operatorname{Even}(x)\iff\exists y\,\operatorname{Add}(y,y,x).
+\]
+
+Multiplication is also not FO-definable: discrete order gives successor, and Julia Robinson's theorem would then recover addition from multiplication plus successor.
+
+Therefore
+
+\[
+\boxed{
+R_1\Rightarrow_{\rm FO}<,
+\qquad
+R_1\not\Rightarrow_{\rm FO}+,
+\qquad
+R_1\not\Rightarrow_{\rm FO}\times.}
+\]
+
+Publication hardening must still replace the current expert-source QE anchor with the strongest available primary theorem citation or reproduce the required unary normal-form proof self-contained.
+
+## Result 17 — Fixed-depth marker cascades
+
+For fixed \(k\ge1\), define
+
+\[
+E_1(n)=2^n,
+\qquad
+E_{k+1}(n)=2^{E_k(n)},
+\]
+
+and the marker ladder
+
+\[
+R_k(Q_n,Q_m)
+\iff
+\exists j\ge n\;(m=E_k(j)).
+\]
+
+Every fixed \(E_k\) is FO-definable in \((\mathbb N,<,2^x)\), so every \(R_k\) is an FO reduct of the same arithmetic-safe ambient structure. Thus full order is FO-recoverable and ordinary \(+\), \(\times\) remain FO-undefinable.
 
 Let
 
 \[
-g(n)=|\sigma^n(w)|
+J_k(N)=\max\{j:E_k(j)\le N\}.
 \]
 
-be an unbounded strictly increasing D0L growth function and use the nested-tail relation
+Then
 
 \[
-R_g(n,m)\iff m\ge g(n).
+J_k(N)=\log_2^{(k)}N+O(1),
 \]
 
-If
+and
 
 \[
-B=\max_a|\sigma(a)|,
+C_k(N)=\sum_{j=0}^{J_k(N)}(j+1).
 \]
 
-then
-
-\[
-g(n)\le |w|B^n.
-\]
-
-Therefore at least \(c\log N\) initial rows have threshold at most \(\sqrt N\), and each contributes at least \(N-\sqrt N\) incidences inside the first \(N\) columns. Hence
+Therefore
 
 \[
 \boxed{
-C(N)=\Omega(N\log N).
+C_k(N)=\Theta\left((\log^{(k)}N)^2\right).}
+\]
+
+So no lower bound at any fixed finite level of the iterated-log hierarchy can be universal across the finite-depth cascade family.
+
+Source status:
+
+- \(k=1\): PASS under the audited D0L gate;
+- fixed \(k>1\): PASS under a declared finite-depth D0L-cascade gate, with independent provenance audit required before publication promotion.
+
+## Consequence: density is no longer the right infinite-memory invariant
+
+The previous density ladder
+
+\[
+N^2\to N^{3/2}\to N\log N
+\]
+
+was misleading as a candidate universal cost hierarchy. Sparse marker geometry gives instead
+
+\[
+\boxed{
+N^2
+\to
+N\log N
+\to
+(\log N)^2
+\to
+(\log\log N)^2
+\to
+\cdots
 }
 \]
 
-The duplication morphism attains \(\Theta(N\log N)\). Therefore:
+while preserving the same three logical properties:
 
 \[
 \boxed{
-\Theta(N\log N)
-\text{ is asymptotically optimal inside the D0L-provenance nested-tail class}.}
+\text{same carrier},
+\qquad
+\text{FO full order},
+\qquad
+\text{no FO }+\text{ or }\times.}
 \]
 
-This density theorem is internal to the branch and does not depend on the external arithmetic-leakage citation.
-
-## Architectural picture after provenance audit
-
-The memory ladder is now:
+The invariant that has survived every compression is not finite-window tuple count but:
 
 \[
 \boxed{
-\begin{array}{c}
-\text{G2 local successor: }\Theta(N),\ \text{no FO order}\\
-\Downarrow\\
-\text{finite-apex locally finite: no FO order}\\
-\Downarrow\\
-\text{order-only global binary memory: }\Theta(N^2)\text{ required}\\
-\Downarrow\\
-\text{primitive non-order D0L nested tails: }\Theta(N\log N)\\
-\text{FO order, no FO ordinary }+\text{ or }\times.
-\end{array}}
+\text{an infinite nonlocal core carrying a globally nested comparison code}.}
 \]
 
-Thus the original open question has a positive answer with a much stronger density than the first quadratic-growth witness.
+A better quantitative invariant must penalize how far out the separating witnesses are moved.
+
+Natural next candidates are:
+
+- first separating-witness scale for the first \(n\) rows;
+- witness displacement / escape rate;
+- nested-neighborhood chain rank;
+- FO comparison depth versus witness scale.
 
 ## Recommendation to main director
 
-The following may now be treated as fixed branch mathematics:
+The Sparse Marker Ladder should be treated as the new leading theorem candidate of the density subdirection. It supersedes \(\Theta(N\log N)\) as the best known finite-window compression and shows that the earlier D0L lower bound was architecture-specific, not global.
+
+The following remain strong fixed branch mathematics:
 
 - G2 infinite FO boundary;
 - hostile-audited EF/locality proof;
 - Sparse Memory Threshold;
 - Order-Only Quadratic Barrier;
-- logical existence of arithmetic-safe subquadratic primitive order memory;
-- repaired D0L provenance gate;
-- \(\Theta(N\log N)\) D0L nested-tail upper/lower bound.
+- primitive non-order arithmetic-safe order memory;
+- source/internal-leakage gate separation;
+- sparse-marker order recovery with \(\Theta((\log N)^2)\) visible incidences;
+- fixed-depth iterated-log marker cascade family.
 
-One obligation remains before publication-hardening the exponential candidate as a theorem package:
+The next problem is no longer simply “beat \(N\log N\)”. It is:
 
-> pin down the exact primary-source quantifier-elimination/decidability theorem for \((\mathbb N,<,2^x)\) and reproduce the parity-nondefinability consequence at publication-proof level.
+> define and prove the right representation-robust memory-cost invariant for infinite FCOA, then determine whether a single fixed source-safe construction can achieve \(\log^*N\)-scale marker visibility or slower without leaking ordinary arithmetic.
 
-After that, the natural next frontier is no longer “does a sparse safe skeleton exist?” It is:
-
-> can a comparably principled non-universal primitive source class beat the D0L floor \(N\log N\) while still passing the internal no-addition/no-multiplication leakage gate?
-
-Do not merge any infinite result into finite G4. No finite G4 theorem status is changed by this memo.
+No finite G4 theorem status is changed by this memo.
