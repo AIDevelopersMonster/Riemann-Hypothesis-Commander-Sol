@@ -2,13 +2,14 @@
 
 **To:** main Commander Sol scientific director  
 **From:** FCOA — SOL-INFINITY scientific supervisor  
-**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold  
+**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier  
 **Audit:** `HOSTILE_AUDIT_R1.md`  
-**Sparse threshold:** `SPARSE_MEMORY_THRESHOLD.md`
+**Sparse threshold:** `SPARSE_MEMORY_THRESHOLD.md`  
+**Order-only density theorem:** `ORDER_ONLY_QUADRATIC_BARRIER.md`
 
 ## Executive result
 
-The infinite branch now separates three independent coordinates:
+The infinite branch now separates four independent coordinates:
 
 \[
 \boxed{
@@ -16,7 +17,9 @@ The infinite branch now separates three independent coordinates:
 \qquad
 \text{domain vs value-fiber memory},
 \qquad
-\text{local finiteness vs infinite nonlocal core}.}
+\text{local finiteness vs infinite nonlocal core},
+\qquad
+\text{order-only geometry vs primitive non-order global skeleton}.}
 \]
 
 For the canonical infinite G2 ray
@@ -160,8 +163,6 @@ The correct minimality statement is
 |O|_{\min}=2\text{ for orientation carried only in values with complete domain}.}
 \]
 
-The earlier two-output claim is retained only with this complete-domain qualification.
-
 ## Result 7 — finite/infinite non-transfer
 
 Finite G4-C retains reversal together with
@@ -190,25 +191,15 @@ Therefore, for these canonical constructions,
 
 ## Result 9 — Sparse Memory Threshold
 
-The sparse-memory investigation produces a stronger necessary condition than bounded degree.
-
-### Finite-Apex Locality Barrier
-
 For a finite-signature structure, remove a finite set of boundary/terminal apex elements but retain every relation they induce on the remaining active carrier via the finite trace structure. If this trace structure is locally finite, then no FO formula defines a strict linear order on the infinite target domain.
 
-Thus even degrees that grow without bound are insufficient if every active point still has only finitely many active interaction partners.
-
-### Binary FCOA consequence
-
-For finitely many binary finite-output FCOA layers, let \(\Gamma\) be the active interaction graph on the generic carrier. If
+For finitely many binary finite-output FCOA layers, if
 
 \[
 H=\{x:\deg_\Gamma(x)=\infty\}
 \]
 
-is finite, then add those finitely many hubs to the finite apex set. The residual trace becomes locally finite, so FO order is impossible.
-
-Therefore:
+is finite, then after tracing out those finitely many hubs the residual active structure is locally finite. Therefore
 
 \[
 \boxed{
@@ -217,46 +208,64 @@ Therefore:
 |H|=\infty.}
 \]
 
-In words:
+So finitely many universal hubs are not enough; crossing the FO boundary requires an **infinite active nonlocal core**.
 
-> finitely many universal hubs are not enough; crossing the FO boundary requires an **infinite active nonlocal core**.
+## Result 10 — Order-Only Quadratic Barrier
 
-This places existing mechanisms exactly:
+The sparse-memory search is now closed for the natural **order-only** admissibility class.
 
-- G2∞: no infinite-degree active points, so order impossible;
-- local G3∞: same obstruction;
-- complete order-in-domain: every generic point is nonlocal, so the obstruction is crossed;
-- complete two-value comparison: every generic point is nonlocal, so the obstruction is crossed.
+Formalize “no imported arithmetic on external indices” conservatively by requiring every new binary domain/value-fiber relation to be FO-definable in the pure external discrete order \((G_\omega,<)\) with only finitely many boundary parameters.
 
-The theorem is necessary, not sufficient.
-
-### Why raw cell count is not the threshold
-
-Tuple count is representation-dependent. Reification can turn dense order into sparse incidence by adding infinitely many pair-witness elements. Conversely, BIT-style coding uses only about \(N\log N\) true incidences on the first \(N\) numbers yet supports FO recovery of order and, classically, addition and multiplication as well.
-
-So the meaningful coordinates are
+For any such binary relation \(R(x,y)\), quantifier elimination for the discrete order gives a tail dichotomy:
 
 \[
 \boxed{
-\text{nonlocality cost}
-\qquad\text{and}\qquad
-\text{arithmetic leakage}.}
+|R\cap[N]^2|=O(N)
+\quad\text{or}\quad
+|R\cap[N]^2|=\Theta(N^2).
+}
 \]
 
-The new open problem is therefore sharply stated:
+There is no genuinely intermediate binary density such as \(N\log N\) or \(N^{3/2}\) inside this order-only class. If all finitely many basic memory relations are in the linear regime, their finite union is finite-apex locally finite, so the Sparse Memory Threshold forbids FO order.
 
-> Find, or rule out, a direct finite-signature FCOA enrichment on the same generic carrier with an infinite but structurally sparse nonlocal core, FO-definable full order, and provably no FO definition of ordinary addition or multiplication.
+Therefore:
+
+\[
+\boxed{
+\text{order-only binary finite-output FCOA}
++\text{ FO full-order recovery}
+\Longrightarrow
+\Theta(N^2)\text{ generic interaction cells}.}
+\]
+
+This makes the complete order-in-domain and complete two-value comparison constructions **asymptotically optimal** in the order-only binary class.
+
+The result also clarifies the remaining search space: any genuine subquadratic candidate must introduce a primitive global skeleton that is not FO-generated from pure order. Such a skeleton is not automatically arithmetic, but it requires a separate source/admissibility audit and a separate Arithmetic Leakage audit.
+
+## Calibration result — sparse arithmetic-derived thresholds exist, but are inadmissible as direct FCOA constructions
+
+As a mathematical benchmark, a threshold relation of the form
+
+\[
+R_f(x,y)\iff f(x)\le y
+\]
+
+can compress pairwise comparison if one imports a rapidly growing external function \(f\). For example, using \(f(x)=x^2\) produces only \(\Theta(N^{3/2})\) true pairs on an initial segment while allowing order to be recovered through first-order comparison of threshold fibers.
+
+Classical work of Semenov shows that adding such a function to pure order can remain decidable while adding it to Presburger arithmetic can make the theory undecidable; hence multiplication (and in the relevant formulations addition together with the function) is not simply forced by the ordered expansion. This is useful calibration, not an admissible FCOA construction: the square function itself was imported from external arithmetic and therefore violates the branch's source discipline.
 
 ## Corrected architectural principle
 
 The branch now supports the following candidate principle for the main line:
 
-> **Infinite FCOA Memory Boundary.** Local successor information can be fully compiled into operation definedness and can rigidify an infinite carrier without making its transitive global order first-order definable. Finite unary/local memory and, more generally, finite-apex locally-finite active memory do not remove this obstruction. In the binary finite-output setting, FO recovery of full order requires infinitely many genuinely nonlocal active locations. Global order can then enter through domain memory or value-fiber memory without necessarily reconstructing ordinary arithmetic.
+> **Infinite FCOA Memory Boundary.** Local successor information can be fully compiled into operation definedness and can rigidify an infinite carrier without making its transitive global order first-order definable. Finite unary/local memory and, more generally, finite-apex locally-finite active memory do not remove this obstruction. In binary finite-output FCOA, FO recovery of full order requires infinitely many genuinely nonlocal active locations. If the new binary geometry is compiled only from the pure external order, then an even stronger barrier holds: quadratic pair density is asymptotically unavoidable. Any subquadratic solution must therefore import a new primitive global skeleton and undergo a separate arithmetic-leakage audit.
 
 ## Recommendation to main director
 
-The G2 infinite boundary, the hostile-audited EF/locality proof, and the Sparse Memory Threshold are strong enough to be treated as fixed branch results.
+The G2 infinite boundary, hostile-audited EF/locality proof, Sparse Memory Threshold, and Order-Only Quadratic Barrier are strong enough to be treated as fixed branch results.
 
-The exact shape of the weakest arithmetic-safe infinite nonlocal core remains open and is now the natural next target.
+The order-only sparse-memory problem is now asymptotically closed. The remaining open problem is narrower and more interesting:
+
+> find, or rule out, a natural primitive non-order global skeleton on the same carrier with subquadratic incidence, FO-definable full order, and provably no FO definition of ordinary addition or multiplication.
 
 Do not merge any of these results into the finite G4 checkpoint. No finite G4 theorem status is changed by this memo.
