@@ -1,0 +1,497 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=1in}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.2em}
+
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\newtheorem{lemma}[theorem]{Лемма}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\newtheorem{example}[theorem]{Пример}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+
+\newcommand{\Sbx}{\mathfrak S}
+\newcommand{\Atom}{\operatorname{Atom}}
+\newcommand{\Dec}{\operatorname{Dec}}
+\newcommand{\MinNest}{\operatorname{MinNest}}
+\newcommand{\SCC}{\operatorname{SCC}}
+
+\title{Размышлизмы о sandbox-атомарности с Commander Sol:\\границы композиции, ранг вложенности и безопасные факторизации носителя}
+\author{Alex Malachevsky\\\small ORCID: 0009-0008-6009-3196}
+\date{28 августа 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Об атомарности часто говорят так, будто это внутреннее свойство самого элемента. Для частичной, типизированной и, вообще говоря, некоммутативной системы композиций такой вопрос не имеет определённого смысла, пока не заданы допустимые композиции и класс тривиальных факторов. Мы формализуем \emph{composition sandbox} \(\Sbx=(X,\Omega,U)\), определяем левую, правую и двустороннюю атомарность через входящие свидетели частичных операций и извлекаем индуцированное нетривиальное фактор-отношение. Двусторонний \(U\)-атом в точности является точкой с нулевой входящей степенью в этом отношении. Затем мы отделяем локальную границу атомарности от глобальной границы preorder вложенности. Точный критерий имеет графовый характер: атомы совпадают со всеми nesting-минимальными элементами тогда и только тогда, когда каждая минимальная сильно связная компонента является одноточечной и не содержит внутреннего ребра. В well-founded случае фактор-отношение несёт стандартный ординальный ранг, а атомы в точности являются точками ранга ноль.
+
+Далее мы различаем чистое стирание внешней структуры и настоящее отождествление элементов носителя. Pure erasure сохраняет атомарность, если таблицы частичных операций, типизация и \(U\) не меняются. Обычный quotient частичной алгебры атомарность сохранять не обязан: он может уничтожить атом, слив его result-fiber с составным представителем, и может создать атом, поглотив нетривиальный фактор в quotient-класс тривиальных элементов. При triviality reflection атомарность quotient-класса становится универсальным свойством всего result-fiber. Наконец, после перехода к фактор-отношению стандартное forth/back-условие bounded morphism даёт прозрачный достаточный контракт точного сохранения well-founded factor rank и атомарности. Мы не заявляем новизну частичных алгебр, ординальных рангов, bounded morphisms или transfer homomorphisms по отдельности; вклад состоит в собранной FCOA-картине композиционной границы и строгом разделении локальной атомарности, глобальной вложенности, стирания и геометрии, создаваемой quotient-отождествлением.
+\end{abstract}
+
+\section{Мотивация и границы утверждений}
+
+Исходный принцип имеет смысл только в точной форме:
+\begin{equation}
+\boxed{\text{атомарность относительна к заданному sandbox допустимых композиций}.}
+\label{eq:thesis}
+\end{equation}
+Поэтому слово «простое» в этой работе оставляется классическому арифметическому примеру и не используется как определение общего понятия.
+
+Работа продолжает программу FCOA, начатую в \cite{MalachevskyFCOA2026}, где были разделены значения операций, геометрия definedness, внешняя жёсткость и внутренняя восстанавливаемая память. Здесь изучается другой слой структуры: допустимое разложение и вложенность. Настоящая статья не пересматривает опубликованный checkpoint M0--G1--G2 и не использует недоказанные продолжения основной ветки.
+
+Несколько инструментов ниже являются классическими. Частичные алгебры и их конгруэнции давно изучаются \cite{Gratzer1979,GratzerWenzel1967}; ординальный ранг well-founded relations стандартен в теории множеств \cite{Jech2003}; bounded morphisms являются стандартными конструкциями реляционной и модальной логики \cite{BlackburnDeRijkeVenema2001}; transfer homomorphisms дают механизмы lifting факторизаций в классической теории факторизаций \cite{GeroldingerHalterKoch2006}. Наша задача не состоит в переименовании этих теорий. Нас интересует, что происходит после того, как само factor relation канонически извлекается из типизированного семейства частичных композиций и затем подвергается стиранию или quotient-отождествлению.
+
+\section{Composition sandbox}
+
+\begin{definition}[Sandbox композиции]
+\emph{Composition sandbox} — это тройка
+\begin{equation}
+\Sbx=(X,\Omega,U),
+\label{eq:sandbox}
+\end{equation}
+где \(X\) — носитель, \(\Omega\) — объявленное семейство частичных бинарных операций на соответствующих сортах, а \(U\subseteq X\) — объявленный класс тривиальных элементов или результатов. Типизация является частью сигнатуры. Элемент не становится допустимым фактором лишь потому, что принадлежит носителю: он должен реально допускаться в области определения некоторой операции.
+\end{definition}
+
+Для \(\omega\in\Omega\) обозначим её область определения через \(D_\omega\subseteq X\times X\). Ассоциативность, коммутативность, единицы, сокращение и замкнутость не предполагаются.
+
+\begin{definition}[Свидетели разложения]
+Для \(x\in X\) положим
+\begin{equation}
+\Dec_{\Sbx}(x)=\{(\omega,a,b):\omega\in\Omega,\ (a,b)\in D_\omega,\ \omega(a,b)=x\}.
+\label{eq:dec}
+\end{equation}
+Свидетель называется левосторонне нетривиальным, если \(a\notin U\), правосторонне нетривиальным, если \(b\notin U\), и двусторонне нетривиальным, если \(a,b\notin U\).
+\end{definition}
+
+Соответствующие множества обозначим \(\Dec_U^L(x)\), \(\Dec_U^R(x)\) и \(\Dec_U^{LR}(x)\).
+
+\begin{definition}[Направленная и двусторонняя атомарность]
+Объявленный целевой элемент \(x\notin U\) называется
+\begin{enumerate}[label=(\roman*)]
+\item левым \(U\)-атомом, если \(\Dec_U^L(x)=\varnothing\);
+\item правым \(U\)-атомом, если \(\Dec_U^R(x)=\varnothing\);
+\item двусторонним \(U\)-атомом, или просто \(U\)-атомом в этой статье, если
+\begin{equation}
+\Dec_U^{LR}(x)=\varnothing.
+\label{eq:atomdef}
+\end{equation}
+\end{enumerate}
+\end{definition}
+
+В частичном или некоммутативном sandbox эти понятия могут расходиться. Например, если \(U=\{u\}\), а единственная клетка имеет вид \(a\star u=x\), то \(x\) является правым \(U\)-атомом, но не левым.
+
+\begin{definition}[Изолированность и неразложимость]
+Элемент называется \emph{изолированным}, если он не встречается ни в одной допустимой клетке операции ни как аргумент, ни как результат. Он называется \emph{неразложимым}, если \(\Dec_{\Sbx}(x)=\varnothing\).
+\end{definition}
+
+Всегда
+\[
+\text{изолированный}\Longrightarrow\text{неразложимый}\Longrightarrow U\text{-атом},
+\]
+но обратные импликации в общем случае неверны.
+
+\section{Индуцированное нетривиальное factor relation}
+
+\begin{definition}[Фактор-отношение]
+На нетривиальной части носителя \(X\setminus U\) определим
+\begin{equation}
+y\triangleleft x
+\label{eq:factorrel}
+\end{equation}
+тогда и только тогда, когда существует двусторонне нетривиальный свидетель \(\omega(a,b)=x\), в котором \(y=a\) или \(y=b\).
+\end{definition}
+
+Отношение \(\triangleleft\) не обязано быть транзитивным или антисимметричным. Его рефлексивно-транзитивное замыкание является preorder; факторизация по взаимной достижимости даёт condensation poset сильно связных компонент.
+
+\begin{proposition}[Локальная графовая характеристика]
+Для каждого целевого \(x\notin U\)
+\begin{equation}
+\boxed{x\text{ является }U\text{-атомом}\iff x\text{ имеет входящую степень }0\text{ в }(X\setminus U,\triangleleft).}
+\label{eq:indegree}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Двусторонне нетривиальный свидетель существует в точности тогда, когда один из его нетривиальных факторов порождает входящее ребро \(\triangleleft\) в \(x\).
+\end{proof}
+
+\begin{theorem}[Монотонность по sandbox]
+Пусть \(\Sbx_1=(X,\Omega_1,U)\) и \(\Sbx_2=(X,\Omega_2,U)\) имеют одну и ту же типизацию, причём каждая допустимая клетка \(\Sbx_1\) является допустимой клеткой \(\Sbx_2\) с тем же значением. Тогда
+\begin{equation}
+\boxed{\Atom(\Sbx_2,U)\subseteq\Atom(\Sbx_1,U).}
+\label{eq:monotonicity}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Для каждого \(x\)
+\[
+\Dec^{LR}_{\Sbx_1,U}(x)\subseteq\Dec^{LR}_{\Sbx_2,U}(x).
+\]
+Поэтому атом более богатого sandbox остаётся атомом после ограничения семейства композиций.
+\end{proof}
+
+Иными словами, расширение допустимой композиции может уничтожать атомы, но не создавать их; ограничение композиции может создавать атомы, но не уничтожать уже существующие.
+
+\section{Локальная атомарность и глобальная граница вложенности}
+
+Обозначим через \(\SCC(x)\) сильно связную компоненту элемента \(x\) в factor graph. Элемент назовём \emph{nesting-минимальным}, если его SCC минимальна в condensation poset. Через \(\MinNest(\Sbx,U)\) обозначим объединение всех минимальных SCC.
+
+\begin{theorem}[Атом лежит на глобальной нижней границе]
+Для любого sandbox
+\begin{equation}
+\boxed{\Atom(\Sbx,U)\subseteq\MinNest(\Sbx,U).}
+\label{eq:atommin}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+У атома нет входящих рёбер. Следовательно, у него нет self-loop, он не может лежать в нетривиальной SCC, а его одноточечная SCC не имеет входящих рёбер из других компонент. Значит, эта компонента минимальна.
+\end{proof}
+
+Обратное утверждение в циклическом sandbox неверно.
+
+\begin{theorem}[Точный критерий минимальной SCC]
+\begin{equation}
+\boxed{
+\Atom(\Sbx,U)=\MinNest(\Sbx,U)
+\iff
+\text{каждая минимальная SCC одноточечна и не содержит внутреннего ребра}.}
+\label{eq:scccriterion}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Одноточечная минимальная SCC без внутреннего ребра не имеет ни внутреннего входящего ребра, ни входящего ребра из другой компоненты, поэтому её единственная точка атомарна. Наоборот, в любой нетривиальной strongly connected component каждая вершина имеет внутреннее входящее ребро. Одноточечная SCC с self-loop также имеет входящее ребро. Такие минимальные компоненты не содержат атомов.
+\end{proof}
+
+\begin{remark}
+Глобальная ацикличность достаточна, но не необходима для \eqref{eq:scccriterion}. Циклы, расположенные строго выше минимального condensation layer, не мешают совпадению локальной и глобальной границ.
+\end{remark}
+
+\begin{example}[Минимальная граница без атомов]
+Пусть \(U=\{u\}\) и
+\[
+a\star a=b,\qquad b\star b=a.
+\]
+Тогда \(\{a,b\}\) является минимальной SCC, но ни \(a\), ни \(b\) не атомарны.
+\end{example}
+
+Именно здесь впервые становится видно, почему фраза «атомы — минимальные элементы» требует ремонта: в общей системе частичных композиций глобальной нижней границей является минимальная SCC, а не обязательно отдельный атом.
+
+\section{Well-founded вложенность и ординальная глубина}
+
+\begin{theorem}[Фактор-ранг]
+Пусть \(\triangleleft\) well-founded. Тогда стандартная well-founded recursion задаёт единственный ординальный ранг
+\begin{equation}
+\rho(x)=\sup\{\rho(y)+1:y\triangleleft x\}.
+\label{eq:rank}
+\end{equation}
+Для каждого целевого элемента
+\begin{equation}
+\boxed{x\text{ является }U\text{-атомом}\iff\rho(x)=0.}
+\label{eq:rankzero}
+\end{equation}
+Кроме того,
+\[
+y\triangleleft x\Longrightarrow\rho(y)<\rho(x).
+\]
+\end{theorem}
+
+\begin{proof}
+Существование и единственность \eqref{eq:rank} являются стандартным фактом о well-founded relations \cite{Jech2003}. Ранг ноль эквивалентен отсутствию предшественников, а по Предложению~\ref{eq:indegree} это эквивалентно двусторонней \(U\)-атомарности.
+\end{proof}
+
+Finite DAG тем самым является только конечным частным случаем трансфинитной картины. При этом well-foundedness сильнее точного критерия \eqref{eq:scccriterion}: оно запрещает любые ориентированные циклы и бесконечные нисходящие цепи, тогда как совпадение atom/minimal ограничивает только нижний condensation layer.
+
+\section{Тривиальный transport и irreducibility}
+
+Сам факт объявления \(U\) тривиальным классом не делает его группой единиц. Поэтому unit-like поведение должно быть восстановлено из реально объявленных операций.
+
+Для нетривиальных элементов \(y,z\) пишем \(y\to_U z\), если существуют \(u\in U\) и допустимая операция, для которых
+\[
+\omega(u,y)=z
+\qquad\text{или}\qquad
+\omega(y,u)=z.
+\]
+Пусть \(\leadsto_U\) — рефлексивно-транзитивное замыкание, и
+\[
+y\asymp_U z
+\iff y\leadsto_U z\text{ и }z\leadsto_U y.
+\]
+
+\begin{definition}[Transport-неразложимость]
+Нетривиальный целевой элемент \(x\) называется \emph{\(U\)-transport-irreducible}, если каждый его decomposition witness имеет ровно один фактор в \(U\), а второй фактор \(U\)-ассоциирован с \(x\).
+\end{definition}
+
+\begin{definition}[\(U\)-coherence]
+Sandbox называется \emph{\(U\)-coherent на целевом сорте}, если
+\begin{enumerate}[label=(\roman*)]
+\item никакая клетка с двумя факторами из \(U\) не даёт нетривиальный целевой результат;
+\item в каждом разложении нетривиального целевого результата с одним фактором из \(U\) второй фактор \(U\)-ассоциирован с результатом.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Совпадение при coherence]
+При \(U\)-coherence
+\begin{equation}
+\boxed{x\text{ является }U\text{-атомом}\iff x\text{ является }U\text{-transport-irreducible}.}
+\label{eq:irreducible}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Если \(x\) атомарен, каждое его разложение содержит хотя бы один фактор из \(U\). Первое условие coherence запрещает два тривиальных фактора, второе делает оставшийся cofactor transport-ассоциированным с \(x\). В обратную сторону transport-irreducible элемент по определению не имеет разложения с двумя нетривиальными факторами.
+\end{proof}
+
+Следовательно, привычное отождествление «атом = irreducible» допустимо только после явного unit-like контракта.
+
+\section{Erasure и инвариантность terminal value fibers}
+
+\begin{theorem}[Инвариантность при pure erasure]
+Пусть erasure забывает только внешние имена, порядок или отношения, но сохраняет носитель, типизацию, \(U\), области определения и значения операций. Тогда изолированность, неразложимость, все направленные классы атомарности, factor relation, SCC и любой well-founded factor rank остаются неизменными.
+\end{theorem}
+
+\begin{proof}
+Все operation cells и все decomposition witnesses буквально остаются теми же.
+\end{proof}
+
+Таким образом, потеря внешнего порядка может резко увеличить группу автоморфизмов и при этом вообще не изменить композиционную границу.
+
+\begin{theorem}[Инвариантность terminal value fibers]
+Пусть два sandbox имеют один и тот же носитель, \(U\), области определения операций и один и тот же набор клеток, результаты которых лежат в выбранном atomicity-target sort. Они могут различаться только разбиением terminal-result cells по анонимным terminal outputs. Тогда их классы атомов на target sort совпадают.
+\end{theorem}
+
+\begin{proof}
+Атомарность \(x\) зависит только от двусторонне нетривиальных клеток с результатом \(x\). Переразбиение terminal-output fibers ни одной такой клетки не меняет.
+\end{proof}
+
+Это отделяет atomicity активного результата от value-fiber rigidity, изучавшейся в предыдущей линии FCOA \cite{MalachevskyFCOA2026}.
+
+\section{Обычный quotient может менять атомарность}
+
+Пусть
+\[
+q:X\twoheadrightarrow\bar X
+\]
+— sort-respecting congruence quotient, совместимый с частичными операциями и использующий existential representative semantics для quotient cells, а \(\bar U=q(U)\).
+
+\begin{theorem}[Точный quotient witness criterion]
+Класс \(q(x)\) неатомарен тогда и только тогда, когда существуют \(a,b,z\in X\) и \(\omega\in\Omega\), такие что
+\begin{equation}
+q(z)=q(x),\qquad \omega(a,b)=z,
+\qquad q(a),q(b)\notin\bar U.
+\label{eq:quotwitness}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Двусторонне нетривиальный quotient witness по определению quotient semantics представлен допустимой исходной клеткой, оба фактор-класса которой нетривиальны, а результат принадлежит нужному quotient result fiber. Это и есть \eqref{eq:quotwitness}.
+\end{proof}
+
+\begin{example}[Загрязнение result-fiber]
+Пусть
+\[
+X=\{u,a,b,x,y\},\qquad U=\{u\},
+\]
+и единственная нетривиальная клетка равна
+\[
+a\star b=y.
+\]
+Элемент \(x\) атомарен, а \(y\) составен. Отождествим \(x\sim y\). Тогда quotient-класс \([x]=[y]\) составен, поскольку свидетель для \(y\) спускается в этот класс. Атомарный представитель потерял атомарность только потому, что в его result-fiber попал составной представитель.
+\end{example}
+
+\begin{example}[Triviality collapse создаёт атом]
+Пусть
+\[
+X=\{u,a,b,x\},\qquad U=\{u\},
+\]
+и
+\[
+a\star b=x,\qquad u\star b=x.
+\]
+Элемент \(x\) не атомарен из-за первой клетки. Если отождествить \(a\sim u\), то \([a]=[u]\in\bar U\). После quotient у \([x]\) остаётся только представление с тривиальным фактором, и \([x]\) становится атомом. Следовательно, quotient может создавать атомы, поглощая нетривиальный фактор в тривиальный класс.
+\end{example}
+
+\begin{definition}[Triviality reflection]
+Quotient называется \emph{triviality-reflecting}, если
+\begin{equation}
+\boxed{q^{-1}(\bar U)=U.}
+\label{eq:trivreflect}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Универсальный fiber-критерий]
+При triviality reflection
+\begin{equation}
+\boxed{
+q(x)\in\Atom(\bar\Sbx,\bar U)
+\iff
+q^{-1}(q(x))\subseteq\Atom(\Sbx,U).}
+\label{eq:fibercriterion}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Из \eqref{eq:trivreflect} следует \(q(a)\notin\bar U\iff a\notin U\). Поэтому двусторонне нетривиальный quotient witness существует в точности тогда, когда некоторый представитель результата в fiber класса \(q(x)\) имеет исходный двусторонне нетривиальный witness. Отрицание этого утверждения даёт \eqref{eq:fibercriterion}.
+\end{proof}
+
+Это один из главных результатов quotient-части: при triviality reflection atomhood является не свойством выбранного представителя, а универсальным свойством всего result-fiber.
+
+\section{Безопасные quotient maps на factor frame}
+
+Обычная quotient compatibility вместе с triviality reflection даёт forward property:
+\begin{equation}
+y\triangleleft x\Longrightarrow q(y)\,\bar\triangleleft\,q(x).
+\label{eq:forth}
+\end{equation}
+Недостающим условием является стандартный back clause.
+
+\begin{definition}[Bounded morphism factor frame]
+Пусть triviality reflection выполнено. Индуцированное отображение
+\[
+q:(X\setminus U,\triangleleft)\twoheadrightarrow
+(\bar X\setminus\bar U,\bar\triangleleft)
+\]
+называется \emph{surjective bounded morphism factor frames}, если оно удовлетворяет \eqref{eq:forth} и
+\begin{equation}
+\boxed{
+\bar y\,\bar\triangleleft\,q(x)
+\Longrightarrow
+\exists y\in q^{-1}(\bar y)\text{ такое, что }y\triangleleft x
+}
+\label{eq:back}
+\end{equation}
+для каждого нетривиального представителя \(x\).
+\end{definition}
+
+Квантор по каждому представителю result-class принципиален. Условие \eqref{eq:back} является в точности стандартным back condition bounded/p-morphism после того, как factor relation рассматривается как accessibility relation \cite{BlackburnDeRijkeVenema2001}. Во внутренних заметках ветки это условие называлось coherent predecessor lifting, но отдельная новизна общего morphism concept здесь не заявляется.
+
+\begin{theorem}[Сохранение well-foundedness]
+Если исходное \(\triangleleft\) well-founded, а индуцированное отображение factor frames является surjective bounded morphism, то \(\bar\triangleleft\) также well-founded.
+\end{theorem}
+
+\begin{proof}
+Пусть в quotient существует бесконечная нисходящая цепь
+\[
+\bar x_0\succ\bar x_1\succ\bar x_2\succ\cdots.
+\]
+Выберем любой представитель \(x_0\) класса \(\bar x_0\). Последовательное применение back clause рекурсивно поднимает цепь к
+\[
+x_0\succ x_1\succ x_2\succ\cdots
+\]
+в исходном factor relation, что противоречит well-foundedness.
+\end{proof}
+
+\begin{theorem}[Точное сохранение ранга]
+При тех же условиях, если \(\rho\) и \(\bar\rho\) — well-founded factor ranks исходной структуры и quotient, то
+\begin{equation}
+\boxed{\bar\rho(q(x))=\rho(x)}
+\label{eq:rankpreserve}
+\end{equation}
+для каждого \(x\notin U\).
+\end{theorem}
+
+\begin{proof}
+Используем well-founded induction по \(x\). Для любого \(y\triangleleft x\) условие forth даёт \(q(y)\bar\triangleleft q(x)\), а индуктивная гипотеза — \(\bar\rho(q(y))=\rho(y)\). Поэтому
+\[
+\bar\rho(q(x))\ge \sup_{y\triangleleft x}(\rho(y)+1)=\rho(x).
+\]
+В обратную сторону, если \(\bar y\bar\triangleleft q(x)\), back clause даёт \(y\triangleleft x\) с \(q(y)=\bar y\). По индукции \(\bar\rho(\bar y)=\rho(y)\), поэтому каждый член quotient predecessor supremum не превосходит \(\rho(x)\). Следовательно, \(\bar\rho(q(x))\le\rho(x)\), что вместе с первой оценкой даёт \eqref{eq:rankpreserve}.
+\end{proof}
+
+\begin{corollary}[Точное сохранение атомарности]
+При условиях предыдущей теоремы
+\begin{equation}
+\boxed{x\text{ является }U\text{-атомом}\iff q(x)\text{ является }\bar U\text{-атомом}.}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+В well-founded factor relation атомарность эквивалентна рангу ноль; остаётся применить \eqref{eq:rankpreserve}.
+\end{proof}
+
+Bounded morphism здесь является достаточным safety contract для точного сохранения ранга. Мы не утверждаем, что он необходим для каждого quotient, который случайно сохраняет атомарность или well-foundedness.
+
+\section{Связь с transfer homomorphisms}
+
+Transfer homomorphisms в теории факторизаций моноидов поднимают существенно больше структуры, чем одношаговое predecessor incidence: они предназначены для переноса факторизационной структуры и включают lifting factorization of the image \cite{GeroldingerHalterKoch2006}. Поэтому factor-frame theorem настоящей статьи не является конкурентной «общей теорией факторизаций».
+
+Связь концептуальна. Из произвольных типизированных частичных операций мы сначала извлекаем только factor relation. На этом реляционном уровне back clause bounded morphism является ровно тем условием, которое поднимает предшественников. В более богатом ассоциативном monoid setting transfer homomorphism сохраняет соответственно более богатые данные о факторизациях. Такое сопоставление помещает FCOA-конструкцию внутрь известной математики и предотвращает завышение novelty claim.
+
+\section{Классические простые как один sandbox}
+
+Рассмотрим
+\begin{equation}
+\Sbx_{\mathbb N}=(\mathbb Z_{>0},\{\cdot\},\{1\}).
+\label{eq:classical}
+\end{equation}
+Для \(n>1\) двусторонне нетривиальное разложение — это в точности
+\[
+ab=n,\qquad a>1,\quad b>1.
+\]
+Поэтому двусторонние \(\{1\}\)-атомы совпадают с обычными простыми числами.
+
+Однако классический sandbox обладает дополнительной структурой. Единица \(1\) является настоящей единицей, собственные нетривиальные множители меньше результата, а factor relation well-founded относительно обычной величины числа. Поэтому несколько понятий, расходящихся в общем sandbox, здесь совпадают. Уникальность факторизации остаётся существенно более сильной теоремой и из определения атома не следует.
+
+Правильное направление интерпретации таково:
+\[
+\boxed{\text{классические простые — один частный sandbox атомарности, а не её общее определение}.}
+\]
+
+\section{Чему учат конечные контрпримеры}
+
+Конечные witnesses ветки разделяют логически разные эффекты: один и тот же carrier при неизменном \(U\) может сделать точку атомарной или составной только за счёт изменения admissible cells; indecomposable не обязано означать isolated; atomic не обязано означать indecomposable; left/right atomicity могут расходиться; минимальная SCC может не содержать атомов; изменение только terminal value fibers способно менять rigidity, не меняя active atomicity; pure erasure сохраняет атомарность, тогда как quotient identification — нет; ordinary quotient имеет два независимых механизма повреждения атомарности; bounded factor morphism устраняет эти патологии в well-founded rank setting.
+
+Эти примеры специально малы. Их задача — не численный эксперимент, а логическое разделение понятий, которые в привычной арифметике часто автоматически совпадают.
+
+\section{Ограничения и дисциплина утверждений}
+
+Результаты статьи относятся к типизированным семействам частичных бинарных композиций и factor relation, индуцированному двусторонне нетривиальными decomposition witnesses. Они не доказывают существование atomic decomposition для каждого элемента, уникальность факторизации, канонический выбор \(U\), ассоциативность или коммутативность, не объявленные в сигнатуре, сохранение атомарности произвольными quotient-identifications или необходимость bounded-morphism condition для всех rank-preserving quotients.
+
+Также не заявляется новизна partial algebras, strong congruences, well-founded ordinal rank, bounded morphisms или transfer homomorphisms как общих теорий. Специфический результат этой ветки FCOA состоит в собранной boundary-картине:
+\begin{equation}
+\boxed{
+\begin{aligned}
+\text{локальная граница композиции} &\;=\; \text{атомарность},\\
+\text{глобальная граница nesting} &\;=\; \text{минимальный SCC-layer},\\
+\text{well-founded глубина} &\;=\; \text{ординальный factor rank},\\
+\text{обычное отождествление} &\;\text{ может создавать factor geometry},\\
+\text{bounded factor morphism} &\;\text{ сохраняет rank-layer точно}.
+\end{aligned}}
+\label{eq:synthesis}
+\end{equation}
+
+\section{Заключение}
+
+Фраза «атомарность есть граничное состояние композиции» становится математической только после задания sandbox. \(U\)-атом — это локальная точка с нулевым входящим factor incidence. Такая локальная граница всегда лежит в минимальном condensation layer, но совпадает со всей глобальной границей только тогда, когда каждая минимальная SCC является одноточечной и не содержит внутреннего ребра. При well-founded nesting то же утверждение приобретает ранговую форму: атомы — точки ранга ноль.
+
+Различие erasure и quotient столь же принципиально. Pure erasure вообще не меняет decomposition witnesses. Quotient identification может менять их косвенно, смешивая result fibers или меняя принадлежность фактор-классов к \(U\). При triviality reflection atomhood становится универсальным свойством всего result-fiber. Если индуцированное отображение factor frames дополнительно удовлетворяет стандартному back clause bounded morphism, well-founded factor rank сохраняется точно.
+
+Полученная иерархия даёт язык для исследования границ композиции без импорта обычной делимости и без превращения привычных арифметических совпадений в аксиомы общей теории.
+
+\section*{Примечание о термине Commander Sol}
+Commander Sol — обозначение AI-assisted исследовательской роли в данной программе. Математические утверждения оформлены как определения, теоремы и доказательства и подчинены той же дисциплине claims, что и остальные работы FCOA.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
