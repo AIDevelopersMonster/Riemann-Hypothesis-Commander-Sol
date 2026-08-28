@@ -12,31 +12,37 @@ It does not claim unique factorization, universal existence of atomic factorizat
 
 ## Resolved audit findings
 
-| ID | Severity | Problem | Repair | Claim-set effect |
-|---|---|---|---|---|
-| A01 | C1 | factor graph initially too narrowly restricted | vertices use full nontrivial carrier `X\\U` | clarifies |
-| A02 | C2 | global acyclicity stated too strongly | replaced by exact minimal-SCC criterion | narrows |
-| A03 | C2 | `U`-irreducible implicitly unit-like | replaced by `U`-transport-irreducible + explicit `U`-coherence | narrows |
-| A04 | C0 | old exploratory file said quotient rank preservation remained open | final publication uses later bounded-morphism theorem as authoritative | clarifies |
-| A05 | C2 | CPL could look like a new general morphism concept | identified explicitly with standard bounded/p-morphism back clause | narrows |
-| A06 | C4 | partial-algebra background needed support | Grätzer / Grätzer-Wenzel cited | none |
-| A07 | C4 | ordinal rank needed attribution | Jech cited | none |
-| A08 | C4 | transfer analogy needed support | Geroldinger-Halter-Koch cited | none |
-| A09 | C5 | new DOI not assigned | DOI intentionally remains unassigned until Zenodo deposit | none |
-| A10 | C5 | final render audit outstanding | both EN/RU PDFs compiled and visually inspected on 2026-08-28 | none |
+| ID | Severity | Location | Problem | Minimal repair | Claim-set effect |
+|---|---|---|---|---|---|
+| A01 | C1 | factor graph | graph initially too narrowly restricted | vertices use full nontrivial carrier `X\\U` | clarifies |
+| A02 | C2 | nesting boundary | global acyclicity stated too strongly | replaced by exact minimal-SCC criterion | narrows |
+| A03 | C2 | irreducibility terminology | `U` implicitly unit-like | `U`-transport-irreducible + explicit `U`-coherence | narrows |
+| A04 | C0 | quotient-rank status | old exploratory source said preservation remained open | final bounded-morphism theorem is authoritative | clarifies |
+| A05 | C2 | CPL terminology | could look like a new general morphism concept | identify with standard bounded/p-morphism back clause | narrows |
+| A06 | C4 | partial-algebra background | source support required | Grätzer / Grätzer-Wenzel cited | none |
+| A07 | C4 | ordinal rank | source support required | Jech cited | none |
+| A08 | C4 | transfer analogy | source support required | Geroldinger-Halter-Koch cited | none |
+| A09 | C5 | DOI | new DOI not assigned | leave unassigned until Zenodo deposit | none |
+| A10 | C5 | final render | render audit initially outstanding | EN/RU PDFs compiled and visually inspected | none |
+| A11 | C6 | §8 quotient convention | existential-representative semantics was stated in prose but not written as an explicit quotient-operation formula | add `bar omega(bar a,bar b)=bar z` iff a source witness exists; state result-class independence and explicitly retain existential domain semantics | none |
+| A12 | C6 | §9 exact-rank proof | strongest proof was correct but compressed | write quotient-rank supremum explicitly; derive upper bound by back and lower bound by forth under the induction hypothesis | none |
 
-## Mathematical reread
+## Mathematical reread after supervisor repairs
 
 - **Sandbox monotonicity: PASS.** Witness-set inclusion gives atom inclusion directly.
-- **Atom versus nesting boundary: PASS after repair.** The exact statement is the minimal-SCC theorem; global DAG is only a sufficient special case.
-- **Well-founded factor rank: PASS.** Standard ordinal recursion applies and rank zero is exactly empty predecessor set.
-- **`U`-coherence theorem: PASS with explicit hypotheses.** Both coherence clauses are used.
+- **Atom versus nesting boundary: PASS.** Exact minimal-SCC criterion remains unchanged.
+- **Well-founded factor rank: PASS.** Standard ordinal recursion applies; rank zero is exactly empty predecessor set.
+- **`U`-coherence theorem: PASS.** Both coherence clauses remain explicit.
 - **Pure erasure: PASS.** Operation cells and witness sets are literally unchanged.
 - **Terminal value-fiber invariance: PASS with target-sort hypothesis.**
-- **Exact quotient witness criterion: PASS.** Direct unpacking of existential representative semantics.
+- **Quotient semantics: PASS after A11.** The manuscript now explicitly fixes existential representative semantics. The compatibility/congruence hypothesis is used only to make the result class independent of the witnessing representatives; the manuscript does not silently strengthen this to total definedness across every representative pair.
+- **Exact quotient witness criterion: PASS.** It is now a literal unpacking of the displayed quotient convention.
 - **Fiberwise universal criterion: PASS with triviality reflection.**
-- **Unsafe quotient counterexamples: PASS.** Result-fiber contamination and triviality collapse are distinct mechanisms.
-- **Bounded factor morphism theorem: PASS after prior-art repair.** Forth gives one rank inequality; back gives the other by well-founded induction. No necessity theorem is claimed.
+- **Unsafe quotient counterexamples: PASS.** Result-fiber contamination and triviality collapse remain distinct.
+- **Bounded factor morphism theorem: PASS.** Forth/back are standard relational conditions; no novelty claim for them is made.
+- **Exact rank preservation: PASS after A12.** The proof now displays
+  `bar rho(q(x)) = sup_{bar y bar triangleleft q(x)} (bar rho(bar y)+1)`,
+  derives `bar rho(q(x)) <= rho(x)` from back plus the induction hypothesis, derives `rho(x) <= bar rho(q(x))` from forth plus the induction hypothesis, and concludes equality. No assumption or theorem statement changed.
 
 ## Bibliography audit
 
@@ -51,34 +57,35 @@ Verified anchors:
 
 `BIBLIOGRAPHY_VERIFIED = yes`.
 
-## Render audit
+## v1.0 render audit after A11/A12
 
-Final local publication build performed with XeLaTeX on 2026-08-28.
+Final supervisor-repaired build performed with XeLaTeX on 2026-08-28.
 
-- English manuscript: 8 pages; openable; text PDF; no undefined references; no clipping observed in rendered inspection.
-- Russian manuscript: 8 pages; Cyrillic and mathematical glyphs verified; no undefined references; the long minimal-SCC formula was explicitly reflowed and visually inspected.
-- PDF preflight: both documents unencrypted, openable with PyMuPDF, non-scanned, no XFA.
-- Representative pages inspected: title/abstract, central SCC theorem, bounded-morphism/rank theorem, final bibliography.
+- English v1.0: 8 pages; openable text PDF; no undefined references/citations; no overfull boxes reported; §8 quotient convention and §9 rank proof visually inspected.
+- Russian v1.0: 9 pages; openable text PDF; Cyrillic and mathematical glyphs verified; no undefined references/citations; no overfull boxes reported; §8–§9 and final bibliography visually inspected.
+- PDF preflight: both unencrypted, openable with PyMuPDF, non-scanned, no XFA.
+- The extra Russian page is a benign pagination consequence of the expanded proof, not a content divergence.
 
 ## Metadata audit
 
 - Author: Alex Malachevsky — fixed.
 - ORCID: `0009-0008-6009-3196` — fixed.
 - Manuscript date: `2026-08-28` — fixed.
-- New Zenodo DOI: **not assigned yet by design**; to be inserted only after deposit reservation/creation.
+- Version target: `v1.0` — ready to freeze.
+- New Zenodo DOI: **not assigned yet by design**; insert only after deposit reservation/creation.
 - Upstream DOI: `10.5281/zenodo.22129787` — fixed and cited as preceding FCOA work.
-- Licence: use the repository/publication choice at deposit; no new licence is invented inside the manuscript.
 
 ## Final audit block
 
 - unresolved blocking mathematical issues: **none**
 - unresolved claim-discipline issues: **none**
-- equations/theorems changed: **yes**, hostile-audit repairs incorporated
-- claim set changed: **yes — narrowed and clarified, not expanded**
+- theorem statements changed by supervisor repairs: **no**
+- proofs/exposition changed by supervisor repairs: **yes**
+- claim set changed by supervisor repairs: **no**
 - bibliography verified: **yes**
 - source compiled: **yes**
 - PDF visually inspected: **yes**
-- metadata verified: **yes except DOI field that is created by the deposit action itself**
+- metadata verified: **yes except DOI generated by deposit action**
 - release status: **`PUBLICATION_READY`**
 
-The scientific and rendering gates are closed. The next archival action is Zenodo deposit / DOI assignment, followed by insertion of that DOI into the repository publication metadata.
+The two pre-v1.0 supervisor repairs are closed. The manuscript is ready for v1.0 archival freeze and Zenodo deposit.
