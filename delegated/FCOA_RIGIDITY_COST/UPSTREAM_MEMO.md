@@ -6,23 +6,17 @@
 
 ## Executive verdict
 
-Seven results from this direction are strong enough for upstream review.
+Eight results from this direction are strong enough for upstream review.
 
 ### U1. Rigidity cost is not successor-memory cost
 
-Let `n=N-1` be the generic carrier size and
+For generic size `n=N-1`, exact directed rigidity minima through `n=7` are `(1,1,2,3,3,4)`, with
 
 \[
-r_{\to}(n)=\min\{|A|:\operatorname{Aut}(X,A)=1\}.
+\lceil(n-1)/2\rceil\le r_\to(n)\le n-2.
 \]
 
-Exact values through `n=7` are `(1,1,2,3,3,4)`, with elementary bounds
-
-\[
-\left\lceil\frac{n-1}{2}\right\rceil\le r_{\to}(n)\le n-2.
-\]
-
-G2 spends `n-1` cells because it stores a chosen global successor path, not because that is the minimum cost of killing automorphisms.
+G2 spends `n-1` cells to retain a chosen successor path, not merely to kill automorphisms.
 
 ### U2. Terminal Generic Layer Master Lemma
 
@@ -30,186 +24,158 @@ For `m` new off-diagonal generic cells with terminal outputs,
 
 \[
 (EQ,NEQ,LEFT,RIGHT,NONE)
-=
-(4(N-1)+m,0,N^2+2N-2+m,N^2+N-2+m,N^3+N^2-4N+9-3m).
+=(4(N-1)+m,0,N^2+2N-2+m,N^2+N-2+m,N^3+N^2-4N+9-3m).
 \]
 
-The exact commutation correction is
-
-\[
-|\operatorname{Comm}|=3(N-1)+|\{(u,v):(u,v),(v,u)\in A,\ c(u,v)=c(v,u)\}|.
-\]
-
-Thus Association Spectrum and commutation are coarse with respect to fine terminal-fiber geometry.
+Commutation has the exact reverse-cell equality correction. Hence Association Spectrum and commutation are coarse relative to terminal-fiber geometry.
 
 ### U3. Same G4-C coarse invariants, but rigidity instead of C2
 
-The five-vertex tournament
-
-\[
-T_5=\{40,41,42,43,20,21,31,32,03,10\}
-\]
-
-is asymmetric and non-self-converse. Its two anonymous opposite fibers give a complete balanced zero-anchor layer with the same Association Spectrum and commutation as G4-C, but full generic group `1` rather than `C2`. Adjoining successive universal sources preserves this for every `n>=5`.
+The asymmetric non-self-converse tournament `T5={40,41,42,43,20,21,31,32,03,10}` gives a balanced complete two-anonymous-output zero-anchor layer with the same Association Spectrum and commutation as G4-C but generic group `1` instead of `C2`. Universal-source extension gives such a layer for every `n>=5`.
 
 ### U4. Minimal separator: cyclic-triangle defect
 
-Let
+For tournament layers,
 
 \[
-\tau_3(T)=\#\{\text{cyclic induced generic triples}\}.
+\tau_3(T)=\#\{C_3\text{ induced triples}\}
 \]
 
-G4-C has `tau3=0`; anonymous rigidity requires `tau3>=2`; the U3 family has exactly `tau3=2` for every `n>=5`. Hence
+satisfies `tau3(G4-C)=0`, anonymous rigidity requires `tau3>=2`, and the U3 family attains exactly `2` for every `n>=5`.
+
+### U5. Histograms versus abstract half-reconstruction
+
+There is an explicit seven-vertex pair `S7/R7` with identical anonymous induced histograms at every proper order `k=3,4,5,6` but residual groups `C2` and `1`. Classically, finite tournaments are `(<=7)`-half-reconstructible, with 7 optimal for the stronger subset-indexed abstract hemimorphism data model.
+
+### U6. Tournament specialization: exact ternary betweenness
+
+For tournament-type opposite fibers,
 
 \[
-\min\{\tau_3(T):\operatorname{Aut}^{\pm}(T)=1\}=2.
+B_\star(x,y,z)\iff x\star y=y\star z=x\star z
 \]
 
-Equivalently,
-
-\[
-M_2(T)=\sum_vd_+(v)^2=\frac{n(n-1)(2n-1)}6-2\tau_3(T).
-\]
-
-### U5. Histogram data and abstract half-reconstruction have different thresholds
-
-There is an explicit seven-vertex pair `S7/R7` with
-
-\[
-H_k^{\pm}(S_7)=H_k^{\pm}(R_7)\quad(k=3,4,5,6),
-\]
-
-but
-
-\[
-\operatorname{Aut}^{\pm}(S_7)\cong C_2,
-\qquad
-\operatorname{Aut}^{\pm}(R_7)=1.
-\]
-
-Thus all proper anonymous histograms may agree while the final residual group differs. Classically, finite tournaments are `(<=7)`-half-reconstructible, with 7 optimal for the different data model in which each local restriction is retained only up to abstract isomorphism/converse-isomorphism.
-
-### U6. Tournament specialization: exact ternary betweenness reduct
-
-For tournament-type opposite fibers define
-
-\[
-B_\star(x,y,z)\iff x\star y=y\star z=x\star z.
-\]
-
-Then
-
-\[
-B_T=B_{T'}\iff T'=T\text{ or }T'=T^{op},
-\]
-
-and therefore
+is carrier-exact:
 
 \[
 \operatorname{Aut}(B_T)=\operatorname{Aut}^{\pm}(T).
 \]
 
-This is a carrier-exact ternary reduct. The full `C3`-hypergraph is not exact in decomposable cases; for the recursive rigid family its stabilizer has size `4(n-4)!` while the tournament layer is rigid. Full proof is in `BETWEENNESS_REDUCT.md`.
+Full proof and the factorial failure of the weaker C3-hypergraph are in `BETWEENNESS_REDUCT.md`.
 
-### U7. Universal ternary phase reduct — tournament condition is unnecessary
+### U7. Universal binary ternary phase reduct
 
-The U6 phenomenon extends to **every** complete off-diagonal two-anonymous-output generic layer, with no assumption relating opposite cells.
-
-Let `c(x,y)` be a temporary binary coding of the two anonymous fibers. Define
+For every complete off-diagonal layer with exactly two anonymous terminal outputs,
 
 \[
-\boxed{
-Q_\star(x,y,z)\iff x\star y=y\star z,
-}
+Q_\star(x,y,z)\iff x\star y=y\star z
 \]
 
-for `x!=y`, `y!=z`, with `x=z` allowed.
-
-Then
+is carrier-exact:
 
 \[
-\boxed{
-\operatorname{Aut}(G_N,Q_\star)=\operatorname{Aut}^{\pm}(c).
-}
+\operatorname{Aut}(Q_\star)=\operatorname{Aut}^{\pm}(c).
 \]
 
-#### Proof mechanism
+The proof uses a binary discrepancy bit on ordered cells and connectivity of the composable-cell graph. Tournament and balanced assumptions are unnecessary. Full proof is in `UNIVERSAL_TERNARY_PHASE_REDUCT.md`.
 
-For a permutation `g` preserving `Q`, define the cell phase discrepancy
+### U8. Multicolor arity phase transition
+
+The binary theorem is sharp in alphabet size. For `q>=3`, ternary anonymous equality information is no longer universally exact.
+
+#### Explicit q=3 lower-bound witness
+
+Use the symmetric complete layer on vertices `0,1,2,3,4`, so opposite ordered cells have the same color. On the ten unordered edges in lexicographic order
 
 \[
-\delta_g(x,y)=c(gx,gy)\oplus c(x,y).
+01,02,03,04,12,13,14,23,24,34,
 \]
 
-Preservation of equality between composable cells gives
+use colors
 
 \[
-\delta_g(x,y)=\delta_g(y,z).
+\boxed{0,0,0,1,0,0,2,1,0,0.}
 \]
-
-The graph on all ordered off-diagonal cells, joining `(x,y)` to `(y,z)`, is connected for every `n>=2` (for `n=2`, `(x,y)` and `(y,x)` are adjacent because `z=x` is allowed). Hence `delta_g` is globally constant. Therefore `g` either preserves every fiber or swaps the two fibers globally, exactly as required.
-
-Consequences:
-
-1. **Tournament condition is unnecessary.** Same-valued reverse cells are allowed.
-2. **Balancedness is unnecessary.** If fibers have unequal cardinalities, the global-swap coset is simply empty.
-3. A naive four-variable equality relation comparing arbitrary cells is unnecessary; composable-cell equality already propagates the global phase.
-4. The tournament betweenness reduct `B` is a geometric specialization of the more primitive `Q` theorem.
-5. Arity three remains optimal in the induced anonymous local-pattern class, since the tournament subclass already supplies the two-point obstruction.
 
 Thus
 
 \[
-\boxed{
-k_{\rm exact}=3}
+C_0=\{01,02,03,12,13,24,34\},\quad
+C_1=\{04,23\},\quad
+C_2=\{14\}.
 \]
 
-for the entire complete two-anonymous-output class, not merely the tournament subclass.
-
-Full theorem, proof, phase interpretation, and scope firewall are in `UNIVERSAL_TERNARY_PHASE_REDUCT.md`.
-
-## Corrected structural hierarchy
-
-The branch now separates three questions:
+The carrier permutation
 
 \[
-3=\text{minimal scalar/local separator arity for G4-C vs rigidity},
+g=(0\ 1)
 \]
 
-\[
-7=\text{optimal arity for classical abstract tournament half-reconstruction data},
-\]
+preserves the **entire labeled anonymous equality pattern on every subset of at most three vertices**, but it is not induced by one global color permutation: edge `04` forces colors `1` and `2` to exchange, while fixed edge `23` forces color `1` to remain fixed.
 
-but
+Exact finite audit gives
 
 \[
 \boxed{
-3=\text{optimal exact stabilizer arity for complete binary anonymous value layers}.
+|\operatorname{Aut}^{an}(c)|=2,
+\qquad
+|\operatorname{Aut}(R_{\le3}^{eq}(c))|=4.
 }
 \]
 
-The last statement is U7 and strictly subsumes the tournament-only exactness question.
+So even the maximal ternary local equality passport is not stabilizer-complete at `q=3`. The witness extends to every fixed `q>3` by adding fixed vertices carrying fresh colors.
 
-## Branch passport for U7
+#### Universal q-color upper bound
 
-- **Carrier/signature:** M0 backbone plus complete off-diagonal generic terminal layer.
-- **Number of terminal outputs:** exactly two distinct anonymous values.
-- **Tournament assumption:** none.
-- **Balanced assumption:** none.
-- **Defined cells:** all `n(n-1)` ordered distinct generic pairs.
-- **Definedness group:** `S_n` relative to M0 boundary roles.
-- **Exact derived reduct:** `Q_star(x,y,z) iff x star y = y star z`.
-- **Exact carrier group:** `Aut(Q_star)=Aut^±(c)`.
-- **Commutation:** unrestricted by the theorem.
-- **Association Spectrum:** complete terminal-domain formula; `Q` is derived rather than an added cell layer.
-- **External output naming:** none.
-- **Ordinary arithmetic imported:** no.
+For arbitrary finite `q`, define the four-ary relation
+
+\[
+\boxed{
+E_\star(x,y,u,v)\iff x\star y=u\star v.
+}
+\]
+
+This is the equality partition of all ordered cells. By the Fiber-Transport principle,
+
+\[
+\boxed{
+\operatorname{Aut}(E_\star)=\operatorname{Aut}^{an}(c)
+}
+\]
+
+for every surjective q-color layer.
+
+Therefore, in the class of reducts determined by anonymous equality patterns on bounded-size carrier subsets,
+
+\[
+\boxed{
+q=2:\ k_{exact}=3,
+\qquad
+q\ge3:\ k_{exact}=4.
+}
+\]
+
+This is an exact **arity phase transition**. Two colors are exceptional because local inequality determines the unique opposite phase. With three or more colors, locally compatible color permutations can disagree on colors not jointly witnessed; a fourth carrier variable is needed to compare disjoint cells directly.
+
+Full theorem, witness, proof and scope firewall are in `MULTICOLOR_ARITY_THRESHOLD.md`.
+
+## Current structural hierarchy
+
+\[
+\boxed{
+\begin{array}{rcl}
+q=2 &:& \text{ternary phase propagation is exact},\\
+q\ge3 &:& \text{ternary local equality has gauge freedom},\\
+q\ge3 &:& \text{four-ary arbitrary-cell equality is exact}.
+\end{array}}
+\]
+
+This is independent of tournament geometry and balancedness.
 
 ## Recommendation
 
-Recommend upstream acceptance of U7 after independent hostile review. It materially supersedes U6 as the general stabilizer-compression theorem, while U6 remains useful because its betweenness interpretation exposes the order geometry of G4-C.
+Recommend upstream hostile audit of U8 together with U7. The q=3 lower-bound witness should be independently re-enumerated before publication-level use; the four-ary upper bound is immediate from the equality partition/Fiber-Transport argument.
 
 Do not edit G4 from this subordinate branch.
 
-The next boundary is now sharply located: either **more than two anonymous output fibers** or **non-complete/sparse domains**, where binary phase propagation and automatic cell-graph connectivity respectively cease to be immediate.
+The remaining major boundary is now **sparse/partial domains**: classify exactly when local equality propagation on the defined-cell incidence graph is sufficient, and how the required arity/cost changes when that graph disconnects.
