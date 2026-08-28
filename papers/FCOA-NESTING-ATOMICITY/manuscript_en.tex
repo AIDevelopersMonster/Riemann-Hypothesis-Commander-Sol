@@ -294,6 +294,17 @@ q:X\twoheadrightarrow\bar X
 \]
 be a sort-respecting congruence quotient compatible with the partial operations, using existential representative semantics for quotient cells, and let \(\bar U=q(U)\).
 
+Throughout this section, the quotient partial operation is interpreted by the following explicit convention. For quotient classes \(\bar a,\bar b,\bar z\),
+\begin{equation}
+\boxed{
+\bar\omega(\bar a,\bar b)=\bar z
+\iff
+\exists a'\in q^{-1}(\bar a)\;\exists b'\in q^{-1}(\bar b)\;\exists z'\in q^{-1}(\bar z)
+\text{ such that }\omega(a',b')=z'.}
+\label{eq:quotsem}
+\end{equation}
+The congruence/compatibility assumption guarantees that whenever such a quotient cell is defined, the resulting class \(q(z')\) is independent of the chosen witnessing representatives. We do not require every representative pair of \((\bar a,\bar b)\) to lie in the source domain; the convention is deliberately existential.
+
 \begin{theorem}[Exact quotient witness criterion]
 For \(x\in X\), the quotient class \(q(x)\) is non-atomic if and only if there exist \(a,b,z\in X\) and \(\omega\in\Omega\) such that
 \begin{equation}
@@ -415,11 +426,51 @@ for every \(x\notin U\).
 \end{theorem}
 
 \begin{proof}
-Proceed by well-founded induction on \(x\). For each predecessor \(y\triangleleft x\), the forth condition gives \(q(y)\bar\triangleleft q(x)\), and the induction hypothesis gives \(\bar\rho(q(y))=\rho(y)\). Hence
+Proceed by well-founded induction on \(x\). Assume that
 \[
-\bar\rho(q(x))\ge \sup_{y\triangleleft x}(\rho(y)+1)=\rho(x).
+\bar\rho(q(y))=\rho(y)
 \]
-Conversely, if \(\bar y\bar\triangleleft q(x)\), the back condition provides \(y\triangleleft x\) with \(q(y)=\bar y\). The induction hypothesis gives \(\bar\rho(\bar y)=\rho(y)\), so every term in the quotient predecessor supremum is at most \(\rho(x)\). Thus \(\bar\rho(q(x))\le\rho(x)\), proving \eqref{eq:rankpreserve}.
+holds for every predecessor \(y\triangleleft x\). By definition of the quotient rank,
+\begin{equation}
+\bar\rho(q(x))
+=
+\sup_{\bar y\,\bar\triangleleft\,q(x)}
+\bigl(\bar\rho(\bar y)+1\bigr).
+\label{eq:quotranksup}
+\end{equation}
+
+For the upper bound, fix any \(\bar y\bar\triangleleft q(x)\). By the back condition there exists \(y\triangleleft x\) with \(q(y)=\bar y\). The induction hypothesis gives
+\[
+\bar\rho(\bar y)=\bar\rho(q(y))=\rho(y),
+\]
+and therefore
+\[
+\bar\rho(\bar y)+1=\rho(y)+1\le\rho(x).
+\]
+Taking the supremum in \eqref{eq:quotranksup} yields
+\begin{equation}
+\bar\rho(q(x))\le\rho(x).
+\label{eq:rankupper}
+\end{equation}
+
+For the lower bound, the source rank satisfies
+\[
+\rho(x)=\sup_{y\triangleleft x}\bigl(\rho(y)+1\bigr).
+\]
+For every \(y\triangleleft x\), the forth condition gives \(q(y)\bar\triangleleft q(x)\), while the induction hypothesis gives \(\rho(y)=\bar\rho(q(y))\). Hence
+\[
+\rho(y)+1
+=
+\bar\rho(q(y))+1
+\le
+\bar\rho(q(x)).
+\]
+Taking the supremum over all source predecessors gives
+\begin{equation}
+\rho(x)\le\bar\rho(q(x)).
+\label{eq:ranklower}
+\end{equation}
+Combining \eqref{eq:rankupper} and \eqref{eq:ranklower} proves \eqref{eq:rankpreserve}.
 \end{proof}
 
 \begin{corollary}[Exact atomicity preservation]
