@@ -2,15 +2,17 @@
 
 **To:** main Commander Sol scientific director  
 **From:** FCOA — SOL-INFINITY scientific supervisor  
-**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier + primitive subquadratic existence theorem  
+**Status:** hostile-audited theorem checkpoint R1 + sparse-memory threshold + order-only quadratic barrier + primitive subquadratic theorem + provenance audit R1  
 **Audit:** `HOSTILE_AUDIT_R1.md`  
 **Sparse threshold:** `SPARSE_MEMORY_THRESHOLD.md`  
 **Order-only density theorem:** `ORDER_ONLY_QUADRATIC_BARRIER.md`  
-**Primitive subquadratic theorem:** `SUBQUADRATIC_PRIMITIVE_SKELETON.md`
+**Primitive subquadratic theorem:** `SUBQUADRATIC_PRIMITIVE_SKELETON.md`  
+**Provenance audit:** `PROVENANCE_AUDIT_R1.md`  
+**Best certified primitive candidate:** `EXPONENTIAL_NESTED_TAIL.md`
 
 ## Executive result
 
-The infinite branch now separates five independent coordinates:
+The infinite branch now separates six independent coordinates:
 
 \[
 \boxed{
@@ -22,7 +24,9 @@ The infinite branch now separates five independent coordinates:
 \quad
 \text{order-only vs primitive non-order geometry},
 \quad
-\text{source safety vs internal arithmetic leakage}.}
+\text{source safety vs internal arithmetic leakage},
+\quad
+\text{source-class complexity vs memory density}.}
 \]
 
 For the canonical infinite G2 ray
@@ -46,161 +50,26 @@ Thus the primary boundary theorem remains
 
 This has been checked by an independent EF/locality proof.
 
-## Result 1 — G2 survives only locally
+## Fixed branch results before provenance audit
 
-In typed infinite G2,
+1. G2 infinity remembers successor locally but not full order in FO.
+2. Full M0+G2 decoration does not secretly add order.
+3. There is no uniform FO full-order formula across all finite directed paths.
+4. Finite unary/local memory remains insufficient.
+5. Finite-apex locally finite active memory cannot FO-define an infinite linear order.
+6. For binary finite-output FCOA, FO full order requires an infinite active nonlocal core.
+7. In the order-only binary class, every basic relation has density either \(O(N)\) or \(\Theta(N^2)\); hence FO order forces quadratic density.
+8. Primitive non-order nested-tail memory can beat the quadratic barrier while preserving nondefinability of ordinary \(+\) and \(\times\).
 
-\[
-S(x,y)\iff \operatorname{Def}(x\star y)
-\]
+## Result 11 — Primitive Subquadratic Skeleton
 
-uniformly defines directed adjacency, but no FO formula defines
-
-\[
-x<y\iff \exists n\ge1\;S^n(x,y).
-\]
-
-## Result 2 — full M0+G2 does not secretly add order
-
-The canonical infinite M0+G2 structure is FO-interpretable in the successor ray using finitely many tagged copies for the generic carrier, the \(E^\ast\)- and \(E^\times\)-families, the boundary points, and the terminal G2 output. Therefore any generic-sort FO definition of full order would pull back to one in the successor ray.
-
-## Result 3 — no uniform finite-family formula
-
-For each fixed finite \(N\), full order is definable by a finite disjunction of successor distances, but there is no single FO formula defining full order across all finite \(G_N\). Hence
-
-\[
-\boxed{
-\text{per-size definability}
-\not\Rightarrow
-\text{uniform finite-family definability}
-\not\Rightarrow
-\text{infinite FO definability}.}
-\]
-
-## Result 4 — finite unary memory is still insufficient
-
-Any finite number of arbitrary unary predicates on the infinite successor ray still fails to make the full strict order FO-definable. Thus finitely many named points, unary colors, predecessor, finitely many fixed-distance relations, and finitely many local G3-style anchors remain below the boundary.
-
-## Result 5 — logical-strength separation
-
-\[
-\boxed{
-\begin{array}{c|c}
-\text{notion} & \text{full order from successor}\\
-\hline
-\text{FO} & \text{no}\\
-\text{FO+TC} & \text{yes}\\
-\text{MSO} & \text{yes}\\
-\text{computable reconstruction in a computable one-ray presentation} & \text{yes}
-\end{array}}
-\]
-
-No unnecessary inclusion claim is made between the logical and algorithmic notions.
-
-## Result 6 — two routes cross the FO boundary
-
-### A. Order in the domain: one output
-
-\[
-x\diamond y=\Omega\iff x<y.
-\]
-
-Then \(x<y\) is exactly definedness.
-
-### B. Complete domain, order in values: two outputs
-
-\[
-x\chi y=
-\begin{cases}
-\Omega_+,&x<y,\\
-\Omega_-,&y<x.
-\end{cases}
-\]
-
-On the one-ended \(\omega\)-carrier the positive output is intrinsically FO-definable because there is a least point but no greatest point. Hence full order is FO-definable.
-
-The exact minimality split is
-
-\[
-\boxed{
-|O|_{\min}=1\text{ for order in the domain},
-\qquad
-|O|_{\min}=2\text{ for orientation carried only in values with complete domain}.}
-\]
-
-## Result 7 — finite/infinite non-transfer
-
-Finite G4-C retains reversal together with \(\Omega_+\leftrightarrow\Omega_-\). On the one-ended infinite \(\omega\)-carrier no order reversal exists. Thus anonymous output symmetry can disappear in the infinite limit.
-
-## Result 8 — global order does not automatically leak arithmetic
-
-The two canonical dense order-recovering constructions are FO-interpretable in \((\mathbb N,<)\) with finitely many tags/copies. Ordinary external-index addition and multiplication are not FO-definable there. Hence, for those exact constructions,
-
-\[
-\boxed{
-\text{FO global order memory}
-\not\Rightarrow
-\text{FO ordinary arithmetic}.}
-\]
-
-## Result 9 — Sparse Memory Threshold
-
-For a finite-signature structure, remove a finite boundary/terminal apex set but retain every induced relation in the finite trace structure. If the resulting trace is locally finite, no FO formula defines a strict linear order on the infinite target domain.
-
-For finitely many binary finite-output FCOA layers, if
-
-\[
-H=\{x:\deg_\Gamma(x)=\infty\}
-\]
-
-is finite, then FO order is impossible. Therefore
-
-\[
-\boxed{
-\text{FO full order}
-\Longrightarrow
-|H|=\infty.}
-\]
-
-Crossing the boundary requires an infinite active nonlocal core.
-
-## Result 10 — Order-Only Quadratic Barrier
-
-If every new binary domain/value-fiber relation is FO-generated from the pure external discrete order with only finitely many boundary parameters, then every such relation has asymptotic density either
-
-\[
-O(N)
-\]
-
-or
-
-\[
-\Theta(N^2).
-\]
-
-There is no genuinely intermediate binary density. Combining this with the Sparse Memory Threshold gives
-
-\[
-\boxed{
-\text{order-only binary finite-output FCOA}
-+\text{ FO full-order recovery}
-\Longrightarrow
-\Theta(N^2)\text{ generic interaction cells}.}
-\]
-
-Thus the dense order-in-domain and complete two-value comparison constructions are asymptotically optimal inside the order-only class.
-
-## Result 11 — Primitive Subquadratic Skeleton exists
-
-The previously open existence question now has a positive mathematical answer once one permits a primitive non-order global skeleton.
-
-Let \(f\) be any strictly increasing cofinal jump map and define nested tails
+For any strictly increasing cofinal jump map \(f\), define
 
 \[
 R_f(Q_n,Q_m)\iff m\ge f(n).
 \]
 
-The carrier order is FO-recoverable by strict inclusion of rows:
+Then row inclusion gives the full carrier order:
 
 \[
 Q_n<Q_k
@@ -208,139 +77,226 @@ Q_n<Q_k
 N_f(k)\subsetneq N_f(n).
 \]
 
-The jump map itself is FO-recoverable as the least element of each row.
+The jump map itself is FO-recoverable as the least point in each row.
 
-### Exact quadratic-growth witness
-
-Take
+The earlier exact witness used
 
 \[
-f_1(n)=(n+1)^2.
+f(n)=(n+1)^2
 \]
 
-Then the number of true incidences in the first \(N\) points is
+and obtained
+
+\[
+C(N)=\frac23N^{3/2}+O(N).
+\]
+
+This already proved logical existence of subquadratic FO-order memory without FO ordinary addition or multiplication.
+
+## Result 12 — Provenance audit repairs the source-safety criterion
+
+The hostile provenance audit rejects two naive policies:
+
+- “finite program = safe” is too weak, because finite programs can compute arbitrary arithmetic;
+- “not arithmetically definable” is too strong, because effective combinatorial skeletons are arithmetically representable in sufficiently rich arithmetic.
+
+The branch therefore adopts a conservative certified source class:
+
+### Index-blind D0L source gate
+
+A threshold sequence is source-certified when
+
+\[
+g(n)=|\sigma^n(w)|
+\]
+
+for a fixed finite alphabet, fixed seed word, and fixed deterministic morphism \(\sigma\) whose letter-replacement rules do not inspect the stage number, carrier indices, counters, parity, divisibility, BIT, addition, multiplication, or other numerical predicates.
+
+This is materially stronger than a generic finite-program gate because D0L systems are a highly restricted parallel-rewriting formalism with tightly constrained growth functions.
+
+Under this declared gate, the previous quadratic substitution passes provenance audit.
+
+## Result 13 — Exponential Nested Tail: best certified primitive candidate
+
+A much simpler D0L source improves the memory density:
+
+\[
+\boxed{A\mapsto AA.}
+\]
+
+With seed \(A\),
+
+\[
+|\sigma^n(A)|=2^n.
+\]
+
+Define
 
 \[
 \boxed{
-C_1(N)=\frac23N^{3/2}+O(N).
+R_{\exp}(Q_n,Q_m)
+\iff
+m\ge2^n.
 }
 \]
 
-So
+The closed form \(2^n\) is used only to describe the proved growth law; the primitive generator is the index-blind duplication morphism.
+
+### FO recovery of order
+
+Rows are strictly nested, so
 
 \[
-C_1(N)=o(N^2).
+Q_n<Q_k
+\iff
+N(k)\subsetneq N(n).
 \]
 
-Yet the full order is FO-definable.
+Hence full carrier order is FO-definable.
 
-### Internal arithmetic leakage is absent
+### Exact memory density
 
-The structure \((G_\omega,R_1)\) is FO-interdefinable with \((\mathbb N,<,(n+1)^2)\), hence with the classical quadratic expansion \((\mathbb N,<,n^2)\). Semenov proved that the latter has decidable elementary theory, while the corresponding expansion with addition is undecidable.
+Let
 
-Therefore ordinary addition cannot be FO-definable from \(R_1\). Multiplication cannot be FO-definable either: in the presence of discrete order/successor, multiplication would give addition by the classical Julia Robinson definability result.
+\[
+L=\lfloor\log_2N\rfloor.
+\]
 
-Thus
+Then
+
+\[
+C(N)=\sum_{n=0}^{L}(N-2^n+1)
+\]
+
+and therefore
 
 \[
 \boxed{
-R_1\Rightarrow_{\rm FO}<,
-\qquad
-R_1\not\Rightarrow_{\rm FO}+,
-\qquad
-R_1\not\Rightarrow_{\rm FO}\times.
+C(N)=N\log_2N+O(N)=\Theta(N\log N).
 }
 \]
 
-This closes the **logical existence** question positively.
+This is the first source-certified nearly linear candidate in the branch.
 
-### Finite-substitution provenance candidate
+### Arithmetic leakage status
 
-The same jump sequence can be generated by the finite morphism
-
-\[
-\sigma(A)=ABBC,
-\qquad
-\sigma(B)=BC,
-\qquad
-\sigma(C)=C,
-\]
-
-because
+The structure is FO-interdefinable with
 
 \[
-|\sigma^n(A)|=(n+1)^2.
+(\mathbb N,<,2^x).
 \]
 
-So the primitive rule need not literally invoke external-index multiplication or squaring. Squaring appears as a theorem about the growth of a finite substitution system.
+Published model-theoretic work gives decidability/quantifier-elimination analysis for this structure and, in particular, rules out definability of parity. Therefore ordinary addition cannot be FO-definable, since addition would define parity by
 
-Current provenance status:
+\[
+\operatorname{Even}(x)\iff\exists y(y+y=x).
+\]
+
+Multiplication cannot be FO-definable either: discrete order gives successor, and Julia Robinson’s definability theorem would then recover addition from multiplication plus successor.
+
+Thus, subject to publication-hardening of the exact primary QE citation,
 
 \[
 \boxed{
-\text{INTERNAL LEAKAGE: PASS},
+R_{\exp}\Rightarrow_{\rm FO}<,
 \qquad
-\text{SOURCE SAFETY: CANDIDATE PASS pending hostile provenance audit}.}
-\]
-
-No novelty claim is made for finite substitutions themselves.
-
-### Arbitrarily near-linear family
-
-Let \(F_k=f_1^{\circ k}\) and
-
-\[
-R_k(Q_n,Q_m)\iff m\ge F_k(n).
-\]
-
-Then \(F_k\) has degree \(2^k\), so
-
-\[
-\boxed{
-C_k(N)=\Theta\!\left(N^{1+1/2^k}\right).
+R_{\exp}\not\Rightarrow_{\rm FO}+,
+\qquad
+R_{\exp}\not\Rightarrow_{\rm FO}\times.
 }
 \]
 
-For every fixed \(k\), the theory remains decidable as a reduct of the decidable quadratic expansion, while addition and multiplication remain FO-undefinable.
-
-Therefore for every \(\varepsilon>0\) there exists a fixed finite-signature primitive skeleton with
+Current status:
 
 \[
 \boxed{
-C(N)=O(N^{1+\varepsilon})
+\text{SOURCE GATE: PASS},
+\qquad
+\text{INTERNAL LEAKAGE: PASS with one external citation-hardening obligation}.}
+\]
+
+## Result 14 — D0L nested-tail optimality
+
+Let
+
+\[
+g(n)=|\sigma^n(w)|
+\]
+
+be an unbounded strictly increasing D0L growth function and use the nested-tail relation
+
+\[
+R_g(n,m)\iff m\ge g(n).
+\]
+
+If
+
+\[
+B=\max_a|\sigma(a)|,
+\]
+
+then
+
+\[
+g(n)\le |w|B^n.
+\]
+
+Therefore at least \(c\log N\) initial rows have threshold at most \(\sqrt N\), and each contributes at least \(N-\sqrt N\) incidences inside the first \(N\) columns. Hence
+
+\[
+\boxed{
+C(N)=\Omega(N\log N).
 }
 \]
 
-that FO-recovers order but not ordinary \(+\) or \(\times\).
+The duplication morphism attains \(\Theta(N\log N)\). Therefore:
 
-Hence there is no universal fixed superlinear-power lower bound once primitive non-order skeletons are admitted.
+\[
+\boxed{
+\Theta(N\log N)
+\text{ is asymptotically optimal inside the D0L-provenance nested-tail class}.}
+\]
 
-## Rejected comparison — binary tree/equal-level skeleton
+This density theorem is internal to the branch and does not depend on the external arithmetic-leakage citation.
 
-A natural sparse candidate based on finite binary words, prefix, equal-level, and last-letter predicates is too expressive for the arithmetic-safe target: the standard universal automatic structure FO-defines exactly synchronous regular relations, and binary addition is synchronous regular. Thus hierarchical sparsity alone does not guarantee arithmetic safety.
+## Architectural picture after provenance audit
 
-## Corrected architectural principle
+The memory ladder is now:
 
-The branch now supports the stronger picture:
+\[
+\boxed{
+\begin{array}{c}
+\text{G2 local successor: }\Theta(N),\ \text{no FO order}\\
+\Downarrow\\
+\text{finite-apex locally finite: no FO order}\\
+\Downarrow\\
+\text{order-only global binary memory: }\Theta(N^2)\text{ required}\\
+\Downarrow\\
+\text{primitive non-order D0L nested tails: }\Theta(N\log N)\\
+\text{FO order, no FO ordinary }+\text{ or }\times.
+\end{array}}
+\]
 
-> **Infinite FCOA Memory Boundary.** Local successor memory can rigidify an infinite carrier without FO global order. Finite-apex local memory remains insufficient, and binary order-only compilation pays an unavoidable quadratic density cost. However, once a genuinely primitive non-order global skeleton is admitted, subquadratic arithmetic-safe order memory exists. A nested-tail skeleton generated by a finite substitution gives an exact \(\Theta(N^{3/2})\) candidate, and fixed iterates yield \(O(N^{1+\varepsilon})\) density for every prescribed \(\varepsilon>0\), while ordinary addition and multiplication remain FO-undefinable.
+Thus the original open question has a positive answer with a much stronger density than the first quadratic-growth witness.
 
 ## Recommendation to main director
 
-The following are strong enough to be treated as fixed branch mathematics:
+The following may now be treated as fixed branch mathematics:
 
 - G2 infinite FO boundary;
 - hostile-audited EF/locality proof;
 - Sparse Memory Threshold;
 - Order-Only Quadratic Barrier;
-- logical existence of subquadratic nested-tail order memory with no FO \(+\) or \(\times\) leakage.
+- logical existence of arithmetic-safe subquadratic primitive order memory;
+- repaired D0L provenance gate;
+- \(\Theta(N\log N)\) D0L nested-tail upper/lower bound.
 
-The finite-substitution provenance should remain a candidate until a dedicated hostile source-safety audit decides whether deriving the threshold sequence from substitution-growth lengths satisfies the programme's strongest interpretation of “do not import arithmetic on external indices”.
+One obligation remains before publication-hardening the exponential candidate as a theorem package:
 
-The remaining frontier is no longer existence. It is:
+> pin down the exact primary-source quantifier-elimination/decidability theorem for \((\mathbb N,<,2^x)\) and reproduce the parity-nondefinability consequence at publication-proof level.
 
-1. hostile provenance audit of the substitution-generated skeleton;
-2. determine whether one can obtain a **single** \(O(N\log N)\), near-linear, or \(N^{1+o(1)}\) source-safe skeleton;
-3. classify which natural sparse global skeletons cross into arithmetic and which do not.
+After that, the natural next frontier is no longer “does a sparse safe skeleton exist?” It is:
+
+> can a comparably principled non-universal primitive source class beat the D0L floor \(N\log N\) while still passing the internal no-addition/no-multiplication leakage gate?
 
 Do not merge any infinite result into finite G4. No finite G4 theorem status is changed by this memo.
