@@ -1,6 +1,6 @@
-# FCOA Nesting & Atomicity — First Theorem Package
+# FCOA Nesting & Atomicity — Repaired Theorem Package
 
-**Status:** exploratory theorem package for delegated review.  
+**Status:** hostile-audited with repairs.  
 Nothing here revises the published M0-G1-G2 checkpoint.
 
 ## Theorem 1 — Atomicity monotonicity under sandbox restriction
@@ -20,7 +20,7 @@ have the same carrier, typing and trivial class, and suppose every allowed cell 
 \operatorname{Dec}^{LR}_{\mathfrak S_2,U}(x)
 \]
 
-for every active `x`. Hence
+for every target element `x`. Hence
 
 \[
 \boxed{\operatorname{Atom}(\mathfrak S_2,U)
@@ -28,147 +28,305 @@ for every active `x`. Hence
 \operatorname{Atom}(\mathfrak S_1,U).}
 \]
 
-So enlarging the admissible composition family can only destroy atoms; restricting the family can only create atoms.
-
-### Proof
-
-Immediate from inclusion of the two-sided nontrivial decomposition witness sets. `square`
-
-This is the precise sense in which atomicity is sandbox-relative.
+So enlarging admissible composition can only destroy atoms; restricting it can only create atoms.
 
 ## Theorem 2 — Automorphism invariance
 
-Every sandbox automorphism preserves the left-, right-, and bilateral atomic classes, indecomposability, the nontrivial factor graph, and nesting-minimal strongly connected classes.
+Every sandbox automorphism preserves isolation, indecomposability, left/right/bilateral atomicity, U-transport-irreducibility, the repaired nontrivial factor graph, SCCs, and nesting-minimal classes.
 
 ### Proof
 
-An automorphism bijectively transports each witness
+Every decomposition witness
 
 \[
 \omega(a,b)=x
 \]
 
-to
+is transported bijectively to
 
 \[
 \omega(g(a),g(b))=g(x),
 \]
 
-while preserving membership in `U` and active/terminal sorts. Thus every witness class and every graph edge is transported equivariantly. `square`
+while `U` and typing are preserved. Therefore every witness class and graph edge is transported equivariantly. `square`
 
 ## Theorem 3 — Pure carrier-erasure invariance
 
-Under the pure carrier-erasure convention of `DEFINITIONS.md`, all decomposition witness sets remain literally unchanged. Consequently isolation may change only if erased external relations were counted as incidence data, but
+Under the pure carrier-erasure convention, every operation cell and every decomposition witness is literally unchanged. Consequently
 
 \[
 \boxed{
-\text{indecomposability, left/right/bilateral U-atomicity, U-irreducibility,
-and the nontrivial factor graph are invariant.}
+\text{isolation, indecomposability, atomicity, transport-irreducibility,}
+\text{factor graph, SCCs and well-founded rank are invariant.}
 }
 \]
 
-In particular, losing an external order does not by itself change atomicity when the operation cells remain fixed.
+Losing an external order can therefore increase automorphism symmetry without changing composition-boundary atomicity.
 
-## Theorem 4 — Value-fiber invariance for active-result atomicity
+## Theorem 4 — Terminal value-fiber invariance for active-result atomicity
 
-Let two sandboxes have the same active carrier `A`, the same `U`, the same operation domains on active arguments, and the same set of active-result cells. They may differ only by how cells whose results lie in terminal sorts are partitioned among anonymous terminal output values.
+Let two sandboxes have the same carrier, `U`, operation domains, and the same set of cells whose results lie in the chosen atomicity-target sort. They may differ only in how cells landing in terminal output sorts are partitioned among anonymous terminal values.
 
-Then their atomic classes inside `A` are identical.
+Then their atom classes on the target sort are identical.
 
 ### Proof
 
-Atomicity of `x in A` depends only on cells whose result equals `x`. Recoloring or repartitioning cells landing in terminal sorts creates no new witness with active result `x` and destroys none. `square`
+Atomhood of `x` depends only on two-sided nontrivial cells whose result is `x`. Repartitioning terminal-output fibers changes no such witness. `square`
 
-### FCOA consequence
+Thus rigidity memory carried by terminal values is orthogonal to active-result atomicity under this hypothesis.
 
-G3-style changes of anonymous terminal value fibers can alter automorphism groups, commutation behavior, and Value-Rigidity Index while leaving active-result atomicity unchanged, provided the active-result cells themselves are not modified.
+## Theorem 5 — Atom implies global nesting minimality
 
-This formally separates **rigidity memory** from **composition-boundary atomicity**.
+For every sandbox and every target element `x`:
 
-## Theorem 5 — Atoms versus nesting-minimality in acyclic sandboxes
+\[
+\boxed{x\text{ is a U-atom}\Longrightarrow x\text{ is nesting-minimal}.}
+\]
 
-Assume the nontrivial factor graph `G_{S,U}` is finite and acyclic. Then for every active nontrivial element `x`:
+### Proof
+
+If `x` were not nesting-minimal, then in the condensation poset there would be a strictly lower SCC with a directed path into the SCC of `x`. The final edge entering the SCC of `x` is an incoming nontrivial factor edge into some element of that SCC. If `x` is a singleton SCC with no internal path back, this contradicts indegree zero immediately; more generally an atom cannot lie in a nontrivial SCC because strong connectivity gives it an incoming internal edge, and a self-loop also gives indegree. Therefore an atom lies in an edge-free singleton SCC with no incoming condensation edge, hence is nesting-minimal. `square`
+
+## Theorem 6 — Exact minimal-SCC criterion
+
+Let `MinNest` be the set of all elements lying in minimal SCCs of the nontrivial factor graph. Then
+
+\[
+\operatorname{Atom}\subseteq\operatorname{MinNest}.
+\]
+
+Moreover
+
+\[
+\boxed{
+\operatorname{Atom}=\operatorname{MinNest}
+\iff
+\text{every minimal SCC is an edge-free singleton}.
+}
+\]
+
+### Proof
+
+A minimal SCC that is an edge-free singleton has no incoming edge from another SCC by minimality and no internal edge by hypothesis, so its unique vertex has indegree zero and is an atom.
+
+Conversely, if a minimal SCC contains at least two vertices, strong connectivity gives every vertex an internal incoming edge. If it is a singleton with a self-loop, that loop is an incoming edge. Hence such a component contains no atoms. `square`
+
+### Consequence
+
+Global acyclicity is sufficient but not necessary for atom/minimal equality. Cycles strictly above the minimal condensation layer are harmless.
+
+## Theorem 7 — Finite acyclic corollary
+
+If the repaired nontrivial factor graph is finite and acyclic, then
+
+\[
+\boxed{x\text{ is a U-atom}\iff x\text{ is minimal in the nesting order}.}
+\]
+
+This is now a corollary of Theorem 6, not the sharp boundary theorem.
+
+## Theorem 8 — Well-founded ordinal factor rank
+
+Assume the one-step factor relation `triangleleft` on `X\U` is well-founded. Then there is a unique ordinal rank
+
+\[
+\boxed{
+\rho(x)=\sup\{\rho(y)+1:y\triangleleft x\}.
+}
+\]
+
+For every declared target element,
+
+\[
+\boxed{x\text{ is a U-atom}\iff\rho(x)=0.}
+\]
+
+And every factor edge strictly raises rank:
+
+\[
+y\triangleleft x\Longrightarrow\rho(y)<\rho(x).
+\]
+
+### Proof
+
+Existence and uniqueness of the ordinal recursion are the standard well-founded recursion theorem. Rank zero is equivalent to having no predecessors under `triangleleft`, which is exactly bilateral U-atomicity. `square`
+
+### Claim boundary
+
+The ordinal-rank theorem for well-founded relations is classical. The branch claim is only its application to the admissible-composition factor relation.
+
+## Theorem 9 — U-coherence collapses atom and transport-irreducible
+
+Assume the U-coherence contract:
+
+1. no two-U-factor cell produces a nontrivial target result;
+2. every one-U-factor decomposition of a nontrivial target `x` has its non-U cofactor U-associated with `x`.
+
+Then
 
 \[
 \boxed{
 x\text{ is a U-atom}
 \iff
-x\text{ is minimal in }\preceq_{\mathfrak S,U}.}
+x\text{ is U-transport-irreducible}.}
 \]
 
 ### Proof
 
-A U-atom has indegree zero. In a finite DAG, a vertex has no strict predecessor in the transitive closure iff it has indegree zero. Conversely, if `x` has a two-sided nontrivial decomposition witness, one factor contributes an incoming edge from a distinct predecessor because acyclicity excludes a self-loop or directed return path. Thus `x` is not minimal. `square`
+If `x` is an atom, every decomposition has at least one U-factor. Clause 1 excludes both factors lying in U, so exactly one lies in U; Clause 2 makes that witness transport-inessential. Thus `x` is transport-irreducible.
 
-### Boundary
+Conversely, a transport-irreducible element has only witnesses with exactly one U-factor, so it has no two-sided nontrivial witness and is atomic. `square`
 
-Acyclicity is essential. In cyclic sandboxes a strongly connected class may be minimal while every member has an incoming nontrivial decomposition edge.
+This theorem replaces the earlier unconditional use of the word irreducible.
 
-## Theorem 6 — Cycle obstruction to elementwise minimality
+## Theorem 10 — Side-reversal exchanges directional atomicity
 
-Suppose a strongly connected component `C` of the nontrivial factor graph is minimal in the condensation DAG and contains at least one edge. Then every element of `C` is nesting-minimal in the preorder quotient, but at least one element of `C` is not a U-atom; if every vertex of `C` has internal indegree at least one, no element of `C` is a U-atom.
-
-Thus
+Let `rho` be a side-reversing anti-automorphism satisfying
 
 \[
-\boxed{\text{minimal nesting class}\not\Rightarrow\text{atomic element}.}
+\rho(\omega(a,b))=\omega(\rho(b),\rho(a)),
+\qquad \rho(U)=U.
 \]
-
-The obstruction is cyclic composition, not arithmetic divisibility.
-
-## Theorem 7 — Left/right coincidence under reversal symmetry
-
-Let a sandbox admit an involutive automorphism `rho` of the signature satisfying
-
-\[
-\rho(\omega(a,b))=\omega(\rho(b),\rho(a))
-\]
-
-for every allowed cell, and suppose `rho(U)=U`.
 
 Then
 
 \[
-x\text{ left-U-atomic}
-\iff
-\rho(x)\text{ right-U-atomic}.
+\boxed{x\text{ left-U-atomic}\iff\rho(x)\text{ right-U-atomic}.}
 \]
 
 If `rho(x)=x`, left- and right-U-atomicity coincide at `x`.
 
-This is a sufficient symmetry criterion; no commutativity is assumed.
+No commutativity is assumed.
 
-## Theorem 8 — Full operation graph reconstruction of the nesting relation
+## Theorem 11 — Exact quotient atom criterion
 
-Given the typed full operation graph, the set `U`, and the distinction between active and terminal sorts, the nontrivial factor relation `triangleleft` is first-order recoverable in the natural incidence language:
+Let
 
-`a triangleleft x` iff there exist an allowed operation label `omega` and an active `b notin U` such that either `omega(a,b)=x` or `omega(b,a)=x`, with `a notin U`.
+\[
+q:X\twoheadrightarrow\bar X
+\]
 
-Therefore ordinary divisibility is unnecessary for reconstructing the one-step nesting boundary.
+be a sort-respecting ordinary congruence quotient of the partial operations, interpreted by existential representatives, and let
 
-## Theorem 9 — Translation reconstruction under labeled profiles
+\[
+\bar U=q(U).
+\]
 
-If the sandbox retains all labeled partial left and right translations, then the same relation is reconstructible from those translations:
+Then for any `x`:
+
+\[
+q(x)\text{ is non-atomic}
+\]
+
+iff there exist representatives `a,b,z` and an operation `omega` such that
+
+\[
+q(z)=q(x),\qquad \omega(a,b)=z,
+\]
+
+and both quotient factor classes are nontrivial:
+
+\[
+q(a),q(b)\notin\bar U.
+\]
+
+This is the exact witness-lifting description for quotient atomicity.
+
+## Theorem 12 — Fiberwise universal criterion under triviality reflection
+
+Assume additionally that the quotient is triviality-reflecting:
+
+\[
+\boxed{q^{-1}(\bar U)=U.}
+\]
+
+Then
+
+\[
+\boxed{
+q(x)\in\operatorname{Atom}(\bar{\mathfrak S},\bar U)
+\iff
+q^{-1}(q(x))\subseteq\operatorname{Atom}(\mathfrak S,U).
+}
+\]
+
+### Proof
+
+By triviality reflection,
+
+\[
+q(a)\notin\bar U\iff a\notin U.
+\]
+
+Thus a quotient two-sided nontrivial witness for `q(x)` exists exactly when some representative result `z` in the fiber of `x` has an original two-sided nontrivial witness. Negating gives the formula. `square`
+
+### Consequences
+
+Under triviality reflection:
+
+- quotienting cannot create an atom from a composite representative;
+- quotienting can destroy an atom if its result fiber also contains a composite representative;
+- pointwise atomhood is preserved iff atomhood is constant on quotient fibers.
+
+Without triviality reflection, a quotient may create atoms by collapsing a formerly nontrivial factor into `bar U`.
+
+## Theorem 13 — Ordinary quotients do not preserve well-foundedness
+
+There is no general theorem saying an ordinary congruence quotient preserves the factor DAG or ordinal rank.
+
+Counterexample: with `U=emptyset`, take
+
+\[
+a\star b=c,
+\qquad
+c\star b=d.
+\]
+
+The original factor graph is acyclic. Identifying `c sim d` yields
+
+\[
+[c]\star[b]=[c],
+\]
+
+so the quotient graph contains a self-loop and is not well-founded.
+
+Hence rank preservation requires a stronger quotient contract and remains open in this branch.
+
+## Theorem 14 — Full operation-graph reconstruction
+
+Given the typed full operation graph and `U`, the repaired one-step relation is recoverable by
 
 \[
 a\triangleleft x
 \iff
 \exists\omega\exists b\notin U
-\bigl(L_a^\omega(b)=x\lor R_a^\omega(b)=x\bigr).
+\bigl(\omega(a,b)=x\lor\omega(b,a)=x\bigr),
 \]
 
-However, coarse unlabeled summaries such as translation-domain cardinalities or orbit sizes need not determine atomicity. Separation examples are recorded in `SEPARATION_EXAMPLES.md`.
+with `a notin U` and all cells required to be legal in the signature.
 
-## Working synthesis
+Ordinary divisibility is unnecessary.
 
-The theorem package supports a sharpened version of the branch thesis:
+## Theorem 15 — Labeled translation reconstruction
+
+If all labeled left/right partial translations are retained, then `triangleleft` is reconstructible from them. Coarse unlabeled statistics such as domain cardinalities or orbit sizes do not determine atom classes in general.
+
+## Repaired synthesis
+
+The hostile audit replaces the first slogan by the exact hierarchy
 
 \[
 \boxed{
-\text{A U-atom is an indegree-zero point of the nontrivial admissible-composition graph.}
+\text{U-atom}
+=
+\text{zero-incoming local composition boundary}
+\subseteq
+\text{minimal condensation boundary}.
 }
 \]
 
-When that graph is finite and acyclic, this is exactly a minimal boundary point of the induced nesting order. With cycles, the correct global boundary object is a minimal strongly connected nesting class rather than necessarily an atomic element.
+Equality holds exactly when every minimal SCC is an edge-free singleton.
 
-Hence "atomicity is a boundary state" is true only after specifying whether the intended boundary is local witness-boundary or global preorder-boundary.
+When the factor relation is well-founded, the same local boundary is rank zero of the canonical ordinal factor rank.
+
+Under quotient identification, atomhood is not invariant; with triviality reflection it becomes a fiberwise universal property.
