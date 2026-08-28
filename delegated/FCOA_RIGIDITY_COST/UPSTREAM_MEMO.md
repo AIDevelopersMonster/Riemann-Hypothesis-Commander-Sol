@@ -6,7 +6,7 @@
 
 ## Executive verdict
 
-Four results from this direction are strong enough for upstream review.
+Five results from this direction are strong enough for upstream review.
 
 ### U1. Rigidity cost is not successor-memory cost
 
@@ -163,8 +163,6 @@ Therefore
 }
 \]
 
-Here `Aut^±` permits a global anonymous-output exchange, equivalently an isomorphism to the converse tournament.
-
 An equivalent scalar is the second outdegree moment
 
 \[
@@ -181,29 +179,83 @@ M_2(T)=\frac{n(n-1)(2n-1)}6-2\tau_3(T).
 
 Thus the first degree moment is constant over all tournaments, while the second moment is already sufficient to separate G4-C from this rigid family.
 
-The structural message is stronger than mere separation: a **constant microscopic defect of two cyclic triples** removes the final global reversal symmetry for an arbitrarily large generic carrier. The coarse G4-C invariants remain unchanged, but VRI doubles from `n!/2` to `n!`.
+### U5. Two thresholds: k=3 for separation, k=7 for universal coherent reconstruction
 
-Full proof and scope conditions are in `TRIANGLE_SEPARATOR.md`.
+The next audit shows that one must distinguish **histogram profiles** from **subset-coherent local data**.
+
+Let `H_k^±(T)` be the multiset of induced `k`-vertex tournament types modulo converse. Exact enumeration through `n=7` shows that these histograms do not determine residual anonymous symmetry in general.
+
+The decisive explicit pair occurs at `n=7`. Let
+
+\[
+\begin{aligned}
+A(S_7)=\{&10,20,30,04,50,06,21,13,41,51,16,32,42,25,62,\\
+&43,53,63,54,64,65\},
+\end{aligned}
+\]
+
+and let
+
+\[
+A(R_7)=A(S_7)\setminus\{10\}\cup\{01\}.
+\]
+
+Then exact enumeration gives
+
+\[
+\boxed{
+\operatorname{Aut}^{\pm}(S_7)\cong C_2,
+\qquad
+\operatorname{Aut}^{\pm}(R_7)=1,
+}
+\]
+
+while simultaneously
+
+\[
+\boxed{
+H_k^{\pm}(S_7)=H_k^{\pm}(R_7)
+\quad\text{for every }k=3,4,5,6.
+}
+\]
+
+Both even have `tau3=12`. Thus all proper anonymous histogram levels can agree while the last global anti-automorphism differs. The missing datum is **overlap coherence**, not one more scalar count.
+
+This connects cleanly with a classical theorem of Boudabbous–Lopez: finite tournaments are `(<=7)`-half-reconstructible, and 7 is optimal. In FCOA language, if the anonymous induced pattern is retained **on each actual carrier subset** through size seven, rather than merely counted in a histogram, then the full tournament is determined up to global converse and hence so is `Aut^±` up to conjugacy.
+
+Therefore the correct two-threshold statement is
+
+\[
+\boxed{
+3=\text{local separation threshold for G4-C vs rigidity},
+\qquad
+7=\text{optimal universal coherent reconstruction arity}.
+}
+\]
+
+Full reconciliation, the explicit `S7/R7` pair, and the distinction between histograms and coherent local passports are in `FIBER_PROFILE_HIERARCHY.md`.
 
 ## Additional structural firewall: pure-carrier naturality
 
 A skeleton assignment natural under every bijection of a pure finite carrier cannot break symmetry: every permutation preserves the assigned skeleton. Thus a successful `carrier-uniform` rigidity construction must always be understood as uniform **relative to additional transported data**, not canonically generated from the bare carrier.
 
-## Branch passport for U3/U4
+## Branch passport for U3–U5
 
 - **Carrier/signature:** M0 backbone; complete off-diagonal generic terminal layer; two anonymous terminal outputs.
 - **Defined cells:** all `n(n-1)` ordered distinct generic pairs.
-- **Full automorphism group:** trivial for the tournament family `n>=5`.
+- **Full automorphism group:** varies from `C2` in transitive G4-C to `1` in rigid tournament layers.
 - **Definedness group:** full `S_n` on the generic sector relative to M0 boundary roles.
-- **Commutation:** exactly M0, size `3n`.
-- **Association Spectrum:** exactly G4-C formula.
-- **Three-point invariant:** G4-C `tau3=0`; rigid family `tau3=2`.
-- **Second degree moment:** differs from the transitive maximum by exactly `4` for the rigid family.
-- **Small cases:** tournament anonymous rigidity first appears at `n=5`; the exact minimum cyclic-triangle defect is then `2` and remains `2` for all larger `n` in the recursive family.
+- **Commutation:** exactly M0, size `3n`, for tournament-type opposite fibers.
+- **Association Spectrum:** exactly G4-C formula for every complete tournament-type terminal layer.
+- **Three-point invariant:** G4-C `tau3=0`; minimum rigid defect `tau3=2`.
+- **Histogram limitation:** at `n=7`, all proper anonymous histogram orders may agree while `Aut^±` differs.
+- **Coherent-local ceiling:** subset-indexed anonymous restrictions through arity 7 determine the tournament up to converse, by the classical half-reconstruction theorem.
 - **Mechanism:** value-fiber geometry only; no domain asymmetry and no anchor.
-- **External naming:** none for the two outputs. The chosen tournament is transported combinatorial input.
+- **External naming:** none for the two outputs.
 - **Ordinary arithmetic imported:** no.
 
 ## Recommendation
 
-Recommend upstream acceptance of U2, the scope-sharpening content of U3, and U4 after independent hostile review. Do not edit G4 from this subordinate branch. If G4 itself survives hostile audit, present it as the elegant **order-derived** two-fiber construction; then use U4 to state exactly which first local invariant detects departure from transitivity.
+Recommend upstream acceptance of U2, the scope-sharpening content of U3, U4, and the structural distinction in U5 after independent hostile review. Do not edit G4 from this subordinate branch.
+
+The next FCOA-specific problem is now sharper than generic tournament reconstruction: find the **smallest stabilizer-complete compression** of the coherent local passport whose stabilizer is exactly `Aut^±(T)`, without reconstructing the entire tournament.
