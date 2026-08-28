@@ -1,19 +1,21 @@
 # FCOA Hybrid Memory — Arithmetic Leakage Audit
 
-**Status:** internal branch audit.
+**Status:** internal branch audit; updated for shared-output synchronization.
 
 ## 1. Scope
 
-This audit concerns only the explicit finite witnesses in `MINIMAL_WITNESSES.md` and the scalable path families in `SYNERGY_CLASSES.md`.
+This audit concerns the explicit finite witnesses in `MINIMAL_WITNESSES.md` and the scalable families in `SYNERGY_CLASSES.md`.
 
-The firewall questions are:
+Firewall questions:
 
 1. Is successor recovered?
 2. Is full order recovered?
 3. Is any internal addition-like or multiplication-like graph definable?
-4. Are external index calculations smuggled into branch definitions?
+4. Are index calculations smuggled into branch definitions?
 
-## 2. Three-point witnesses DD-3, DV-3, VV-3
+## 2. Minimal three-point witnesses
+
+This includes DD-3, DV-I-3, VV-I-3, and the new shared-output witness JFS-3.
 
 ### Verdict
 
@@ -21,58 +23,67 @@ The firewall questions are:
 \boxed{\text{Arithmetic Leakage: NONE / below AL0.}}
 \]
 
-Reason:
+Reasons:
 
 - the active carrier has exactly three points;
-- the constructions use only one distinguished diagonal cell, or anonymous equality partitions of three diagonal values;
-- no external linear order is part of the definition;
-- no successor relation, directed path, betweenness, equal-gap relation, addition graph, or multiplication graph is compiled into either operation;
+- no external linear order is part of any construction;
+- no directed path, successor, betweenness, EqGap, addition graph, or multiplication graph is compiled;
+- JFS-3 uses only equality of anonymous terminal outputs across two operation symbols;
 - the joint structure becomes rigid, but rigidity of a fixed finite structure is not uniform recovery of arithmetic across an unbounded family.
 
-The jointly definable singleton in each witness is merely a finite relational distinction. It does not encode rank arithmetic.
+## 3. Specific audit of JFS-3
 
-## 3. Scalable DD path family
+JFS-3 is
 
-The scalable family uses two undirected paths `P` and `Q`.
+\[
+a\oplus a=u,
+\qquad
+b\otimes b=u,
+\qquad
+c\otimes c=v.
+\]
 
-Each reduct individually remembers its path only up to reversal. The joint reduct is rigid because the two path reversals are transverse.
+Its new information is the cross-operation statement
 
-### Order risk
+\[
+a\oplus a=b\otimes b
+\]
 
-A finite undirected path with distinguished orientation absent does not itself define one of the two linear orientations. The pair of transverse paths may distinguish every vertex, so a finite total ordering can be *externally listed* after rigidity, but this is not yet a proved **uniform parameter-free FO definition of the canonical external index order**.
+versus
 
-Therefore no AL0 claim is made.
+\[
+a\oplus a\ne c\otimes c.
+\]
 
-### Index leakage
+This distinguishes `b` from `c` jointly, but contains no rank, orientation, distance, or arithmetic law.
 
-The displayed path `Q` is defined by the vertex order `1,0,2,3,...`. This uses external labels only as a specification device. The actual operation contains only the explicit path edges. No addition, subtraction, distance, or rank comparison on indices appears as an operation rule.
+The mechanism is output-synchronization only. It is therefore strictly safer, from the arithmetic-leakage perspective, than G4-A order memory.
 
-Nevertheless, because the scalable family is indexed by `n`, any future claim of uniform order nondefinability/definability must be hostile-audited separately. This branch does not infer such a statement from finite rigidity.
+## 4. Scalable DD path family
 
-## 4. Scalable value lifts
+The scalable family uses two undirected paths. Each reduct remembers a path up to reversal; the joint reduct is rigid because the residual path reversals are transverse.
 
-Any complete-domain value-coloring family whose fibers are chosen from an externally ordered pattern must be treated as potentially higher leakage risk than the three-point witnesses.
+Finite rigidity does not by itself prove a uniform parameter-free definition of the canonical external order. No AL0 claim is made.
 
-Before upstreaming such a family, one must prove one of:
+## 5. Scalable value lifts
 
-- the coloring is uniformly interpretable in a known weak structure below AL0; or
-- exact order is not uniformly recoverable; or
-- if order is recoverable, classify it explicitly as AL0 and verify no EqGap/addition leakage.
+Any scalable value-coloring family derived from external order remains quarantined until uniform order/leakage behavior is classified.
 
-No scalable value-lift is presently promoted to `UPSTREAM_MEMO.md`.
+The new JFS mechanism suggests a safer alternative scalable research direction: seek families based on incompatible output-lift constraints that do **not** encode a path or total order at all.
 
-## 5. Current firewall summary
+## 6. Firewall summary
 
 | witness | successor | full order | addition/EqGap | multiplication | status |
 |---|---|---|---|---|---|
-| DD-3 | no meaningful uniform family claim | no | no | no | safe |
-| DV-3 | no meaningful uniform family claim | no | no | no | safe |
-| VV-3 | no meaningful uniform family claim | no | no | no | safe |
-| scalable DD paths | not established | not established | not established | not established | quarantine for leakage claims |
+| DD-3 | no uniform family claim | no | no | no | safe |
+| DV-I-3 | no uniform family claim | no | no | no | safe |
+| VV-I-3 | no uniform family claim | no | no | no | safe |
+| JFS-3 | no uniform family claim | no | no | no | safe |
+| scalable DD paths | not established | not established | not established | not established | quarantine |
 | scalable value lifts | not established | not established | not established | not established | quarantine |
 
-## 6. Firewall rule for this branch
+## 7. Firewall rule
 
-Joint rigidity by itself must never be reported as order recovery. A rigid finite structure can define every element orbit-theoretically without thereby yielding a uniform canonical arithmetic interpretation across the family.
+Joint rigidity must never be reported as order recovery.
 
-The branch will therefore prefer the three-point minimal witnesses for the first upstream memo: they demonstrate genuine hybrid memory while staying maximally far from the G4-A order wall.
+Shared-output equality is also not arithmetic merely because it coordinates two operation symbols. Any future scalable JFS family must still be checked for whether its pattern of shared fibers accidentally defines order, distance, EqGap, or another arithmetic gateway.
