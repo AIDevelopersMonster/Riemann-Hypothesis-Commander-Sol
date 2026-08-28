@@ -5,7 +5,8 @@
 
 Author: Alex Malachevsky  
 ORCID: 0009-0008-6009-3196  
-Status: publication candidate / proof-and-metadata audit pending  
+Version: 1.0  
+Status: **PUBLICATION READY — Zenodo DOI pending**  
 Date: 29 August 2026
 
 ## Main result
@@ -18,42 +19,29 @@ q=2:\quad k_{exact}=3,
 q\ge3:\quad k_{exact}=4.
 \]
 
-The binary upper bound is the universal ternary phase reduct
+## Publication audit completed
 
-\[
-Q(x,y,z)\iff x\star y=y\star z.
-\]
+- hostile proof audit completed;
+- q=3 finite lower-bound witness independently re-enumerated;
+- T5 automorphism / anti-automorphism / cyclic-triangle witness independently re-enumerated;
+- bibliography and DOI pass completed;
+- novelty language narrowed against switching, tournament reconstruction, and relational-complexity literature;
+- theorem/equation numbering pass completed;
+- RU and EN manuscripts synchronized;
+- DOCX and PDF outputs rendered page-by-page and visually checked;
+- independent verification script committed.
 
-The multicolor lower bound uses an explicit five-vertex three-color witness; the universal upper bound is arbitrary-cell equality
+## Repository sources
 
-\[
-E(x,y,u,v)\iff x\star y=u\star v.
-\]
-
-## Included line
-
-- terminal-layer coarse-invariant blindness;
-- balanced anonymous rigidity versus transitive reversal symmetry;
-- cyclic-triangle separator;
-- tournament betweenness exactness;
-- universal binary ternary phase theorem;
-- q=3 ternary obstruction;
-- universal q-color four-ary theorem;
-- exact 3/4 arity threshold.
+- `article_en.md` — publication-hardened English manuscript;
+- `article_ru.md` — Russian manuscript;
+- `verify_article_a.py` — independent finite-witness verifier;
+- `CITATION.cff` — metadata; insert Zenodo DOI after deposit.
 
 ## Deliberately excluded
 
-Sparse-domain phase cocycles, lambda/mu/alpha synchronization costs, and the alpha<=lambda problem belong to Article B.
+Sparse-domain phase cocycles, synchronization costs, cell-extension costs, and the remaining sparse-domain boundary belong to Article B.
 
-## Publication gate
+## Remaining external publication action
 
-Before Zenodo release:
-
-1. hostile proof audit of every theorem and construction;
-2. independent re-enumeration of the q=3 witness;
-3. bibliography/DOI verification;
-4. conservative novelty comparison with switching, tournament reconstruction, and relational-complexity literature;
-5. equation/theorem numbering pass;
-6. RU/EN metadata consistency;
-7. final PDF/DOCX render audit;
-8. freeze repository commit and record it in the Zenodo metadata.
+Deposit the publication package on Zenodo, obtain the DOI, and insert that DOI into the manuscript metadata and `CITATION.cff`. No mathematical revision is required before deposit.
