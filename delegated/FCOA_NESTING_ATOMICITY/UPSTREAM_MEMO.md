@@ -1,7 +1,7 @@
 # FCOA Nesting & Atomicity — Upstream Memo after Hostile Audit 01
 
 **Direction:** `FCOA — SOL-NESTING — Sandbox Atomicity & Composition Boundary`  
-**Status:** delegated branch, hostile-audited with repairs  
+**Status:** delegated branch, hostile-audited with repairs; mathematical core candidate for publication hardening  
 **Scientific authority:** main Commander Sol retains acceptance/rejection authority for the central FCOA line.
 
 ## Audit verdict
@@ -32,7 +32,7 @@ Every atom is nesting-minimal:
 }
 \]
 
-The reverse inclusion has an exact criterion:
+The reverse inclusion has the exact criterion
 
 \[
 \boxed{
@@ -44,7 +44,7 @@ The reverse inclusion has an exact criterion:
 
 This supersedes the earlier emphasis on global acyclicity. Acyclicity is sufficient but not necessary; cycles strictly above the minimal condensation layer do not affect atom/minimal equality.
 
-Thus the sharpened branch thesis is
+Thus
 
 \[
 \boxed{
@@ -62,7 +62,7 @@ while
 
 ## 2. Well-founded rank theorem
 
-If the factor relation `triangleleft` is well-founded, the standard well-founded recursion gives
+If the factor relation `triangleleft` is well-founded, standard well-founded recursion gives
 
 \[
 \rho(x)=\sup\{\rho(y)+1:y\triangleleft x\}.
@@ -93,9 +93,7 @@ Under these hypotheses,
 \boxed{U\text{-atom}\iff U\text{-transport-irreducible}.}
 \]
 
-This repair prevents ordinary monoid intuition from being imported by terminology alone.
-
-## 4. Pure erasure and quotient identification separate sharply
+## 4. Pure erasure and ordinary quotient identification separate sharply
 
 Pure carrier erasure keeps all operation cells fixed and therefore preserves isolation, atomicity, nesting SCCs and well-founded rank exactly.
 
@@ -105,7 +103,7 @@ A genuine quotient
 q:X\twoheadrightarrow\bar X
 \]
 
-is different. It can alter atomicity through carrier identification.
+can alter atomicity through carrier identification.
 
 With
 
@@ -119,7 +117,7 @@ and the **triviality-reflection** condition
 q^{-1}(\bar U)=U,
 \]
 
-one obtains the sharp quotient formula
+the exact ordinary-quotient atom criterion is
 
 \[
 \boxed{
@@ -129,20 +127,70 @@ q^{-1}(q(x))\subseteq\operatorname{Atom}(\mathfrak S,U).
 }
 \]
 
-Hence quotient atomhood becomes a fiberwise universal property.
+Hence ordinary quotient atomhood is a fiberwise universal property.
 
-Two distinct failure modes are now explicit:
+Two failure modes are explicit:
 
-- **result-fiber contamination:** an atom can become composite when identified with a composite result;
+- **result-fiber contamination:** an atom becomes composite when identified with a composite result;
 - **triviality collapse:** if triviality reflection fails, a composite can become atomic because a nontrivial factor collapses into the quotient trivial class.
 
-This is a substantially stronger answer to the original Carrier-Erasure question than the pure-erasure theorem alone.
+## 5. Quotient Composition-Reflection Theorem — closed obligation
 
-## 5. Ordinary quotienting does not preserve nesting rank
+The hostile audit left one important question open: what stronger quotient contract guarantees that well-founded nesting and ordinal rank actually descend?
 
-An ordinary partial-algebra congruence quotient may turn an acyclic factor graph into one with a self-loop. Therefore no general quotient theorem for well-foundedness or ordinal factor rank is claimed.
+This is now answered in `QUOTIENT_COMPOSITION_REFLECTION.md`.
 
-A future theorem would require a stronger quotient notion, likely one that reflects definedness/factor incidence strongly enough to prevent new quotient cycles. This is an open obligation, not a hidden assumption.
+Define **Coherent Predecessor Lifting (CPL)** by
+
+\[
+\boxed{
+\bar y\ \bar\triangleleft\ q(x)
+\Longrightarrow
+\exists y\in q^{-1}(\bar y):y\triangleleft x
+}
+\]
+
+for **every** representative `x` of the quotient result class.
+
+Under:
+
+1. original well-foundedness;
+2. quotient compatibility;
+3. triviality reflection;
+4. CPL;
+
+one obtains first
+
+\[
+\boxed{
+\bar\triangleleft\text{ is well-founded}
+}
+\]
+
+and then the stronger exact rank theorem
+
+\[
+\boxed{
+\bar\rho(q(x))=\rho(x)
+}
+\]
+
+for every nontrivial `x`.
+
+Consequently
+
+\[
+\boxed{
+x\text{ atomic}\iff q(x)\text{ atomic}.}
+\]
+
+The proof is by recursive chain lifting for well-foundedness and by well-founded induction for the two rank inequalities.
+
+CPL also forces all representatives of a quotient fiber to have the same factor rank, so it rules out result-fiber contamination automatically.
+
+This closes the principal mathematical obligation named at the end of Hostile Audit 01.
+
+No claim is made that CPL is logically necessary for every well-foundedness-preserving quotient. It is a clean sufficient composition-reflection contract strong enough to give exact rank equality.
 
 ## 6. Atomicity monotonicity survives the audit
 
@@ -177,28 +225,22 @@ The branch establishes an abstract theory of decomposition witnesses and nesting
 - unique factorization;
 - atomic decomposition existence for every element;
 - a canonical `U` for arbitrary signatures;
-- preservation of well-founded rank by arbitrary quotients;
+- preservation by arbitrary ordinary quotients;
 - classical divisibility outside the integer multiplication sandbox;
-- novelty of ordinal rank or general partial-algebra quotient theory;
+- novelty of ordinal rank, congruence quotients, or lifting principles in general;
 - any revision of M0-G1-G2 or validation of G4.
 
-## 10. Upstream recommendation
-
-The theorem-level material now worth central consideration is:
+## 10. Upstream theorem package now worth consideration
 
 1. **Sandbox Monotonicity of Atomicity**;
 2. **Exact Minimal-SCC Boundary Theorem**;
-3. **Well-Founded Factor Rank Corollary**;
-4. **Terminal Value-Fiber Invariance of Active Atomicity**;
-5. **Triviality-Reflecting Quotient Fiber Criterion**.
+3. **Well-Founded Factor Rank Theorem**;
+4. **U-Coherence Atom/Transport-Irreducible Theorem**;
+5. **Terminal Value-Fiber Invariance of Active Atomicity**;
+6. **Triviality-Reflecting Quotient Fiber Criterion**;
+7. **CPL Quotient Composition-Reflection and Exact Rank-Preservation Theorem**.
 
-The most important conceptual change is that the phrase
-
-\[
-\text{“atomicity is a boundary state of composition”}
-\]
-
-can now be made exact without arithmetic:
+The compact synthesis is now
 
 \[
 \boxed{
@@ -208,10 +250,29 @@ can now be made exact without arithmetic:
 }
 \]
 
+and, under safe quotienting,
+
+\[
+\boxed{
+\text{triviality reflection + CPL}
+\Longrightarrow
+\bar\rho\circ q=\rho.
+}
+\]
+
 ## 11. Publication status
 
-The hostile audit materially improved the theory, but publication is **not yet declared ready**. One focused obligation remains scientifically important before publication hardening:
+The principal internal mathematical gaps identified by Hostile Audit 01 are now closed at theorem/proof level.
 
-> characterize a strong quotient / composition-reflection condition under which factor well-foundedness and ordinal rank descend safely.
+The branch has therefore crossed from exploratory definition-building into **publication-candidate mathematical core**.
 
-That is now the highest-value next mathematical strike; repeatedly elaborating finite atomicity examples would add less.
+Before any Zenodo recommendation, the required next stage is no longer another mathematical extension. It is a conservative publication-hardening audit:
+
+- dedicated prior-art search for the exact terminology and quotient-lifting formulation;
+- proof-by-proof adversarial reread;
+- claim/novelty discipline;
+- notation and theorem numbering;
+- bibliography and metadata;
+- RU/EN publication package only after those checks pass.
+
+No further theorem should be added merely to make the branch larger.
