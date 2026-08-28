@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FCOA Sandbox Atomicity — Interactive Demo</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2f;--panel2:#17213b;--text:#eef3ff;--muted:#9fb0d0;--line:#40527c;--good:#53d6a3;--bad:#ff7a8a;--accent:#7cb7ff;--warn:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#08101e,#101a33 55%,#0b1020);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+header{padding:30px 22px 18px;max-width:1180px;margin:auto}h1{font-size:clamp(28px,4vw,46px);line-height:1.05;margin:0 0 12px}header p{color:var(--muted);max-width:900px;margin:0}.wrap{max-width:1180px;margin:auto;padding:0 22px 42px;display:grid;grid-template-columns:320px 1fr;gap:18px}.panel{background:rgba(18,26,47,.94);border:1px solid #263657;border-radius:18px;padding:18px;box-shadow:0 18px 55px #0005}.controls button{width:100%;text-align:left;border:1px solid #33486f;background:#17213b;color:var(--text);padding:12px 13px;border-radius:12px;margin:0 0 9px;cursor:pointer}.controls button.active{border-color:var(--accent);box-shadow:0 0 0 2px #7cb7ff22;background:#1c2c4d}.controls small{display:block;color:var(--muted);margin-top:3px}.legend{margin-top:18px;border-top:1px solid #2b3b60;padding-top:14px}.legend div{margin:7px 0}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}.good{background:var(--good)}.bad{background:var(--bad)}.warn{background:var(--warn)}.main{display:grid;gap:18px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:var(--panel2);border:1px solid #2a3b60;border-radius:14px;padding:14px}.k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.v{font-size:22px;font-weight:700;margin-top:4px}.graphbox{position:relative;min-height:390px;overflow:hidden}.graphbox svg{width:100%;height:390px;display:block}.node circle{stroke:#d8e5ff;stroke-width:2}.node text{fill:white;font-weight:700;text-anchor:middle;dominant-baseline:middle}.edge{stroke:#7f93bb;stroke-width:2;marker-end:url(#arrow)}.edge.cycle{stroke:var(--warn)}.note{color:var(--muted)}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#0d1529;border:1px solid #2d3e65;border-radius:12px;padding:12px;overflow:auto}.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;margin-right:6px}.bg-good{background:#173f35;color:#7df0c4}.bg-bad{background:#4a2029;color:#ff9dab}.bg-warn{background:#4b3b16;color:#ffe190}.steps{display:grid;gap:9px}.step{border-left:3px solid #40527c;padding:7px 10px;background:#111a30;border-radius:0 10px 10px 0}.footer{max-width:1180px;margin:0 auto 35px;padding:0 22px;color:var(--muted);font-size:13px}@media(max-width:850px){.wrap{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.graphbox{min-height:320px}.graphbox svg{height:320px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sandbox Atomicity & Quotient Safety</h1>
+  <p>Интерактивная иллюстрация статьи FCOA — SOL-NESTING. Здесь атом — это точка без входящего двухсторонне-нетривиального factor-edge. Сравните локальную атомарность, минимальные SCC и то, что делает настоящее quotient-отождествление.</p>
+</header>
+<div class="wrap">
+  <aside class="panel controls">
+    <button data-mode="basic" class="active"><b>1. Базовый sandbox</b><small>атомы как indegree-zero точки</small></button>
+    <button data-mode="cycle"><b>2. Минимальная SCC с циклом</b><small>глобальная граница без атомов</small></button>
+    <button data-mode="quotient"><b>3. Quotient contamination</b><small>атом сливается с composite</small></button>
+    <button data-mode="collapse"><b>4. Triviality collapse</b><small>quotient создаёт новый атом</small></button>
+    <div class="legend">
+      <div><span class="dot good"></span>атом</div>
+      <div><span class="dot bad"></span>составной</div>
+      <div><span class="dot warn"></span>ребро внутри минимальной SCC / опасный эффект</div>
+    </div>
+  </aside>
+  <main class="main">
+    <section class="cards">
+      <div class="card"><div class="k">Atom set</div><div class="v" id="atoms">{a,b}</div></div>
+      <div class="card"><div class="k">Minimal SCC layer</div><div class="v" id="mins">{a},{b}</div></div>
+      <div class="card"><div class="k">Verdict</div><div class="v" id="verdict">Atom = boundary</div></div>
+    </section>
+    <section class="panel graphbox">
+      <svg viewBox="0 0 780 390" role="img" aria-label="factor graph">
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#7f93bb"/></marker></defs>
+        <g id="edges"></g><g id="nodes"></g>
+      </svg>
+    </section>
+    <section class="panel">
+      <div id="badges"></div>
+      <h2 id="title">Локальная композиционная граница</h2>
+      <p class="note" id="desc"></p>
+      <div class="formula" id="formula"></div>
+      <div class="steps" id="steps"></div>
+    </section>
+  </main>
+</div>
+<div class="footer">Демонстрация не является отдельным доказательством: она визуализирует конечные witnesses, использованные в статье. Все математические утверждения даны в manuscript_ru.tex / manuscript_en.tex.</div>
+<script>
+const modes={
+ basic:{title:'Локальная композиционная граница',atoms:'{a, b}',mins:'{a}, {b}',verdict:'Atom = boundary',badges:[['good','indegree 0'],['good','acyclic']],desc:'Пусть U={u} и единственная нетривиальная клетка a⋆b=c. Тогда c имеет входящие factor-edges от a и b, а a и b не имеют входящих нетривиальных разложений.',formula:'a ⋆ b = c   ⇒   a ◁ c,  b ◁ c\nAtom = {a,b}',steps:['Расширение допустимых клеток может только добавлять decomposition witnesses.','Поэтому Atom(S₂,U) ⊆ Atom(S₁,U), если S₁ — restriction S₂.','В DAG локальная граница совпадает с минимальным condensation layer.'],nodes:[['a',170,210,'good'],['b',390,100,'good'],['c',610,210,'bad']],edges:[['a','c',false],['b','c',false]]},
+ cycle:{title:'Минимальная SCC не обязана состоять из атомов',atoms:'∅',mins:'{a,b}',verdict:'Global ≠ local',badges:[['warn','minimal SCC'],['bad','no atoms']],desc:'Две клетки a⋆a=b и b⋆b=a создают минимальную сильно связную компоненту {a,b}. Она является глобальной нижней границей nesting preorder, но у каждой вершины есть входящее ребро.',formula:'a ⋆ a = b,   b ⋆ b = a\nMinNest = {a,b},   Atom = ∅',steps:['Атом всегда nesting-minimal.','Обратное неверно при внутреннем ребре минимальной SCC.','Точный критерий: Atom = MinNest ⇔ каждая минимальная SCC — edge-free singleton.'],nodes:[['a',250,195,'bad'],['b',530,195,'bad']],edges:[['a','b',true],['b','a',true]]},
+ quotient:{title:'Result-fiber contamination',atoms:'source: {x,a,b} → quotient: {a,b}',mins:'меняется',verdict:'Atom destroyed',badges:[['bad','unsafe quotient'],['warn','fiber contamination']],desc:'В источнике x атомарен, а y составен из a⋆b=y. Если quotient отождествляет x~y, witness для y спускается в общий класс [x]=[y], и атом x уничтожается.',formula:'a ⋆ b = y,   x ~ y\n[x]=[y] is composite',steps:['Pure erasure этого сделать не может: witness sets там остаются буквально теми же.','Обычный quotient использует representative witness из любого элемента result-fiber.','При triviality reflection q(x) atomic ⇔ весь fiber q⁻¹(q(x)) состоит из атомов.'],nodes:[['a',120,105,'good'],['b',120,285,'good'],['y',400,105,'bad'],['x',400,285,'good'],['[x=y]',650,195,'bad']],edges:[['a','y',false],['b','y',false],['y','[x=y]',true],['x','[x=y]',true]]},
+ collapse:{title:'Triviality collapse может создать атом',atoms:'source: x composite → quotient: [x] atomic',mins:'quotient changes',verdict:'Atom created',badges:[['bad','triviality not reflected'],['warn','new atom']],desc:'Если a⋆b=x делает x составным, но quotient сливает a с u∈U, то класс [a]=[u] становится тривиальным. Нетривиальный witness исчезает как двухсторонний, и [x] может стать атомом.',formula:'a ⋆ b = x,   u ⋆ b = x,   a ~ u\n[a]=[u] ∈ Ū   ⇒   [x] may become atomic',steps:['Это отдельный механизм от result-fiber contamination.','Он невозможен при triviality reflection: q⁻¹(Ū)=U.','Для точного сохранения rank-layer дополнительно нужен back clause bounded morphism factor frames.'],nodes:[['a',120,95,'bad'],['u',120,295,'good'],['b',330,195,'good'],['x',535,195,'bad'],['[x]',700,195,'good']],edges:[['a','x',false],['b','x',false],['u','x',false],['x','[x]',true]]}
+};
+let mode='basic';
+function nodeMap(nodes){return Object.fromEntries(nodes.map(n=>[n[0],n]));}
+function draw(m){
+ const d=modes[m], map=nodeMap(d.nodes), ns=document.getElementById('nodes'), es=document.getElementById('edges'); ns.innerHTML=''; es.innerHTML='';
+ d.edges.forEach(([a,b,cy])=>{const A=map[a],B=map[b]; if(!A||!B)return; const dx=B[1]-A[1],dy=B[2]-A[2],len=Math.hypot(dx,dy)||1, ux=dx/len,uy=dy/len; const x1=A[1]+34*ux,y1=A[2]+34*uy,x2=B[1]-40*ux,y2=B[2]-40*uy; const line=document.createElementNS('http://www.w3.org/2000/svg','line'); line.setAttribute('x1',x1);line.setAttribute('y1',y1);line.setAttribute('x2',x2);line.setAttribute('y2',y2);line.setAttribute('class','edge'+(cy?' cycle':''));es.appendChild(line);});
+ d.nodes.forEach(([name,x,y,kind])=>{const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('class','node'); const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',31);c.setAttribute('fill',kind==='good'?'#1f8b69':kind==='bad'?'#a83d50':'#8c6d19'); const t=document.createElementNS('http://www.w3.org/2000/svg','text');t.setAttribute('x',x);t.setAttribute('y',y);t.textContent=name;g.append(c,t);ns.appendChild(g);});
+ document.getElementById('atoms').textContent=d.atoms;document.getElementById('mins').textContent=d.mins;document.getElementById('verdict').textContent=d.verdict;document.getElementById('title').textContent=d.title;document.getElementById('desc').textContent=d.desc;document.getElementById('formula').textContent=d.formula;
+ document.getElementById('badges').innerHTML=d.badges.map(([k,s])=>`<span class="badge bg-${k}">${s}</span>`).join(''); document.getElementById('steps').innerHTML=d.steps.map(s=>`<div class="step">${s}</div>`).join('');
+ document.querySelectorAll('button[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===m));
+}
+document.querySelectorAll('button[data-mode]').forEach(b=>b.addEventListener('click',()=>draw(b.dataset.mode)));draw(mode);
+</script>
+</body>
+</html>
