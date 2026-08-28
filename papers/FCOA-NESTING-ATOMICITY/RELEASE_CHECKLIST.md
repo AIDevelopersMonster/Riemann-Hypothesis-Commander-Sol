@@ -1,4 +1,4 @@
-# Release Checklist — FCOA Nesting & Atomicity
+# Release Checklist — FCOA Nesting & Atomicity v1.0
 
 ## Mathematical freeze
 
@@ -13,12 +13,13 @@
 - [x] `U`-irreducibility repaired to transport-irreducibility + coherence contract.
 - [x] Pure erasure invariance proved.
 - [x] Terminal value-fiber invariance proved under target-sort hypothesis.
+- [x] Explicit existential-representative quotient-operation convention stated.
 - [x] Exact ordinary quotient witness criterion proved.
 - [x] Fiberwise universal atom criterion proved under triviality reflection.
 - [x] Counterexample: quotient destroys an atom by result-fiber contamination.
 - [x] Counterexample: quotient creates an atom when triviality reflection fails.
 - [x] Bounded factor-morphism well-foundedness theorem proved.
-- [x] Exact factor-rank preservation under forth/back proved.
+- [x] Exact factor-rank preservation proof expanded into explicit upper/lower inequalities.
 - [x] Atomicity preservation corollary proved.
 
 ## Prior-art / claim firewall
@@ -30,7 +31,7 @@
 - [x] No priority claim for SCCs, graph condensation, bounded morphisms, ordinal ranks, or partial-algebra quotients.
 - [x] Classical primes presented only as one sandbox example.
 - [x] Unique factorization explicitly excluded from the claim set.
-- [x] G4 and neighboring branches excluded from the theorem dependencies.
+- [x] G4 and neighboring branches excluded from theorem dependencies.
 
 ## Bibliography
 
@@ -49,39 +50,43 @@
 - [x] Counterexamples written explicitly.
 - [x] Claim boundary included in abstract/introduction/conclusion.
 - [x] AI research-assistant role described without listing an AI as a legal author identity.
-- [ ] Final LaTeX compile.
-- [ ] Resolve all compile warnings / undefined references.
-- [ ] Visual PDF inspection page by page.
-- [ ] Verify bibliography layout and DOI rendering.
+- [x] Final LaTeX compile after supervisor repairs.
+- [x] Undefined references/citations checked and absent in final pass.
+- [x] Overfull boxes checked and absent in final pass.
+- [x] Visual PDF inspection completed for EN/RU.
+- [x] Bibliography layout and DOI rendering inspected.
+- [x] DOI-bearing PDFs recompiled and compared with pre-DOI v1.0 render; only page 1 changed.
 
-## Metadata freeze before Zenodo
+## Metadata freeze
 
 - [x] Author: Alex Malachevsky.
 - [x] ORCID: `0009-0008-6009-3196`.
-- [x] English title fixed at draft level.
-- [x] Russian working title fixed at draft level.
-- [ ] Final publication date.
-- [ ] Version (`v1.0` recommended after render audit).
-- [ ] New Zenodo DOI.
-- [ ] Final licence choice / inherited repository licence check.
-- [ ] Branch/tag/commit freeze recorded in release notes.
+- [x] English title frozen.
+- [x] Russian title frozen.
+- [x] Publication date: `2026-08-28`.
+- [x] Version: `v1.0`.
+- [x] Zenodo DOI: `10.5281/zenodo.22140527`.
+- [x] DOI inserted in both canonical manuscript versions and final PDFs.
+- [x] DOI inserted in README / release records / HTML demo.
+- [x] Branch freeze recorded in `ZENODO_RELEASE_v1.0.md`.
+- [x] Publication status: `PUBLICATION_READY`.
 
-## Recommended Zenodo package
+## Archival package
 
-At final freeze include:
+The final v1.0 package contains:
 
-1. final PDF;
-2. `manuscript.tex`;
-3. `references.bib`;
-4. optional source ZIP;
-5. concise `README.md`;
-6. publication audit / claim-boundary note if desired;
-7. link to the GitHub branch or immutable release tag.
+1. English PDF with DOI;
+2. Russian PDF with DOI;
+3. English LaTeX source;
+4. Russian LaTeX source;
+5. interactive HTML demonstrator;
+6. README / release metadata;
+7. publication audit / claim-boundary record.
 
 ## Current gate
 
 \[
-\boxed{\texttt{PUBLICATION\_READY\_PENDING\_RENDER\_AUDIT}}
+\boxed{\texttt{PUBLICATION\_READY}}
 \]
 
-No mathematical or claim-discipline blocker remains. The only remaining blocking gate is formal compilation/render verification plus final Zenodo metadata assignment.
+All mathematical, claim-discipline, source-support, metadata, compile, and render gates for v1.0 are closed. The archival identifier is `10.5281/zenodo.22140527`.
