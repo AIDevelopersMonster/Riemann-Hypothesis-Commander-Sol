@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite the Zenodo record once assigned."
+message: "If you use this work, please cite the Zenodo archival release."
 title: "Reflections on Anonymous Value Geometry with Commander Sol: Low-Arity Rigidity Reducts and an Arity Phase Transition"
 type: article
 authors:
@@ -8,6 +8,8 @@ authors:
     orcid: "https://orcid.org/0009-0008-6009-3196"
 date-released: 2026-08-29
 version: "1.0"
+doi: "10.5281/zenodo.22157403"
+url: "https://doi.org/10.5281/zenodo.22157403"
 repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
 keywords:
   - partial operations
