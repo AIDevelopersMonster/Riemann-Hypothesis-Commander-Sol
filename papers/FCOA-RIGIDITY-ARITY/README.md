@@ -6,8 +6,10 @@
 Author: Alex Malachevsky  
 ORCID: 0009-0008-6009-3196  
 Version: 1.0  
-Status: **PUBLICATION READY — Zenodo DOI pending**  
-Date: 29 August 2026
+Status: **PUBLISHED / ARCHIVAL RELEASE**  
+Date: 29 August 2026  
+Zenodo DOI: **10.5281/zenodo.22157403**  
+Zenodo: https://doi.org/10.5281/zenodo.22157403
 
 ## Main result
 
@@ -29,19 +31,21 @@ q\ge3:\quad k_{exact}=4.
 - theorem/equation numbering pass completed;
 - RU and EN manuscripts synchronized;
 - DOCX and PDF outputs rendered page-by-page and visually checked;
-- independent verification script committed.
+- independent verification script committed;
+- Zenodo archival release published under DOI `10.5281/zenodo.22157403`.
 
 ## Repository sources
 
 - `article_en.md` — publication-hardened English manuscript;
 - `article_ru.md` — Russian manuscript;
 - `verify_article_a.py` — independent finite-witness verifier;
-- `CITATION.cff` — metadata; insert Zenodo DOI after deposit.
+- `CITATION.cff` — citation metadata with Zenodo DOI;
+- `PUBLICATION.md` — archival publication record.
 
 ## Deliberately excluded
 
 Sparse-domain phase cocycles, synchronization costs, cell-extension costs, and the remaining sparse-domain boundary belong to Article B.
 
-## Remaining external publication action
+## Archival status
 
-Deposit the publication package on Zenodo, obtain the DOI, and insert that DOI into the manuscript metadata and `CITATION.cff`. No mathematical revision is required before deposit.
+Article A is frozen as publication version **v1.0**. Further mathematical development should cite this release and proceed in the companion sparse-domain line / Article B rather than silently modifying the theorem set of Article A.
