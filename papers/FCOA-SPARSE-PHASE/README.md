@@ -6,8 +6,10 @@
 Author: Alex Malachevsky  
 ORCID: 0009-0008-6009-3196  
 Version: 1.0  
-Status: **ZENODO PREPRINT READY - DOI pending**  
-Date: 29 August 2026
+Status: **PUBLISHED / ARCHIVAL RELEASE**  
+Date: 29 August 2026  
+Zenodo DOI: **10.5281/zenodo.22159246**  
+Canonical record: https://doi.org/10.5281/zenodo.22159246
 
 Companion foundation: Article A, DOI **10.5281/zenodo.22157403**.
 
@@ -40,8 +42,8 @@ Not inserted as unsupported claims:
 
 `alpha(D,c) <= lambda(D,c)` remains **Conjecture 14** and is not used by any proved theorem.
 
-## Release gate
+## Archival freeze
 
-EN/RU DOCX and PDF were rebuilt after Review 01 and visually inspected page-by-page. The Zenodo package also contains the interactive HTML demonstration, verifier, review, author response, citation metadata, checksums, and Zenodo metadata sheet.
+Version 1.0 is the published Article B checkpoint and is frozen as the canonical theorem set associated with DOI **10.5281/zenodo.22159246**. Future research on Conjecture 14, deletion symmetry, or sparse `q>=3` phase transport must cite this release and must not silently rewrite its theorem content.
 
-The only missing archival field is the Article B Zenodo DOI.
+EN/RU DOCX and PDF were rebuilt after Review 01 and visually inspected page-by-page. The publication package also contains the interactive HTML demonstration, verifier, review, author response, citation metadata, checksums, and Zenodo metadata sheet.
