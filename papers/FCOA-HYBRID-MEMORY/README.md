@@ -1,6 +1,6 @@
 # FCOA Hybrid Memory — Article A
 
-Publication companion for the release candidate:
+Publication companion for:
 
 **Alex Malachevsky, “Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations.”**
 
@@ -10,11 +10,12 @@ Russian title:
 
 - Author: Alex Malachevsky
 - ORCID: 0009-0008-6009-3196
-- Version: 0.9.0-rc1
-- Package date: 2026-08-29
-- Intended resource type: Publication / Preprint
+- Version: 1.0.0
+- Publication date: 2026-08-29
+- Resource type: Publication / Preprint
 - License: CC BY 4.0
-- Zenodo DOI: **pending reservation** — never substitute an invented DOI
+- Zenodo DOI: **10.5281/zenodo.22165651**
+- Persistent URL: https://doi.org/10.5281/zenodo.22165651
 - Repository: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
 
 ## Scope
@@ -31,7 +32,7 @@ The article separates three mechanisms:
 2. **joint fiber synchronization (JFS)** — a carrier symmetry survives both reducts but requires incompatible lifts on a shared terminal output sort;
 3. **carrier–value selection (CVS)** — in a one-sorted partial algebra, operation values are themselves carrier points and act as selectors inside a residual orbit.
 
-## Published theorem set in the release candidate
+## Published theorem set
 
 - sharp pure domain–domain cost: **2 cells**;
 - typed Lift-Compatibility Theorem, including the non-surjective lift-set formulation;
@@ -57,24 +58,21 @@ The article also does **not** infer order or arithmetic from finite rigidity. Th
 
 ## Package contents
 
-- `article/FCOA_HYBRID_MEMORY_EN.tex` — canonical English source (inside the source bundle until final DOI build).
-- `article/FCOA_HYBRID_MEMORY_RU.tex` — canonical Russian source (inside the source bundle until final DOI build).
-- `release/FCOA_HYBRID_MEMORY_SOURCE_RC0.9.0.zip` — complete RC source/metadata bundle.
-- `supplement/verify_minimal_classifications.py` — exhaustive verifier.
-- `supplement/verification_output.txt` — expected verified output.
 - `MATHEMATICAL_CORE.md` — theorem and proof ledger.
 - `PUBLICATION_AUDIT.md` — publication-auditor report.
-- `CITATION.cff` — citation metadata without fabricated DOI.
-- `ZENODO_METADATA.json` — draft deposit metadata.
-- `ZENODO_CHECKLIST.md` — final DOI/deposit procedure.
+- `CITATION.cff` — citation metadata.
+- `ZENODO_METADATA.json` — Zenodo deposit metadata.
+- `ZENODO_CHECKLIST.md` — publication checklist.
 - `STATE.md` — continuity checkpoint.
 - `WORKSPACE.md` — publication ownership boundary.
+- `supplement/verify_minimal_classifications.py` — exhaustive verifier.
+- `supplement/verification_output.txt` — expected verified output.
 - `release/RELEASE_MANIFEST.md` — archival manifest and checksums.
 
-The RC PDFs are generated publication artifacts. The final PDFs will be archived on Zenodo after DOI reservation and deterministic rebuild.
+The canonical bilingual publication package is archived on Zenodo under DOI **10.5281/zenodo.22165651**.
 
-## Publication gate
+## Publication status
 
-Current gate: **REVIEWED_CLEAN — DOI reservation pending**.
-
-Before publication, reserve the Zenodo DOI, replace the explicit “pending reservation” marker in both sources, rebuild both PDFs, rerun the verification script, render-check both PDFs, update `CITATION.cff`, `ZENODO_METADATA.json`, and the release manifest, then publish the Zenodo record.
+\[
+\boxed{\text{PUBLISHED / ZENODO DOI 10.5281/zenodo.22165651}}
+\]
