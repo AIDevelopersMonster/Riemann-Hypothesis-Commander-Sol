@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure, and the Canonical M0 Baseline"
-message: "Please cite this foundational Definition 1.0 article when using the FCOA framework. The Zenodo DOI will be inserted immediately after assignment."
+message: "Please cite this foundational Definition 1.0 article when using the FCOA framework."
 type: article
 authors:
   - family-names: Malachevsky
@@ -8,6 +8,8 @@ authors:
     orcid: https://orcid.org/0009-0008-6009-3196
 version: 1.0.0
 date-released: 2026-08-29
+doi: 10.5281/zenodo.22164246
+url: https://doi.org/10.5281/zenodo.22164246
 repository-code: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
 keywords:
   - FCOA
