@@ -1,121 +1,82 @@
-# FCOA Passport Automation Plan
+# FCOA Passport Automation Plan — Archived
 
-**Version:** P0.1
+**Original version:** P0.1  
+**Closure status:** **PARTIALLY IMPLEMENTED / DEFERRED**  
+**Branch closed:** 2026-08-29
 
-## 1. Objective
+## 1. Historical objective
 
-Build a dependency-light exact finite auditor that takes an explicitly defined partial operation and emits a reproducible structural passport plus a diff against a predecessor.
+The planned tool was a dependency-light exact finite auditor that would take an explicitly defined partial operation and emit a reproducible structural passport plus a diff against a predecessor.
 
-The tool is evidence infrastructure, not a proof engine. Exhaustive finite checks support and attack formulas; they do not replace theorem proofs.
+The tool was always evidence infrastructure, not a proof engine. Exhaustive finite checks support and attack formulas; they do not replace theorem proofs.
 
-## 2. Core representation
+## 2. What was actually implemented
 
-Represent a partial operation as a dictionary/map
+The branch delivered `passport_enumerator.py`, which independently computes for the G3/G4 benchmark family:
 
-`(x,y) -> value`
+- active-sort definedness automorphisms;
+- base permutations extendable to full-operation automorphisms;
+- exact small-case group orders for `N=3,4,5,6`;
+- finite VRI checks without substituting claimed closed forms.
 
-containing **defined cells only**. Absence of a key means `UNDEF`. Never insert an `UNDEF` sentinel into the value set used for fiber/orbit computations.
+It also enforced two central conventions:
 
-Keep metadata for:
+- represent a partial operation by **defined cells only**;
+- treat `UNDEF` as absence of a key, never as an operation value.
 
-- active/base elements;
-- terminal outputs;
-- named/fixed elements;
-- sorts;
-- inherited backbone versus branch-added cells.
+This implementation was sufficient to close the concrete verifier gap that motivated the lab.
 
-## 3. Exact modules
+## 3. Frozen target architecture
 
-### Module A — cell inventory
+If a future tooling branch revives the general auditor, the intended modules remain:
 
-Emit:
-
-- defined-cell count;
-- cell families;
+### A — Cell inventory
+- defined-cell count and families;
 - base-valued versus terminal-valued cells;
 - output fiber sizes;
 - predecessor delta.
 
-### Module B — commutation
+### B — Commutation
+Enumerate the exact ordered-pair locus and count.
 
-Enumerate exact ordered-pair locus and count.
-
-### Module C — Association Spectrum
-
+### C — Association Spectrum
 Enumerate base triples and classify `EQ/NEQ/LEFT/RIGHT/NONE`; assert checksum `(N+1)^3`.
 
-### Module D — translation profiles
+### D — Translation profiles
+For each base element emit left/right domain and value-fiber fingerprints and compare them across branches.
 
-For each base element emit left/right translation fingerprints:
-
-- domain set/size;
-- output equality partition;
-- base/terminal output counts;
-- exact map when requested.
-
-Check injectivity of the base-indexed translation families.
-
-### Module E — active-sort definedness automorphisms
-
+### E — Active-sort definedness automorphisms
 Construct
 
-`D = {(x,y): star(x,y) is defined}`
+`D={(x,y): star(x,y) is defined}`
 
-on the active sort and test candidate permutations directly.
+and test candidate permutations directly.
 
-For small carriers, enumerate all active-sort permutations subject only to explicitly fixed/sorted metadata. Do not seed the search from the claimed answer group.
+### F — Full-operation automorphisms
+Test whether definedness automorphisms transport the actual value-fiber partition bijectively, keeping inherited/named values distinct from anonymous outputs.
 
-### Module F — full-operation automorphisms
+### G — Output orbits
+Compute active-element, output and cell orbits from the enumerated full group.
 
-For small cases enumerate compatible permutations of active elements and anonymous outputs and test
+### H — Erasure tests and VRI
+Compute active definedness symmetry, projected full-operation symmetry and their finite index where applicable.
 
-`g(star(x,y)) = star(gx,gy)`
+### I — Branch diff
+Compare machine passports field-by-field and emit changed coordinates plus explicit zero deltas.
 
-for every defined cell together with preservation of undefinedness.
+## 4. Regression matrix retained
 
-Optimization: first enumerate active-sort definedness automorphisms, then compute the induced permutation of value fibers. This is an algorithmic implementation of the Fiber-Transport theorem, but the finite test should derive the stabilizer from the actual fiber partition rather than a target formula.
-
-### Module G — output orbits
-
-From the enumerated full automorphism group compute:
-
-- output orbits;
-- active-element orbits;
-- cell orbits;
-- internally distinguished singleton orbits.
-
-### Module H — erasure tests and VRI
-
-Compute active-sort definedness group and projected full-operation carrier group. If finite and nested, compute the index directly from enumerated group orders.
-
-### Module I — branch diff
-
-Compare two machine passports field-by-field and emit only changed coordinates plus explicit zero deltas for the mandatory invariant set.
-
-## 4. Regression matrix
-
-Mandatory:
+A revived implementation should continue to require:
 
 - `N=3,4,5,6` for every polynomial formula;
-- preferred `N=3..10` for cheap spectrum/commutation checks;
-- automorphism enumeration may use a smaller range where factorial search becomes expensive, but must include `N=3,4,5` and use structural pruning rather than formula substitution.
+- preferably `N=3..10` for inexpensive spectrum/commutation checks;
+- automorphism enumeration on at least `N=3,4,5`, with structural pruning rather than formula substitution.
 
-## 5. Benchmark acceptance tests
+Benchmark acceptance cases remain M0/G2/G3/G4 as recorded in `BRANCH_DIFFS.md` and `ENUMERATION_REPORT_P1.md`.
 
-The implementation must reproduce:
+## 5. Machine-readable schema — deferred
 
-1. M0 multiplication `Aut ~= S_{N-1}`;
-2. G2 rigidity and spectrum;
-3. G3-S/G3-C same spectrum but different commutation;
-4. G3-A active-definedness group `C2 x C2` and full-operation rigidity;
-5. G4-C active-definedness order `(N-1)!` by enumeration for small `N`;
-6. G4-A active-definedness order `2(N-1)!` by enumeration for small `N`;
-7. G4-C full-operation carrier group order `2` and G4-A order `1` for small `N`;
-8. `N=3` G4-C VRI `1`.
-
-## 6. Machine-readable output
-
-Target a stable JSON-like schema with fields:
+The planned stable JSON-like output included:
 
 - `branch`;
 - `N`;
@@ -132,8 +93,22 @@ Target a stable JSON-like schema with fields:
 - `recoverability_notes`;
 - `evidence`.
 
-Every computed field should carry evidence provenance such as `ENUM`, while formulas imported from notes remain `WORKING`/`PROVED` until independently compared.
+This general serialization was **not needed** to close the mathematical work and was therefore not completed.
 
-## 7. Immediate implementation priority
+## 6. Closure classification
 
-First implementation target is the audit gap in G4: independent enumeration of active-sort definedness and full-operation carrier automorphisms for G3/G4 small cases. Only after this passes should the lab automate translation profiles and generalized branch serialization.
+The following are **DEFERRED / NON-BLOCKING**:
+
+1. universal machine-readable passport serialization;
+2. generalized Carrier-Erasure and Value-Erasure executables;
+3. automatic diff generation for arbitrary future FCOA branches.
+
+They are not defects in the closed branch. They are optional future infrastructure and should be started under a new tooling scope if needed.
+
+## 7. Canonical mathematical successor
+
+The mathematical discoveries that emerged from the audit branch were promoted and published separately:
+
+Zenodo DOI `10.5281/zenodo.22160014`.
+
+This archived plan must not be read as a list of outstanding requirements for that publication or for closure of this branch.
