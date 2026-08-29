@@ -4,37 +4,27 @@
 **Delegated line:** sparse anonymous alphabets `q>=3`  
 **Completion status:** `READY FOR COMMANDER SOL REVIEW`
 
----
-
 ## A. Executive verdict
 
 \[
 \boxed{\text{SHARP NO-GO THEOREM ACHIEVED}}
 \]
 
-The originally expected componentwise `S_q` phase theory is false for sparse ternary equality data when `q>=3`. The failure is sharp already for `q=3`, three carrier points, and four defined cells.
+The naive sparse multicolor analogue of the binary Componentwise Phase Theorem is false: for `q>=3`, even one connected comparison component need not carry a well-defined `S_q` phase.
 
-The failed model has been replaced by an exact theorem:
+The failed model is replaced by an exact theorem: the universal local transport object is the orbit of a proper coloring of a canonical T-constraint quotient. A permutation-valued phase exists exactly when the transported proper coloring remains in the original color-relabeling orbit.
 
-> the universal local transport object is the orbit of a proper coloring of a canonical T-constraint quotient; a permutation-valued phase exists exactly on the sector where the transported coloring remains in the same color-relabeling orbit.
+On that phase-admissible sector, the local maps form a visible-support groupoid with an exact noncommutative composition law and an exact global gluing criterion.
 
-In that phase sector the local maps form a visible-support groupoid and obey an exact noncommutative composition law. An exact global gluing theorem is also proved.
-
-### Publication-scale verdict
-
-**Yes, inside the anonymous sparse-operation model**, as a focused theorem/note rather than a broad new theorem about graph coloring or switching theory.
-
-The strongest publishable point is not “nonabelian switching exists”; that is classical territory. The publishable point is the sharp failure of universal permutation phase transport, its exact reduction to proper-coloring reconstruction, and the two-stage local/gluing obstruction specific to the FCOA sparse equality reduct.
+**Publication-scale verdict:** yes inside the FCOA sparse anonymous-operation programme, after independent hostile audit and a deeper priority search. No broad novelty claim about switching, gain graphs, or graph coloring is made.
 
 ---
 
 ## B. Main mathematical result
 
-### B1. Sharp sparse no-go theorem
+### B1. Sharp sparse q=3 no-go theorem
 
-For every `q>=3`, connectedness of the ordered-cell comparison graph does not imply existence of one local permutation phase.
-
-For `q=3` the minimum sparse witness has
+There is a connected sparse `q=3` witness with
 
 \[
 \boxed{|G|=3,\qquad |D|=4.}
@@ -50,7 +40,7 @@ G=\{0,1,2\},
 D=\{(0,1),(0,2),(1,0),(1,2)\},
 \]
 
-and
+and temporary color names
 
 \[
 c(0,1)=c(0,2)=0,
@@ -66,67 +56,63 @@ The comparison graph `Lambda(D)` is connected. The carrier involution
 g=(0\ 1)
 \]
 
-preserves `D` and the ternary equality reduct, but it sends the two source-color-0 cells to colors 1 and 2. Hence no map on the local visible color set can satisfy
+preserves `D` and the ternary equality reduct, but would require simultaneously
 
 \[
-c(gp)=\phi(c(p))
+0\mapsto1
+\qquad\text{and}\qquad
+0\mapsto2.
 \]
 
-throughout the component.
-
-Therefore
+Hence no local color function exists. In this witness
 
 \[
 \boxed{
-\operatorname{Aut}(G;D,Q_D)
-\not\subseteq
-\{\text{componentwise }S_q\text{-phase transports}\}
+|\operatorname{Aut}(G;D,Q_D)|=2,
+\qquad
+|\operatorname{Aut}^{\rm an}(D,c)|=1.
 }
 \]
 
-for `q>=3`.
-
-Minimality at `|D|=4` is proved: a surjective three-color layer with `|D|=3` uses every color exactly once, so every domain-preserving cell permutation automatically induces a permutation of the three colors.
-
-### B2. Correct replacement theorem
-
-For each comparison component `C`, contract all equality edges in the comparison graph. The resulting T-constraint quotient
+The domain size is optimal: surjectivity forces `|D|>=3`, and with exactly three cells every color occurs once, so any domain permutation automatically induces a permutation of the three colors. Thus
 
 \[
-H_T(C)
+\boxed{|D|_{\min}=4.}
 \]
 
-has equality atoms as vertices and forced inequalities as edges. The terminal fibers induce a proper coloring
+A separate six-cell witness shows that failure persists with nonempty `Q_D`.
+
+### B2. Correct universal local theorem
+
+For each comparison component `C`, contract the equal-comparison edges of `Lambda(D)` into **T-equality atoms** and form the quotient graph
+
+\[
+H_T(C).
+\]
+
+The terminal fibers induce a proper coloring
 
 \[
 \kappa_C:V(H_T(C))\to O_C.
 \]
 
-Every ternary-reduct automorphism `g` induces a quotient isomorphism and therefore a transported proper coloring
+Every ternary-reduct automorphism induces a quotient isomorphism and transports `kappa_C` to another proper coloring. A local visible-support phase exists exactly when
 
 \[
-\kappa_C^g.
+\boxed{[\kappa_C^g]=[\kappa_C]}
 \]
 
-The universally defined local state is
+modulo anonymous color relabeling.
+
+Therefore
 
 \[
 \boxed{
-[\kappa_C^g]
-\in
-\operatorname{Col}(H_T(C))/S_O.
+\text{the universal local state is a proper-coloring orbit, not an }S_q\text{ element.}
 }
 \]
 
-A local visible-support permutation exists if and only if
-
-\[
-\boxed{[\kappa_C^g]=[\kappa_C].}
-\]
-
-Equivalently, the full color-fiber partition inside `C` must be transported to itself up to relabeling.
-
-### B3. Nonabelian phase law in the phase sector
+### B3. Conditional nonabelian phase law
 
 Whenever local phases exist,
 
@@ -134,7 +120,7 @@ Whenever local phases exist,
 \phi_{g,C}:O_C\to O_{gC},
 \]
 
-they satisfy
+they are unique on visible supports and satisfy
 
 \[
 \boxed{
@@ -143,11 +129,11 @@ they satisfy
 }
 \]
 
-Thus the correct phase structure is generally a groupoid of visible-support bijections. It becomes `S_q`-valued when every component sees the entire alphabet.
+The intrinsic object is thus a groupoid of visible-support bijections. It becomes `S_q`-valued only in the full-support sector.
 
 ### B4. Exact gluing theorem
 
-Assume local phases exist on every component and define
+For a phase-admissible automorphism `g`, define
 
 \[
 R_g
@@ -160,225 +146,142 @@ Then
 
 \[
 \boxed{
-g\in\operatorname{Aut}^{\rm an}(D,c)
+\{\phi_{g,C}\}_C\text{ glue to one global }\pi_g\in S_O
 \iff
-R_g\text{ is the graph of one }\pi\in S_O.}
-\]
-
-Equivalently:
-
-1. local phases agree on every shared source color;
-2. distinct source colors never collide at one target color across components.
-
-Hence ternary exactness has two independent obstruction layers:
-
-\[
-\boxed{
-\text{local proper-coloring ambiguity}
-+
-\text{inter-component gluing ambiguity}.
+R_g\text{ is the graph of a permutation of }O.
 }
 \]
+
+The two independent obstruction types are source disagreement and target collision. In the full-support sector this reduces to equality of all component phases.
 
 ---
 
 ## C. Definitions introduced
 
-Only the following new objects are needed.
+1. **T-equality atom** — a connected component of the equal-comparison subgraph of `Lambda(D)`.
+2. **T-constraint quotient `H_T(C)`** — equality atoms as vertices, with inequality adjacency inherited from the comparison graph.
+3. **Proper-coloring transport state `[kappa_C]`** — the hidden color partition modulo color-name permutation.
+4. **Phase-admissible pair `(g,C)`** — a reduct automorphism/component pair admitting a visible-support bijection.
+5. **Visible-support phase groupoid** — arrows `O_C -> O_{gC}` where phases exist.
+6. **Global phase relation `R_g`** — the union of local phase graphs.
+7. **Full-support abstract phase-link number `lambda_q^ph`** — synchronization cost for realized `S_q` phase tuples.
 
-1. **T-equality atom** — a connected component of the equal-colored-edge subgraph of `Lambda(D)`.
-2. **T-constraint quotient `H_T(C)`** — equality atoms contracted to vertices, with edges recording forced inequalities.
-3. **Proper-coloring transport state** — the color-relabeling orbit `[kappa_C^g]` of the transported quotient coloring.
-4. **Color-rigid component** — a quotient whose relevant proper coloring partition is unique up to permutation of color names.
-5. **Visible-support phase groupoid** — local bijections `O_C -> O_{gC}` where they exist.
-6. **Union relation `R_g`** — the union of graphs of local visible-support phases, used for exact global gluing.
-
-No cyclic structure, additive phase, or artificial `Z_q` structure is introduced.
+No cyclic or additive structure is attached to anonymous colors.
 
 ---
 
 ## D. Proof architecture
 
-The dependency graph is:
-
 \[
 (D,c)
-\longrightarrow
+\to
 \Lambda(D)
-\longrightarrow
-\Lambda_{=}(D,c)
-\longrightarrow
+\to
+\text{equal-comparison subgraph}
+\to
 \text{T-equality atoms}
-\longrightarrow
-H_T(C)
-\longrightarrow
-\kappa_C.
+\to
+H_T(C)+\kappa_C.
 \]
 
-Then:
+Then
 
 \[
 g\in\operatorname{Aut}(G;D,Q_D)
-\Longrightarrow
-\bar g_C:H_T(C)\cong H_T(gC)
-\Longrightarrow
-\kappa_C^g.
+\to
+\text{transported proper coloring }\kappa_C^g.
 \]
 
-Next:
+The first obstruction is
 
 \[
-[\kappa_C^g]=[\kappa_C]
-\Longleftrightarrow
-\text{local visible-support phase exists}.
+[\kappa_C^g]\ne[\kappa_C],
 \]
 
-Where phases exist:
-
-\[
-\phi_{gh,C}
-=
-\phi_{g,hC}\circ\phi_{h,C}.
-\]
-
-Finally:
-
-\[
-\{\phi_{g,C}\}_C
-\Longrightarrow
-R_g
-\Longrightarrow
-\bigl(R_g\text{ is a permutation graph}\bigr)
-\Longleftrightarrow
-\text{global anonymous phase}.
-\]
-
-The sharp no-go witness attacks the first attempted implication directly:
-
-\[
-\Lambda(D)\text{ connected}
-\centernot\Longrightarrow
-[\kappa_C^g]=[\kappa_C].
-\]
+in which case no local phase exists. If the orbits agree, one obtains `phi_{g,C}` and then the composition law. Finally the family of local phases is tested by `R_g`; it is globally anonymous exactly when `R_g` is a permutation graph.
 
 ---
 
 ## E. Counterexamples and failure modes
 
-### E1. False conjecture: one `S_q` phase per connected component
+The following tempting formulations are false for `q>=3`:
 
-**False.** Minimum `q=3` witness: `|G|=3`, `|D|=4`.
+1. connected `Lambda(D)` implies one `S_q` phase per component;
+2. every ternary-reduct automorphism induces a visible-color permutation;
+3. the multicolor theory is obtained by replacing `F_2` by `S_q`;
+4. all sparse defects are inter-component gluing defects;
+5. overlap agreement of partial phases alone guarantees gluing;
+6. the binary synchronization cost can be copied unchanged.
 
-### E2. False intuition: the issue is only disconnected sparse geometry
+The correct failure taxonomy is:
 
-**False.** The minimum witness already has connected `Lambda(D)`.
-
-### E3. False intuition: the issue is only vacuous `Q_D`
-
-**False.** Exhaustive small search finds connected non-vacuous ternary failures as well; on `|G|=3` the first such witness appears at six defined cells.
-
-The six-cell minimum is currently recorded as computational evidence, not promoted to a theorem without a separate proof.
-
-### E4. False gluing rule: overlap agreement alone is enough
-
-**False in general.** If supports are partial, different source colors occurring in different components can be mapped to the same target color without violating restriction agreement on overlaps.
-
-A second condition — cross-support injectivity — is necessary.
-
-### E5. False generalization: binary cocycle becomes an `S_q` cocycle automatically
-
-**False.** For `q>=3`, a permutation phase may not exist at all. The obstruction precedes noncommutativity.
+- complete-domain arity obstruction from Article A;
+- sparse vacuity;
+- connected proper-coloring ambiguity;
+- partial-support/inter-component gluing ambiguity.
 
 ---
 
 ## F. Computational evidence
 
-A reproducible script is stored at
+A reproducible script is included:
 
 `QGE3/verify_qge3.py`.
 
-It exhaustively checks the small `q=3`, `|G|=3` search needed for the witness boundary.
+It exhaustively checks the `q=3`, `|G|=3` small sector used for the first witness boundary. The theorem-level minimum `|D|=4` also has an independent direct proof and therefore does not rely on computation.
 
-### Exhaustive claims used
-
-- no connected surjective counterexample exists at `|D|=3`;
-- a connected counterexample exists at `|D|=4`;
-- a connected non-vacuous-`Q_D` counterexample exists at `|D|=6`.
-
-The first boundary also has an independent mathematical proof and therefore does not rely on computation.
-
-### Search normalization
-
-- carrier labels are exhaustively permuted;
-- all off-diagonal domains of the stated size are considered;
-- all surjective colorings onto `{0,1,2}` are considered;
-- color-label quotient normalization is not required for correctness because the search is small and exhaustive;
-- every carrier permutation preserving `D` is checked;
-- exact ternary-reduct preservation and anonymous-phase realizability are tested directly.
-
-No random search is used for the promoted minimum theorem.
+The observed first connected non-vacuous failure on three carrier points occurs at six defined cells; that six-cell minimality remains computational evidence until independently audited.
 
 ---
 
 ## G. Literature comparison and novelty boundary
 
-### Classical prior structure
+Classical prior art includes:
 
-The following are established areas and are not claimed new:
-
-- unique graph colorability;
-- multicolor switching;
-- gain graphs and group-valued switching;
-- partial-bijection groupoids;
+- Cameron–Tarzi multicolor switching;
+- Zaslavsky gain/biased graphs and group-valued switching;
+- Gross–Tucker permutation voltage assignments;
 - coherent configurations and colored relational structures;
-- relational complexity and bounded-arity reconstruction.
+- Wielandt `k`-closures and relational complexity;
+- unique graph colorability.
 
-Relevant references include:
+Therefore no novelty is claimed for nonabelian switching, permutation-valued labels, groupoid composition, or unique colorability themselves.
 
-- Harary–Hedetniemi–Robinson, *Uniquely colorable graphs*, JCT 6 (1969), DOI `10.1016/S0021-9800(69)80086-4`;
-- Cameron–Tarzi, *Switching with more than two colours*, EJC 25 (2004), DOI `10.1016/S0195-6698(03)00097-0`;
-- Higman, *Coherent configurations. I*, Geometriae Dedicata 4 (1975), DOI `10.1007/BF00147398`;
-- Cherlin, *On the relational complexity of a finite permutation group*, J. Algebraic Combin. 43 (2016), DOI `10.1007/s10801-015-0636-8`.
-
-### Model-specific new content
-
-The result that appears new **inside the anonymous sparse-operation model** is the exact reduction
+The safe model-specific theorem package is the exact chain
 
 \[
-\text{sparse ternary equality transport}
-\rightsquigarrow
-\text{proper-coloring reconstruction of }H_T(C),
+\boxed{
+\text{sparse ternary anonymous equality}
+\to
+\text{equality-atom quotient}
+\to
+\text{proper-coloring transport}
+\to
+\text{sharp local phase no-go}
+\to
+\text{conditional support-bijection groupoid}
+\to
+\text{permutation-graph gluing criterion}.
+}
 \]
 
-plus the sharp FCOA counterexample and the exact two-stage local/gluing criterion.
-
-The gain/switching analogy begins only after a local phase exists; it does not supply that existence.
-
-No broad priority claim beyond this model is recommended.
+Broader priority language is deferred.
 
 ---
 
 ## H. Relationship to Articles A and B
 
-### Article A — DOI `10.5281/zenodo.22157403`
-
-Used as a frozen foundation for the complete-domain arity transition:
+**Article A**, DOI `10.5281/zenodo.22157403`, remains frozen and supplies the complete-domain arity transition
 
 \[
-q=2:\ k_{exact}=3,
+q=2:k_{exact}=3,
 \qquad
-q\ge3:\ k_{exact}=4.
+q\ge3:k_{exact}=4.
 \]
 
-QGE3 does not change that result. It explains the sparse `q>=3` mechanism more finely: ternary data expose only a constraint graph, while four-ary arbitrary-cell equality exposes the full terminal-fiber partition.
+QGE3 explains the sparse mechanism more finely: ternary data expose only a constraint graph whose proper coloring may not be reconstructible.
 
-### Article B — DOI `10.5281/zenodo.22159246`
-
-Used as a frozen foundation for the sparse binary component-phase theory.
-
-QGE3 identifies why the binary theorem does not generalize formally. In the binary case, the relevant connected quotient has only one proper two-coloring orbit up to swapping colors; hence the local discrepancy is automatically a bit. For `q>=3`, several inequivalent proper-coloring states may survive in one connected component.
-
-Thus Article B becomes the uniquely color-rigid binary special case of the wider reconstruction picture, without any modification to its statements.
+**Article B**, DOI `10.5281/zenodo.22159246`, remains frozen and supplies the sparse binary component-phase theory. QGE3 isolates why binary is exceptional: after equality contraction, connected binary comparison geometry has a unique two-color partition up to exchange, while multicolor quotients may have inequivalent proper-coloring states.
 
 ---
 
@@ -388,29 +291,40 @@ Thus Article B becomes the uniquely color-rigid binary special case of the wider
 \boxed{\text{MERGE THEOREM INTO MAIN RIGIDITY THEORY}}
 \]
 
-The delegated line has met its completion rule by producing both a sharp no-go theorem and a mathematically natural replacement object.
+and, after hostile audit, prepare a separate focused continuation paper.
 
-After hostile Commander Sol review, a **separate focused publication** is justified if desired. The strongest title-level message would be that sparse multicolor anonymous equality is governed by proper-coloring transport rather than a universal nonabelian phase cocycle.
+The paper should lead with the sharp `|G|=3, |D|=4` no-go theorem, then present the T-constraint quotient, proper-coloring transport theorem, conditional nonabelian phase law, and exact gluing theorem.
 
-A `COST_THEORY.md` file was deliberately **not** created. The binary cost `lambda` counts synchronization of one bit per component. QGE3 shows that for `q>=3` the local state may be an entire proper-coloring orbit, so copying binary cost definitions would be mathematically premature.
+`COST_THEORY.md` **has been created**, but only for the mathematically safe full-support phase sector. It defines
+
+\[
+\lambda_q^{\rm ph}
+\]
+
+and proves
+
+\[
+\boxed{0\le\lambda_q^{\rm ph}(D,c)\le(q-1)(r-1)}.
+\]
+
+It explicitly does **not** define a real-cell multicolor `alpha_q` or assert an analogue of the binary `alpha<=lambda` conjecture.
 
 ---
 
 ## J. Open obligations
 
-The delegated first-stage problem is solved, but the following questions remain genuinely worthwhile.
+1. Determine the exact extremal synchronization number `L_q(r)` for point-image constraints on arbitrary tuples in `S_q^r`.
+2. Develop a real operation-cell repair theory only after controlling local proper-coloring ambiguity.
+3. Prove or independently audit the six-cell non-vacuous minimum.
+4. Characterize color-rigid T-quotients arising from actual ordered-cell domains.
+5. Deepen the literature equivalence audit for edge-colored reducts and switching-isomorphism formulations.
 
-1. **Characterize color-rigid T-quotients intrinsic to operation domains.** Which sparse domain geometries force unique colorability of `H_T(C)`?
-2. **Find sharp carrier/domain bounds for non-vacuous failures.** The `|G|=3, |D|=6` non-vacuous boundary currently has exhaustive computational evidence; a short proof would strengthen publication presentation.
-3. **Develop a natural multicolor cost only after choosing the state space.** Candidate cost should measure how many new equality comparisons or operation cells collapse realized proper-coloring orbits and then enforce global gluing.
-4. **Study Model E extension cost for `q>=3`.** Fixed-domain exactness is trivial under four-ary arbitrary-cell equality, but actual sparse cell extension may still create carrier symmetries, analogously to Article B.
-5. **Classify full-support phase sectors.** When every component sees all colors and is color-rigid, the local law is genuinely `S_q`-valued; this is the cleanest place to compare with nonabelian switching/gain structures.
-6. **Check whether the T-constraint quotient equivalence has appeared explicitly in partition-reconstruction literature.** Current literature comparison supports model-specific novelty but not a broad novelty claim.
+None of these blocks the main no-go and replacement theorems.
 
 ---
 
 # Completion marker
 
 \[
-\boxed{\text{READY FOR COMMANDER SOL REVIEW}}
+\boxed{\texttt{READY FOR COMMANDER SOL REVIEW}}
 \]
