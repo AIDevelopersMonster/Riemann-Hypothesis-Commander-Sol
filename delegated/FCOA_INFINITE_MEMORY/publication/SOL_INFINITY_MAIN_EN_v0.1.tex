@@ -1,0 +1,553 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+\usepackage{url}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\FO}{\mathrm{FO}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\Th}{\operatorname{Th}}
+
+\title{Global First-Order Order from a Linear-Cost $C_4$-Free Payload Graph\\
+\large Exact Interpretation-Dimension and Hub-Density Barriers}
+\author{Alex Malachevsky\\
+\small ORCID: 0009-0008-6009-3196}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study a concrete boundary between local relational memory and first-order recovery of a global order on a countably infinite carrier.  A single simple undirected graph is constructed on a two-dimensional payload carrier $\N^2$.  Every carrier point remains part of the ordered payload; there is no auxiliary witness sort.  The graph is symmetric, irreflexive, $C_4$-free, has atomic half-graph depth exactly two, and has only $\Theta(N)$ primitive incidences in the first $N$ points of a natural first-order definable order.  Nevertheless, that graph first-order defines a linear order of type $\omega$ on its full vertex set.  Ordinary addition and multiplication with respect to the recovered order are not first-order definable.
+
+Within the provenance class of fixed-dimensional first-order interpretations in the pure discrete order $(\N,<)$, we prove two matching lower bounds.  First, interpretation dimension one cannot combine linear primitive incidence cost with first-order recovery of an $\omega$-order; hence the construction has exact minimal interpretation dimension two.  Second, for any first-order definable $\omega$-order on $\N^d$, a definable one-coordinate diagonal spine must occur among the first $N$ points with density $\Omega(N^{1/d})$.  The standard max-shell order attains $\Theta(N^{1/d})$, giving an exact dimensional hub-density law and, in dimension two, the sharp $\Theta(\sqrt N)$ bound.
+\end{abstract}
+
+\section{Introduction}
+
+First-order definability separates local relational information from unbounded global reachability.  The directed successor ray is rigid and its successor relation is locally explicit, yet its transitive order is not first-order definable from successor alone.  At the opposite extreme, one may simply place the whole comparison relation into the primitive language, but that stores global order directly.
+
+The purpose of this paper is to isolate a different mechanism.  We ask whether a sparse primitive structure can remain locally shallow in the model-theoretic sense while global order appears only after first-order composition.  The answer is positive in a particularly economical form: one simple undirected $C_4$-free graph suffices.
+
+The construction uses the payload carrier $U=\N^2$.  Diagonal points $d_i=(i,i)$ act as coordinate hubs, while every off-diagonal point remains an ordinary vertex of the final ordered carrier.  A small asymmetric gadget attached to the unordered coordinate pair $\{i,j\}$ allows first-order recovery of the ordered pair $(i,j)$ although the primitive graph itself is undirected.  From these recovered coordinates we define the diagonal order and then an $\omega$-order on all of $U$.
+
+The main point is not merely the construction.  Two matching lower bounds show exactly which structural resource is being used.  In dimension one, pure-order provenance has a linear/quadratic dichotomy for definable binary relations, and every infinite definable quotient is eventually trivial.  Hence a linear-cost dimension-one interpretation cannot recover an infinite order.  In dimension two, the surviving nonlocal resource is the diagonal hub spine.  A finite-fibre confinement lemma forces the $m$th diagonal point to appear by rank $O(m^2)$ in every pure-order-definable $\omega$-order, yielding the sharp $\Omega(\sqrt N)$ hub-count lower bound.
+
+The paper therefore identifies an exact package inside a precise provenance class:
+\[
+\boxed{
+\begin{array}{c}
+\text{interpretation dimension }2,\\
+\text{one symmetric irreflexive binary relation},\\
+C_4\text{-free, atomic half-graph depth }2,\\
+\Theta(N)\text{ primitive incidence cost},\\
+\FO\text{-definable full }\omega\text{-order},\\
+\text{no }\FO\text{-definable ordinary }+\text{ or }\times,\\
+\Theta(\sqrt N)\text{ diagonal-hub count.}
+\end{array}}
+\]
+
+We make no claim that this is a classification of all possible non-order primitive sources.  The exact lower bounds are relative to finite-dimensional interpretations in pure discrete order.
+
+\section{Logical preliminaries}
+
+We use first-order logic with equality.  The source structure for all provenance statements is the pure discrete order $(\N,<)$; when convenient we use the definitional expansion $(\N,0,<,S)$, where $0$ is the least element and $S$ is successor.
+
+Quantifier elimination for the theory of discrete linear orders with a least element and successor is classical.  Galeotti and L\"owe give a self-contained proof for the corresponding successor-arithmetic theory~\cite{GaleottiLoewe2022}.  We use only the following elementary consequence.
+
+\begin{lemma}[Unary tail rigidity]\label{lem:unary}
+Every unary subset of $\N$ first-order definable in $(\N,<)$ with finitely many parameters is finite or cofinite.
+\end{lemma}
+
+\begin{proof}
+After expanding definitionally by $0$ and $S$, quantifier elimination reduces a unary formula to a Boolean combination of finitely many comparisons among bounded successor iterates of the variable and fixed parameter terms.  Beyond the largest parameter and successor offset, every atomic formula has constant truth value.  Hence the whole formula is eventually constant.
+\end{proof}
+
+We also use the standard relation between half-graphs and the model-theoretic order property.  In graph language, arbitrarily large half-graphs are the characteristic obstruction to stability; see, for example, Malliaris--Shelah~\cite{MalliarisShelah2014}.
+
+\begin{definition}[Half-graph]
+A binary relation $R$ contains a half-graph of depth $k$ if there are pairwise distinct elements
+\[
+a_0,\dots,a_{k-1},\qquad b_0,\dots,b_{k-1}
+\]
+such that
+\[
+R(a_i,b_j)\quad\Longleftrightarrow\quad i\le j.
+\]
+\end{definition}
+
+\section{The one-graph construction}
+
+Let
+\[
+U=\N^2,
+\qquad d_i=(i,i).
+\]
+For $i\ne j$ write $(i,j)^\top=(j,i)$.
+
+\begin{definition}[Payload graph]\label{def:graph}
+Define a simple undirected graph $G$ on $U$ by the following edges.
+For every $i\ne j$:
+\begin{enumerate}[label=(\roman*)]
+\item $(i,j)$ is adjacent to $d_i$;
+\item $(i,j)$ is adjacent to $(j,i)$;
+\item if $i<j$, then $(i,j)$ is also adjacent to $d_j$.
+\end{enumerate}
+No other edges occur.
+\end{definition}
+
+The graph is symmetric and irreflexive by construction.  Every vertex of $U$ is a payload point; no additional sort or witness-only population is introduced.
+
+For $i<j$, put
+\[
+u_{ij}=(i,j),\qquad \ell_{ij}=(j,i).
+\]
+The four relevant vertices satisfy
+\[
+d_i--u_{ij},\qquad d_j--u_{ij},\qquad d_j--\ell_{ij},\qquad u_{ij}--\ell_{ij}.
+\]
+This small undirected gadget will recover the orientation $i<j$.
+
+\subsection{Defining the coordinate system}
+
+Every diagonal point has infinite degree.  Every off-diagonal point has degree two or three.  Hence the diagonal is first-order definable by a fixed finite degree threshold.
+
+\begin{lemma}[Definable diagonal]\label{lem:diag}
+The formula
+\[
+D(x):=\exists y_1y_2y_3y_4\Bigl(
+\bigwedge_{p<q}y_p\ne y_q\wedge
+\bigwedge_{p=1}^4G(x,y_p)
+\Bigr)
+\]
+defines exactly the set
+\[
+\Delta=\{d_i:i\in\N\}.
+\]
+\end{lemma}
+
+\begin{proof}
+Each $d_i$ is adjacent to infinitely many row points $(i,j)$.  An off-diagonal point $(i,j)$ has the transpose neighbor $(j,i)$, the row-coordinate neighbor $d_i$, and, only when $i<j$, the additional diagonal neighbor $d_j$.  Thus its degree is at most three.
+\end{proof}
+
+Every off-diagonal point has exactly one non-diagonal neighbor, its transpose.
+
+\begin{definition}
+\[
+T(x,y):=\neg D(x)\wedge\neg D(y)\wedge G(x,y).
+\]
+\end{definition}
+
+An off-diagonal point lies in the upper triangle exactly when it has two diagonal neighbors:
+\[
+U^+(x):=\neg D(x)\wedge
+\exists a\ne b\bigl(D(a)\wedge D(b)\wedge G(x,a)\wedge G(x,b)\bigr).
+\]
+Then $U^+(i,j)$ holds exactly when $i<j$.
+
+For an off-diagonal point $x$, define a shared diagonal neighbor with its transpose by
+\[
+C(x,a):=D(a)\wedge\exists t\bigl(T(x,t)\wedge G(x,a)\wedge G(t,a)\bigr).
+\]
+There is exactly one such $a$.  If $x=(i,j)$ is upper, this is $d_j$; if $x$ is lower, it is $d_i$.
+
+Using this observation, both ordered coordinates are first-order recoverable.  For the first coordinate put
+\[
+\begin{aligned}
+P_1(x,a):={}&(D(x)\wedge a=x)\\
+&\vee\Bigl(U^+(x)\wedge D(a)\wedge G(x,a)\wedge\neg C(x,a)\Bigr)\\
+&\vee\Bigl(\neg D(x)\wedge\neg U^+(x)\wedge C(x,a)\Bigr).
+\end{aligned}
+\]
+For the second coordinate put
+\[
+\begin{aligned}
+P_2(x,b):={}&(D(x)\wedge b=x)\\
+&\vee\Bigl(U^+(x)\wedge C(x,b)\Bigr)\\
+&\vee\Bigl(\neg D(x)\wedge\neg U^+(x)\wedge
+\exists t\bigl(T(x,t)\wedge D(b)\wedge G(t,b)\wedge\neg C(x,b)\bigr)\Bigr).
+\end{aligned}
+\]
+
+\begin{lemma}[Coordinate recovery]\label{lem:coords}
+For every $(i,j)\in U$ and every $k\in\N$,
+\[
+P_1((i,j),d_k)\Longleftrightarrow k=i,
+\qquad
+P_2((i,j),d_k)\Longleftrightarrow k=j.
+\]
+\end{lemma}
+
+\begin{proof}
+If $i=j$, the point is diagonal and both formulas return the point itself.  Suppose $i\ne j$.  The unique non-diagonal neighbor is the transpose.  If $i<j$, the two diagonal neighbors of $(i,j)$ are $d_i,d_j$, and the unique diagonal neighbor common to $(i,j)$ and $(j,i)$ is $d_j$.  Hence $P_1$ selects $d_i$ and $P_2$ selects $d_j$.  If $i>j$, the unique diagonal neighbor of $(i,j)$ is $d_i$, and it is also the unique common diagonal neighbor with the transpose; the other diagonal neighbor of the transpose is $d_j$.  The formulas again select the ordered pair $(d_i,d_j)$.
+\end{proof}
+
+\section{Derived global order}
+
+The upper-triangle predicate supplies comparison once the two coordinates are recovered.
+
+\begin{definition}[Diagonal order]
+For diagonal $a,b$, define
+\[
+a<_{\Delta}b
+\quad:\Longleftrightarrow\quad
+D(a)\wedge D(b)\wedge
+\exists x\bigl(U^+(x)\wedge P_1(x,a)\wedge P_2(x,b)\bigr).
+\]
+\end{definition}
+
+\begin{theorem}[Derived order on the coordinate spine]\label{thm:diagorder}
+For all $i,j\in\N$,
+\[
+d_i<_{\Delta}d_j\quad\Longleftrightarrow\quad i<j.
+\]
+\end{theorem}
+
+\begin{proof}
+If $i<j$, the point $(i,j)$ is upper and has ordered coordinates $(d_i,d_j)$ by \cref{lem:coords}.  Conversely, if an upper point has first coordinate $d_i$ and second coordinate $d_j$, then by definition of the upper triangle its source coordinates satisfy $i<j$.
+\end{proof}
+
+We now order all payload vertices.  For $x=(i,j)$ define its max-key to be
+\[
+\mu(x)=d_{\max(i,j)}.
+\]
+The graph of $\mu$ is first-order definable from $P_1,P_2$ and $<_{\Delta}$.  Define $x\prec y$ lexicographically by the triple
+\[
+\bigl(\mu(x),P_1(x),P_2(x)\bigr)
+\]
+using the diagonal order.
+
+\begin{theorem}[Full payload order]\label{thm:fullorder}
+The relation $\prec$ is first-order definable in $(U,G)$ and is a strict linear order of type $\omega$ on all of $U$.
+\end{theorem}
+
+\begin{proof}
+The definition is first-order because all coordinate maps and the diagonal order are first-order definable.  For each $m$, the max-shell
+\[
+S_m=\{(i,j):\max(i,j)=m\}
+\]
+has exactly $2m+1$ elements.  The order $\prec$ lists $S_0,S_1,S_2,\ldots$ in increasing $m$, and orders each finite shell lexicographically by $(i,j)$.  Hence every initial segment is finite and the order type is $\omega$.
+\end{proof}
+
+This is derived instability: the primitive graph relation will be shown to have bounded half-graph depth, while a first-order formula built from it defines an infinite order.
+
+\section{Primitive shallowness and linear cost}
+
+\subsection{$C_4$-freeness}
+
+\begin{lemma}\label{lem:codegree}
+Any two distinct vertices of $G$ have at most one common neighbor.
+\end{lemma}
+
+\begin{proof}
+Two distinct diagonal points $d_i,d_j$ have exactly one common neighbor, namely $(\min\{i,j\},\max\{i,j\})$.  A diagonal point and an off-diagonal point can share at most the transpose of the off-diagonal point or one coordinate vertex, and direct inspection of the degree-two/degree-three gadget rules out two common neighbors.  Finally, two distinct off-diagonal points can share two diagonal neighbors only if they use the same unordered coordinate pair; then they are transposes, and the lower point has only one diagonal neighbor, so only one diagonal can be common.  The transpose edges do not create a second common neighbor unless the two vertices coincide.
+\end{proof}
+
+\begin{corollary}\label{cor:c4}
+The graph $G$ is $C_4$-free.
+\end{corollary}
+
+\begin{proof}
+Opposite vertices of a $4$-cycle have two distinct common neighbors, contradicting \cref{lem:codegree}.
+\end{proof}
+
+A half-graph of depth three contains a $K_{2,2}$ on $a_0,a_1,b_1,b_2$, hence a $4$-cycle in a simple graph.
+
+\begin{theorem}[Exact atomic half-graph depth]\label{thm:ladder}
+The primitive graph relation has half-graph depth exactly two.
+\end{theorem}
+
+\begin{proof}
+Depth three is impossible by \cref{cor:c4}.  For $i<j$, take
+\[
+a_0=(i,j),\qquad a_1=(j,i),\qquad b_0=d_i,\qquad b_1=d_j.
+\]
+Then
+\[
+G(a_0,b_0),\quad G(a_0,b_1),\quad G(a_1,b_1),\quad \neg G(a_1,b_0),
+\]
+which is a depth-two half-graph.
+\end{proof}
+
+Thus the primitive graph relation itself has a uniform finite ladder bound even though the structure is unstable because \cref{thm:fullorder} defines an infinite linear order.  This illustrates the difference between atomic and derived instability.
+
+\subsection{Linear primitive incidence}
+
+Let
+\[
+W_m=[0,m]^2.
+\]
+Then $|W_m|=(m+1)^2$.
+
+\begin{theorem}[Linear primitive cost]\label{thm:linear}
+The number of undirected graph edges induced by $W_m$ is
+\[
+|E(G[W_m])|=2m(m+1).
+\]
+Consequently, in the initial segments of the max-shell order,
+\[
+|E(G[\text{first }N\text{ vertices}])|=\Theta(N).
+\]
+\end{theorem}
+
+\begin{proof}
+There are $m(m+1)$ row-coordinate edges, one for every off-diagonal point of $W_m$.  There are $m(m+1)/2$ transpose edges, one for each unordered pair $i<j$, and the same number of upper-marker edges.  The three edge families are disjoint, so the total is $2m(m+1)$.  Since $|W_m|=(m+1)^2$, the asymptotic statement follows.
+\end{proof}
+
+\section{Arithmetic non-leakage}
+
+The graph construction is a two-dimensional first-order interpretation in the pure order $(\N,<)$: its vertices are pairs $(i,j)$ and each edge clause in \cref{def:graph} is a Boolean combination of coordinate equalities and comparisons.
+
+We now show that ordinary arithmetic with respect to the recovered order $\prec$ is not first-order definable from the graph.
+
+Let
+\[
+L=\{(0,m):m\in\N\}.
+\]
+The set $L$ is first-order definable in the interpreted structure: $d_0$ is the least diagonal point under $<_{\Delta}$, and $L$ consists of the vertices whose first-coordinate projection is $d_0$.
+
+The point $(0,m)$ is the first vertex of max-shell $m$.  Since the preceding shells have sizes
+\[
+1,3,5,\ldots,2m-1,
+\]
+we have
+\[
+\rk_{\prec}(0,m)=m^2.
+\]
+
+\begin{theorem}[No first-order addition]\label{thm:noadd}
+Ordinary addition with respect to the recovered order $\prec$ is not first-order definable in $(U,G)$.
+\end{theorem}
+
+\begin{proof}
+Assume that the ternary addition relation $\operatorname{Add}_{\prec}$ is first-order definable.  Then parity of recovered rank is definable by
+\[
+\operatorname{Even}_{\prec}(x)
+\quad\Longleftrightarrow\quad
+\exists y\,\operatorname{Add}_{\prec}(y,y,x).
+\]
+Restrict this predicate to the definable line $L$.  Since $\rk_{\prec}(0,m)=m^2$, we obtain
+\[
+\operatorname{Even}_{\prec}(0,m)
+\quad\Longleftrightarrow\quad
+m\text{ is even}.
+\]
+Pulling the interpreted formula back to the source $(\N,<)$ would therefore define the even numbers by a unary first-order formula with finitely many parameters.  This contradicts \cref{lem:unary}.
+\end{proof}
+
+\begin{corollary}[No first-order multiplication]\label{cor:nomult}
+Ordinary multiplication with respect to $\prec$ is not first-order definable in $(U,G)$.
+\end{corollary}
+
+\begin{proof}
+The recovered order of type $\omega$ first-order defines its successor relation.  Robinson proved that addition of positive integers is arithmetically definable from multiplication together with successor~\cite{Robinson1949}.  If multiplication were definable in $(U,G)$, addition would therefore be definable, contradicting \cref{thm:noadd}.
+\end{proof}
+
+\section{Why dimension one cannot do the same}
+
+We now prove an exact lower bound inside the pure-order provenance class.
+
+A one-dimensional interpretation in $(\N,<)$ consists of a definable domain $D\subseteq\N$, a definable equivalence relation $\sim$ on $D$, and finitely many $\sim$-invariant definable primitive relations.  We allow finitely many source parameters.
+
+\begin{lemma}[Eventual quotient trivialization]\label{lem:quotient}
+If $D/{\sim}$ is infinite, then there exists $B$ such that for all $x,y>B$,
+\[
+x\sim y\quad\Longleftrightarrow\quad x=y.
+\]
+\end{lemma}
+
+\begin{proof}
+Every nonempty equivalence class has a least element in $\N$.  The set of least representatives is definable by
+\[
+\operatorname{Rep}(x):=D(x)\wedge
+\forall y\bigl(D(y)\wedge y\sim x\to\neg(y<x)\bigr).
+\]
+It contains exactly one point from each class and is therefore infinite.  By \cref{lem:unary}, it is cofinite.  Hence beyond some $B$ every point is the least point of its class, so two distinct points beyond $B$ cannot be equivalent.
+\end{proof}
+
+We also need the binary tail normal form.
+
+\begin{lemma}[Binary order tail dichotomy]\label{lem:binarytail}
+Let $R(x,y)$ be first-order definable in $(\N,<)$ with finitely many parameters.  Then there are $B,K$ and truth values $\varepsilon_+,\varepsilon_-$ such that whenever $x,y>B$ and $|x-y|>K$,
+\[
+R(x,y)=\varepsilon_+\quad\text{if }x<y,
+\qquad
+R(x,y)=\varepsilon_-\quad\text{if }y<x.
+\]
+Consequently the number of pairs of $R$ in $[0,N]^2$ is either $O(N)$ or $\Theta(N^2)$.
+\end{lemma}
+
+\begin{proof}
+Quantifier elimination leaves only finitely many bounded successor offsets and fixed constants.  Outside a sufficiently large boundary and at distance exceeding all offsets, every atomic comparison is determined only by the orientation $x<y$ or $y<x$.  This gives the first statement.  If both remote truth values are false, all non-boundary edges have bounded distance, hence there are $O(N)$ pairs.  If either remote truth value is true, one full remote orientation contributes $\Theta(N^2)$ pairs.
+\end{proof}
+
+\begin{lemma}[Bounded distortion of definable $\omega$-orders]\label{lem:distortion}
+Let $\triangleleft$ be a first-order definable strict linear order of type $\omega$ on a cofinite subset of $(\N,<)$.  Then
+\[
+\rk_{\triangleleft}(x)=x+O(1).
+\]
+\end{lemma}
+
+\begin{proof}
+Apply \cref{lem:binarytail} to $x\triangleleft y$.  On sufficiently separated large pairs exactly one remote orientation is selected.  It cannot be the reverse of $<$: if $x>y+K$ implied $x\triangleleft y$, then each sufficiently large $y$ would have infinitely many $\triangleleft$-predecessors, impossible in order type $\omega$.  Hence remote orientation agrees with $<$.  Only a bounded neighborhood of $x$ and finitely many initial points can alter its rank.
+\end{proof}
+
+The remaining ingredient is the standard locality obstruction: a finite relational structure whose Gaifman graph becomes locally finite after removal of finitely many apex points cannot first-order define a linear order on an infinite residual set.  This follows from Gaifman locality, or equivalently from the usual bounded-radius Ehrenfeucht--Fra\"iss\'e argument for sufficiently separated points.  We state the consequence in the exact form needed here.
+
+\begin{lemma}[Finite-apex locality barrier]\label{lem:locality}
+Let $\mathcal A$ be an infinite finite-relational structure.  If after removing a finite set of vertices its Gaifman graph is locally finite, then no first-order formula defines a strict linear order on the infinite residual carrier.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Fix a candidate formula $\varphi(x,y)$ and its quantifier rank.  Gaifman locality yields a finite radius controlling the local information relevant to $\varphi$.  In a locally finite graph one may choose two sufficiently remote vertices outside the finite apex set whose relevant one-point local types agree and whose neighborhoods are disjoint.  Swapping their roles preserves the local data seen by the formula, so $\varphi(a,b)$ and $\varphi(b,a)$ agree, contradicting strict order.  The finite apex set is absorbed by naming its elements and passing to the induced trace relations on the residual carrier.
+\end{proof}
+
+\begin{theorem}[Dimension-one linear-cost barrier]\label{thm:d1}
+Let $\mathcal A$ be an infinite finite-signature structure obtained by a one-dimensional first-order interpretation in $(\N,<)$, allowing finitely many parameters and an arbitrary definable quotient.  If $\mathcal A$ first-order defines an order of type $\omega$, then at least one primitive binary relation has $\Theta(N^2)$ incidences in the first $N$ points of the recovered order.
+\end{theorem}
+
+\begin{proof}
+By \cref{lem:quotient}, outside finitely many points the quotient is equality, so every primitive binary relation becomes an ordinary binary relation definable in $(\N,<)$.  Suppose all primitive relations are subquadratic in the recovered order.  By \cref{lem:distortion}, they are subquadratic in source-order windows as well.  By \cref{lem:binarytail}, each is then in the $O(N)$ local regime: outside one common finite boundary every edge has uniformly bounded source-order distance.  Because the signature is finite, the residual Gaifman graph is locally finite.  This contradicts \cref{lem:locality}.
+\end{proof}
+
+\begin{corollary}[Exact interpretation dimension]\label{cor:dim}
+Within finite-signature pure-order provenance, interpretation dimension two is the exact minimum for the package
+\[
+\text{linear primitive incidence}
++\FO\text{-definable full }\omega\text{-order}
++\text{bounded primitive half-graph depth}.
+\]
+The graph of \cref{def:graph} supplies the matching dimension-two upper bound.
+\end{corollary}
+
+\section{The exact hub-density barrier}
+
+In the graph $G$, the diagonal $\Delta$ is exactly the set of infinite-degree coordinate hubs.  The max-shell order places $m+1$ diagonal hubs among the first $(m+1)^2$ vertices, giving $\Theta(\sqrt N)$ hubs.  We now prove that no other pure-order-definable $\omega$-order on $\N^2$ can make this definable spine asymptotically sparser.
+
+\begin{lemma}[Finite-fibre box confinement]\label{lem:box}
+Let $\psi(x_1,\dots,x_d,t)$ be first-order definable in $(\N,<)$ with finitely many fixed parameters.  Suppose that, for every sufficiently large $t$, the fibre
+\[
+F_t=\{(x_1,\dots,x_d):\psi(x_1,\dots,x_d,t)\}
+\]
+is finite.  Then there is a constant $K$ such that for all sufficiently large $t$,
+\[
+F_t\subseteq[0,t+K]^d.
+\]
+\end{lemma}
+
+\begin{proof}
+Use quantifier elimination in $(\N,0,<,S)$.  Choose $K$ larger than every successor offset and every fixed boundary term appearing in a quantifier-free equivalent of $\psi$.  Suppose a satisfying tuple has a coordinate larger than $t+K$.  Consider the cluster of maximal coordinates whose mutual differences are bounded by $K$.  If the cluster has one coordinate, increase that coordinate; if it has several, increase all coordinates in the cluster by the same amount.  All bounded equalities within the cluster are preserved, all comparisons with coordinates outside the cluster retain their orientation, and all comparisons with $t$ and fixed parameters remain in the same remote regime.  Hence the same quantifier-free type is realized by infinitely many shifts, contradicting finiteness of the fibre.
+\end{proof}
+
+Let $\triangleleft$ be any first-order definable order of type $\omega$ on $\N^d$, and let
+\[
+\delta_m=(m,\dots,m).
+\]
+The predecessor fibre
+\[
+\{\bar x:\bar x\triangleleft\delta_m\}
+\]
+is finite.  Applying \cref{lem:box} gives
+\[
+\rk_{\triangleleft}(\delta_m)=O(m^d).
+\]
+
+\begin{theorem}[Dimensional hub-density law]\label{thm:hubs}
+Let $\triangleleft$ be any first-order definable order of type $\omega$ on $\N^d$.  Let
+\[
+H_{\triangleleft}(N)=
+\bigl|\{\delta_m:m\in\N\}\cap\{\text{first }N\text{ points of }\triangleleft\}\bigr|.
+\]
+Then
+\[
+H_{\triangleleft}(N)=\Omega(N^{1/d}).
+\]
+Moreover, the max-shell order on $\N^d$ attains
+\[
+H(N)=\Theta(N^{1/d}).
+\]
+Hence the exponent $1/d$ is exact.
+\end{theorem}
+
+\begin{proof}
+The rank bound gives a constant $C$ such that
+\[
+\rk_{\triangleleft}(\delta_m)\le C(m+1)^d
+\]
+for all sufficiently large $m$, and after enlarging $C$ for all $m$.  Thus by rank $C(m+1)^d$ the order contains at least $m+1$ diagonal points, which yields $H_{\triangleleft}(N)=\Omega(N^{1/d})$.  For the max-shell order, the union of shells through $m$ is exactly $[0,m]^d$, containing $(m+1)^d$ points and $m+1$ diagonal points, which gives the matching upper bound.
+\end{proof}
+
+\begin{corollary}[Exact two-dimensional nonlocal-core law]\label{cor:sqrt}
+For the payload graph $G$ and any pure-order-definable $\omega$-order on its dimension-two interpretation carrier,
+\[
+H(N)=\Omega(\sqrt N).
+\]
+The order of \cref{thm:fullorder} attains
+\[
+H(N)=\Theta(\sqrt N).
+\]
+\end{corollary}
+
+Thus logarithmic, iterated-logarithmic, or arbitrarily slow unbounded hub counts cannot be obtained merely by first-order reordering inside the same fixed dimension-two pure-order source.
+
+\section{Partial-operation formulation}
+
+The graph result can be expressed as a one-layer partial-operation structure.  Add one terminal output $\Omega$ and define
+\[
+x\star y=\Omega
+\quad\Longleftrightarrow\quad
+G(x,y).
+\]
+Then the generic definedness trace is exactly the graph $G$.  Since $G$ is symmetric and irreflexive, the operation is commutative on its domain and $x\star x$ is undefined for every payload point.
+
+\begin{corollary}
+There exists a single one-output commutative partial binary operation layer on a countable payload carrier such that its definedness graph is $C_4$-free, has atomic half-graph depth two and linear incidence cost, first-order defines a full order of type $\omega$, and does not first-order define ordinary addition or multiplication.
+\end{corollary}
+
+\section{Discussion and scope}
+
+The construction separates three phenomena that can otherwise be conflated.
+
+First, primitive instability is not necessary for definable global order.  The atomic graph relation has a fixed ladder bound, while instability appears only in a composed first-order formula.  Second, sparse primitive incidence is compatible with global order as soon as the carrier has a two-coordinate self-interpretation.  Third, the nonlocality required by global order has not disappeared: it is concentrated in the infinite-degree diagonal hubs, whose density is quantitatively forced by the interpretation dimension.
+
+The exact result is deliberately provenance-relative.  Dimension-one impossibility and the hub-density law use first-order interpretability in pure discrete order.  Structures equipped with additional primitive non-order geometry---for example, externally supplied sparse scales or stronger arithmetic predicates---belong to a different source class and are not covered by the lower bounds here.
+
+The paper also does not claim that $\Theta(N)$ primitive incidence is universally minimal among all possible representations.  What is proved is the existence of a linear-cost construction, the impossibility of combining such a cost with dimension one in the pure-order class, and the sharp $N^{1/d}$ law for a definable diagonal spine in fixed interpretation dimension $d$.
+
+\section{Related work}
+
+Quantifier elimination for successor arithmetic and discrete orders underlies the tail-normal-form and finite-fibre arguments; we use the self-contained treatment of Galeotti and L\"owe~\cite{GaleottiLoewe2022}.  Half-graphs are the standard graph-theoretic manifestation of the model-theoretic order property; Malliaris and Shelah~\cite{MalliarisShelah2014} provide a modern account of the relation between bounded half-graphs and stability.  The implication from multiplication plus successor to definability of addition is due to Julia Robinson~\cite{Robinson1949}.
+
+The present work does not assert novelty for finite-dimensional interpretations, coordinate projections, subdivision-style encodings, or the classical order-property machinery.  The contribution established here is the combined extremal package for this explicit payload graph together with matching pure-order lower bounds on interpretation dimension and definable hub density.  A broader priority comparison with specialized literature on interpretations in sparse graphs would be appropriate before journal submission; the present manuscript is intended first as a self-contained research preprint.
+
+\section{Conclusion}
+
+A full first-order order of type $\omega$ can emerge compositionally from an extremely shallow primitive graph.  The graph may be chosen simple, undirected, $C_4$-free, of atomic half-graph depth two, and of linear incidence cost.  No auxiliary witness population is needed, and ordinary addition and multiplication remain undefinable.
+
+Inside the pure-order finite-dimensional provenance class, the structural price is exact.  Dimension one is impossible at linear primitive cost, while dimension two suffices.  In fixed dimension $d$, a definable diagonal nonlocal core must occur with density $\Theta(N^{1/d})$ under optimal first-order-definable ordering; in the minimal dimension two this gives the sharp $\Theta(\sqrt N)$ law.
+
+These results identify two-coordinate self-coordination, rather than primitive orientation or primitive large half-graphs, as the first pure-order mechanism that supports sparse derived global order.
+
+\section*{Acknowledgements}
+The research programme and mathematical exploration were developed through iterative dialogue with ``Commander Sol'', an OpenAI language model used as a mathematical research assistant.  All claims included in this manuscript are stated with explicit hypotheses and are intended to be independently checkable from the proofs given here.
+
+\bibliographystyle{plain}
+\bibliography{sol_infinity_refs}
+
+\end{document}
