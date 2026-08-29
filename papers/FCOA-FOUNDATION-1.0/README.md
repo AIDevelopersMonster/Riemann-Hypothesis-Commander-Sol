@@ -1,11 +1,11 @@
 # FCOA Foundation 1.0
 
-**Publication status:** READY FOR ZENODO DEPOSIT  
+**Publication status:** PUBLISHED  
 **Version:** 1.0.0  
 **Date:** 2026-08-29  
 **Creator:** Alex Malachevsky  
 **ORCID:** 0009-0008-6009-3196  
-**Foundation DOI:** pending Zenodo assignment
+**Foundation DOI:** https://doi.org/10.5281/zenodo.22164246
 
 ## English title
 
@@ -68,17 +68,19 @@ The publication is distilled from the already maintained main-line specification
 
 These backend documents remain useful for the research programme, but the Zenodo foundation is the citable archival Definition 1.0.
 
-## Mandatory citation rule after DOI assignment
+## Mandatory citation rule
 
 Every FCOA publication — central or delegated — must:
 
-1. mention the Foundation article and its DOI in the **abstract** whenever the paper uses the FCOA framework;
-2. include the Foundation article as a full entry in the **bibliography/references**;
+1. mention the Foundation article and `https://doi.org/10.5281/zenodo.22164246` in the **abstract/аннотация** whenever the paper uses the FCOA framework;
+2. include the Foundation article as a full entry in the **bibliography/references** with DOI `10.5281/zenodo.22164246`;
 3. include a short section or paragraph titled `FCOA framework and concrete structure used in this paper` (or a direct equivalent), specifying carrier, sorts, primitive signature, changes relative to M0, erasure convention, and recovery notion;
 4. cite the older Admissibility Geometry DOI separately only when its specific M0/G1/G2 theorems are used.
 
 The exact branch-wide directive is stored in `FOUNDATION_CITATION_DIRECTIVE.md`.
 
-## Deposit package
+Already published archival versions are not rewritten solely to add the Foundation citation. The rule applies to new manuscripts and to future revisions/versions.
 
-The Zenodo upload package consists of bilingual PDF and DOCX manuscripts plus source Markdown and metadata. The DOI field is intentionally left pending until Zenodo assigns the record DOI. Immediately after assignment, the DOI must be inserted here, in the citation directive, the FCOA main README/CITATION metadata, and all queued FCOA manuscripts.
+## Canonical citation
+
+Malachevsky, A. *Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure, and the Canonical M0 Baseline*. Version 1.0, 2026. Zenodo. DOI: `10.5281/zenodo.22164246`. https://doi.org/10.5281/zenodo.22164246
