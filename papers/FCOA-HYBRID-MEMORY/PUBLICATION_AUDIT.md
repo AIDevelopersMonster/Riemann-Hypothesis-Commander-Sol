@@ -18,8 +18,8 @@
 | A-06 | C1 | DD threshold in summary table | `DD=2` was previously summarized without a dedicated proof in the article draft. | The publication rule forbids theorem claims without proof. | Add sharp DD proposition and proof. | Claim retained with proof. |
 | A-07 | C2 | rigidity language | Finite rigidity can be mistaken for order/arithmetic recovery. | This would inflate the result beyond evidence. | Add arithmetic-leakage firewall and exclude AL0+ work. | Prevents cross-paper claim leakage. |
 | A-08 | C4 | bibliography | Initial internal notes had little external prior-art calibration. | Novelty cannot be assessed only inside FCOA. | Add standard partial-algebra, distinguishing-number and base-size references; cite prior FCOA admissibility paper. | Novelty claims narrowed. |
-| A-09 | C5 | DOI/metadata | DOI not yet reserved. | A fabricated or inconsistent DOI is publication-blocking metadata. | Keep explicit pending marker; reserve DOI on Zenodo; rebuild both PDFs and CFF after reservation. | No mathematical effect; blocks final release. |
-| A-10 | C5 | bilingual rendering | RU/EN sources need visual PDF verification. | Broken glyphs/overflow would make archival files defective. | Build with XeLaTeX, render every PDF to images, inspect title/middle/final pages; eliminate overfull boxes. | Repaired in RC0.9.0. |
+| A-09 | C5 | DOI/metadata | DOI was initially unreserved. | A fabricated or inconsistent DOI is publication-blocking metadata. | Reserve and publish DOI, then synchronize README/CFF/metadata/state. | **Repaired: DOI 10.5281/zenodo.22165651.** |
+| A-10 | C5 | bilingual rendering | RU/EN sources need visual PDF verification. | Broken glyphs/overflow would make archival files defective. | Build with XeLaTeX, render every PDF to images, inspect title/middle/final pages; eliminate overfull boxes. | Repaired in publication build. |
 
 ## Verification results
 
@@ -46,12 +46,17 @@ The release does not claim that symmetry breaking, base size, color stabilizers 
 
 ## Render audit
 
-- English RC: 13 pages, XeLaTeX, visually inspected after raster render; no overfull boxes in final log.
-- Russian RC: 14 pages, XeLaTeX, Cyrillic/math glyphs inspected; no overfull boxes in final log.
-- No missing references or undefined labels in final build logs.
+- English edition: 13 pages in the audited RC build, XeLaTeX, visually inspected after raster render; no overfull boxes in final log.
+- Russian edition: 14 pages in the audited RC build, XeLaTeX, Cyrillic/math glyphs inspected; no overfull boxes in final log.
+- No missing references or undefined labels in final audited build logs.
 
-## Release status
+## Final release status
 
-**REVIEWED_CLEAN — PUBLICATION_READY after DOI reservation and one final deterministic rebuild.**
+**PUBLISHED / AUDIT CLOSED**
 
-Blocking action remaining: reserve Zenodo DOI, replace the pending marker in EN/RU sources and metadata, regenerate both PDFs, rerun verifier and checksums, then publish.
+- Version: **1.0.0**
+- Publication date: **2026-08-29**
+- Zenodo DOI: **10.5281/zenodo.22165651**
+- Persistent URL: https://doi.org/10.5281/zenodo.22165651
+
+No publication-blocking audit item remains in Article A. Further arithmetic-leakage and resource-theory results belong to Article B rather than amendments to this theorem set.
