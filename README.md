@@ -9,7 +9,7 @@ A reproducible research repository for computational experiments on Riemann-zeta
 **Reflections on Mathematics with Commander Sol**  
 https://zenodo.org/communities/commander-sol-math/
 
-The community collects the broader mathematical publication line, including work on the Riemann Hypothesis, prime structures, Prime-Successor Algebra, operator methods, adelic structures, FCOA/admissibility geometry, and related rigorous explorations in the “Reflections / Размышлизмы” format.
+The community collects the broader mathematical publication line, including work on the Riemann Hypothesis, prime structures, Prime-Successor Algebra, operator methods, adelic structures, FCOA/admissibility geometry, hybrid memory, and related rigorous explorations in the “Reflections / Размышлизмы” format.
 
 ## Published starting point
 
@@ -35,6 +35,19 @@ Core progression:
 with the central mechanism
 
 `relation -> partial-operation domain -> recoverable structural memory`.
+
+### FCOA · Hybrid Memory — Article A
+
+**Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations**  
+Zenodo DOI: **10.5281/zenodo.22165651**  
+Persistent URL: https://doi.org/10.5281/zenodo.22165651  
+GitHub companion: [`papers/FCOA-HYBRID-MEMORY/`](papers/FCOA-HYBRID-MEMORY/)
+
+Core problem:
+
+`Aut(star) != 1, Aut(diamond) != 1, but Aut(star,diamond) = 1`
+
+with sharp finite hybrid-memory thresholds, Lift Compatibility, Joint Fiber Synchronization (JFS), and Carrier-Value Selection (CVS).
 
 ## Programme map
 
@@ -77,6 +90,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-03 · REALZERO — planned
 - RH-SOL-04 · FIREWALL — planned
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
+- FCOA · HYBRID MEMORY · ARTICLE A — published, DOI 10.5281/zenodo.22165651; GitHub companion available
 
 ## AI collaboration disclosure
 
