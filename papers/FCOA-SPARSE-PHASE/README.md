@@ -1,47 +1,50 @@
-# FCOA Rigidity — Article B
+# FCOA Rigidity - Article B
 
 ## Reflections on Sparse Anonymous Phase Geometry with Commander Sol
 ### Component Cocycles, Synchronization Costs, and Actual Cell-Extension Separation
 
 Author: Alex Malachevsky  
 ORCID: 0009-0008-6009-3196  
-Version: 1.0-rc1  
-Status: **PUBLICATION ASSEMBLY / proof audit pending**  
+Version: 1.0  
+Status: **PUBLICATION READY - Zenodo DOI pending**  
 Date: 29 August 2026
 
-Companion Article A: DOI **10.5281/zenodo.22157403**.
+Companion foundation: Article A, DOI **10.5281/zenodo.22157403**.
 
-## Proven core
+## Proved core
 
-1. Componentwise Phase Theorem for arbitrary sparse binary domains.
-2. Exactness iff all realized component phase-cocycle values are diagonal.
-3. Fixed-domain phase-link number `lambda(D,c)` with `0 <= lambda <= r-1`.
-4. One-cell bridge lemma.
-5. Universal actual-cost bound `alpha(D,c) <= mu(D) <= r-1`.
-6. Explicit unbounded separation family `lambda=r-1`, `alpha=1`.
-7. No-old-obstruction theorem: any failure of `alpha<=lambda` must arise from a new automorphism moving the old domain after extension.
-8. Deletion-symmetry reformulation of the remaining obstruction.
-9. Exhaustive finite theorem `alpha<=lambda` for all carrier sizes <=4.
-10. Exhaustive five-point sparse theorem through five defined cells.
+- Componentwise Phase Theorem on the ordered-cell incidence graph `Lambda(D)`.
+- Exactness iff all realized component phase cocycle values are diagonal.
+- Three distinct costs: fixed-domain `lambda(D,c)`, connectivity repair `mu(D)`, actual cell-extension `alpha(D,c)`.
+- Universal bound `alpha <= mu <= kappa(Lambda)-1`.
+- Explicit family with `lambda=r-1` and `alpha=1`; hence unbounded `lambda/alpha` separation.
+- No-old-obstruction theorem: any failure of `alpha<=lambda` must be caused by a newly created bad symmetry moving the old domain.
+- Deletion-symmetry reformulation and recognizable-bridge sufficient criterion.
+- Complete audit on four carrier points: 523,250 surjective layers, only `(lambda,alpha)=(0,0),(1,1),(2,1)`.
+- Five-point sector with at most five defined cells: 270,085 layers, no counterexample.
 
 ## Open boundary
 
-The global inequality
+`alpha(D,c) <= lambda(D,c)` remains Conjecture 14. It is explicitly not used as a premise of any theorem in the paper.
 
-`alpha(D,c) <= lambda(D,c)`
+## Publication files
 
-is a supported conjecture, not a theorem. It is intentionally isolated from the proved results. If false, a counterexample must realize genuine symmetry creation under domain extension.
+- `article_en.md`, `article_ru.md` - source manuscripts.
+- `FCOA_Sparse_Phase_EN.docx`, `FCOA_Sparse_Phase_RU.docx` - editable publication versions.
+- `FCOA_Sparse_Phase_EN.pdf`, `FCOA_Sparse_Phase_RU.pdf` - release PDFs.
+- `demo_sparse_phase.html` - interactive explanatory companion.
+- `verify_article_b.py` - finite witness and audit verifier.
+- `CITATION.cff` - citation metadata; add Article B DOI after Zenodo deposit.
 
-## Publication plan
+## QA completed
 
-Before release:
+- hostile proof audit completed;
+- bibliography corrected and publisher DOI records checked;
+- Article A dependency frozen to DOI `10.5281/zenodo.22157403`;
+- EN/RU synchronized;
+- DOCX rendered page-by-page and visually inspected;
+- PDFs independently rendered and visually inspected;
+- interactive HTML browser-rendered in before/after states and visually inspected;
+- core verifier reproduced the complete n=4 count exactly.
 
-- hostile proof audit of the manuscript;
-- commit/re-run an independent verifier for the n=4 and n=5 enumeration and the unbounded-gap family;
-- bibliography/novelty audit against signed graphs, gain graphs, switching, and reconstruction literature;
-- prepare synchronized Russian manuscript;
-- equation/theorem numbering pass;
-- render DOCX/PDF EN/RU and inspect page-by-page;
-- then freeze v1.0 and deposit on Zenodo.
-
-The open conjecture does not block publication provided its status remains explicit.
+No mathematical revision is required before Zenodo deposit. The Article B DOI is the only missing archival metadata field.
