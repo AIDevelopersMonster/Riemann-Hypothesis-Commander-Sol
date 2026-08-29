@@ -97,3 +97,22 @@ Maintain:
 - `UPSTREAM_MEMO.md`
 
 Only definitions or theorems that sharpen the central FCOA memory programme belong in `UPSTREAM_MEMO.md`; philosophical restatements alone do not.
+
+## Mandatory FCOA Foundation citation gate — 2026-08-29
+
+All new or revised manuscripts from this direction must treat **FCOA Definition 1.0** as the canonical source for the meaning of the FCOA framework.
+
+Foundation title:
+
+**Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure, and the Canonical M0 Baseline**.
+
+The Foundation DOI is currently **pending Zenodo assignment**. For any new version or revision, obtain the DOI from the central directive at `papers/FCOA-FOUNDATION-1.0/FOUNDATION_CITATION_DIRECTIVE.md` and enforce both requirements:
+
+1. the **abstract** must explicitly say that the paper works in the FCOA framework fixed by Definition 1.0 and must print the Foundation DOI;
+2. the **bibliography** must contain the full Foundation article entry with that DOI.
+
+The body must identify the exact FCOA carrier/sandbox, sorts, primitive signature, relation to M0 or another cited baseline, erasure convention, and recovery/decomposition notion used.
+
+DOI `10.5281/zenodo.22129787` remains a separate citation for the concrete Admissibility Geometry `M0 -> G1 -> G2` results when used. It does not substitute for the Foundation citation.
+
+The already archived version of the Nesting/Atomicity paper is not silently rewritten. This gate applies to every future revision/version and every new manuscript from this direction.
