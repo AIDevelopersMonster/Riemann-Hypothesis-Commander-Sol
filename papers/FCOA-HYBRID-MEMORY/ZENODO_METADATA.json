@@ -1,0 +1,41 @@
+{
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "publication_date": "2026-08-29",
+  "title": "Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations",
+  "creators": [
+    {
+      "name": "Malachevsky, Alex",
+      "orcid": "0009-0008-6009-3196"
+    }
+  ],
+  "description": "We study hybrid memory in finite systems of partial operations: information absent from either operational reduct separately but present in their joint structure. We prove a typed Lift-Compatibility Theorem, sharp minimality thresholds for domain-domain, domain-value, value-value and shared-output synchronization regimes, an absolute two-cell one-sorted witness, two exhaustive small classifications, and a scalable carrier-value selector ladder. The paper carefully separates output semantics and does not identify finite rigidity with arithmetic recovery.",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "keywords": [
+    "partial algebra",
+    "partial operations",
+    "automorphism group",
+    "hybrid memory",
+    "joint rigidity",
+    "symmetry breaking",
+    "value erasure",
+    "joint fiber synchronization",
+    "carrier-value selection",
+    "finite structures"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.22129787",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    }
+  ],
+  "references": [
+    "P. Burmeister (1986), A Model Theoretic Oriented Approach to Partial Algebras, DOI 10.1515/9783112720875.",
+    "R. F. Bailey and P. J. Cameron (2011), Base size, metric dimension and other invariants of groups and graphs, DOI 10.1112/blms/bdq096.",
+    "C. Laflamme, L. Nguyen Van The and N. W. Sauer (2010), Distinguishing Number of Countable Homogeneous Relational Structures, DOI 10.37236/292.",
+    "A. Malachevsky (2026), Reflections on Admissibility Geometry with Commander Sol, DOI 10.5281/zenodo.22129787."
+  ],
+  "notes": "Bilingual EN/RU publication package. Add the Russian title as a translated title in the Zenodo UI. DOI must be reserved and inserted into both PDFs before final publication."
+}
