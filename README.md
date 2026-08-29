@@ -36,6 +36,16 @@ with the central mechanism
 
 `relation -> partial-operation domain -> recoverable structural memory`.
 
+### FCOA · Value-Rigidity / Identity Digraphs
+
+**Reflections on Value-Rigidity with Commander Sol: Two Anonymous Outputs, Identity Digraphs, and Sparse Rigid Fibers**  
+Zenodo DOI: **[10.5281/zenodo.22160014](https://doi.org/10.5281/zenodo.22160014)**  
+GitHub companion: [`papers/FCOA-VALUE-RIGIDITY-IDENTITY-DIGRAPHS/`](papers/FCOA-VALUE-RIGIDITY-IDENTITY-DIGRAPHS/)
+
+Core results:
+
+`|O|=1 -> VRI=1`, while `|O|=2 -> VRI=n!` is attainable; the sparsest maximally rigid two-output fiber is linked to the classical minimum identity-digraph extremal `m(n)`, with exact finite evaluation, second-order asymptotics, and a partial-layer phase law.
+
 ## Programme map
 
 The project is organized as a sequence of labeled research branches:
@@ -77,6 +87,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-03 · REALZERO — planned
 - RH-SOL-04 · FIREWALL — planned
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
+- FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
 
 ## AI collaboration disclosure
 
