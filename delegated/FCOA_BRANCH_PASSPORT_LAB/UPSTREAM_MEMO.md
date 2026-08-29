@@ -1,21 +1,60 @@
-# FCOA Branch Passport Laboratory — Upstream Memo
+# FCOA Branch Passport Laboratory — Final Upstream Memo
 
-**Rounds:** P0–P4  
-**Audience:** main Commander Sol scientific director
+**Rounds:** P0-P6  
+**Finalized:** 2026-08-29  
+**Audience:** main Commander Sol scientific director  
+**Status:** **HANDOFF COMPLETE / BRANCH CLOSED**  
+**Canonical publication:** Zenodo DOI `10.5281/zenodo.22160014`
 
-## U4-01 — EXACT OUTPUT-CARDINALITY THRESHOLD PROVED
+## Executive handoff
 
-P4 closes the minimality question exposed by P3.
+The passport laboratory began as methods/audit infrastructure and produced a complete mathematical chain beyond its original remit. All theorem-level results that survived hostile audit have now been integrated into the main line and published. This memo supersedes earlier intermediate recommendations.
 
-For a pure terminal-output partial operation with singleton output set
+## U6-01 — Sparse rigid fiber problem resolved and transferred
 
-`O={Omega}`,
+For
 
-every defined cell has the same value. Hence the operation is exactly the characteristic partial operation of its definedness relation:
+`m(n)=min{|F| : F subset X_n^2\Delta, Stab_{S_n}(F)=1}`,
 
-`x star y = Omega <=> D_star(x,y)`.
+P6 independently established the scale
 
-Therefore every active-sort definedness automorphism automatically extends uniquely across the singleton output, and every full-operation automorphism restricts to a definedness automorphism. Thus
+`m(n)=n-Theta(n/log n)`.
+
+Subsequent main-line work identified `m(n)` with the classical minimum-size identity-digraph problem and sharpened the result to:
+
+- exact finite threshold evaluation from identity oriented-tree counts;
+- `n-m(n)=L n/[log n+(3/2)log log n+O(1)]` with `L=log lambda`;
+- explicit partial-layer phase oscillation, excluding a universal bounded denominator constant `K_0`.
+
+These refinements and the prior-art discipline are canonical in DOI `10.5281/zenodo.22160014`. P6 remains provenance, not a priority claim for the classical identity-digraph problem.
+
+## U5-01 — Two outputs attain the absolute maximum
+
+P5 answers the extremality question left open by P3/P4.
+
+On `n` active points with complete off-diagonal definedness, color a rigid directed Hamilton path by `Omega_+` and every other off-diagonal cell by `Omega_-`. The two fibers have unequal sizes, so they cannot be exchanged. The `Omega_+` fiber has trivial stabilizer. Hence
+
+`Aut(star)=1`
+
+while
+
+`Aut(D|X_n)=S_n`.
+
+Therefore
+
+`VRI(star)=n!`,
+
+the absolute maximum possible active-sort VRI.
+
+Thus exactly two anonymous terminal outputs are not merely enough for factorial amplification: they already achieve maximal value-induced rigidity.
+
+## U4-01 — Exact output-cardinality threshold
+
+P4 proves the One-Output Collapse theorem. For a pure terminal-output partial operation with singleton output set `O={Omega}`,
+
+`x star y=Omega <=> D_star(x,y)`.
+
+Every active-sort definedness automorphism extends uniquely across the singleton output, so
 
 `pi_X Aut(star)=Aut(D_star|X)`
 
@@ -23,77 +62,63 @@ and
 
 `VRI(star)=1`.
 
-This remains true over an arbitrary already fixed backbone `B`: a singleton terminal-output layer can add rigidity through its domain geometry, but cannot add any extra value-induced rigidity beyond that domain.
+Combined with P5:
 
-Combined with P3, where exactly two terminal outputs give
-
-`VRI=n!/2`,
-
-we obtain the exact threshold:
-
-> **Two terminal outputs are necessary and sufficient for nontrivial value-induced rigidity in the pure terminal-output setting, and already sufficient for factorial amplification.**
-
-Equivalently:
-
-`|O|=1 => VRI=1`,
+`|O|=1 -> VRI=1`,
 
 while
 
-`|O|=2 => VRI can grow as n!/2`.
+`|O|=2 -> VRI=n!` is attainable.
 
-The anchored P3 variant further gives a rigid full operation with the same two outputs and
+This is the sharp threshold in the **pure terminal-output active-sort setting**. It is not a global statement about arbitrary self-valued algebras.
 
-`VRI=(n-1)!`.
+## U3-01 — Absolute two-output amplification
 
-## U4-02 — Interpretation of G2 clarified
+P3 supplied the first globally bounded-total-output construction:
 
-This theorem does not say a one-output construction cannot become rigid. G2 shows it can: a singleton output placed on a directed path compiles rigid information into the **domain**.
-
-P4 says the value itself contributes no additional rigidity after definedness is retained. Thus G2 is a clean example of domain-induced rigidity, whereas P3 is the first cardinality level at which genuinely value-induced rigidity is possible.
-
-This distinction should be incorporated into the branch passport vocabulary.
-
-## U4-03 — One-sorted caveat
-
-For a one-sorted presentation, active/output carrier separation must either be named or internally recoverable. A sufficient intrinsic condition is that every base element occurs as an operation argument and the singleton terminal output does not. Under that condition the same active-sort collapse theorem holds.
-
-If inactive base elements exist, full one-sorted definedness may gain carrier-mixing automorphisms. That is a sorting effect, not value-induced rigidity, and must not be counted as VRI.
-
-## U3-01 — ABSOLUTE TWO-OUTPUT FACTORIAL AMPLIFICATION
-
-P3 constructs `X_n={x_1,...,x_n}` with total terminal-output carrier exactly `O={Omega_+,Omega_-}` and
+`O={Omega_+,Omega_-}`,
 
 `x_i star x_j=Omega_+` for `i<j`,
 
-`x_i star x_j=Omega_-` for `i>j`,
+`x_i star x_j=Omega_-` for `i>j`.
 
-with diagonal undefined. Then
+Then
 
-`Aut(D|X_n) ~= S_n`,
+`Aut(D|X_n) ~= S_n`, `Aut(star) ~= C2`, `VRI=n!/2`.
 
-`Aut(star) ~= C2`,
+The anchored variant is rigid with `VRI=(n-1)!`. P5 later superseded the `n!/2` value as the extremal target but not the correctness or conceptual role of P3.
 
-and
+## U2-01 — G4 scope repair
 
-`VRI=n!/2`.
+The G4 construction has a growing inherited terminal-output carrier because of the `E_i^*`,`E_i^x` families. Therefore its safe statement is about a fixed two-value **added** orientation layer over M0, not a globally bounded total terminal-output alphabet.
 
-A one-cell diagonal anchor retains exactly two total outputs, gives `Aut(D_A|X_n) ~= S_{n-1}`, destroys reversal, and yields `Aut(star_A)=1`, `VRI=(n-1)!`.
+This scope issue was repaired conceptually by P3, which removed the M0 backbone entirely and established the absolute two-output theorem.
 
-Formula-blind enumeration for `n=3..7` agrees exactly.
+## U1/P0 — Audit infrastructure findings retained
 
-## U2-01 — G4 scope repair remains required
+The laboratory independently confirmed small-case automorphism groups for G3/G4, exposed the need to separate active-sort and full one-sorted automorphisms, and showed that domain, value fibers, commutation, Association Spectrum, translations and output orbits are genuinely independent passport coordinates.
 
-The pure P3/P4 theorem does not change the accounting of M0-relative G4. G4 has growing inherited `E_i^*`,`E_i^x` families and therefore does not itself have bounded total output cardinality. Its safe formulation remains a fixed two-value **added** orientation layer over M0.
+The reusable checker is `passport_enumerator.py`; the methodological schema is `PASSPORT_SCHEMA.md`.
 
-## Director recommendation
+## Publication transfer
 
-The P3+P4 pair is now a coherent theorem package suitable for upstream mathematical integration:
+The mature theorem package is published as:
 
-1. **One-Output Collapse Theorem:** singleton value layers have `VRI=1`;
-2. **Pure Two-Output Amplification Theorem:** two outputs permit `VRI=n!/2`;
-3. **Exact Two-Output Minimality Theorem:** two is the sharp output-cardinality threshold for positive and factorial VRI;
-4. anchored two-output variant: full rigidity with `VRI=(n-1)!`.
+**Reflections on Value-Rigidity with Commander Sol: Two Anonymous Outputs, Identity Digraphs, and Sparse Rigid Fibers**  
+Zenodo DOI: `10.5281/zenodo.22160014`.
 
-This package has a cleaner theorem boundary than G4 itself and should be kept conceptually separate from the M0-relative construction.
+Repository companion:
 
-The next genuinely open direction is no longer cardinality minimality. It is extremality: for fixed `n` and exactly two anonymous outputs, how large can VRI be, and can the `n!/2` construction be improved to `n!` without naming either output or importing external structure?
+`papers/FCOA-VALUE-RIGIDITY-IDENTITY-DIGRAPHS/`
+
+The publication is the canonical source for theorem statements, proofs, prior-art boundaries, exact `m(n)` computation, asymptotics and phase law.
+
+## Infrastructure not transferred
+
+Machine-readable passport serialization, universal erasure predicates and generalized automatic diff generation were never required to prove the mathematical results. They are **DEFERRED** to a future tooling project and are explicitly non-blocking for closure.
+
+## Final recommendation
+
+**Close `director/fcoa-branch-passport-lab`.**
+
+Do not extend P3-P6 inside this branch. New work should cite DOI `10.5281/zenodo.22160014` and start from a fresh branch with a distinct research question. Preserve this branch only as provenance for the audit and discovery path.
