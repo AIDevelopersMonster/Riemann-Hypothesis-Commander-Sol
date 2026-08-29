@@ -3,7 +3,8 @@
 **Direction:** FCOA — SOL-INFINITY — Infinite Carrier & FO Memory Boundary  
 **Date:** 2026-08-29  
 **Document type:** publication audit / branch closure decision  
-**Claim ceiling:** infinite-carrier/model-theoretic branch only; no promotion of finite G4 status
+**Claim ceiling:** infinite-carrier/model-theoretic branch only; no promotion of finite G4 status  
+**Canonical Zenodo DOI:** [10.5281/zenodo.22151456](https://doi.org/10.5281/zenodo.22151456)
 
 ## 1. Original branch problem
 
@@ -20,7 +21,7 @@ The required questions were:
 
 ## 2. Closure verdict
 
-The core branch problem is **solved at the declared theorem scope**.
+The core branch problem is **solved at the declared theorem scope** and the main result has been released on Zenodo under DOI `10.5281/zenodo.22151456`.
 
 ### Closed results
 
@@ -56,45 +57,32 @@ This is not a classification of every imaginable finite-signature enrichment ove
 
 The original branch question is nevertheless closed in its intended form: the successor-to-global-order FO boundary is proved, explicit crossing mechanisms are identified, arithmetic leakage is separated, and the pure-order payload-preserving extremal architecture has exact minima/barriers.
 
-## 3. Strongest publication nucleus
+## 3. Published theorem nucleus
 
-The strongest coherent paper is **not** the chronological collection of all branch notes. The publication nucleus should be the later exact architecture:
+The released article isolates the later exact architecture rather than the chronological discovery path.
 
-### Proposed paper nucleus
+**Published title:**
 
-**Working title:**
+> *Global First-Order Order from a Linear-Cost C4-Free Payload Graph: Exact Interpretation-Dimension and Hub-Density Barriers*
 
-> *First-Order Global Order from a Linear-Cost C4-Free Payload Graph: Exact Dimension and Nonlocal-Core Barriers*
+**DOI:** `10.5281/zenodo.22151456`
 
 Core theorem package:
 
-1. construction of one simple symmetric irreflexive C4-free graph on a dimension-2 pure-order payload carrier;
+1. one simple symmetric irreflexive C4-free graph on a dimension-2 pure-order payload carrier;
 2. exact atomic ladder depth 2;
 3. FO recovery of a full order of type \(\omega\);
-4. \(\Theta(N)\) primitive incidence cost;
+4. \(\Theta(N)\) primitive incidence cost for the exhibited max-shell order;
 5. nondefinability of ordinary addition and multiplication;
 6. dimension-one impossibility under pure-order provenance;
 7. exact dimension minimum \(2\);
-8. exact hub-density law \(\Theta(\sqrt N)\) at dimension 2 and \(\Theta(N^{1/d})\) in fixed dimension \(d\).
+8. exact hub-density law \(\Theta(\sqrt N)\) at dimension 2 and \(\Theta(N^{1/d})\) for the definable diagonal spine in fixed dimension \(d\).
 
-This package is substantially cleaner and stronger than publishing the earlier nested-tail/sparse-marker sequence as the main article.
-
-### Secondary companion material
-
-The following belongs either in a shorter companion note or an appendix/related-work section:
-
-- G2 successor nondefinability and finite-to-infinite transfer;
-- Sparse Memory Threshold;
-- Order-Only Quadratic Barrier;
-- Ladder–Escape invariant;
-- sparse-marker examples;
-- directed subdivision benchmark.
-
-These results motivate the final construction but should not overwhelm the main paper.
+The earlier G2 boundary, Sparse Memory Threshold, Order-Only Quadratic Barrier, Ladder–Escape invariant, sparse-marker examples and directed subdivision benchmark remain branch support material rather than the core publication.
 
 ## 4. Novelty posture
 
-The article must make conservative novelty claims.
+The article makes conservative novelty claims.
 
 Classical ingredients include:
 
@@ -118,72 +106,38 @@ The publishable claim is the **specific extremal synthesis and exact barrier pac
 }
 \]
 
-together with the exact pure-order lower bounds on interpretation dimension and hub density.
+together with the exact pure-order lower bounds on interpretation dimension and diagonal-spine hub density.
 
-A full related-work search is still required before claiming priority for this exact combination.
+No universal priority claim over all model-theory/sparse-graph constructions is made.
 
-## 5. Publication audit findings
+## 5. Publication audit resolution
 
-| ID | Severity | Location | Problem | Why it matters | Minimal repair | Claim-set effect |
-|---|---|---|---|---|---|---|
-| PA-01 | C2 | `PAYLOAD_PRESERVING_DERIVED_INSTABILITY.md`, PP-4 prose | Calls \(\Theta(N)\) “information-theoretically minimal” without a proved universal \(\Omega(N)\) theorem for the whole class | Overstates the proven lower bound | Delete “information-theoretically minimal” and state only “linear primitive incidence cost” | narrows |
-| PA-02 | C4 | corpus-wide related-work positioning | No exhaustive literature search yet for the exact combination “C4-free simple graph + FO interpreted \(\omega\)-order + dimension/hub optimality” | Priority/novelty cannot be asserted safely | Add targeted MathSciNet/zbMATH/Google Scholar/arXiv search and cite nearest results | none |
-| PA-03 | C4 | QE references | Current notes cite standard textbook QE facts but bibliography has not been normalized and primary/standard-source locations have not been checked consistently | Publication requires reliable theorem provenance | Verify exact editions/theorem numbers or give a short self-contained tail-normal-form proof and cite standard references only as background | none |
-| PA-04 | C2 | some chronological notes | Phrases such as “new mechanism” or “exact universal cost” occasionally exceed the theorem's provenance scope | Could imply universality beyond pure-order/fixed-dimensional class | Restrict every exact-minimum statement to the declared provenance class | clarifies |
-| PA-05 | C3 | corpus architecture | Chronological discovery notes duplicate and supersede earlier candidate invariants | A paper assembled directly from them would be diffuse and internally repetitive | Write a fresh theorem-first manuscript; use old notes only as source material | none |
-| PA-06 | C5 | publication package | No unified manuscript, theorem numbering, bibliography, metadata, DOI record, compiled PDF, or visual render audit yet | Release artifact does not yet exist | Build clean RU/EN or EN manuscript, compile, render, inspect | none |
-| PA-07 | C1 | `HUB_DENSITY_BARRIER.md`, general-dimension statement | The \(\Theta(N^{1/d})\) statement is proved for the definable one-coordinate diagonal spine under fixed-dimensional pure-order provenance, not for arbitrary infinite nonlocal cores | Without this hypothesis, the statement can be misread as universal | State “diagonal-spine hub law” in theorem title/hypotheses and avoid universal-core wording | clarifies |
+The pre-release blocking items were resolved conservatively:
 
-## 6. Mathematical status after audit
+- unsupported “information-theoretically minimal” wording was excluded from the release claim set;
+- exact-minimum statements were restricted to the declared pure-order/fixed-dimensional provenance class;
+- the general \(\Theta(N^{1/d})\) statement was scoped to the definable diagonal spine;
+- the dimension-one locality step was narrowed to the uniformly bounded-degree tail actually used;
+- bibliography and external anchors were normalized;
+- final EN/RU manuscripts were compiled and visually inspected before release.
 
-No C0 mathematical error has been identified in the final theorem nucleus.
+No C0 mathematical error was identified in the final theorem nucleus.
+
+## 6. Mathematical status
 
 The hub-density proof closes the last unresolved quantitative parameter of the dimension-2 pure-order architecture:
 
 \[
-\boxed{
-H(N)=\Theta(\sqrt N).
-}
+\boxed{H(N)=\Theta(\sqrt N).}
 \]
 
 The lower bound follows from finite-fibre confinement under discrete-order quantifier elimination: for any FO-definable \(\omega\)-order on \(\mathbb N^2\), the finite predecessor fibre of \((m,m)\) lies in a box \([0,m+K]^2\), hence the rank of the \(m\)-th diagonal hub is \(O(m^2)\). The max-shell construction attains the matching upper bound.
 
-The exact dimension-2 construction has also been computationally sanity-checked on finite truncations for the claimed C4-freeness; the publication proof remains the combinatorial codegree proof, not the computation.
+## 7. Publication decision
 
-## 7. Is there enough for publication?
+**Published:** yes.  
+**Zenodo DOI:** `10.5281/zenodo.22151456`.  
+**Research phase:** closed at the current theorem scope.  
+**Further work:** must be opened as a new research branch or companion project rather than delaying/reopening this release.
 
-**Yes.** There is now enough for a focused mathematical article/preprint.
-
-The publishable contribution is not “FCOA” terminology by itself and not the classical successor boundary. It is the compact extremal theorem package around derived instability in a one-relation C4-free payload graph plus exact pure-order dimension and hub-density barriers.
-
-A reasonable publication sequence is:
-
-1. **Main paper:** undirected one-relation construction + dimension-one barrier + hub-density barrier + arithmetic non-leakage.
-2. **Optional companion note:** successor/G2 boundary, sparse-memory threshold, Ladder–Escape and sparse-marker history.
-
-The main paper can stand on its own without the companion note.
-
-## 8. Release decision
-
-Unresolved blocking issues:
-
-- related-work/priority search for the exact theorem package;
-- removal of the unsupported “information-theoretically minimal” wording;
-- normalization of QE references or replacement by self-contained lemmas;
-- creation and render-audit of the final manuscript.
-
-Equations/theorems changed in this audit: none; one theorem scope must be clarified in the eventual manuscript (`HD-4`).
-
-Claim set changed: **yes, narrowed conservatively** (remove universal/minimal wording not proved outside the declared class).
-
-Bibliography verified: **partial**.
-
-Metadata verified: **no**.
-
-Source compiled: **not supplied**.
-
-PDF visually inspected: **not supplied**.
-
-**Release status:** `BLOCKED_SOURCE_SUPPORT`
-
-This status does **not** mean the mathematics is unpublishable. It means the theorem nucleus is strong enough to draft now, but publication should not be released until the source/priority audit and final manuscript/render checks are completed.
+**Release status:** `PUBLICATION_READY`
