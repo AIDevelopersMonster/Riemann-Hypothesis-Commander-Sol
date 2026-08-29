@@ -118,14 +118,18 @@ Effective 2026-08-29, **all five delegated directions and the central FCOA line*
 
 as the canonical citation for the meaning of the FCOA framework.
 
+Canonical Foundation DOI:
+
+`https://doi.org/10.5281/zenodo.22164246`
+
 The authoritative rule is stored at:
 
 `../FCOA-FOUNDATION-1.0/FOUNDATION_CITATION_DIRECTIVE.md`.
 
-The Foundation DOI is currently pending Zenodo assignment. Once assigned, every new or still-unpublished FCOA manuscript must satisfy both release gates:
+Every new or still-unpublished FCOA manuscript must satisfy both release gates:
 
-1. **Abstract/Аннотация:** explicitly identify the work as using the FCOA framework fixed by Definition 1.0 and print the Foundation DOI;
-2. **Bibliography/Литература:** include the full Foundation bibliographic record with that DOI.
+1. **Abstract/Аннотация:** explicitly identify the work as using the FCOA framework fixed by Definition 1.0 and print `https://doi.org/10.5281/zenodo.22164246`;
+2. **Bibliography/Литература:** include the full Foundation bibliographic record with DOI `10.5281/zenodo.22164246`.
 
 Every manuscript must also contain a short body paragraph identifying the exact FCOA object used: carrier, active/output/auxiliary sorts, primitive signature, changes relative to M0 or another cited baseline, erasure convention, and recovery/decomposition notion.
 
