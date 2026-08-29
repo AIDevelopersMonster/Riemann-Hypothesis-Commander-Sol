@@ -1,22 +1,14 @@
-# Zenodo finalization checklist
+# Zenodo finalization checklist — completed
 
-This package intentionally contains **no invented DOI**.
+**Publication:** *Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations*  
+**Version:** 1.0.0  
+**Publication date:** 2026-08-29  
+**Zenodo DOI:** **10.5281/zenodo.22165651**  
+**Persistent URL:** https://doi.org/10.5281/zenodo.22165651
 
-## 1. Create draft and reserve DOI
+## Final metadata
 
-1. Create a new Zenodo upload.
-2. Resource type: **Publication**.
-3. Publication subtype: **Preprint** (unless a different final publication type is intentionally chosen).
-4. In the DOI field choose that the upload does not already have a DOI, then use **Get a DOI now!**.
-5. Do not delete the draft after reservation; a reserved DOI belongs to that draft until publication.
-
-## 2. Metadata
-
-Main title:
-
-> Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations
-
-Translated Russian title:
+Russian translated title:
 
 > Размышлизмы о гибридной памяти с Commander Sol: минимальная совместная жёсткость частичных операций
 
@@ -26,66 +18,46 @@ Creator:
 - Given name: Alex
 - ORCID: 0009-0008-6009-3196
 
-Publication date: the actual first-publication date (currently planned as 2026-08-29).
-
-License: **CC BY 4.0**.
-
+License: **CC BY 4.0**.  
 Access: **Open**.
 
-Suggested keywords are in `ZENODO_METADATA.json`.
+## Reproducibility gate
 
-If the project community identifier is confirmed in the Zenodo UI, submit the record to the Commander Sol mathematics community as part of the deposit workflow.
-
-## 3. Insert reserved DOI before upload
-
-Replace every explicit `pending reservation` / `ожидает резервирования` marker in the publication sources and metadata, then rebuild both PDFs with XeLaTeX.
-
-## 4. Reproducibility gate
-
-Run:
-
-```bash
-python3 supplement/verify_minimal_classifications.py
-```
-
-Required tail line:
+The publication verifier was required to finish with:
 
 ```text
 ALL CHECKS PASSED
 ```
 
-The expected counts are recorded in `supplement/verification_output.txt`.
+Expected finite-classification counts:
 
-## 5. Render audit
+```text
+ONE_SORTED n=2: labeled=0, isomorphism_classes=0
+ONE_SORTED n=3: labeled=0, isomorphism_classes=0
+ONE_SORTED n=4: labeled=24, isomorphism_classes=1
+TYPED_JFS3: labeled=48, isomorphism_classes=8
+```
 
-Render the rebuilt PDFs to images and inspect at least:
+These checks passed in the audited publication build.
 
-- title page;
-- one theorem/proof page;
-- classification page;
-- final references page.
+## Render gate
 
-Reject the build if there are clipped equations, missing Cyrillic glyphs, undefined references, overfull boxes that leave the text area, or metadata mismatches.
+The bilingual release candidate was built with XeLaTeX and visually inspected after raster rendering. The audit found no publication-blocking missing glyphs, undefined references, clipping, or overfull text-area defects.
 
-## 6. Files recommended for the Zenodo record
+## Repository synchronization
 
-Primary files:
+Completed:
 
-- final English PDF;
-- final Russian PDF.
+- [x] DOI recorded in publication `README.md`;
+- [x] DOI recorded in root repository `README.md`;
+- [x] `CITATION.cff` updated to version 1.0.0 and DOI;
+- [x] `ZENODO_METADATA.json` updated with DOI;
+- [x] `STATE.md` marked PUBLISHED;
+- [x] `PUBLICATION_AUDIT.md` closed;
+- [x] release manifest identifies the Zenodo record as canonical archive.
 
-Reproducibility/source files:
+## Archive policy
 
-- source-package ZIP containing the two TeX files, bibliography companion, verification script, verification output, README, audit, CFF and metadata.
+The Zenodo record identified by DOI **10.5281/zenodo.22165651** is the authoritative archival publication. Pre-publication RC hashes retained in the release manifest document provenance only.
 
-The record is still a **Publication**, because the paper is the primary contribution; the script is supporting material.
-
-## 7. Final repository update
-
-After Zenodo publication:
-
-1. record the final DOI and persistent URL in `CITATION.cff` and `README.md`;
-2. change version from RC to `1.0.0`;
-3. replace release-candidate checksums in the manifest with final ones;
-4. commit the DOI update to the paper branch;
-5. if a GitHub release is used, tag it consistently with the Zenodo version.
+Any correction to Article A must be explicit as a new version or erratum. New arithmetic-leakage/resource-theory results are outside Article A and belong to Article B / subsequent work.
