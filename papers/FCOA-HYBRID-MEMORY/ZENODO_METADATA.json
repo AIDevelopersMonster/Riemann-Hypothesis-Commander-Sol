@@ -3,6 +3,7 @@
   "publication_type": "preprint",
   "publication_date": "2026-08-29",
   "title": "Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations",
+  "doi": "10.5281/zenodo.22165651",
   "creators": [
     {
       "name": "Malachevsky, Alex",
@@ -29,6 +30,11 @@
       "identifier": "10.5281/zenodo.22129787",
       "relation": "cites",
       "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
     }
   ],
   "references": [
@@ -37,5 +43,5 @@
     "C. Laflamme, L. Nguyen Van The and N. W. Sauer (2010), Distinguishing Number of Countable Homogeneous Relational Structures, DOI 10.37236/292.",
     "A. Malachevsky (2026), Reflections on Admissibility Geometry with Commander Sol, DOI 10.5281/zenodo.22129787."
   ],
-  "notes": "Bilingual EN/RU publication package. Add the Russian title as a translated title in the Zenodo UI. DOI must be reserved and inserted into both PDFs before final publication."
+  "notes": "Bilingual EN/RU publication package. Published Zenodo DOI: 10.5281/zenodo.22165651. Russian translated title: Размышлизмы о гибридной памяти с Commander Sol: минимальная совместная жёсткость частичных операций."
 }
