@@ -2,8 +2,9 @@
 
 **Release date:** 2026-08-29  
 **Authors:** Alex Malachevsky · Commander Sol  
-**Status:** mathematical content frozen; bilingual publication package built and QA-passed  
-**Zenodo DOI:** pending assignment
+**Status:** mathematical content frozen; bilingual publication package built and QA-passed; published on Zenodo  
+**Zenodo DOI:** **10.5281/zenodo.22160014**  
+**DOI URL:** https://doi.org/10.5281/zenodo.22160014
 
 ## Publication titles
 
@@ -47,6 +48,10 @@ Identity/asymmetric digraphs, minimum-size identity digraphs, identity oriented 
 - `ZENODO_METADATA_v1.0.txt`
 - `SHA256SUMS.txt`
 
-## Release gate
+## Release status
 
-The only remaining external step is Zenodo deposit / DOI assignment. After the DOI is issued, insert it into both language versions, the HTML metadata, and this release note without changing theorem statements or proofs.
+Zenodo deposit completed. DOI assigned and recorded:
+
+**10.5281/zenodo.22160014**
+
+The v1.0 mathematical content remains frozen; later revisions must preserve theorem provenance and distinguish new mathematical changes from metadata-only updates.
