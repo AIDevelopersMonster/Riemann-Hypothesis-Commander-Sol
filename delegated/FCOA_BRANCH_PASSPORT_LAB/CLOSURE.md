@@ -95,7 +95,7 @@ They are not unfinished scientific obligations of this branch.
 - [x] Zenodo DOI assigned: `10.5281/zenodo.22160014`.
 - [x] Root README / README_RU updated on `main`.
 - [x] Remaining infrastructure classified as deferred/non-blocking.
-- [ ] Final branch synchronization with current `main` — performed by the closure merge immediately after this record.
+- [x] Final branch synchronization with current `main` completed by merge commit `2611e148e6ae390503694d0947118319ed24bb02`.
 
 ## 7. Reopening policy
 
