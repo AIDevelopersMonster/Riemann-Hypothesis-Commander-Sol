@@ -13,70 +13,9 @@ The published and audited chain remains
 \boxed{M0\longrightarrow G1\longrightarrow G2.}
 \]
 
-Nothing in G3/G4 silently revises the Zenodo publication.
+Nothing in G3/G4/Arithmetic-Leakage work silently revises the Zenodo publication.
 
-### M0 multiplication
-
-For \(G_N=\{P_2,\ldots,P_N\}\),
-
-\[
-\operatorname{Aut}(\mathfrak M_N^\times)\cong S_{N-1}.
-\]
-
-M0 multiplication Association Spectrum:
-
-\[
-(4(N-1),0,N^2+2N-2,N^2+N-2,N^3+N^2-4N+9).
-\]
-
-### G1
-
-For external interaction skeleton \(A\subseteq G_N^2\),
-
-\[
-\operatorname{Aut}(\mathfrak M_N^\times,A)
-\cong
-\operatorname{Aut}(G_N,A).
-\]
-
-For undirected then directed path:
-
-\[
-S_{N-1}\to C_2\to1.
-\]
-
-This is external rigidity; erasing \(A\) restores M0 symmetry.
-
-### G2
-
-Directed adjacency is compiled into the operation domain using one terminal value \(\Omega\):
-
-\[
-P_i\otimes_1P_{i+1}=\Omega,
-\qquad 2\le i<N.
-\]
-
-Then
-
-\[
-\operatorname{Aut}(\otimes_1)=1,
-\]
-
-and directed adjacency is uniformly recoverable from off-diagonal generic definedness.
-
-G2 spectrum:
-
-\[
-(5N-6,0,N^2+3N-4,N^2+2N-4,N^3+N^2-7N+15).
-\]
-
-Commutation size remains
-
-\[
-3(N-1).
-\]
-
-## 2. G3 — hostile-audited with repair
+## 2. G3 — fixed post-publication result
 
 Files:
 
@@ -84,7 +23,7 @@ Files:
 - [`G3_HOSTILE_AUDIT_RECONCILIATION.md`](G3_HOSTILE_AUDIT_RECONCILIATION.md)
 - verifier: `../../experiments/fcoa-domain-compilation/verify_g3.py`
 
-The hostile audit confirms:
+Confirmed:
 
 \[
 \operatorname{Aut}(\otimes_S)\cong C_2,
@@ -94,31 +33,7 @@ The hostile audit confirms:
 \operatorname{Aut}(\otimes_A)=1.
 \]
 
-G3-S and G3-C have the same spectrum
-
-\[
-(6N-8,0,N^2+4N-6,N^2+3N-6,N^3+N^2-10N+21),
-\]
-
-but different commutation sizes:
-
-\[
-|\operatorname{Comm}_S|=5N-7,
-\qquad
-|\operatorname{Comm}_C|=3(N-1).
-\]
-
-G3-A has spectrum
-
-\[
-(6N-8,0,N^2+4N-6,N^2+4N-6,N^3+N^2-11N+21)
-\]
-
-and commutation size \(3(N-1)\).
-
-### Audit repair
-
-The intrinsic base-sort definedness group of G3-A is not merely \(C_2\). After the anchor makes \((P_1,P_0)\) defined, definedness alone also permits the boundary swap \(P_0\leftrightarrow P_1\). Therefore
+The repaired intrinsic definedness group of G3-A is
 
 \[
 \boxed{
@@ -127,13 +42,9 @@ The intrinsic base-sort definedness group of G3-A is not merely \(C_2\). After t
 }
 \]
 
-Hence value restoration gives the stronger rigidity jump
+G3 establishes value-memory beyond domain-memory.
 
-\[
-\boxed{C_2\times C_2\longrightarrow1.}
-\]
-
-## 3. Fiber-Transport Theorem — consolidated
+## 3. Fiber-Transport Theorem — fixed relative typed result
 
 See [`FIBER_TRANSPORT_THEOREM.md`](FIBER_TRANSPORT_THEOREM.md).
 
@@ -143,7 +54,7 @@ For a base/domain structure \((B,D)\) and a surjective anonymous terminal-output
 c:D\to O,
 \]
 
-full-operation carrier automorphisms are exactly the automorphisms of \((B,D)\) preserving the equality partition of domain cells induced by \(c\):
+carrier automorphisms of the valued expansion are exactly the automorphisms of \((B,D)\) preserving the equality partition of domain cells induced by \(c\):
 
 \[
 \boxed{
@@ -152,8 +63,6 @@ full-operation carrier automorphisms are exactly the automorphisms of \((B,D)\) 
 \operatorname{Stab}_{\operatorname{Aut}(B,D)}(\equiv_c).
 }
 \]
-
-This makes the domain/value split exact: domain geometry first restricts automorphisms, then value-fiber geometry restricts them further.
 
 Working finite invariant:
 
@@ -166,151 +75,320 @@ Working finite invariant:
 \right].
 \]
 
-For G3:
+`Value-Rigidity Index` remains working terminology only.
 
-\[
-\operatorname{VRI}(S)=1,
-\qquad
-\operatorname{VRI}(C)=1,
-\qquad
-\operatorname{VRI}(A)=4.
-\]
-
-`Value-Rigidity Index` is working terminology only.
-
-## 4. G4 — bounded-output rigidity amplification candidate
+## 4. G4 — hostile-audited and fixed
 
 Files:
 
 - [`G4_BOUNDED_OUTPUT_AMPLIFICATION.md`](G4_BOUNDED_OUTPUT_AMPLIFICATION.md)
+- [`G4_HOSTILE_AUDIT_RECONCILIATION.md`](G4_HOSTILE_AUDIT_RECONCILIATION.md)
 - verifier: `../../experiments/fcoa-domain-compilation/verify_g4.py`
 
-### G4-C
-
-Define every off-diagonal generic cell, but use only two anonymous terminal values according to external carrier orientation:
+Confirmed:
 
 \[
-P_i\otimes_{4C}P_j=
-\begin{cases}
-\Omega_+,&i<j,\\
-\Omega_-,&i>j,
-\end{cases}
-\qquad 2\le i,j\le N,\ i\ne j.
+\operatorname{Aut}(D_{4C}\upharpoonright X_N)\cong S_{N-1},
+\qquad
+\operatorname{Aut}(\otimes_{4C})\cong C_2,
 \]
-
-The generic definedness domain is complete, so
 
 \[
-\operatorname{Aut}(D_{4C}\upharpoonright X_N)\cong S_{N-1}.
+\operatorname{VRI}(G4\text{-}C)=\frac{(N-1)!}{2},
 \]
 
-The full operation retains only identity and reversal-with-output-swap:
+and after the boundary anchor
 
 \[
-\boxed{
-\operatorname{Aut}(\otimes_{4C})\cong C_2.
-}
+P_1\otimes_{4A}P_0=\Omega_+,
 \]
-
-Therefore
-
-\[
-\boxed{
-\operatorname{VRI}(G4\text{-}C)=\frac{(N-1)!}{2}.
-}
-\]
-
-A fixed two-element anonymous output alphabet thus gives an unbounded, factorially growing value-rigidity index.
-
-G4-C spectrum:
-
-\[
-\boxed{
-(N^2+N-2,\ 0,\ 2N^2-N,\ 2N^2-2N,\ N^3-2N^2+5N+3).
-}
-\]
-
-Commutation size remains
-
-\[
-3(N-1).
-\]
-
-### G4-A
-
-Add the single boundary anchor
-
-\[
-P_1\otimes_{4A}P_0=\Omega_+.
-\]
-
-Candidate results:
 
 \[
 \operatorname{Aut}(\otimes_{4A})=1,
-\]
-
-\[
+\qquad
 \operatorname{Aut}(D_{4A}\upharpoonright X_N)
-\cong C_2\times S_{N-1},
+\cong S_2\times S_{N-1},
 \]
 
-and hence
-
 \[
-\boxed{
 \operatorname{VRI}(G4\text{-}A)=2(N-1)!.
-}
 \]
 
-G4-A spectrum:
+The exact generic total order is uniformly parameter-free definable in G4-A.
+
+## 5. Arithmetic Leakage left wall — hostile-audited and fixed
+
+Files:
+
+- [`ARITHMETIC_LEAKAGE_BOUNDARY.md`](ARITHMETIC_LEAKAGE_BOUNDARY.md)
+- [`G4A_GENERIC_FO_COLLAPSE.md`](G4A_GENERIC_FO_COLLAPSE.md)
+- [`ARITHMETIC_LEAKAGE_HOSTILE_AUDIT_RECONCILIATION.md`](ARITHMETIC_LEAKAGE_HOSTILE_AUDIT_RECONCILIATION.md)
+
+Relationalize the G4-A partial operation by
+
+\[
+T(x,y,z)\iff x\otimes_{4A}y=z.
+\]
+
+The hostile audit confirms the exact uniform-family collapse:
 
 \[
 \boxed{
-(N^2+N-2,\ 0,\ 2N^2-N,\ 2N^2-N,\ N^3-2N^2+4N+3).
+FO(\text{G4-A on generic tuples})
+=
+FO(\text{finite linear order}).
 }
 \]
 
-Commutation size is still \(3(N-1)\).
+Consequently:
 
-## 5. Current statuses
+\[
+\boxed{
+\operatorname{Add}_N,
+\operatorname{Mul}_N,
+\operatorname{EqGap}_N
+\text{ are not uniformly FO-definable in G4-A.}
+}
+\]
+
+Thus G4-A is a fixed **order wall** for the uniform FO programme.
+
+## 6. Additive gateway — fixed relation, repaired minimality claim
+
+For forward intervals define externally
+
+\[
+\operatorname{EqGap}(a,b;c,d)
+\iff
+\operatorname{rk}(b)-\operatorname{rk}(a)
+=
+\operatorname{rk}(d)-\operatorname{rk}(c).
+\]
+
+Over the ordered generic sector:
+
+\[
+\boxed{
+\operatorname{Add}(x,y,z)
+\iff
+\operatorname{EqGap}(0_G,y;x,z),
+}
+\]
+
+and conversely
+
+\[
+\boxed{
+\operatorname{EqGap}(a,b;c,d)
+\iff
+\exists s\,
+\bigl(\operatorname{Add}(a,s,b)\land\operatorname{Add}(c,s,d)\bigr).
+}
+\]
+
+Hence EqGap is uniformly FO-interdefinable with truncated rank addition.
+
+Correct statement:
+
+\[
+\boxed{
+\text{EqGap is a canonical gateway to full additive leakage, not the globally weakest possible non-order enrichment.}
+}
+\]
+
+## 7. Threshold-compression calibration
+
+See [`THRESHOLD_COMPRESSION_CALIBRATION.md`](THRESHOLD_COMPRESSION_CALIBRATION.md).
+
+External threshold benchmarks such as
+
+\[
+R_d(x,y)\iff x^d\le y
+\]
+
+have support
+
+\[
+|R_d\cap[N]^2|
+=
+\frac{d}{d+1}N^{1+1/d}+O(N),
+\]
+
+so subquadratic support can carry a nonlinear unary scale.
+
+This establishes a programme-level warning:
+
+\[
+\boxed{
+\text{support-growth complexity and arithmetic-leakage complexity are independent optimization axes.}
+}
+\]
+
+The external functions are calibration benchmarks only, not accepted FCOA mechanisms.
+
+## 8. New central theorem candidate — One-Cell Oracle / FO-Compilation Barrier
+
+New file:
+
+- [`ONE_CELL_ORACLE_AND_FO_COMPILATION_BARRIER.md`](ONE_CELL_ORACLE_AND_FO_COMPILATION_BARRIER.md)
+
+### One-cell oracle degeneracy
+
+For an arbitrary set of sizes
+
+\[
+S\subseteq\{2,3,4,\ldots\},
+\]
+
+modify exactly one previously undefined G4-A cell by
+
+\[
+P_0\otimes_S P_0=P_0
+\iff
+|G_N|\in S.
+\]
+
+Then the fixed sentence
+
+\[
+\exists b\,[B_0(b)\land T(b,b,b)]
+\]
+
+recognizes exactly the chosen size spectrum \(S\).
+
+Therefore unrestricted external import can produce arbitrarily strong family-level leakage at only
+
+\[
+O(1)
+\]
+
+new-cell cost.
+
+Thus raw cell-count minimization is degenerate unless external-import complexity is constrained.
+
+### Strict intermediate parity benchmark
+
+Taking
+
+\[
+S=\{m:m\equiv0\pmod2\}
+\]
+
+gives a family strictly stronger than FO[<] but still too weak to define truncated addition. The key reason is that with only one global parity bit, every definable size-spectrum is eventually constant on each parity class, while addition would define for example
+
+\[
+m\equiv1\pmod3.
+\]
+
+This gives an explicit benchmark strictly between the order wall and additive leakage, though it is deliberately an external-oracle construction.
+
+### FO-Compilation Barrier
+
+If finitely many new relation/operation symbols are uniformly parameter-free FO-definable in G4-A, then the expansion remains at exactly the same generic FO strength:
+
+\[
+\boxed{
+FO(\text{definitional expansion of G4-A})=FO[<].
+}
+\]
+
+Hence fixed-depth compositions, term operations, translations, commutation predicates and association predicates cannot escape the order wall when they are merely FO-definitional consequences of G4-A.
+
+This yields the central dichotomy:
+
+\[
+\boxed{
+\text{unrestricted external oracle: too powerful and artificially cheap}
+}
+\]
+
+versus
+
+\[
+\boxed{
+\text{uniform FO compilation from G4-A: provably unable to leave AL0.}
+}
+\]
+
+A genuine next-stage FCOA mechanism must lie between these extremes.
+
+## 9. Refined leakage map
+
+### AL0 — Order Wall
+
+Generic uniform FO power exactly FO[<]. G4-A is exactly here.
+
+### AL-INT — intermediate non-order zone
+
+Umbrella for modular/counting, sparse unary-scale, threshold-like, or other non-order enrichments that do not yet recover addition. This is not asserted to be one canonical level.
+
+### AL1 — Additive Gateway
+
+EqGap / truncated rank addition.
+
+### AL2 — Full-Arithmetic Gateway
+
+Uniform interpretation of full first-order arithmetic, or another independently audited equivalent criterion.
+
+## 10. Current status
 
 \[
 \mathbf F:\ M0,G1,G2\text{ published/audited checkpoint}
 \]
 
 \[
-\mathbf F:\ G3\text{ operation groups, spectra and commutation formulas after hostile audit repair}
+\mathbf F:\ G3\text{ hostile-audited after repair}
 \]
 
 \[
-\mathbf F:\ \operatorname{Aut}(D_A\upharpoonright X_N)=C_2\times C_2
+\mathbf F:\ \text{Fiber-Transport theorem in its stated relative typed setup}
 \]
 
 \[
-\mathbf F:\ \text{Fiber-Transport theorem in the stated relative typed setup}
+\mathbf F:\ G4\text{-}C,G4\text{-}A\text{ hostile-audited}
 \]
 
 \[
-\mathbf W:\ \text{Value-Rigidity Index terminology}
+\mathbf F:\ \text{uniform anchored generic-order recovery in G4-A}
 \]
 
 \[
-\mathbf W:\ G4\text{ bounded-output amplification theorem candidate}
+\mathbf F:\ \text{G4-A Generic FO Collapse / Arithmetic Leakage left wall}
 \]
 
-## 6. Immediate next step
+\[
+\mathbf F:\ \text{EqGap }\leftrightarrow\text{ truncated addition as the additive gateway}
+\]
 
-Do not open G5 yet.
+\[
+\mathbf W:\ \text{One-Cell Oracle Degeneracy / FO-Compilation Barrier; hostile audit pending}
+\]
 
-The next action is a hostile audit of G4, with special attention to:
+\[
+\mathbf W:\ \text{Density-Leakage Orthogonality and multi-axis cost programme}
+\]
 
-1. whether the complete generic definedness domain really has full \(S_{N-1}\) symmetry relative to M0;
-2. whether preserving the two anonymous orientation fibers leaves exactly identity and reversal;
-3. the \(N=3\) edge case, where \(S_2=C_2\) and \(\operatorname{VRI}(G4\text{-}C)=1\);
-4. the exact G4-C and G4-A Association Spectra;
-5. whether the single boundary anchor makes the full operation rigid while the definedness group becomes \(C_2\times S_{N-1}\);
-6. whether the factorial VRI formulas are stated with the correct active-sort scope;
-7. whether any hidden naming/sorting of \(\Omega_+,\Omega_-\) would trivialize the anonymous-output claim.
+\[
+\mathbf W:\ \text{Value-Rigidity Index / Bounded-Output Rigidity Amplification terminology}
+\]
 
-Only after reconciliation with that audit should G4 be promoted from working theorem candidate to fixed result.
+## 11. Immediate main-line question
+
+Do not optimize raw cell count and do not open an arbitrary G5 table.
+
+The current central problem is now:
+
+\[
+\boxed{
+\text{What is the weakest genuinely generated, non-oracular FCOA mechanism that escapes the FO-compilation barrier?}
+}
+\]
+
+Candidate mechanism classes to test next:
+
+1. unbounded iteration / closure whose depth grows with the carrier;
+2. transitive-closure or least-fixed-point style memory;
+3. a genuinely new primitive operation whose cells are not FO-definable from G4-A order;
+4. hybrid interaction where neither operation is merely a definitional copy of the other.
+
+The One-Cell Oracle / FO-Compilation Barrier must be hostile-audited before any such mechanism is promoted.

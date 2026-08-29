@@ -1,8 +1,9 @@
 # G4 Research Checkpoint — Bounded Output Alphabet, Unbounded Value Rigidity
 
 **Project:** FCOA Admissibility Geometry  
-**Status:** post-G3 theorem candidate; computationally checked, hostile audit pending  
+**Status:** hostile-audited and fixed post-publication result  
 **Date opened:** 2026-08-27  
+**Audit reconciliation:** [`G4_HOSTILE_AUDIT_RECONCILIATION.md`](G4_HOSTILE_AUDIT_RECONCILIATION.md)  
 **Publication boundary:** not part of Zenodo DOI 10.5281/zenodo.22129787
 
 ## 1. Research question
@@ -58,9 +59,7 @@ All \(E\)-outputs and all new \(\Omega\)-outputs below are terminal.
 Introduce two distinct anonymous terminal outputs
 
 \[
-\Omega_+,
-\qquad
-\Omega_-.
+\Omega_+,\qquad\Omega_-.
 \]
 
 For every two distinct generic points define
@@ -76,20 +75,20 @@ P_i\otimes_{4C}P_j=
 }
 \]
 
-The indices here describe the **external carrier order** only. No internal arithmetic on indices is added.
+The indices describe the **external carrier order** only. No internal arithmetic on indices is added.
 
-The off-diagonal generic domain is now complete:
+The off-diagonal generic domain is complete:
 
 \[
 D_{4C}\cap(G_N^2\setminus\Delta)
 =G_N^2\setminus\Delta.
 \]
 
-Hence definedness alone has no generic positional information at all.
+Hence definedness alone carries no generic positional information.
 
-## 4. Definedness symmetry
+## 4. Definedness symmetry of G4-C
 
-Relative to the M0 boundary roles, the generic definedness reduct permits every permutation of \(G_N\):
+On the active/base sort,
 
 \[
 \boxed{
@@ -97,11 +96,20 @@ Relative to the M0 boundary roles, the generic definedness reduct permits every 
 }
 \]
 
-Thus G4-C deliberately restores **maximal generic domain symmetry**.
+The generic definedness relation is complete reflexive, while the M0 boundary asymmetry fixes \(P_0,P_1\).
 
-This is the opposite of G2: in G2, orientation lived in a sparse directed domain; in G4-C, the generic domain is completely symmetric and all orientation information has been moved into the two value fibers.
+If all terminal outputs are retained as isolated points after value erasure, then there are \(2N\) such terminal points and
 
-## 5. Full-operation automorphisms
+\[
+\boxed{
+\operatorname{Aut}_{\rm full}(D_{4C})
+\cong S_{N-1}\times\operatorname{Sym}(2N).
+}
+\]
+
+The VRI below always refers to the active/base-sort group.
+
+## 5. Full-operation automorphisms of G4-C
 
 The two generic value fibers are
 
@@ -113,17 +121,15 @@ D_+=\{(P_i,P_j):2\le i<j\le N\},
 D_-=\{(P_i,P_j):2\le j<i\le N\}.
 \]
 
-By the Fiber-Transport Theorem, a generic permutation survives in the full operation exactly when it preserves the partition
+The hostile audit independently confirms that the setwise stabilizer of the unordered partition
 
 \[
 \{D_+,D_-\}
 \]
 
-setwise, allowing the two anonymous outputs to be swapped.
+inside \(S_{N-1}\) is exactly \(C_2\): identity preserves the fibers individually, and total reversal exchanges them. No non-monotone generic permutation survives.
 
-### Proposition G4-C.1
-
-For every \(N\ge3\),
+Therefore
 
 \[
 \boxed{
@@ -131,37 +137,17 @@ For every \(N\ge3\),
 }
 \]
 
-### Proof
-
-If a generic permutation \(g\) fixes the two fibers individually, then
-
-\[
-i<j\iff g(i)<g(j),
-\]
-
-so \(g\) is an order automorphism of a finite linear order and therefore the identity.
-
-If \(g\) exchanges the two fibers, then
-
-\[
-i<j\iff g(i)>g(j),
-\]
-
-so \(g\) is an order anti-automorphism. A finite linear order has exactly one such map: reversal.
-
-Reversal extends to an automorphism by exchanging
+The nontrivial automorphism is total generic reversal together with
 
 \[
 \Omega_+\leftrightarrow\Omega_-.
 \]
 
-Therefore only identity and reversal survive. \(\square\)
+For \(N=3\), this group equals \(S_2\), so no strict symmetry reduction occurs in the smallest generic sector. For \(N\ge4\), the reduction is strict.
 
-For \(N=3\), this group is \(C_2=S_2\), so no symmetry reduction occurs in the smallest generic sector. For \(N\ge4\), the reduction is strict.
+## 6. Bounded-output rigidity amplification
 
-## 6. Unbounded Value-Rigidity Index with two outputs
-
-For finite active sort define
+For finite active sort define the working invariant
 
 \[
 \operatorname{VRI}(\star)
@@ -182,52 +168,43 @@ For G4-C,
 }
 \]
 
-Hence
+Hence, with a fixed anonymous output alphabet of size two,
 
 \[
 \boxed{
+|O|=2,
+\qquad
 \operatorname{VRI}(G4\text{-}C)\to\infty
-\quad\text{as }N\to\infty,
 }
 \]
 
-while the output alphabet remains fixed at exactly two anonymous values.
+factorially as \(N\to\infty\).
 
-This gives the desired bounded-alphabet amplification:
+## 7. Commutation locus of G4-C
+
+For every distinct generic pair, the two directions receive different values \(\Omega_+,\Omega_-\), so no new generic commuting pair is created.
+
+Thus
 
 \[
 \boxed{
-|O|=2
-\quad\text{but}\quad
-\operatorname{VRI}\text{ is unbounded.}
+\operatorname{Comm}_{4C}
+=
+\{(P_i,P_i):2\le i\le N\}
+\cup
+\{(P_1,P_i),(P_i,P_1):2\le i\le N\},
 }
 \]
 
-No differentiated edge labels are needed; only the partition into the two orientation fibers is used.
-
-## 7. Commutation locus
-
-For every distinct generic pair,
+and
 
 \[
-P_i\otimes_{4C}P_j\ne P_j\otimes_{4C}P_i,
+\boxed{|\operatorname{Comm}_{4C}|=3(N-1).}
 \]
-
-because the two directions receive \(\Omega_+\) and \(\Omega_-\).
-
-Therefore no new generic commuting pairs are created, and the M0 commutation locus remains exact:
-
-\[
-\boxed{
-|\operatorname{Comm}_{\otimes_{4C}}|=3(N-1).
-}
-\]
-
-Thus G4-C can produce factorial symmetry reduction relative to definedness while leaving the commutation count at its M0 value.
 
 ## 8. Exact Association Spectrum of G4-C
 
-On base triples \((X_N)^3\), direct enumeration gives
+On base triples \((X_N)^3\), the hostile audit confirms
 
 \[
 \boxed{
@@ -235,43 +212,42 @@ On base triples \((X_N)^3\), direct enumeration gives
 EQ &= N^2+N-2,\\
 NEQ &= 0,\\
 LEFT &= 2N^2-N,\\
-RIGHT &= 2N^2-2N,\\
+RIGHT &= 2N(N-1),\\
 NONE &= N^3-2N^2+5N+3.
-\end{aligned}
-}
+\end{aligned}}
 \]
 
-The total is
+Equivalently, \(RIGHT=2N^2-2N\).
+
+Small checks:
 
 \[
-(N+1)^3.
+N=3:\quad(10,0,15,12,27),
 \]
-
-For \(N=3\), this reduces to
 
 \[
-(10,0,15,12,27),
+N=4:\quad(18,0,28,24,55),
 \]
-
-coinciding numerically with G3-C because a two-point generic sector has only one unordered generic pair.
-
-For \(N=4\):
 
 \[
-(18,0,28,24,55).
+N=6:\quad(40,0,66,60,177).
 \]
 
-For \(N=6\):
+No `NEQ` triples occur.
 
-\[
-(40,0,66,60,177).
-\]
+## 9. Terminal-output separation
 
-The absence of `NEQ` persists even though the value fibers encode the full orientation of every generic pair.
+For \(N\ge4\), each \(\Omega\)-fiber has \(\binom{N-1}{2}\) preimage cells, while each \(E_i^\ast,E_i^\times\) has one. For \(N=3\), cardinality alone no longer separates them, but their preimage configurations do:
 
-## 9. G4-A — one boundary anchor
+- \(\Omega_\pm\): off-diagonal generic-generic pairs;
+- \(E_i^\ast\): pairs \((P_i,P_0)\);
+- \(E_i^\times\): diagonal pairs \((P_i,P_i)\).
 
-As in G3-A, add one fixed boundary cell
+Hence \(\Omega_\pm\) cannot mix with the indexed \(E\)-outputs, including at \(N=3\).
+
+## 10. G4-A — one boundary anchor
+
+Extend G4-C by exactly
 
 \[
 \boxed{
@@ -279,17 +255,9 @@ P_1\otimes_{4A}P_0=\Omega_+.
 }
 \]
 
-No other cell is added.
+Since \(P_0,P_1\) are fixed in the full M0 operation, the anchor internally fixes \(\Omega_+\). Generic reversal would require \(\Omega_+\leftrightarrow\Omega_-\), so it can no longer extend.
 
-Because \(P_0,P_1\) are fixed in the full M0 operation, this cell fixes \(\Omega_+\). The reversal of the generic order would require
-
-\[
-\Omega_+\leftrightarrow\Omega_-,
-\]
-
-and is therefore impossible.
-
-Hence:
+Therefore
 
 \[
 \boxed{
@@ -297,20 +265,29 @@ Hence:
 }
 \]
 
-## 10. Definedness symmetry of G4-A
+for every \(N\ge3\).
 
-After values are erased, the anchor makes the two M0 boundary points \(P_0,P_1\) symmetric exactly as in G3-A, while the complete off-diagonal generic domain still allows every permutation of \(G_N\).
+## 11. Definedness symmetry of G4-A
 
-Therefore
+After values are erased, the anchor turns \((P_1,P_0)\) into a second boundary direction. Then \(P_0,P_1\) become symmetric in definedness, while the generic sector remains complete reflexive.
+
+Thus on the active/base sort,
 
 \[
 \boxed{
 \operatorname{Aut}(D_{4A}\upharpoonright X_N)
-\cong C_2\times S_{N-1}.
+\cong S_2\times S_{N-1}.
 }
 \]
 
-The two factors commute: one swaps \(P_0,P_1\), the other permutes \(G_N\).
+If terminal outputs are retained as isolated one-sorted points,
+
+\[
+\boxed{
+\operatorname{Aut}_{\rm full}(D_{4A})
+\cong S_2\times S_{N-1}\times\operatorname{Sym}(2N).
+}
+\]
 
 Consequently
 
@@ -320,11 +297,17 @@ Consequently
 }
 \]
 
-Again the output alphabet has only two anonymous values.
+## 12. Exact Association Spectrum of G4-A
 
-## 11. Exact Association Spectrum of G4-A
+The anchor adds exactly \(N\) new RIGHT-only triples
 
-The single anchor adds exactly \(N\) new RIGHT-only triples to G4-C and changes no other association class. Therefore
+\[
+(P_1,P_0,z),\qquad z\in\{P_1,\ldots,P_N\},
+\]
+
+and changes no other class.
+
+Hence
 
 \[
 \boxed{
@@ -334,42 +317,43 @@ NEQ &= 0,\\
 LEFT &= 2N^2-N,\\
 RIGHT &= 2N^2-N,\\
 NONE &= N^3-2N^2+4N+3.
-\end{aligned}
-}
+\end{aligned}}
 \]
 
-The commutation locus remains
+The commutation locus remains exact:
 
 \[
-\boxed{
-|\operatorname{Comm}_{\otimes_{4A}}|=3(N-1).
-}
+\boxed{|\operatorname{Comm}_{4A}|=3(N-1).}
 \]
 
-## 12. Main theorem candidate
+Small checks:
 
-### Bounded-Output Rigidity Amplification Theorem
+\[
+N=3:\quad(10,0,15,15,24),
+\]
+
+\[
+N=4:\quad(18,0,28,28,51).
+\]
+
+## 13. Bounded-Output Rigidity Amplification Theorem
 
 For every \(N\ge3\), there exists an extension of the M0 multiplication reduct using exactly two anonymous terminal output values such that:
 
-1. the generic off-diagonal operation domain is complete and therefore has full generic symmetry \(S_{N-1}\);
-2. the full operation has carrier automorphism group \(C_2\);
-3. after one boundary anchor, the full operation becomes rigid;
-4. the corresponding Value-Rigidity Indices are
+1. the generic operation domain is maximally symmetric under \(S_{N-1}\);
+2. value fibers reduce the full-operation carrier automorphism group to \(C_2\);
+3. one fixed boundary anchor makes the full operation rigid;
+4. the active-sort Value-Rigidity Indices are
 
 \[
+\boxed{
 \frac{(N-1)!}{2}
 \quad\text{and}\quad
-2(N-1)!,
+2(N-1)!.
+}
 \]
 
-respectively.
-
-Thus a fixed two-element anonymous output alphabet can induce unbounded — indeed factorial — rigidity relative to operation definedness.
-
-## 13. What is and is not being claimed
-
-The construction **does** show:
+Therefore
 
 \[
 \boxed{
@@ -379,29 +363,77 @@ The construction **does** show:
 }
 \]
 
-It does **not** show that two output values encode arbitrary structures, nor that ordinary arithmetic has been reconstructed.
+This theorem name is working terminology; no novelty or priority claim is made for the general colored-relation mechanism.
 
-The G4-C coloring imports the external total orientation of the fixed carrier. That is a carrier-geometry import, not an internally generated arithmetic operation.
+## 14. Exact order-memory consequence
 
-It also does not establish novelty of the general colored-relation encoding principle; literature positioning remains separate.
+G4-C remembers the generic finite linear order only **up to global reversal**: the two orientation fibers are internally present but anonymous and exchangeable.
 
-## 14. Structural position in the FCOA ladder
-
-The current mechanism ladder becomes
+G4-A crosses a stronger threshold. The anchor fixes \(\Omega_+\), so the generic order becomes uniformly parameter-free definable across the finite family. One convenient definition is
 
 \[
 \boxed{
-\begin{array}{c}
-M0:\ \text{generic exchangeability}\\
-\downarrow\\
-G1:\ \text{external interaction geometry}\\
-\downarrow\\
-G2:\ \text{domain-encoded orientation}\\
-\downarrow\\
-G3:\ \text{anchored value-fiber memory}\\
-\downarrow\\
-G4:\ \text{bounded-alphabet rigidity amplification}
-\end{array}}
+x<y
+\iff
+x,y\in G_N
+\land
+x\otimes_{4A}y=P_1\otimes_{4A}P_0.
+}
 \]
 
-G4 is not yet a publication checkpoint. Its exact formulas have been independently enumerated computationally, but the theorem candidate requires hostile audit before promotion to fixed status.
+Here the boundary roles and generic sector are uniformly recognizable in the exact operation family.
+
+Thus the mechanism ladder now contains
+
+\[
+\boxed{
+\text{orientation up to reversal}
+\longrightarrow
+\text{anchored definable finite total order}.
+}
+\]
+
+## 15. Arithmetic Leakage boundary
+
+The hostile audit found no hidden addition or multiplication of the external indices in G4. What G4-A does recover is exact finite order, hence also finite order-theoretic derived relations such as successor and betweenness.
+
+Accordingly, the next main-line problem is no longer whether order is remembered. It is:
+
+\[
+\boxed{
+\text{What is the weakest additional FCOA mechanism beyond anchored order memory that first yields genuine arithmetic leakage?}
+}
+\]
+
+The next boundary analysis must distinguish, rather than conflate,
+
+\[
+\text{order},
+\quad
+\text{successor/distance information},
+\quad
+\text{Presburger-like addition},
+\quad
+\text{full arithmetic}.
+\]
+
+No strict implication/non-implication chain among these levels is asserted here without proof.
+
+## 16. Status
+
+After computational verification and independent hostile audit:
+
+\[
+\boxed{
+\mathbf F:\ G4\text{-}C,\ G4\text{-}A,
+\text{ exact spectra, commutation counts, automorphism groups and VRI formulas.}
+}
+\]
+
+\[
+\boxed{
+\mathbf F:\ \text{uniform anchored generic-order recovery in G4-A.}
+}
+\]
+
+G4 remains post-publication relative to DOI 10.5281/zenodo.22129787 and is not silently folded into that release.
