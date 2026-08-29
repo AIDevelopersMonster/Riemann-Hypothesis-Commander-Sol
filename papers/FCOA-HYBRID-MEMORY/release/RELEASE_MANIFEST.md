@@ -1,25 +1,26 @@
 # Release manifest — FCOA Hybrid Memory Article A
 
-**Version:** 0.9.0-rc1  
-**Package date:** 2026-08-29  
-**Release gate:** REVIEWED_CLEAN — DOI reservation pending  
-**Zenodo DOI:** pending reservation (not fabricated)
+**Version:** 1.0.0  
+**Publication date:** 2026-08-29  
+**Release gate:** PUBLISHED / AUDIT CLOSED  
+**Zenodo DOI:** **10.5281/zenodo.22165651**  
+**Persistent URL:** https://doi.org/10.5281/zenodo.22165651
 
-## Generated release candidates
+## Audited release-candidate provenance
 
-The audited local build produced:
+Before DOI publication, the deterministic audited build produced:
 
 | File | Purpose | SHA-256 |
 |---|---|---|
-| `FCOA_HYBRID_MEMORY_EN_RC0.9.0.pdf` | English preprint | `d0cb37bff7bdaef91fddd12536e3be25ce625decdd3a478d06773a0d3fbdc030` |
-| `FCOA_HYBRID_MEMORY_RU_RC0.9.0.pdf` | Russian preprint | `978035b0cb5775e3fb9230c39169191448712930425eb08012deb48b5e914234` |
-| `FCOA_HYBRID_MEMORY_SOURCE_RC0.9.0.zip` | Source + metadata + verifier package | `d5f29d8af33d14318b00785363619b39ee2d7c630532d6e672336f021e441810` |
+| `FCOA_HYBRID_MEMORY_EN_RC0.9.0.pdf` | English audited preprint candidate | `d0cb37bff7bdaef91fddd12536e3be25ce625decdd3a478d06773a0d3fbdc030` |
+| `FCOA_HYBRID_MEMORY_RU_RC0.9.0.pdf` | Russian audited preprint candidate | `978035b0cb5775e3fb9230c39169191448712930425eb08012deb48b5e914234` |
+| `FCOA_HYBRID_MEMORY_SOURCE_RC0.9.0.zip` | Source + metadata + verifier candidate | `d5f29d8af33d14318b00785363619b39ee2d7c630532d6e672336f021e441810` |
 
-Verifier:
+Verifier source at audit time:
 
 `95a323c40252689f174d81f65570ba91036ff5ce461fe5585bc595dbe3baf733  supplement/verify_minimal_classifications.py`
 
-The RC binaries are Zenodo release artifacts; they are intentionally not treated as final archival files until a DOI is reserved and embedded.
+These hashes document the pre-publication audited RC provenance. The canonical archival publication is the Zenodo record identified by DOI **10.5281/zenodo.22165651**; the DOI record is authoritative for the deposited final binaries.
 
 ## Mathematical gate
 
@@ -33,7 +34,7 @@ The RC binaries are Zenodo release artifacts; they are intentionally not treated
 
 ## Render gate
 
-English RC:
+English audited RC:
 
 - XeLaTeX build successful;
 - 13 rendered pages;
@@ -41,7 +42,7 @@ English RC:
 - no overfull boxes in final build log;
 - title, theorem, classification and final-reference pages visually inspected.
 
-Russian RC:
+Russian audited RC:
 
 - XeLaTeX build successful;
 - 14 rendered pages;
@@ -50,18 +51,12 @@ Russian RC:
 - no overfull boxes in final build log;
 - title, theorem and final-reference pages visually inspected.
 
-## DOI gate
+## Publication record
 
-These files are **release candidates**, not the final archival PDFs, because the DOI has not yet been reserved.
+Article A is published and closed as a theorem package:
 
-Final release procedure:
+\[
+\boxed{\text{Zenodo DOI }10.5281/zenodo.22165651}
+\]
 
-1. reserve Zenodo DOI;
-2. insert DOI in both TeX sources and package metadata;
-3. change version to `1.0.0`;
-4. rebuild both PDFs;
-5. rerun verifier;
-6. rerender/inspect PDFs;
-7. regenerate source ZIP and checksums;
-8. publish Zenodo record;
-9. commit final DOI metadata to GitHub.
+Any later correction must be recorded explicitly as a new version/erratum. New AL0/AL1/AL2, sparse-order, CRT, RTP, or restricted-interpretation results belong to Article B / subsequent publications.
