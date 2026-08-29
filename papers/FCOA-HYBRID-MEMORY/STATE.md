@@ -1,6 +1,6 @@
 # State checkpoint — FCOA Hybrid Memory Article A
 
-**Status:** REVIEWED_CLEAN — Zenodo DOI reservation and final rebuild pending.
+**Status:** PUBLISHED — Zenodo DOI **10.5281/zenodo.22165651**.
 
 ## Fixed mathematical results
 
@@ -37,8 +37,18 @@
 
 ## Publication boundary
 
-Article A ends with the finite hybrid-memory theory and scalable CVS ladder. Arithmetic leakage/resource-cost research is not part of the release.
+Article A ends with the finite hybrid-memory theory and scalable CVS ladder. Arithmetic leakage/resource-cost research is not part of this release.
 
-## Next action
+## Publication record
 
-Reserve Zenodo DOI, insert it into both language sources and metadata, rebuild, rerender, checksum, then mark `PUBLICATION_READY`.
+- Version: **1.0.0**
+- Publication date: **2026-08-29**
+- Zenodo DOI: **10.5281/zenodo.22165651**
+- Persistent URL: https://doi.org/10.5281/zenodo.22165651
+- Status: **PUBLISHED / CLOSED FOR NEW MATHEMATICAL CLAIMS**
+
+Corrections to Article A, if ever needed, should be handled as explicit errata/version updates rather than silently extending the theorem set.
+
+## Continuation
+
+The active research continuation is Article B / post-Article-A work: arithmetic leakage, sparse order, resource cost, RTP no-go, and interpretation-stable resource theory.
