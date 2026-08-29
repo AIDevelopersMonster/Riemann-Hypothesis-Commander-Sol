@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the Zenodo record once assigned."
+title: "Reflections on Sparse Anonymous Phase Geometry with Commander Sol: Component Cocycles, Synchronization Costs, and Actual Cell-Extension Separation"
+type: article
+authors:
+  - family-names: "Malachevsky"
+    given-names: "Alex"
+    orcid: "https://orcid.org/0009-0008-6009-3196"
+date-released: 2026-08-29
+version: "1.0"
+repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
+keywords:
+  - partial operations
+  - sparse domains
+  - automorphism groups
+  - anonymous values
+  - cocycles
+  - rigidity cost
+  - synchronization
+  - reconstruction
+license: CC-BY-4.0
+references:
+  - type: article
+    title: "Reflections on Anonymous Value Geometry with Commander Sol: Low-Arity Rigidity Reducts and an Arity Phase Transition"
+    doi: "10.5281/zenodo.22157403"
