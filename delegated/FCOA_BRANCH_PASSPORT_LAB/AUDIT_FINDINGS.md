@@ -1,64 +1,74 @@
-# FCOA Branch Passport Laboratory — Audit Findings
+# FCOA Branch Passport Laboratory — Final Audit Findings
 
-**Audit rounds:** P0–P2  
-**Target:** M0–G4 source chain and verifier/theorem discipline
+**Audit rounds:** P0-P6  
+**Finalized:** 2026-08-29  
+**Branch status:** **CLOSED / ARCHIVAL**  
+**Published successor:** Zenodo DOI `10.5281/zenodo.22160014`
 
-## Finding P2-01 — G4 headline `bounded output alphabet` requires scope repair
+## Final verdict
+
+All theorem-level findings that blocked promotion were either repaired, superseded by a stronger pure construction, or incorporated into the published value-rigidity paper. No unresolved mathematical contradiction remains in the branch.
+
+Infrastructure ideas that were never required for the mathematical theorem package are marked `DEFERRED` rather than `OPEN` and do not block closure.
+
+---
+
+## Finding P2-01 — G4 headline scope repair
 
 **Severity:** theorem-level wording/scope  
-**Status:** OPEN REPAIR; no contradiction to automorphism/VRI formulas
+**Final status:** **REPAIRED / SUPERSEDED**
 
 The G4 construction adds exactly two anonymous orientation values `Omega_+`,`Omega_-`, but the inherited M0 backbone already contains the terminal families `E_i^*` and `E_i^x`, each of cardinality `N-1`.
 
-Hence the total terminal-output carrier of the full G4 operation has size
+Hence the complete G4 operation has
 
-`2(N-1)+2 = 2N`,
+`2(N-1)+2 = 2N`
 
-not a constant independent of `N`.
+terminal outputs, not a globally constant total output alphabet.
 
-Therefore the strongest safe theorem statement is:
+The safe G4 statement is therefore:
 
 > over the M0 backbone family, a fixed two-element **added anonymous orientation-output alphabet** produces factorially growing value-induced rigidity relative to definedness.
 
-The current construction does not by itself establish factorial VRI with a globally bounded total terminal-output carrier.
-
-**Required upstream repair:** replace unqualified `bounded output alphabet` / `output alphabet fixed at exactly two` language by `bounded added value alphabet`, `two new anonymous orientation values`, or explicitly relativize the statement to the M0 backbone.
+P3-P5 subsequently solved the stronger absolute problem in a pure terminal-output model with total output carrier exactly two. Thus the original G4 scope issue no longer blocks the research programme.
 
 ---
 
 ## Finding P2-02 — Translation fingerprints independently recover G4 rigidity
 
-**Severity:** positive theorem support
+**Final status:** **PROVED / RETAINED**
 
 For `2 <= i <= N`, the G4-C left translation of `P_i` has orientation multiplicities
 
 `(#Omega_-, #Omega_+) = (i-2, N-i)`.
 
-Because the two orientation outputs are anonymous, the invariant fingerprint is initially
+Because the outputs are anonymous, the invariant fingerprint is initially
 
 `{i-2,N-i}`,
 
-which determines `i` exactly up to reflection `i <-> N+2-i`. Compatibility leaves only identity and total reversal, giving an independent local route to `Aut(G4-C) ~= C2`.
+which determines `i` up to reflection `i <-> N+2-i`. Compatibility leaves only identity and total reversal, independently recovering
 
-In G4-A the boundary anchor fixes `Omega_+`, so the pair becomes ordered. It determines every `i` uniquely, yielding a second proof mechanism for `Aut(G4-A)=1`.
+`Aut(G4-C) ~= C2`.
 
-This is independent in mechanism from the global Fiber-Transport theorem.
+In G4-A the boundary anchor fixes `Omega_+`; the ordered pair determines every generic point and independently gives
+
+`Aut(G4-A)=1`.
 
 ---
 
-## Finding P2-03 — New-output orbit geometry is exact
+## Finding P2-03 — New-output orbit geometry
 
-In G4-C, `Omega_+` and `Omega_-` form one two-element orbit under generic reversal. They are distinguishable as a set from inherited terminal outputs by preimage geometry, but not individually.
+**Final status:** **PROVED / RETAINED**
 
-In G4-A, the full automorphism group is trivial and the anchor makes `Omega_+` individually distinguishable; all terminal-output orbits are singletons.
+In G4-C, `Omega_+` and `Omega_-` form one two-element orbit under generic reversal. In G4-A the full automorphism group is trivial and all terminal-output orbits are singletons.
 
 ---
 
 ## Finding P0-01 — G4 definedness automorphism enumeration gap
 
-**Status after P1:** REPAIRED IN PASSPORT LAB.
+**Final status:** **REPAIRED**
 
-The original `verify_g4.py` returned the target factorial formula rather than enumerating the definedness group. `passport_enumerator.py` now exhaustively enumerates all base permutations for `N=3,4,5,6` and independently obtains:
+`passport_enumerator.py` independently enumerates active-sort definedness and full-operation carrier automorphisms for `N=3,4,5,6`:
 
 | N | G4-C DefAut | G4-C Full | G4-A DefAut | G4-A Full |
 |---:|---:|---:|---:|---:|
@@ -67,38 +77,78 @@ The original `verify_g4.py` returned the target factorial formula rather than en
 | 5 | 24 | 2 | 48 | 1 |
 | 6 | 120 | 2 | 240 | 1 |
 
-The recovered VRI sequences are G4-C `1,3,12,60` and G4-A `4,12,48,240`, agreeing with `(N-1)!/2` and `2(N-1)!`.
+The resulting VRI values agree with `(N-1)!/2` and `2(N-1)!`.
 
 ---
 
 ## Finding P1-01 — G3 hostile-audit repair independently reproduced
 
-For every `N=3..6` the independent enumerator returns G3-S `2/2`, G3-C `2/2`, G3-A `4/1` for definedness/full base automorphisms. G3-A's definedness group is generated by boundary swap and generic path reversal.
+**Final status:** **REPAIRED / ENUMERATED**
+
+For every `N=3..6`, independent enumeration returns G3-S `2/2`, G3-C `2/2`, G3-A `4/1` for active definedness / extendable full base automorphisms. G3-A definedness is generated by boundary swap and generic path reversal.
 
 ---
 
 ## Finding P0-02 — Multi-coordinate passports are necessary
 
-G3-S and G3-C have the same operation domain, Association Spectrum and automorphism-group order but different commutation geometry. Therefore commutation is an independent mandatory passport coordinate.
+**Final status:** **ESTABLISHED METHODOLOGICAL RESULT**
+
+G3-S and G3-C have the same domain, Association Spectrum and automorphism-group order but different commutation geometry. Therefore commutation is an independent mandatory passport coordinate.
 
 ## Finding P0-03 — Group order alone is insufficient
+
+**Final status:** **ESTABLISHED METHODOLOGICAL RESULT**
 
 G3-C -> G3-A keeps commutation unchanged while changing full rigidity and value-erasure symmetry. Full-operation, active-definedness, one-sorted and stabilizer groups must be recorded separately.
 
 ## Finding P0-04 — Evidence labels are required
 
-Use `PROVED`, `ENUM`, `REGRESSION`, `WORKING`, `OPEN`; formula-printing is not independent enumeration.
+**Final status:** **ADOPTED**
 
-## Finding P0-05 — G4 N=3 coincidence is genuine
+Use `PROVED`, `ENUM`, `REGRESSION`, `WORKING`, and `OPEN/DEFERRED`; formula-printing is not independent enumeration.
 
-`S_2=C_2`; independent enumeration gives VRI(G4-C)=1.
+## Finding P0-05 — G4 N=3 coincidence
+
+**Final status:** **CONFIRMED**
+
+`S_2=C_2`; independent enumeration gives `VRI(G4-C)=1`.
 
 ---
 
-## Next audit targets
+## P3-P5 mathematical resolution
 
-1. repair/check the exact G4 theorem statement against P2-01;
-2. test whether the stronger globally bounded-total-output problem is achievable by a modified backbone;
-3. machine-readable branch passport serialization;
-4. executable Carrier-Erasure/Value-Erasure predicates;
-5. exact translation-diff tables for all benchmark transitions.
+P3 proved globally bounded two-output factorial amplification. P4 proved the one-output collapse theorem in the pure terminal-output setting. P5 sharpened the construction to the absolute active-sort maximum
+
+`VRI=n!`
+
+using exactly two anonymous terminal outputs.
+
+These results are now part of the published theorem package under DOI `10.5281/zenodo.22160014`.
+
+---
+
+## P6 sparsity resolution
+
+P6 independently obtained
+
+`m(n)=n-Theta(n/log n)`
+
+for the minimum rigid fiber parameter. Subsequent main-line work identified this with the classical minimum-size identity-digraph problem, derived exact finite evaluation, the second-order law, and the partial-layer phase oscillation. The canonical published treatment is DOI `10.5281/zenodo.22160014`.
+
+P6 remains valuable as provenance but is not a novelty claim for the classical identity-digraph extremal.
+
+---
+
+## Deferred infrastructure — non-blocking
+
+The following are explicitly **DEFERRED**, not unresolved mathematical findings:
+
+1. machine-readable branch-passport serialization;
+2. generalized executable Carrier-Erasure / Value-Erasure predicates;
+3. a universal transition-diff engine beyond the benchmark table.
+
+They may be revived in a future tooling branch but are not required to reopen this laboratory.
+
+## Closure condition
+
+No theorem-level audit finding remains `OPEN`. The branch is suitable for archival closure after synchronization with `main` and preservation of this audit record.
