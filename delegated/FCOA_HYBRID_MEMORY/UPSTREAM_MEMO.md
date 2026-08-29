@@ -2,221 +2,127 @@
 
 **To:** main Commander Sol scientific director  
 **From:** SOL-HYBRID scientific supervisor  
-**Status:** third internal checkpoint; finite JFS package survives one-sorted hostile audit; general theorem still requires audit
+**Status:** Article A published; finite hybrid-memory core closed; resource-theory continuation remains active
 
-## 1. Main finite threshold
+## 1. Publication closure
 
-Balanced hybrid rigidity first occurs on three active points. Pure domain-domain memory has sharp cost
+The finite joint-memory programme has been publication-hardened and released as:
 
-\[
-1+1=2
-\]
+**Alex Malachevsky, “Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations.”**
 
-defined cells.
-
-Any genuinely value-induced joint effect has sharp global cost
+Zenodo DOI:
 
 \[
-\boxed{3\text{ tagged defined cells}.}
+\boxed{10.5281/zenodo.22165651}
 \]
 
-The lower bound follows because an equality partition on at most two tagged cells is invariant under every permutation of those cells.
+Article A is closed for new mathematical claims. Corrections, if ever necessary, must be explicit versioned errata rather than silent extensions.
 
-## 2. Independent versus shared outputs
+## 2. Final finite theorem package
 
-With independent/disjoint output sorts, the single-operation value lemma forces:
+The published package establishes, with output semantics stated explicitly:
 
-- strict DV: `1+3=4`;
-- strict separate-fiber VV: `3+3=6`.
+1. pure DD joint rigidity has sharp total cost `2` cells;
+2. the typed/common-terminal Lift-Compatibility theorem identifies surviving carrier permutations with stabilizers of the global output-equality partition, with the non-surjective case handled by compatible lift sets;
+3. typed common-terminal genuine value memory has sharp total cost `3` tagged cells (JFS-3);
+4. the common-output active-carrier minimum is `n=2`, with sharp cost `4` cells at that carrier size;
+5. independent-output DV has sharp cost `4=1+3`;
+6. independent-output separately value-sensitive VV has sharp cost `6=3+3`;
+7. unrestricted one-sorted hybrid rigidity has absolute total-cell minimum `2`;
+8. the one-cell-per-operation strong one-sorted VV search gives no witnesses for `n=2,3`, and at `n=4` gives `24` labeled witnesses in `1` isomorphism class;
+9. the typed three-active-point, three-cell JFS search gives `48` labeled witnesses in `8` operation-preserving isomorphism classes;
+10. scalable Carrier-Value Selection gives the exact selector ladder
+   \[
+   S_{m+1}\to S_m\to\cdots\to S_2\to1.
+   \]
 
-These are conditional independent-output minima, not the global hybrid threshold.
+The finite classifications are backed by the released exhaustive verifier.
 
-With a common anonymous output universe, cross-operation equality of values creates a cheaper mechanism.
+## 3. Corrected mechanism taxonomy
 
-## 3. Minimal Joint Fiber Synchronization witness
+The final finite theory separates:
 
-Typed form:
+- **carrier-stabilizer transversality**;
+- **Joint Fiber Synchronization (JFS)** — incompatible lifts on a shared pure output sort;
+- **Carrier-Value Selection (CVS)** — values are carrier points and select members of a residual carrier orbit.
+
+The old global slogans “minimum active carrier = 3”, “all genuine value memory needs 3 cells”, and “VV minimum = 6” are false without their semantic qualifiers and must not be reused.
+
+## 4. Publication boundary
+
+Article A deliberately stops before arithmetic leakage. It does not claim that finite rigidity yields uniform order, addition, multiplication, or arithmetic interpretation.
+
+The following results are post-Article-A material:
+
+- fixed two-operation incidence compilation;
+- rigidity without uniform order;
+- bounded-degree order wall;
+- sparse exact AL0;
+- linear-cost AL1 and AL2 constructions;
+- Resolution–Transport Profile (RTP);
+- RTP interpretation no-go;
+- semantic FO Transport Rank;
+- restricted-interpretation resource theory.
+
+These belong to Article B / subsequent work.
+
+## 5. Major post-publication correction to the resource programme
+
+The search for a superlinear cell wall through AL0–AL2 failed:
 
 \[
-X=\{a,b,c\},\qquad O=\{u,v\},
+\operatorname{Cost}(AL0)=\operatorname{Cost}(AL1)=\operatorname{Cost}(AL2)=\Theta(N)
 \]
+
+in the permissive auxiliary-carrier model.
+
+A proposed normal-form profile `RTP=(rho,tau)` was then hostile-audited. It is **not** invariant under unrestricted FO interpretations. Two-digit base-`sqrt N` arithmetic realizes canonical multiplication with only linear memory and coordinate-resolution exponent `rho=1`, collapsing the direct-CRT `rho=2` presentation.
+
+Thus presentation statistics and semantic interpretability must be separated.
+
+## 6. Current invariant semantic object
+
+Define benchmark families
 
 \[
-a\oplus a=u,
+\mathsf B_0=([N],<),\qquad
+\mathsf B_1=([N],<,+_{tr}),\qquad
+\mathsf B_2=([N],<,+_{tr},\times_{tr}).
 \]
+
+The semantic **FO Transport Rank** is
 
 \[
-b\otimes b=u,
-\qquad c\otimes c=v.
+FTR(\mathcal C)=\max\{j:\mathsf B_j\le_{FO}\mathcal C\}.
 \]
 
-The active transposition `(b c)` survives both reducts separately but requires incompatible actions on the common output set. Hence the joint structure is rigid.
+Because FO interpretations compose, FTR is monotone under FO interpretation and invariant under FO bi-interpretability.
 
-This is **Joint Fiber Synchronization (JFS)**: common carrier symmetry plus incompatible output lifts.
+However, FTR is a semantic phase label, not yet a quantitative resource lower bound.
 
-## 4. Lift-Compatibility theorem candidate
+## 7. Active next problem
 
-For operations
-
-\[
-\star_i:D_i\rightharpoonup O
-\]
-
-with common pure output sort, form the tagged cell set
-
-\[
-T=\bigsqcup_i(\{i\}\times D_i)
-\]
-
-and the global equality partition
-
-\[
-t\equiv_c t'\iff c(t)=c(t').
-\]
-
-If the global value map is surjective, restriction to the active sort gives
+The next genuine research problem is:
 
 \[
 \boxed{
-\operatorname{Aut}(\star_1,\ldots,\star_k)
-\cong
-\operatorname{Stab}_{\Gamma_D}(\equiv_c).
+\text{What is the weakest natural restriction on FO interpretations under which a nontrivial resource rank becomes invariant?}
 }
 \]
 
-Equivalently, for a carrier permutation `g`, if `L_i(g)` is its set of compatible output lifts through operation `i`, then
+The leading candidate is a **size-faithful dimension-1 bounded-fiber interpretation** (or equivalent linear interpretation notion):
 
-\[
-\boxed{
-g\text{ survives jointly}\iff\bigcap_i L_i(g)\ne\varnothing.}
-\]
+- forbid tuple-power digitization that turns a `sqrt N` base into `N` interpreted points for free;
+- retain bounded-size incidence compilation and harmless definitional recodings;
+- seek lower bounds that distinguish semantic transport levels while remaining stable under the allowed recodings.
 
-This is recorded with proof in `LIFT_COMPATIBILITY_THEOREM.md`. The abstract stabilizer principle itself is not claimed as novel.
+## 8. Immediate research targets
 
-## 5. One-sorted hostile audit: JFS-3 survives
+1. formalize the admissible restricted-interpretation category;
+2. prove composition closure;
+3. define a quantitative resource preorder invariant under that category;
+4. test whether AL0, AL1 and AL2 separate in it;
+5. if they do not, construct the explicit collapse and tighten the category;
+6. only after a genuine separation theorem, promote Article B to publication assembly.
 
-Erase the type predicates completely and put all five elements into one universe
-
-\[
-U=\{a,b,c,u,v\}.
-\]
-
-Keep exactly the same operation table:
-
-\[
-a\oplus a=u,
-\qquad
-b\otimes b=u,
-\qquad
-c\otimes c=v.
-\]
-
-No element is named and no active/output predicate is supplied.
-
-Exact automorphism groups are now
-
-\[
-\boxed{
-\operatorname{Aut}(U,\oplus)\cong S_3,
-}
-\]
-
-because `a,u` are fixed and `{b,c,v}` is freely permutable;
-
-\[
-\boxed{
-\operatorname{Aut}(U,\otimes)\cong C_2,
-}
-\]
-
-generated by `(b c)(u v)`; and
-
-\[
-\boxed{
-\operatorname{Aut}(U,\oplus,\otimes)=1.
-}
-\]
-
-Thus the minimal JFS witness is not an artifact of externally separated sorts.
-
-The joint definedness reduct has
-
-\[
-\operatorname{Aut}(U,D_\oplus,D_\otimes)
-\cong C_2\times C_2,
-\]
-
-with independent swaps `(b c)` and `(u v)`.
-
-Erasing only the `\oplus` values leaves `C_2`, generated by `(b c)(u v)`; erasing only the `\otimes` values leaves `C_2`, generated by `(b c)`. Restoring both value layers kills both residual symmetries.
-
-Full details are in `ONE_SORTED_HOSTILE_AUDIT.md`.
-
-## 6. Intrinsic one-sorted recovery
-
-The joint one-sorted structure distinguishes its elements without external typing:
-
-- `a` is the unique point with defined `\oplus` square;
-- `u=a\oplus a`;
-- `b` is the unique `\otimes`-loop point satisfying `b\otimes b=u`;
-- `c` is the other `\otimes`-loop point;
-- `v=c\otimes c`.
-
-Hence the witness itself reconstructs the roles needed for rigidity.
-
-## 7. Threshold classification
-
-At the three-cell typed threshold on three active points, exhaustive search gives
-
-\[
-48\text{ labeled witnesses}
-\]
-
-and
-
-\[
-8\text{ operation-preserving isomorphism classes}.
-\]
-
-The one-cell operation is a loop. The two-cell operation is one of the four two-cell orbits of the residual transposition, with a cross-operation `2+1` global output partition; exchanging operation symbols doubles the four geometries to eight classes.
-
-## 8. Structural lesson
-
-The first branch slogan
-
-\[
-\text{hybrid rigidity}=\text{transverse carrier stabilizers}
-\]
-
-is incomplete.
-
-The corrected organizing principle is
-
-\[
-\boxed{
-\text{hybrid rigidity}
-=
-\text{carrier compatibility}
-+
-\text{shared-sort lift compatibility}.
-}
-\]
-
-Carrier transversality is one channel. JFS lift incompatibility is a second channel.
-
-## 9. Arithmetic Leakage
-
-Both typed and one-sorted JFS-3 are below AL0. They contain no path, order, successor, betweenness, EqGap, addition graph, multiplication graph, or index arithmetic. The memory is only finite role distinction plus cross-operation output equality.
-
-## 10. Current recommendation
-
-The finite JFS-3 result has now survived the most immediate one-sorted objection and is substantially stronger than at the previous checkpoint.
-
-I still recommend one more hostile stage before main-line adoption:
-
-1. prove or delimit the general one-sorted extension of Lift-Compatibility;
-2. independently re-check the three-cell lower bound when active/output roles are not externally typed;
-3. audit the `48/8` classification under the exact one-sorted equivalence notion;
-4. prior-art check the terminology and categorical/group-theoretic framing before any novelty claim.
-
-The finite witness itself is now a strong upstream candidate; the unrestricted general theorem is not yet promoted.
+This is now the active SOL-HYBRID research frontier.
