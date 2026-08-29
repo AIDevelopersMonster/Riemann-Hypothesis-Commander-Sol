@@ -109,3 +109,28 @@ The director adopts from P2 the following methodological principles:
 - new cells must justify exactly what symmetry/information they change.
 
 The director does **not** adopt P2's suggestion that G3-A should automatically replace the central programme. G3-A is an important mechanism, but the main line has already moved to the stronger G4 bounded-output amplification question and then to the Arithmetic Leakage boundary.
+
+## Mandatory publication rule — FCOA Foundation Definition 1.0
+
+Effective 2026-08-29, **all five delegated directions and the central FCOA line** must use the foundational article
+
+**Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure, and the Canonical M0 Baseline**, Version 1.0,
+
+as the canonical citation for the meaning of the FCOA framework.
+
+The authoritative rule is stored at:
+
+`../FCOA-FOUNDATION-1.0/FOUNDATION_CITATION_DIRECTIVE.md`.
+
+The Foundation DOI is currently pending Zenodo assignment. Once assigned, every new or still-unpublished FCOA manuscript must satisfy both release gates:
+
+1. **Abstract/Аннотация:** explicitly identify the work as using the FCOA framework fixed by Definition 1.0 and print the Foundation DOI;
+2. **Bibliography/Литература:** include the full Foundation bibliographic record with that DOI.
+
+Every manuscript must also contain a short body paragraph identifying the exact FCOA object used: carrier, active/output/auxiliary sorts, primitive signature, changes relative to M0 or another cited baseline, erasure convention, and recovery/decomposition notion.
+
+This instruction applies to `SOL-RIGIDITY`, `SOL-INFINITY`, `SOL-HYBRID`, `SOL-PASSPORT`, and `SOL-NESTING` even if a former working branch has already been deleted or archived: any **future revision or new publication** from that direction must comply.
+
+Already published archival versions are not silently rewritten. A later Zenodo version/revision must add the Foundation citation.
+
+DOI `10.5281/zenodo.22129787` remains a separate citation for the specific Admissibility Geometry `M0 -> G1 -> G2` theorem chain and does not replace the Foundation citation.
