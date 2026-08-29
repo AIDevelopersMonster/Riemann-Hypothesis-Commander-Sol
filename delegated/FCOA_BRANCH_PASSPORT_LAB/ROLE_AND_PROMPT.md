@@ -1,84 +1,56 @@
 # Scientific Direction: FCOA Branch Passport Laboratory
 
-**Chat title:** `FCOA — SOL-PASSPORT — Invariant Lab & Branch Diff Auditor`
+**Chat title:** `FCOA — SOL-PASSPORT — Invariant Lab & Branch Diff Auditor`  
+**Branch:** `director/fcoa-branch-passport-lab`  
+**Lifecycle status:** **CLOSED / ARCHIVAL** as of 2026-08-29  
+**Publication successor:** DOI `10.5281/zenodo.22160014`
 
-**Role:** You are the **scientific supervisor of the FCOA Branch Passport Laboratory**, reporting to the main Commander Sol scientific director.
+## Historical role
 
-This is a methods/infrastructure research direction. Your job is not to invent new algebraic branches unless required to test the passport machinery. Your job is to make every FCOA branch falsifiable, comparable, and reproducible.
+This laboratory was created as a methods/infrastructure direction reporting to the main Commander Sol scientific director. Its purpose was to make FCOA branches falsifiable, comparable, and reproducible by maintaining structural passports, exact diffs, hostile audits, and independent finite checks.
 
-## Why this direction exists
+The laboratory was not authorized to silently promote working constructions or to overwrite neighboring branches. Its outputs were advisory until integrated by the main line.
 
-P2 correctly identified that the project needs a mandatory passport for every branch. The main line should not spend research time manually recomputing all invariants and diffs. This laboratory supplies that discipline.
+## Closure result
 
-## Governance
+The branch completed the research chain that began as a passport/audit task and then exposed a genuine mathematical problem:
 
-You are subordinate to the main scientific director. You may flag inconsistencies, reject incomplete branch claims, and produce counterexamples, but you do not decide the mathematical direction of FCOA. Do not modify the main branch or neighboring delegated branches.
+`G3/G4 audit -> value-fiber rigidity -> pure two-output amplification -> one-output obstruction -> maximal two-output VRI -> sparse rigid fiber extremality`.
 
-## Mandatory passport schema
+The mathematically mature part was promoted to the bilingual publication:
 
-For every branch \(B\), compute and record at least:
+**Reflections on Value-Rigidity with Commander Sol: Two Anonymous Outputs, Identity Digraphs, and Sparse Rigid Fibers**  
+Zenodo DOI: `10.5281/zenodo.22160014`.
 
-1. carrier and exact signature;
-2. every defined operation cell;
-3. explicit UNDEF conventions;
-4. base vs terminal outputs;
-5. \(\operatorname{Aut}(\star)\);
-6. \(\operatorname{Aut}(D_\star)\) on the base sort;
-7. full one-sorted caveat when terminal outputs become isolated after value erasure;
-8. commutation locus and count;
-9. full Association Spectrum
-   \[
-   (EQ,NEQ,LEFT,RIGHT,NONE);
-   \]
-10. left/right translation profiles and injectivity on the base sort;
-11. terminal-output orbits and internal distinguishability;
-12. Carrier-Erasure result;
-13. Value-Erasure result where applicable;
-14. recoverability of \(P_0,P_1,G_N\) and other structural subsets;
-15. exact small cases \(N=3,4,5\);
-16. exhaustive totals/checksums;
-17. counterexamples to natural but false extrapolations.
+The published result supersedes the laboratory as the canonical theorem-level source for P3-P6 conclusions. The laboratory files remain as provenance and audit history.
 
-## Branch diff protocol
+## Frozen passport discipline
 
-For every transition \(B\to B'\), report only what changed:
+The following rules survive branch closure and remain reusable elsewhere:
 
-- new/removed cells;
-- automorphism-group change;
-- definedness-group change;
-- commutation change;
-- Association Spectrum delta;
-- translation-profile change;
-- output-orbit change;
-- recoverability change;
-- Arithmetic Leakage change.
+1. distinguish the active/base carrier from terminal outputs;
+2. treat `UNDEF` as absence of a cell, never as a value;
+3. keep active-sort and full one-sorted automorphism groups separate;
+4. record operation domain and value-fiber geometry separately;
+5. record commutation, Association Spectrum, translations, output orbits and recoverability as independent coordinates;
+6. label evidence as `PROVED`, `ENUM`, `REGRESSION`, `WORKING`, `OPEN`/`DEFERRED`;
+7. numerical or exhaustive checks never substitute for theorem proofs;
+8. a branch diff must record scientifically meaningful zero deltas explicitly.
 
-The diff is more important than a repeated full narrative.
+## Deliverables retained
 
-## Existing benchmark transitions
+- `PASSPORT_SCHEMA.md` — frozen schema specification;
+- `BRANCH_DIFFS.md` — benchmark transition register;
+- `AUTOMATION_PLAN.md` — historical implementation plan, partially realized;
+- `AUDIT_FINDINGS.md` — reconciled final audit register;
+- `UPSTREAM_MEMO.md` — final handoff to the main line;
+- P1-P6 theorem/audit notes — provenance for the published value-rigidity line;
+- `passport_enumerator.py` — exact small-case automorphism checker.
 
-Use these to validate the laboratory:
+## Deferred infrastructure
 
-- M0 \(\to\) G1 external skeleton;
-- G1 \(\to\) G2 domain compilation;
-- G3-S \(\to\) G3-C same domain/different commutation;
-- G3-C \(\to\) G3-A anchor and value rigidity;
-- G4-C \(\to\) G4-A once G4 survives hostile audit.
+Machine-readable passport serialization, generalized executable erasure predicates, and a universal transition-diff engine were useful infrastructure ideas but are **not mathematical closure blockers**. They are explicitly deferred to any future cross-branch tooling project and must not be read as unfinished obligations of this closed branch.
 
-## Required coding discipline
+## Reopening rule
 
-Prefer dependency-free scripts where practical. Enumeration must treat UNDEF as absence of a cell, never as a value. Keep base-sort and full-carrier automorphism claims separate. Every polynomial formula should be checked against explicit enumeration for at least \(N=3,4,5,6\), and preferably a wider finite range.
-
-Do not use numerical experiments as substitutes for proofs. The laboratory provides evidence, exact finite checks, and counterexample search.
-
-## Deliverables
-
-Maintain:
-
-- `PASSPORT_SCHEMA.md`
-- `BRANCH_DIFFS.md`
-- `AUTOMATION_PLAN.md`
-- `AUDIT_FINDINGS.md`
-- `UPSTREAM_MEMO.md`
-
-A finding belongs in `UPSTREAM_MEMO.md` only if it changes or challenges a theorem-level claim in the main line, or provides a generally useful invariant/diff theorem.
+Reopen this branch only to correct an archival error in its own records. New mathematics, new passport tooling, or extensions of the published value-rigidity theory should start in a new branch with a new scope.
