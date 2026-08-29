@@ -106,10 +106,14 @@ Foundation title:
 
 **Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure, and the Canonical M0 Baseline**.
 
-The Foundation DOI is currently **pending Zenodo assignment**. For any new version or revision, obtain the DOI from the central directive at `papers/FCOA-FOUNDATION-1.0/FOUNDATION_CITATION_DIRECTIVE.md` and enforce both requirements:
+Canonical DOI:
 
-1. the **abstract** must explicitly say that the paper works in the FCOA framework fixed by Definition 1.0 and must print the Foundation DOI;
-2. the **bibliography** must contain the full Foundation article entry with that DOI.
+`https://doi.org/10.5281/zenodo.22164246`
+
+For every new version or new manuscript:
+
+1. the **abstract** must explicitly say that the paper works in the FCOA framework fixed by Definition 1.0 and must print `https://doi.org/10.5281/zenodo.22164246`;
+2. the **bibliography** must contain the full Foundation article entry with DOI `10.5281/zenodo.22164246`.
 
 The body must identify the exact FCOA carrier/sandbox, sorts, primitive signature, relation to M0 or another cited baseline, erasure convention, and recovery/decomposition notion used.
 
