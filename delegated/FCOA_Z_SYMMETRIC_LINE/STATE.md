@@ -80,64 +80,136 @@ The signed completion introduces no primitive binary addition or multiplication.
 
 ---
 
-## Working / not yet fixed
+## Proved core package awaiting hostile audit
 
-### WZ1 — Signed transfer of legacy M0 operations
+The following statements are proved in `SIGNED_M0_REFLECTION_TRANSFER_0_1.md` but are not yet promoted to branch-fixed status pending hostile audit.
 
-Need to construct and hostile-audit extensions of
+### PZ7 — Minimal signed M0 reflection closure
+
+For each declared involution on the terminal output sorts, the positive M0 table has a unique minimal simultaneous-reflection extension. The old positive cells are unchanged, their negative mirrors are forced, and no genuinely mixed-sign cell is opened.
+
+### PZ8 — `oplus` becomes radial contraction, not signed addition
+
+Right multiplication by the fixed origin is
 
 \[
-\oplus,\qquad\otimes
+\rho(P_n^\sigma)=P_{n-1}^\sigma
 \]
 
-from the original nonnegative ray to the signed carrier.
+with the convention \(P_1^\sigma\mapsto P_0\). Thus it moves toward zero on both branches. It is not a global successor/predecessor on the signed line.
 
-Required constraints:
+The old positional asymmetry survives:
 
-- old positive-sector cells unchanged;
-- no imported arithmetic sign rules;
-- argument roles remain positional;
-- noncommutativity/nonassociativity remain admissible;
-- mixed-sign sectors are not guessed by analogy.
+\[
+P_0\oplus x=x,
+\qquad
+x\oplus P_0=\rho(x)\ne x.
+\]
 
-### WZ2 — Reflection equivariance classes
+### PZ9 — Legacy noncommutativity and partial nonassociativity survive
 
-Need to distinguish at least:
+Signed reflection completion does not force the old operations to become commutative or associative.
+
+### PZ10 — Two canonical mirror-output lifts
+
+- `ZM0-share`: mirror cells share terminal output fibers;
+- `ZM0-split`: mirror cells receive distinct outputs exchanged by reflection.
+
+The base-domain extension is the same; only value-fiber geometry changes.
+
+### PZ11 — Fiber choice changes rigidity
+
+For symmetric finite windows and \(N\ge2\):
+
+\[
+\operatorname{Aut}(W_N,\otimes)_{split}\cong S_{N-1}\wr C_2,
+\]
+
+while
+
+\[
+\operatorname{Aut}(W_N,\otimes)_{share}\cong S_{N-1}\times C_2.
+\]
+
+For `oplus`, in either variant,
+
+\[
+\operatorname{Aut}(W_N,\oplus)\cong C_2.
+\]
+
+For both operations together,
+
+\[
+\operatorname{Aut}(W_N,\oplus,\otimes)\cong C_2.
+\]
+
+### PZ12 — Rooted radial memory without signed orientation
+
+The signed `oplus` reduct remembers the root and radial depth but still admits the global branch reflection. This is distinct from full signed-coordinate recovery.
+
+### PZ13 — Zero-reflection definability barrier
+
+In a reflection-symmetric signed M0 operational reduct, parameter-free FO definitions must be invariant under simultaneous zero reflection.
+
+Therefore standard signed order and standard integer multiplication are not parameter-free FO-definable there.
+
+By contrast, the addition graph is reflection-invariant:
+
+\[
+x+y=z\implies(-x)+(-y)=-z.
+\]
+
+Hence zero reflection alone does not block signed addition.
+
+A necessary condition for parameter-free recovery of ordinary signed multiplication is therefore that the operational/relational reduct break zero reflection somewhere, unless the target or equivalence notion is changed.
+
+---
+
+## Working / not yet fixed
+
+### WZ1 — Hostile audit of signed M0 transfer
+
+Audit `SIGNED_M0_REFLECTION_TRANSFER_0_1.md` for:
+
+- hidden use of arithmetic sign laws;
+- exact treatment of output-sort automorphisms;
+- small-window exceptions;
+- one-sorted versus typed-output differences;
+- correctness of the shared/split rigidity groups;
+- any implicit assumption that reflection-equivariance should be canonical rather than merely one admissible extension class.
+
+### WZ2 — Reflection equivariance classes beyond minimal closure
+
+Classify at least:
 
 1. operations commuting with reflection;
 2. operations conjugated to a distinct operation under reflection;
 3. operations for which only domain geometry is reflection-compatible;
 4. genuinely asymmetric signed operations.
 
-### WZ3 — Signed output fibers
+### WZ3 — Mixed-sector generators
 
-Candidate scheme:
+The genuinely new signed sectors are
 
 \[
-E_n^{\alpha,+},\qquad E_n^{\alpha,-}.
+(+,-),\qquad(-,+).
 \]
 
-Need to decide whether reflection preserves channel label \(\alpha\), permutes channel labels, or fails to extend to a channel symmetry.
+Need to find the weakest admissible coupling law that connects the branches without collapsing M0 to ordinary arithmetic.
+
+### WZ4 — Signed output fibers as proto-transport channels
+
+Need to determine whether shared or split output fibers are the better baseline for later multi-line transport. The finite automorphism calculation shows the choice is mathematically non-cosmetic.
 
 ---
 
 ## Open
 
-### OZ1 — Mixed-sector law
-
-Classify possible cells in
-
-\[
-(+,-),\qquad(-,+)
-\]
-
-without importing ordinary signed arithmetic.
-
-### OZ2 — Signed carrier-erasure memory
+### OZ1 — Signed carrier-erasure memory
 
 After removing `P0`, `S`, `<`, `nu` in selected combinations, determine how much absolute coordinate/sign structure is recoverable from the partial operations alone.
 
-### OZ3 — Signed AL ladder
+### OZ2 — Signed AL ladder
 
 Define and prove a correct integer-line analogue of
 
@@ -147,9 +219,13 @@ AL0<AL1<AL2
 
 for the coordinate-rigid signed setting.
 
-### OZ4 — Output fibers as future transport channels
+### OZ3 — Minimal reflection breaking for multiplication
 
-Terminal output sorts remain baseline. A later extension may permit selected fibers to re-enter as morphisms/transport between distinct coordinate lines. This is explicitly postponed until the one-line signed theory is stable.
+Determine the weakest generated structural modification that destroys exactly enough zero-reflection symmetry to permit signed multiplication recovery, while keeping ordinary signed addition below it.
+
+### OZ4 — Interacting-line extension
+
+Only after the one-line signed theory stabilizes, permit selected output fibers to re-enter as transitions between distinct coordinate lines and classify commuting, twisted, noncommuting, and partial transport squares.
 
 ---
 
@@ -157,15 +233,8 @@ Terminal output sorts remain baseline. A later extension may permit selected fib
 
 \[
 \boxed{
-\text{Construct the weakest reflection-compatible signed extension of M0}
+\text{Hostile-audit the signed M0 reflection package, then attack the mixed sectors }(+,-),(-,+).
 }
 \]
 
-subject to exact preservation of the original positive sector and no arithmetic sign-law import.
-
-The audit must answer whether reflection should act:
-
-- on carrier points only;
-- on carrier and output indices;
-- on output channel labels as well;
-- or whether the original M0 directional asymmetry obstructs full reflection equivariance.
+The first target is not to imitate ordinary sign arithmetic. It is to determine whether there exists a genuinely FCOA mixed-sign coupling whose composition geometry is new while the old positive-ray operation remains an exact substructure.
