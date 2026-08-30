@@ -3,7 +3,10 @@
 **Canonical publication DOI:** 10.5281/zenodo.22129787  
 **Publication date:** 2026-08-27  
 **GitHub role:** theorem/reproducibility/demo companion  
-**Maintenance boundary:** see [`WORKSPACE.md`](WORKSPACE.md)
+**Maintenance boundary:** see [`WORKSPACE.md`](WORKSPACE.md)  
+**State synchronized:** 2026-08-30
+
+---
 
 ## 1. Publication checkpoint — fixed
 
@@ -13,382 +16,388 @@ The published and audited chain remains
 \boxed{M0\longrightarrow G1\longrightarrow G2.}
 \]
 
-Nothing in G3/G4/Arithmetic-Leakage work silently revises the Zenodo publication.
+Nothing in later G3/G4/Arithmetic-Leakage/generated-memory work silently revises that Zenodo publication.
 
-## 2. G3 — fixed post-publication result
+---
+
+## 2. Post-publication rigidity chain — fixed
+
+The following remain fixed theorem checkpoints in their stated scopes:
+
+- G3 value-memory after hostile-audit repair;
+- Fiber-Transport theorem in its relative typed setup;
+- G4-C and G4-A bounded-output amplification;
+- uniform parameter-free recovery of the exact generic total order in G4-A;
+- G4-A Generic FO Collapse / Arithmetic Leakage left wall.
+
+In particular, after relationalizing G4-A,
+
+\[
+\boxed{FO(\text{G4-A generic sector})=FO[<].}
+\]
+
+Hence generic G4-A does not uniformly define canonical truncated Add, Mul, or EqGap.
+
+---
+
+## 3. Additive gateway — fixed
+
+On the ordered generic base,
+
+\[
+EqGap\quad\text{and}\quad Add
+\]
+
+are uniformly FO-interdefinable.
+
+Correct claim discipline:
+
+\[
+\boxed{EqGap\text{ is a canonical gateway to full additive leakage, not the globally weakest non-order enrichment}.}
+\]
+
+Arithmetic leakage levels used by the programme:
+
+- `AL0`: order wall / FO[<];
+- `AL-INT`: intermediate non-order enrichments without full addition;
+- `AL1`: uniform truncated addition / EqGap;
+- `AL2`: full arithmetic gateway, in particular uniform truncated addition and multiplication.
+
+---
+
+## 4. Oracle / compilation firewall — fixed after subsequent audits
+
+The One-Cell Oracle phenomenon shows raw support minimization is meaningless if arbitrary external size-dependent data may be imported.
+
+Conversely, uniform fixed-depth FO-definitional compilation from G4-A cannot leave AL0.
+
+Thus the central programme uses a provenance firewall:
+
+\[
+\boxed{
+\text{exclude arbitrary external oracle import; require genuinely generated non-oracular memory.}
+}
+\]
+
+---
+
+## 5. Finite-state and regular-primitive barriers — fixed
+
+`U1_FINITE_STATE_WALL.md` proves, for prefix-consistent deterministic finite-state unary generators, a strict intermediate zone
+
+\[
+AL0<AL\text{-}FS<AL1.
+\]
+
+The broader Regular-Primitive Barrier proves that finite-copy position-regular expansions cannot uniformly define Add or EqGap. Fixed-depth nesting does not cross the barrier.
+
+The corrected head-synchronization threshold is:
+
+\[
+TC(S)\in AL0,
+\qquad
+TC(S\times S)=EqGap\in AL1.
+\]
+
+The source of leakage is the unbounded closure of the synchronized two-dimensional product, not the local successor-product edge relation itself.
+
+---
+
+## 6. Base-sort support lower bound — fixed
+
+For an explicit ordered base carrier `[m]`, one fixed finite bounded-arity added signature, ordinary FO query language, all added primitive tuples charged, and no uncharged growing auxiliary carrier, uniform recovery of canonical truncated addition requires
+
+\[
+\boxed{\Omega(m)}
+\]
+
+materialized added support.
+
+This lower bound permits arbitrary `m`-dependent relations; therefore it applies a fortiori to the narrower generated-history families used below.
+
+---
+
+## 7. Binary history compression — fixed overshoot witness
+
+A locally generated binary counter materializes full bit history with
+
+\[
+\Theta(m\log m)
+\]
+
+support.
+
+The history uniformly exposes BIT and reaches the full arithmetic phase:
+
+\[
+\boxed{AL2.}
+\]
+
+Thus support density and arithmetic leakage are orthogonal: a sparser generated history can leak more arithmetic than a denser one.
+
+---
+
+## 8. Zeckendorf selective additive memory — hostile-audited exact AL1
+
+The self-anchored Fibonacci/Zeckendorf history uses
+
+\[
+Z(n,p)\iff p\text{ is a Fibonacci weight used in the canonical representation of }n.
+\]
+
+The generator does not query Fibonacci indices, Add, Mul, EqGap, rank, or final size. Digit anchors are internal:
+
+\[
+FibPos(p)\iff Z(p,p).
+\]
+
+The synchronous Fibonacci adder used in the construction has an aperiodic transition monoid (verified independently in `verify_zeckendorf_adder_aperiodic.py`), so addition is FO-realizable over digit positions.
+
+The infinite Zeckendorf incidence envelope is automatic/decidable, yielding the multiplication firewall by prefix lifting.
+
+Therefore
+
+\[
+\boxed{Add,EqGap\in FO(<,Z),\qquad Mul\notin FO(<,Z).}
+\]
+
+Hence the generated Presburger Compression Corridor is nonempty.
+
+Full positive-incidence support is
+
+\[
+\Theta(m\log m).
+\]
+
+---
+
+## 9. Zeckendorf event compression — hostile-audited optimal linear AL1
 
 Files:
 
-- [`G3_VALUE_GEOMETRY.md`](G3_VALUE_GEOMETRY.md)
-- [`G3_HOSTILE_AUDIT_RECONCILIATION.md`](G3_HOSTILE_AUDIT_RECONCILIATION.md)
-- verifier: `../../experiments/fcoa-domain-compilation/verify_g3.py`
+- [`ZECKENDORF_EVENT_COMPRESSION_OPTIMAL_AL1.md`](ZECKENDORF_EVENT_COMPRESSION_OPTIMAL_AL1.md)
+- [`HOSTILE_AUDIT_ZECKENDORF_EVENT_COMPRESSION.md`](HOSTILE_AUDIT_ZECKENDORF_EVENT_COMPRESSION.md)
+- verifier: `../../experiments/fcoa-domain-compilation/verify_event_compression_phase_split.py`
 
-Confirmed:
+Define differential event relations
 
 \[
-\operatorname{Aut}(\otimes_S)\cong C_2,
+U(n,p):0\to1,
 \qquad
-\operatorname{Aut}(\otimes_C)\cong C_2,
-\qquad
-\operatorname{Aut}(\otimes_A)=1.
+D(n,p):1\to0.
 \]
 
-The repaired intrinsic definedness group of G3-A is
+For every `n>=1`, Zeckendorf successor creates exactly one new `1` digit. If `s_F(n)` is the number of Zeckendorf summands, then for every prefix `[m]`
+
+\[
+|U_m|=m-1,
+\]
+
+\[
+|D_m|=m-1-s_F(m-1),
+\]
+
+and therefore
+
+\[
+\boxed{|U_m|+|D_m|=2m-2-s_F(m-1)=\Theta(m).}
+\]
+
+Latest-event integration uniformly reconstructs the full Zeckendorf incidence relation, while `U,D` are uniformly FO-definable back from consecutive `Z` rows. Thus the full-state and event-state families are uniformly FO-interdefinable.
+
+The arithmetic phase is unchanged:
+
+\[
+\boxed{\text{Zeckendorf events are exact }AL1.}
+\]
+
+Resource passport of the direct generator:
+
+\[
+\boxed{(\text{materialized support},\text{transient workspace})=(\Theta(m),O(\log m)).}
+\]
+
+Combining with the base-sort lower bound closes the support optimization problem in the declared model:
+
+\[
+\boxed{C_{AL1}^{generated,base}(m)=\Theta(m).}
+\]
+
+---
+
+## 10. Equal-linear-cost binary event family — fixed comparison
+
+Applying the same differential encoding to binary counting gives
+
+\[
+|U_m^{(2)}|+|D_m^{(2)}|
+=2m-2-s_2(m-1)
+=\Theta(m).
+\]
+
+Latest-event integration reconstructs BIT, and the event presentation is uniformly FO-interdefinable with the binary history.
+
+Therefore
+
+\[
+\boxed{\text{binary/BIT events remain }AL2.}
+\]
+
+We now have two generated families with the same optimal linear materialized support but different arithmetic phases:
 
 \[
 \boxed{
-\operatorname{Aut}(D_A\upharpoonright X_N)
-\cong C_2\times C_2.
-}
+\begin{array}{c|c|c}
+\text{history} & \text{support} & \text{phase}\\
+\hline
+Zeckendorf\ events & \Theta(m) & AL1\\
+binary/BIT\ events & \Theta(m) & AL2
+\end{array}}
 \]
 
-G3 establishes value-memory beyond domain-memory.
+Hence scalar support, event density, and amortized number of changes do not determine the arithmetic phase.
 
-## 3. Fiber-Transport Theorem — fixed relative typed result
+---
 
-See [`FIBER_TRANSPORT_THEOREM.md`](FIBER_TRANSPORT_THEOREM.md).
-
-For a base/domain structure \((B,D)\) and a surjective anonymous terminal-output map
-
-\[
-c:D\to O,
-\]
-
-carrier automorphisms of the valued expansion are exactly the automorphisms of \((B,D)\) preserving the equality partition of domain cells induced by \(c\):
-
-\[
-\boxed{
-\operatorname{Aut}(B,D,O;c)
-\cong
-\operatorname{Stab}_{\operatorname{Aut}(B,D)}(\equiv_c).
-}
-\]
-
-Working finite invariant:
-
-\[
-\operatorname{VRI}(\star)
-=
-\left[
-\operatorname{Aut}(D_\star\upharpoonright X):
-\pi_X\operatorname{Aut}(\star)
-\right].
-\]
-
-`Value-Rigidity Index` remains working terminology only.
-
-## 4. G4 — hostile-audited and fixed
+## 11. Decidable Coherent Envelope barrier — hostile-audited semantic separator
 
 Files:
 
-- [`G4_BOUNDED_OUTPUT_AMPLIFICATION.md`](G4_BOUNDED_OUTPUT_AMPLIFICATION.md)
-- [`G4_HOSTILE_AUDIT_RECONCILIATION.md`](G4_HOSTILE_AUDIT_RECONCILIATION.md)
-- verifier: `../../experiments/fcoa-domain-compilation/verify_g4.py`
+- [`DECIDABLE_COHERENT_ENVELOPE_PHASE_BARRIER.md`](DECIDABLE_COHERENT_ENVELOPE_PHASE_BARRIER.md)
+- [`HOSTILE_AUDIT_DECIDABLE_COHERENT_ENVELOPE.md`](HOSTILE_AUDIT_DECIDABLE_COHERENT_ENVELOPE.md)
 
-Confirmed:
-
-\[
-\operatorname{Aut}(D_{4C}\upharpoonright X_N)\cong S_{N-1},
-\qquad
-\operatorname{Aut}(\otimes_{4C})\cong C_2,
-\]
+For a prefix-coherent family `A_m` on `[m]`, define `DCE` to mean existence of a coherent infinite envelope
 
 \[
-\operatorname{VRI}(G4\text{-}C)=\frac{(N-1)!}{2},
+A_\infty=(\mathbb N,<,\ldots)
 \]
 
-and after the boundary anchor
+with decidable FO theory and
 
 \[
-P_1\otimes_{4A}P_0=\Omega_+,
+A_m=A_\infty\upharpoonright[m]
 \]
+
+for every `m`.
+
+The prefix-relativization lemma gives a uniform lift of any prefix-coherent relation from fixed finite formulas to the infinite envelope.
+
+Therefore:
+
+### Decidable Coherent Envelope Barrier
+
+If truncated addition is uniformly FO-definable and DCE holds, then truncated multiplication is not uniformly FO-definable:
 
 \[
-\operatorname{Aut}(\otimes_{4A})=1,
-\qquad
-\operatorname{Aut}(D_{4A}\upharpoonright X_N)
-\cong S_2\times S_{N-1},
+\boxed{DCE+AL1\Longrightarrow\neg AL2.}
 \]
+
+Equivalently, any prefix-coherent AL2 family admits no decidable coherent envelope:
 
 \[
-\operatorname{VRI}(G4\text{-}A)=2(N-1)!.
+\boxed{AL2\Longrightarrow\neg DCE.}
 \]
 
-The exact generic total order is uniformly parameter-free definable in G4-A.
-
-## 5. Arithmetic Leakage left wall — hostile-audited and fixed
-
-Files:
-
-- [`ARITHMETIC_LEAKAGE_BOUNDARY.md`](ARITHMETIC_LEAKAGE_BOUNDARY.md)
-- [`G4A_GENERIC_FO_COLLAPSE.md`](G4A_GENERIC_FO_COLLAPSE.md)
-- [`ARITHMETIC_LEAKAGE_HOSTILE_AUDIT_RECONCILIATION.md`](ARITHMETIC_LEAKAGE_HOSTILE_AUDIT_RECONCILIATION.md)
-
-Relationalize the G4-A partial operation by
+For the canonical linear examples:
 
 \[
-T(x,y,z)\iff x\otimes_{4A}y=z.
+\boxed{DCE(Zeckendorf\ events)}
 \]
 
-The hostile audit confirms the exact uniform-family collapse:
+because the infinite Fibonacci/Zeckendorf incidence/event structure is word-automatic and therefore has decidable FO theory, whereas
 
 \[
-\boxed{
-FO(\text{G4-A on generic tuples})
-=
-FO(\text{finite linear order}).
-}
+\boxed{\neg DCE(binary/BIT\ events)}
 \]
 
-Consequently:
+because their uniform Add+Mul would contradict the DCE barrier.
 
-\[
-\boxed{
-\operatorname{Add}_N,
-\operatorname{Mul}_N,
-\operatorname{EqGap}_N
-\text{ are not uniformly FO-definable in G4-A.}
-}
-\]
+DCE is preserved under coherent uniform FO definitional reductions; under mutual definitional equivalence it is invariant.
 
-Thus G4-A is a fixed **order wall** for the uniform FO programme.
+Thus the equal-linear-cost phase split now has a rigorous semantic separator, not merely a presentation heuristic.
 
-## 6. Additive gateway — fixed relation, repaired minimality claim
+---
 
-For forward intervals define externally
-
-\[
-\operatorname{EqGap}(a,b;c,d)
-\iff
-\operatorname{rk}(b)-\operatorname{rk}(a)
-=
-\operatorname{rk}(d)-\operatorname{rk}(c).
-\]
-
-Over the ordered generic sector:
-
-\[
-\boxed{
-\operatorname{Add}(x,y,z)
-\iff
-\operatorname{EqGap}(0_G,y;x,z),
-}
-\]
-
-and conversely
-
-\[
-\boxed{
-\operatorname{EqGap}(a,b;c,d)
-\iff
-\exists s\,
-\bigl(\operatorname{Add}(a,s,b)\land\operatorname{Add}(c,s,d)\bigr).
-}
-\]
-
-Hence EqGap is uniformly FO-interdefinable with truncated rank addition.
-
-Correct statement:
-
-\[
-\boxed{
-\text{EqGap is a canonical gateway to full additive leakage, not the globally weakest possible non-order enrichment.}
-}
-\]
-
-## 7. Threshold-compression calibration
-
-See [`THRESHOLD_COMPRESSION_CALIBRATION.md`](THRESHOLD_COMPRESSION_CALIBRATION.md).
-
-External threshold benchmarks such as
-
-\[
-R_d(x,y)\iff x^d\le y
-\]
-
-have support
-
-\[
-|R_d\cap[N]^2|
-=
-\frac{d}{d+1}N^{1+1/d}+O(N),
-\]
-
-so subquadratic support can carry a nonlinear unary scale.
-
-This establishes a programme-level warning:
-
-\[
-\boxed{
-\text{support-growth complexity and arithmetic-leakage complexity are independent optimization axes.}
-}
-\]
-
-The external functions are calibration benchmarks only, not accepted FCOA mechanisms.
-
-## 8. New central theorem candidate — One-Cell Oracle / FO-Compilation Barrier
-
-New file:
-
-- [`ONE_CELL_ORACLE_AND_FO_COMPILATION_BARRIER.md`](ONE_CELL_ORACLE_AND_FO_COMPILATION_BARRIER.md)
-
-### One-cell oracle degeneracy
-
-For an arbitrary set of sizes
-
-\[
-S\subseteq\{2,3,4,\ldots\},
-\]
-
-modify exactly one previously undefined G4-A cell by
-
-\[
-P_0\otimes_S P_0=P_0
-\iff
-|G_N|\in S.
-\]
-
-Then the fixed sentence
-
-\[
-\exists b\,[B_0(b)\land T(b,b,b)]
-\]
-
-recognizes exactly the chosen size spectrum \(S\).
-
-Therefore unrestricted external import can produce arbitrarily strong family-level leakage at only
-
-\[
-O(1)
-\]
-
-new-cell cost.
-
-Thus raw cell-count minimization is degenerate unless external-import complexity is constrained.
-
-### Strict intermediate parity benchmark
-
-Taking
-
-\[
-S=\{m:m\equiv0\pmod2\}
-\]
-
-gives a family strictly stronger than FO[<] but still too weak to define truncated addition. The key reason is that with only one global parity bit, every definable size-spectrum is eventually constant on each parity class, while addition would define for example
-
-\[
-m\equiv1\pmod3.
-\]
-
-This gives an explicit benchmark strictly between the order wall and additive leakage, though it is deliberately an external-oracle construction.
-
-### FO-Compilation Barrier
-
-If finitely many new relation/operation symbols are uniformly parameter-free FO-definable in G4-A, then the expansion remains at exactly the same generic FO strength:
-
-\[
-\boxed{
-FO(\text{definitional expansion of G4-A})=FO[<].
-}
-\]
-
-Hence fixed-depth compositions, term operations, translations, commutation predicates and association predicates cannot escape the order wall when they are merely FO-definitional consequences of G4-A.
-
-This yields the central dichotomy:
-
-\[
-\boxed{
-\text{unrestricted external oracle: too powerful and artificially cheap}
-}
-\]
-
-versus
-
-\[
-\boxed{
-\text{uniform FO compilation from G4-A: provably unable to leave AL0.}
-}
-\]
-
-A genuine next-stage FCOA mechanism must lie between these extremes.
-
-## 9. Refined leakage map
-
-### AL0 — Order Wall
-
-Generic uniform FO power exactly FO[<]. G4-A is exactly here.
-
-### AL-INT — intermediate non-order zone
-
-Umbrella for modular/counting, sparse unary-scale, threshold-like, or other non-order enrichments that do not yet recover addition. This is not asserted to be one canonical level.
-
-### AL1 — Additive Gateway
-
-EqGap / truncated rank addition.
-
-### AL2 — Full-Arithmetic Gateway
-
-Uniform interpretation of full first-order arithmetic, or another independently audited equivalent criterion.
-
-## 10. Current status
+## 12. Current fixed ledger
 
 \[
 \mathbf F:\ M0,G1,G2\text{ published/audited checkpoint}
 \]
 
 \[
-\mathbf F:\ G3\text{ hostile-audited after repair}
+\mathbf F:\ G3/G4\text{ post-publication rigidity chain in stated scopes}
 \]
 
 \[
-\mathbf F:\ \text{Fiber-Transport theorem in its stated relative typed setup}
+\mathbf F:\ \text{G4-A order wall and Add/EqGap gateway}
 \]
 
 \[
-\mathbf F:\ G4\text{-}C,G4\text{-}A\text{ hostile-audited}
+\mathbf F:\ \text{oracle/FO-compilation firewall}
 \]
 
 \[
-\mathbf F:\ \text{uniform anchored generic-order recovery in G4-A}
+\mathbf F:\ \text{unary finite-state and regular-primitive barriers}
 \]
 
 \[
-\mathbf F:\ \text{G4-A Generic FO Collapse / Arithmetic Leakage left wall}
+\mathbf F:\ \text{Base-Sort Linear Support Barrier }\Omega(m)
 \]
 
 \[
-\mathbf F:\ \text{EqGap }\leftrightarrow\text{ truncated addition as the additive gateway}
+\mathbf F:\ \text{binary full history }\Theta(m\log m)\text{ reaches }AL2
 \]
 
 \[
-\mathbf W:\ \text{One-Cell Oracle Degeneracy / FO-Compilation Barrier; hostile audit pending}
+\mathbf F:\ \text{self-anchored Zeckendorf full history }\Theta(m\log m)\text{ is exact }AL1
 \]
 
 \[
-\mathbf W:\ \text{Density-Leakage Orthogonality and multi-axis cost programme}
+\mathbf F:\ \text{Zeckendorf event history }\Theta(m)\text{ is optimal exact }AL1
 \]
 
 \[
-\mathbf W:\ \text{Value-Rigidity Index / Bounded-Output Rigidity Amplification terminology}
+\mathbf F:\ \text{binary event history }\Theta(m)\text{ remains }AL2
 \]
 
-## 11. Immediate main-line question
+\[
+\mathbf F:\ DCE+AL1\Rightarrow\neg AL2\text{ for prefix-coherent same-base families}
+\]
 
-Do not optimize raw cell count and do not open an arbitrary G5 table.
+---
 
-The current central problem is now:
+## 13. Immediate main-line question
+
+The old question “can generated exact AL1 be compressed below quadratic/subquadratic support?” is closed in the declared base-sort model:
+
+\[
+\boxed{\Theta(m)\text{ is optimal}.}
+\]
+
+The old equal-linear-cost question “is there any intrinsic separator between the Zeckendorf and BIT event histories?” is also answered at the first semantic level:
+
+\[
+\boxed{DCE\text{ separates the canonical examples}.}
+\]
+
+The current central problem is now strictly sharper:
 
 \[
 \boxed{
-\text{What is the weakest genuinely generated, non-oracular FCOA mechanism that escapes the FO-compilation barrier?}
+\text{Can DCE, or a strengthening of it, be made invariant under broad FO interpretations}
 }
 \]
 
-Candidate mechanism classes to test next:
+including multi-dimensional interpretations, quotients, and nontrivial carrier recodings, while retaining a usable AL1/AL2 barrier?
 
-1. unbounded iteration / closure whose depth grows with the carrier;
-2. transitive-closure or least-fixed-point style memory;
-3. a genuinely new primitive operation whose cells are not FO-definable from G4-A order;
-4. hybrid interaction where neither operation is merely a definitional copy of the other.
+Parallel generalization target:
 
-The One-Cell Oracle / FO-Compilation Barrier must be hostile-audited before any such mechanism is promoted.
+\[
+\boxed{
+\text{Aperiodic Automatic Numeration Corridor}
+}
+\]
+
+— characterize numeration histories with (i) decidable/automatic coherent envelope, (ii) FO-realizable addition, and (iii) amortized `O(1)` successor changes, so that differential materialization yields optimal linear exact AL1.
+
+These are the next publication-bearing strikes.
