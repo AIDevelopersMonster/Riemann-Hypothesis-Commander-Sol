@@ -2,180 +2,169 @@
 
 **Direction:** FCOA — SOL-RIGIDITY — Rigidity Cost & Skeleton Classification  
 **Audience:** main Commander Sol scientific director  
-**Status:** local results proposed for upstream review; nothing here modifies M0–G4 automatically.
+**Status:** audited local results for upstream review; nothing here modifies M0–G4 automatically.
 
 ## Executive verdict
 
-Eight results from this direction are strong enough for upstream review.
+The original U1–U8 package remains valid. A ninth, now hostile-audited theorem package closes the first sparse multicolor target.
 
-### U1. Rigidity cost is not successor-memory cost
+## U1–U8
 
-For generic size `n=N-1`, exact directed rigidity minima through `n=7` are `(1,1,2,3,3,4)`, with
+U1–U8 are the previously recorded rigidity-cost, terminal-layer, tournament-separator, reconstruction, betweenness, binary ternary-phase, and complete-domain multicolor arity results. Their detailed statements remain in the dedicated theorem notes and in the prior history of this memo.
 
-\[
-\lceil(n-1)/2\rceil\le r_\to(n)\le n-2.
-\]
-
-G2 spends `n-1` cells to retain a chosen successor path, not merely to kill automorphisms.
-
-### U2. Terminal Generic Layer Master Lemma
-
-For `m` new off-diagonal generic cells with terminal outputs,
-
-\[
-(EQ,NEQ,LEFT,RIGHT,NONE)
-=(4(N-1)+m,0,N^2+2N-2+m,N^2+N-2+m,N^3+N^2-4N+9-3m).
-\]
-
-Commutation has the exact reverse-cell equality correction. Hence Association Spectrum and commutation are coarse relative to terminal-fiber geometry.
-
-### U3. Same G4-C coarse invariants, but rigidity instead of C2
-
-The asymmetric non-self-converse tournament `T5={40,41,42,43,20,21,31,32,03,10}` gives a balanced complete two-anonymous-output zero-anchor layer with the same Association Spectrum and commutation as G4-C but generic group `1` instead of `C2`. Universal-source extension gives such a layer for every `n>=5`.
-
-### U4. Minimal separator: cyclic-triangle defect
-
-For tournament layers,
-
-\[
-\tau_3(T)=\#\{C_3\text{ induced triples}\}
-\]
-
-satisfies `tau3(G4-C)=0`, anonymous rigidity requires `tau3>=2`, and the U3 family attains exactly `2` for every `n>=5`.
-
-### U5. Histograms versus abstract half-reconstruction
-
-There is an explicit seven-vertex pair `S7/R7` with identical anonymous induced histograms at every proper order `k=3,4,5,6` but residual groups `C2` and `1`. Classically, finite tournaments are `(<=7)`-half-reconstructible, with 7 optimal for the stronger subset-indexed abstract hemimorphism data model.
-
-### U6. Tournament specialization: exact ternary betweenness
-
-For tournament-type opposite fibers,
-
-\[
-B_\star(x,y,z)\iff x\star y=y\star z=x\star z
-\]
-
-is carrier-exact:
-
-\[
-\operatorname{Aut}(B_T)=\operatorname{Aut}^{\pm}(T).
-\]
-
-Full proof and the factorial failure of the weaker C3-hypergraph are in `BETWEENNESS_REDUCT.md`.
-
-### U7. Universal binary ternary phase reduct
-
-For every complete off-diagonal layer with exactly two anonymous terminal outputs,
-
-\[
-Q_\star(x,y,z)\iff x\star y=y\star z
-\]
-
-is carrier-exact:
-
-\[
-\operatorname{Aut}(Q_\star)=\operatorname{Aut}^{\pm}(c).
-\]
-
-The proof uses a binary discrepancy bit on ordered cells and connectivity of the composable-cell graph. Tournament and balanced assumptions are unnecessary. Full proof is in `UNIVERSAL_TERNARY_PHASE_REDUCT.md`.
-
-### U8. Multicolor arity phase transition
-
-The binary theorem is sharp in alphabet size. For `q>=3`, ternary anonymous equality information is no longer universally exact.
-
-#### Explicit q=3 lower-bound witness
-
-Use the symmetric complete layer on vertices `0,1,2,3,4`, so opposite ordered cells have the same color. On the ten unordered edges in lexicographic order
-
-\[
-01,02,03,04,12,13,14,23,24,34,
-\]
-
-use colors
-
-\[
-\boxed{0,0,0,1,0,0,2,1,0,0.}
-\]
-
-Thus
-
-\[
-C_0=\{01,02,03,12,13,24,34\},\quad
-C_1=\{04,23\},\quad
-C_2=\{14\}.
-\]
-
-The carrier permutation
-
-\[
-g=(0\ 1)
-\]
-
-preserves the **entire labeled anonymous equality pattern on every subset of at most three vertices**, but it is not induced by one global color permutation: edge `04` forces colors `1` and `2` to exchange, while fixed edge `23` forces color `1` to remain fixed.
-
-Exact finite audit gives
+The key boundary inherited from U7/U8 is
 
 \[
 \boxed{
-|\operatorname{Aut}^{an}(c)|=2,
-\qquad
-|\operatorname{Aut}(R_{\le3}^{eq}(c))|=4.
+q=2:\ \text{ternary phase propagation is universally exact on the complete binary layer},
 }
 \]
 
-So even the maximal ternary local equality passport is not stabilizer-complete at `q=3`. The witness extends to every fixed `q>3` by adding fixed vertices carrying fresh colors.
-
-#### Universal q-color upper bound
-
-For arbitrary finite `q`, define the four-ary relation
+while in the bounded local anonymous equality-pattern class
 
 \[
 \boxed{
-E_\star(x,y,u,v)\iff x\star y=u\star v.
-}
-\]
-
-This is the equality partition of all ordered cells. By the Fiber-Transport principle,
-
-\[
-\boxed{
-\operatorname{Aut}(E_\star)=\operatorname{Aut}^{an}(c)
-}
-\]
-
-for every surjective q-color layer.
-
-Therefore, in the class of reducts determined by anonymous equality patterns on bounded-size carrier subsets,
-
-\[
-\boxed{
-q=2:\ k_{exact}=3,
-\qquad
 q\ge3:\ k_{exact}=4.
 }
 \]
 
-This is an exact **arity phase transition**. Two colors are exceptional because local inequality determines the unique opposite phase. With three or more colors, locally compatible color permutations can disagree on colors not jointly witnessed; a fourth carrier variable is needed to compare disjoint cells directly.
+## U9. Sparse multicolor ternary transport theorem
 
-Full theorem, witness, proof and scope firewall are in `MULTICOLOR_ARITY_THRESHOLD.md`.
+**Status:** hostile-audited and approved for upstream insertion.  
+**Full handoff:** `QGE3/UPSTREAM_MEMO_QGE3.md`  
+**Audit:** `QGE3/HOSTILE_AUDIT_COMMANDER_SOL.md`
 
-## Current structural hierarchy
+For a finite surjective anonymous coloring
+
+\[
+c:D\to O,\qquad |O|=q\ge3,
+\]
+
+on a sparse off-diagonal domain, let Model T retain `D` and ternary equality only between composable defined cells.
+
+The naive binary generalization
+
+\[
+\text{connected comparison component}
+\Longrightarrow
+\text{one local }S_q\text{ phase}
+\]
+
+is false for every `q>=3`.
+
+### Sharp q=3 minimum
+
+There is a connected counterexample already on
+
+\[
+\boxed{|G|=3,\qquad |D|=4,}
+\]
+
+and no surjective q=3 counterexample can have three cells. Thus `|D|=4` is the exact minimum domain size.
+
+### Universal local state
+
+Contract equal-comparison edges in a component `C` into T-equality atoms. The quotient `H_T(C)` is a graph whose original terminal fibers give a proper coloring `kappa_C`.
+
+Every Model-T automorphism transports this proper coloring. The universally defined local datum is therefore its anonymous proper-coloring state, not an `S_q` element.
+
+A local visible-support phase exists exactly when
+
+\[
+\boxed{
+c(p)=c(q)\iff c(gp)=c(gq)\quad(p,q\in C).}
+\]
+
+### Phase sector
+
+Where local phases exist,
+
+\[
+\boxed{
+\phi_{gh,C}=\phi_{g,hC}\circ\phi_{h,C}.
+}
+\]
+
+The intrinsic coefficient object is a groupoid of visible-support bijections. It becomes `S_q`-valued only in the full-support sector.
+
+### Exact global gluing
+
+Let
+
+\[
+R_g=\bigcup_C\operatorname{graph}(\phi_{g,C}).
+\]
+
+Then
+
+\[
+\boxed{
+g\in Aut^{an}(D,c)
+\iff
+R_g\text{ is the graph of a permutation of }O.}
+\]
+
+Hence Model-T failure for `q>=3` has two structurally distinct layers:
+
+\[
+\boxed{
+\text{local proper-coloring ambiguity}
++
+\text{inter-component gluing ambiguity}.
+}
+\]
+
+### Safe full-support cost layer
+
+After local phase existence,
+
+\[
+0\le\lambda_q^{ph}(D,c)\le(q-1)(r-1),
+\]
+
+and the worst-case abstract point-image synchronization capacity satisfies
+
+\[
+\boxed{r-1\le L_q(r)\le(q-1)(r-1).}
+\]
+
+Exact `L_q(r)` for `q>=3` remains open. No real-cell multicolor `alpha_q` is presently defined.
+
+## Updated structural hierarchy
 
 \[
 \boxed{
 \begin{array}{rcl}
-q=2 &:& \text{ternary phase propagation is exact},\\
-q\ge3 &:& \text{ternary local equality has gauge freedom},\\
-q\ge3 &:& \text{four-ary arbitrary-cell equality is exact}.
+q=2 &:& \text{connected sparse comparison geometry carries a phase bit},\\
+q\ge3 &:& \text{connectedness need not produce any color phase},\\
+q\ge3 &:& \text{universal local state is proper-coloring transport},\\
+\text{phase-admissible sector} &:& \text{visible-support groupoid + gluing},\\
+\text{arbitrary finite }q &:& \text{four-ary arbitrary-cell equality is exact}.
 \end{array}}
 \]
 
-This is independent of tournament geometry and balancedness.
+The conceptual phase transition is therefore deeper than noncommutativity: for `q>=3`, the obstruction can occur before a group-valued phase exists.
+
+## Publication and insertion rule
+
+Any new manuscript generated from U9/QGE3 must comply with the canonical FCOA Definition 1.0 directive on `main`.
+
+Foundation DOI:
+
+`https://doi.org/10.5281/zenodo.22164246`
+
+It must appear explicitly in the Abstract/Аннотация and as a full Foundation bibliographic entry. The manuscript body must also identify the concrete FCOA carrier/sorts/signature/baseline/erasure/recovery/arithmetic-firewall data.
+
+Already published archival Articles A and B are not rewritten merely to add this citation.
 
 ## Recommendation
 
-Recommend upstream hostile audit of U8 together with U7. The q=3 lower-bound witness should be independently re-enumerated before publication-level use; the four-ary upper bound is immediate from the equality partition/Fiber-Transport argument.
+U9 is approved for insertion into the main Rigidity Theory and for a separate focused QGE3 publication.
 
-Do not edit G4 from this subordinate branch.
+Next research target:
 
-The remaining major boundary is now **sparse/partial domains**: classify exactly when local equality propagation on the defined-cell incidence graph is sufficient, and how the required arity/cost changes when that graph disconnects.
+\[
+\boxed{L_q(r)=?}
+\]
+
+followed later by the genuinely harder real operation-cell multicolor repair problem.
