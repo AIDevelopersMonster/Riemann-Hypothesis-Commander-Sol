@@ -8,90 +8,54 @@
 
 ---
 
-## 1. Publication checkpoint — fixed
+## 1. Fixed publication checkpoint
 
 The published and audited chain remains
 
 \[
-\boxed{M0\longrightarrow G1\longrightarrow G2.}
+\boxed{M0\to G1\to G2.}
 \]
 
-Nothing in later G3/G4/Arithmetic-Leakage/generated-memory work silently revises that Zenodo publication.
+Later work does not silently revise that Zenodo publication.
 
----
-
-## 2. Post-publication rigidity chain — fixed
-
-The following remain fixed theorem checkpoints in their stated scopes:
-
-- G3 value-memory after hostile-audit repair;
-- Fiber-Transport theorem in its relative typed setup;
-- G4-C and G4-A bounded-output amplification;
-- uniform parameter-free recovery of the exact generic total order in G4-A;
-- G4-A Generic FO Collapse / Arithmetic Leakage left wall.
-
-In particular, after relationalizing G4-A,
+Post-publication fixed results include G3 value-memory after repair, the relative typed Fiber-Transport theorem, G4-C/G4-A bounded-output amplification, exact generic order recovery in G4-A, and the G4-A Generic FO Collapse:
 
 \[
 \boxed{FO(\text{G4-A generic sector})=FO[<].}
 \]
 
-Hence generic G4-A does not uniformly define canonical truncated Add, Mul, or EqGap.
+Thus G4-A is the fixed AL0/order wall.
 
 ---
 
-## 3. Additive gateway — fixed
+## 2. Arithmetic leakage map
 
-On the ordered generic base,
+On the ordered generic base, `EqGap` and truncated `Add` are uniformly FO-interdefinable.
 
-\[
-EqGap\quad\text{and}\quad Add
-\]
-
-are uniformly FO-interdefinable.
-
-Correct claim discipline:
-
-\[
-\boxed{EqGap\text{ is a canonical gateway to full additive leakage, not the globally weakest non-order enrichment}.}
-\]
-
-Arithmetic leakage levels used by the programme:
+Programme levels:
 
 - `AL0`: order wall / FO[<];
 - `AL-INT`: intermediate non-order enrichments without full addition;
 - `AL1`: uniform truncated addition / EqGap;
 - `AL2`: full arithmetic gateway, in particular uniform truncated addition and multiplication.
 
----
+The One-Cell Oracle phenomenon excludes arbitrary external size-dependent import from meaningful support optimization. Conversely, fixed-depth FO-definitional compilation from G4-A cannot leave AL0.
 
-## 4. Oracle / compilation firewall — fixed after subsequent audits
-
-The One-Cell Oracle phenomenon shows raw support minimization is meaningless if arbitrary external size-dependent data may be imported.
-
-Conversely, uniform fixed-depth FO-definitional compilation from G4-A cannot leave AL0.
-
-Thus the central programme uses a provenance firewall:
-
-\[
-\boxed{
-\text{exclude arbitrary external oracle import; require genuinely generated non-oracular memory.}
-}
-\]
+Hence admissible central mechanisms must be genuinely generated and non-oracular.
 
 ---
 
-## 5. Finite-state and regular-primitive barriers — fixed
+## 3. Fixed generation barriers
 
-`U1_FINITE_STATE_WALL.md` proves, for prefix-consistent deterministic finite-state unary generators, a strict intermediate zone
+The unary finite-state wall gives
 
 \[
 AL0<AL\text{-}FS<AL1.
 \]
 
-The broader Regular-Primitive Barrier proves that finite-copy position-regular expansions cannot uniformly define Add or EqGap. Fixed-depth nesting does not cross the barrier.
+The Regular-Primitive Barrier shows finite-copy position-regular expansions and fixed-depth nesting cannot uniformly define Add/EqGap.
 
-The corrected head-synchronization threshold is:
+Correct synchronization threshold:
 
 \[
 TC(S)\in AL0,
@@ -99,79 +63,69 @@ TC(S)\in AL0,
 TC(S\times S)=EqGap\in AL1.
 \]
 
-The source of leakage is the unbounded closure of the synchronized two-dimensional product, not the local successor-product edge relation itself.
+The leakage source is unbounded closure on the synchronized two-dimensional product.
 
 ---
 
-## 6. Base-sort support lower bound — fixed
+## 4. Fixed support lower bound
 
-For an explicit ordered base carrier `[m]`, one fixed finite bounded-arity added signature, ordinary FO query language, all added primitive tuples charged, and no uncharged growing auxiliary carrier, uniform recovery of canonical truncated addition requires
+For the explicit ordered base carrier `[m]`, fixed finite bounded-arity added signature, ordinary FO queries, all added primitive tuples charged, and no uncharged growing auxiliary carrier:
 
 \[
-\boxed{\Omega(m)}
+\boxed{Add\text{ requires }\Omega(m)\text{ materialized added support}.}
 \]
 
-materialized added support.
-
-This lower bound permits arbitrary `m`-dependent relations; therefore it applies a fortiori to the narrower generated-history families used below.
+This lower bound allows arbitrary `m`-dependent relations and therefore applies to all narrower generated-history witnesses used below.
 
 ---
 
-## 7. Binary history compression — fixed overshoot witness
+## 5. Binary history overshoot
 
-A locally generated binary counter materializes full bit history with
+The generated binary full-history construction has
 
 \[
 \Theta(m\log m)
 \]
 
-support.
-
-The history uniformly exposes BIT and reaches the full arithmetic phase:
+materialized support and exposes BIT/full arithmetic:
 
 \[
 \boxed{AL2.}
 \]
 
-Thus support density and arithmetic leakage are orthogonal: a sparser generated history can leak more arithmetic than a denser one.
+This fixed result first established that support density and leakage strength are independent axes.
 
 ---
 
-## 8. Zeckendorf selective additive memory — hostile-audited exact AL1
+## 6. Zeckendorf selective additive memory — hostile-audited
 
-The self-anchored Fibonacci/Zeckendorf history uses
+The self-anchored incidence relation
 
 \[
-Z(n,p)\iff p\text{ is a Fibonacci weight used in the canonical representation of }n.
+Z(n,p)
 \]
 
-The generator does not query Fibonacci indices, Add, Mul, EqGap, rank, or final size. Digit anchors are internal:
+records the Fibonacci weights occurring in the canonical Zeckendorf representation of `n`.
+
+No Fibonacci-index, Add, Mul, EqGap, rank, or final-size oracle is queried. Digit anchors are internal:
 
 \[
 FibPos(p)\iff Z(p,p).
 \]
 
-The synchronous Fibonacci adder used in the construction has an aperiodic transition monoid (verified independently in `verify_zeckendorf_adder_aperiodic.py`), so addition is FO-realizable over digit positions.
+The Fibonacci addition automaton used by the construction has an independently verified aperiodic transition monoid, permitting an FO addition definition over digit positions.
 
-The infinite Zeckendorf incidence envelope is automatic/decidable, yielding the multiplication firewall by prefix lifting.
-
-Therefore
+The infinite Zeckendorf incidence envelope is automatic/decidable. Therefore
 
 \[
 \boxed{Add,EqGap\in FO(<,Z),\qquad Mul\notin FO(<,Z).}
 \]
 
-Hence the generated Presburger Compression Corridor is nonempty.
-
-Full positive-incidence support is
-
-\[
-\Theta(m\log m).
-\]
+So the generated Presburger Compression Corridor is nonempty. Full positive-incidence support is `Theta(m log m)`.
 
 ---
 
-## 9. Zeckendorf event compression — hostile-audited optimal linear AL1
+## 7. Optimal linear Zeckendorf event compression — hostile-audited
 
 Files:
 
@@ -179,7 +133,7 @@ Files:
 - [`HOSTILE_AUDIT_ZECKENDORF_EVENT_COMPRESSION.md`](HOSTILE_AUDIT_ZECKENDORF_EVENT_COMPRESSION.md)
 - verifier: `../../experiments/fcoa-domain-compilation/verify_event_compression_phase_split.py`
 
-Define differential event relations
+Store only digit changes:
 
 \[
 U(n,p):0\to1,
@@ -187,7 +141,7 @@ U(n,p):0\to1,
 D(n,p):1\to0.
 \]
 
-For every `n>=1`, Zeckendorf successor creates exactly one new `1` digit. If `s_F(n)` is the number of Zeckendorf summands, then for every prefix `[m]`
+Every Zeckendorf increment creates exactly one new `1`. Therefore for every prefix `[m]`, with `s_F` the Zeckendorf summand count,
 
 \[
 |U_m|=m-1,
@@ -197,27 +151,21 @@ For every `n>=1`, Zeckendorf successor creates exactly one new `1` digit. If `s_
 |D_m|=m-1-s_F(m-1),
 \]
 
-and therefore
+and
 
 \[
 \boxed{|U_m|+|D_m|=2m-2-s_F(m-1)=\Theta(m).}
 \]
 
-Latest-event integration uniformly reconstructs the full Zeckendorf incidence relation, while `U,D` are uniformly FO-definable back from consecutive `Z` rows. Thus the full-state and event-state families are uniformly FO-interdefinable.
+Latest-event integration recovers the full `Z` relation, and the event relations are uniformly FO-definable back from consecutive `Z` rows. Hence full-state and event-state presentations are uniformly FO-interdefinable and remain exact AL1.
 
-The arithmetic phase is unchanged:
-
-\[
-\boxed{\text{Zeckendorf events are exact }AL1.}
-\]
-
-Resource passport of the direct generator:
+Direct generator resource passport:
 
 \[
 \boxed{(\text{materialized support},\text{transient workspace})=(\Theta(m),O(\log m)).}
 \]
 
-Combining with the base-sort lower bound closes the support optimization problem in the declared model:
+Combining with the base-sort lower bound closes the support optimization problem:
 
 \[
 \boxed{C_{AL1}^{generated,base}(m)=\Theta(m).}
@@ -225,7 +173,7 @@ Combining with the base-sort lower bound closes the support optimization problem
 
 ---
 
-## 10. Equal-linear-cost binary event family — fixed comparison
+## 8. Equal-linear-cost AL1/AL2 phase split — fixed
 
 Applying the same differential encoding to binary counting gives
 
@@ -235,15 +183,9 @@ Applying the same differential encoding to binary counting gives
 =\Theta(m).
 \]
 
-Latest-event integration reconstructs BIT, and the event presentation is uniformly FO-interdefinable with the binary history.
+Latest-event integration reconstructs BIT, so the differential binary history remains AL2.
 
-Therefore
-
-\[
-\boxed{\text{binary/BIT events remain }AL2.}
-\]
-
-We now have two generated families with the same optimal linear materialized support but different arithmetic phases:
+Thus:
 
 \[
 \boxed{
@@ -255,24 +197,18 @@ binary/BIT\ events & \Theta(m) & AL2
 \end{array}}
 \]
 
-Hence scalar support, event density, and amortized number of changes do not determine the arithmetic phase.
+Scalar support, event density, and amortized change count do not determine arithmetic phase.
 
 ---
 
-## 11. Decidable Coherent Envelope barrier — hostile-audited semantic separator
+## 9. Decidable Coherent Envelope barrier — hostile-audited
 
 Files:
 
 - [`DECIDABLE_COHERENT_ENVELOPE_PHASE_BARRIER.md`](DECIDABLE_COHERENT_ENVELOPE_PHASE_BARRIER.md)
 - [`HOSTILE_AUDIT_DECIDABLE_COHERENT_ENVELOPE.md`](HOSTILE_AUDIT_DECIDABLE_COHERENT_ENVELOPE.md)
 
-For a prefix-coherent family `A_m` on `[m]`, define `DCE` to mean existence of a coherent infinite envelope
-
-\[
-A_\infty=(\mathbb N,<,\ldots)
-\]
-
-with decidable FO theory and
+For a prefix-coherent family `A_m`, `DCE` means existence of a coherent infinite envelope `A_infty` with decidable FO theory and
 
 \[
 A_m=A_\infty\upharpoonright[m]
@@ -280,53 +216,69 @@ A_m=A_\infty\upharpoonright[m]
 
 for every `m`.
 
-The prefix-relativization lemma gives a uniform lift of any prefix-coherent relation from fixed finite formulas to the infinite envelope.
-
-Therefore:
-
-### Decidable Coherent Envelope Barrier
-
-If truncated addition is uniformly FO-definable and DCE holds, then truncated multiplication is not uniformly FO-definable:
+The prefix-relativization/lift theorem yields the semantic firewall
 
 \[
-\boxed{DCE+AL1\Longrightarrow\neg AL2.}
+\boxed{DCE+Add\Longrightarrow\neg Mul.}
 \]
 
-Equivalently, any prefix-coherent AL2 family admits no decidable coherent envelope:
+Hence
 
 \[
 \boxed{AL2\Longrightarrow\neg DCE.}
 \]
 
-For the canonical linear examples:
+For the equal-cost examples:
 
 \[
-\boxed{DCE(Zeckendorf\ events)}
+\boxed{DCE(Zeckendorf\ events),}
 \]
 
-because the infinite Fibonacci/Zeckendorf incidence/event structure is word-automatic and therefore has decidable FO theory, whereas
+while
 
 \[
-\boxed{\neg DCE(binary/BIT\ events)}
+\boxed{\neg DCE(binary/BIT\ events).}
 \]
 
-because their uniform Add+Mul would contradict the DCE barrier.
-
-DCE is preserved under coherent uniform FO definitional reductions; under mutual definitional equivalence it is invariant.
-
-Thus the equal-linear-cost phase split now has a rigorous semantic separator, not merely a presentation heuristic.
+DCE is preserved under coherent uniform FO definitional reductions and is invariant under coherent mutual definitional equivalence.
 
 ---
 
-## 12. Current fixed ledger
+## 10. Coherent FO-interpretation invariance — fixed theorem checkpoint
+
+File:
+
+- [`COHERENT_FO_INTERPRETATION_INVARIANCE.md`](COHERENT_FO_INTERPRETATION_INVARIANCE.md)
+
+The DCE separator now survives fixed-dimensional FO interpretations with:
+
+- definable tuple domains;
+- definable equivalence relations / quotients;
+- definable interpreted primitive relations;
+
+provided the finite interpretations are restrictions of one coherent infinite interpretation and old interpreted elements/classes do not change identity as the prefix grows.
+
+If `A` has DCE and `B` is obtained from `A` by such a coherently liftable FO interpretation, then
 
 \[
-\mathbf F:\ M0,G1,G2\text{ published/audited checkpoint}
+\boxed{DCE(B).}
 \]
 
+Therefore no coherently liftable fixed-dimensional FO interpretation, even with quotient, can map the Zeckendorf event family to the binary/BIT event family:
+
 \[
-\mathbf F:\ G3/G4\text{ post-publication rigidity chain in stated scopes}
+\boxed{
+\mathcal E^F
+\not\xrightarrow{\ coherent\ FO\ interpretation\ }
+\mathcal E^2.
+}
 \]
+
+This is the first rigorous non-collapse result against the “exotic recoding” objection at equal linear support.
+
+---
+
+## 11. Current fixed ledger
 
 \[
 \mathbf F:\ \text{G4-A order wall and Add/EqGap gateway}
@@ -345,59 +297,59 @@ Thus the equal-linear-cost phase split now has a rigorous semantic separator, no
 \]
 
 \[
-\mathbf F:\ \text{binary full history }\Theta(m\log m)\text{ reaches }AL2
+\mathbf F:\ \text{binary full history }\Theta(m\log m)\to AL2
 \]
 
 \[
-\mathbf F:\ \text{self-anchored Zeckendorf full history }\Theta(m\log m)\text{ is exact }AL1
+\mathbf F:\ \text{self-anchored Zeckendorf full history }\Theta(m\log m)\to exact\ AL1
 \]
 
 \[
-\mathbf F:\ \text{Zeckendorf event history }\Theta(m)\text{ is optimal exact }AL1
+\mathbf F:\ \text{Zeckendorf events }\Theta(m)\to optimal\ exact\ AL1
 \]
 
 \[
-\mathbf F:\ \text{binary event history }\Theta(m)\text{ remains }AL2
+\mathbf F:\ \text{binary events }\Theta(m)\to AL2
 \]
 
 \[
-\mathbf F:\ DCE+AL1\Rightarrow\neg AL2\text{ for prefix-coherent same-base families}
+\mathbf F:\ DCE+Add\Rightarrow\neg Mul
+\]
+
+\[
+\mathbf F:\ \text{DCE preserved by coherently liftable fixed-dimensional FO interpretations}
 \]
 
 ---
 
-## 13. Immediate main-line question
+## 12. Immediate main-line question
 
-The old question “can generated exact AL1 be compressed below quadratic/subquadratic support?” is closed in the declared base-sort model:
-
-\[
-\boxed{\Theta(m)\text{ is optimal}.}
-\]
-
-The old equal-linear-cost question “is there any intrinsic separator between the Zeckendorf and BIT event histories?” is also answered at the first semantic level:
+Two former central questions are now closed in the declared model:
 
 \[
-\boxed{DCE\text{ separates the canonical examples}.}
+\boxed{\text{optimal generated exact-AL1 support}=\Theta(m),}
 \]
 
-The current central problem is now strictly sharper:
+and
 
 \[
-\boxed{
-\text{Can DCE, or a strengthening of it, be made invariant under broad FO interpretations}
-}
+\boxed{\text{canonical equal-linear-cost AL1/AL2 families are semantically separated by DCE}.}
 \]
 
-including multi-dimensional interpretations, quotients, and nontrivial carrier recodings, while retaining a usable AL1/AL2 barrier?
+The interpretation objection is also closed for **coherently liftable fixed-dimensional FO interpretations, including quotients**.
 
-Parallel generalization target:
+The remaining invariance frontier is therefore narrower:
 
 \[
 \boxed{
-\text{Aperiodic Automatic Numeration Corridor}
+\text{When does a uniform sequence of finite FO interpretations automatically admit a coherent infinite lift?}
 }
 \]
 
-— characterize numeration histories with (i) decidable/automatic coherent envelope, (ii) FO-realizable addition, and (iii) amortized `O(1)` successor changes, so that differential materialization yields optimal linear exact AL1.
+Parallel publication-bearing generalization target:
 
-These are the next publication-bearing strikes.
+\[
+\boxed{\text{Aperiodic Automatic Numeration Corridor}.}
+\]
+
+Goal: characterize numeration histories with (i) decidable/automatic coherent envelope, (ii) FO-realizable addition, and (iii) amortized `O(1)` successor changes, so that differential materialization yields optimal linear exact AL1.
