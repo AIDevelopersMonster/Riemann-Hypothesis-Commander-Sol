@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "title": "Optimal Linear Additive Memory in Finite Ordered Structures: Zeckendorf Events and Decidable-Envelope Phase Barriers",
+    "upload_type": "publication",
+    "publication_type": "workingpaper",
+    "description": "We study generated memory required for first-order arithmetic recovery on finite ordered carriers. In a fixed finite bounded-arity base-sorted signature, uniform truncated addition requires Omega(m) added primitive support. A prefix-generated differential Zeckendorf history attains this bound: storing only digit-change events gives |U_m|+|D_m|=2m-2-s_F(m-1)=Theta(m), while the full Zeckendorf incidence relation and truncated addition remain uniformly first-order recoverable. The resulting family is exact AL1: multiplication is excluded by a Decidable Coherent Envelope (DCE) barrier. Differential binary/BIT history also has Theta(m) support but remains AL2, proving that equal linear materialized cost does not determine arithmetic phase. DCE is preserved under coherently liftable fixed-dimensional first-order interpretations, including definable quotients, yielding a non-collapse theorem between the linear Zeckendorf and BIT event families. English and Russian manuscripts and reproducibility scripts are included.",
+    "creators": [{"name":"Malachevsky, Alex","orcid":"0009-0008-6009-3196"}],
+    "publication_date": "2026-08-30",
+    "version": "1.0",
+    "license": "MIT",
+    "keywords": ["finite model theory","automatic structures","Zeckendorf numeration","first-order arithmetic","BIT predicate","generated memory","representation cost","finite-carrier operator algebra","decidable coherent envelope","first-order interpretation","arithmetic leakage","Commander Sol"],
+    "related_identifiers": [
+      {"identifier":"10.5281/zenodo.22129787","relation":"isSupplementTo","scheme":"doi"},
+      {"identifier":"https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol","relation":"isSupplementTo","scheme":"url"}
+    ]
+  },
+  "release_notes": "Version 1.0 publication package prepared. Zenodo DOI for this record has not yet been reserved; insert it only after a draft DOI is assigned."
+}
