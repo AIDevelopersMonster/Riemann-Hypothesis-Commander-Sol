@@ -46,6 +46,16 @@ Core results:
 
 `|O|=1 -> VRI=1`, while `|O|=2 -> VRI=n!` is attainable; the sparsest maximally rigid two-output fiber is linked to the classical minimum identity-digraph extremal `m(n)`, with exact finite evaluation, second-order asymptotics, and a partial-layer phase law.
 
+### FCOA-Z · Symmetric Coordinate Completion
+
+**Reflections on How a Ray Becomes an Axis: And Why Old Operations Reveal New Local Laws after a Second Direction Appears**  
+Zenodo DOI: **[10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)**  
+GitHub companion: [`delegated/FCOA_Z_SYMMETRIC_LINE/`](delegated/FCOA_Z_SYMMETRIC_LINE/)
+
+Core progression:
+
+`rooted ray -> minimal reversible completion -> derived reflection -> legacy-operation transfer -> punctured radialization -> mixed-sector localization`.
+
 ## Programme map
 
 The project is organized as a sequence of labeled research branches:
@@ -88,6 +98,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-04 · FIREWALL — planned
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
+- FCOA-Z · SYMMETRIC COORDINATE COMPLETION — published, DOI 10.5281/zenodo.22169264; research branch continues
 
 ## AI collaboration disclosure
 
