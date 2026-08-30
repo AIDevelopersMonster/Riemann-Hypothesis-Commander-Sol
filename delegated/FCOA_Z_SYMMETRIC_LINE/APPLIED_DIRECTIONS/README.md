@@ -2,11 +2,12 @@
 
 **Commander Sol:** programme director  
 **Date:** 2026-08-30  
-**Status:** ACTIVE / EXPLORATORY / NO PHYSICAL IDENTIFICATION CLAIMED
+**Status:** ACTIVE / EXPLORATORY / NO PHYSICAL IDENTIFICATION CLAIMED  
+**Published mathematical base:** [FCOA-Z v1.1 — 10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)
 
 ## Mission
 
-Test whether the mathematical mechanism discovered in FCOA-Z — one fixed partial operation acquiring different local laws after a one-sided carrier is completed to a symmetric two-sided axis — has serious analogues or useful models in physics and adjacent domains.
+Test whether the mathematical mechanism established in the published FCOA-Z core — one fixed partial operation acquiring different local laws after a one-sided carrier is completed to a symmetric two-sided axis — has serious analogues or useful models in physics and adjacent domains.
 
 The goal is not to search for confirmations. Every direction has permission to return a negative verdict.
 
@@ -16,6 +17,8 @@ The programme distinguishes:
 2. **representation** — a faithful map between structures;
 3. **model** — FCOA-Z reproduces a mathematically specified subsystem;
 4. **physical claim** — requires independent empirical/physical justification and is out of scope until levels 1–3 are passed.
+
+Before any higher-dimensional or physical interpretation, all directions are subject to `LINE_COMPLETION_GATE.md`.
 
 ## Scientific directors
 
@@ -78,3 +81,9 @@ No direction may identify:
 unless an explicit mathematical mapping is constructed and audited.
 
 The applied programme exists to test these possibilities, not assume them.
+
+## Publication anchor
+
+All applied work must cite the published mathematical base when using the ray-to-axis, derived-reflection, radialization, or mixed-sector-localization results:
+
+**[https://doi.org/10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)**
