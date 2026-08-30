@@ -2,14 +2,18 @@
 
 **Branch:** `director/fcoa-z-symmetric-line`  
 **Working directory:** `delegated/FCOA_Z_SYMMETRIC_LINE/`  
-**Status:** PUBLISHED CORE / ACTIVE RESEARCH CONTINUATION  
+**Status:** PUBLISHED CORE / PUBLISHED SHADOW-RECONSTRUCTION LAYER / ACTIVE 1D RESEARCH  
 **Started:** 2026-08-30  
 **Parent programme:** FCOA — Fixed-Carrier Oriented Algebra  
-**Published paper:** [10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)
+**Published papers:**  
+- [10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264) — signed-line completion and mixed-sector localization  
+- [10.5281/zenodo.22179357](https://doi.org/10.5281/zenodo.22179357) — classical shadows, matrix units, and reconstruction
 
 ---
 
-## 0. Published milestone
+## 0. Published milestones
+
+### 0.1 Signed-line theorem nucleus
 
 The first FCOA-Z theorem nucleus is published as:
 
@@ -34,7 +38,40 @@ Published chain:
 }
 \]
 
-The publication closes the first theorem nucleus, not the research programme. Mixed-sign generators, output re-entry, line-completion/no-go theorems, and dimension-forcing tests remain active research.
+### 0.2 Shadow-reconstruction theorem layer
+
+The second FCOA-Z publication is:
+
+**Classical Algebra as a Resolution-Dependent Shadow of a One-Dimensional Partial Geometry: Collapse, Matrix Units, and Reconstruction in FCOA-Z**  
+Zenodo DOI: **[10.5281/zenodo.22179357](https://doi.org/10.5281/zenodo.22179357)**
+
+Published chain:
+
+\[
+\boxed{
+\begin{array}{c}
+\text{direct associativization}
+\Rightarrow
+\text{coordinate collapse},\\[1mm]
+\text{legacy translations}
+\Rightarrow
+ e_0
+\Rightarrow
+\{E_{ij}\}
+\Rightarrow
+M_{\mathrm{fin}}(\mathbb Z,K),\\[1mm]
+(I,U,V)
+\Rightarrow
+\text{rooted signed-line reconstruction},\\[1mm]
+(I,U,V)
+\not\Rightarrow
+\text{primitive provenance / definedness / terminal attachment}.
+\end{array}}
+\]
+
+The publication establishes that ordinary associative algebra can arise as a resolution-dependent operator shadow without replacing the primitive partial laws. It also separates recoverable carrier geometry from operation-level information that the classical shadow forgets.
+
+Both publications remain strictly one-dimensional at the carrier level. No second independently iterable coordinate is introduced in the shadow-reconstruction paper.
 
 ---
 
@@ -62,6 +99,8 @@ This keeps the FCOA Arithmetic Firewall intact:
 \text{signed coordinates}\neq\text{primitive }+\text{ or }\times.
 \]
 
+The later Shadow Ladder result changes the role of that firewall: classical algebra is no longer treated as a failure mode. Instead the programme records **which FCOA information is forgotten before a classical law appears**.
+
 ---
 
 ## 2. Why this branch is separate
@@ -76,7 +115,8 @@ FCOA-Z changes the order of construction:
 4. define successor/predecessor across the origin;
 5. prove that this signed completion is the integer line as a pointed oriented-line structure;
 6. only afterwards ask which arithmetic relations are generated or recovered;
-7. only afterwards extend the legacy FCOA operations and their output channels.
+7. only afterwards extend the legacy FCOA operations and their output channels;
+8. then study classical operator shadows and the exact resolution at which source information is lost or reconstructed.
 
 Thus this branch does **not** invalidate the earlier integer-line note. It supplies a stronger foundational route to its ambient carrier.
 
@@ -163,9 +203,15 @@ The branch asks whether a given signed FCOA structure recovers
 
 rather than assuming these relations.
 
+### 4.7 Classical algebra is a shadow-resolution question
+
+The branch now also asks whether ordinary groups, rings, matrix algebras, and associative algebras occur as operator shadows and, when they do, exactly which source distinctions survive.
+
 ---
 
-## 5. Published theorem nucleus
+## 5. Published theorem nuclei
+
+### 5.1 Signed completion and radialization
 
 The first publication establishes, with proofs:
 
@@ -183,7 +229,22 @@ The first publication establishes, with proofs:
    (X^-\times X^+).
    \]
 
-The canonical mixed-sign value law is **not** part of the published theorem nucleus.
+### 5.2 One-dimensional classical shadows and reconstruction
+
+The second publication establishes, with proofs:
+
+1. **Associative Collapse.** Direct semigroup realization preserving the audited radial `oplus` cells collapses all base coordinates.
+2. **Root Isolation.** Two existing `otimes` translations isolate the root as a singleton partial identity.
+3. **Matrix-Unit Generation.** Conjugating the root projector by the existing shift yields a complete system of matrix units and
+   \[
+   M_{\mathrm{fin}}(\mathbb Z,K),
+   \]
+   containing `M_n(K)` for every finite `n` while the carrier remains one-dimensional.
+4. **Resolution Reconstruction.** The finitary matrix algebra alone forgets the line, `(I,U)` reconstructs the oriented line up to translation, and `(I,U,V)` reconstructs the rooted signed line.
+5. **Provenance No-Go.** The generated base algebra does not determine whether certain operators were primitive `oplus` translations or derived from the existing `otimes`/kinematic shadow.
+6. **Definedness and Terminal Loss.** A base-only shadow cannot reconstruct the distinction between true `UNDEF` cells and erased terminal-valued cells, nor the `share/split` terminal attachment geometry.
+
+The canonical mixed-sign value law is **not** part of either published theorem nucleus.
 
 ---
 
@@ -267,27 +328,28 @@ The controlled roadmap is recorded in `FUTURE_LADDER_0_1.md`.
 
 ## 9. Publication discipline
 
-The first FCOA-Z paper is published at:
+Published FCOA-Z papers:
 
-**[https://doi.org/10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)**
+1. **Signed-line completion / local laws** — [10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)
+2. **Classical shadows / matrix units / reconstruction** — [10.5281/zenodo.22179357](https://doi.org/10.5281/zenodo.22179357)
 
 The branch itself remains active.
 
 - No theorem is published without a proof.
 - No candidate result is promoted merely because it matches ordinary integer intuition.
-- Classical facts about pointed lines, successor structures, torsors, Cayley graphs, Presburger arithmetic, group completions, groupoids, quivers, graded algebras, or noncommutative geometry must not be claimed as FCOA discoveries.
-- Potential novelty lies in the FCOA-specific combination of fixed coordinates, partial oriented operations, typed output fibers, erasure/recovery diagnostics, sector-local law formation, and later inter-line channel composition.
+- Classical facts about pointed lines, successor structures, torsors, Cayley graphs, Presburger arithmetic, group completions, groupoids, quivers, graded algebras, Brandt matrix units, Toeplitz/Jacobson extensions, Leavitt path algebras, or noncommutative geometry must not be claimed as FCOA discoveries.
+- Potential novelty lies in the FCOA-specific mechanism by which audited partial legacy translations generate classical shadows and in the exact reconstruction-resolution hierarchy separating carrier geometry from primitive provenance, definedness, and terminal attachment.
 
 ---
 
 ## 10. Current next step
 
-The published line is now the fixed base. The active problem is:
+The signed line and its first Shadow Ladder layer are now published fixed bases. The active problem remains strictly one-dimensional:
 
 \[
 \boxed{
-\text{classify conservative realizations of mixed cells and }E\text{-outputs before allowing a second dimension}.
+\text{find the weakest enrichment that reconstructs primitive operation labels, domains, and terminal incidence without introducing a new coordinate.}
 }
 \]
 
-This includes exact tests of mixed generators, root-cell completion, output re-entry, automorphism change, commutation/association spectra, and arithmetic leakage.
+Mixed-cell and `E`-output realization remain behind the same Line Completion Gate. No proof is to be moved into a plane or higher-dimensional carrier merely because it may become easier there.
