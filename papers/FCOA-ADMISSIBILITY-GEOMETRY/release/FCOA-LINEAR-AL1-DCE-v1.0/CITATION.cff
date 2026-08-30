@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Optimal Linear Additive Memory in Finite Ordered Structures: Zeckendorf Events and Decidable-Envelope Phase Barriers"
+message: "Please cite the Zenodo record after its DOI is assigned."
+type: article
+authors:
+  - family-names: Malachevsky
+    given-names: Alex
+    orcid: https://orcid.org/0009-0008-6009-3196
+version: 1.0
+date-released: 2026-08-30
+repository-code: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
+keywords:
+  - finite model theory
+  - automatic structures
+  - Zeckendorf numeration
+  - first-order arithmetic
+  - BIT predicate
+  - generated memory
+  - finite-carrier operator algebra
+  - decidable coherent envelope
