@@ -97,7 +97,6 @@ Define the **multicolor phase-link number**
 \lambda_q^{\rm ph}(D,c)
 =
 \min\{|S|:S\text{ synchronizes }\Sigma_q(D,c)\}.
-}
 \]
 
 This is the direct nonabelian full-support analogue of the fixed-domain binary phase-link optimization.
@@ -132,7 +131,7 @@ Two permutations of a `q`-element set that agree on `q-1` points agree on the re
 \phi_i=\phi_j.
 \]
 
-Connectivity of the tree forces all component phases equal. The number of constraints is `(q-1)(r-1)`. `square`
+Connectivity of the tree forces all component phases equal. The number of constraints is `(q-1)(r-1)`. \(\square\)
 
 The bound need not be optimal because permutation bijectivity can make constraints on different component pairs interact.
 
@@ -185,10 +184,17 @@ Then
 
 \[
 \boxed{
-r-1\le L_q(r)\le(q-1)(r-1).}
+r-1\le L_q(r)\le(q-1)(r-1).
+}
 \]
 
-The lower bound follows because if the graph on component indices touched by constraints is disconnected, one connected block may be right-composed by a nontrivial permutation independently of another block while preserving all within-block constraints.
+For the lower bound, form the graph on component indices whose edges are the component pairs occurring in the selected point-image constraints. If this graph is disconnected, choose one connected block and left-compose every phase in that block by the same nontrivial permutation \(\sigma\):
+
+\[
+\pi_i\longmapsto \sigma\circ\pi_i.
+\]
+
+Every internal constraint \(\pi_i(a)=\pi_j(a)\) remains true because applying the same injective map \(\sigma\) to both sides preserves equality. The modified block can therefore differ from another disconnected block while all selected constraints remain satisfied. Hence the constraint graph must be connected and at least `r-1` constraints are necessary.
 
 For `q=2`,
 
