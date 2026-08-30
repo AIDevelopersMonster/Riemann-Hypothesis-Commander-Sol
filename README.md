@@ -46,6 +46,20 @@ Core results:
 
 `|O|=1 -> VRI=1`, while `|O|=2 -> VRI=n!` is attainable; the sparsest maximally rigid two-output fiber is linked to the classical minimum identity-digraph extremal `m(n)`, with exact finite evaluation, second-order asymptotics, and a partial-layer phase law.
 
+## FCOA publication package in final Zenodo stage
+
+### FCOA-Z · Ray to Axis / Local Law Differentiation
+
+**Reflections on How a Ray Becomes an Axis: And why old operations reveal new local laws after a second direction appears**  
+Assigned Zenodo DOI: **[10.5281/zenodo.22171473](https://doi.org/10.5281/zenodo.22171473)**  
+GitHub companion: [`papers/FCOA-Z-RAY-AXIS/`](papers/FCOA-Z-RAY-AXIS/)
+
+Core progression:
+
+`rooted ray -> reversible completion -> two-sided axis -> derived reflection -> legacy transfer -> local-law differentiation -> mixed-sector frontier`
+
+The theorem-complete bilingual v1.1 package has passed hostile-audit scope corrections and final PDF render/preflight. The DOI is embedded in both English and Russian publication PDFs. Until the Zenodo record is visibly published, this repository labels the item as final-stage rather than published.
+
 ## Programme map
 
 The project is organized as a sequence of labeled research branches:
@@ -88,6 +102,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-04 · FIREWALL — planned
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
+- FCOA-Z · RAY TO AXIS / LOCAL LAW DIFFERENTIATION — final Zenodo stage, DOI 10.5281/zenodo.22171473 assigned and embedded; publication package audited
 
 ## AI collaboration disclosure
 
