@@ -1,7 +1,7 @@
 # FCOA QGE3 — Ternary Failures for q >= 3
 
 **Branch:** `director/fcoa-rigidity-cost`  
-**Status:** theorem/counterexample note  
+**Status:** theorem/counterexample note; hostile-audit repairs applied  
 **Model:** `\mathcal T(D,c)=(G;D,Q_D)` from `MODEL_DEFINITIONS.md`
 
 ## 1. The naive componentwise S_q-phase statement is false
@@ -146,7 +146,7 @@ is automatically a well-defined permutation of the three colors, because every s
 
 Hence every domain-preserving carrier symmetry is already anonymous-color compatible. No false ternary automorphism can occur at `|D|=3`.
 
-The four-cell construction above therefore proves minimality. `square`
+The four-cell construction above therefore proves minimality. \(\square\)
 
 ### Exhaustive finite verification
 
@@ -265,11 +265,45 @@ In particular, there is no universal theory assigning one `S_q` phase to each co
 
 The explicit `q=3` witness above proves the theorem for three colors.
 
-For `q>3`, enlarge the carrier/domain by adding `q-3` colors on cells fixed setwise by the chosen carrier involution, using additional fixed carrier points if necessary, while keeping the original four-cell subsystem and its contradiction `phi(0)=1` and `phi(0)=2`. Connect the added cells to the original comparison component through cells colored so that no new equality forces removal of the original contradiction. The old carrier involution extends by fixing the added carrier points.
+For `q>3`, start with that witness on `{0,1,2}` and the involution `g=(0 1)`. For every new color
 
-The resulting comparison graph can be kept connected, all `q` colors occur, the ternary reduct still admits the involution, and the original contradiction prevents a local phase. `square`
+\[
+j\in\{3,\dots,q-1\},
+\]
 
-The extension construction is existence-level; no optimal carrier-size claim for `q>3` is made here.
+add one fresh carrier point `x_j`, fixed by `g`, and add exactly the two cells
+
+\[
+(0,x_j),\qquad(1,x_j),
+\]
+
+both colored `j`. Extend `g` by fixing every `x_j`.
+
+The two new cells of color `j` are exchanged by `g`, so the extended domain and coloring pattern relevant to Model T are `g`-invariant. They are not composable with each other because they have the same terminal endpoint `x_j`, and color `j` occurs nowhere else. Hence adding color `j` creates no new equal-colored composable pair and therefore no new tuple of `Q_D` involving color `j`.
+
+The new cells do lie in the original comparison component: for example,
+
+\[
+(1,0)\sim(0,x_j),
+\qquad
+(0,1)\sim(1,x_j).
+\]
+
+Thus the enlarged `Lambda(D)` remains connected. All `q` colors occur, and `g` still preserves `(G;D,Q_D)`. But the original four-cell subsystem is unchanged, so any putative local phase would still satisfy simultaneously
+
+\[
+\phi(0)=1
+\quad\text{from }(0,1),
+\qquad
+\phi(0)=2
+\quad\text{from }(0,2),
+\]
+
+which is impossible.
+
+Therefore the no-go holds for every `q>=3`. \(\square\)
+
+No optimal carrier-size claim for `q>3` is made here.
 
 ---
 
