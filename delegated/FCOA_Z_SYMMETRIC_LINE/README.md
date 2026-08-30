@@ -2,9 +2,39 @@
 
 **Branch:** `director/fcoa-z-symmetric-line`  
 **Working directory:** `delegated/FCOA_Z_SYMMETRIC_LINE/`  
-**Status:** ACTIVE RESEARCH / FOUNDATION PHASE  
+**Status:** PUBLISHED CORE / ACTIVE RESEARCH CONTINUATION  
 **Started:** 2026-08-30  
-**Parent programme:** FCOA — Fixed-Carrier Oriented Algebra
+**Parent programme:** FCOA — Fixed-Carrier Oriented Algebra  
+**Published paper:** [10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)
+
+---
+
+## 0. Published milestone
+
+The first FCOA-Z theorem nucleus is published as:
+
+**Reflections on How a Ray Becomes an Axis: And Why Old Operations Reveal New Local Laws after a Second Direction Appears**  
+Zenodo DOI: **[10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)**
+
+Published chain:
+
+\[
+\boxed{
+\text{rooted ray}
+\to
+\text{minimal reversible completion}
+\to
+\text{derived reflection}
+\to
+\text{legacy-operation transfer}
+\to
+\text{punctured radialization}
+\to
+\text{mixed-sector localization}.
+}
+\]
+
+The publication closes the first theorem nucleus, not the research programme. Mixed-sign generators, output re-entry, line-completion/no-go theorems, and dimension-forcing tests remain active research.
 
 ---
 
@@ -24,7 +54,7 @@ The core design decision is:
 \boxed{\text{do not assume }\mathbb Z\text{ as arithmetic; construct the signed line as a symmetry completion of the rooted ray.}}
 \]
 
-The resulting carrier will then be proved canonically isomorphic, as an oriented pointed line, to the ordinary integer line.
+The resulting carrier is canonically isomorphic, as an oriented pointed line, to the ordinary integer line.
 
 This keeps the FCOA Arithmetic Firewall intact:
 
@@ -41,10 +71,10 @@ The existing note `papers/FCOA-ADMISSIBILITY-GEOMETRY/SUCCESSOR_RECURSION_AND_IN
 FCOA-Z changes the order of construction:
 
 1. start from the rooted natural-coordinate ray;
-2. add a mirrored branch around the fixed origin;
-3. define the reflection involution geometrically;
+2. construct the second direction by minimal reversible completion;
+3. derive the reflection involution from the reversible orbit and fixed root;
 4. define successor/predecessor across the origin;
-5. prove that this signed completion is the integer line;
+5. prove that this signed completion is the integer line as a pointed oriented-line structure;
 6. only afterwards ask which arithmetic relations are generated or recovered;
 7. only afterwards extend the legacy FCOA operations and their output channels.
 
@@ -60,7 +90,7 @@ The unsigned starting ray is
 R=\{P_0,P_1,P_2,\ldots\}.
 \]
 
-The signed completion will have carrier
+The signed completion has carrier
 
 \[
 B^{\pm}
@@ -89,7 +119,7 @@ The important point is that `+` and `-` here are initially **branch labels**, no
 
 ## 4. Research invariants
 
-The branch must preserve the following FCOA principles.
+The branch preserves the following FCOA principles.
 
 ### 4.1 Fixed coordinate significance
 
@@ -121,7 +151,7 @@ The families
 E^+,\quad E^\ast,\quad E^\times,\ldots
 \]
 
-remain typed output channels. Their possible mirror extensions are studied separately from the base-line reflection.
+remain typed output channels. Their possible mirror extensions and re-entry laws are studied separately from the base-line reflection.
 
 ### 4.6 Arithmetic remains a leakage/recovery question
 
@@ -135,40 +165,43 @@ rather than assuming these relations.
 
 ---
 
-## 5. Initial theorem programme
+## 5. Published theorem nucleus
 
-The first foundation package must contain proofs of the following statements before any theorem is promoted to FIXED.
+The first publication establishes, with proofs:
 
-1. **Signed Completion Theorem.** The two-branch completion with its declared successor/predecessor structure is canonically isomorphic to the pointed oriented integer line.
-2. **Reflection Characterization.** The origin-fixing involution satisfying
+1. **Minimal Reversible Completion.** The rooted one-sided successor ray has a unique minimal pointed reversible completion up to unique pointed shift isomorphism.
+2. **Derived Reflection.** The fixed-root involution conjugating successor and predecessor is uniquely determined.
+3. **Symmetry-Induced Radialization.** For every non-root coordinate,
    \[
-   \nu S=P\nu
+   \boxed{x_k\oplus x_0=x_{k-\operatorname{sgn}(k)}}.
    \]
-   is unique.
-3. **Coordinate Rigidity.** Once `P_0` and the oriented successor are retained, the full base carrier has trivial automorphism group.
-4. **Erasure Symmetry Table.** Removing the origin and/or orientation produces precisely classified translation/reflection symmetries.
-5. **Finite Window Coherence.** Symmetric windows must be restrictions of one infinite signed structure; no wrap-around is permitted.
-6. **Arithmetic Firewall.** Signed completion alone does not identify any legacy operation with `+` or `\times`.
+4. **Legacy role asymmetry survives.** The old noncommutative root/nonzero behavior remains on both sides.
+5. **Mixed-Sector Localization.** Once the full nonnegative legacy substructure and reflection action are fixed, all remaining independent binary base freedom is confined to
+   \[
+   (X^+\times X^-)
+   \cup
+   (X^-\times X^+).
+   \]
+
+The canonical mixed-sign value law is **not** part of the published theorem nucleus.
 
 ---
 
-## 6. Legacy-operation transfer programme
+## 6. Legacy-operation continuation programme
 
-Only after the base signed line is fixed will the branch extend the old operation tables.
-
-Every binary operation will be split into four signed sectors:
+Every binary operation is split into four signed sectors:
 
 \[
 (++),\qquad (+-),\qquad (-+),\qquad (--).
 \]
 
-The branch will distinguish:
+The branch distinguishes:
 
-- **mirror-forced cells** — if an explicit equivariance law is adopted and proved compatible;
-- **legacy-preserved cells** — inherited from the positive ray;
+- **mirror-forced cells** — determined by an adopted and audited equivariance law;
+- **legacy-preserved cells** — inherited from the original ray;
 - **new signed cells** — genuinely new mixed-sign behaviour;
-- `UNDEF` — fixed mathematical undefinedness;
-- `OPEN` — research locations where no extension law is yet selected.
+- `UNDEF` — mathematical undefinedness retained by the current structure;
+- `OPEN` — research locations where no canonical extension law has yet been selected.
 
 No rule such as
 
@@ -178,82 +211,83 @@ No rule such as
 
 is imported by analogy with arithmetic.
 
+The first explicit mixed commutativity test generator is recorded in `MIXED_COMMUTATIVE_BRIDGE_GENERATOR_0_1.md`; it is a candidate model, not a canonical theorem.
+
 ---
 
-## 7. Output-channel programme
+## 7. Output-channel and line-completion programme
 
-The current canonical FCOA foundation already treats output families as disjoint typed sorts and terminal by default.
+The current FCOA foundation treats output families as disjoint typed sorts and terminal by default.
 
-FCOA-Z will test a signed fiber extension of the form
-
-\[
-E_n^{\alpha,+},\qquad E_n^{\alpha,-}
-\]
-
-with candidate reflection
+FCOA-Z now asks whether
 
 \[
-\nu_\alpha(E_n^{\alpha,+})=E_n^{\alpha,-}.
+E^+,\qquad E^\ast,\qquad E^\times
 \]
 
-This does **not** yet assert that every old operation commutes with reflection. Equivariance laws such as
+can be conservatively realized as re-enterable states without destroying the published line structure or silently recovering forbidden arithmetic.
 
-\[
-\nu_\alpha(x\star y)=\nu(x)\star\nu(y)
-\]
+The mandatory gate is recorded in:
 
-must be separately declared and audited.
+`APPLIED_DIRECTIONS/LINE_COMPLETION_GATE.md`.
 
-This distinction is required if the output fibers are later to become transport channels between multiple coordinate lines.
+Before any claim of emergent plane/space geometry, each realization must be classified as:
+
+- `1D-CLOSED`;
+- `1D-OBSTRUCTED`;
+- `DIMENSION-FORCING`.
+
+Only a proved dimension-forcing result or an explicit audited higher-dimensional construction licenses spatial interpretation of an output channel.
 
 ---
 
 ## 8. Long-range geometric route
 
-FCOA-Z is deliberately designed so that a later programme may replace terminal output channels by re-enterable inter-line channels.
-
-The possible progression is
+The possible progression is deliberately conditional:
 
 \[
 \boxed{
 \text{rooted ray}
 \to
-\text{zero-symmetric line}
+\text{signed line}
 \to
-\text{line with signed fibers}
+\text{line completion}
 \to
-\text{interacting lines}
+\text{independent transport candidate}
 \to
-\text{path/operator geometry}.
+\text{Cartesian or non-Cartesian geometry}.
 }
 \]
 
 Ordinary lattice geometry should arise only as a special commuting case. If longitudinal and transverse transports fail to commute or are partial, the resulting geometry need not reduce to \(\mathbb Z^d\).
 
+The controlled roadmap is recorded in `FUTURE_LADDER_0_1.md`.
+
 ---
 
 ## 9. Publication discipline
 
-This is a research branch, not a publication claim.
+The first FCOA-Z paper is published at:
+
+**[https://doi.org/10.5281/zenodo.22169264](https://doi.org/10.5281/zenodo.22169264)**
+
+The branch itself remains active.
 
 - No theorem is published without a proof.
 - No candidate result is promoted merely because it matches ordinary integer intuition.
-- Classical facts about pointed lines, successor structures, torsors, Cayley graphs, Presburger arithmetic, groupoids, quivers, or noncommutative geometry must not be claimed as FCOA discoveries.
-- Potential novelty lies in the FCOA-specific combination of fixed coordinates, partial oriented operations, typed output fibers, erasure/recovery diagnostics, resource cost, and later inter-line channel composition.
+- Classical facts about pointed lines, successor structures, torsors, Cayley graphs, Presburger arithmetic, group completions, groupoids, quivers, graded algebras, or noncommutative geometry must not be claimed as FCOA discoveries.
+- Potential novelty lies in the FCOA-specific combination of fixed coordinates, partial oriented operations, typed output fibers, erasure/recovery diagnostics, sector-local law formation, and later inter-line channel composition.
 
 ---
 
 ## 10. Current next step
 
-Construct and audit the signed base carrier before touching multiplication or multi-line geometry:
+The published line is now the fixed base. The active problem is:
 
 \[
 \boxed{
-R\rightsquigarrow B^{\pm}
-\rightsquigarrow (B^{\pm},P_0,S,P,\nu,<)
-\cong
-(\mathbb Z,0,S_{\mathbb Z},P_{\mathbb Z},-,<).
+\text{classify conservative realizations of mixed cells and }E\text{-outputs before allowing a second dimension}.
 }
 \]
 
-The isomorphism symbol above refers only to the **pointed oriented-line structure**. It does not import ordinary binary addition or multiplication.
+This includes exact tests of mixed generators, root-cell completion, output re-entry, automorphism change, commutation/association spectra, and arithmetic leakage.
