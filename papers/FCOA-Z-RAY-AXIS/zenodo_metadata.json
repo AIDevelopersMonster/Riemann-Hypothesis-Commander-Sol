@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "Reflections on How a Ray Becomes an Axis: And why old operations reveal new local laws after a second direction appears",
+    "upload_type": "publication",
+    "publication_type": "workingpaper",
+    "description": "This bilingual FCOA-Z paper starts from a rooted discrete ray with a one-sided successor and a pre-existing role-sensitive partial FCOA operation. It proves that the minimal reversible completion is a unique bi-infinite pointed orbit, derives the canonical reflection about the root, and studies reflection-equivariant legacy-preserving extensions of the original operations. The main results are Symmetry-Induced Radialization, which turns the legacy predecessor-like zero action into a punctured radial contraction on both sides of the origin, and Mixed-Sector Localization, which shows that after the nonnegative legacy substructure is fixed all remaining independent binary base freedom is confined to opposite-sign sectors. A second legacy operation provides a control contrast: the same carrier symmetry preserves left absorption and right transverse escape instead of radializing it. The work explicitly does not claim recovery of ordinary signed addition or multiplication, nor global commutativity or associativity.",
+    "creators": [
+      {
+        "name": "Malachevsky, Alex",
+        "orcid": "0009-0008-6009-3196"
+      }
+    ],
+    "publication_date": "2026-08-30",
+    "version": "1.1",
+    "doi": "10.5281/zenodo.22171473",
+    "keywords": [
+      "FCOA",
+      "partial algebra",
+      "partial operation",
+      "reversible completion",
+      "rooted ray",
+      "two-sided shift",
+      "reflection equivariance",
+      "radial contraction",
+      "mixed-sector localization",
+      "noncommutative algebra",
+      "local interaction laws",
+      "Commander Sol"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.22129787",
+        "relation": "isSupplementTo",
+        "scheme": "doi"
+      },
+      {
+        "identifier": "10.5281/zenodo.22160014",
+        "relation": "isSupplementTo",
+        "scheme": "doi"
+      },
+      {
+        "identifier": "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol",
+        "relation": "isSupplementTo",
+        "scheme": "url"
+      }
+    ]
+  }
+}
