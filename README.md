@@ -56,6 +56,18 @@ Core progression:
 
 `rooted ray -> minimal reversible completion -> derived reflection -> legacy-operation transfer -> punctured radialization -> mixed-sector localization`.
 
+### FCOA-Z · Classical Shadows and Reconstruction
+
+**Classical Algebra as a Resolution-Dependent Shadow of a One-Dimensional Partial Geometry: Collapse, Matrix Units, and Reconstruction in FCOA-Z**  
+Zenodo DOI: **[10.5281/zenodo.22179357](https://doi.org/10.5281/zenodo.22179357)**  
+GitHub companion: [`delegated/FCOA_Z_SYMMETRIC_LINE/`](delegated/FCOA_Z_SYMMETRIC_LINE/)
+
+Core progression:
+
+`associative collapse -> root isolation -> matrix units -> finitary matrix shadow -> signed-line reconstruction -> provenance/definedness/terminal no-go`.
+
+All results in this paper remain on the single signed FCOA-Z coordinate line; matrix rank is not interpreted as spatial dimension.
+
 ## Programme map
 
 The project is organized as a sequence of labeled research branches:
@@ -83,7 +95,7 @@ programme/      programme map, terminology, research questions
 papers/         one folder per RH-SOL article and related mathematical publication branches
 src/            reusable research code
 experiments/    executable experiment branches
- data/          source and derived data (large files may be release assets)
+data/           source and derived data (large files may be release assets)
 demos/          interactive demonstrations
 reviews/        external reviews and audit notes
 releases/       Zenodo/release metadata
@@ -99,6 +111,7 @@ scripts/        utility and reproducibility scripts
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
 - FCOA-Z · SYMMETRIC COORDINATE COMPLETION — published, DOI 10.5281/zenodo.22169264; research branch continues
+- FCOA-Z · CLASSICAL SHADOWS / RECONSTRUCTION — published, DOI 10.5281/zenodo.22179357; one-dimensional research continues
 
 ## AI collaboration disclosure
 
