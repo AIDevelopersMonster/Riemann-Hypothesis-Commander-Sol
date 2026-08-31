@@ -1,6 +1,6 @@
 # SOL-GRADED
 
-**Status:** CLOSED AT CURRENT SUSY SCOPE — RGPA SUCCESSOR THEORY OPEN  
+**Status:** CLOSED AT CURRENT SUSY SCOPE — RGPA TOOLKIT REPOSITIONED  
 **Date:** 2026-08-31  
 **Scientific director:** Commander Sol  
 **Parent:** `delegated/FCOA_Z_SYMMETRIC_LINE/APPLIED_DIRECTIONS/`
@@ -44,128 +44,154 @@ Direct identification of the FCOA operation with a Lie-super bracket:
 - [`REVIEW_1_RESPONSE_AND_NOVELTY_AUDIT_v0_1.md`](REVIEW_1_RESPONSE_AND_NOVELTY_AUDIT_v0_1.md)
 - [`REFLECTION_ADMISSIBILITY_INITIAL_REALIZATION_v0_4.md`](REFLECTION_ADMISSIBILITY_INITIAL_REALIZATION_v0_4.md)
 - [`PROTECTION_SAFE_QUOTIENT_PRESENTATIONS_v0_5.md`](PROTECTION_SAFE_QUOTIENT_PRESENTATIONS_v0_5.md)
+- [`NOVELTY_BOUNDARY_SEPARATION_THEOREM_v0_6.md`](NOVELTY_BOUNDARY_SEPARATION_THEOREM_v0_6.md)
 
-## Successor theory: RPM / RGPA
+## Repositioned successor framework
 
-Set level:
+The decisive novelty audit has changed the correct mathematical positioning.
 
-`reflection-partial magma (RPM)` = partial binary operation plus an involution `nu` satisfying simultaneous-reflection equivariance
+A reflection-partial magma is **not** a new foundational algebraic species. It is exactly a partial magma equipped with a `C_2`-action by automorphisms:
 
-`mu(nu x, nu y) = nu mu(x,y)`
+`RPM ~= PMag^(C_2) = Fun(B C_2, PMag)`.
 
-on an invariant partial domain.
+Likewise, the linear RGPA object is a `C_2`-equivariant partial bilinear algebra; for `char K != 2`, the `Z_2` grading is the ordinary eigenspace decomposition of the involution.
 
-Linear level:
+Accordingly, the broad claim
 
-`reflection-graded partial algebra (RGPA)` = vector space with involution `J`, invariant partial tensor domain, and linear product satisfying
+`"RPM/RGPA is a new foundational algebraic category"`
 
-`J m = m (J tensor J)`.
+is now formally rejected.
 
-For `char K != 2`, the reflection eigenspaces generate the `Z_2` grading automatically wherever the product is defined.
+The correct surviving object is a **specialized toolkit for `C_2`-equivariant partial magmas with FCOA-derived constraints**.
 
-### Classification and completion results
+## Classification and completion results
 
-1. RPMs form a category; strong embeddings preserve defined and undefined legacy cells exactly.
-2. Free linearization is a functor `K[-]: RPM -> RGPA_K`.
-3. Conservative completions form a dcpo / complete meet-semilattice under graph inclusion.
-4. The geometric exchange locus is `M_nu = Eq(R_2,swap) = {(x,nu x)}`.
-5. `Xi` is incomplete; the exact one-orbit classifier is the twisted passport `Pi_O(z)`.
-6. Multi-orbit labelled completions are diagonal quotients `G \ product Z_i`.
-7. Two-orbit interaction fibers are double-coset spaces `H_1 \ G / H_2`; factorization holds iff `G=H_1H_2`.
-8. Finite labelled completion classes are counted by Burnside's formula.
+The following results remain valid and useful, but classical group-action ingredients must be labeled as inherited machinery.
 
-### Universal-property results
+1. Conservative completions form a dcpo / complete meet-semilattice under graph inclusion.
+2. The geometric exchange locus is
+   `M_nu = Eq(nu x nu, swap) = {(x,nu x)}`.
+3. Every defined mirror cell satisfies forced reflection-mediated exchange.
+4. `Xi` is incomplete; the exact one-orbit classifier is a twisted stabilizer passport.
+5. Multi-orbit labelled completions are diagonal orbit spaces.
+6. Two-orbit interaction fibers are double-coset spaces; factorization is controlled by stabilizer products.
+7. Finite labelled completion classes are counted by Burnside's lemma.
 
-The freeness problem now has an exact trichotomy.
+These are specialized completion/exchange consequences inside the equivariant partial-magma envelope, not new general orbit theory.
 
-- Weak free RPM over bare `Set`: exists, but its product domain is empty.
-- Strong free RPM over bare `Set`: does not exist.
-- Relative initial RPM over a reflection-admissibility schema `(A_0,R,P)`: exists and is nontrivial.
+## Protected presentation results
 
-The schema semantics are:
+The REQUIRED/PROTECTED/OPEN semantics is also not outside established logical machinery.
 
-- `R` — REQUIRED cells;
-- `P` — PROTECTED `UNDEF` cells;
-- remaining cells — OPEN.
+Using a relational signature with
 
-The initial carrier is the least closure under required formal products. Every nonbase legal term has a unique tree normal form. For finite explicit `R`, the construction terminates and satisfies `|L_S| <= |A_0|+|R|`.
+- unary involution `nu`;
+- ternary functional graph relation `M(x,y,z)` for the partial product;
+- binary relation `P(x,y)` for protected absence;
 
-### Protected generators-and-relations theorem
+one obtains an ordinary universal-Horn encoding.
 
-The presentation layer is now established.
+Protected absence is the Horn integrity constraint
 
-A protected RPM presentation has the form
+`P(x,y) and M(x,y,z) -> false`.
 
-`< A_0 ; R | E ; P >`,
+Thus:
 
-where `E` is a reflection-stable family of equations between legal terms.
+- DEFINED = pair lies in the projection of `M`;
+- PROTECTED = pair lies in `P`;
+- OPEN = pair lies in neither.
 
-Let
+The relative initial realization theorem and the protection-safe quotient theorem therefore remain correct as explicit specialized constructions/algorithms, but they no longer support a claim of a fundamentally new logical framework.
 
-`theta_E = Cg_RPM(E)`
+## Separation from binary partial groups
 
-be the least RPM congruence containing the equations. Quotient multiplication is defined existentially on classes, so equations may activate previously undefined source pairs.
+The audit also proves a genuine structural separation.
 
-There are two independent requirements.
+Binary partial groups use an inverse-property involution. In Hackney's formulation, when `ab` is defined,
 
-1. **Base separation**
+`a^dagger (ab) = b`
 
-`theta_E cap (A_0 x A_0) = Delta_(A_0)`.
+and
 
-2. **Protection safety**
+`(ab) b^dagger = a`.
 
-For every `(p,q) in P`, there is no defined `(x,y) in D_F` with
+RPM reflection is instead automorphism-type:
 
-`p theta_E x` and `q theta_E y`.
+`nu(ab) = nu(a) nu(b)`.
 
-Equivalently, no protected pair becomes quotient-defined.
+The two classes are incomparable when the designated involution is retained:
 
-The main dichotomy is exact:
+- an RPM with empty multiplication domain cannot be a unital binary partial group;
+- a nonabelian group, viewed as a BPG with inversion, is not an RPM because inversion reverses multiplication order.
 
-- if `theta_E` is base-separating and protection-safe, then
-  `F(A_0,R,P)/theta_E`
-  is the initial realization satisfying `E`;
-- if either condition fails, then **no admissible realization exists at all**.
+Hence RPM is neither a weak BPG obtained by deleting axioms nor a disguised partial group.
 
-Failure is monotone: a larger congruence cannot repair a base collapse or protected-cell activation.
+## What remains FCOA-specific
 
-Thus equational identification may activate OPEN cells, but it may never activate PROTECTED cells.
+The novelty audit does **not** invalidate the FCOA-derived mathematics. The following remain the substantive content of this branch:
 
-For finite term carriers, `theta_E` is computable by finite saturation under reflection and operation coherence, followed by base/protection collision tests. This gives a decision procedure for finite protected presentations.
+- the reflection is derived from completed one-dimensional geometry rather than postulated abstractly;
+- the inherited partial domain and its protected holes are fixed by the FCOA legacy structure;
+- typed terminal outputs prevent arbitrary re-entry;
+- the root laws are role-asymmetric;
+- the mixed completion frontier is constrained by LC-style legacy conditions;
+- these extra constraints produce the odd-odd bilinear obstruction and the root-odd super-skew no-go;
+- the mirror exchange locus gives the precise surviving formal bridge to graded/exchange language.
 
-## Novelty status
+The scientific value of SOL-GRADED is therefore the **placement and obstruction theorem package**, not the discovery of a new ambient category.
 
-The literature audit continues to constrain claims.
+## Final novelty verdict
 
-Classical/standard neighboring machinery includes general partial algebras, strong homomorphisms, partial Horn / essentially algebraic free constructions, partial `*`-algebras, locality semigroups, partial groups, diagonal actions, double cosets, stabilizer chains, and Burnside enumeration.
+### Ambient category
 
-The current candidate distinctive package is narrower:
+`NOT NEW AS A FOUNDATIONAL CATEGORY`.
 
-`covariant reflection + REQUIRED/PROTECTED/OPEN semantics + protected quotient consistency + reflection/exchange equalizer + reflection-compatible completion moduli`.
+### Protected presentation semantics
 
-External priority for this exact package is not yet frozen.
+`SUBSUMED BY GENERAL PARTIAL-HORN / RELATIONAL MODEL THEORY` at the level of expressive framework.
+
+### Binary partial groups
+
+`STRICTLY DIFFERENT / INCOMPARABLE WITH DESIGNATED INVOLUTION`.
+
+### FCOA-derived exchange/no-go package
+
+`SURVIVES AS SPECIALIZED MATHEMATICS`.
 
 ## Publication status
 
-The SOL-GRADED/SUSY question remains closed and should not be published as a SUSY model.
+The previous idea of a standalone paper titled in the spirit of
 
-The successor RPM/RGPA programme now has enough internal mathematics for a standalone paper, including finite moduli, relative initial objects, and a protected generators-and-relations theory.
+`"Reflection-Graded Partial Algebras: a new algebraic theory"`
 
-Publication remains **not frozen** only because the external novelty/separation question is still unresolved.
+is abandoned.
 
-The next publication-critical step is no longer another internal theorem of the same type. It is a hostile comparison/separation theorem against the closest existing frameworks.
+Two scientifically sound publication routes remain.
+
+### Preferred route
+
+Integrate the RPM/RGPA material into the broader FCOA-Z architecture as an abstract comparison/toolkit section explaining:
+
+- why reflection generates a `Z_2` shadow;
+- where reflection becomes exchange;
+- why the analogy stops before a faithful Lie-super bracket.
+
+### Optional narrow standalone route
+
+A specialized note could still be viable under a title such as
+
+`Protected completions and exchange loci in C_2-equivariant partial magmas`,
+
+but only after a final focused literature audit against equivariant partial algebras, forbidden-domain presentations, and completion theory. Any novelty claim must concern concrete completion/exchange results, not the ambient category.
 
 ## Next frontier
 
-Priority next strike:
+The broad novelty question is closed.
 
-`SEPARATION THEOREM AGAINST PARTIAL HORN / ESSENTIALLY ALGEBRAIC / BINARY PARTIAL GROUP FRAMEWORKS`.
+Do **not** continue trying to prove that RPM/RGPA itself is new.
 
-Exact target:
+The next valuable action is architectural:
 
-1. determine whether REQUIRED/PROTECTED/OPEN protected presentations can be encoded faithfully as models of an existing essentially algebraic or partial-Horn theory with negative relational data;
-2. determine whether the RPM reflection law is a genuine specialization/reduct of known involutive partial magma / binary partial group structures;
-3. if equivalence exists, identify precisely which RPM results are instances of known general theorems;
-4. if equivalence fails, prove a structural separation theorem exhibiting a property expressible/preserved in RPM protected-completion semantics but not captured by the nearest standard framework without enrichment.
-
-This is now the decisive novelty barrier.
+1. audit and relabel all existing RPM/RGPA claims as `classical inherited`, `specialized derived`, or `FCOA-specific`;
+2. move the surviving theorem package into the FCOA-Z publication structure;
+3. pursue further mathematics only where the result depends essentially on the derived FCOA constraints rather than on generic `C_2`-equivariant partial-magma structure.
