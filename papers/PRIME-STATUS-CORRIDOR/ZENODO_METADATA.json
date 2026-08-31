@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "title": "Reflections on the Prime-Status Corridor with Commander Sol: From Exact Primehood without Order to Cardinality-Induced Arithmetic",
+    "upload_type": "publication",
+    "publication_type": "preprint",
+    "description": "A bilingual mathematical preprint introducing the Prime-Status Quotient, a multiplicative quotient preserving exact primality while erasing prime coordinates. The paper develops a definability corridor through finite phase, successor/WMSO structure, recurrence barriers, the finite-carrier arithmetic jump, equinumerosity synchronization, and the transferred Bès cardinality dichotomy.",
+    "creators": [{"name": "Malachevsky, Alex", "orcid": "0009-0008-6009-3196"}],
+    "keywords": ["prime numbers", "Skolem arithmetic", "definability", "weak monadic second-order logic", "WS1S", "finite sets", "automorphism groups", "cardinality relations", "consecutive primes", "arithmetic interpretation"],
+    "license": "cc-by-4.0",
+    "access_right": "open",
+    "language": "eng",
+    "notes": "Includes synchronized English and Russian manuscripts, DOCX/PDF publication files, bibliography, source Markdown, release metadata, and an interactive HTML companion. DOI is intentionally left pending until Zenodo reservation/publication."
+  }
+}
