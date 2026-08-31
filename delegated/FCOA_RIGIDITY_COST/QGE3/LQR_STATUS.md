@@ -6,212 +6,277 @@
 
 ## 1. Executive verdict
 
-The second LQR strike closes the entire four-phase column and exposes a general binary-cut synchronization mechanism.
+The third LQR strike proves the general large-alphabet stabilization theorem for every fixed number of phases.
 
-Previously established exact formulas remain:
+Previously established exact results remain:
 
 \[
 \boxed{L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil,}
 \qquad
 \boxed{L_q(2)=q-1,}
 \qquad
-\boxed{L_q(3)=2q-3\ (q\ge3).}
+\boxed{L_q(3)=2q-3\ (q\ge3),}
 \]
 
-The new exact four-phase theorem is
+and
 
 \[
 \boxed{
 L_q(4)=
 \begin{cases}
-3, & q=2,\\
-2q-1, & 3\le q\le5,\\
-12, & q=6,\\
-3q-7, & q\ge7.
-\end{cases}
-}
+3,&q=2,\\
+2q-1,&3\le q\le5,\\
+12,&q=6,\\
+3q-7,&q\ge7.
+\end{cases}}
 \]
 
-The full proof is in `LQR_R4_THEOREM.md`.
-
-In addition, `LQR_BINARY_CUT_GADGET.md` proves for every `r>=2` the universal construction
+The new general theorem is
 
 \[
 \boxed{
-L_q(r)\le (r-1)q-(2^{r-1}-1)
-\quad\text{whenever }q\ge2^{r-1}-1.
+L_q(r)=(r-1)q-(2^{r-1}-1)
+\qquad
+\text{for every }q\ge2^{r-1}-1.
 }
 \]
 
----
-
-## 2. Four-phase structural mechanism
-
-For four phase indices, forest reduction turns every source color into a set partition of `{0,1,2,3}` with rank
+The threshold is exact: the same formula is impossible for
 
 \[
-m_a=4-|P_a|\in\{0,1,2,3\}.
+q<2^{r-1}-1.
 \]
 
-Synchronization implies pair-union connectivity, equivalently `P_a vee P_b=1` for every pair of colors.
-
-The four-point partition lattice gives the exact coexistence rules:
-
-1. rank zero is compatible only with rank three;
-2. two rank-one partitions are never compatible;
-3. a fixed rank-one partition is compatible with exactly four rank-two partitions;
-4. there are exactly seven rank-two partitions, and any two distinct ones are compatible;
-5. rank three is compatible with everything.
-
-If `n_k` counts rank-`k` colors, then
-
-\[
-|S|=n_1+2n_2+3n_3=3q-(2n_1+n_2).
-\]
-
-The exact maximal defect is
-
-\[
-D_{\max}=2n_1+n_2=
-\begin{cases}
-q+1,&3\le q\le5,\\
-6,&q=6,\\
-7,&q\ge7.
-\end{cases}
-\]
-
-which yields the lower half of the exact theorem.
+The full proof is in `LQR_STABILIZATION_THEOREM.md`.
 
 ---
 
-## 3. Seven-cut gadget and q=6 transition
+## 2. New structural mechanism: partition defect to binary cut space
 
-For `q=7`, use all seven rank-two partitions, naturally parametrized by
+After forest reduction, every source color `a` determines a partition `P_a` of the `r` phase indices into connected components of its constraint graph.
 
-\[
-\mathbb F_2^3\setminus\{0\}.
-\]
-
-The resulting cost is `14`, and direct membership-bit recovery proves synchronization.
-
-For every `q>7`, each additional color is made connected at cost three, giving
+If `P_a` has `c_a` blocks, the per-color defect relative to a connected spanning tree is
 
 \[
-14+3(q-7)=3q-7.
+d_a=c_a-1.
 \]
 
-The isolated value `L_6(4)=12` is therefore structural: the rank-one architecture can coexist with only four rank-two colors, while the complete all-rank-two architecture has capacity seven. At `q=6` both yield maximal defect six; at `q=7` the seven-cut architecture wins permanently.
+Thus
+
+\[
+|S|=(r-1)q-\sum_a d_a.
+\]
+
+Distinguish phase `0` and identify normalized binary cuts with
+
+\[
+V=\mathbb F_2^{r-1}.
+\]
+
+Attach to a partition `P` the subspace
+
+\[
+W(P)=\{x\in V:x\text{ is constant on every block of }P\}.
+\]
+
+Then
+
+\[
+\dim W(P)=|P|-1,
+\]
+
+and
+
+\[
+W(P)\cap W(Q)=W(P\vee Q).
+\]
+
+Synchronization forces pair-union connectivity, so
+
+\[
+P_a\vee P_b=\mathbf 1
+\]
+
+for every two colors. Hence
+
+\[
+\boxed{W(P_a)\cap W(P_b)=\{0\}.}
+\]
+
+Therefore the color defects are dimensions of pairwise trivially intersecting binary subspaces.
 
 ---
 
-## 4. Universal binary-cut theorem
+## 3. Mersenne defect inequality
 
-The seven-cut construction is the `r=4` instance of a general gadget.
-
-For `r` phases, index active source colors by
+A `d`-dimensional subspace contains `2^d-1` nonzero vectors. Since the nonzero parts of the spaces `W(P_a)` are disjoint inside `F_2^{r-1}`,
 
 \[
-V=\mathbb F_2^{r-1}\setminus\{0\},
-\qquad |V|=2^{r-1}-1.
+\boxed{
+\sum_a(2^{d_a}-1)\le2^{r-1}-1.
+}
 \]
 
-Each `v in V` defines the bipartition of phase indices according to its coordinate bits, with phase `0` placed on the zero side. Connect both blocks internally by spanning trees. Each color costs `r-2` constraints.
-
-After normalizing phase `0`, phase `i` fixes pointwise every color with `v_i=0`. It preserves the complementary set `A_i={v:v_i=1}` and, for every `j!=i`, also preserves `A_i cap A_j`. The memberships in these intersections recover all remaining coordinates of a vector in `A_i`, so phase `i` fixes every active color individually.
-
-Thus the gadget synchronizes and has cost
+Since `d<=2^d-1`,
 
 \[
-(r-2)(2^{r-1}-1).
+\boxed{
+\sum_a d_a\le2^{r-1}-1.
+}
 \]
 
-Adding connected extra colors proves
+Thus every synchronizing system obeys
 
 \[
-L_q(r)\le(r-1)q-(2^{r-1}-1)
+\boxed{
+L_q(r)\ge(r-1)q-(2^{r-1}-1).
+}
 \]
 
-for every `q>=2^{r-1}-1`.
-
-This simultaneously explains the exact large-alphabet laws
-
-\[
-L_q(2)=q-1,
-\qquad
-L_q(3)=2q-3,
-\qquad
-L_q(4)=3q-7\ (q\ge7).
-\]
+This is the matching lower bound to the universal binary-cut construction.
 
 ---
 
-## 5. Current exact frontier
+## 4. Exact stabilization threshold
 
-The theorem-controlled region now contains
-
-\[
-L_2(r),\quad L_3(r),\quad L_q(2),\quad L_q(3),\quad L_q(4).
-\]
-
-The genuinely open exact sector is
+Equality in the defect cap forces equality in
 
 \[
-\boxed{q\ge4,\qquad r\ge5.}
+d_a\le2^{d_a}-1
 \]
 
-But the large-`q` upper-bound architecture is now available for every fixed `r`.
-
----
-
-## 6. Publication assessment
-
-The supervisor's publication threshold was already reached by the exact `L_3(r)` formula. It is now exceeded by a wide margin: the package contains a synchronization/unique-coloring equivalence, exact infinite row and columns, a nontrivial four-phase phase transition, and a universal exponential-size cut gadget.
-
-### Recommendation
+for every positive-defect color. Therefore every positive defect must be one-dimensional:
 
 \[
-\boxed{\text{PUBLICATION THRESHOLD STRONGLY REACHED.}}
+d_a=1.
 \]
 
-A unified LQR article is justified. Before freezing it, the most valuable final theorem would be a lower bound showing that the binary-cut defect
+To accumulate the full defect
 
 \[
 2^{r-1}-1
 \]
 
-is eventually optimal for every fixed `r`.
+requires one color for each nonzero vector in `F_2^{r-1}`. Hence at least
+
+\[
+2^{r-1}-1
+\]
+
+colors are necessary.
+
+Conversely the binary-cut gadget uses exactly those colors and attains the bound.
+
+Therefore
+
+\[
+\boxed{q_0(r)=2^{r-1}-1}
+\]
+
+is the exact onset of the linear tail.
+
+Examples:
+
+\[
+L_q(5)=4q-15\qquad(q\ge15),
+\]
+
+\[
+L_q(6)=5q-31\qquad(q\ge31),
+\]
+
+and generally
+
+\[
+L_q(r)=(r-1)q-(2^{r-1}-1)
+\]
+
+for all `q` at or beyond the exact threshold.
 
 ---
 
-## 7. Next strike
+## 5. Relation to finite geometry
 
-Define
+The unresolved finite sector now has a precise external interface.
 
-\[
-C_r(q)=(r-1)q-L_q(r).
-\]
-
-The binary-cut theorem gives
+The spaces `W(P_a)` form a mixed-dimension partial subspace packing in
 
 \[
-C_r(q)\ge2^{r-1}-1
+\mathbb F_2^{r-1}.
 \]
 
-for all `q>=2^{r-1}-1`, and exact results give eventual equality for `r=2,3,4`.
+This is adjacent to classical partial spreads and vector-space partitions. Those objects are not claimed new.
 
-The next central target is therefore:
+The FCOA/LQR-specific chain is
 
 \[
-\boxed{
-L_q(r)=(r-1)q-(2^{r-1}-1)
-\quad\text{for all sufficiently large }q?
-}
+\text{point-image synchronization}
+\to
+\text{component partitions}
+\to
+\text{binary cut spaces}
+\to
+\text{Mersenne packing inequality}
+\to
+\text{exact stabilization threshold}.
 \]
 
-Equivalent structural target: bound the total defect of a pairwise-joining family of partitions of `[r]`, weighted by `|P|-1`, and determine whether the family of all bipartitions is extremal.
+For finite `q` below the threshold, define the partition-subspace defect capacity
 
-Parallel targets remain `L_4(r)` and `L_q(5)`.
+\[
+\mathcal D_r(q)
+\]
+
+as the maximum total dimension of pairwise trivially intersecting cut spaces arising from phase partitions. Then
+
+\[
+L_q(r)\ge(r-1)q-\mathcal D_r(q).
+\]
+
+This is the natural next finite optimization problem.
+
+---
+
+## 6. Exact frontier after the third strike
+
+The large-`q` regime is now solved for every fixed `r`.
+
+What remains genuinely open is the finite pre-stabilization sector
+
+\[
+\boxed{4\le q<2^{r-1}-1,\qquad r\ge5.}
+\]
+
+The most valuable specific targets are now:
+
+1. exact `L_4(r)` for general `r`;
+2. exact `L_q(5)` for `4<=q<15`;
+3. determine when the finite-geometry defect-capacity lower bound is itself realizable by synchronizing systems;
+4. classify equality/near-equality families of partition cut spaces.
 
 No multicolor real-cell `alpha_q` is introduced.
 
-**Status:** second LQR strike complete; exact four-phase column and universal binary-cut gadget proved; research line active.
+---
+
+## 7. Publication assessment
+
+The supervisor asked for an exact formula or strong asymptotic for `L_q(r)` as a publication threshold.
+
+That target is now surpassed decisively. We have:
+
+- exact infinite `q=3` row;
+- exact `r=3` column;
+- exact full `r=4` column;
+- exact linear tail for every fixed `r`;
+- exact stabilization threshold `2^{r-1}-1`;
+- a structural bridge to finite subspace packing.
+
+### Recommendation
+
+\[
+\boxed{\text{UNIFIED LQR PAPER IS PUBLICATION-READY IN MATHEMATICAL CONTENT.}}
+\]
+
+Before freezing the manuscript, perform a hostile proof audit and a dedicated literature/priority audit focused on the cut-space/partial-spread reduction. Further finite-sector research can continue as a sequel and need not block the present paper.
+
+**Status:** major general theorem achieved; publication threshold decisively exceeded; research line remains active in the finite pre-stabilization sector.
