@@ -1,12 +1,13 @@
 # SOL-SELECTOR Research State
 
 Date: 2026-08-31
-Status: ACTIVE / quotient geometry established
+Status: ACTIVE / PREPUBLICATION HOSTILE-AUDIT THRESHOLD REACHED
 
-## Completed packages
+## Completed theorem packages
 
 1. `CATEGORY_CLOSURE_AUDIT_0_1.md`
 2. `QUOTIENT_POSET_0_1.md`
+3. `INTRINSIC_DEFINABILITY_AUDIT_0_1.md`
 
 ## Universal category layer
 
@@ -14,193 +15,171 @@ The corrected universal ladder is
 
 ```math
 \boxed{
-M_0
-\longrightarrow
-F_{\to}
-\longrightarrow
-F_{\mathrm{mix}}
-\longrightarrow
-B0
-\longrightarrow
-BR.
+M_0\to F_{\to}\to F_{\mathrm{mix}}\to B0\to BR.
 }
 ```
 
-with:
+- `M0` is initial among optional mixed extensions.
+- `F_→` is initial among full ordered mixed completions.
+- `F_mix` is initial after mixed commutativity is imposed.
+- `B0` is initial among relation-only mixed completions.
+- `BR` is the further weak quotient obtained by anchoring the unique B0 event at the root.
 
-- `M0` initial among optional mixed extensions;
-- `F_→` initial among full ordered mixed completions;
-- `F_mix` initial after mixed commutativity is imposed;
-- `B0` initial among relation-only mixed completions;
-- `BR` the further weak quotient `E_cross=x0`.
+`B0 -> BR` exists and `BR -> B0` does not when the event is distinct from the root.
 
-`B0 -> BR` exists; `BR -> B0` does not when `E_cross != x0`.
+## Pure quotient geometry
 
-## New quotient-poset theorem package
-
-After mixed commutativity, fresh events are canonically indexed by
+Fresh mixed-commutative events are indexed by
 
 ```math
 p_{ij}=\{P_i^+,P_j^-\},
-\qquad i,j\ge1,
 ```
 
-and reflection acts by
+with reflection
 
 ```math
-\nu(p_{ij})=p_{ji}.
+nu(p_ij)=p_ji.
 ```
 
-Therefore pure terminal-event quotients are exactly transposition-invariant equivalence relations on
+Pure terminal-event quotient kernels are exactly transposition-invariant equivalence relations on `N_{>0}^2`. They form a complete lattice.
+
+## Intrinsic incomparable pair
+
+The coordinate test quotients from the previous stage now have arithmetic-free structural definitions.
+
+### Intrinsic span
+
+For an opposite-branch event `{x,y}`, join the two inherited contraction histories at the root. Quotient by equality of total bridge-path size.
+
+Coordinate shadow only:
 
 ```math
-\mathbb N_{>0}^2.
+i+j.
 ```
 
-They form a **complete lattice** under intersection and equivalence closure of unions.
+### Intrinsic gap
 
-## First exact incomparable quotients
+Apply the inherited radial contraction synchronously to both endpoints until one reaches the root; forget surviving branch orientation and retain the residual rooted-history type.
 
-Canonical radial test quotients were introduced:
+Coordinate shadow only:
 
 ```math
-N_\Sigma(i,j)=i+j,
+|i-j|.
 ```
+
+These two intrinsic quotient kernels are incomparable:
 
 ```math
-N_\Delta(i,j)=|i-j|.
+\boxed{theta_span || theta_gap.}
 ```
 
-Their kernels are incomparable:
+Thus the first nonchain phenomenon does not require importing ordinary integer addition or subtraction as selector data.
 
-```math
-\boxed{
-\ker N_\Sigma\not\subseteq\ker N_\Delta,
-\qquad
-\ker N_\Delta\not\subseteq\ker N_\Sigma.
-}
-```
+## Exact intrinsic meet and join
 
-Exact meet:
-
-```math
-\boxed{
-\ker N_\Sigma\wedge\ker N_\Delta
-=\ker N_{orb},
-}
-```
-
-where
-
-```math
-N_{orb}(i,j)=\{i,j\}.
-```
-
-Exact join:
+Meet:
 
 ```math
 \boxed{
-\ker N_\Sigma\vee\ker N_\Delta
-=\ker N_{par},
+theta_span \wedge theta_gap = theta_orb,
 }
 ```
 
-where
+where `theta_orb` remembers the unordered pair of rooted contraction-history types.
 
-```math
-N_{par}(i,j)=(i+j)\bmod2.
-```
-
-Hence the selector spectrum is provably **not a chain**. It contains a genuine internal diamond-like interval before any numerical cost is introduced.
-
-## B1 placement resolved
-
-The parent `B1` construction assigns a separate terminal output to each unoriented mixed bridge.
-
-At the `F_mix` stage this is exactly the free mixed-commutative event object, so in the current one-step selector category:
-
-```math
-\boxed{B1\cong F_{mix}.}
-```
-
-## Anchoring theorem package
-
-Allowing event classes to identify with old core points changes the order theory.
-
-At the one-step weak level, anchored kernels are reflection-stable equivalence relations on
-
-```math
-C_0\sqcup E
-```
-
-whose restriction to `C0` is equality.
-
-Every event block contains at most one core anchor.
-
-Reflection forces an anchor of `C` at `a` to be paired with an anchor of `nu(C)` at `nu(a)`.
-
-For a reflection-fixed event block, the anchor must be reflection-fixed. On the signed base line the unique such base point is `P0`.
-
-Therefore:
+Join:
 
 ```math
 \boxed{
-BR\text{ is the unique reflection-compatible base-line anchoring of }B0.
+theta_span \vee theta_gap = theta_phase,
 }
 ```
 
-## First non-lattice obstruction
+where `theta_phase` remembers only the alternating two-phase class of the cross-root bridge.
 
-If one admissible quotient anchors the same event block to core point `a` and another anchors it to distinct core point `b`, no common admissible upper bound exists: any upper kernel would force `a~b`, violating pointwise core separation.
+The earlier formulas `{i,j}` and `(i+j) mod 2` are now representation formulas, not definitions.
 
-Thus:
+## Logical scope firewall
+
+The branch now explicitly distinguishes:
+
+```math
+intrinsic/canonically generated structural quotient
+```
+
+from
+
+```math
+uniform parameter-free first-order definability.
+```
+
+The former is proved. The latter is NOT currently claimed for unbounded radial-history equality, bridge-length equality, bridge phase, or synchronous cancellation in the weakest infinite reduct.
+
+This restriction is mandatory for publication wording.
+
+## B1 placement
+
+At the one-step mixed-commutative selector level:
+
+```math
+\boxed{B1 \cong F_mix.}
+```
+
+because both retain one terminal output per unoriented mixed bridge.
+
+## Anchoring geometry
+
+Anchored kernels are reflection-stable, core-separating equivalence relations on the old core plus event set.
+
+A reflection-fixed event block can anchor only to a reflection-fixed core point. On the signed base line the unique such point is `P0`.
+
+Hence:
+
+```math
+\boxed{BR is the unique reflection-compatible base-line anchor of B0.}
+```
+
+Incompatible anchors can have no common admissible upper bound. Therefore pure event quotients form a complete lattice, while the anchored quotient spectrum is generally only a poset and may lack joins.
+
+## Arithmetic-firewall verdict
+
+PASS for primitive import:
 
 ```math
 \boxed{
-\text{pure event quotients form a complete lattice,}
+\text{span/gap incomparability is intrinsic and does not assume primitive }+,-,\times.
 }
 ```
 
-but
-
-```math
-\boxed{
-\text{the anchored quotient spectrum is generally only a poset; joins may fail.}
-}
-```
-
-This is the first intrinsic non-lattice bifurcation of SOL-SELECTOR.
-
-## Status of `N_j`
-
-Earlier repository notes referred generically to radial `N_j` candidates but did not freeze a unique formula.
-
-`QUOTIENT_POSET_0_1.md` therefore introduces rigorously specified canonical test families (`N_orb`, `N_Sigma`, `N_Delta`, `N_par`) without retroactively claiming that these were the exact intended historical `N_j` formulas.
-
-A reflection-paired depth-anchor family is also available if a future naming decision wants to reserve `N_j` for anchored radial quotients.
-
-## Cost-functor decision
-
-The trigger condition for considering a Pareto cost has been met because incomparable kernels exist.
-
-Nevertheless **do not introduce a scalar cost yet**. The intrinsic quotient order contains more structure than a scalar ranking and would be damaged by premature linearization.
-
-First compute intrinsic order-theoretic observables: meet/join profile, reflection-orbit profile, fixed classes, anchorability and anchor-incompatibility graph.
+This does NOT imply low arithmetic leakage. In particular synchronous cancellation remains a deliberately arithmetic-rich control construction. Leakage is a separate invariant and must be audited separately.
 
 ## Publication status
 
-**Not yet standalone-publication ready, but now close to the first real publication threshold.**
+The previous publication-critical intrinsicity barrier has been cleared.
 
-The category and quotient-order nuclei are substantive. The remaining critical audit is whether the radial statistics used to exhibit incomparability are intrinsic to the inherited FCOA geometry or silently import ordinary arithmetic.
+SOL-SELECTOR has now reached the **prepublication hostile-audit threshold**.
+
+Do not publish yet. Before article drafting, perform:
+
+1. hostile proof audit of all theorem dependencies and quotient compatibility;
+2. literature/novelty review against equivariant partition lattices, partial-algebra congruences, rooted-tree/path quotients and bisimulation-style quotient theories;
+3. exact claim-discipline audit separating structural generation, categorical universality, FO definability and arithmetic leakage.
+
+If those checks pass without collapsing the theorem nucleus, proceed directly to RU/EN article assembly.
 
 ## Immediate next strike
 
 ```math
 \boxed{
-\text{Intrinsic Definability Audit of radial quotient statistics.}
+\text{HOSTILE AUDIT: can the selector theorem nucleus survive adversarial reconstruction?}
 }
 ```
 
-Determine whether `N_orb`, `N_Sigma`, `N_Delta`, and `N_par` can be generated/defined from the rooted reflected FCOA line without importing forbidden binary integer addition or subtraction.
+Priority attack points:
 
-The publication-grade target is an incomparable pair of quotients whose defining statistics are themselves intrinsic FCOA constructions.
+- anchoring an event to an operation-active core state;
+- quotient well-definedness for partial operations;
+- complete-lattice claim under all inherited output structure;
+- intrinsic span/gap construction without hidden coordinate assumptions;
+- infinite-event join proof;
+- exact novelty boundary.
