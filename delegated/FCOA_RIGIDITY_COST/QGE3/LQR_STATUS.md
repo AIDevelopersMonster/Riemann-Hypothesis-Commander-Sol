@@ -6,23 +6,19 @@
 
 ## 1. Executive verdict
 
-The second LQR strike closes the entire four-phase column.
+The second LQR strike closes the entire four-phase column and exposes a general binary-cut synchronization mechanism.
 
 Previously established exact formulas remain:
 
 \[
 \boxed{L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil,}
-\]
-
-\[
+\qquad
 \boxed{L_q(2)=q-1,}
+\qquad
+\boxed{L_q(3)=2q-3\ (q\ge3).}
 \]
 
-\[
-\boxed{L_q(3)=2q-3\qquad(q\ge3).}
-\]
-
-The new theorem is:
+The new exact four-phase theorem is
 
 \[
 \boxed{
@@ -38,9 +34,18 @@ L_q(4)=
 
 The full proof is in `LQR_R4_THEOREM.md`.
 
+In addition, `LQR_BINARY_CUT_GADGET.md` proves for every `r>=2` the universal construction
+
+\[
+\boxed{
+L_q(r)\le (r-1)q-(2^{r-1}-1)
+\quad\text{whenever }q\ge2^{r-1}-1.
+}
+\]
+
 ---
 
-## 2. Structural mechanism
+## 2. Four-phase structural mechanism
 
 For four phase indices, forest reduction turns every source color into a set partition of `{0,1,2,3}` with rank
 
@@ -48,15 +53,9 @@ For four phase indices, forest reduction turns every source color into a set par
 m_a=4-|P_a|\in\{0,1,2,3\}.
 \]
 
-Synchronization implies pair-union connectivity, equivalently
+Synchronization implies pair-union connectivity, equivalently `P_a vee P_b=1` for every pair of colors.
 
-\[
-P_a\vee P_b=\mathbf 1
-\]
-
-for every pair of colors.
-
-The four-point partition lattice is rigid enough to classify the possible low-rank coexistence exactly:
+The four-point partition lattice gives the exact coexistence rules:
 
 1. rank zero is compatible only with rank three;
 2. two rank-one partitions are never compatible;
@@ -70,7 +69,7 @@ If `n_k` counts rank-`k` colors, then
 |S|=n_1+2n_2+3n_3=3q-(2n_1+n_2).
 \]
 
-The compatibility classification gives the exact maximal defect
+The exact maximal defect is
 
 \[
 D_{\max}=2n_1+n_2=
@@ -81,58 +80,68 @@ q+1,&3\le q\le5,\\
 \end{cases}
 \]
 
-which yields the lower bound in the theorem.
+which yields the lower half of the exact theorem.
 
 ---
 
-## 3. Matching constructions
+## 3. Seven-cut gadget and q=6 transition
 
-For `q=3,4,5`, one rank-one partition together with up to four compatible rank-two partitions gives costs
-
-\[
-5,7,9.
-\]
-
-For `q=6`, extend the optimal `q=5` system by one individually connected color, costing three additional constraints:
-
-\[
-9+3=12.
-\]
-
-For `q=7`, use all seven rank-two partitions. They admit a natural parametrization by
+For `q=7`, use all seven rank-two partitions, naturally parametrized by
 
 \[
 \mathbb F_2^3\setminus\{0\}.
 \]
 
-The resulting seven-cut gadget has cost `14` and is proved synchronizing directly: after normalizing phase `0`, each other phase fixes the colors on one coordinate hyperplane and preserves the relevant affine intersections; two independent intersection-membership bits separate the remaining four colors pointwise.
+The resulting cost is `14`, and direct membership-bit recovery proves synchronization.
 
-For every `q>7`, add each extra color with a connected three-edge constraint graph. This gives
+For every `q>7`, each additional color is made connected at cost three, giving
 
 \[
 14+3(q-7)=3q-7.
 \]
 
+The isolated value `L_6(4)=12` is therefore structural: the rank-one architecture can coexist with only four rank-two colors, while the complete all-rank-two architecture has capacity seven. At `q=6` both yield maximal defect six; at `q=7` the seven-cut architecture wins permanently.
+
 ---
 
-## 4. Interpretation of the q=6 anomaly
+## 4. Universal binary-cut theorem
 
-The former finite table
+The seven-cut construction is the `r=4` instance of a general gadget.
+
+For `r` phases, index active source colors by
 
 \[
-5,7,9,12,14,17,20,\dots
+V=\mathbb F_2^{r-1}\setminus\{0\},
+\qquad |V|=2^{r-1}-1.
 \]
 
-is now completely explained.
+Each `v in V` defines the bipartition of phase indices according to its coordinate bits, with phase `0` placed on the zero side. Connect both blocks internally by spanning trees. Each color costs `r-2` constraints.
 
-The transition at `q=6` is not computational noise:
+After normalizing phase `0`, phase `i` fixes pointwise every color with `v_i=0`. It preserves the complementary set `A_i={v:v_i=1}` and, for every `j!=i`, also preserves `A_i cap A_j`. The memberships in these intersections recover all remaining coordinates of a vector in `A_i`, so phase `i` fixes every active color individually.
 
-- the rank-one architecture can exploit at most four rank-two partners;
-- the all-rank-two architecture has capacity seven;
-- at `q=6` both architectures have the same maximal defect six;
-- at `q=7` the complete seven-cut family becomes strictly better and remains optimal forever, with every further color costing exactly three.
+Thus the gadget synchronizes and has cost
 
-Thus four-phase synchronization exhibits a genuine finite partition-capacity transition.
+\[
+(r-2)(2^{r-1}-1).
+\]
+
+Adding connected extra colors proves
+
+\[
+L_q(r)\le(r-1)q-(2^{r-1}-1)
+\]
+
+for every `q>=2^{r-1}-1`.
+
+This simultaneously explains the exact large-alphabet laws
+
+\[
+L_q(2)=q-1,
+\qquad
+L_q(3)=2q-3,
+\qquad
+L_q(4)=3q-7\ (q\ge7).
+\]
 
 ---
 
@@ -144,17 +153,19 @@ The theorem-controlled region now contains
 L_2(r),\quad L_3(r),\quad L_q(2),\quad L_q(3),\quad L_q(4).
 \]
 
-The genuinely open sector has moved to
+The genuinely open exact sector is
 
 \[
 \boxed{q\ge4,\qquad r\ge5.}
 \]
 
+But the large-`q` upper-bound architecture is now available for every fixed `r`.
+
 ---
 
 ## 6. Publication assessment
 
-The supervisor's publication threshold was already reached by the exact `L_3(r)` formula. The second strike materially strengthens that decision: there is now a complete additional infinite column with a nontrivial phase transition and a new seven-cut construction.
+The supervisor's publication threshold was already reached by the exact `L_3(r)` formula. It is now exceeded by a wide margin: the package contains a synchronization/unique-coloring equivalence, exact infinite row and columns, a nontrivial four-phase phase transition, and a universal exponential-size cut gadget.
 
 ### Recommendation
 
@@ -162,28 +173,45 @@ The supervisor's publication threshold was already reached by the exact `L_3(r)`
 \boxed{\text{PUBLICATION THRESHOLD STRONGLY REACHED.}}
 \]
 
-This is now more naturally a unified LQR paper than a short note: it contains the synchronization/unique-coloring equivalence, exact `q=3`, exact `r=3`, exact `r=4`, universal lower bounds, and a partition-lattice transition.
+A unified LQR article is justified. Before freezing it, the most valuable final theorem would be a lower bound showing that the binary-cut defect
 
-Research should nevertheless continue before freezing the paper if one more clean theorem is accessible.
+\[
+2^{r-1}-1
+\]
+
+is eventually optimal for every fixed `r`.
 
 ---
 
 ## 7. Next strike
 
-Highest-value next targets:
-
-1. `L_4(r)` for general `r` — fixed smallest genuinely nontrivial alphabet beyond the solved `q=3` row;
-2. `L_q(5)` for general `q` — next partition-lattice column;
-3. determine whether the seven-cut construction is the first instance of a general finite-capacity family indexed by bipartitions of `[r]`;
-4. seek fixed-`r`, large-`q` asymptotics of the form
+Define
 
 \[
-L_q(r)=(r-1)q-C_r
+C_r(q)=(r-1)q-L_q(r).
 \]
 
-with an exact finite defect constant `C_r`;
-5. compare that constant with the maximum size/weight of pairwise-joining nontrivial partitions of `[r]`.
+The binary-cut theorem gives
+
+\[
+C_r(q)\ge2^{r-1}-1
+\]
+
+for all `q>=2^{r-1}-1`, and exact results give eventual equality for `r=2,3,4`.
+
+The next central target is therefore:
+
+\[
+\boxed{
+L_q(r)=(r-1)q-(2^{r-1}-1)
+\quad\text{for all sufficiently large }q?
+}
+\]
+
+Equivalent structural target: bound the total defect of a pairwise-joining family of partitions of `[r]`, weighted by `|P|-1`, and determine whether the family of all bipartitions is extremal.
+
+Parallel targets remain `L_4(r)` and `L_q(5)`.
 
 No multicolor real-cell `alpha_q` is introduced.
 
-**Status:** second LQR strike complete; exact four-phase column proved; research line active.
+**Status:** second LQR strike complete; exact four-phase column and universal binary-cut gadget proved; research line active.
