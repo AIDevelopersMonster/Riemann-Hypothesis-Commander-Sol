@@ -1,478 +1,331 @@
-# FCOA-Z — Minimal Branching Carrier for Non-Abelian Geometric Transport
+# FCOA-Z — Minimal Branching Symmetry, Lift Obstruction, and the First Coherence Bit
 
-Status: theorem package v0.1  
+Status: theorem package v0.2 — hostile-audit corrected  
 Date: 2026-08-31
 
-This note continues `OTIMES_TERMINAL_SYMMETRY_COLLAPSE.md`.
+This note supersedes v0.1 of the same file. The automorphism-group thresholds remain valid, but the earlier claim that an unlabeled seven-vertex binary tree *canonically* selects a noncommuting upper transport lift was too strong. The correction below isolates the missing datum exactly.
 
-That note showed that a non-Abelian terminal transport group is latent in the symmetry-rich `otimes` reduct but is collapsed by the one-dimensional `oplus` radial memory of the full FCOA-Z axis. It also showed a second obstruction: on a one-dimensional inward chain, one fixed homogeneous transport generator produces only a cyclic history.
+## 1. Rooted radial carrier
 
-The present note asks for the smallest carrier on which **branch geometry itself**, without an external finite-state controller, can supply multiple transport generators and make their order observable.
+Let `(T,o)` be a finite rooted tree with parent map `rho`. We study
 
-The answer separates two thresholds:
+\[
+\operatorname{Aut}(T,o,\rho).
+\]
+
+The classical recursive form of a rooted-tree automorphism group is a product of wreath-type factors coming from multiplicities of isomorphic child-subtrees.
+
+## 2. First non-Abelian ambient symmetry
+
+### Theorem 2.1 — Four-Vertex Minimum
+
+The smallest rooted tree with non-Abelian automorphism group has four vertices: a root with three leaf children.
+
+\[
+\boxed{\operatorname{Aut}(T)\cong S_3.}
+\]
+
+Every rooted tree on at most three vertices has automorphism group `1` or `C_2`, hence Abelian.
+
+So
+
+\[
+\boxed{|T|=4}
+\]
+
+is the absolute threshold for non-Abelian **ambient** rooted symmetry.
+
+This does not yet give an ordered noncommuting radial transport history: the tree has depth one.
+
+## 3. Binary threshold
+
+### Theorem 3.1 — Seven-Vertex Binary Minimum
+
+Among rooted trees of outdegree at most two, the smallest non-Abelian example has seven vertices: the complete binary tree of depth two.
+
+Let the root children be `u,v`, each carrying a two-leaf cherry. Then
 
 \[
 \boxed{
-\begin{array}{ll}
-4\text{ vertices} &: \text{smallest rooted carrier with non-Abelian automorphism group},\\
-7\text{ vertices} &: \text{smallest rooted carrier with intrinsic noncommuting radial transport history}.
-\end{array}}
-\]
-
-The second threshold is also the minimum under binary branching.
-
----
-
-## 1. Rooted radial carriers
-
-A finite rooted tree is a pair
-
-\[
-(T,o)
-\]
-
-with root `o`. Every non-root vertex `v` has a unique parent
-
-\[
-\rho(v),
-\]
-
-and radial depth
-
-\[
-d(v)=\min\{k:\rho^k(v)=o\}.
-\]
-
-We study the rooted radial automorphism group
-
-\[
-\operatorname{Aut}(T,o,\rho),
-\]
-
-the group of bijections fixing the root and commuting with the parent map.
-
-This is the natural branching replacement for the two-ray radial group used in FCOA-Z.
-
----
-
-## 2. Classical recursive structure
-
-Let the rooted child-subtrees of the root fall into rooted-isomorphism classes
-
-\[
-A_1,\ldots,A_s
-\]
-
-with multiplicities
-
-\[
-m_1,\ldots,m_s.
-\]
-
-Then the rooted automorphism group has the standard recursive form
-
-\[
 \operatorname{Aut}(T)
 \cong
-\prod_{i=1}^s
-\left(
-\operatorname{Aut}(A_i)^{m_i}\rtimes S_{m_i}
-\right).
-\]
-
-Thus symmetric groups and wreath products arise exactly from repeated isomorphic branches. This recursive mechanism is classical; the FCOA-Z question is the minimal carrier on which it can drive radial transport.
-
----
-
-## 3. Absolute automorphism threshold
-
-### Theorem 3.1 — Four-Vertex Non-Abelian Minimum
-
-Among finite rooted trees, the smallest order admitting a non-Abelian rooted automorphism group is
-
-\[
-\boxed{|T|=4.}
-\]
-
-The unique minimal shape is the rooted three-star: a root with three leaf children. Its automorphism group is
-
-\[
-\boxed{S_3}.
-\]
-
-#### Proof
-
-For one vertex, the automorphism group is trivial.
-
-For two vertices, the rooted edge has trivial automorphism group.
-
-For three vertices there are only two rooted shapes up to isomorphism relevant to symmetry: a rooted chain, with trivial group, and a root with two leaf children, with group `S_2 ~= C_2`. Both are Abelian.
-
-With four vertices, take a root with three identical leaf children. Any permutation of the three leaves is a rooted automorphism, and every rooted automorphism is such a permutation. Hence
-
-\[
-\operatorname{Aut}(T)\cong S_3,
-\]
-
-which is non-Abelian. □
-
-### Important limitation
-
-The rooted three-star has depth one. A radial trajectory traverses only one nontrivial parent edge before reaching the root. Therefore the carrier has a non-Abelian ambient symmetry group but cannot yet generate an **ordered product of two geometrically selected transport steps** along one inward path.
-
-Ambient non-Abelianity and noncommuting transport history are different thresholds.
-
----
-
-## 4. Binary branching threshold
-
-Call a rooted tree binary if every vertex has at most two children.
-
-### Theorem 4.1 — Seven-Vertex Binary Minimum
-
-The smallest binary rooted tree with non-Abelian rooted automorphism group has
-
-\[
-\boxed{7\text{ vertices}.}
-\]
-
-It is the complete rooted binary tree of depth two:
-
-- the root has two children `u,v`;
-- each of `u,v` has two leaf children.
-
-Its rooted automorphism group is
-
-\[
-\boxed{
 (C_2\times C_2)\rtimes C_2
 \cong C_2\wr C_2
-\cong D_8,
+\cong D_8.
 }
 \]
 
-of order `8`.
+#### Minimality
 
-#### Proof — existence
+For a binary rooted tree of order at most six:
 
-Each lower cherry has one nontrivial swap, giving `C_2 x C_2`. The root may exchange the two isomorphic cherries, giving another `C_2` which interchanges the two lower factors. Hence the semidirect product above.
+- one root child only recurses to a smaller tree;
+- two nonisomorphic root subtrees give a direct product of smaller groups;
+- two isomorphic root subtrees satisfy `1+2|A|<=6`, hence `|A|<=2`, so `Aut(A)=1` and the only new factor is `C_2`.
 
-#### Proof — minimality
+Thus every binary rooted tree of order at most six has Abelian automorphism group. □
 
-Proceed recursively for binary rooted trees of order at most six.
+## 4. The hostile-audit issue: branch permutation versus lift
 
-If the root has one child, the whole automorphism group is the child-subtree automorphism group, so no smaller non-Abelian example is created.
+Let the seven-vertex tree have leaves `a0,a1` under `u` and `b0,b1` under `v`.
 
-If the root has two nonisomorphic child-subtrees `A,B`, then
-
-\[
-\operatorname{Aut}(T)=\operatorname{Aut}(A)\times\operatorname{Aut}(B).
-\]
-
-For total order at most six, the child-subtrees have smaller order, and the only nontrivial automorphism group available at order at most three is `C_2`; products arising under the size bound are therefore Abelian.
-
-If the root has two isomorphic child-subtrees `A`, then
+The lower local swaps
 
 \[
-|T|=1+2|A|\le6
+s_u=(a0\ a1),\qquad s_v=(b0\ b1)
 \]
 
-forces
+are uniquely defined as automorphisms supported on the corresponding cherries.
+
+At the root, however, there is a crucial distinction.
+
+The transposition
 
 \[
-|A|\le2.
+\bar r:\{T_u,T_v\}\to\{T_u,T_v\}
 \]
 
-Every rooted tree of order at most two has trivial automorphism group, so
+of the two **branch blocks** is unique.
+
+But a lift of `bar r` to a vertex automorphism of the full tree is not unique, because an isomorphism
 
 \[
-\operatorname{Aut}(T)\cong S_2\cong C_2.
+T_u\to T_v
 \]
 
-Thus every binary rooted tree on at most six vertices has Abelian automorphism group. The seven-vertex example is minimal. □
+may be composed with an automorphism of the target cherry.
 
----
-
-## 5. Local branch swaps
-
-The seven-vertex tree supplies more than a non-Abelian ambient group.
-
-Let the root children be `u,v`. Let the two leaves under `u` be `a_0,a_1`, and the two leaves under `v` be `b_0,b_1`.
-
-Define three intrinsic local swaps:
-
-- `s_u`: exchange `a_0,a_1` and fix the rest of the tree;
-- `s_v`: exchange `b_0,b_1` and fix the rest;
-- `r`: exchange the two isomorphic depth-one subtrees, so `u <-> v` and the two cherries are exchanged.
-
-The names `a_0,a_1` are only expository. Intrinsically, `s_u` is the unique nonidentity automorphism supported on the two isomorphic children of `u`, and similarly for `s_v`; `r` is the unique nonidentity automorphism induced by the transposition of the two isomorphic root branches once the two lower subtrees are identified as whole rooted components.
-
-They satisfy
+Since
 
 \[
-r s_u r^{-1}=s_v.
+\operatorname{Aut}(T_u)\cong C_2,
 \]
 
-Because `s_u != s_v`,
+there are exactly two rooted isomorphisms `T_u -> T_v`, and correspondingly several full-tree lifts of the block transposition.
+
+Therefore the unlabeled tree canonically determines the block swap but **not a unique leaf-level element `r`**.
+
+This invalidates the stronger v0.1 phrase “geometry alone uniquely selects `r`”.
+
+## 5. Lift Torsor Theorem
+
+### Theorem 5.1
+
+Let `A` and `B` be isomorphic rooted subtrees. The set
 
 \[
-\boxed{r s_u\neq s_u r.}
+\operatorname{Iso}(A,B)
 \]
 
-Thus nested local branch swaps are genuinely noncommuting.
-
----
-
-## 6. Geometry-selected transport along a radial path
-
-The crucial point is that no external state machine is needed to select these generators.
-
-Consider a radial path beginning at a leaf `a` under `u`:
-
-\[
-a\longrightarrow u\longrightarrow o.
-\]
-
-At each contraction step, inspect the parent just entered.
-
-### Definition 6.1 — intrinsic binary edge transport
-
-If the parent has exactly two isomorphic child-subtrees, associate to the incoming edge the unique local involution that exchanges those two child-subtrees at that parent.
-
-For the path above:
-
-1. the step `a -> u` selects `s_u`;
-2. the step `u -> o` selects `r`.
-
-Therefore the ordered radial transport word is
-
-\[
-\boxed{r s_u}
-\]
-
-if transports act after each inward step in chronological composition convention.
-
-Reversing the order would give
-
-\[
-s_u r,
-\]
-
-and these are different.
-
-### Theorem 6.2 — Intrinsic Noncommuting Radial History
-
-The complete binary rooted tree of depth two supports a radial path whose successive transport generators are selected entirely by nested branch geometry and do not commute.
+of rooted isomorphisms from `A` to `B`, if nonempty, is a torsor under `Aut(A)` on the right and under `Aut(B)` on the left.
 
 #### Proof
 
-The leaf-to-root path traverses two branching parents. The lower parent selects its local child swap `s_u`; the root selects the upper branch swap `r`. Section 5 proves these elements do not commute. No external controller state or branch label is required: each generator is the unique local transposition of the two isomorphic child-subtrees at the parent currently crossed. □
+Fix one isomorphism `f:A->B`. Every other isomorphism `g:A->B` has
 
-This removes the one-dimensional obstruction found in the axis case. The transport generator is no longer globally fixed; it changes because the path crosses different branching stabilizers.
+\[
+f^{-1}g\in\operatorname{Aut}(A),
+\]
 
----
+so `g=f alpha` for a unique `alpha in Aut(A)`. The left-action statement is analogous. □
 
-## 7. Seven vertices are also minimal for intrinsic noncommuting path transport
+### Corollary 5.2 — Minimal binary lift ambiguity
 
-### Theorem 7.1 — Path-Transport Minimum
+For the seven-vertex binary tree, each upper branch-lift choice is a torsor over
 
-A finite rooted tree supporting two successive, intrinsically selected, noncommuting local branch transports along one radial path must have at least seven vertices.
+\[
+C_2.
+\]
 
-The seven-vertex complete binary depth-two tree attains the bound.
+Hence selecting a definite upper lift requires exactly
+
+\[
+\boxed{1\text{ coherence bit}.}
+\]
+
+This bit is not a depth phase. It identifies corresponding internal points across two isomorphic sibling subtrees.
+
+## 6. Canonical-selection obstruction
+
+A second way to see the problem is by symmetry.
+
+### Proposition 6.1
+
+A globally canonical choice of an element of `Aut(T)` from the unlabeled rooted tree alone must be fixed under conjugation by every automorphism of `T`; hence it must lie in
+
+\[
+Z(\operatorname{Aut}(T)).
+\]
 
 #### Proof
 
-To obtain two successive nontrivial local branch transports along one path, the path must cross two distinct branching vertices, say a lower vertex `u` and a higher ancestor `v`.
-
-At `u`, a nontrivial local permutation requires at least two isomorphic child-subtrees. The smallest possibility is two leaf children, so the rooted subtree at `u` has at least three vertices.
-
-For the transport at the higher vertex `v` to fail to commute merely as a consequence of nested branch geometry, `v` must be able to move the entire subtree containing `u` to an isomorphic sibling subtree. Therefore `v` must have at least two isomorphic child-subtrees, each of size at least three.
-
-Hence the subtree rooted at `v` has at least
+If a selection rule depends only on the isomorphism type of the rooted tree, applying any automorphism `h` to the same object cannot change the selected element. Equivariance therefore gives
 
 \[
-1+2\cdot3=7
+hgh^{-1}=g
 \]
 
-vertices.
+for all `h`, which is exactly centrality. □
 
-The complete binary depth-two tree realizes equality, and Section 6 gives a noncommuting path word. □
-
-### Corollary 7.2
-
-The same number `7` is simultaneously:
-
-- the binary threshold for a non-Abelian rooted automorphism group;
-- the absolute threshold for two-level geometry-selected noncommuting radial transport under the local-isomorphic-branch swap principle.
-
-The smaller four-vertex `S_3` star crosses only the first threshold.
-
----
-
-## 8. FCOA-Z branching transport extension
-
-The preceding statements concern carrier geometry. To connect them back to FCOA, let a boundary output object `y` carry the rooted-tree automorphism action.
-
-For a mixed reduction trajectory
+For the minimal binary tree,
 
 \[
-z=z_0\to z_1\to\cdots\to z_k=N(z),
+\operatorname{Aut}(T)\cong D_8
 \]
 
-let `g_j` be the intrinsic local branch transport selected by the `j`-th radial step on the surviving output path.
+and its center has order two. Thus the bare unlabeled carrier cannot canonically select a pair of noncommuting automorphisms.
 
-Define the transport word
+This is a structural obstruction, not merely a notation issue.
+
+## 7. What one coherence bit buys
+
+Choose one rooted isomorphism
 
 \[
-G(z)=g_{k-1}\cdots g_1g_0.
+\phi:T_u\to T_v.
 \]
 
-Then a branch-sensitive boundary extension has the form
+This is the minimal **connection datum** between the two isomorphic root branches.
+
+It determines a preferred lift `r_phi` of the root block transposition by
+
+- using `phi` from `T_u` to `T_v`;
+- using `phi^{-1}` from `T_v` to `T_u`.
+
+Then
+
+\[
+r_\phi s_u r_\phi^{-1}=s_v,
+\]
+
+so
+
+\[
+\boxed{r_\phi s_u\neq s_u r_\phi.}
+\]
+
+Therefore the seven-vertex carrier plus one coherence bit supports a definite noncommuting transport word.
+
+## 8. Corrected threshold table
+
+The valid hierarchy is
 
 \[
 \boxed{
-F(z)=G(z)\,\beta(N(z)).
-}
-\]
-
-rather than the scalar-axis form
-
-\[
-\nu^{\varepsilon(k)}\beta(N(z)).
-\]
-
-The ordered word `G(z)` can now be genuinely non-Abelian.
-
-### Theorem 8.1 — Branching Removes Unary Abelianization
-
-On the seven-vertex minimal branching carrier, there exist radial trajectories for which `G(z)` contains two noncommuting geometry-selected factors. Hence the transport history cannot in general be compressed to a scalar cancellation-depth phase or to powers of one fixed group element.
-
-#### Proof
-
-Use the leaf-to-root path of Section 6. Its transport word contains `s_u` and `r`, with `r s_u != s_u r`. Therefore the path history depends on ordered branch events, not only on path length. □
-
----
-
-## 9. A new memory invariant: transport word versus depth clock
-
-On the axis, the hidden memory was a scalar phase clock
-
-\[
-\varepsilon(k).
-\]
-
-On a branching carrier, cancellation depth `k` no longer determines transport.
-
-Two trajectories of the same length may cross different nested branch stabilizers and yield different words in `Aut(T)`.
-
-### Definition 9.1 — branch holonomy word
-
-For a reduction trajectory `z`, define
-
-\[
-\mathcal H(z)=G(z)
-\]
-
-up to the declared action kernel on the output sort.
-
-This is the natural next invariant after the scalar value-phase `Pi_F`.
-
-### Corollary 9.2
-
-Depth-memory and branch-memory are strictly different resources:
-
-\[
-\boxed{
-k(z)=k(z')\not\Rightarrow \mathcal H(z)=\mathcal H(z').}
-\]
-
-Thus branching creates a genuinely path-sensitive mixed memory rather than a richer encoding of the same unary clock.
-
----
-
-## 10. Cross-operation coherence question
-
-The `otimes` terminal-symmetry note showed that `oplus` can collapse exchangeability on the axis by recovering radial depth.
-
-On a branching carrier, preserving only the parent map `rho` does **not** kill local swaps of isomorphic child-subtrees: those swaps commute with `rho`.
-
-Therefore the symmetry-collapse theorem changes qualitatively.
-
-### Proposition 10.1
-
-If the only inherited cross-operation memory added to a rooted tree is radial contraction `rho`, then every rooted-tree automorphism remains compatible with that radial memory by definition.
-
-Hence branch automorphisms survive unless another operation distinguishes sibling branches.
-
-This is the first structural reason branching is different from the two-ray axis: radial memory determines depth but does not determine branch identity.
-
----
-
-## 11. Classical boundary
-
-The recursive appearance of symmetric groups and wreath products in automorphism groups of rooted trees is classical. Wreath products are standard semidirect products, and automorphism groups of regular rooted trees are described through iterated wreath-product structures.
-
-No novelty is claimed for:
-
-- `Aut` of a rooted star being a symmetric group;
-- `Aut` of the depth-two binary tree being `C_2 wr C_2`;
-- the general rooted-tree wreath recursion.
-
-The FCOA-Z-specific content is the threshold interpretation and transport consequence:
-
-1. distinguish ambient non-Abelian symmetry from observable noncommuting radial history;
-2. prove the thresholds `4` and `7` for those two phenomena;
-3. identify the seven-vertex binary carrier as the first geometry where successive radial steps select different noncommuting local transports without an external controller;
-4. replace the axis phase clock by an ordered branch-holonomy word;
-5. observe that radial cross-operation memory no longer collapses branch symmetry because sibling swaps preserve the parent map.
-
----
-
-## 12. Current conclusion
-
-The preceding frontier was:
-
-\[
-\text{find the minimal branching carrier whose geometry can produce genuine noncommuting transport.}
-\]
-
-It is now resolved:
-
-\[
-\boxed{
-\begin{array}{ll}
-|T|=4 &: \text{first non-Abelian ambient rooted symmetry }S_3,\\
-|T|=7 &: \text{first intrinsic noncommuting radial transport history}.
+\begin{array}{lll}
+4\text{ vertices} &:& \text{first non-Abelian ambient rooted symmetry }S_3,\\
+7\text{ vertices} &:& \text{first binary non-Abelian ambient symmetry }D_8,\\
+7\text{ vertices}+1\text{ bit} &:& \text{first definite nested noncommuting transport lift.}
 \end{array}}
 \]
 
-For the seven-vertex carrier,
+The earlier claim that the last line required zero extra coherence has been withdrawn.
+
+## 9. General coherence-cost principle
+
+The minimal case suggests the correct general invariant.
+
+Suppose a radial path enters a parent having two isomorphic child-subtrees of type `A`. The branch-block transposition is visible at the quotient level, but lifting it to a pointwise transport requires choosing an element of the torsor
 
 \[
-\operatorname{Aut}(T)\cong D_8,
+\operatorname{Iso}(A,A').
 \]
 
-and the radial path itself supplies a noncommuting ordered word.
+Once one reference isomorphism is fixed, the ambiguity is exactly `Aut(A)`.
 
----
-
-## 13. Next strike
-
-The next question is now sharper than simply enlarging the tree:
+Thus the natural finite coherence cost is
 
 \[
 \boxed{
-\text{what is the smallest FCOA operation signature that can *observe* the branch-holonomy word after carrier erasure?}
+C_{\rm lift}(A)=\log_2 |\operatorname{Aut}(A)|
 }
 \]
 
-The carrier geometry can generate `D_8`-valued transport, but publication-level significance requires proving that this ordered word survives in the operational reduct rather than disappearing when the tree relation is erased.
+bits when the automorphism group is finite, up to the usual integer coding convention.
 
-The next theorem package should therefore study **holonomy recoverability**:
+For the cherry `A`, `|Aut(A)|=2`, giving one bit.
 
-- can one recover the branch partition from operation values alone?
-- can one distinguish `r s_u` from `s_u r` in the erased reduct?
-- what is the minimum number of terminal value fibers required?
-- does one-output collapse reappear, forcing at least two or three output colors?
+This is not yet an information-theoretic optimality theorem for arbitrary FCOA encodings; it is the exact cardinality of the lift torsor.
 
-This reconnects the new branching line directly to the earlier FCOA value-rigidity programme.
+## 10. Connection versus carrier memory
+
+The new bit is categorically different from the scalar phase bit found on the axis.
+
+### Axis phase
+
+The carrier already has a canonical reflection; the hidden memory chooses whether to apply it after `k` cancellation steps:
+
+\[
+\nu^{\varepsilon(k)}.
+\]
+
+### Branch coherence
+
+The branch block permutation exists canonically, but its lift through internally symmetric subtrees is ambiguous. The memory chooses a **matching/isomorphism between sibling fibers**.
+
+So the two resources are
+
+\[
+\boxed{
+\text{depth phase memory}\neq\text{branch coherence memory}.
+}
+\]
+
+## 11. Consequence for FCOA holonomy
+
+A genuine branch-holonomy word
+
+\[
+G(z)=g_{k-1}\cdots g_0
+\]
+
+cannot be defined from the unlabeled rooted carrier alone whenever some required branch permutation has a nontrivial lift torsor.
+
+It becomes well-defined only relative to a declared connection/coherence structure.
+
+The correct FCOA extension problem is therefore not
+
+> “does branching alone produce a canonical non-Abelian phase?”
+
+but
+
+> “how little connection data is needed before branching supports noncommuting transport, and can that connection later be recovered from the operation table after erasure?”
+
+For the smallest binary carrier, the first answer is exact:
+
+\[
+\boxed{1\text{ bit}.}
+\]
+
+## 12. Classical boundary
+
+The rooted-tree wreath-product recursion and the fact that isomorphism sets are torsors under automorphism groups are classical group-action facts. Wreath products are standard semidirect products; regular rooted-tree automorphism groups are classically described by iterated wreath constructions.
+
+The FCOA-Z-specific contribution here is the memory interpretation:
+
+1. separating branch-block symmetry from pointwise lift;
+2. identifying the false-canonical-lift trap;
+3. locating the minimal seven-vertex binary carrier;
+4. proving that its first lift ambiguity is exactly a `C_2` torsor;
+5. identifying one bit as the first branch-coherence resource beyond the axis phase hierarchy.
+
+## 13. Next strike — recoverability of the coherence bit
+
+The next question is now precise:
+
+\[
+\boxed{
+\text{can the one-bit branch connection be erased from the carrier presentation and recovered from FCOA operation values?}
+}
+\]
+
+This is stronger than merely storing the bit externally.
+
+The minimum-value problem should ask:
+
+- one terminal output cannot encode incremental value-rigidity beyond definedness;
+- are two anonymous terminal values sufficient to recover the chosen lift `phi` on the seven-vertex carrier?
+- can the two possible lifts be distinguished without rigidifying the entire carrier?
+- what is the exact stabilizer index of a one-bit connection fiber?
+
+This reconnects branching holonomy directly to the published Value-Rigidity / Identity-Digraph line.
