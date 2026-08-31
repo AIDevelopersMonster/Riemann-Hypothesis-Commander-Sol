@@ -1,69 +1,14 @@
 # SOL-SELECTOR Research State
 
 Date: 2026-08-31
-Status: ACTIVE / foundational category layer stabilized
+Status: ACTIVE / quotient geometry established
 
-## Category closure audit
+## Completed packages
 
-Completed in:
+1. `CATEGORY_CLOSURE_AUDIT_0_1.md`
+2. `QUOTIENT_POSET_0_1.md`
 
-`CATEGORY_CLOSURE_AUDIT_0_1.md`
-
-Verdict: **PASS AFTER TWO STRUCTURAL CORRECTIONS**.
-
-The preservation-only morphisms do form the intended category once protected holes are treated as object admissibility conditions rather than reverse-definedness conditions on morphisms.
-
-Two defects in the first sketch were found and repaired.
-
-### Correction C1 — optional mixed domain
-
-If admissible objects may leave mixed cells undefined, an object defining every mixed cell cannot be initial.
-
-Therefore in the broad category
-
-```math
-\mathbf{Ext}_{\le M}(M_0)
-```
-
-the initial object is simply
-
-```math
-\boxed{M_0}.
-```
-
-The all-mixed free object belongs to the subcategory of **full mixed completions**.
-
-### Correction C2 — ordered versus unordered mixed cells
-
-Before mixed commutativity is imposed, the unbiased free completion must distinguish
-
-```math
-(x,y)
-```
-
-from
-
-```math
-(y,x).
-```
-
-Thus the true first full-completion free object is
-
-```math
-F_{\to},
-```
-
-with one formal output `e_(x,y)` for every ordered mixed cell.
-
-The previously proposed
-
-```math
-F_{\mathrm{mix}}
-```
-
-is the quotient imposing mixed transposition symmetry.
-
-## Current strongest structural theorem package
+## Universal category layer
 
 The corrected universal ladder is
 
@@ -81,110 +26,181 @@ BR.
 }
 ```
 
-with the following universal meanings.
+with:
 
-1. `M0` is initial among optional mixed extensions.
-2. `F_→` is initial among full mixed completions with no mixed commutativity assumed.
-3. `F_mix` is initial among full mixed-commutative completions.
-4. `B0` is initial among relation-only full mixed completions.
-5. `BR` is the further weak quotient obtained by `E_cross=x0`.
+- `M0` initial among optional mixed extensions;
+- `F_→` initial among full ordered mixed completions;
+- `F_mix` initial after mixed commutativity is imposed;
+- `B0` initial among relation-only mixed completions;
+- `BR` the further weak quotient `E_cross=x0`.
 
-The weak morphism
+`B0 -> BR` exists; `BR -> B0` does not when `E_cross != x0`.
 
-```math
-B0\to BR
-```
+## New quotient-poset theorem package
 
-exists, while
+After mixed commutativity, fresh events are canonically indexed by
 
 ```math
-BR\to B0
+p_{ij}=\{P_i^+,P_j^-\},
+\qquad i,j\ge1,
 ```
 
-does not exist if `E_cross != x0`.
-
-Hence the weak selector category does not create a `B0/BR` bifurcation.
-
-## First intrinsic information order
-
-Inside the canonical quotient-generated subcategory of `F_mix`, admissible weak partial congruences control factorization:
+and reflection acts by
 
 ```math
-\theta_A\subseteq\theta_B
-\iff
-F_{\mathrm{mix}}/\theta_A
-\longrightarrow
-F_{\mathrm{mix}}/\theta_B.
+\nu(p_{ij})=p_{ji}.
 ```
 
-Pure terminal-event quotients are classified by reflection-invariant partitions of the unordered mixed-pair set
+Therefore pure terminal-event quotients are exactly transposition-invariant equivalence relations on
 
 ```math
-P=M/\tau.
+\mathbb N_{>0}^2.
 ```
 
-`B0` is the one-block event partition. `BR` additionally anchors that event block to the old core point `x0`.
+They form a **complete lattice** under intersection and equivalence closure of unions.
 
-This separates:
+## First exact incomparable quotients
+
+Canonical radial test quotients were introduced:
 
 ```math
-\text{event-event forgetting}
+N_\Sigma(i,j)=i+j,
 ```
-
-from
 
 ```math
-\text{event-core collapse}.
+N_\Delta(i,j)=|i-j|.
 ```
 
-No external real-valued cost is currently needed.
-
-## First genuine bifurcation mechanisms identified
-
-The arrow
+Their kernels are incomparable:
 
 ```math
-B0\to BR
+\boxed{
+\ker N_\Sigma\not\subseteq\ker N_\Delta,
+\qquad
+\ker N_\Delta\not\subseteq\ker N_\Sigma.
+}
 ```
 
-is destroyed if one strengthens the first layer by either:
+Exact meet:
 
-1. primitive output-sort/externalness preservation; or
-2. strong reflection of definedness by morphisms.
+```math
+\boxed{
+\ker N_\Sigma\wedge\ker N_\Delta
+=\ker N_{orb},
+}
+```
 
-Thus those stronger requirements are now identified as explicit **bifurcation axioms**, not neutral background structure.
+where
 
-## Transport convention
+```math
+N_{orb}(i,j)=\{i,j\}.
+```
 
-At the minimal one-step selector layer, inherited transport/translation acts exactly where it was already defined on the old core. No transport orbit is automatically added to fresh mixed events.
+Exact join:
 
-This avoids silently introducing re-entry or an additional unbounded coordinate resource.
+```math
+\boxed{
+\ker N_\Sigma\vee\ker N_\Delta
+=\ker N_{par},
+}
+```
 
-## Re-entry status
+where
 
-Not part of the current theorem package.
+```math
+N_{par}(i,j)=(i+j)\bmod2.
+```
 
-If fresh outputs are required to re-enter the operation, the free object is expected to escalate from one-step event generators to a genuine term/tree closure modulo inherited equations and symmetries.
+Hence the selector spectrum is provably **not a chain**. It contains a genuine internal diamond-like interval before any numerical cost is introduced.
+
+## B1 placement resolved
+
+The parent `B1` construction assigns a separate terminal output to each unoriented mixed bridge.
+
+At the `F_mix` stage this is exactly the free mixed-commutative event object, so in the current one-step selector category:
+
+```math
+\boxed{B1\cong F_{mix}.}
+```
+
+## Anchoring theorem package
+
+Allowing event classes to identify with old core points changes the order theory.
+
+At the one-step weak level, anchored kernels are reflection-stable equivalence relations on
+
+```math
+C_0\sqcup E
+```
+
+whose restriction to `C0` is equality.
+
+Every event block contains at most one core anchor.
+
+Reflection forces an anchor of `C` at `a` to be paired with an anchor of `nu(C)` at `nu(a)`.
+
+For a reflection-fixed event block, the anchor must be reflection-fixed. On the signed base line the unique such base point is `P0`.
+
+Therefore:
+
+```math
+\boxed{
+BR\text{ is the unique reflection-compatible base-line anchoring of }B0.
+}
+```
+
+## First non-lattice obstruction
+
+If one admissible quotient anchors the same event block to core point `a` and another anchors it to distinct core point `b`, no common admissible upper bound exists: any upper kernel would force `a~b`, violating pointwise core separation.
+
+Thus:
+
+```math
+\boxed{
+\text{pure event quotients form a complete lattice,}
+}
+```
+
+but
+
+```math
+\boxed{
+\text{the anchored quotient spectrum is generally only a poset; joins may fail.}
+}
+```
+
+This is the first intrinsic non-lattice bifurcation of SOL-SELECTOR.
+
+## Status of `N_j`
+
+Earlier repository notes referred generically to radial `N_j` candidates but did not freeze a unique formula.
+
+`QUOTIENT_POSET_0_1.md` therefore introduces rigorously specified canonical test families (`N_orb`, `N_Sigma`, `N_Delta`, `N_par`) without retroactively claiming that these were the exact intended historical `N_j` formulas.
+
+A reflection-paired depth-anchor family is also available if a future naming decision wants to reserve `N_j` for anchored radial quotients.
+
+## Cost-functor decision
+
+The trigger condition for considering a Pareto cost has been met because incomparable kernels exist.
+
+Nevertheless **do not introduce a scalar cost yet**. The intrinsic quotient order contains more structure than a scalar ranking and would be damaged by premature linearization.
+
+First compute intrinsic order-theoretic observables: meet/join profile, reflection-orbit profile, fixed classes, anchorability and anchor-incompatibility graph.
 
 ## Publication status
 
-Still **not publication-ready** as a standalone paper.
+**Not yet standalone-publication ready, but now close to the first real publication threshold.**
 
-The category nucleus is now substantially stronger and cleaner, but the next hostile-audit threshold is the classification of reflection-invariant event partitions and admissible event-to-core anchors, including concrete placement of radial `N_j` candidates.
+The category and quotient-order nuclei are substantive. The remaining critical audit is whether the radial statistics used to exhibit incomparability are intrinsic to the inherited FCOA geometry or silently import ordinary arithmetic.
 
 ## Immediate next strike
 
 ```math
 \boxed{
-\text{classify the quotient poset of }F_{\mathrm{mix}}
-\text{ before introducing any numerical Cost functor.}
+\text{Intrinsic Definability Audit of radial quotient statistics.}
 }
 ```
 
-Specifically:
+Determine whether `N_orb`, `N_Sigma`, `N_Delta`, and `N_par` can be generated/defined from the rooted reflected FCOA line without importing forbidden binary integer addition or subtraction.
 
-- classify reflection-invariant partitions of mixed event indices;
-- classify which blocks may be anchored to old core points without violating weak compatibility;
-- identify the radial statistics producing the `N_j` family;
-- determine the first incomparable quotient kernels;
-- decide whether the resulting quotient spectrum is a lattice or only a poset/preorder.
+The publication-grade target is an incomparable pair of quotients whose defining statistics are themselves intrinsic FCOA constructions.
