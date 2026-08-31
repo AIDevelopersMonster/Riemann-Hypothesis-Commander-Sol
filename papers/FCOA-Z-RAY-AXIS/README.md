@@ -40,7 +40,7 @@ The published paper does **not** claim canonical mixed-sign values, recovery of 
 
 ## Post-publication research continuation
 
-The mixed-sector frontier identified by the publication has now been advanced in two internal theorem packages.
+The mixed-sector frontier identified by the publication has now been advanced through four internal theorem packages.
 
 ### 1. Mixed Radial Cancellation Generator
 
@@ -79,19 +79,83 @@ If the inherited FCOA boundary is preserved, `beta` is fixed, hence the mixed ex
 
 Within this class, boundary locality, uniqueness, and reflection compatibility are consequences rather than additional axioms.
 
-## Active frontier
+### 3. Finite-State Mixed Transport / First Memory Threshold
 
-The original post-publication problem — **find a natural non-tabular mixed generator** — is solved positively.
+See [`MIXED_FINITE_STATE_TRANSPORT.md`](MIXED_FINITE_STATE_TRANSPORT.md).
 
-The stronger problem — **classify such generators under exact inward covariance** — is also solved.
-
-The next sharp frontier is now:
+Weakening exact inward covariance by allowing output transport reveals a sharp hierarchy. A phase clock
 
 \[
-\boxed{\text{weaken exact inward covariance and identify the first genuine mixed degree of freedom.}}
+\varepsilon:\mathbb N_0\to\mathbb Z_2,\qquad \varepsilon(0)=0,
 \]
 
-Candidate relaxations include finite-state cocycles, output transport along radial reduction, and bounded-memory laws. A secondary branch is the extension from the two-ray axis to rooted trees, where branch information survives radial cancellation and may generate a richer local-law phase diagram.
+gives
+
+\[
+F_\varepsilon(z)=\nu^{\varepsilon(k(z))}\beta(N(z)),
+\]
+
+where `k(z)` is cancellation depth.
+
+Main results:
+
+- unrestricted phase clocks give `2^{aleph_0}` distinct reflection-equivariant mixed operations with the same inherited boundary and mixed domain;
+- the old mixed commutation status and both root-association phase diagrams are blind to this phase freedom;
+- a new value-phase invariant `Pi_F` recovers the hidden phase exactly;
+- the rooted radial carrier has automorphism group exactly `{id, nu} ~= C_2`;
+- therefore the unique nontrivial homogeneous geometric transport is reflection;
+- the first finite-state memory threshold is two states = one bit, giving the parity clock `epsilon(k)=k mod 2`;
+- finite-state unary phase clocks are exactly the ultimately periodic phase sequences.
+
+This produces the hierarchy
+
+`rigid normal form -> one-bit geometric phase -> finite-state phase hierarchy -> continuum phase freedom`.
+
+### 4. Phase Locality: Collapse and Non-Collapse
+
+See [`PHASE_LOCALITY_COLLAPSE_THEOREMS.md`](PHASE_LOCALITY_COLLAPSE_THEOREMS.md).
+
+The next question was which local identities actually force the hidden phase hierarchy to collapse. The answer depends not on locality alone but on **persistent branching**.
+
+Main results:
+
+- a finite forbidden-pattern rule need not imply finite-state behavior; forbidding only `11` already permits continuum many phase clocks, including continuum many aperiodic clocks;
+- a finite-type local rule forces every phase clock to be ultimately periodic iff every reachable recurrent component of its finite block graph is a simple directed cycle;
+- every deterministic bounded-window recurrence forces ultimate periodicity, hence collapses `M_infty -> M_FS`;
+- exact `r`-step inward covariance forces eventual period dividing `r`;
+- twisted one-step covariance `F(z)=nu F(Cz)` uniquely selects the parity phase;
+- reversible one-bit dynamics gives only zero phase or parity phase.
+
+The conceptual boundary is therefore
+
+\[
+\boxed{\text{local admissibility} \neq \text{local determinism}.}
+\]
+
+Persistent local choice is the first source of unbounded mixed memory.
+
+## Current state of the branch
+
+The original post-publication questions are now answered at four successive levels:
+
+1. **Does a natural non-tabular mixed generator exist?** — yes.
+2. **Is it canonical under exact inward covariance?** — yes; `F = beta o N` and legacy boundary fixes `beta`.
+3. **What is the first degree of freedom beyond exact covariance?** — one cancellation-depth `Z_2` phase bit.
+4. **When does local phase information remain bounded?** — deterministic finite-window laws force finite state; merely local admissibility can retain continuum aperiodic freedom.
+
+## Active frontier
+
+The scalar `Z_2` phase branch is now substantially classified. The mathematically distinct next strike is to return to the second legacy operation `otimes`, whose right-zero boundary values may leave the base carrier and enter terminal fibers.
+
+The key question is:
+
+\[
+\boxed{\text{what is the output-transport symmetry group of the terminal }E^*\text{-fibers?}}
+\]
+
+If that group is larger than `C_2`, the first mixed-memory law for `otimes` may be a genuinely group-valued cocycle rather than a single reflection bit. A non-Abelian terminal-fiber symmetry would open an even stronger branch: noncommuting transport phases generated by carrier interaction.
+
+A secondary independent frontier remains the replacement of the two-ray axis by rooted trees, where branch information survives radial cancellation.
 
 ## Archival notes
 
