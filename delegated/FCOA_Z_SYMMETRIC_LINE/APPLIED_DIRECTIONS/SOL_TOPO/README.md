@@ -3,9 +3,9 @@
 **Scientific direction:** non-Abelian anyons, fusion channels, braid/path memory  
 **Parent:** `delegated/FCOA_Z_SYMMETRIC_LINE/APPLIED_DIRECTIONS/`  
 **Base:** FCOA-Z v1.1, DOI 10.5281/zenodo.22169264  
-**Status:** FIRST TARGET COMPLETE
+**Status:** MODEL-CANDIDATE THRESHOLD REACHED / FULL COHERENCE OPEN
 
-## Main result
+## Main progression
 
 The useful correspondence is
 
@@ -15,42 +15,98 @@ The useful correspondence is
 
 not `+ - -> commutativity`.
 
-At fixed radial level, the existing terminal alphabet
+The first strike established an exact one-step Ising fusion-support shadow and proved that strict line geometry cannot itself generate braid topology.
+
+The second strike activates a split terminal orbit as a two-state internal LC2 fiber. The old split reflection gives an involution `J`; retained legacy/reflected provenance gives an involution `S`. They obey
 
 \[
-E_n^+,\ E_n^*,\ E_n^\times
+J^2=S^2=I,
+\qquad
+JS=-SJ,
+\qquad
+(JS)^2=-I.
 \]
 
-can encode the three Ising simple labels and exactly reproduce the support of the multiplicity-free fusion rules, including
+After free linearization, the unique minimal duality in `span_R{J,S}` that exchanges the two canonical observables is
 
 \[
-\sigma\times\sigma=1+\psi
+\boxed{
+F=\frac{J+S}{\sqrt2}
+=\frac1{\sqrt2}
+\begin{pmatrix}1&1\\1&-1\end{pmatrix},
+}
 \]
 
-as a two-element output fiber.
+which is exactly the standard nontrivial Ising `F` matrix.
 
-A conservative mixed-sector realization is also constructed by bundling `oplus` and `otimes` outcomes on equal-radius opposite-branch inputs.
+For a channel-preserving phase exchange
 
-## Sharp obstructions
+\[
+R_t=\operatorname{diag}(1,t),
+\qquad |t|=1,
+\]
 
-1. Each raw FCOA operation is function-valued, so one operation cell cannot itself return two distinct fusion channels.
-2. Terminal `E` outputs currently cannot re-enter, so iterated fusion trees and `F`-moves are unavailable without LC2 enrichment.
-3. The unordered collision-free configuration space of finitely many points on a strict line is contractible. Hence the carrier geometry has trivial fundamental group and cannot generate braid-group memory.
-4. Ising double exchange gives channel-dependent relative phase while restoring endpoint ordering, proving endpoint-only line records are insufficient.
+and
 
-## Verdict
+\[
+B_t=FR_tF,
+\]
 
-`FORMAL EMBEDDING` — one-step fusion-channel incidence only; **not** a braided fusion-category model.
+the braid relation holds iff
 
-For one-step channel support: `1D-CLOSED`.  
-For genuine braid topology derived from line geometry: `1D-OBSTRUCTED`.
+\[
+\boxed{(t-1)(t^2+1)=0.}
+\]
 
-This does not yet imply `DIMENSION-FORCING`, because an abstract internal transport/history fiber could be attached over the line.
+Thus the nontrivial relative phases are
+
+\[
+\boxed{t=\pm i,}
+\]
+
+giving the standard Ising `R` matrix projectively, with the common phase left undetermined.
+
+This produces a genuine non-Abelian projective braid representation on the internal two-state fiber while the spatial carrier remains one-dimensional.
+
+## Sharp boundaries
+
+1. Pure deterministic set-level LC2 re-entry can only induce permutation/monomial matrices and therefore cannot produce the Ising Hadamard `F`; additive linearization is a minimum extra resource.
+2. The FCOA split-output geometry generates the `J,S` scaffold, and the association-duality requirement fixes `F`; however, identifying these bases with fusion-tree bases is new LC2 semantics.
+3. Conservative LC2 activation allows every phase `t in U(1)`. The old FCOA data therefore do not select `t=±i`; braid/Yang-Baxter coherence is an independent new axiom that selects it.
+4. The global Ising phase `e^{-i pi/8}`, topological twist, arbitrary fusion trees, and full pentagon/hexagon coherence are not yet generated.
+5. Strict one-dimensional collision-free carrier topology remains braid-trivial. The non-Abelian memory lives in an internal output fiber, not in line geometry.
+
+## Current verdict
+
+\[
+\boxed{\texttt{MODEL CANDIDATE — PROJECTIVE FOUR-}\sigma\texttt{ BRAID-QUBIT SUBSYSTEM}}
+\]
+
+for the **LC2-enriched** FCOA theory.
+
+Spatial carrier status remains
+
+\[
+\boxed{\texttt{1D-CLOSED}}
+\]
+
+for this finite internal braid representation. No emergent second spatial coordinate has been proved or required.
 
 ## Files
 
-- `SOL_TOPO_REPORT_v0_1.md` — definitions, Ising toy embedding, conservative mixed-sector construction, no-go theorems, literature anchors, next research target.
+- `SOL_TOPO_REPORT_v0_1.md` — fusion-support embedding, conservative mixed-sector construction, terminal-sink obstruction, strict-line braid no-go.
+- `SOL_TOPO_LC2_REFLECTION_BRAID_v0_2.md` — split-fiber activation, reflection/provenance Clifford structure, canonical Hadamard theorem, braid-phase classification, projective Ising braid subsystem, coherence-independence theorem.
 
 ## Publication status
 
-Keep in branch; do not publish separately yet. A standalone publication should wait for either an LC2 output-reentry theorem, a stronger no-go theorem for generated transport memory, or a finite generated `F/R` system satisfying braid/coherence relations without hand-inserting the target category.
+The line has reached a model-candidate threshold but should still remain in the research branch before standalone publication.
+
+One coherence strike remains:
+
+\[
+\boxed{
+\text{Can pentagon/hexagon coherence be generated from LC2 re-entry, or must an independent tensor/fusion layer be added?}
+}
+\]
+
+A positive construction or a strong minimum-resource no-go theorem at that gate should be considered publication-grade.
