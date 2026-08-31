@@ -38,9 +38,11 @@ Direct identification of the FCOA operation with a Lie-super bracket:
 - [`SOL_GRADED_REPORT_v0_1.md`](SOL_GRADED_REPORT_v0_1.md) — reflection-generated grading and strict non-equivalence to branch sign.
 - [`SOL_GRADED_EXCHANGE_SELECTION_v0_2.md`](SOL_GRADED_EXCHANGE_SELECTION_v0_2.md) — pair-involution theorem, mirror-exchange theorem, two conservative mirror realizations, and exchange-factor underdetermination.
 - [`SOL_GRADED_BILINEAR_LIFT_NO_GO_v0_3.md`](SOL_GRADED_BILINEAR_LIFT_NO_GO_v0_3.md) — canonical partial bilinearization, exact odd-odd domain theorem, typed-output closure obstruction, root-odd super-skew no-go, and final `1D-OBSTRUCTED` verdict.
-- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_FOUNDATIONS_v0_1.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_FOUNDATIONS_v0_1.md) — extraction of the surviving mathematics into a general theory of reflection-partial magmas / reflection-graded partial algebras, including categories, strong embeddings, free linearization, completion dcpo, orbitwise completion, exchange loci, and functoriality.
-- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_ONE_ORBIT_CLASSIFICATION_v0_2.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_ONE_ORBIT_CLASSIFICATION_v0_2.md) — first finite classification theorem: `Xi` is incomplete already on two reflected points; exact one-orbit isomorphism classes are twisted stabilizer orbits of the chosen output.
-- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_MULTI_ORBIT_INTERACTION_v0_3.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_MULTI_ORBIT_INTERACTION_v0_3.md) — two-orbit diagonal classification, sequential stabilizer theorem, double-coset interaction obstruction, minimal four-point stabilizer-breaking example, general labelled multi-orbit classification, and Burnside enumeration.
+- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_FOUNDATIONS_v0_1.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_FOUNDATIONS_v0_1.md) — category, strong embeddings, free linearization, completion dcpo, orbitwise completion, exchange loci, and functoriality.
+- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_ONE_ORBIT_CLASSIFICATION_v0_2.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_ONE_ORBIT_CLASSIFICATION_v0_2.md) — `Xi` incompleteness, exchange chirality, and exact twisted one-orbit passport.
+- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_MULTI_ORBIT_INTERACTION_v0_3.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_MULTI_ORBIT_INTERACTION_v0_3.md) — diagonal multi-orbit classification, double-coset interaction, minimal four-point stabilizer breaking, and Burnside enumeration.
+- [`REVIEW_1_RESPONSE_AND_NOVELTY_AUDIT_v0_1.md`](REVIEW_1_RESPONSE_AND_NOVELTY_AUDIT_v0_1.md) — response to Review 1, novelty narrowing, weak-free degeneracy, strong-free nonexistence, and corrected universal-property target.
+- [`REFLECTION_ADMISSIBILITY_INITIAL_REALIZATION_v0_4.md`](REFLECTION_ADMISSIBILITY_INITIAL_REALIZATION_v0_4.md) — initial RPM realization for required/protected/open reflection-admissibility schemas, term normal form, protected-strong universal maps, and finite construction theorem.
 
 ## Successor theory: RPM / RGPA
 
@@ -71,15 +73,13 @@ For `char K != 2`, the reflection eigenspaces generate the `Z_2` grading automat
 7. The larger algebraic exchange locus may contain additional off-mirror cells; its excess over the geometric locus is a structural invariant.
 8. Exchange loci are functorial under RPM morphisms, exact under strong embeddings, and monotone under conservative completion.
 
-### One-orbit classification
+### One-orbit and multi-orbit classification
 
-The coarse exchange profile
+The coarse profile
 
 `Xi = (|E_geom|, |E_fix|, |E_split|, |E_excess|)`
 
-is not complete. The failure already occurs on `A={x,bar x}`.
-
-The exact one-orbit classifier for a two-point unresolved input orbit `O={p,R_2p}` is the twisted passport
+is not complete. The exact one-orbit classifier for `O={p,R_2p}` is the twisted passport
 
 `Pi_O(z) = [z]_(Gamma_O,star_p)`
 
@@ -87,70 +87,123 @@ with
 
 `gamma star_p z = nu^(epsilon_p(gamma)) gamma z`.
 
-Two one-orbit completions are isomorphic over the fixed base iff their passports agree.
+For labelled unresolved reflection input-orbits `O_1,...,O_k`, with common input stabilizer `G` and local decoration spaces `Z_i`,
 
-### Multi-orbit interaction theorem
+`Class(O_1,...,O_k) = G \ (product Z_i)`.
 
-For labelled unresolved reflection input-orbits `O_1,...,O_k`, let
+For two orbits, the forgetful map to individual passport classes has fiber
 
-`G = intersection Gamma_(O_i)`
+`H_1 \ G / H_2`.
 
-be their common input stabilizer and let `Z_i` be the admissible decoration space with its local twisted action `star_i`.
-
-Then the exact labelled completion moduli are
-
-`Class(O_1,...,O_k) = G \ (product Z_i)`
-
-under the single diagonal carrier action.
-
-For two orbits, the forgetful map to the product of individual passport spaces has fiber
-
-`H_1 \ G / H_2`,
-
-where `H_i` is the twisted stabilizer of the chosen local decoration.
-
-Hence local passports factor independently over that pair iff
+Hence local passports factor independently over a given pair iff
 
 `G = H_1 H_2`.
 
-This identifies the first genuine interaction mechanism of the completion theory:
+This yields the stabilizer-breaking interaction mechanism
 
-`decoration -> stabilizer breaking -> refinement of later passport classes`.
+`decoration -> stabilizer reduction -> refinement of later passport classes`.
 
-A minimal nontrivial-reflection example occurs on four elements. Two joint completions have the same local one-orbit passports, the same `Xi`, the same anchoring data, and the same output reflection orbits, but differ by a relative reflection-phase bit `SAME/OPPOSITE` and are not isomorphic.
+A minimal nontrivial-reflection example occurs on four elements and carries the relational `SAME/OPPOSITE` phase. For finite `G`, labelled completion classes are counted exactly by Burnside's formula.
 
-For finite `G`, the number of labelled `k`-orbit completion classes is exactly
+### Universal-property trichotomy
 
-`N = (1/|G|) sum_(gamma in G) product_i |Fix_(Z_i)(gamma)|`.
+The post-Review-1 freeness problem is now closed at the first nontrivial level.
 
-Thus RPM/RGPA now has a genuine finite completion/moduli theory, not just definitions and local invariants.
+#### Weak free RPM over bare `Set`
+
+Exists, but its multiplication domain is empty.
+
+#### Strong free RPM over bare `Set`
+
+Does not exist, already on one generator.
+
+#### Schema-relative initial RPM
+
+Let `A_0` be a base RPM and let a reflection-admissibility schema split candidate term pairs into:
+
+- `R` — REQUIRED new cells;
+- `P` — PROTECTED `UNDEF` cells;
+- all remaining cells — OPEN.
+
+Then there is a canonical initial realization
+
+`F_(A_0)(S)`
+
+whose carrier is the least closure of `A_0` under required formal products.
+
+Its exact domain is
+
+`D_S = D_0 union (R cap L_S^2)`.
+
+Old base values are preserved, every legal required cell is defined, every protected cell remains undefined, and open cells are left undefined only in the initial realization and may be opened later.
+
+For every schema realization `(A,j)` there is a unique RPM morphism
+
+`j_hat : F_(A_0)(S) -> A`
+
+extending `j`. Although this map need not be globally strong, it is automatically `P`-strong: protected pairs remain undefined after evaluation.
+
+Every nonbase legal term has a unique binary-tree normal form. If `A_0` and explicit `R` are finite, then
+
+`|L_S| <= |A_0| + |R|`,
+
+and the fixed-point construction terminates after at most `|R|` strict growth stages.
+
+This gives the universal object actually required by FCOA: exact legacy data, protected absence, controlled new cells, and an open frontier.
+
+## Novelty status
+
+The literature audit has narrowed what can responsibly be claimed.
+
+Classical or standard neighboring machinery includes:
+
+- general partial algebras and strong/closed homomorphisms;
+- partial Horn / essentially algebraic free-model constructions;
+- partial `*`-algebras;
+- locality semigroups and related partial products;
+- Chermak-style partial groups, generators/relations, and finite enumeration;
+- diagonal group actions, double cosets, stabilizer chains, and Burnside enumeration.
+
+Accordingly, the project does **not** claim novelty for those mechanisms themselves.
+
+The current candidate distinctive package is narrower:
+
+`covariant reflection + protected UNDEF + open completion frontier + reflection/exchange equalizer + reflection-compatible completion moduli`.
+
+External priority for that exact package is still under audit.
 
 ## Publication status
 
 The SOL-GRADED/SUSY question remains closed and should not be published as a SUSY model.
 
-The successor RPM/RGPA mathematics has now crossed the internal structural threshold for a standalone mathematical theory note:
+The successor RPM/RGPA theory now has sufficient internal mathematics for a standalone article, including a nontrivial universal-property layer. However standalone publication remains **not frozen** because the novelty/positioning audit is not finished.
 
-- category and strong embeddings;
-- free linearization;
-- completion dcpo;
-- exchange-locus theory;
-- exact one-orbit classification;
-- exact multi-orbit diagonal classification;
-- double-coset interaction theorem;
-- minimal stabilizer-breaking example;
-- Burnside enumeration formula.
+The mathematical gap is now narrower than the bibliographic gap.
 
-The remaining blocker is now primarily **bibliographic novelty and terminology**, not absence of theorem structure.
+Before freezing publication, the programme should obtain:
 
-Before freezing a standalone publication, perform a dedicated hostile literature audit against partial magmas, locality semigroups/algebras, partial `*`-algebras, partial groups, involutive partial systems, partial actions/groupoids, and existing equivariant partial-algebra/completion theories. If no exact prior framework subsumes the simultaneous-reflection + exchange-equalizer + twisted-completion-moduli package, publication threshold is reached.
+1. a separation/comparison theorem against the closest involutive partial-algebra / binary-partial-group frameworks;
+2. the next presentation theorem with equations and protected undefinedness;
+3. a protection-safe quotient criterion preventing identifications from turning protected cells into defined cells.
 
 ## Next frontier
 
 Priority next strike:
 
-`UNIVERSAL PROPERTY / FREE RPM-RGPA CONSTRUCTION`.
+`PROTECTION-SAFE QUOTIENT / GENERATORS-AND-RELATIONS THEOREM`.
 
-Characterize the free RPM generated by a reflected set with a prescribed protected domain, and determine the exact universal property of free linearization `K[-]` relative to maps into RGPAs.
+Extend a schema from
 
-In parallel, a literature/novelty audit is now mandatory before naming/priority claims are frozen.
+`(A_0,R,P)`
+
+to
+
+`(A_0,R,P,E)`,
+
+where `E` is a reflection-stable family of equations between legal terms.
+
+Exact target:
+
+`Characterize when the partial congruence generated by E is protection-safe, and prove that the quotient of the initial term realization is initial among schema realizations satisfying E.`
+
+This is the first place where ordinary term identification can collide with semantically protected `UNDEF`, so it is the next genuinely nontrivial universal-algebra barrier.
