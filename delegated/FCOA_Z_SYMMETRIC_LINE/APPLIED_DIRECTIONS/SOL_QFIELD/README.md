@@ -1,14 +1,15 @@
 # SOL-QFIELD
 
-**Scientific direction:** Pauli / particle-antiparticle / annihilation, scattering channels, amplitude and history structure  
+**Scientific direction:** Pauli / particle-antiparticle / reaction channels / history memory / amplitude structure  
 **Branch:** `director/fcoa-z-symmetric-line`  
-**Status:** THIRD TARGET COMPLETE  
-**Verdict:** `ANALOGY ONLY` with a proved native process-skeleton result  
-**Line status:** typed support and native base evaluation diamonds are `1D-CLOSED`; genuine QFT modeling remains structurally obstructed
+**Status:** SIXTH TARGET COMPLETE / PREPUBLICATION NUCLEUS  
+**Physical verdict:** `ANALOGY ONLY`  
+**Mathematical status:** native history-memory chain established through conditional complex linearization  
+**Line status:** all structures obtained through the current target remain `1D-CLOSED`
 
-## Main separation
+## Permanent separation
 
-SOL-QFIELD permanently separates
+SOL-QFIELD separates three target-field structures that must not be conflated:
 
 \[
 \boxed{
@@ -20,15 +21,15 @@ SOL-QFIELD permanently separates
 }
 \]
 
-The direct identifications
+Accordingly, the direct identifications
 
-- “Pauli = FCOA noncommutativity”,
-- “particle/antiparticle sign = boson/fermion parity”,
-- “annihilation into bosons = operation became commutative”
+- `Pauli = FCOA noncommutativity`,
+- `particle/antiparticle sign = boson/fermion parity`,
+- `annihilation into bosons = operation became commutative`
 
-all fail.
+are rejected.
 
-The surviving first-level structural match is
+The surviving first-level match is only
 
 \[
 \boxed{
@@ -38,39 +39,29 @@ The surviving first-level structural match is
 }
 \]
 
-## Second target — amplitude lift
+## Target 1 — channel taxonomy
 
-A normalized complex-amplitude decoration of terminal FCOA channels is not selected by the current structure: there is an uncountable family of compatible assignments.
+A single deterministic FCOA operation cannot faithfully encode a genuinely multichannel reaction support for one fixed incoming pair. Current FCOA also lacks the Hilbert/Fock, CAR/CCR, S-matrix, amplitude, conservation and relativistic structures required for genuine QFT modeling.
 
-More strongly, for terminal channels independent channel phases are operationally invisible under one-step readout. Modulo the phase action, normalized terminal complex amplitudes reduce to the classical probability simplex.
+Verdict: `ANALOGY ONLY`.
 
-Thus
+## Target 2 — terminal amplitude lift
 
-\[
-\boxed{
-\text{terminal complex weights}
-\equiv_{\rm current\ observation}
-\text{stochastic weights}.
-}
-\]
-
-Relative phase becomes observable only after a stronger architecture exists:
+Normalized complex amplitudes on terminal channels are wildly underdetermined. More strongly, independent terminal-channel phases are observationally invisible under the current one-step readout, so
 
 \[
 \boxed{
-\text{branching}
-+
-\text{reconvergence}
-+
-\text{coherent path summation}.
+QF1\;\text{stochastic weights}
+\equiv_{\rm terminal}
+QF2\;\text{terminal complex amplitudes}.
 }
 \]
 
-Deterministic re-entry alone is not interference.
+Operational relative phase requires at least branching, reconvergence, and a coherent path-sum rule. Re-entry alone is not interference.
 
-## Third target — native diamonds
+## Target 3 — native evaluation diamonds
 
-The existing legacy `oplus` already contains an infinite family of nondegenerate base-only evaluation diamonds. For every \(n\ge2\),
+The legacy `oplus` already contains an infinite reflected family of base-only reconvergence diamonds. For every \(n\ge2\),
 
 \[
 \boxed{
@@ -82,33 +73,120 @@ P_{n-1},
 }
 \]
 
-while the intermediate states are distinct:
+with distinct intermediate values \(P_n\ne P_{n-1}\).
+
+Current terminal \(E^+,E^*,E^\times\) values cannot participate in such a legacy two-step diamond because no general re-entry rule exists.
+
+An associator diamond is an evaluation/rewrite diamond, not automatically coherent superposition. Relative route phase requires the histories themselves to be retained as mathematical objects.
+
+## Target 4 — minimal finite history memory
+
+Write the intrinsic radial rule types as
 
 \[
-P_n\ne P_{n-1}.
+L:\ x_0\oplus x_k=x_k,
+\qquad
+R:\ x_k\oplus x_0=\rho(x_k).
 \]
 
-Reflection gives the corresponding negative-branch family.
+The native diamond histories are \(LR\) and \(RL\).
 
-Therefore native reconvergence does not require a second coordinate and is already present in the one-dimensional legacy structure.
+A cardinality-minimal compositional separator is the 3-element first-role monoid
 
-However, current \(E^+,E^*,E^\times\) outputs are terminal, so there are no native typed re-entry diamonds.
+\[
+M_{\rm first}=\{1,\ell,r\},
+\qquad
+ab=a\quad(a,b\in\{\ell,r\}).
+\]
 
-The decisive new obstruction is semantic: the ordinary FCOA carrier remembers the common endpoint, not two independently surviving evaluation histories. To attach a relative phase to the two routes, the routes must first be promoted to distinct paths/morphisms.
+It distinguishes
 
-Hence
+\[
+h(LR)=\ell\ne r=h(RL).
+\]
+
+No monoid of fewer than three elements can distinguish them. Thus `H1` is proved: finite/local compositional history memory exists and is `1D-CLOSED`.
+
+However, every group or unitary representation of this idempotent minimal monoid collapses \(\ell,r\) to the identity. The minimal classical memory is not itself a reversible phase carrier.
+
+## Target 5 — minimal reversible history memory
+
+For a group-valued separator, \(LR\ne RL\) requires two noncommuting group elements. Every group of order below six is abelian, while
+
+\[
+S_3=\langle s,t\rangle,
+\qquad
+s=(12),\ t=(23)
+\]
+
+gives
+
+\[
+st\ne ts.
+\]
+
+Therefore the minimal finite reversible history group has exactly six states:
+
+\[
+\boxed{G_{\rm hist}=S_3.}
+\]
+
+This resolves the reversible-memory trichotomy as `R1`: bounded reversible history memory exists and remains `1D-CLOSED`.
+
+No one-dimensional scalar unitary character can distinguish \(ab\) from \(ba\), because \(U(1)\) is abelian. The standard faithful 2D representation of \(S_3\) does distinguish \(st\) from \(ts\). Thus order-sensitive reversible memory is first visible at a matrix-valued, not scalar-character, level.
+
+## Target 6 — parallel-history linearization
+
+FCOA and the history group do **not** select a coefficient semiring. For every commutative semiring \(K\), formal parallel histories admit the canonical enrichment
+
+\[
+K[S_3].
+\]
+
+Thus the coefficient choice remains underdetermined.
+
+But once one explicitly requires
+
+1. complex coefficients;
+2. linear superposition of parallel histories;
+3. bilinear extension of sequential composition,
+
+the universal completion is forced:
+
+\[
+\boxed{\mathbb C[S_3].}
+\]
+
+Its semisimple decomposition is
 
 \[
 \boxed{
-\text{associator equality}
-\ne
-\text{coherent superposition};
-\qquad
-\text{history retention is additionally necessary}.
+\mathbb C[S_3]
+\cong
+\mathbb C\oplus\mathbb C\oplus M_2(\mathbb C).
 }
 \]
 
-## Current QFIELD ladder
+For the route-order residue
+
+\[
+\Delta=[st]-[ts],
+\]
+
+both scalar irreducible blocks give zero, while the standard matrix block is nonzero:
+
+\[
+\boxed{
+\Delta\longmapsto(0,0,D),
+\qquad D\in M_2(\mathbb C),\ D\ne0.
+}
+\]
+
+Hence the entire native \(LR/RL\) order information survives only in the genuinely non-Abelian matrix component of the universal complex history algebra.
+
+This is a **conditional linearization theorem**, not a derivation of quantum mechanics or of the complex field from FCOA.
+
+## Current ladder
 
 \[
 \boxed{
@@ -118,40 +196,53 @@ QF1\;\text{stochastic weights}
 \equiv_{\rm terminal}
 QF2\;\text{terminal complex weights}
 <
-QF2.5\;\text{native evaluation diamonds}
+QF2.5\;\text{native diamonds}
 <
-QF3a\;\text{history/morphism retention}
+QF3a\text{-}F(3)\;\text{finite irreversible memory}
 <
-QF3b\;\text{coherent path algebra}
+QF3a\text{-}R(6)\;\text{finite reversible }S_3\text{ memory}
 <
-QF4\;\text{Hilbert-like dynamics}
+QF3a\text{-}U(2D)\;\text{faithful unitary memory}
+<
+QF3b\text{-}C\;\mathbb C[S_3]\text{ conditional linearization}
+<
+QF4\;\text{physical Hilbert/state/measurement structure}
 <
 QF5\;\text{Fock/CAR structure}.
 }
 \]
 
-Current FCOA-Z reaches QF2.5 natively. QF3a and above are not yet derived.
+Everything through `QF3b-C` remains a bounded internal fiber/history algebra over the one-dimensional signed carrier and therefore does not establish emergent spatial dimension.
 
 ## Files
 
-- [`SOL_QFIELD_REPORT_v0_1.md`](./SOL_QFIELD_REPORT_v0_1.md) — three-layer separation, channel taxonomy, grading obstruction, deterministic-channel no-go, and negative QFT capability audit.
-- [`SOL_QFIELD_AMPLITUDE_LIFT_v0_2.md`](./SOL_QFIELD_AMPLITUDE_LIFT_v0_2.md) — amplitude underdetermination, Terminal Phase Erasure, reconvergence threshold, re-entry/interference separation, and QF0–QF5 ladder.
-- [`SOL_QFIELD_NATIVE_DIAMONDS_v0_3.md`](./SOL_QFIELD_NATIVE_DIAMONDS_v0_3.md) — native radial associator diamonds, typed-diamond no-go, extensionality/history obstruction, and the minimal-history frontier.
+- [`SOL_QFIELD_REPORT_v0_1.md`](./SOL_QFIELD_REPORT_v0_1.md) — QFT three-layer separation, channel taxonomy and deterministic-channel no-go.
+- [`SOL_QFIELD_AMPLITUDE_LIFT_v0_2.md`](./SOL_QFIELD_AMPLITUDE_LIFT_v0_2.md) — amplitude underdetermination, Terminal Phase Erasure and reconvergence threshold.
+- [`SOL_QFIELD_NATIVE_DIAMONDS_v0_3.md`](./SOL_QFIELD_NATIVE_DIAMONDS_v0_3.md) — native radial diamonds, typed-diamond no-go and history-layer obstruction.
+- [`SOL_QFIELD_MINIMAL_HISTORY_v0_4.md`](./SOL_QFIELD_MINIMAL_HISTORY_v0_4.md) — minimal 3-state compositional history monoid and unitary-collapse theorem.
+- [`SOL_QFIELD_REVERSIBLE_HISTORY_v0_5.md`](./SOL_QFIELD_REVERSIBLE_HISTORY_v0_5.md) — minimal 6-state reversible separator \(S_3\), scalar-character order no-go and faithful 2D unitary witness.
+- [`SOL_QFIELD_LINEARIZATION_v0_6.md`](./SOL_QFIELD_LINEARIZATION_v0_6.md) — coefficient underdetermination, universal complex group-algebra completion and non-Abelian matrix residue.
 
 ## Publication decision
 
-`HOLD FOR APPLIED-DIRECTIONS SYNTHESIS`.
+The physical/QFT claim remains `ANALOGY ONLY` and must not be upgraded.
 
-The branch now contains several theorem-level architectural results, but no standalone QFT/FCOA physical model has been reached. Publication should wait either for a canonical FCOA history category / coherent composition law or for the applied-directions synthesis.
+The abstract FCOA history-memory material has reached
+
+\[
+\boxed{\texttt{PREPUBLICATION NUCLEUS — DO NOT RELEASE YET}.}
+\]
+
+Versions 0.3–0.6 now form a coherent theorem chain that may support a separate mathematical note after one more boundary is settled.
 
 ## Next strike
 
-Classify the **minimal FCOA history quotient**. Starting from legal evaluation paths, determine the coarsest natural congruence that preserves legacy values and reflection while keeping at least one radial associator pair distinct.
+Test **positive-functional/state selection** on \(\mathbb C[S_3]\).
 
-Three outcomes are targeted:
+The next trichotomy is:
 
-- `H0` — every natural congruence collapses the two histories;
-- `H1` — a nontrivial finite/local history fiber survives and remains `1D-CLOSED`;
-- `H2` — every nontrivial distinction propagates into unbounded compositional memory.
+- `P0` — reflection/history invariance leaves a nontrivial convex family of positive normalized functionals; no state is canonically selected;
+- `P1` — natural invariance selects only the normalized regular trace/class state, without a pure-state/Born structure;
+- `P2` — stronger FCOA constraints select a smaller positive-state family or canonical GNS representation that still detects the matrix order residue.
 
-This H0/H1/H2 problem is now the sharp frontier of SOL-QFIELD.
+This `P0/P1/P2` problem is now the sharp SOL-QFIELD frontier.
