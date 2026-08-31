@@ -47,6 +47,7 @@ Direct identification of the FCOA operation with a Lie-super bracket:
 - [`SOL_GRADED_EXCHANGE_SELECTION_v0_2.md`](SOL_GRADED_EXCHANGE_SELECTION_v0_2.md) — pair-involution theorem, mirror-exchange theorem, two conservative mirror realizations, and exchange-factor underdetermination.
 - [`SOL_GRADED_BILINEAR_LIFT_NO_GO_v0_3.md`](SOL_GRADED_BILINEAR_LIFT_NO_GO_v0_3.md) — canonical partial bilinearization, exact odd-odd domain theorem, typed-output closure obstruction, root-odd super-skew no-go, and final `1D-OBSTRUCTED` verdict.
 - [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_FOUNDATIONS_v0_1.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_FOUNDATIONS_v0_1.md) — extraction of the surviving mathematics into a general theory of reflection-partial magmas / reflection-graded partial algebras, including categories, strong embeddings, free linearization, completion dcpo, orbitwise completion, exchange loci, and functoriality.
+- [`REFLECTION_GRADED_PARTIAL_ALGEBRAS_ONE_ORBIT_CLASSIFICATION_v0_2.md`](REFLECTION_GRADED_PARTIAL_ALGEBRAS_ONE_ORBIT_CLASSIFICATION_v0_2.md) — first finite classification theorem: `Xi` is incomplete already on two reflected points; exact one-orbit isomorphism classes are twisted stabilizer orbits of the chosen output.
 
 ## Successor theory: RPM / RGPA
 
@@ -80,9 +81,58 @@ For `char K != 2`, the reflection eigenspaces generate the `Z_2` grading automat
 7. The larger algebraic exchange locus may contain additional off-mirror cells; its excess over the geometric locus is a new structural invariant.
 8. Exchange loci are functorial under RPM morphisms, exact under strong embeddings, and monotone under conservative completion.
 
+### First classification theorem
+
+The first finite-classification target is now closed.
+
+The coarse exchange profile
+
+`Xi = (|E_geom|, |E_fix|, |E_split|, |E_excess|)`
+
+is **not complete** for one-orbit completions. The failure is absolute-minimal: it already occurs on
+
+`A = {x, bar x}`
+
+with one reflection two-cycle.
+
+Two mirror completions
+
+`mu_L(x,bar x)=x`, `mu_L(bar x,x)=bar x`
+
+and
+
+`mu_R(x,bar x)=bar x`, `mu_R(bar x,x)=x`
+
+have the same carrier orbit, the same added input orbit, the same output reflection orbit, and the same
+
+`Xi = (2,0,2,0)`,
+
+but they are not isomorphic.
+
+The missing local invariant is **exchange chirality**:
+
+- `LEFT` — output anchored to the first participant;
+- `RIGHT` — output anchored to the second participant.
+
+More generally, for a fixed unresolved two-point input orbit `O={p,R_2 p}`, let `Gamma_O` be the stabilizer of `O` in the automorphism group of the base completion problem, and let
+
+`epsilon_p(gamma)=0` if `gamma p=p`, `1` if `gamma p=R_2 p`.
+
+Then the exact action on candidate outputs is the twisted action
+
+`gamma star_p z = nu^(epsilon_p(gamma)) gamma z`.
+
+The complete one-orbit passport is
+
+`Pi_O(z) = [z]_(Gamma_O,star_p)`.
+
+Two one-orbit completions are isomorphic over the fixed base **iff** their passports agree.
+
+Thus one-orbit completion classification is solved exactly.
+
 This is enough to answer the successor question positively at the foundational level:
 
-`YES — reflection-graded partial algebras form a coherent independent mathematical class with their own morphism, completion, and exchange-locus theory.`
+`YES — reflection-graded partial algebras form a coherent independent mathematical class with their own morphism, completion, exchange-locus, and finite one-orbit classification theory.`
 
 This is a mathematical classification statement, not yet a priority/novelty claim against all literature.
 
@@ -90,19 +140,26 @@ This is a mathematical classification statement, not yet a priority/novelty clai
 
 The SOL-GRADED/SUSY question remains closed and should not be published as a SUSY model.
 
-The new RPM/RGPA foundations are already theorem-level, but standalone publication is **not yet frozen**. Before claiming a new named theory in the literature, the next threshold requires:
+The new RPM/RGPA theory has now crossed an important internal threshold: it possesses an exact finite classification theorem and an absolute-minimal counterexample to a natural coarse invariant.
 
-- dedicated bibliography/terminology audit against partial magmas, locality semigroups/algebras, partial `*`-algebras, partial groups, and related involutive partial systems;
-- at least one further representation/universal-property theorem;
-- two non-FCOA examples with computed exchange profiles;
-- one finite classification theorem.
+Standalone publication is still **not frozen**. Before claiming a new named theory in the literature, the remaining threshold is:
+
+- dedicated bibliography/terminology audit against partial magmas, locality semigroups/algebras, partial `*`-algebras, partial groups, involutive partial systems, and partial-algebra completion theories;
+- at least two non-FCOA examples with computed exchange/chirality passports;
+- one genuine **multi-orbit interaction theorem**.
 
 ## Next frontier
 
-Classify finite conservative completions up to strong RPM isomorphism.
+Classify two unresolved reflection input-orbits.
 
-First target:
+Exact target:
 
-`Is reflection-orbit data + exchange profile Xi complete for minimal one-orbit extensions?`
+`When do two one-orbit passports combine independently, and when does decorating the first orbit reduce the automorphism stabilizer enough to split the passport classes available to the second?`
 
-If yes, this gives the first nontrivial classification theorem of the new theory. If not, the smallest counterexample identifies the next invariant.
+Equivalently, determine when
+
+`Class(O_1 union O_2) = Class(O_1) x Class(O_2)`
+
+and produce the smallest counterexample when factorization fails.
+
+The expected mechanism is **stabilizer breaking**: the first completion orbit can destroy an automorphism that previously identified outputs for the second orbit. A minimal example would be the first true interaction theorem of the RPM completion theory.
