@@ -1,6 +1,6 @@
 # QGE3 LQR — Small Exact Tables
 
-## 1. Theorem-controlled rows
+## 1. Theorem-controlled rows and columns
 
 The following values are exact by proof, not by computation.
 
@@ -10,19 +10,11 @@ The following values are exact by proof, not by computation.
 L_2(r)=r-1.
 \]
 
-| `r` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `L_2(r)` | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-
 ### Three-color row
 
 \[
 L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil.
 \]
-
-| `r` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
-|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `L_3(r)` | 0 | 2 | 3 | 5 | 6 | 8 | 9 | 11 | 12 | 14 |
 
 ### Two-phase column
 
@@ -30,121 +22,90 @@ L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil.
 L_q(2)=q-1.
 \]
 
-| `q` | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-|---:|---:|---:|---:|---:|---:|---:|---:|
-| `L_q(2)` | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-
 ### Three-phase column
 
 \[
-L_q(3)=2q-3.
+L_q(3)=2q-3\qquad(q\ge3).
 \]
 
-| `q` | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-|---:|---:|---:|---:|---:|---:|---:|---:|
-| `L_q(3)` | 2 | 3 | 5 | 7 | 9 | 11 | 13 |
+### Four-phase column
 
-For `q=2`, the binary formula gives `L_2(3)=2`, so the displayed `2q-3` formula is intended for `q>=3`.
-
----
-
-## 2. Exhaustive / integer-optimization checks
-
-Independent finite optimization was used as a hostile check of the first theorem-controlled values. A normalized search fixes `pi_1=id`; every non-diagonal tuple in `S_q^r` becomes a row, every primitive constraint becomes a binary column indicating whether it excludes that tuple, and minimum synchronization is a minimum hitting-set / 0-1 covering problem.
-
-Verified optima:
-
-| `q` | `r` | exact optimum found | theorem prediction | status |
-|---:|---:|---:|---:|---|
-| 3 | 2 | 2 | 2 | PASS |
-| 3 | 3 | 3 | 3 | PASS |
-| 3 | 4 | 5 | 5 | PASS |
-| 3 | 5 | 6 | 6 | PASS |
-| 3 | 6 | 8 | 8 | PASS |
-| 4 | 2 | 3 | 3 | PASS |
-| 4 | 3 | 5 | 5 | PASS |
-| 5 | 2 | 4 | 4 | PASS |
-| 5 | 3 | 7 | 7 | PASS |
-| 6 | 2 | 5 | 5 | PASS |
-| 6 | 3 | 9 | 9 | PASS |
-
-These computations are checks only; the infinite formulas above have independent proofs.
-
----
-
-## 3. First genuinely two-parameter cells
-
-The region `q>=4, r>=4` is not yet classified in general.
-
-Finite optimization gives the following additional exact small values:
-
-| `q` | `r` | `L_q(r)` | basis |
-|---:|---:|---:|---|
-| 4 | 4 | 7 | exact 0-1 covering search |
-| 5 | 4 | 9 | lower bound from pair-union geometry + explicit construction |
-| 6 | 4 | 12 | finite partition search + explicit construction |
-| 7 | 4 | 14 | finite partition search + explicit construction |
-
-The `r=4` values beyond the theorem-controlled axes are recorded as finite exact data, not yet promoted to a general formula.
-
-Observed sequence at `r=4` begins
+By `LQR_R4_THEOREM.md`, for every `q>=2`,
 
 \[
-L_3(4)=5,\quad L_4(4)=7,\quad L_5(4)=9,\quad L_6(4)=12,\quad L_7(4)=14.
+\boxed{
+L_q(4)=
+\begin{cases}
+3, & q=2,\\
+2q-1, & 3\le q\le5,\\
+12, & q=6,\\
+3q-7, & q\ge7.
+\end{cases}
+}
 \]
 
-This already shows that a naive universal formula `ceil(q(r-1)/2)` is false: for example
+Hence:
+
+| `q` | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `L_q(4)` | 3 | 5 | 7 | 9 | 12 | 14 | 17 | 20 | 23 | 26 | 29 |
+
+The formerly computational values `L_4(4)=7`, `L_5(4)=9`, `L_6(4)=12`, `L_7(4)=14` are now theorem-controlled.
+
+---
+
+## 2. Finite verification role
+
+The verifier is retained as a hostile check, not as a proof engine for the infinite formulas.
+
+It checks:
+
+1. the optimal `q=3` constructions for small `r` by normalized enumeration of phase tuples;
+2. the exact `r=3` constructions for small `q`;
+3. the old general three-active-color upper bound;
+4. the exact `r=4` partition search in the feasible finite range;
+5. the explicit seven-cut construction for `q=7` and its connected-color extensions for larger `q`.
+
+---
+
+## 3. Exact frontier after the second strike
+
+Exact theorem-controlled regions now include:
 
 \[
-\left\lceil\frac{4\cdot3}{2}\right\rceil=6<7=L_4(4).
+L_2(r),\qquad L_3(r),\qquad L_q(2),\qquad L_q(3),\qquad L_q(4).
 \]
 
-Thus the universal half-density lower bound is sharp on the entire `q=3` row but not in general.
+Therefore the genuinely open two-parameter regime has moved to
+
+\[
+\boxed{q\ge4,\qquad r\ge5.}
+\]
+
+The next natural questions are:
+
+- exact `L_4(r)` for general `r`;
+- exact `L_q(5)` for general `q`;
+- asymptotic defect from the naive spanning-tree cost at fixed `r` and `q->infinity`;
+- partition-lattice constructions generalizing the seven-cut `F_2^3` gadget.
 
 ---
 
-## 4. Explicit optimal examples from finite search
+## 4. Interpretation of the four-phase sequence
 
-Constraints are written as triples `(i,j,a)`.
+The exact sequence
 
-### `L_4(4)=7`
+\[
+L_q(4)=5,7,9,12,14,17,20,\dots
+\]
 
-One optimal system is
+for `q=3,4,5,6,7,8,9,...` has a structural explanation.
 
-```text
-(0,1,3)
-(0,2,0)
-(0,2,2)
-(0,3,0)
-(1,3,1)
-(1,3,2)
-(2,3,1)
-```
+For four phase indices every reduced source-color graph determines a partition of rank `m in {0,1,2,3}`. Pair-union connectivity implies:
 
-### `L_5(3)=7`
+- at most one rank-one color;
+- with one rank-one color, at most four rank-two colors;
+- without rank-one colors, at most seven rank-two colors;
+- the seven rank-two partitions are pairwise compatible and form the optimal seven-cut gadget.
 
-A theorem construction can be written
-
-```text
-(0,1,0)
-(0,2,1)
-(1,2,2)
-(0,1,3)
-(0,2,3)
-(0,1,4)
-(0,2,4)
-```
-
-The last four constraints synchronize the two additional source colors across the three phases; the first three form the `S_3` triangle gadget.
-
----
-
-## 5. Current interpretation
-
-The small table supports three distinct regimes:
-
-1. `q=2`: purely tree-like synchronization, cost `r-1`;
-2. `q=3`: exact half-density law `ceil(3(r-1)/2)`;
-3. `q>=4,r>=4`: additional partition/unique-colorability obstructions appear and the half-density lower bound can fail to be sharp.
-
-The next finite-enumeration target is a complete exact table for `4<=q<=7` and `4<=r<=6`, preferably using the quotient-partition formulation rather than raw enumeration of `S_q^r`.
+Thus the exceptional value at `q=6` is a genuine transition point between the `1+rank-two` architecture and the complete seven-cut architecture.
