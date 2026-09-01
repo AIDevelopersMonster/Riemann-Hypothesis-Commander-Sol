@@ -18,10 +18,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-lang-cyrillic fonts-dejavu-core zip
 
+      - name: Normalize release sources
+        working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
+        run: |
+          python3 prepare_release_sources.py
+
       - name: Build English PDF
         working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
         run: |
-          pandoc ARTICLE_EN.md \
+          pandoc ARTICLE_EN_RELEASE.md \
             --from=markdown+tex_math_dollars \
             --pdf-engine=xelatex \
             --include-in-header=publication-header.tex \
@@ -33,7 +38,7 @@ jobs:
       - name: Build Russian PDF
         working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
         run: |
-          pandoc ARTICLE_RU.md \
+          pandoc ARTICLE_RU_RELEASE.md \
             --from=markdown+tex_math_dollars \
             --pdf-engine=xelatex \
             --include-in-header=publication-header.tex \
@@ -45,9 +50,13 @@ jobs:
       - name: Build archival source bundle
         run: |
           zip -j papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_SOURCE_2026-09-01.zip \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_EN_RELEASE.md \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_RU_RELEASE.md \
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_EN.md \
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_RU.md \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/prepare_release_sources.py \
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/publication-header.tex \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/RELEASE_METADATA.md \
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/VERIFIER_OUTPUT_2026-09-01.txt \
             papers/FCOA-Z-RAY-AXIS/solve_partition_only_support.py \
             papers/FCOA-Z-RAY-AXIS/verify_partition_only_exact_solver.py \
@@ -61,4 +70,6 @@ jobs:
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_EN_2026-09-01.pdf
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_RU_2026-09-01.pdf
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_SOURCE_2026-09-01.zip
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_EN_RELEASE.md
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_RU_RELEASE.md
             papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/VERIFIER_OUTPUT_2026-09-01.txt
