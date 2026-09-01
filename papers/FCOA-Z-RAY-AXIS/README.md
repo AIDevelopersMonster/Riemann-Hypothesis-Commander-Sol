@@ -134,6 +134,25 @@ The conceptual boundary is therefore
 
 Persistent local choice is the first source of unbounded mixed memory.
 
+## Published continuation: prescribed-stabilizer support
+
+The branch-coherence and terminal-symmetry work that followed this paper has now matured into a separate publication package:
+
+**Prescribed-Stabilizer Support in Fixed-Carrier Oriented Algebra: Wreath Coherence, Partition Compression, and Exact Orbital Separation**  
+Russian parallel: **Предписанная стабилизаторная опора в фиксированно-носительной ориентированной алгебре: Wreath-когерентность, сжатие разбиений и точное орбитальное разделение**  
+Companion directory: [`../FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/`](../FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/)  
+Zenodo DOI: **pending deposit**
+
+This continuation develops the prescribed-support invariant
+
+\[
+m_G(H;S)=\min\{|F|:F\subseteq S,\operatorname{Stab}_G(F)=H\},
+\]
+
+and proves exact support laws for global wreath coherence and arbitrary branch partitions, an exact partition-only reduction, the Partition-Overgroup Dichotomy, Macro-Mover Double-Coset Lemma, and an exact Orbital XOR-Separation Program. Its frozen direct verifier reports **ALL PASS** for all integer partitions with `2 <= b <= 7` (43 partition types, 1468 invariant orbital unions).
+
+The research, proof, bibliography, source-archival and PDF visual-QA thresholds have all passed. After Zenodo assigns the DOI, this README should be updated from `pending deposit` to the permanent DOI.
+
 ## Current state of the branch
 
 The original post-publication questions are now answered at four successive levels:
@@ -142,6 +161,8 @@ The original post-publication questions are now answered at four successive leve
 2. **Is it canonical under exact inward covariance?** — yes; `F = beta o N` and legacy boundary fixes `beta`.
 3. **What is the first degree of freedom beyond exact covariance?** — one cancellation-depth `Z_2` phase bit.
 4. **When does local phase information remain bounded?** — deterministic finite-window laws force finite state; merely local admissibility can retain continuum aperiodic freedom.
+
+The separate branch-coherence/prescribed-stabilizer line is publication-complete at its first paper threshold and is now maintained in `../FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/`.
 
 ## Active frontier
 
