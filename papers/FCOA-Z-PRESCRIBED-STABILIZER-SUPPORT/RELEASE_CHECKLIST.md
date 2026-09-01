@@ -56,6 +56,7 @@ The English and Russian manuscripts are parallel publications, not literal line-
 - [x] Release-normalized sources produced by `prepare_release_sources.py`.
 - [x] English/Russian bibliographies synchronized after final metadata audit.
 - [x] Reproducible Pandoc + XeLaTeX build added in GitHub Actions.
+- [x] Backslash-delimited TeX math enabled explicitly in the Pandoc reader.
 - [x] English PDF built successfully.
 - [x] Russian PDF built successfully.
 - [x] PDFs rendered to PNG page images and visually inspected.
@@ -67,13 +68,9 @@ The English and Russian manuscripts are parallel publications, not literal line-
 - [x] No clipping/overlap observed in page contact sheets.
 - [x] Archival source package produced.
 
-Build run:
+The publication workflow is `.github/workflows/build-fcoa-prescribed-stabilizer-paper.yml`; release assets are produced as the `fcoa-prescribed-stabilizer-publication` artifact. Build identifiers are intentionally not frozen in this checklist so editorial metadata updates do not make the checklist stale.
 
-- GitHub Actions run `33469036307`
-- build commit `dc3d504a1c9fa6c1f380426221e53b4e4e47d6a1`
-- artifact digest `sha256:9d0986eec6017743ab598f05a69284d6519bd6b1d19a395771490e5f995530de`
-
-Final PDF geometry:
+Final PDF geometry verified during QA:
 
 - EN: 18 pages, A4, PDF 1.5
 - RU: 15 pages, A4, PDF 1.5
@@ -96,7 +93,8 @@ Release verification:
 - [x] 1468 invariant orbital unions checked.
 - [x] Exact recognizer result: `ALL PASS`.
 - [x] Seven-vertex D8/V4 support verifier: `PASS`.
-- [x] Frozen output SHA-256 recorded: `41fa2dcf71bfbd1939e9f5b4d47927110efcdd6a3b9733d0f28e798d41d86d97`.
+- [x] Frozen output SHA-256: `41fa2dcf71bfbd1939e9f5b4d47927110efcdd6a3b9733d0f28e798d41d86d97`.
+- [x] Frozen transcript checksum is external to the transcript itself; no self-referential hash line remains.
 - [x] Examples in the article checked against the frozen output.
 
 ## Bibliography audit
