@@ -3,7 +3,7 @@
 **Release date:** 2026-09-01  
 **Series:** Commander Sol / Fixed-Carrier Oriented Algebra  
 **Author:** Alex Malachevsky  
-**Publication status:** release candidate pending final PDF visual QA and Zenodo deposit
+**Publication status:** **release candidate passed; ready for Zenodo deposit**
 
 ## English title
 
@@ -20,14 +20,19 @@
 
 The Foundation DOI is present in both article abstracts and both bibliographies.
 
-## Release files
-
-Expected final assets:
+## Final release assets
 
 - `FCOA_Prescribed_Stabilizer_Support_EN_2026-09-01.pdf`
 - `FCOA_Prescribed_Stabilizer_Support_RU_2026-09-01.pdf`
 - `FCOA_Prescribed_Stabilizer_Support_SOURCE_2026-09-01.zip`
 - `VERIFIER_OUTPUT_2026-09-01.txt`
+
+PDF quality audit:
+
+- English: 18 pages, A4; rendered and inspected page-by-page/contact-sheet.
+- Russian: 15 pages, A4; rendered and inspected page-by-page/contact-sheet.
+- title pages, displayed mathematics, exact-minima table, Cyrillic text, and bibliography inspected;
+- no clipping or overlap observed.
 
 ## Frozen verifier state
 
@@ -40,6 +45,14 @@ Expected final assets:
 - orbital unions checked: `1468`
 - verified range: all integer partitions with total branch count `2 <= b <= 7`
 - seven-vertex branch-coherence verifier: `PASS`, exact anonymous-output minimum `9`
+
+## Final bibliography hardening
+
+The release-normalized manuscripts correct and synchronize the following metadata:
+
+- Saeid Alikhani, Ahmad Mirjalili, Samaneh Soltani — three-author form for DOI `10.1080/02522667.2021.2003011`;
+- Grech–Kisielewicz — Journal of Algebraic Combinatorics 57 (2023), 1045–1072;
+- Sabatini — Bulletin of the London Mathematical Society 58 (2026), e70201.
 
 ## Claim discipline
 
@@ -63,3 +76,7 @@ This work develops a fixed-action support theory for exact residual symmetry in 
 ## Keywords
 
 `Fixed-Carrier Oriented Algebra`, `FCOA`, `permutation groups`, `wreath products`, `setwise stabilizers`, `relation groups`, `2-closure`, `orbital digraphs`, `prescribed stabilizer`, `symmetry breaking`, `partition stabilizer`, `exact support`, `twin separation`
+
+## Deposit note
+
+No Zenodo connector/plugin is currently available in this environment. The external Zenodo upload is therefore the only remaining platform step. After a DOI is assigned, write it back to this file and the relevant repository README/index records.
