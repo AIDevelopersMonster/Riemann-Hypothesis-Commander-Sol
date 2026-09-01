@@ -1,0 +1,66 @@
+Execution date: 2026-09-01
+Python:
+Python 3.13.5
+Git blob verify_partition_only_exact_solver.py: d2357d683c925eae925c2e71558b15ee05312bc8
+Git blob verify_branch_coherence_support.py: f801a90232b8818c017065ceff115e4e228cd769
+
+=== branch coherence verifier ===
+|G| = 8
+|H| = 4
+G-orbit sizes on T^2 = [1, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 8]
+minimum orbit size supporting stabilizer H = 8
+minimum special-fiber size = 4
+balanced anonymous fibers on the 8-cell cross orbit = 4 + 4
+smallest G-fixed anchor orbit size = 1: {(o,o)}
+minimum anonymous-output domain size = 8 + 1 = 9
+PASS
+
+=== partition exact verifier ===
+PASS (2,) orbitals= 1
+PASS (1, 1) orbitals= 1
+PASS (3,) orbitals= 1
+PASS (2, 1) orbitals= 3
+PASS (1, 1, 1) orbitals= 1
+PASS (4,) orbitals= 1
+PASS (3, 1) orbitals= 3
+PASS (2, 2) orbitals= 2
+PASS (2, 1, 1) orbitals= 4
+PASS (1, 1, 1, 1) orbitals= 1
+PASS (5,) orbitals= 1
+PASS (4, 1) orbitals= 3
+PASS (3, 2) orbitals= 4
+PASS (3, 1, 1) orbitals= 4
+PASS (2, 2, 1) orbitals= 4
+PASS (2, 1, 1, 1) orbitals= 4
+PASS (1, 1, 1, 1, 1) orbitals= 1
+PASS (6,) orbitals= 1
+PASS (5, 1) orbitals= 3
+PASS (4, 2) orbitals= 4
+PASS (4, 1, 1) orbitals= 4
+PASS (3, 3) orbitals= 2
+PASS (3, 2, 1) orbitals= 8
+PASS (3, 1, 1, 1) orbitals= 4
+PASS (2, 2, 2) orbitals= 2
+PASS (2, 2, 1, 1) orbitals= 5
+PASS (2, 1, 1, 1, 1) orbitals= 4
+PASS (1, 1, 1, 1, 1, 1) orbitals= 1
+PASS (7,) orbitals= 1
+PASS (6, 1) orbitals= 3
+PASS (5, 2) orbitals= 4
+PASS (5, 1, 1) orbitals= 4
+PASS (4, 3) orbitals= 4
+PASS (4, 2, 1) orbitals= 8
+PASS (4, 1, 1, 1) orbitals= 4
+PASS (3, 3, 1) orbitals= 4
+PASS (3, 2, 2) orbitals= 5
+PASS (3, 2, 1, 1) orbitals= 9
+PASS (3, 1, 1, 1, 1) orbitals= 4
+PASS (2, 2, 2, 1) orbitals= 4
+PASS (2, 2, 1, 1, 1) orbitals= 5
+PASS (2, 1, 1, 1, 1, 1) orbitals= 4
+PASS (1, 1, 1, 1, 1, 1, 1) orbitals= 1
+ALL PASS
+partitions checked = 43
+orbital unions checked = 1468
+
+SHA-256 of this frozen output: 41fa2dcf71bfbd1939e9f5b4d47927110efcdd6a3b9733d0f28e798d41d86d97
