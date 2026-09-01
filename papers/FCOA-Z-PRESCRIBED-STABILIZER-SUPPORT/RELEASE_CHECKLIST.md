@@ -1,6 +1,6 @@
 # Release Checklist — Prescribed-Stabilizer Support in FCOA
 
-Status: pre-release  
+Status: **release candidate passed; ready for repository deposit**  
 Date: 2026-09-01
 
 ## Research threshold
@@ -36,40 +36,68 @@ Date: 2026-09-01
 - [x] Exact-vs-contained distinction from subgroup-relative distinguishing stated.
 - [x] No NP-hardness claim.
 
-## Proof audit
+## Proof and numbering audit
 
 - [x] `PROOF_AUDIT_2026-09-01.md` completed.
 - [x] Arbitrary-partition lower bound reread.
 - [x] Overgroup proof reread.
 - [x] Macro-swap proof expanded.
 - [x] Anonymous-output exception checked against the global theorem.
-- [ ] Final equation-number cross-check after LaTeX conversion.
-- [ ] Final theorem-number cross-check after LaTeX conversion.
+- [x] Final equation-number sequence checked after Pandoc/XeLaTeX build.
+- [x] Final theorem/lemma numbering checked after Pandoc/XeLaTeX build.
+- [x] EN and RU versions checked for theorem-content alignment.
 
-## Manuscripts
+The English and Russian manuscripts are parallel publications, not literal line-by-line translations. Their equation numbering is intentionally internally consistent rather than artificially forced to be identical.
+
+## Manuscripts and PDF build
 
 - [x] `ARTICLE_EN.md` created.
 - [x] `ARTICLE_RU.md` created.
-- [ ] English/Russian equation numbering synchronized after final edits.
-- [ ] English/Russian bibliography synchronized after final edits.
-- [ ] Convert final source to LaTeX.
-- [ ] Build PDF.
-- [ ] Render/inspect PDF page-by-page.
-- [ ] Produce archival source package.
+- [x] Release-normalized sources produced by `prepare_release_sources.py`.
+- [x] English/Russian bibliographies synchronized after final metadata audit.
+- [x] Reproducible Pandoc + XeLaTeX build added in GitHub Actions.
+- [x] English PDF built successfully.
+- [x] Russian PDF built successfully.
+- [x] PDFs rendered to PNG page images and visually inspected.
+- [x] Title pages inspected.
+- [x] Formula rendering inspected.
+- [x] Exact-minima table inspected.
+- [x] Cyrillic rendering inspected.
+- [x] Bibliography pages inspected.
+- [x] No clipping/overlap observed in page contact sheets.
+- [x] Archival source package produced.
+
+Build run:
+
+- GitHub Actions run `33469036307`
+- build commit `dc3d504a1c9fa6c1f380426221e53b4e4e47d6a1`
+- artifact digest `sha256:9d0986eec6017743ab598f05a69284d6519bd6b1d19a395771490e5f995530de`
+
+Final PDF geometry:
+
+- EN: 18 pages, A4, PDF 1.5
+- RU: 15 pages, A4, PDF 1.5
 
 ## Verification assets
 
-Expected supporting files from research directory:
+Supporting files:
 
 - `../FCOA-Z-RAY-AXIS/solve_partition_only_support.py`
 - `../FCOA-Z-RAY-AXIS/verify_partition_only_exact_solver.py`
 - `../FCOA-Z-RAY-AXIS/verify_branch_coherence_support.py`
 
-Before release:
+Release verification:
 
-- [ ] Freeze verifier outputs in a text artifact with date/version.
-- [ ] Record Python version / execution environment.
-- [ ] Check examples in the article against frozen output.
+- [x] Verifier outputs frozen in `VERIFIER_OUTPUT_2026-09-01.txt`.
+- [x] Python version recorded: `3.13.5`.
+- [x] Verifier Git blob hashes recorded.
+- [x] All integer partitions with `2 <= b <= 7` checked.
+- [x] 43 partition types checked.
+- [x] 1468 invariant orbital unions checked.
+- [x] Exact recognizer result: `ALL PASS`.
+- [x] Seven-vertex D8/V4 support verifier: `PASS`.
+- [x] Frozen output SHA-256 recorded: `41fa2dcf71bfbd1939e9f5b4d47927110efcdd6a3b9733d0f28e798d41d86d97`.
+- [x] Examples in the article checked against the frozen output.
 
 ## Bibliography audit
 
@@ -77,20 +105,29 @@ Included classical neighbors:
 
 - Gluck — trivial set-stabilizers.
 - Chan — wreath-product distinguishing number.
-- Alikhani–Soltani — subgroup-relative distinguishing.
+- Alikhani–Mirjalili–Soltani — subgroup-relative distinguishing.
 - Dalla Volta–Siemons — relation groups/orbit equivalence.
 - Grech–Kisielewicz — orbit-closed/relation groups.
 - Liebeck–Praeger–Saxl — 2-closure.
 - Sumner — point-determining graphs.
 - Entringer–Gassman — point distinguishing.
-- Hell–Hernandez-Cruz — point-determining digraphs.
-- McCarthy–Quintas; Babai–Goodman–Lovasz; Babai–Goodman; Deligeorgaki — minimum graph realization with given automorphism group.
+- Hell–Hernández-Cruz — point-determining digraphs.
+- McCarthy–Quintas; Babai–Goodman–Lovász; Babai–Goodman; Deligeorgaki — minimum graph realization with given automorphism group.
 - Sabatini — contemporary set-stabilizer work.
 
-Before release:
+Final hardening corrections:
 
-- [ ] Verify final volume/page/year metadata against DOI landing pages.
-- [ ] Normalize bibliography style.
+- [x] Alikhani paper corrected to three authors: Saeid Alikhani, Ahmad Mirjalili, Samaneh Soltani.
+- [x] Grech–Kisielewicz pages normalized to 1045–1072.
+- [x] Sabatini normalized to *Bulletin of the London Mathematical Society* 58 (2026), e70201.
+- [x] Bibliography style normalized consistently in both release PDFs.
+
+## Release assets
+
+- `FCOA_Prescribed_Stabilizer_Support_EN_2026-09-01.pdf`
+- `FCOA_Prescribed_Stabilizer_Support_RU_2026-09-01.pdf`
+- `FCOA_Prescribed_Stabilizer_Support_SOURCE_2026-09-01.zip`
+- `VERIFIER_OUTPUT_2026-09-01.txt`
 
 ## Release decision
 
@@ -100,10 +137,18 @@ Before release:
 \boxed{\text{PASSED}}
 \]
 
-### Immediate Zenodo upload threshold
+### PDF/source archival threshold
 
 \[
-\boxed{\text{NOT YET: LaTeX/PDF/frozen-verifier editorial pass remains}}
+\boxed{\text{PASSED}}
 \]
 
-No further theorem discovery is required for the first paper. Complexity classification of the Orbital XOR-Separation Program should be treated as a separate follow-up branch unless it yields quickly during editorial work.
+### Zenodo deposit threshold
+
+\[
+\boxed{\text{PASSED — READY FOR DEPOSIT}}
+\]
+
+No further theorem discovery is required for this release. Complexity classification of the Orbital XOR-Separation Program belongs to a separate follow-up branch.
+
+No Zenodo connector/plugin is currently available in this environment, so the external deposit itself is the remaining manual/platform step. Once a DOI is assigned, it should be written back to `RELEASE_METADATA.md`, both article source records if desired, and the relevant repository README/index files.
