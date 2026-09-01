@@ -27,7 +27,7 @@ jobs:
         working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
         run: |
           pandoc ARTICLE_EN_RELEASE.md \
-            --from=markdown+tex_math_dollars \
+            --from=markdown+tex_math_dollars+tex_math_single_backslash \
             --pdf-engine=xelatex \
             --include-in-header=publication-header.tex \
             -V lang=en-US \
@@ -39,7 +39,7 @@ jobs:
         working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
         run: |
           pandoc ARTICLE_RU_RELEASE.md \
-            --from=markdown+tex_math_dollars \
+            --from=markdown+tex_math_dollars+tex_math_single_backslash \
             --pdf-engine=xelatex \
             --include-in-header=publication-header.tex \
             -V lang=ru-RU \
