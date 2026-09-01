@@ -14,6 +14,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: fcoa-lqr-publication-build
+  cancel-in-progress: true
+
 jobs:
   build-publication:
     if: github.actor != 'github-actions[bot]'
@@ -230,5 +234,6 @@ jobs:
             echo "No generated changes to commit."
           else
             git commit -m "Build FCOA LQR publication artifacts"
+            git pull --rebase origin director/fcoa-rigidity-cost
             git push origin HEAD:director/fcoa-rigidity-cost
           fi
