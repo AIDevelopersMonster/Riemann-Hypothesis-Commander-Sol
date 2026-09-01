@@ -62,5 +62,3 @@ PASS (1, 1, 1, 1, 1, 1, 1) orbitals= 1
 ALL PASS
 partitions checked = 43
 orbital unions checked = 1468
-
-SHA-256 of this frozen output: 41fa2dcf71bfbd1939e9f5b4d47927110efcdd6a3b9733d0f28e798d41d86d97
