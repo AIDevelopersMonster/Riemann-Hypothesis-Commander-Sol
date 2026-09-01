@@ -1,0 +1,64 @@
+name: Build FCOA Prescribed Stabilizer Paper
+
+on:
+  push:
+    paths:
+      - 'papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/**'
+      - '.github/workflows/build-fcoa-prescribed-stabilizer-paper.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install publication toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-lang-cyrillic fonts-dejavu-core zip
+
+      - name: Build English PDF
+        working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
+        run: |
+          pandoc ARTICLE_EN.md \
+            --from=markdown+tex_math_dollars \
+            --pdf-engine=xelatex \
+            --include-in-header=publication-header.tex \
+            -V lang=en-US \
+            -V fontsize=10.5pt \
+            -V documentclass=article \
+            -o FCOA_Prescribed_Stabilizer_Support_EN_2026-09-01.pdf
+
+      - name: Build Russian PDF
+        working-directory: papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT
+        run: |
+          pandoc ARTICLE_RU.md \
+            --from=markdown+tex_math_dollars \
+            --pdf-engine=xelatex \
+            --include-in-header=publication-header.tex \
+            -V lang=ru-RU \
+            -V fontsize=10.5pt \
+            -V documentclass=article \
+            -o FCOA_Prescribed_Stabilizer_Support_RU_2026-09-01.pdf
+
+      - name: Build archival source bundle
+        run: |
+          zip -j papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_SOURCE_2026-09-01.zip \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_EN.md \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/ARTICLE_RU.md \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/publication-header.tex \
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/VERIFIER_OUTPUT_2026-09-01.txt \
+            papers/FCOA-Z-RAY-AXIS/solve_partition_only_support.py \
+            papers/FCOA-Z-RAY-AXIS/verify_partition_only_exact_solver.py \
+            papers/FCOA-Z-RAY-AXIS/verify_branch_coherence_support.py
+
+      - name: Upload publication package
+        uses: actions/upload-artifact@v4
+        with:
+          name: fcoa-prescribed-stabilizer-publication
+          path: |
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_EN_2026-09-01.pdf
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_RU_2026-09-01.pdf
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/FCOA_Prescribed_Stabilizer_Support_SOURCE_2026-09-01.zip
+            papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/VERIFIER_OUTPUT_2026-09-01.txt
