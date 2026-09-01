@@ -3,110 +3,122 @@
 **Scientific direction:** non-Abelian anyons, fusion channels, braid/path memory  
 **Parent:** `delegated/FCOA_Z_SYMMETRIC_LINE/APPLIED_DIRECTIONS/`  
 **Base:** FCOA-Z v1.1, DOI 10.5281/zenodo.22169264  
-**Status:** MODEL-CANDIDATE THRESHOLD REACHED / FULL COHERENCE OPEN
+**Status:** RESEARCH ARC COMPLETE / PUBLICATION THRESHOLD REACHED FOR STRUCTURAL NO-GO NOTE
 
-## Main progression
+## Final result of the three-strike sequence
 
-The useful correspondence is
+The useful correspondence remains
 
 \[
 \boxed{\text{mixed/typed interaction}\to\text{output-channel fiber},}
 \]
 
-not `+ - -> commutativity`.
+not `+ - -> commutativity` and not a direct physical identification with anyons.
 
-The first strike established an exact one-step Ising fusion-support shadow and proved that strict line geometry cannot itself generate braid topology.
+### Strike 1 — one-step fusion support
 
-The second strike activates a split terminal orbit as a two-state internal LC2 fiber. The old split reflection gives an involution `J`; retained legacy/reflected provenance gives an involution `S`. They obey
+At fixed radial level, the existing terminal alphabet
+
+\[
+E_n^+,\ E_n^*,\ E_n^\times
+\]
+
+can encode the three simple Ising labels and exactly reproduce the support of the multiplicity-free fusion rules, including
+
+\[
+\sigma\times\sigma=1+\psi
+\]
+
+as a two-element typed output fiber.
+
+Strict collision-free line geometry itself has trivial unordered configuration-space fundamental group and therefore cannot generate nontrivial braid topology.
+
+### Strike 2 — local split-fiber matrix mechanism
+
+A split terminal orbit has a reflection involution `J` and a provenance sign `S` satisfying
 
 \[
 J^2=S^2=I,
-\qquad
-JS=-SJ,
-\qquad
-(JS)^2=-I.
+\qquad JS=-SJ.
 \]
 
-After free linearization, the unique minimal duality in `span_R{J,S}` that exchanges the two canonical observables is
+After free linearization this gives a valid local Pauli/Clifford-style two-state mechanism and a Hadamard transform on the **provenance** fiber. The associated two-state braid template selects relative phases `t=±i` when the braid relation is imposed.
+
+### Strike 3 — hostile correction and coherence barrier
+
+The hostile audit found that v0.2 originally conflated two different two-state spaces:
+
+1. fusion channel: `E_n^+` versus `E_n^times`, corresponding to `1` versus `psi` in the v0.1 dictionary;
+2. mirror provenance: `E_n^alpha` versus `bar E_n^alpha`.
+
+Reflection acts on the second, while the Ising associator mixes the first.
+
+Hence the v0.2 matrix calculation is mathematically valid, but its identification with the Ising fusion-channel associator is superseded.
+
+The corrected four-state decomposition is
+
+\[
+H_n\cong H_{ch}\otimes H_{pr}.
+\]
+
+All old reflection/provenance-generated maps are block diagonal in the channel decomposition and therefore cannot generate the Ising channel-mixing Hadamard.
+
+Moreover, an LC2 model consisting only of active fibers and unary endomorphisms cannot even formulate the categorical pentagon intrinsically: a tensor/fusion-tree address layer is required first.
+
+## Exact minimum-resource barrier
+
+The current resource ladder is
 
 \[
 \boxed{
-F=\frac{J+S}{\sqrt2}
-=\frac1{\sqrt2}
-\begin{pmatrix}1&1\\1&-1\end{pmatrix},
+\text{line}
+<
+\text{typed channels}
+<
+\text{provenance fiber}
+<
+\text{linear channel mixing}
+<
+\text{fusion-tree composition}
+<
+\text{monoidal coherence class}
+<
+\text{braided class}.
 }
 \]
 
-which is exactly the standard nontrivial Ising `F` matrix.
+The final four resources are not forced by the audited one-line FCOA-Z structure.
 
-For a channel-preserving phase exchange
+Conditional on adding the Ising fusion ring and a genuine tensor/fusion-tree layer, standard Tambara–Yamagami/Ising classification gives exactly two pentagon-complete monoidal categories and four braidings for each, hence eight braided Ising categories in total.
 
-\[
-R_t=\operatorname{diag}(1,t),
-\qquad |t|=1,
-\]
-
-and
-
-\[
-B_t=FR_tF,
-\]
-
-the braid relation holds iff
-
-\[
-\boxed{(t-1)(t^2+1)=0.}
-\]
-
-Thus the nontrivial relative phases are
-
-\[
-\boxed{t=\pm i,}
-\]
-
-giving the standard Ising `R` matrix projectively, with the common phase left undetermined.
-
-This produces a genuine non-Abelian projective braid representation on the internal two-state fiber while the spatial carrier remains one-dimensional.
-
-## Sharp boundaries
-
-1. Pure deterministic set-level LC2 re-entry can only induce permutation/monomial matrices and therefore cannot produce the Ising Hadamard `F`; additive linearization is a minimum extra resource.
-2. The FCOA split-output geometry generates the `J,S` scaffold, and the association-duality requirement fixes `F`; however, identifying these bases with fusion-tree bases is new LC2 semantics.
-3. Conservative LC2 activation allows every phase `t in U(1)`. The old FCOA data therefore do not select `t=±i`; braid/Yang-Baxter coherence is an independent new axiom that selects it.
-4. The global Ising phase `e^{-i pi/8}`, topological twist, arbitrary fusion trees, and full pentagon/hexagon coherence are not yet generated.
-5. Strict one-dimensional collision-free carrier topology remains braid-trivial. The non-Abelian memory lives in an internal output fiber, not in line geometry.
+Thus raw FCOA-Z does not select a unique Frobenius–Schur sign, braiding phase, twist, or full hexagon solution.
 
 ## Current verdict
 
 \[
-\boxed{\texttt{MODEL CANDIDATE — PROJECTIVE FOUR-}\sigma\texttt{ BRAID-QUBIT SUBSYSTEM}}
+\boxed{\texttt{FORMAL FUSION SHADOW + COHERENCE-BARRIER THEOREM}}
 \]
 
-for the **LC2-enriched** FCOA theory.
-
-Spatial carrier status remains
+Spatially:
 
 \[
-\boxed{\texttt{1D-CLOSED}}
+\boxed{\texttt{1D-CLOSED WITH RESPECT TO CARRIER DIMENSION}.}
 \]
 
-for this finite internal braid representation. No emergent second spatial coordinate has been proved or required.
+The missing resources are internal compositional/channel data, not a proved second spatial coordinate.
 
 ## Files
 
 - `SOL_TOPO_REPORT_v0_1.md` — fusion-support embedding, conservative mixed-sector construction, terminal-sink obstruction, strict-line braid no-go.
-- `SOL_TOPO_LC2_REFLECTION_BRAID_v0_2.md` — split-fiber activation, reflection/provenance Clifford structure, canonical Hadamard theorem, braid-phase classification, projective Ising braid subsystem, coherence-independence theorem.
+- `SOL_TOPO_LC2_REFLECTION_BRAID_v0_2.md` — local split-provenance matrix mechanism and projective braid template. **Interpretation warning:** its identification of that split orbit with the Ising fusion-channel qubit is superseded by v0.3.
+- `SOL_TOPO_COHERENCE_BARRIER_v0_3.md` — channel/provenance separation, channel-mixing obstruction, pentagon expressibility barrier, conditional Tambara–Yamagami/Ising completion, and minimum-resource theorem.
 
 ## Publication status
 
-The line has reached a model-candidate threshold but should still remain in the research branch before standalone publication.
-
-One coherence strike remains:
-
 \[
-\boxed{
-\text{Can pentagon/hexagon coherence be generated from LC2 re-entry, or must an independent tensor/fusion layer be added?}
-}
+\boxed{\texttt{PUBLICATION THRESHOLD REACHED}.}
 \]
 
-A positive construction or a strong minimum-resource no-go theorem at that gate should be considered publication-grade.
+The publishable object should be a conservative structural/no-go note, not a claim that FCOA derives non-Abelian anyons.
+
+Before Zenodo release, consolidate v0.1–v0.3 into one corrected RU/EN manuscript, retain the v0.2 correction explicitly, audit formula numbering and bibliography, and freeze the branch snapshot.
