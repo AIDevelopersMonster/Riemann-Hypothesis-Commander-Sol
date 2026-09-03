@@ -7,11 +7,12 @@
 - Author (EN): Alex Malachevsky
 - Автор (RU): Алексей Малачевский
 - ORCID: 0009-0008-6009-3196
-- Version: 0.9.0-rc1
-- Package date: 2026-09-03
-- Intended resource type: Publication / Preprint
+- Version: 1.0.0
+- Publication date: 2026-09-03
+- Resource type: Publication / Preprint
 - License: CC BY 4.0
-- Zenodo DOI: **pending reservation**
+- Zenodo DOI: **10.5281/zenodo.22286064**
+- Persistent URL: https://doi.org/10.5281/zenodo.22286064
 
 ## Main theorem
 
@@ -27,12 +28,21 @@ Under the canonical AL2 benchmark that includes order and truncated addition, th
 
 ## Claim ceiling
 
-The release candidate does **not** claim the width-9 threshold for UCQs, the whole existential-positive fragment, full finite-variable FO, or arbitrary interpretation-equivalent encodings.
+The paper does **not** claim the width-9 threshold for UCQs, the whole existential-positive fragment, full finite-variable FO, or arbitrary interpretation-equivalent encodings.
 
-Earlier CF/bounded-depth/RTP/internal-memory claims are not dependencies of the main theorem; the invalid CF and bounded-depth lower bounds are quarantined in the research branch.
+Earlier CF/bounded-depth/RTP/internal-memory claims are not dependencies of the main theorem; invalid CF and bounded-depth lower bounds remain quarantined in the research branch.
+
+## Publication package
+
+Final bilingual PDFs are v1.0.0 and include the Zenodo DOI. The Russian manuscript uses **Алексей Малачевский**; international citation and Zenodo creator metadata use **Alex Malachevsky**.
+
+Final SHA-256:
+
+- EN PDF: `401935136c656b88ce9944f9137d5efe839e0b240b709344b0768d21c60455ed`
+- RU PDF: `df1f2fdfbef9ac962d5a6d02245ad2741d5698c713421197ab303526b792db5f`
 
 ## Publication status
 
-`REVIEWED_CLEAN — DOI reservation pending`
-
-The bilingual RC PDFs and complete source package have been built and render-audited locally. The Russian manuscript uses the author form **Алексей Малачевский**; international citation and Zenodo creator metadata use **Alex Malachevsky**. After the Zenodo DOI is reserved, both PDFs must be rebuilt with the DOI inserted, checksums regenerated, and this README moved to v1.0.0 / PUBLISHED.
+\[
+\boxed{\text{PUBLISHED / v1.0.0 / DOI 10.5281/zenodo.22286064}}
+\]
