@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "Reflections on Sparse Arithmetic Memory with Commander Sol: An Exact Conjunctive-Query Width Threshold for Finite Addition"
+message: "If you use this work, please cite the Zenodo record."
+type: article
+authors:
+  - family-names: Malachevsky
+    given-names: Alex
+    orcid: https://orcid.org/0009-0008-6009-3196
+version: 1.0.0
+date-released: 2026-09-03
+repository-code: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
+license: CC-BY-4.0
+doi: 10.5281/zenodo.22286064
+url: https://doi.org/10.5281/zenodo.22286064
+keywords:
+  - conjunctive queries
+  - finite-variable logic
+  - static preprocessing
+  - entropy
+  - functional dependencies
+  - factorised representations
+  - finite addition
+  - Chinese remainder theorem
