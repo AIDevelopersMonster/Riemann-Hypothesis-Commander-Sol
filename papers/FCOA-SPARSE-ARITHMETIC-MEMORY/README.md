@@ -4,7 +4,8 @@
 
 **Russian title:** *Размышлизмы о разреженной арифметической памяти с Commander Sol: точный порог ширины конъюнктивного запроса для конечного сложения*
 
-- Author: Alex Malachevsky
+- Author (EN): Alex Malachevsky
+- Автор (RU): Алексей Малачевский
 - ORCID: 0009-0008-6009-3196
 - Version: 0.9.0-rc1
 - Package date: 2026-09-03
@@ -34,4 +35,4 @@ Earlier CF/bounded-depth/RTP/internal-memory claims are not dependencies of the 
 
 `REVIEWED_CLEAN — DOI reservation pending`
 
-The bilingual RC PDFs and complete source package have been built and render-audited locally. After the Zenodo DOI is reserved, both PDFs must be rebuilt with the DOI inserted, checksums regenerated, and this README moved to v1.0.0 / PUBLISHED.
+The bilingual RC PDFs and complete source package have been built and render-audited locally. The Russian manuscript uses the author form **Алексей Малачевский**; international citation and Zenodo creator metadata use **Alex Malachevsky**. After the Zenodo DOI is reserved, both PDFs must be rebuilt with the DOI inserted, checksums regenerated, and this README moved to v1.0.0 / PUBLISHED.
