@@ -1,13 +1,15 @@
 # SOL-SELECTOR Research State
 
-Date: 2026-08-31
-Status: ACTIVE / PREPUBLICATION HOSTILE-AUDIT THRESHOLD REACHED
+Date: 2026-09-04
+Status: ACTIVE / ARTICLE-ASSEMBLY THRESHOLD REACHED
 
-## Completed theorem packages
+## Completed theorem and audit packages
 
 1. `CATEGORY_CLOSURE_AUDIT_0_1.md`
 2. `QUOTIENT_POSET_0_1.md`
 3. `INTRINSIC_DEFINABILITY_AUDIT_0_1.md`
+4. `HOSTILE_AUDIT_0_1.md`
+5. `PRIOR_ART_NOVELTY_AUDIT_0_1.md`
 
 ## Universal category layer
 
@@ -25,9 +27,9 @@ M_0\to F_{\to}\to F_{\mathrm{mix}}\to B0\to BR.
 - `B0` is initial among relation-only mixed completions.
 - `BR` is the further weak quotient obtained by anchoring the unique B0 event at the root.
 
-`B0 -> BR` exists and `BR -> B0` does not when the event is distinct from the root.
+`B0 -> BR` exists in the weak preservation-only category, while `BR -> B0` does not when the event is distinct from the root.
 
-## Pure quotient geometry
+## Quotient geometry
 
 Fresh mixed-commutative events are indexed by
 
@@ -41,81 +43,59 @@ with reflection
 nu(p_ij)=p_ji.
 ```
 
-Pure terminal-event quotient kernels are exactly transposition-invariant equivalence relations on `N_{>0}^2`. They form a complete lattice.
+Pure terminal-event quotient kernels are transposition-invariant equivalence relations on the event index set. This complete-lattice fact is classical G-set/unary-algebra infrastructure and is NOT a novelty claim.
 
-## Intrinsic incomparable pair
+## Canonically generated incomparable pair
 
-The coordinate test quotients from the previous stage now have arithmetic-free structural definitions.
+The FCOA rooted/reflected line canonically generates two structural quotient statistics.
 
-### Intrinsic span
+### Span
 
-For an opposite-branch event `{x,y}`, join the two inherited contraction histories at the root. Quotient by equality of total bridge-path size.
+Join the two inherited contraction histories at the root and retain equality of total cross-root bridge-history size.
 
-Coordinate shadow only:
+Coordinate representation only:
 
 ```math
 i+j.
 ```
 
-### Intrinsic gap
+### Gap
 
-Apply the inherited radial contraction synchronously to both endpoints until one reaches the root; forget surviving branch orientation and retain the residual rooted-history type.
+Synchronously contract both radial histories toward the root until one terminates; forget surviving branch orientation and retain the residual rooted-history type.
 
-Coordinate shadow only:
+Coordinate representation only:
 
 ```math
 |i-j|.
 ```
 
-These two intrinsic quotient kernels are incomparable:
+They satisfy
 
 ```math
 \boxed{theta_span || theta_gap.}
 ```
 
-Thus the first nonchain phenomenon does not require importing ordinary integer addition or subtraction as selector data.
-
-## Exact intrinsic meet and join
-
-Meet:
+and exactly
 
 ```math
-\boxed{
-theta_span \wedge theta_gap = theta_orb,
-}
+\boxed{theta_span \wedge theta_gap = theta_orb,}
 ```
-
-where `theta_orb` remembers the unordered pair of rooted contraction-history types.
-
-Join:
 
 ```math
-\boxed{
-theta_span \vee theta_gap = theta_phase,
-}
+\boxed{theta_span \vee theta_gap = theta_phase.}
 ```
 
-where `theta_phase` remembers only the alternating two-phase class of the cross-root bridge.
-
-The earlier formulas `{i,j}` and `(i+j) mod 2` are now representation formulas, not definitions.
+The formulas `{i,j}`, `i+j`, `|i-j|`, and parity are representations, not primitive selector definitions.
 
 ## Logical scope firewall
 
-The branch now explicitly distinguishes:
+The proved claim is:
 
 ```math
-intrinsic/canonically generated structural quotient
+\boxed{\text{canonically generated structural invariant}.}
 ```
 
-from
-
-```math
-uniform parameter-free first-order definability.
-```
-
-The former is proved. The latter is NOT currently claimed for unbounded radial-history equality, bridge-length equality, bridge phase, or synchronous cancellation in the weakest infinite reduct.
-
-This restriction is mandatory for publication wording.
+The branch does NOT currently claim uniform parameter-free FO definability of unbounded bridge-length equality, bridge phase, or synchronous cancellation in the weakest infinite reduct.
 
 ## B1 placement
 
@@ -125,61 +105,99 @@ At the one-step mixed-commutative selector level:
 \boxed{B1 \cong F_mix.}
 ```
 
-because both retain one terminal output per unoriented mixed bridge.
-
 ## Anchoring geometry
 
 Anchored kernels are reflection-stable, core-separating equivalence relations on the old core plus event set.
 
-A reflection-fixed event block can anchor only to a reflection-fixed core point. On the signed base line the unique such point is `P0`.
-
-Hence:
+A reflection-fixed event block can anchor only to a reflection-fixed core point. The signed base line has the unique fixed point `P0`; hence
 
 ```math
-\boxed{BR is the unique reflection-compatible base-line anchor of B0.}
+\boxed{BR\text{ is the unique reflection-compatible base-line anchor of }B0.}
 ```
 
-Incompatible anchors can have no common admissible upper bound. Therefore pure event quotients form a complete lattice, while the anchored quotient spectrum is generally only a poset and may lack joins.
-
-## Arithmetic-firewall verdict
-
-PASS for primitive import:
+Two quotients anchoring the same event class to different old core points have no common admissible upper bound. Therefore the selector geometry undergoes a genuine transition:
 
 ```math
 \boxed{
-\text{span/gap incomparability is intrinsic and does not assume primitive }+,-,\times.
+\text{pure invariant-partition lattice}
+\longrightarrow
+\text{core-anchored quotient poset with possible missing joins}.
 }
 ```
 
-This does NOT imply low arithmetic leakage. In particular synchronous cancellation remains a deliberately arithmetic-rich control construction. Leakage is a separate invariant and must be audited separately.
+## Weak/strong bifurcation
 
-## Publication status
-
-The previous publication-critical intrinsicity barrier has been cleared.
-
-SOL-SELECTOR has now reached the **prepublication hostile-audit threshold**.
-
-Do not publish yet. Before article drafting, perform:
-
-1. hostile proof audit of all theorem dependencies and quotient compatibility;
-2. literature/novelty review against equivariant partition lattices, partial-algebra congruences, rooted-tree/path quotients and bisimulation-style quotient theories;
-3. exact claim-discipline audit separating structural generation, categorical universality, FO definability and arithmetic leakage.
-
-If those checks pass without collapsing the theorem nucleus, proceed directly to RU/EN article assembly.
-
-## Immediate next strike
+The arrow
 
 ```math
-\boxed{
-\text{HOSTILE AUDIT: can the selector theorem nucleus survive adversarial reconstruction?}
-}
+B0\to BR
 ```
 
-Priority attack points:
+is valid under the explicitly adopted weak preservation-only quotient convention.
 
-- anchoring an event to an operation-active core state;
-- quotient well-definedness for partial operations;
-- complete-lattice claim under all inherited output structure;
-- intrinsic span/gap construction without hidden coordinate assumptions;
-- infinite-event join proof;
-- exact novelty boundary.
+It is destroyed by stronger requirements such as output-sort/externalness preservation or closed/strong definedness invariance.
+
+This is an explicit selector bifurcation, not neutral background structure.
+
+## Hostile audit
+
+Verdict:
+
+```math
+\boxed{\text{PASS WITH TWO CLAIM-NARROWING CORRECTIONS}.}
+```
+
+Corrections:
+
+1. use `canonically generated structural invariant`, not unqualified `FO-definable intrinsic invariant`;
+2. present the pure congruence-lattice theorem as classical infrastructure rather than novelty.
+
+## Prior-art / novelty audit
+
+Verdict:
+
+```math
+\boxed{\text{PASS FOR CAREFULLY SCOPED ARTICLE}.}
+```
+
+Do not claim novelty for:
+
+- weak homomorphisms/congruences of partial algebras;
+- quotient partial algebras;
+- free completions/free partial structures;
+- congruence lattices of G-sets/unary algebras;
+- relative congruence theory in general.
+
+The defensible contribution is the combined FCOA-specific architecture:
+
+1. staged selector ladder;
+2. separation of ordered-event freedom from mixed commutativity;
+3. span/gap incomparable quotient kernels with exact meet/join;
+4. transition from pure-event lattice behavior to anchored no-join behavior;
+5. uniqueness of BR as the reflection-compatible base-line anchor of B0;
+6. exact weak/strong axiom boundary at which the B0/BR arrow disappears.
+
+## Publication decision
+
+SOL-SELECTOR has crossed the article-assembly threshold.
+
+Research discovery should now pause except for defects uncovered during writing. The next task is RU/EN article construction with complete definitions, numbered theorems, proofs, literature positioning, and claim discipline.
+
+## Immediate next step
+
+```math
+\boxed{\text{ASSEMBLE THE SOL-SELECTOR ARTICLE.}}
+```
+
+Required assembly order:
+
+1. freeze notation and category definitions;
+2. present the corrected universal ladder;
+3. prove the pure quotient classification only as infrastructure;
+4. develop the span/gap diamond;
+5. prove the anchored no-join theorem and BR uniqueness;
+6. isolate weak/strong bifurcation;
+7. state limitations and FO-definability firewall;
+8. include prior-art positioning;
+9. run numbering/bibliography/metadata audit;
+10. produce English master and Russian companion version.
