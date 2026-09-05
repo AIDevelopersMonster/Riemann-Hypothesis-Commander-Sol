@@ -1,203 +1,78 @@
 # SOL-SELECTOR Research State
 
-Date: 2026-09-04
-Status: ACTIVE / ARTICLE-ASSEMBLY THRESHOLD REACHED
+Date: 2026-09-05
+Status: CLOSED / PUBLISHED v1.0
 
-## Completed theorem and audit packages
+## Publication
+
+English title: `Selector Geometry for Mixed Extensions of a Reflected Partial Algebra`
+
+Russian title: `Геометрия селекторов смешанных расширений отражённой частичной алгебры`
+
+Author: `Malachevsky, A.A.` / `Малачевский А.А.`
+
+ORCID: `0009-0008-6009-3196`
+
+Zenodo DOI:
+
+`https://doi.org/10.5281/zenodo.22319301`
+
+## Frozen theorem nucleus
+
+```math
+\boxed{M_0\to F_{\to}\to F_{\mathrm{mix}}\to B0\to BR.}
+```
+
+The one-step selector geometry also contains the canonically generated incomparable pair
+
+```math
+\boxed{\theta_{span}\parallel\theta_{gap},}
+```
+
+with exact meet and join
+
+```math
+\boxed{\theta_{span}\wedge\theta_{gap}=\theta_{orb},}
+```
+
+```math
+\boxed{\theta_{span}\vee\theta_{gap}=\theta_{phase}.}
+```
+
+At the anchored layer:
+
+```math
+\boxed{BR\text{ is the unique reflection-compatible base-line anchor of }B0.}
+```
+
+Two admissible quotients anchoring the same event class to distinct old core points have no common admissible upper bound. Thus the pure event congruence lattice passes to a constrained anchored quotient poset in which joins can fail.
+
+## Claim firewall
+
+The publication does not claim novelty for weak partial-algebra homomorphisms, weak quotient constructions, free completions, or congruence lattices of `C2`/G-sets.
+
+The published contribution is the combined FCOA-specific selector ladder, the span/gap quotient geometry, the anchored no-join obstruction, the uniqueness of `BR`, and the explicit weak/strong bifurcation boundary.
+
+No uniform parameter-free FO-definability claim is made for unbounded span/gap/phase in the weakest infinite reduct.
+
+## Audit history
+
+Completed:
 
 1. `CATEGORY_CLOSURE_AUDIT_0_1.md`
 2. `QUOTIENT_POSET_0_1.md`
 3. `INTRINSIC_DEFINABILITY_AUDIT_0_1.md`
 4. `HOSTILE_AUDIT_0_1.md`
 5. `PRIOR_ART_NOVELTY_AUDIT_0_1.md`
+6. `ARTICLE_EN_v1_0.md`
+7. `ARTICLE_RU_v1_0.md`
+8. `PREPUBLICATION_AUDIT_1_0.md`
+9. `RELEASE_PACKAGE_1_0.md`
 
-## Universal category layer
+## Closure decision
 
-The corrected universal ladder is
+The one-step `SOL-SELECTOR` branch is mathematically and publication-wise closed at v1.0.
 
-```math
-\boxed{
-M_0\to F_{\to}\to F_{\mathrm{mix}}\to B0\to BR.
-}
-```
+No further theorem discovery should be appended to this publication line.
 
-- `M0` is initial among optional mixed extensions.
-- `F_→` is initial among full ordered mixed completions.
-- `F_mix` is initial after mixed commutativity is imposed.
-- `B0` is initial among relation-only mixed completions.
-- `BR` is the further weak quotient obtained by anchoring the unique B0 event at the root.
-
-`B0 -> BR` exists in the weak preservation-only category, while `BR -> B0` does not when the event is distinct from the root.
-
-## Quotient geometry
-
-Fresh mixed-commutative events are indexed by
-
-```math
-p_{ij}=\{P_i^+,P_j^-\},
-```
-
-with reflection
-
-```math
-nu(p_ij)=p_ji.
-```
-
-Pure terminal-event quotient kernels are transposition-invariant equivalence relations on the event index set. This complete-lattice fact is classical G-set/unary-algebra infrastructure and is NOT a novelty claim.
-
-## Canonically generated incomparable pair
-
-The FCOA rooted/reflected line canonically generates two structural quotient statistics.
-
-### Span
-
-Join the two inherited contraction histories at the root and retain equality of total cross-root bridge-history size.
-
-Coordinate representation only:
-
-```math
-i+j.
-```
-
-### Gap
-
-Synchronously contract both radial histories toward the root until one terminates; forget surviving branch orientation and retain the residual rooted-history type.
-
-Coordinate representation only:
-
-```math
-|i-j|.
-```
-
-They satisfy
-
-```math
-\boxed{theta_span || theta_gap.}
-```
-
-and exactly
-
-```math
-\boxed{theta_span \wedge theta_gap = theta_orb,}
-```
-
-```math
-\boxed{theta_span \vee theta_gap = theta_phase.}
-```
-
-The formulas `{i,j}`, `i+j`, `|i-j|`, and parity are representations, not primitive selector definitions.
-
-## Logical scope firewall
-
-The proved claim is:
-
-```math
-\boxed{\text{canonically generated structural invariant}.}
-```
-
-The branch does NOT currently claim uniform parameter-free FO definability of unbounded bridge-length equality, bridge phase, or synchronous cancellation in the weakest infinite reduct.
-
-## B1 placement
-
-At the one-step mixed-commutative selector level:
-
-```math
-\boxed{B1 \cong F_mix.}
-```
-
-## Anchoring geometry
-
-Anchored kernels are reflection-stable, core-separating equivalence relations on the old core plus event set.
-
-A reflection-fixed event block can anchor only to a reflection-fixed core point. The signed base line has the unique fixed point `P0`; hence
-
-```math
-\boxed{BR\text{ is the unique reflection-compatible base-line anchor of }B0.}
-```
-
-Two quotients anchoring the same event class to different old core points have no common admissible upper bound. Therefore the selector geometry undergoes a genuine transition:
-
-```math
-\boxed{
-\text{pure invariant-partition lattice}
-\longrightarrow
-\text{core-anchored quotient poset with possible missing joins}.
-}
-```
-
-## Weak/strong bifurcation
-
-The arrow
-
-```math
-B0\to BR
-```
-
-is valid under the explicitly adopted weak preservation-only quotient convention.
-
-It is destroyed by stronger requirements such as output-sort/externalness preservation or closed/strong definedness invariance.
-
-This is an explicit selector bifurcation, not neutral background structure.
-
-## Hostile audit
-
-Verdict:
-
-```math
-\boxed{\text{PASS WITH TWO CLAIM-NARROWING CORRECTIONS}.}
-```
-
-Corrections:
-
-1. use `canonically generated structural invariant`, not unqualified `FO-definable intrinsic invariant`;
-2. present the pure congruence-lattice theorem as classical infrastructure rather than novelty.
-
-## Prior-art / novelty audit
-
-Verdict:
-
-```math
-\boxed{\text{PASS FOR CAREFULLY SCOPED ARTICLE}.}
-```
-
-Do not claim novelty for:
-
-- weak homomorphisms/congruences of partial algebras;
-- quotient partial algebras;
-- free completions/free partial structures;
-- congruence lattices of G-sets/unary algebras;
-- relative congruence theory in general.
-
-The defensible contribution is the combined FCOA-specific architecture:
-
-1. staged selector ladder;
-2. separation of ordered-event freedom from mixed commutativity;
-3. span/gap incomparable quotient kernels with exact meet/join;
-4. transition from pure-event lattice behavior to anchored no-join behavior;
-5. uniqueness of BR as the reflection-compatible base-line anchor of B0;
-6. exact weak/strong axiom boundary at which the B0/BR arrow disappears.
-
-## Publication decision
-
-SOL-SELECTOR has crossed the article-assembly threshold.
-
-Research discovery should now pause except for defects uncovered during writing. The next task is RU/EN article construction with complete definitions, numbered theorems, proofs, literature positioning, and claim discipline.
-
-## Immediate next step
-
-```math
-\boxed{\text{ASSEMBLE THE SOL-SELECTOR ARTICLE.}}
-```
-
-Required assembly order:
-
-1. freeze notation and category definitions;
-2. present the corrected universal ladder;
-3. prove the pure quotient classification only as infrastructure;
-4. develop the span/gap diamond;
-5. prove the anchored no-join theorem and BR uniqueness;
-6. isolate weak/strong bifurcation;
-7. state limitations and FO-definability firewall;
-8. include prior-art positioning;
-9. run numbering/bibliography/metadata audit;
-10. produce English master and Russian companion version.
+A later extension involving re-entry must be opened as a separate research line, because re-entry changes the free object from terminal one-step events to genuine term/tree closure and therefore changes the category and quotient problem rather than merely extending the present proof package.
