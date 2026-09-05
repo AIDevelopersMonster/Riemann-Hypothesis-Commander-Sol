@@ -1,0 +1,1049 @@
+\hypertarget{ux440ux430ux437ux43cux44bux448ux43bux438ux437ux43cux44b-ux43e-ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux438-ux444ux430ux437-ux43fux43e-ux43eux431ux440ux430ux437ux430ux43c-ux442ux43eux447ux435ux43a-ux441-commander-sol}{%
+\section{Размышлизмы о синхронизации фаз по образам точек с Commander
+Sol}\label{ux440ux430ux437ux43cux44bux448ux43bux438ux437ux43cux44b-ux43e-ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux438-ux444ux430ux437-ux43fux43e-ux43eux431ux440ux430ux437ux430ux43c-ux442ux43eux447ux435ux43a-ux441-commander-sol}}
+
+\hypertarget{ux442ux43eux447ux43dux44bux435-ux441ux442ux43eux438ux43cux43eux441ux442ux438-ux443ux43fux430ux43aux43eux432ux43aux438-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432-ux440ux430ux437ux440ux435ux437ux43eux432-ux438-ux442ux43eux447ux43dux44bux439-ux43fux43eux440ux43eux433-ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux438-ux432-fcoa}{%
+\subsection{Точные стоимости, упаковки пространств разрезов и точный
+порог стабилизации в
+FCOA}\label{ux442ux43eux447ux43dux44bux435-ux441ux442ux43eux438ux43cux43eux441ux442ux438-ux443ux43fux430ux43aux43eux432ux43aux438-ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432-ux440ux430ux437ux440ux435ux437ux43eux432-ux438-ux442ux43eux447ux43dux44bux439-ux43fux43eux440ux43eux433-ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux438-ux432-fcoa}}
+
+\textbf{Alex Malachevsky · Commander Sol}\\
+\textbf{Исследовательская рукопись · Версия 1.0-rc1 · 31 августа 2026}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux430ux43dux43dux43eux442ux430ux446ux438ux44f}{%
+\subsection{Аннотация}\label{ux430ux43dux43dux43eux442ux430ux446ux438ux44f}}
+
+Работа выполнена в рамках Fixed-Carrier Oriented Algebra (FCOA),
+зафиксированных в \textbf{FCOA Definition 1.0}, \emph{Fixed-Carrier
+Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier
+Erasure, and the Canonical M0 Baseline},
+https://doi.org/10.5281/zenodo.22164246. Мы исследуем абстрактную задачу
+синхронизации фаз полного носителя, которая возникает после того, как
+разреженные компоненты анонимных операций уже допускают корректно
+определённые локальные перестановочные фазы. Пусть заданы \texttt{r}
+перестановок \texttt{pi\_1,...,pi\_r\ in\ S\_q}. Примитивное ограничение
+по образу точки имеет вид \texttt{pi\_i(a)=pi\_j(a)} для одного
+исходного цвета \texttt{a}. Через \texttt{L\_q(r)} обозначается
+минимальное число таких ограничений, которое заставляет всякий
+удовлетворяющий набор перестановок быть диагональным.
+
+Мы доказываем точную графовую переформулировку: система ограничений
+синхронизирует тогда и только тогда, когда канонический трансверсальный
+quotient-граф имеет единственную правильную \texttt{q}-раскраску с
+точностью до глобального переименования цветов. Отсюда следует
+необходимая связность объединения любых двух цветовых графов
+ограничений. Далее получены бесконечные точные семейства
+
+{[} L\_2(r)=r-1, \qquad L\_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil,
+\qquad L\_q(2)=q-1, \qquad L\_q(3)=2q-3, {]}
+
+и полностью закрыт четырёхфазный столбец:
+
+{[} L\_q(4)=
+
+\begin{cases}
+3,&q=2,\\
+2q-1,&3\le q\le5,\\
+12,&q=6,\\
+3q-7,&q\ge7.
+\end{cases}
+
+{]}
+
+Главный структурный результат сопоставляет каждому исходному цвету
+нормированное бинарное пространство разрезов
+\texttt{W(P\_a)\ \textless{}=\ F\_2\^{}\{r-1\}}, размерность которого
+равна экономии числа ограничений для этого цвета. Синхронизация
+заставляет ненулевые части этих пространств быть попарно
+непересекающимися, поэтому
+
+{[} \sum\_a(2\textsuperscript{\{d\_a\}-1)\le2}\{r-1\}-1. {]}
+
+Совпадающая по порядку бинарная конструкция разрезов даёт точный закон
+больших алфавитов
+
+{[} \boxed{L_q(r)=(r-1)q-(2^{r-1}-1)} {]}
+
+для всех
+
+{[} q\ge2\^{}\{r-1\}-1, {]}
+
+причём этот порог доказан точным. Таким образом, при фиксированном
+\texttt{r} нерешённая часть задачи конечна. Конечногеометрические
+ингредиенты сами по себе классические; заявляемый вклад состоит в модели
+FCOA-синхронизации по образам точек, её сведении к unique colorability и
+пространствам разрезов, точных семействах и теореме о точной
+стабилизации.
+
+\textbf{Ключевые слова:} FCOA; анонимные значения; синхронизация
+перестановок; единственная раскраска; разбиения множеств; пространства
+разрезов; partial spreads; стоимость жёсткости.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux432ux432ux435ux434ux435ux43dux438ux435}{%
+\subsection{1.
+Введение}\label{ux432ux432ux435ux434ux435ux43dux438ux435}}
+
+Анонимные выходные слои FCOA естественно разделяют два вопроса. Первый:
+индуцирует ли автоморфизм разреженного реляционного редукта локальную
+перестановку видимых имён выходов? Второй начинается лишь после
+существования таких локальных фаз: сколько дополнительной информации о
+равенствах нужно, чтобы все локальные фазы совпали с одной глобальной
+анонимной перестановкой?
+
+Настоящая работа изолирует второй вопрос как конечную экстремальную
+задачу.
+
+Пусть
+
+{[} O=\{0,1,\ldots,q-1\} {]}
+
+--- анонимный алфавит, а
+
+{[} \pi\_1,\ldots,\pi\_r\in S\_O. {]}
+
+Для \texttt{1\textless{}=i\textless{}j\textless{}=r} и \texttt{a\ in\ O}
+примитивное \textbf{ограничение по образу точки} имеет вид
+
+{[} {[}i,j;a{]}:\qquad \pi\_i(a)=\pi\_j(a). \tag{1} {]}
+
+Множество \texttt{S} таких ограничений называется
+\textbf{синхронизирующим}, если всякий удовлетворяющий набор диагонален:
+
+{[} \pi\_1=\cdots=\pi\_r. \tag{2} {]}
+
+Определим
+
+{[} \boxed{
+L_q(r)=\min\{|S|:S\text{ синхронизирует}\}.
+} \tag{3} {]}
+
+Наивная spanning-tree конструкция сразу даёт
+
+{[} L\_q(r)\le(q-1)(r-1), \tag{4} {]}
+
+поскольку совпадение двух перестановок на \texttt{q-1} исходных точках
+заставляет их совпасть полностью. При \texttt{q=2} это точно. При
+\texttt{q\textgreater{}=3} биективность позволяет ограничениям на разных
+парах компонент взаимодействовать, поэтому дерево далеко не всегда
+оптимально.
+
+Главные результаты статьи:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  точное сведение синхронизации к unique colorability специального
+  трансверсального quotient-графа;
+\item
+  универсальное условие связности объединения любых двух цветовых графов
+  и нижняя граница {[} L\_q(r)\ge\left\lceil\frac{q(r-1)}2\right\rceil;
+  \tag{5} {]}
+\item
+  точные формулы для всей строки \texttt{q=3} и столбцов
+  \texttt{r=2,3,4};
+\item
+  универсальная бинарная cut-конструкция по всем ненулевым векторам
+  \texttt{F\_2\^{}\{r-1\}};
+\item
+  packing-неравенство для пространств разрезов, совпадающее с
+  конструкцией и дающее точную стабилизацию {[}
+  L\_q(r)=(r-1)q-(2\^{}\{r-1\}-1) \quad(q\ge2\^{}\{r-1\}-1), \tag{6} {]}
+  с точным порогом.
+\end{enumerate}
+
+Конечная предстабилизационная область при \texttt{r\textgreater{}=5}
+остаётся открытой и отделяется от доказанного хвоста.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux440ux430ux43cux43aux430-fcoa-ux438-ux43eux431ux43bux430ux441ux442ux44c-ux43fux440ux438ux43cux435ux43dux438ux43cux43eux441ux442ux438}{%
+\subsection{2. Рамка FCOA и область
+применимости}\label{ux440ux430ux43cux43aux430-fcoa-ux438-ux43eux431ux43bux430ux441ux442ux44c-ux43fux440ux438ux43cux435ux43dux438ux43cux43eux441ux442ux438}}
+
+\hypertarget{ux444ux43eux440ux43cux430ux43bux44cux43dux430ux44f-ux440ux430ux43cux43aux430}{%
+\subsubsection{2.1 Формальная
+рамка}\label{ux444ux43eux440ux43cux430ux43bux44cux43dux430ux44f-ux440ux430ux43cux43aux430}}
+
+Каноническая рамка задаётся FCOA Definition 1.0 {[}1{]}. Мотивация
+исходит из конечного carrier \texttt{G} с частичной операцией,
+терминальные выходы которой образуют анонимные value-fibers. Разреженные
+реляционные редукты могут разбивать геометрию определённых клеток на
+comparison components. В \textbf{full-support phase-admissible sector}
+каждая релевантная компонента несёт локальную перестановку одного и того
+же анонимного терминального алфавита \texttt{O}.
+
+Настоящая статья переходит к производному слою синхронизации. Носитель
+индексов фаз:
+
+{[} R=\{1,\ldots,r\}, {]}
+
+терминальный сорт --- анонимное множество \texttt{O}. Примитивные данные
+здесь --- не новые значения операции и не новые реальные FCOA-клетки, а
+абстрактные равенства (1) между образами одного исходного цвета в двух
+локальных фазах. Относительно предыдущего слоя sparse multicolor
+transport добавляется только выбранное семейство таких point-image
+равенств.
+
+\hypertarget{erasure-ux438-recovery}{%
+\subsubsection{2.2 Erasure и recovery}\label{erasure-ux438-recovery}}
+
+\textbf{Erasure convention:} имена терминальных значений остаются
+анонимными. Одновременная левая композиция
+
+{[} \pi\_i\mapsto\sigma\circ\pi\_i \qquad(\sigma\in S\_q) \tag{7} {]}
+
+меняет только общее именование выходов и сохраняет все ограничения.
+Поэтому одну фазу можно нормировать к тождественной.
+
+\textbf{Recovery target:} восстанавливаются не именованные цвета, а одна
+глобальная анонимная перестановка, то есть диагональность (2).
+
+\hypertarget{firewall}{%
+\subsubsection{2.3 Firewall}\label{firewall}}
+
+Величина \texttt{L\_q(r)} --- абстрактная стоимость синхронизации
+full-support фаз. Это не минимум реальных operation cells, требуемых для
+ремонта FCOA carrier. Здесь не определяется multicolor-аналог
+actual-cell параметра \texttt{alpha\_q} и не утверждаются неравенства,
+связывающие такой параметр с \texttt{L\_q(r)}. Арифметика на носителе
+FCOA не импортируется.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux446ux432ux435ux442ux43eux432ux44bux435-ux433ux440ux430ux444ux44b-ux43eux433ux440ux430ux43dux438ux447ux435ux43dux438ux439-ux438-forest-reduction}{%
+\subsection{3. Цветовые графы ограничений и forest
+reduction}\label{ux446ux432ux435ux442ux43eux432ux44bux435-ux433ux440ux430ux444ux44b-ux43eux433ux440ux430ux43dux438ux447ux435ux43dux438ux439-ux438-forest-reduction}}
+
+Для каждого исходного цвета \texttt{a\ in\ O} определим граф
+
+{[} \Gamma\_a=\Gamma\_a(S) {]}
+
+на множестве вершин \texttt{R} условием
+
+{[} \{i,j\}\in E(\Gamma\_a) \quad\Longleftrightarrow\quad
+[i,j;a]\in S. \tag{8} {]}
+
+Равенство распространяется вдоль путей, поэтому существенна лишь
+компонентная структура \texttt{Gamma\_a}.
+
+\hypertarget{ux43bux435ux43cux43cux430-3.1-forest-reduction}{%
+\subsubsection{Лемма 3.1 --- forest
+reduction}\label{ux43bux435ux43cux43cux430-3.1-forest-reduction}}
+
+Любую систему ограничений можно заменить системой с тем же множеством
+решений и не большим числом ограничений, в которой каждый
+\texttt{Gamma\_a} является лесом.
+
+\textbf{Доказательство.} В каждой компоненте связности \texttt{Gamma\_a}
+заменим рёбра произвольным остовным деревом. Индуцируемое отношение
+равенства значений \texttt{pi\_i(a)} не изменится. Повторяем независимо
+для всех \texttt{a}. \texttt{square}
+
+Для редуцированной системы положим
+
+{[} m\_a=\textbar E(\Gamma\_a)\textbar, \qquad
+c\_a=\kappa(\Gamma\_a)=r-m\_a. \tag{9} {]}
+
+Тогда
+
+{[} \textbar S\textbar=\sum\_a m\_a. \tag{10} {]}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux44f-ux43aux430ux43a-ux437ux430ux434ux430ux447ux430-ux435ux434ux438ux43dux441ux442ux432ux435ux43dux43dux43eux439-ux440ux430ux441ux43aux440ux430ux441ux43aux438}{%
+\subsection{4. Синхронизация как задача единственной
+раскраски}\label{ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux44f-ux43aux430ux43a-ux437ux430ux434ux430ux447ux430-ux435ux434ux438ux43dux441ux442ux432ux435ux43dux43dux43eux439-ux440ux430ux441ux43aux440ux430ux441ux43aux438}}
+
+Пусть \texttt{B\_a} --- множество компонент связности \texttt{Gamma\_a}.
+Построим граф \texttt{H(S)}.
+
+Его вершины имеют вид
+
+{[} (a,B),\qquad a\in O,~B\in B\_a. \tag{11} {]}
+
+Для каждого индекса фазы \texttt{i} обозначим через \texttt{B\_a(i)}
+компоненту \texttt{Gamma\_a}, содержащую \texttt{i}. Соединим попарно
+все \texttt{q} вершин
+
+{[} (a,B\_a(i)),\qquad a\in O. \tag{12} {]}
+
+Каждая фаза тем самым задаёт канонический \texttt{K\_q}-трансверсал.
+Каноническая правильная раскраска:
+
+{[} \chi\_0(a,B)=a. \tag{13} {]}
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-4.1-ux44dux43aux432ux438ux432ux430ux43bux435ux43dux442ux43dux43eux441ux442ux44c-ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux438-ux438-unique-colorability}{%
+\subsubsection{Теорема 4.1 --- эквивалентность синхронизации и unique
+colorability}\label{ux442ux435ux43eux440ux435ux43cux430-4.1-ux44dux43aux432ux438ux432ux430ux43bux435ux43dux442ux43dux43eux441ux442ux44c-ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux438-ux438-unique-colorability}}
+
+Семейство ограничений \texttt{S} синхронизирует тогда и только тогда,
+когда \texttt{chi\_0} --- единственная правильная \texttt{q}-раскраска
+\texttt{H(S)} с точностью до глобальной перестановки названий цветов.
+
+\textbf{Доказательство.} Пусть \texttt{(pi\_1,...,pi\_r)} удовлетворяет
+\texttt{S}. Если \texttt{i,j} лежат в одной компоненте \texttt{B} графа
+\texttt{Gamma\_a}, то по путям \texttt{pi\_i(a)=pi\_j(a)}. Поэтому
+
+{[} F(a,B):=\pi\_i(a)\qquad(i\in B) \tag{14} {]}
+
+корректно определено. На трансверсале (12), соответствующем \texttt{i},
+значения \texttt{F} равны
+
+{[} \pi\_i(0),\ldots,\pi\_i(q-1), {]}
+
+и попарно различны. Значит, \texttt{F} --- правильная
+\texttt{q}-раскраска.
+
+Обратно, пусть \texttt{F} --- правильная \texttt{q}-раскраска. Каждый
+канонический трансверсал есть \texttt{K\_q}, поэтому его вершины
+получают все \texttt{q} цветов ровно по одному разу. Определим
+
+{[} \pi\_i(a)=F(a,B\_a(i)). \tag{15} {]}
+
+Тогда каждая \texttt{pi\_i} --- перестановка. Если
+\texttt{{[}i,j;a{]}\ in\ S}, вершины \texttt{i,j} лежат в одной
+компоненте \texttt{Gamma\_a}, и (15) даёт \texttt{pi\_i(a)=pi\_j(a)}.
+Таким образом, правильные раскраски находятся во взаимно однозначном
+соответствии с удовлетворяющими наборами фаз.
+
+Диагональные наборы --- в точности раскраски, получаемые из
+\texttt{chi\_0} одной глобальной перестановкой выходных цветов.
+Следовательно, синхронизация эквивалентна единственности \texttt{chi\_0}
+с точностью до глобального relabeling. \texttt{square}
+
+Это связывает задачу с классической теорией uniquely colorable graphs,
+но quotient-граф сильно ограничен: он строится из \texttt{r}
+канонических \texttt{K\_q}-трансверсалов, а идентификации разрешены
+только внутри одного исходного цветового класса.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux441ux432ux44fux437ux43dux43eux441ux442ux44c-ux43fux43eux43fux430ux440ux43dux44bux445-ux43eux431ux44aux435ux434ux438ux43dux435ux43dux438ux439}{%
+\subsection{5. Связность попарных
+объединений}\label{ux441ux432ux44fux437ux43dux43eux441ux442ux44c-ux43fux43eux43fux430ux440ux43dux44bux445-ux43eux431ux44aux435ux434ux438ux43dux435ux43dux438ux439}}
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-5.1}{%
+\subsubsection{Теорема
+5.1}\label{ux442ux435ux43eux440ux435ux43cux430-5.1}}
+
+Если \texttt{S} синхронизирует, то для любых двух различных исходных
+цветов \texttt{a,b}
+
+{[} \boxed{\Gamma_a\cup\Gamma_b\text{ связен}.} \tag{16} {]}
+
+\textbf{Доказательство.} Пусть \texttt{Gamma\_a\ union\ Gamma\_b}
+несвязен. Выберем непустое собственное объединение его компонент
+\texttt{X}. Через разрез \texttt{(X,R\textbackslash{}X)} не проходит ни
+одного ограничения цветов \texttt{a,b}. Положим \texttt{sigma=(a\ b)} и
+
+{[} \pi\_i=\sigma\quad(i\in X), \qquad \pi\_i=id\quad(i\notin X).
+\tag{17} {]}
+
+Внутренние ограничения сравнивают одинаковые перестановки. Каждое
+пересекающее разрез ограничение использует цвет, отличный от
+\texttt{a,b}, и потому фиксируется \texttt{sigma}. Все ограничения
+выполнены, но набор не диагонален. Противоречие. \texttt{square}
+
+Для редуцированной системы отсюда
+
+{[} m\_a+m\_b\ge r-1. \tag{18} {]}
+
+Суммирование по всем неупорядоченным парам даёт
+
+{[} (q-1)\sum\_a m\_a\ge\binom q2(r-1). {]}
+
+\hypertarget{ux441ux43bux435ux434ux441ux442ux432ux438ux435-5.2-half-density-bound}{%
+\subsubsection{Следствие 5.2 --- half-density
+bound}\label{ux441ux43bux435ux434ux441ux442ux432ux438ux435-5.2-half-density-bound}}
+
+{[} \boxed{
+L_q(r)\ge\left\lceil\frac{q(r-1)}2\right\rceil.
+} \tag{19} {]}
+
+Условие связности является специализацией классического свойства
+uniquely colorable graphs {[}3{]}. Здесь оно служит первым движком
+нижней оценки в ограниченном трансверсальном quotient-классе.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux442ux43eux447ux43dux44bux435-ux43dux438ux437ux43aux43eux440ux430ux437ux43cux435ux440ux43dux44bux435-ux441ux435ux43cux435ux439ux441ux442ux432ux430}{%
+\subsection{6. Точные низкоразмерные
+семейства}\label{ux442ux43eux447ux43dux44bux435-ux43dux438ux437ux43aux43eux440ux430ux437ux43cux435ux440ux43dux44bux435-ux441ux435ux43cux435ux439ux441ux442ux432ux430}}
+
+\hypertarget{ux434ux432ux43eux438ux447ux43dux44bux439-ux430ux43bux444ux430ux432ux438ux442}{%
+\subsubsection{6.1 Двоичный
+алфавит}\label{ux434ux432ux43eux438ux447ux43dux44bux439-ux430ux43bux444ux430ux432ux438ux442}}
+
+При \texttt{q=2} совпадение на одном исходном цвете идентифицирует две
+перестановки двухэлементного множества. Поэтому связный граф на
+\texttt{r} фазовых индексах необходим и достаточен.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-6.1}{%
+\subsubsection{Теорема
+6.1}\label{ux442ux435ux43eux440ux435ux43cux430-6.1}}
+
+{[} \boxed{L_2(r)=r-1.} \tag{20} {]}
+
+\hypertarget{ux434ux432ux435-ux444ux430ux437ux44b}{%
+\subsubsection{6.2 Две
+фазы}\label{ux434ux432ux435-ux444ux430ux437ux44b}}
+
+Две перестановки \texttt{q}-элементного множества, совпадающие на
+\texttt{q-1} исходных точках, совпадают на последней. Если ограничений
+меньше \texttt{q-1}, остаются как минимум две свободные исходные точки,
+которые можно транспонировать.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-6.2}{%
+\subsubsection{Теорема
+6.2}\label{ux442ux435ux43eux440ux435ux43cux430-6.2}}
+
+{[} \boxed{L_q(2)=q-1.} \tag{21} {]}
+
+\hypertarget{ux442ux440ux438-ux446ux432ux435ux442ux430}{%
+\subsubsection{6.3 Три
+цвета}\label{ux442ux440ux438-ux446ux432ux435ux442ux430}}
+
+При \texttt{q=3} из (18)
+
+{[} m\_0+m\_1\ge r-1, \quad m\_0+m\_2\ge r-1, \quad m\_1+m\_2\ge r-1,
+{]}
+
+поэтому
+
+{[} L\_3(r)\ge\left\lceil\frac{3(r-1)}2\right\rceil. \tag{22} {]}
+
+Совпадающая конструкция использует трёхconstraintный gadget. Пусть
+\texttt{rho} уже синхронизирована, а \texttt{sigma,tau\ in\ S\_3} ---
+новые фазы. Наложим
+
+{[} {[}\rho,\sigma;0{]}, \qquad
+[\rho,\tau;1], \qquad
+[\sigma,\tau;2]. \tag{23} {]}
+
+После глобальной нормировки \texttt{rho=id}. Тогда \texttt{sigma}
+фиксирует \texttt{0}, \texttt{tau} фиксирует \texttt{1}, и
+\texttt{sigma(2)=tau(2)}. Если бы \texttt{sigma} была нетривиальной
+перестановкой, фиксирующей \texttt{0}, то \texttt{sigma(2)=1}, что
+невозможно для \texttt{tau(2)}, поскольку \texttt{tau(1)=1}. Значит,
+\texttt{sigma=id}; тогда \texttt{tau(2)=2}, откуда \texttt{tau=id}.
+
+Добавляя фазы попарно, получаем точную границу.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-6.3}{%
+\subsubsection{Теорема
+6.3}\label{ux442ux435ux43eux440ux435ux43cux430-6.3}}
+
+Для всех \texttt{r\textgreater{}=1}
+
+{[} \boxed{
+L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil.
+} \tag{24} {]}
+
+\hypertarget{ux442ux440ux438-ux444ux430ux437ux44b}{%
+\subsubsection{6.4 Три
+фазы}\label{ux442ux440ux438-ux444ux430ux437ux44b}}
+
+При \texttt{r=3} каждый редуцированный \texttt{Gamma\_a} имеет
+\texttt{m\_a\ in\ \{0,1,2\}}. Если один цвет имеет \texttt{m\_a=0},
+всякий другой цвет должен быть связным, и стоимость не меньше
+\texttt{2(q-1)}. Иначе каждый цвет имеет как минимум одно ребро. Два
+одно-рёберных цвета должны использовать разные рёбра треугольника фаз,
+иначе их объединение несвязно. Рёбер всего три, поэтому не более трёх
+цветов имеют \texttt{m\_a=1}, а остальные --- \texttt{m\_a=2}.
+Следовательно,
+
+{[} L\_q(3)\ge3+2(q-3)=2q-3. \tag{25} {]}
+
+Для верхней оценки используем трёхцветный triangle gadget
+
+{[} {[}0,1;0{]},\quad[0,2;1],\quad[1,2;2]\tag{26} {]}
+
+и для каждого дополнительного цвета \texttt{a\textgreater{}=3}
+ограничения \texttt{{[}0,1;a{]}}, \texttt{{[}0,2;a{]}}. Дополнительные
+цвета фиксируются на всех фазах, оставляя действие \texttt{S\_3},
+которое убивается (26).
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-6.4}{%
+\subsubsection{Теорема
+6.4}\label{ux442ux435ux43eux440ux435ux43cux430-6.4}}
+
+Для всех \texttt{q\textgreater{}=3}
+
+{[} \boxed{L_q(3)=2q-3.} \tag{27} {]}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43fux43eux43bux43dux44bux439-ux447ux435ux442ux44bux440ux451ux445ux444ux430ux437ux43dux44bux439-ux441ux442ux43eux43bux431ux435ux446}{%
+\subsection{7. Полный четырёхфазный
+столбец}\label{ux43fux43eux43bux43dux44bux439-ux447ux435ux442ux44bux440ux451ux445ux444ux430ux437ux43dux44bux439-ux441ux442ux43eux43bux431ux435ux446}}
+
+При \texttt{r=4} каждый исходный цвет задаёт разбиение \texttt{P\_a}
+четырёх фаз. После forest reduction его ранг
+
+{[} m\_a=4-\textbar P\_a\textbar{} {]}
+
+лежит в \texttt{\{0,1,2,3\}}.
+
+Условие совместимости из Теоремы 5.1 принимает вид
+
+{[} P\_a\vee P\_b=\mathbf 1 \qquad(a\ne b), \tag{28} {]}
+
+где \texttt{mathbf\ 1} --- одно-блочное разбиение.
+
+Решётка разбиений четырёх точек даёт полный список совместимости малых
+рангов:
+
+\begin{itemize}
+\tightlist
+\item
+  дискретное разбиение ранга ноль совместимо только с одно-блочным
+  разбиением ранга три;
+\item
+  два rank-1 разбиения никогда не совместимы;
+\item
+  фиксированное rank-1 разбиение совместимо ровно с четырьмя rank-2
+  разбиениями;
+\item
+  rank-2 разбиений ровно семь, и любые два различных совместимы;
+\item
+  rank-3 разбиение совместимо со всеми.
+\end{itemize}
+
+Пусть \texttt{n\_k} --- число цветов ранга \texttt{k}. Если rank-0 цвета
+нет,
+
+{[} \textbar S\textbar=n\_1+2n\_2+3n\_3=3q-(2n\_1+n\_2). \tag{29} {]}
+
+Классификация даёт максимальный defect
+
+{[} 2n\_1+n\_2=
+
+\begin{cases}
+q+1,&3\le q\le5,\\
+6,&q=6,\\
+7,&q\ge7.
+\end{cases}
+\tag{30}
+
+{]}
+
+и соответствующие нижние границы.
+
+При \texttt{q=3} пятиconstraintная конструкция является экземпляром уже
+доказанного рекурсивного \texttt{S\_3} gadget Теоремы 6.3 после
+переименования фаз и цветов. При \texttt{q=4,5} можно использовать один
+rank-1 partition и соответственно три или четыре совместимых rank-2
+партнёра; прямая нормировка и инъективность вынуждают все фазы быть
+тождественными. При \texttt{q=6} оптимальный \texttt{q=5} gadget
+дополняется одним связным цветом. При \texttt{q=7} используются все семь
+bipartitions четырёх фаз --- это случай \texttt{r=4} универсальной
+binary-cut конструкции следующего раздела. При \texttt{q\textgreater{}7}
+новые цвета делаются связными.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-7.1-ux442ux43eux447ux43dux430ux44f-ux447ux435ux442ux44bux440ux451ux445ux444ux430ux437ux43dux430ux44f-ux441ux442ux43eux438ux43cux43eux441ux442ux44c}{%
+\subsubsection{Теорема 7.1 --- точная четырёхфазная
+стоимость}\label{ux442ux435ux43eux440ux435ux43cux430-7.1-ux442ux43eux447ux43dux430ux44f-ux447ux435ux442ux44bux440ux451ux445ux444ux430ux437ux43dux430ux44f-ux441ux442ux43eux438ux43cux43eux441ux442ux44c}}
+
+{[} \boxed{
+L_q(4)=
+\begin{cases}
+3,&q=2,\\
+2q-1,&3\le q\le5,\\
+12,&q=6,\\
+3q-7,&q\ge7.
+\end{cases}
+} \tag{31} {]}
+
+Изолированное значение при \texttt{q=6} имеет структурную природу:
+rank-1 архитектура допускает не более четырёх rank-2 цветов, тогда как
+all-bipartition архитектура имеет capacity семь.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux443ux43dux438ux432ux435ux440ux441ux430ux43bux44cux43dux430ux44f-ux431ux438ux43dux430ux440ux43dux430ux44f-ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux44f-ux440ux430ux437ux440ux435ux437ux430ux43cux438}{%
+\subsection{8. Универсальная бинарная синхронизация
+разрезами}\label{ux443ux43dux438ux432ux435ux440ux441ux430ux43bux44cux43dux430ux44f-ux431ux438ux43dux430ux440ux43dux430ux44f-ux441ux438ux43dux445ux440ux43eux43dux438ux437ux430ux446ux438ux44f-ux440ux430ux437ux440ux435ux437ux430ux43cux438}}
+
+Зафиксируем \texttt{r\textgreater{}=2} и положим
+
+{[} n=r-1, \qquad V=\mathbb F\_2\^{}n\setminus\{0\}. \tag{32} {]}
+
+Используем один активный исходный цвет для каждого вектора
+
+{[} v=(v\_1,\ldots,v\_n)\in V. {]}
+
+Число активных цветов
+
+{[} q\_0=\textbar V\textbar=2\^{}\{r-1\}-1. \tag{33} {]}
+
+Для цвета \texttt{v} разобьём фазы на
+
+{[} B\_v\^{}0=\{0\}\cup\{i:v\_i=0\}, \qquad B\_v\^{}1=\{i:v\_i=1\}.
+\tag{34} {]}
+
+Внутри каждого блока выберем остовное дерево. Поскольку блоков два и оба
+непусты, цвет \texttt{v} стоит \texttt{r-2} ограничений.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-8.1-binary-cut-gadget}{%
+\subsubsection{Теорема 8.1 --- binary-cut
+gadget}\label{ux442ux435ux43eux440ux435ux43cux430-8.1-binary-cut-gadget}}
+
+Семейство (34) синхронизирует \texttt{r} фаз в
+\texttt{S\_\{2\^{}\{r-1\}-1\}}.
+
+\textbf{Доказательство.} Нормируем \texttt{pi\_0=id}. Для
+\texttt{i\textgreater{}=1} положим
+
+{[} H\_i=\{v:v\_i=0\}, \qquad A\_i=\{v:v\_i=1\}. \tag{35} {]}
+
+Если \texttt{v\ in\ H\_i}, фазы \texttt{0} и \texttt{i} лежат в одном
+связном блоке \texttt{B\_v\^{}0}, поэтому
+
+{[} \pi\_i(v)=v. \tag{36} {]}
+
+Значит, \texttt{pi\_i} фиксирует \texttt{H\_i} поточечно и сохраняет
+\texttt{A\_i} как множество.
+
+Для \texttt{j!=i} и \texttt{v\ in\ A\_i\ cap\ A\_j} фазы \texttt{i,j}
+лежат в одном блоке \texttt{B\_v\^{}1}, поэтому
+
+{[} \pi\_i(v)=\pi\_j(v). \tag{37} {]}
+
+Левая часть лежит в \texttt{A\_i}, правая --- в \texttt{A\_j}, значит
+общее значение лежит в \texttt{A\_i\ cap\ A\_j}. Поэтому \texttt{pi\_i}
+сохраняет каждое множество \texttt{A\_i\ cap\ A\_j}.
+
+На \texttt{A\_i} признаки принадлежности множествам
+\texttt{A\_i\ cap\ A\_j}, \texttt{j!=i}, являются в точности оставшимися
+координатами \texttt{(v\_j)\_\{j!=i\}} и различают все векторы
+\texttt{A\_i}. Следовательно, \texttt{pi\_i} фиксирует каждую точку
+\texttt{A\_i}, а вместе с (36) получаем \texttt{pi\_i=id}. Это верно для
+всех \texttt{i}, следовательно, все фазы диагональны до нормировки.
+\texttt{square}
+
+Стоимость gadget равна
+
+{[} (r-2)(2\^{}\{r-1\}-1). \tag{38} {]}
+
+При \texttt{q\textgreater{}q\_0} каждый новый цвет делается связным на
+всех \texttt{r} фазах за \texttt{r-1} ограничений. Поэтому
+
+{[} L\_q(r)\le(r-1)q-(2\^{}\{r-1\}-1) \quad(q\ge q\_0). \tag{39} {]}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430-ux440ux430ux437ux440ux435ux437ux43eux432-ux438-packing-bound}{%
+\subsection{9. Пространства разрезов и packing
+bound}\label{ux43fux440ux43eux441ux442ux440ux430ux43dux441ux442ux432ux430-ux440ux430ux437ux440ux435ux437ux43eux432-ux438-packing-bound}}
+
+Совпадающая нижняя граница получается из канонического кодирования
+компонентных разбиений каждого исходного цвета.
+
+Пусть \texttt{P} --- разбиение множества фаз
+
+{[} R=\{0,1,\ldots,r-1\}. {]}
+
+Нормируем бинарные разрезы, фиксируя бит фазы \texttt{0} равным нулю, и
+отождествим их с
+
+{[} \mathbb F\_2\^{}\{r-1\}. {]}
+
+Определим
+
+{[}
+W(P)=\{x\in\mathbb F\_2\^{}\{r-1\}:x\text{ постоянно на каждом блоке }P\},
+\tag{40} {]}
+
+где подразумевается расширение \texttt{x\_0=0}.
+
+\hypertarget{ux43bux435ux43cux43cux430-9.1}{%
+\subsubsection{Лемма 9.1}\label{ux43bux435ux43cux43cux430-9.1}}
+
+Если \texttt{P} имеет \texttt{c} блоков, то
+
+{[} \dim W(P)=c-1. \tag{41} {]}
+
+\textbf{Доказательство.} Блок, содержащий фазу \texttt{0}, вынужден
+иметь бит ноль. Каждый из остальных \texttt{c-1} блоков выбирает бит
+независимо. Поэтому \texttt{\textbar{}W(P)\textbar{}=2\^{}\{c-1\}}.
+\texttt{square}
+
+Для компонентного разбиения \texttt{P\_a} леса \texttt{Gamma\_a}
+определим экономию
+
+{[} d\_a=(r-1)-m\_a. \tag{42} {]}
+
+Поскольку \texttt{m\_a=r-c\_a},
+
+{[} d\_a=c\_a-1=\dim W(P\_a). \tag{43} {]}
+
+\hypertarget{ux43bux435ux43cux43cux430-9.2-ux442ux43eux436ux434ux435ux441ux442ux432ux43e-joinintersection}{%
+\subsubsection{Лемма 9.2 --- тождество
+join/intersection}\label{ux43bux435ux43cux43cux430-9.2-ux442ux43eux436ux434ux435ux441ux442ux432ux43e-joinintersection}}
+
+Для любых разбиений \texttt{P,Q}
+
+{[} \boxed{W(P)\cap W(Q)=W(P\vee Q).} \tag{44} {]}
+
+\textbf{Доказательство.} Нормированный бинарный разрез принадлежит обоим
+пространствам тогда и только тогда, когда он постоянен на каждом блоке
+\texttt{P} и каждом блоке \texttt{Q}. Это эквивалентно постоянству на
+классах эквивалентности, порождённых совместно этими блоками, то есть на
+блоках \texttt{P\ vee\ Q}. \texttt{square}
+
+Из Теоремы 5.1
+
+{[} P\_a\vee P\_b=\mathbf 1 \quad(a\ne b), {]}
+
+следовательно,
+
+{[} W(P\_a)\cap W(P\_b)=\{0\}. \tag{45} {]}
+
+Ненулевые векторы пространств разрезов попарно не пересекаются. В
+\texttt{F\_2\^{}\{r-1\}} ровно \texttt{2\^{}\{r-1\}-1} ненулевых
+векторов.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-9.3-defect-packing-inequality}{%
+\subsubsection{Теорема 9.3 --- defect packing
+inequality}\label{ux442ux435ux43eux440ux435ux43cux430-9.3-defect-packing-inequality}}
+
+Всякая синхронизирующая система удовлетворяет
+
+{[} \boxed{
+\sum_a(2^{d_a}-1)\le2^{r-1}-1.
+} \tag{46} {]}
+
+Сам подсчёт (46) после получения cut-space reduction --- стандартная
+конечногеометрическая packing-оценка и не заявляется как новое
+утверждение о partial spreads или vector-space partitions {[}5,6{]}.
+
+Так как
+
+{[} d\le2\^{}d-1 \qquad(d\ge0), \tag{47} {]}
+
+получаем
+
+{[} \sum\_a d\_a\le2\^{}\{r-1\}-1. \tag{48} {]}
+
+Но из (42)
+
+{[} \textbar S\textbar=(r-1)q-\sum\_a d\_a. \tag{49} {]}
+
+Поэтому:
+
+\hypertarget{ux441ux43bux435ux434ux441ux442ux432ux438ux435-9.4-ux443ux43dux438ux432ux435ux440ux441ux430ux43bux44cux43dux430ux44f-defect-ux433ux440ux430ux43dux438ux446ux430}{%
+\subsubsection{Следствие 9.4 --- универсальная
+defect-граница}\label{ux441ux43bux435ux434ux441ux442ux432ux438ux435-9.4-ux443ux43dux438ux432ux435ux440ux441ux430ux43bux44cux43dux430ux44f-defect-ux433ux440ux430ux43dux438ux446ux430}}
+
+{[} \boxed{
+L_q(r)\ge(r-1)q-(2^{r-1}-1).
+} \tag{50} {]}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux442ux43eux447ux43dux430ux44f-ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux44f-ux43fux440ux438-ux431ux43eux43bux44cux448ux438ux445-ux430ux43bux444ux430ux432ux438ux442ux430ux445}{%
+\subsection{10. Точная стабилизация при больших
+алфавитах}\label{ux442ux43eux447ux43dux430ux44f-ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux44f-ux43fux440ux438-ux431ux43eux43bux44cux448ux438ux445-ux430ux43bux444ux430ux432ux438ux442ux430ux445}}
+
+Объединяем разделы 8 и 9.
+
+\hypertarget{ux442ux435ux43eux440ux435ux43cux430-10.1-ux442ux43eux447ux43dux430ux44f-ux442ux435ux43eux440ux435ux43cux430-ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux438}{%
+\subsubsection{Теорема 10.1 --- точная теорема
+стабилизации}\label{ux442ux435ux43eux440ux435ux43cux430-10.1-ux442ux43eux447ux43dux430ux44f-ux442ux435ux43eux440ux435ux43cux430-ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux438}}
+
+Для всех \texttt{r\textgreater{}=2} и
+
+{[} q\ge2\^{}\{r-1\}-1 {]}
+
+имеем
+
+{[} \boxed{
+L_q(r)=(r-1)q-(2^{r-1}-1).
+} \tag{51} {]}
+
+Причём порог точен: если
+
+{[} q\textless2\^{}\{r-1\}-1, {]}
+
+то
+
+{[} L\_q(r)\textgreater(r-1)q-(2\^{}\{r-1\}-1). \tag{52} {]}
+
+\textbf{Доказательство.} Нижняя граница --- Следствие 9.4. Binary-cut
+construction даёт равенство при \texttt{q\textgreater{}=2\^{}\{r-1\}-1}.
+
+Предположим, что равенство в (50) достигнуто. Тогда
+
+{[} \sum\_a d\_a=2\^{}\{r-1\}-1. \tag{53} {]}
+
+Из (46) и (47)
+
+{[} \sum\_a d\_a \le \sum\_a(2\^{}\{d\_a\}-1) \le
+2\^{}\{r-1\}-1. \tag{54} {]}
+
+Равенство в (53) вынуждает равенство в каждом неравенстве
+\texttt{d\_a\textless{}=2\^{}\{d\_a\}-1}, что для неотрицательных целых
+возможно только при \texttt{d\_a\ in\ \{0,1\}}. Значит, каждый цвет с
+положительным defect даёт ровно один ненулевой cut-вектор. Чтобы
+получить суммарный defect \texttt{2\^{}\{r-1\}-1}, нужно как минимум
+столько же цветов. Следовательно,
+
+{[} q\ge2\^{}\{r-1\}-1. {]}
+
+Ниже порога равенство невозможно. \texttt{square}
+
+\hypertarget{ux441ux43bux435ux434ux441ux442ux432ux438ux435-10.2}{%
+\subsubsection{Следствие
+10.2}\label{ux441ux43bux435ux434ux441ux442ux432ux438ux435-10.2}}
+
+Точный порог стабилизации:
+
+{[} \boxed{q_0(r)=2^{r-1}-1.} \tag{55} {]}
+
+Например,
+
+{[} L\_q(5)=4q-15\qquad(q\ge15), \tag{56} {]}
+
+и
+
+{[} L\_q(6)=5q-31\qquad(q\ge31). \tag{57} {]}
+
+При фиксированном числе фаз вне линейного точного хвоста остаётся лишь
+конечное число алфавитов.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43aux43eux43dux435ux447ux43dux430ux44f-ux43fux440ux435ux434ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux43eux43dux43dux430ux44f-ux437ux430ux434ux430ux447ux430}{%
+\subsection{11. Конечная предстабилизационная
+задача}\label{ux43aux43eux43dux435ux447ux43dux430ux44f-ux43fux440ux435ux434ux441ux442ux430ux431ux438ux43bux438ux437ux430ux446ux438ux43eux43dux43dux430ux44f-ux437ux430ux434ux430ux447ux430}}
+
+Доказательство Теоремы 10.1 даёт более сильный интерфейс для нерешённого
+сектора. Определим
+
+{[} \mathcal D\_r(q) = \max\left\{ \sum\_\{i=1\}\^{}q\dim W(P\_i):
+W(P\_i)\cap W(P\_j)=\{0\}~(i\ne j) \right\}, \tag{58} {]}
+
+где нульмерные пространства разрешены для дополнения семейства.
+
+Тогда необходимо
+
+{[} L\_q(r)\ge(r-1)q-\mathcal D\_r(q). \tag{59} {]}
+
+Это лишь lower-bound interface: попарно тривиальное пересечение
+необходимо для синхронизации, но само по себе может быть недостаточно
+для unique colorability трансверсального quotient-графа.
+
+Действительно открытый режим:
+
+{[} \boxed{
+4\le q<2^{r-1}-1,
+\qquad r\ge5.
+} \tag{60} {]}
+
+Для \texttt{r=5} остаются только \texttt{4\textless{}=q\textless{}=14}.
+Точные weighted-packing вычисления полезны как hostile check, но их
+значения не повышаются здесь до LQR-теорем без отдельного доказательства
+синхронизации.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43aux43eux43dux435ux447ux43dux430ux44f-ux43fux440ux43eux432ux435ux440ux43aux430}{%
+\subsection{12. Конечная
+проверка}\label{ux43aux43eux43dux435ux447ux43dux430ux44f-ux43fux440ux43eux432ux435ux440ux43aux430}}
+
+В репозитории поддерживаются два независимых verifier-скрипта.
+
+\texttt{verify\_lqr.py} проверяет:
+
+\begin{itemize}
+\tightlist
+\item
+  точные \texttt{q=3} конструкции для малых \texttt{r} нормированным
+  полным перебором;
+\item
+  точные \texttt{r=3} конструкции для малых \texttt{q};
+\item
+  первые значения \texttt{r=4} через partition quotient.
+\end{itemize}
+
+\texttt{verify\_lqr\_cutspace.py} независимо проверяет:
+
+\begin{itemize}
+\tightlist
+\item
+  Bell-number enumeration разбиений фаз до \texttt{r=6};
+\item
+  \texttt{\textbar{}W(P)\textbar{}=2\^{}\{\textbar{}P\textbar{}-1\}};
+\item
+  \texttt{W(P)\ cap\ W(Q)=W(P\ vee\ Q)} для всех пар разбиений до
+  \texttt{r=6};
+\item
+  weighted partition-packing capacity при \texttt{r=5} до порога
+  \texttt{q=15}.
+\end{itemize}
+
+Доказательства бесконечных формул от этих вычислений не зависят.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43bux438ux442ux435ux440ux430ux442ux443ux440ux43dux430ux44f-ux43fux43eux437ux438ux446ux438ux44f-ux438-ux433ux440ux430ux43dux438ux446ux430-ux43dux43eux432ux438ux437ux43dux44b}{%
+\subsection{13. Литературная позиция и граница
+новизны}\label{ux43bux438ux442ux435ux440ux430ux442ux443ux440ux43dux430ux44f-ux43fux43eux437ux438ux446ux438ux44f-ux438-ux433ux440ux430ux43dux438ux446ux430-ux43dux43eux432ux438ux437ux43dux44b}}
+
+Графовая и конечногеометрическая окружающая теория классическая.
+
+Harary, Hedetniemi и Robinson {[}3{]} установили фундаментальные
+свойства uniquely colorable graphs, включая связность подграфа,
+индуцированного любой парой цветовых классов. Bollobas {[}4{]} развил
+дальнейшие структурные результаты. Поэтому Теорема 5.1 не заявляется как
+новое общее утверждение unique-colorability; она используется как
+специализированная форма, индуцированная LQR transversal quotient.
+
+Попарно тривиально пересекающиеся подпространства, partial spreads и
+vector-space partitions также классические {[}5,6{]}. После (45) подсчёт
+их ненулевых векторов стандартен. Поэтому novelty claim сознательно
+ограничен следующей цепочкой внутри задачи FCOA phase synchronization:
+
+{[} \text{point-image constraints} \longrightarrow
+\text{transversal unique-coloring quotient} \longrightarrow
+\text{component partitions} \longrightarrow
+\text{canonical binary cut spaces} \longrightarrow
+\text{sharp LQR stabilization}. \tag{61} {]}
+
+Permutation synchronization имеет развитую алгоритмическую литературу,
+обычно ориентированную на восстановление глобально согласованных
+matching-перестановок из шумных попарных оценок {[}7{]}. Здесь параметр
+иной: минимальное число точных same-source point-image равенств,
+достаточных, чтобы любой набор в \texttt{S\_q\^{}r} стал диагональным.
+
+Специализированный поиск в рамках проекта не обнаружил точного
+экстремального параметра \texttt{L\_q(r)} именно в этой форме. Это
+консервативная формулировка, а не абсолютное заявление приоритета.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43eux433ux440ux430ux43dux438ux447ux435ux43dux438ux44f-ux438-ux43eux442ux43aux440ux44bux442ux44bux435-ux432ux43eux43fux440ux43eux441ux44b}{%
+\subsection{14. Ограничения и открытые
+вопросы}\label{ux43eux433ux440ux430ux43dux438ux447ux435ux43dux438ux44f-ux438-ux43eux442ux43aux440ux44bux442ux44bux435-ux432ux43eux43fux440ux43eux441ux44b}}
+
+Основные ограничения явные.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{L\_q(r)} измеряет абстрактные phase-link constraints, а не
+  реальные FCOA operation-cell additions.
+\item
+  Предстабилизационный сектор (60) в общем случае не решён.
+\item
+  Pairwise cut-space packing --- необходимое условие и может не
+  исчерпывать все unique-coloring obstructions.
+\item
+  Multicolor-аналог binary actual-cell repair parameter здесь не
+  определяется.
+\item
+  Существование permutation-valued local phases предполагается;
+  разреженные ternary reducts при \texttt{q\textgreater{}=3} могут
+  разрушаться до стадии синхронизации, что рассматривается в companion
+  manuscript {[}2{]}.
+\end{enumerate}
+
+Естественные следующие задачи: определить \texttt{L\_4(r)} для общего
+\texttt{r}, решить \texttt{L\_q(5)} при
+\texttt{4\textless{}=q\textless{}=14} и охарактеризовать, когда
+оптимальная partition-subspace packing конфигурация реально задаёт
+синхронизирующий transversal quotient.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux437ux430ux43aux43bux44eux447ux435ux43dux438ux435}{%
+\subsection{15.
+Заключение}\label{ux437ux430ux43aux43bux44eux447ux435ux43dux438ux435}}
+
+Стоимость синхронизации по образам точек имеет существенно более тонкую
+структуру, чем наивная spanning-tree оценка. Правильные нижнеоценочные
+объекты --- не просто графы на фазовых индексах, а компонентные
+разбиения; после нормировки эти разбиения порождают бинарные cut-spaces,
+ненулевые векторы которых обязаны упаковываться без пересечений.
+
+Это даёт три слоя точной структуры:
+
+{[} L\_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil, {]}
+
+точный четырёхфазный переход
+
+{[} L\_q(4)=3,~2q-1,~12,~3q-7 {]}
+
+на соответствующих диапазонах и общую теорему стабилизации
+
+{[} \boxed{
+L_q(r)=(r-1)q-(2^{r-1}-1)
+\quad\text{при достижимости линейной границы, причём достижимость начинается ровно при }q=2^{r-1}-1.
+} {]}
+
+Следовательно, при фиксированном числе фаз нерешённая задача конечна. В
+терминах FCOA это точная capacity theorem для синхронизации уже
+существующих анонимных full-support фаз, при сохранении строгого
+различия с более трудной задачей реализации синхронизации реальными
+operation-cell extensions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux43bux438ux442ux435ux440ux430ux442ux443ux440ux430}{%
+\subsection{Литература}\label{ux43bux438ux442ux435ux440ux430ux442ux443ux440ux430}}
+
+{[}1{]} A. Malachevsky and Commander Sol, \textbf{Fixed-Carrier Oriented
+Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure,
+and the Canonical M0 Baseline}, 2026. DOI:
+\texttt{10.5281/zenodo.22164246}.
+https://doi.org/10.5281/zenodo.22164246.
+
+{[}2{]} A. Malachevsky and Commander Sol, \textbf{Reflections on Sparse
+Multicolor Transport with Commander Sol: Proper-Coloring Obstructions,
+Local Phase Groupoids, and Exact Gluing in FCOA}, companion manuscript,
+2026, repository package
+\texttt{papers/FCOA-SPARSE-MULTICOLOR-TRANSPORT/}.
+
+{[}3{]} F. Harary, S. T. Hedetniemi, R. W. Robinson, \textbf{Uniquely
+colorable graphs}, \emph{Journal of Combinatorial Theory} 6(3) (1969),
+264--270. DOI: \texttt{10.1016/S0021-9800(69)80086-4}.
+
+{[}4{]} B. Bollobas, \textbf{Uniquely colorable graphs}, \emph{Journal
+of Combinatorial Theory, Series B} 25 (1978), 54--61. DOI:
+\texttt{10.1016/S0095-8956(78)80010-0}.
+
+{[}5{]} O. Heden, \textbf{A survey of the different types of vector
+space partitions}, \emph{Discrete Mathematics, Algorithms and
+Applications} 4(1) (2012), 1250001. DOI:
+\texttt{10.1142/S1793830912500012}.
+
+{[}6{]} T. Honold, M. Kiermaier, S. Kurz, \textbf{Partial spreads and
+vector space partitions}, in \emph{Network Coding and Subspace Designs},
+Springer, 2018, 131--170. DOI: \texttt{10.1007/978-3-319-70293-3\_7}.
+
+{[}7{]} D. Pachauri, T. Kondor, V. Singh, \textbf{Solving the multi-way
+matching problem by permutation synchronization}, \emph{Advances in
+Neural Information Processing Systems 26}, 2013.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ux432ux43eux441ux43fux440ux43eux438ux437ux432ux43eux434ux438ux43cux43eux441ux442ux44c}{%
+\subsection{Воспроизводимость}\label{ux432ux43eux441ux43fux440ux43eux438ux437ux432ux43eux434ux438ux43cux43eux441ux442ux44c}}
+
+Исходные теоремные файлы и независимые конечные verifier-скрипты
+поддерживаются в
+
+\texttt{delegated/FCOA\_RIGIDITY\_COST/QGE3/}
+
+репозитория
+
+\texttt{https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol}
+
+в исследовательской ветке \texttt{director/fcoa-rigidity-cost} на момент
+сборки рукописи.

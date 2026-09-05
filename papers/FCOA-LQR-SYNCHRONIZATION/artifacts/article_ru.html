@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Размышления о синхронизации фаз по образам точек с Commander Sol</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Размышления о синхронизации фаз по образам точек с
+Commander Sol</h1>
+</header>
+<h1
+id="размышлизмы-о-синхронизации-фаз-по-образам-точек-с-commander-sol">Размышлизмы
+о синхронизации фаз по образам точек с Commander Sol</h1>
+<h2
+id="точные-стоимости-упаковки-пространств-разрезов-и-точный-порог-стабилизации-в-fcoa">Точные
+стоимости, упаковки пространств разрезов и точный порог стабилизации в
+FCOA</h2>
+<p><strong>Alex Malachevsky · Commander Sol</strong><br />
+<strong>Исследовательская рукопись · Версия 1.0-rc1 · 31 августа
+2026</strong></p>
+<hr />
+<h2 id="аннотация">Аннотация</h2>
+<p>Работа выполнена в рамках Fixed-Carrier Oriented Algebra (FCOA),
+зафиксированных в <strong>FCOA Definition 1.0</strong>,
+<em>Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial
+Operations, Carrier Erasure, and the Canonical M0 Baseline</em>,
+https://doi.org/10.5281/zenodo.22164246. Мы исследуем абстрактную задачу
+синхронизации фаз полного носителя, которая возникает после того, как
+разреженные компоненты анонимных операций уже допускают корректно
+определённые локальные перестановочные фазы. Пусть заданы <code>r</code>
+перестановок <code>pi_1,...,pi_r in S_q</code>. Примитивное ограничение
+по образу точки имеет вид <code>pi_i(a)=pi_j(a)</code> для одного
+исходного цвета <code>a</code>. Через <code>L_q(r)</code> обозначается
+минимальное число таких ограничений, которое заставляет всякий
+удовлетворяющий набор перестановок быть диагональным.</p>
+<p>Мы доказываем точную графовую переформулировку: система ограничений
+синхронизирует тогда и только тогда, когда канонический трансверсальный
+quotient-граф имеет единственную правильную <code>q</code>-раскраску с
+точностью до глобального переименования цветов. Отсюда следует
+необходимая связность объединения любых двух цветовых графов
+ограничений. Далее получены бесконечные точные семейства</p>
+<p>[ L_2(r)=r-1, L_3(r)=2, L_q(2)=q-1, L_q(3)=2q-3, ]</p>
+<p>и полностью закрыт четырёхфазный столбец:</p>
+[ L_q(4)=
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mn>3</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>q</mi><mo>=</mo><mn>2</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>2</mn><mi>q</mi><mo>−</mo><mn>1</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mn>3</mn><mo>≤</mo><mi>q</mi><mo>≤</mo><mn>5</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>12</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>q</mi><mo>=</mo><mn>6</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>3</mn><mi>q</mi><mo>−</mo><mn>7</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>q</mi><mo>≥</mo><mn>7</mn><mi>.</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
+3,&amp;q=2,\\
+2q-1,&amp;3\le q\le5,\\
+12,&amp;q=6,\\
+3q-7,&amp;q\ge7.
+\end{cases}</annotation></semantics></math>
+<p>]</p>
+<p>Главный структурный результат сопоставляет каждому исходному цвету
+нормированное бинарное пространство разрезов
+<code>W(P_a) &lt;= F_2^{r-1}</code>, размерность которого равна экономии
+числа ограничений для этого цвета. Синхронизация заставляет ненулевые
+части этих пространств быть попарно непересекающимися, поэтому</p>
+<p>[ _a(2<sup>{d_a}-1)</sup>{r-1}-1. ]</p>
+<p>Совпадающая по порядку бинарная конструкция разрезов даёт точный
+закон больших алфавитов</p>
+<p>[ ]</p>
+<p>для всех</p>
+<p>[ q^{r-1}-1, ]</p>
+<p>причём этот порог доказан точным. Таким образом, при фиксированном
+<code>r</code> нерешённая часть задачи конечна. Конечногеометрические
+ингредиенты сами по себе классические; заявляемый вклад состоит в модели
+FCOA-синхронизации по образам точек, её сведении к unique colorability и
+пространствам разрезов, точных семействах и теореме о точной
+стабилизации.</p>
+<p><strong>Ключевые слова:</strong> FCOA; анонимные значения;
+синхронизация перестановок; единственная раскраска; разбиения множеств;
+пространства разрезов; partial spreads; стоимость жёсткости.</p>
+<hr />
+<h2 id="введение">1. Введение</h2>
+<p>Анонимные выходные слои FCOA естественно разделяют два вопроса.
+Первый: индуцирует ли автоморфизм разреженного реляционного редукта
+локальную перестановку видимых имён выходов? Второй начинается лишь
+после существования таких локальных фаз: сколько дополнительной
+информации о равенствах нужно, чтобы все локальные фазы совпали с одной
+глобальной анонимной перестановкой?</p>
+<p>Настоящая работа изолирует второй вопрос как конечную экстремальную
+задачу.</p>
+<p>Пусть</p>
+<p>[ O={0,1,,q-1} ]</p>
+<p>— анонимный алфавит, а</p>
+<p>[ _1,,_rS_O. ]</p>
+<p>Для <code>1&lt;=i&lt;j&lt;=r</code> и <code>a in O</code> примитивное
+<strong>ограничение по образу точки</strong> имеет вид</p>
+<p>[ [i,j;a]:_i(a)=_j(a). ]</p>
+<p>Множество <code>S</code> таких ограничений называется
+<strong>синхронизирующим</strong>, если всякий удовлетворяющий набор
+диагонален:</p>
+<p>[ _1==_r. ]</p>
+<p>Определим</p>
+<p>[ ]</p>
+<p>Наивная spanning-tree конструкция сразу даёт</p>
+<p>[ L_q(r)(q-1)(r-1), ]</p>
+<p>поскольку совпадение двух перестановок на <code>q-1</code> исходных
+точках заставляет их совпасть полностью. При <code>q=2</code> это точно.
+При <code>q&gt;=3</code> биективность позволяет ограничениям на разных
+парах компонент взаимодействовать, поэтому дерево далеко не всегда
+оптимально.</p>
+<p>Главные результаты статьи:</p>
+<ol type="1">
+<li>точное сведение синхронизации к unique colorability специального
+трансверсального quotient-графа;</li>
+<li>универсальное условие связности объединения любых двух цветовых
+графов и нижняя граница [ L_q(r)2; ]</li>
+<li>точные формулы для всей строки <code>q=3</code> и столбцов
+<code>r=2,3,4</code>;</li>
+<li>универсальная бинарная cut-конструкция по всем ненулевым векторам
+<code>F_2^{r-1}</code>;</li>
+<li>packing-неравенство для пространств разрезов, совпадающее с
+конструкцией и дающее точную стабилизацию [ L_q(r)=(r-1)q-(2^{r-1}-1)
+(q^{r-1}-1), ] с точным порогом.</li>
+</ol>
+<p>Конечная предстабилизационная область при <code>r&gt;=5</code>
+остаётся открытой и отделяется от доказанного хвоста.</p>
+<hr />
+<h2 id="рамка-fcoa-и-область-применимости">2. Рамка FCOA и область
+применимости</h2>
+<h3 id="формальная-рамка">2.1 Формальная рамка</h3>
+<p>Каноническая рамка задаётся FCOA Definition 1.0 [1]. Мотивация
+исходит из конечного carrier <code>G</code> с частичной операцией,
+терминальные выходы которой образуют анонимные value-fibers. Разреженные
+реляционные редукты могут разбивать геометрию определённых клеток на
+comparison components. В <strong>full-support phase-admissible
+sector</strong> каждая релевантная компонента несёт локальную
+перестановку одного и того же анонимного терминального алфавита
+<code>O</code>.</p>
+<p>Настоящая статья переходит к производному слою синхронизации.
+Носитель индексов фаз:</p>
+<p>[ R={1,,r}, ]</p>
+<p>терминальный сорт — анонимное множество <code>O</code>. Примитивные
+данные здесь — не новые значения операции и не новые реальные
+FCOA-клетки, а абстрактные равенства (1) между образами одного исходного
+цвета в двух локальных фазах. Относительно предыдущего слоя sparse
+multicolor transport добавляется только выбранное семейство таких
+point-image равенств.</p>
+<h3 id="erasure-и-recovery">2.2 Erasure и recovery</h3>
+<p><strong>Erasure convention:</strong> имена терминальных значений
+остаются анонимными. Одновременная левая композиция</p>
+<p>[ _i_i (S_q) ]</p>
+<p>меняет только общее именование выходов и сохраняет все ограничения.
+Поэтому одну фазу можно нормировать к тождественной.</p>
+<p><strong>Recovery target:</strong> восстанавливаются не именованные
+цвета, а одна глобальная анонимная перестановка, то есть диагональность
+(2).</p>
+<h3 id="firewall">2.3 Firewall</h3>
+<p>Величина <code>L_q(r)</code> — абстрактная стоимость синхронизации
+full-support фаз. Это не минимум реальных operation cells, требуемых для
+ремонта FCOA carrier. Здесь не определяется multicolor-аналог
+actual-cell параметра <code>alpha_q</code> и не утверждаются
+неравенства, связывающие такой параметр с <code>L_q(r)</code>.
+Арифметика на носителе FCOA не импортируется.</p>
+<hr />
+<h2 id="цветовые-графы-ограничений-и-forest-reduction">3. Цветовые графы
+ограничений и forest reduction</h2>
+<p>Для каждого исходного цвета <code>a in O</code> определим граф</p>
+<p>[ _a=_a(S) ]</p>
+<p>на множестве вершин <code>R</code> условием</p>
+<p>[ {i,j}E(_a) S. ]</p>
+<p>Равенство распространяется вдоль путей, поэтому существенна лишь
+компонентная структура <code>Gamma_a</code>.</p>
+<h3 id="лемма-3.1-forest-reduction">Лемма 3.1 — forest reduction</h3>
+<p>Любую систему ограничений можно заменить системой с тем же множеством
+решений и не большим числом ограничений, в которой каждый
+<code>Gamma_a</code> является лесом.</p>
+<p><strong>Доказательство.</strong> В каждой компоненте связности
+<code>Gamma_a</code> заменим рёбра произвольным остовным деревом.
+Индуцируемое отношение равенства значений <code>pi_i(a)</code> не
+изменится. Повторяем независимо для всех <code>a</code>.
+<code>square</code></p>
+<p>Для редуцированной системы положим</p>
+<p>[ m_a=|E(_a)|, c_a=(_a)=r-m_a. ]</p>
+<p>Тогда</p>
+<p>[ |S|=_a m_a. ]</p>
+<hr />
+<h2 id="синхронизация-как-задача-единственной-раскраски">4.
+Синхронизация как задача единственной раскраски</h2>
+<p>Пусть <code>B_a</code> — множество компонент связности
+<code>Gamma_a</code>. Построим граф <code>H(S)</code>.</p>
+<p>Его вершины имеют вид</p>
+<p>[ (a,B),aO, BB_a. ]</p>
+<p>Для каждого индекса фазы <code>i</code> обозначим через
+<code>B_a(i)</code> компоненту <code>Gamma_a</code>, содержащую
+<code>i</code>. Соединим попарно все <code>q</code> вершин</p>
+<p>[ (a,B_a(i)),aO. ]</p>
+<p>Каждая фаза тем самым задаёт канонический
+<code>K_q</code>-трансверсал. Каноническая правильная раскраска:</p>
+<p>[ _0(a,B)=a. ]</p>
+<h3
+id="теорема-4.1-эквивалентность-синхронизации-и-unique-colorability">Теорема
+4.1 — эквивалентность синхронизации и unique colorability</h3>
+<p>Семейство ограничений <code>S</code> синхронизирует тогда и только
+тогда, когда <code>chi_0</code> — единственная правильная
+<code>q</code>-раскраска <code>H(S)</code> с точностью до глобальной
+перестановки названий цветов.</p>
+<p><strong>Доказательство.</strong> Пусть <code>(pi_1,...,pi_r)</code>
+удовлетворяет <code>S</code>. Если <code>i,j</code> лежат в одной
+компоненте <code>B</code> графа <code>Gamma_a</code>, то по путям
+<code>pi_i(a)=pi_j(a)</code>. Поэтому</p>
+<p>[ F(a,B):=_i(a)(iB) ]</p>
+<p>корректно определено. На трансверсале (12), соответствующем
+<code>i</code>, значения <code>F</code> равны</p>
+<p>[ _i(0),,_i(q-1), ]</p>
+<p>и попарно различны. Значит, <code>F</code> — правильная
+<code>q</code>-раскраска.</p>
+<p>Обратно, пусть <code>F</code> — правильная <code>q</code>-раскраска.
+Каждый канонический трансверсал есть <code>K_q</code>, поэтому его
+вершины получают все <code>q</code> цветов ровно по одному разу.
+Определим</p>
+<p>[ _i(a)=F(a,B_a(i)). ]</p>
+<p>Тогда каждая <code>pi_i</code> — перестановка. Если
+<code>[i,j;a] in S</code>, вершины <code>i,j</code> лежат в одной
+компоненте <code>Gamma_a</code>, и (15) даёт
+<code>pi_i(a)=pi_j(a)</code>. Таким образом, правильные раскраски
+находятся во взаимно однозначном соответствии с удовлетворяющими
+наборами фаз.</p>
+<p>Диагональные наборы — в точности раскраски, получаемые из
+<code>chi_0</code> одной глобальной перестановкой выходных цветов.
+Следовательно, синхронизация эквивалентна единственности
+<code>chi_0</code> с точностью до глобального relabeling.
+<code>square</code></p>
+<p>Это связывает задачу с классической теорией uniquely colorable
+graphs, но quotient-граф сильно ограничен: он строится из <code>r</code>
+канонических <code>K_q</code>-трансверсалов, а идентификации разрешены
+только внутри одного исходного цветового класса.</p>
+<hr />
+<h2 id="связность-попарных-объединений">5. Связность попарных
+объединений</h2>
+<h3 id="теорема-5.1">Теорема 5.1</h3>
+<p>Если <code>S</code> синхронизирует, то для любых двух различных
+исходных цветов <code>a,b</code></p>
+<p>[ ]</p>
+<p><strong>Доказательство.</strong> Пусть
+<code>Gamma_a union Gamma_b</code> несвязен. Выберем непустое
+собственное объединение его компонент <code>X</code>. Через разрез
+<code>(X,R\X)</code> не проходит ни одного ограничения цветов
+<code>a,b</code>. Положим <code>sigma=(a b)</code> и</p>
+<p>[ _i=(iX), _i=id(iX). ]</p>
+<p>Внутренние ограничения сравнивают одинаковые перестановки. Каждое
+пересекающее разрез ограничение использует цвет, отличный от
+<code>a,b</code>, и потому фиксируется <code>sigma</code>. Все
+ограничения выполнены, но набор не диагонален. Противоречие.
+<code>square</code></p>
+<p>Для редуцированной системы отсюда</p>
+<p>[ m_a+m_br-1. ]</p>
+<p>Суммирование по всем неупорядоченным парам даёт</p>
+<p>[ (q-1)_a m_aq2(r-1). ]</p>
+<h3 id="следствие-5.2-half-density-bound">Следствие 5.2 — half-density
+bound</h3>
+<p>[ ]</p>
+<p>Условие связности является специализацией классического свойства
+uniquely colorable graphs [3]. Здесь оно служит первым движком нижней
+оценки в ограниченном трансверсальном quotient-классе.</p>
+<hr />
+<h2 id="точные-низкоразмерные-семейства">6. Точные низкоразмерные
+семейства</h2>
+<h3 id="двоичный-алфавит">6.1 Двоичный алфавит</h3>
+<p>При <code>q=2</code> совпадение на одном исходном цвете
+идентифицирует две перестановки двухэлементного множества. Поэтому
+связный граф на <code>r</code> фазовых индексах необходим и
+достаточен.</p>
+<h3 id="теорема-6.1">Теорема 6.1</h3>
+<p>[ ]</p>
+<h3 id="две-фазы">6.2 Две фазы</h3>
+<p>Две перестановки <code>q</code>-элементного множества, совпадающие на
+<code>q-1</code> исходных точках, совпадают на последней. Если
+ограничений меньше <code>q-1</code>, остаются как минимум две свободные
+исходные точки, которые можно транспонировать.</p>
+<h3 id="теорема-6.2">Теорема 6.2</h3>
+<p>[ ]</p>
+<h3 id="три-цвета">6.3 Три цвета</h3>
+<p>При <code>q=3</code> из (18)</p>
+<p>[ m_0+m_1r-1, m_0+m_2r-1, m_1+m_2r-1, ]</p>
+<p>поэтому</p>
+<p>[ L_3(r)2. ]</p>
+<p>Совпадающая конструкция использует трёхconstraintный gadget. Пусть
+<code>rho</code> уже синхронизирована, а <code>sigma,tau in S_3</code> —
+новые фазы. Наложим</p>
+<p>[ [,;0], , . ]</p>
+<p>После глобальной нормировки <code>rho=id</code>. Тогда
+<code>sigma</code> фиксирует <code>0</code>, <code>tau</code> фиксирует
+<code>1</code>, и <code>sigma(2)=tau(2)</code>. Если бы
+<code>sigma</code> была нетривиальной перестановкой, фиксирующей
+<code>0</code>, то <code>sigma(2)=1</code>, что невозможно для
+<code>tau(2)</code>, поскольку <code>tau(1)=1</code>. Значит,
+<code>sigma=id</code>; тогда <code>tau(2)=2</code>, откуда
+<code>tau=id</code>.</p>
+<p>Добавляя фазы попарно, получаем точную границу.</p>
+<h3 id="теорема-6.3">Теорема 6.3</h3>
+<p>Для всех <code>r&gt;=1</code></p>
+<p>[ ]</p>
+<h3 id="три-фазы">6.4 Три фазы</h3>
+<p>При <code>r=3</code> каждый редуцированный <code>Gamma_a</code> имеет
+<code>m_a in {0,1,2}</code>. Если один цвет имеет <code>m_a=0</code>,
+всякий другой цвет должен быть связным, и стоимость не меньше
+<code>2(q-1)</code>. Иначе каждый цвет имеет как минимум одно ребро. Два
+одно-рёберных цвета должны использовать разные рёбра треугольника фаз,
+иначе их объединение несвязно. Рёбер всего три, поэтому не более трёх
+цветов имеют <code>m_a=1</code>, а остальные — <code>m_a=2</code>.
+Следовательно,</p>
+<p>[ L_q(3)+2(q-3)=2q-3. ]</p>
+<p>Для верхней оценки используем трёхцветный triangle gadget</p>
+<p>[ [0,1;0],, ]</p>
+<p>и для каждого дополнительного цвета <code>a&gt;=3</code> ограничения
+<code>[0,1;a]</code>, <code>[0,2;a]</code>. Дополнительные цвета
+фиксируются на всех фазах, оставляя действие <code>S_3</code>, которое
+убивается (26).</p>
+<h3 id="теорема-6.4">Теорема 6.4</h3>
+<p>Для всех <code>q&gt;=3</code></p>
+<p>[ ]</p>
+<hr />
+<h2 id="полный-четырёхфазный-столбец">7. Полный четырёхфазный
+столбец</h2>
+<p>При <code>r=4</code> каждый исходный цвет задаёт разбиение
+<code>P_a</code> четырёх фаз. После forest reduction его ранг</p>
+<p>[ m_a=4-|P_a| ]</p>
+<p>лежит в <code>{0,1,2,3}</code>.</p>
+<p>Условие совместимости из Теоремы 5.1 принимает вид</p>
+<p>[ P_aP_b= (ab), ]</p>
+<p>где <code>mathbf 1</code> — одно-блочное разбиение.</p>
+<p>Решётка разбиений четырёх точек даёт полный список совместимости
+малых рангов:</p>
+<ul>
+<li>дискретное разбиение ранга ноль совместимо только с одно-блочным
+разбиением ранга три;</li>
+<li>два rank-1 разбиения никогда не совместимы;</li>
+<li>фиксированное rank-1 разбиение совместимо ровно с четырьмя rank-2
+разбиениями;</li>
+<li>rank-2 разбиений ровно семь, и любые два различных совместимы;</li>
+<li>rank-3 разбиение совместимо со всеми.</li>
+</ul>
+<p>Пусть <code>n_k</code> — число цветов ранга <code>k</code>. Если
+rank-0 цвета нет,</p>
+<p>[ |S|=n_1+2n_2+3n_3=3q-(2n_1+n_2). ]</p>
+<p>Классификация даёт максимальный defect</p>
+[ 2n_1+n_2=
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mi>q</mi><mo>+</mo><mn>1</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mn>3</mn><mo>≤</mo><mi>q</mi><mo>≤</mo><mn>5</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>6</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>q</mi><mo>=</mo><mn>6</mn><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>7</mn><mo>,</mo></mtd><mtd columnalign="left" style="text-align: left"><mi>q</mi><mo>≥</mo><mn>7</mn><mi>.</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
+q+1,&amp;3\le q\le5,\\
+6,&amp;q=6,\\
+7,&amp;q\ge7.
+\end{cases}
+\tag{30}</annotation></semantics></math>
+<p>]</p>
+<p>и соответствующие нижние границы.</p>
+<p>При <code>q=3</code> пятиconstraintная конструкция является
+экземпляром уже доказанного рекурсивного <code>S_3</code> gadget Теоремы
+6.3 после переименования фаз и цветов. При <code>q=4,5</code> можно
+использовать один rank-1 partition и соответственно три или четыре
+совместимых rank-2 партнёра; прямая нормировка и инъективность вынуждают
+все фазы быть тождественными. При <code>q=6</code> оптимальный
+<code>q=5</code> gadget дополняется одним связным цветом. При
+<code>q=7</code> используются все семь bipartitions четырёх фаз — это
+случай <code>r=4</code> универсальной binary-cut конструкции следующего
+раздела. При <code>q&gt;7</code> новые цвета делаются связными.</p>
+<h3 id="теорема-7.1-точная-четырёхфазная-стоимость">Теорема 7.1 — точная
+четырёхфазная стоимость</h3>
+<p>[ ]</p>
+<p>Изолированное значение при <code>q=6</code> имеет структурную
+природу: rank-1 архитектура допускает не более четырёх rank-2 цветов,
+тогда как all-bipartition архитектура имеет capacity семь.</p>
+<hr />
+<h2 id="универсальная-бинарная-синхронизация-разрезами">8. Универсальная
+бинарная синхронизация разрезами</h2>
+<p>Зафиксируем <code>r&gt;=2</code> и положим</p>
+<p>[ n=r-1, V=F_2^n{0}. ]</p>
+<p>Используем один активный исходный цвет для каждого вектора</p>
+<p>[ v=(v_1,,v_n)V. ]</p>
+<p>Число активных цветов</p>
+<p>[ q_0=|V|=2^{r-1}-1. ]</p>
+<p>Для цвета <code>v</code> разобьём фазы на</p>
+<p>[ B_v^0={0}{i:v_i=0}, B_v^1={i:v_i=1}. ]</p>
+<p>Внутри каждого блока выберем остовное дерево. Поскольку блоков два и
+оба непусты, цвет <code>v</code> стоит <code>r-2</code> ограничений.</p>
+<h3 id="теорема-8.1-binary-cut-gadget">Теорема 8.1 — binary-cut
+gadget</h3>
+<p>Семейство (34) синхронизирует <code>r</code> фаз в
+<code>S_{2^{r-1}-1}</code>.</p>
+<p><strong>Доказательство.</strong> Нормируем <code>pi_0=id</code>. Для
+<code>i&gt;=1</code> положим</p>
+<p>[ H_i={v:v_i=0}, A_i={v:v_i=1}. ]</p>
+<p>Если <code>v in H_i</code>, фазы <code>0</code> и <code>i</code>
+лежат в одном связном блоке <code>B_v^0</code>, поэтому</p>
+<p>[ _i(v)=v. ]</p>
+<p>Значит, <code>pi_i</code> фиксирует <code>H_i</code> поточечно и
+сохраняет <code>A_i</code> как множество.</p>
+<p>Для <code>j!=i</code> и <code>v in A_i cap A_j</code> фазы
+<code>i,j</code> лежат в одном блоке <code>B_v^1</code>, поэтому</p>
+<p>[ _i(v)=_j(v). ]</p>
+<p>Левая часть лежит в <code>A_i</code>, правая — в <code>A_j</code>,
+значит общее значение лежит в <code>A_i cap A_j</code>. Поэтому
+<code>pi_i</code> сохраняет каждое множество
+<code>A_i cap A_j</code>.</p>
+<p>На <code>A_i</code> признаки принадлежности множествам
+<code>A_i cap A_j</code>, <code>j!=i</code>, являются в точности
+оставшимися координатами <code>(v_j)_{j!=i}</code> и различают все
+векторы <code>A_i</code>. Следовательно, <code>pi_i</code> фиксирует
+каждую точку <code>A_i</code>, а вместе с (36) получаем
+<code>pi_i=id</code>. Это верно для всех <code>i</code>, следовательно,
+все фазы диагональны до нормировки. <code>square</code></p>
+<p>Стоимость gadget равна</p>
+<p>[ (r-2)(2^{r-1}-1). ]</p>
+<p>При <code>q&gt;q_0</code> каждый новый цвет делается связным на всех
+<code>r</code> фазах за <code>r-1</code> ограничений. Поэтому</p>
+<p>[ L_q(r)(r-1)q-(2^{r-1}-1) (qq_0). ]</p>
+<hr />
+<h2 id="пространства-разрезов-и-packing-bound">9. Пространства разрезов
+и packing bound</h2>
+<p>Совпадающая нижняя граница получается из канонического кодирования
+компонентных разбиений каждого исходного цвета.</p>
+<p>Пусть <code>P</code> — разбиение множества фаз</p>
+<p>[ R={0,1,,r-1}. ]</p>
+<p>Нормируем бинарные разрезы, фиксируя бит фазы <code>0</code> равным
+нулю, и отождествим их с</p>
+<p>[ F_2^{r-1}. ]</p>
+<p>Определим</p>
+<p>[ W(P)={xF_2^{r-1}:xP}, ]</p>
+<p>где подразумевается расширение <code>x_0=0</code>.</p>
+<h3 id="лемма-9.1">Лемма 9.1</h3>
+<p>Если <code>P</code> имеет <code>c</code> блоков, то</p>
+<p>[ W(P)=c-1. ]</p>
+<p><strong>Доказательство.</strong> Блок, содержащий фазу
+<code>0</code>, вынужден иметь бит ноль. Каждый из остальных
+<code>c-1</code> блоков выбирает бит независимо. Поэтому
+<code>|W(P)|=2^{c-1}</code>. <code>square</code></p>
+<p>Для компонентного разбиения <code>P_a</code> леса
+<code>Gamma_a</code> определим экономию</p>
+<p>[ d_a=(r-1)-m_a. ]</p>
+<p>Поскольку <code>m_a=r-c_a</code>,</p>
+<p>[ d_a=c_a-1=W(P_a). ]</p>
+<h3 id="лемма-9.2-тождество-joinintersection">Лемма 9.2 — тождество
+join/intersection</h3>
+<p>Для любых разбиений <code>P,Q</code></p>
+<p>[ ]</p>
+<p><strong>Доказательство.</strong> Нормированный бинарный разрез
+принадлежит обоим пространствам тогда и только тогда, когда он постоянен
+на каждом блоке <code>P</code> и каждом блоке <code>Q</code>. Это
+эквивалентно постоянству на классах эквивалентности, порождённых
+совместно этими блоками, то есть на блоках <code>P vee Q</code>.
+<code>square</code></p>
+<p>Из Теоремы 5.1</p>
+<p>[ P_aP_b= (ab), ]</p>
+<p>следовательно,</p>
+<p>[ W(P_a)W(P_b)={0}. ]</p>
+<p>Ненулевые векторы пространств разрезов попарно не пересекаются. В
+<code>F_2^{r-1}</code> ровно <code>2^{r-1}-1</code> ненулевых
+векторов.</p>
+<h3 id="теорема-9.3-defect-packing-inequality">Теорема 9.3 — defect
+packing inequality</h3>
+<p>Всякая синхронизирующая система удовлетворяет</p>
+<p>[ ]</p>
+<p>Сам подсчёт (46) после получения cut-space reduction — стандартная
+конечногеометрическая packing-оценка и не заявляется как новое
+утверждение о partial spreads или vector-space partitions [5,6].</p>
+<p>Так как</p>
+<p>[ d^d-1 (d), ]</p>
+<p>получаем</p>
+<p>[ _a d_a^{r-1}-1. ]</p>
+<p>Но из (42)</p>
+<p>[ |S|=(r-1)q-_a d_a. ]</p>
+<p>Поэтому:</p>
+<h3 id="следствие-9.4-универсальная-defect-граница">Следствие 9.4 —
+универсальная defect-граница</h3>
+<p>[ ]</p>
+<hr />
+<h2 id="точная-стабилизация-при-больших-алфавитах">10. Точная
+стабилизация при больших алфавитах</h2>
+<p>Объединяем разделы 8 и 9.</p>
+<h3 id="теорема-10.1-точная-теорема-стабилизации">Теорема 10.1 — точная
+теорема стабилизации</h3>
+<p>Для всех <code>r&gt;=2</code> и</p>
+<p>[ q^{r-1}-1 ]</p>
+<p>имеем</p>
+<p>[ ]</p>
+<p>Причём порог точен: если</p>
+<p>[ q&lt;2^{r-1}-1, ]</p>
+<p>то</p>
+<p>[ L_q(r)&gt;(r-1)q-(2^{r-1}-1). ]</p>
+<p><strong>Доказательство.</strong> Нижняя граница — Следствие 9.4.
+Binary-cut construction даёт равенство при
+<code>q&gt;=2^{r-1}-1</code>.</p>
+<p>Предположим, что равенство в (50) достигнуто. Тогда</p>
+<p>[ _a d_a=2^{r-1}-1. ]</p>
+<p>Из (46) и (47)</p>
+<p>[ _a d_a _a(2^{d_a}-1) ^{r-1}-1. ]</p>
+<p>Равенство в (53) вынуждает равенство в каждом неравенстве
+<code>d_a&lt;=2^{d_a}-1</code>, что для неотрицательных целых возможно
+только при <code>d_a in {0,1}</code>. Значит, каждый цвет с
+положительным defect даёт ровно один ненулевой cut-вектор. Чтобы
+получить суммарный defect <code>2^{r-1}-1</code>, нужно как минимум
+столько же цветов. Следовательно,</p>
+<p>[ q^{r-1}-1. ]</p>
+<p>Ниже порога равенство невозможно. <code>square</code></p>
+<h3 id="следствие-10.2">Следствие 10.2</h3>
+<p>Точный порог стабилизации:</p>
+<p>[ ]</p>
+<p>Например,</p>
+<p>[ L_q(5)=4q-15(q), ]</p>
+<p>и</p>
+<p>[ L_q(6)=5q-31(q). ]</p>
+<p>При фиксированном числе фаз вне линейного точного хвоста остаётся
+лишь конечное число алфавитов.</p>
+<hr />
+<h2 id="конечная-предстабилизационная-задача">11. Конечная
+предстабилизационная задача</h2>
+<p>Доказательство Теоремы 10.1 даёт более сильный интерфейс для
+нерешённого сектора. Определим</p>
+<p>[ D_r(q) = { _{i=1}^qW(P_i): W(P_i)W(P_j)={0} (ij) }, ]</p>
+<p>где нульмерные пространства разрешены для дополнения семейства.</p>
+<p>Тогда необходимо</p>
+<p>[ L_q(r)(r-1)q-D_r(q). ]</p>
+<p>Это лишь lower-bound interface: попарно тривиальное пересечение
+необходимо для синхронизации, но само по себе может быть недостаточно
+для unique colorability трансверсального quotient-графа.</p>
+<p>Действительно открытый режим:</p>
+<p>[ ]</p>
+<p>Для <code>r=5</code> остаются только <code>4&lt;=q&lt;=14</code>.
+Точные weighted-packing вычисления полезны как hostile check, но их
+значения не повышаются здесь до LQR-теорем без отдельного доказательства
+синхронизации.</p>
+<hr />
+<h2 id="конечная-проверка">12. Конечная проверка</h2>
+<p>В репозитории поддерживаются два независимых verifier-скрипта.</p>
+<p><code>verify_lqr.py</code> проверяет:</p>
+<ul>
+<li>точные <code>q=3</code> конструкции для малых <code>r</code>
+нормированным полным перебором;</li>
+<li>точные <code>r=3</code> конструкции для малых <code>q</code>;</li>
+<li>первые значения <code>r=4</code> через partition quotient.</li>
+</ul>
+<p><code>verify_lqr_cutspace.py</code> независимо проверяет:</p>
+<ul>
+<li>Bell-number enumeration разбиений фаз до <code>r=6</code>;</li>
+<li><code>|W(P)|=2^{|P|-1}</code>;</li>
+<li><code>W(P) cap W(Q)=W(P vee Q)</code> для всех пар разбиений до
+<code>r=6</code>;</li>
+<li>weighted partition-packing capacity при <code>r=5</code> до порога
+<code>q=15</code>.</li>
+</ul>
+<p>Доказательства бесконечных формул от этих вычислений не зависят.</p>
+<hr />
+<h2 id="литературная-позиция-и-граница-новизны">13. Литературная позиция
+и граница новизны</h2>
+<p>Графовая и конечногеометрическая окружающая теория классическая.</p>
+<p>Harary, Hedetniemi и Robinson [3] установили фундаментальные свойства
+uniquely colorable graphs, включая связность подграфа, индуцированного
+любой парой цветовых классов. Bollobas [4] развил дальнейшие структурные
+результаты. Поэтому Теорема 5.1 не заявляется как новое общее
+утверждение unique-colorability; она используется как специализированная
+форма, индуцированная LQR transversal quotient.</p>
+<p>Попарно тривиально пересекающиеся подпространства, partial spreads и
+vector-space partitions также классические [5,6]. После (45) подсчёт их
+ненулевых векторов стандартен. Поэтому novelty claim сознательно
+ограничен следующей цепочкой внутри задачи FCOA phase
+synchronization:</p>
+<p>[ . ]</p>
+<p>Permutation synchronization имеет развитую алгоритмическую
+литературу, обычно ориентированную на восстановление глобально
+согласованных matching-перестановок из шумных попарных оценок [7]. Здесь
+параметр иной: минимальное число точных same-source point-image
+равенств, достаточных, чтобы любой набор в <code>S_q^r</code> стал
+диагональным.</p>
+<p>Специализированный поиск в рамках проекта не обнаружил точного
+экстремального параметра <code>L_q(r)</code> именно в этой форме. Это
+консервативная формулировка, а не абсолютное заявление приоритета.</p>
+<hr />
+<h2 id="ограничения-и-открытые-вопросы">14. Ограничения и открытые
+вопросы</h2>
+<p>Основные ограничения явные.</p>
+<ol type="1">
+<li><code>L_q(r)</code> измеряет абстрактные phase-link constraints, а
+не реальные FCOA operation-cell additions.</li>
+<li>Предстабилизационный сектор (60) в общем случае не решён.</li>
+<li>Pairwise cut-space packing — необходимое условие и может не
+исчерпывать все unique-coloring obstructions.</li>
+<li>Multicolor-аналог binary actual-cell repair parameter здесь не
+определяется.</li>
+<li>Существование permutation-valued local phases предполагается;
+разреженные ternary reducts при <code>q&gt;=3</code> могут разрушаться
+до стадии синхронизации, что рассматривается в companion manuscript
+[2].</li>
+</ol>
+<p>Естественные следующие задачи: определить <code>L_4(r)</code> для
+общего <code>r</code>, решить <code>L_q(5)</code> при
+<code>4&lt;=q&lt;=14</code> и охарактеризовать, когда оптимальная
+partition-subspace packing конфигурация реально задаёт синхронизирующий
+transversal quotient.</p>
+<hr />
+<h2 id="заключение">15. Заключение</h2>
+<p>Стоимость синхронизации по образам точек имеет существенно более
+тонкую структуру, чем наивная spanning-tree оценка. Правильные
+нижнеоценочные объекты — не просто графы на фазовых индексах, а
+компонентные разбиения; после нормировки эти разбиения порождают
+бинарные cut-spaces, ненулевые векторы которых обязаны упаковываться без
+пересечений.</p>
+<p>Это даёт три слоя точной структуры:</p>
+<p>[ L_3(r)=2, ]</p>
+<p>точный четырёхфазный переход</p>
+<p>[ L_q(4)=3, 2q-1, 12, 3q-7 ]</p>
+<p>на соответствующих диапазонах и общую теорему стабилизации</p>
+<p>[ ]</p>
+<p>Следовательно, при фиксированном числе фаз нерешённая задача конечна.
+В терминах FCOA это точная capacity theorem для синхронизации уже
+существующих анонимных full-support фаз, при сохранении строгого
+различия с более трудной задачей реализации синхронизации реальными
+operation-cell extensions.</p>
+<hr />
+<h2 id="литература">Литература</h2>
+<p>[1] A. Malachevsky and Commander Sol, <strong>Fixed-Carrier Oriented
+Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure,
+and the Canonical M0 Baseline</strong>, 2026. DOI:
+<code>10.5281/zenodo.22164246</code>.
+https://doi.org/10.5281/zenodo.22164246.</p>
+<p>[2] A. Malachevsky and Commander Sol, <strong>Reflections on Sparse
+Multicolor Transport with Commander Sol: Proper-Coloring Obstructions,
+Local Phase Groupoids, and Exact Gluing in FCOA</strong>, companion
+manuscript, 2026, repository package
+<code>papers/FCOA-SPARSE-MULTICOLOR-TRANSPORT/</code>.</p>
+<p>[3] F. Harary, S. T. Hedetniemi, R. W. Robinson, <strong>Uniquely
+colorable graphs</strong>, <em>Journal of Combinatorial Theory</em> 6(3)
+(1969), 264–270. DOI: <code>10.1016/S0021-9800(69)80086-4</code>.</p>
+<p>[4] B. Bollobas, <strong>Uniquely colorable graphs</strong>,
+<em>Journal of Combinatorial Theory, Series B</em> 25 (1978), 54–61.
+DOI: <code>10.1016/S0095-8956(78)80010-0</code>.</p>
+<p>[5] O. Heden, <strong>A survey of the different types of vector space
+partitions</strong>, <em>Discrete Mathematics, Algorithms and
+Applications</em> 4(1) (2012), 1250001. DOI:
+<code>10.1142/S1793830912500012</code>.</p>
+<p>[6] T. Honold, M. Kiermaier, S. Kurz, <strong>Partial spreads and
+vector space partitions</strong>, in <em>Network Coding and Subspace
+Designs</em>, Springer, 2018, 131–170. DOI:
+<code>10.1007/978-3-319-70293-3_7</code>.</p>
+<p>[7] D. Pachauri, T. Kondor, V. Singh, <strong>Solving the multi-way
+matching problem by permutation synchronization</strong>, <em>Advances
+in Neural Information Processing Systems 26</em>, 2013.</p>
+<hr />
+<h2 id="воспроизводимость">Воспроизводимость</h2>
+<p>Исходные теоремные файлы и независимые конечные verifier-скрипты
+поддерживаются в</p>
+<p><code>delegated/FCOA_RIGIDITY_COST/QGE3/</code></p>
+<p>репозитория</p>
+<p><code>https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol</code></p>
+<p>в исследовательской ветке <code>director/fcoa-rigidity-cost</code> на
+момент сборки рукописи.</p>
+</body>
+</html>

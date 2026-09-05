@@ -1,0 +1,47 @@
+# PDF preflight
+
+## English
+Title:           Reflections on Point-Image Phase Synchronization with Commander Sol
+Subject:         FCOA rigidity cost and point-image phase synchronization
+Keywords:        FCOA, permutation, synchronization, unique, colorability, cut, spaces, rigidity, cost
+Author:          Alex Malachevsky; Commander Sol
+Creator:         Writer
+Producer:        LibreOffice 24.2
+CreationDate:    Sat Sep  5 11:16:50 2026 UTC
+Custom Metadata: no
+Metadata Stream: no
+Tagged:          yes
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           13
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       218825 bytes
+Optimized:       no
+PDF version:     1.7
+
+## Russian
+Title:           Reflections on Point-Image Phase Synchronization with Commander Sol
+Subject:         FCOA rigidity cost and point-image phase synchronization
+Keywords:        FCOA, permutation, synchronization, unique, colorability, cut, spaces, rigidity, cost
+Author:          Alex Malachevsky; Commander Sol
+Creator:         Writer
+Producer:        LibreOffice 24.2
+CreationDate:    Sat Sep  5 11:16:51 2026 UTC
+Custom Metadata: no
+Metadata Stream: no
+Tagged:          yes
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           14
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       233429 bytes
+Optimized:       no
+PDF version:     1.7

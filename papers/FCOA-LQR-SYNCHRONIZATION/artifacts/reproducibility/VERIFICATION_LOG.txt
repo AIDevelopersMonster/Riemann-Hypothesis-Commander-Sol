@@ -1,0 +1,60 @@
+# FCOA LQR verifier log
+commit: 276ea64561265892673cc881500b78a58e6e3822
+utc: 2026-09-05T11:16:52Z
+
+## verify_lqr.py
+QGE3 LQR finite verifier
+========================
+
+Exact theorem construction checks:
+q=3 r=2: size=2 target=2 sync=True
+q=3 r=3: size=3 target=3 sync=True
+q=3 r=4: size=5 target=5 sync=True
+q=3 r=5: size=6 target=6 sync=True
+q=3 r=6: size=8 target=8 sync=True
+q=3 r=3: size=3 target=3 sync=True
+q=4 r=3: size=5 target=5 sync=True
+q=5 r=3: size=7 target=7 sync=True
+q=6 r=3: size=9 target=9 sync=True
+
+General upper-bound construction sizes:
+q=4 r=4: size=8 bound=8
+q=5 r=4: size=11 bound=11
+q=4 r=5: size=10 bound=10
+q=5 r=5: size=14 bound=14
+
+Exact r=4 partition search (may take longer as q grows):
+q=3 r=4: optimum<= 5; expected=5
+q=4 r=4: optimum<= 7; expected=7
+q=5 r=4: optimum<= 9; expected=9
+q=6 r=4: optimum<= 12; expected=12
+q=7 r=4: optimum<= 14; expected=14
+
+All requested finite checks passed.
+
+## verify_lqr_cutspace.py
+LQR cut-space hostile verifier
+==============================
+r=2: Bell=2 lattice identities PASS
+r=3: Bell=5 lattice identities PASS
+r=4: Bell=15 lattice identities PASS
+r=5: Bell=52 lattice identities PASS
+r=6: Bell=203 lattice identities PASS
+
+r=5 q=1: packing defect=4 dims=[4] PASS
+r=5 q=2: packing defect=4 dims=[4] PASS
+r=5 q=3: packing defect=6 dims=[2, 2, 2] PASS
+r=5 q=4: packing defect=8 dims=[2, 2, 2, 2] PASS
+r=5 q=5: packing defect=10 dims=[2, 2, 2, 2, 2] PASS
+r=5 q=6: packing defect=10 dims=[2, 2, 2, 2, 2] PASS
+r=5 q=7: packing defect=11 dims=[2, 2, 2, 2, 1, 1, 1] PASS
+r=5 q=8: packing defect=11 dims=[2, 2, 2, 2, 1, 1, 1] PASS
+r=5 q=9: packing defect=12 dims=[2, 2, 2, 1, 1, 1, 1, 1, 1] PASS
+r=5 q=10: packing defect=12 dims=[2, 2, 2, 1, 1, 1, 1, 1, 1] PASS
+r=5 q=11: packing defect=13 dims=[2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1] PASS
+r=5 q=12: packing defect=13 dims=[2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1] PASS
+r=5 q=13: packing defect=14 dims=[2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] PASS
+r=5 q=14: packing defect=14 dims=[2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] PASS
+r=5 q=15: packing defect=15 dims=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] PASS
+
+All cut-space hostile checks passed.
