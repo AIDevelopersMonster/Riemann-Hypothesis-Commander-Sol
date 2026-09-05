@@ -1,7 +1,7 @@
 # SOL-SELECTOR v1.0 Release Package
 
 Date: 2026-09-05
-Status: PDF/LaTeX RELEASE PACKAGE BUILT AND VISUALLY AUDITED
+Status: ZENODO DOI ASSIGNED / FINAL RELEASE PACKAGE REBUILT AND VISUALLY AUDITED
 
 ## Publication title
 
@@ -13,10 +13,12 @@ Author:
 - English/Zenodo: `Malachevsky, A.A.`
 - Russian: `Малачевский А.А.`
 - ORCID: `0009-0008-6009-3196`
+- Zenodo DOI: `10.5281/zenodo.22319301`
+- DOI URL: `https://doi.org/10.5281/zenodo.22319301`
 
 ## Built artifacts
 
-The release package contains:
+The final release package contains:
 
 - `sol_selector_en.tex`
 - `sol_selector_en.pdf`
@@ -27,12 +29,18 @@ The release package contains:
 
 Build engine: XeLaTeX.
 
-Final rendered page counts:
+After DOI insertion the final rendered page counts are:
 
 - EN PDF: 8 pages
-- RU PDF: 7 pages
+- RU PDF: 8 pages
 
-Both PDFs passed render-based visual QA: no clipped text, broken glyphs, formula overflow, or page-layout defects were observed. PDF preflight confirms both files are openable, unencrypted, text-based, and contain no XFA forms.
+Both PDFs were rebuilt after DOI insertion and passed render-based visual QA: no clipped text, broken glyphs, formula overflow, or page-layout defects were observed. PDF preflight confirms both files are openable, unencrypted, text-based, and contain no XFA forms.
+
+Final local release checksums:
+
+- EN PDF SHA-256: `8753902dc713da4371737f18c8dfef52845c4e41f3e11258208ef41df2945969`
+- RU PDF SHA-256: `ba5c72b2781a59db5bb0e02cadea14b93b7d614c183c107c0b5c13ee0e299874`
+- ZIP SHA-256: `0b1160906811fc33f1415f60f4979e1a2246ff3e5625216a5d2e9f95fc832ebc`
 
 ## Frozen theorem nucleus
 
@@ -72,10 +80,14 @@ No claim is made that span/gap/phase are uniformly parameter-free FO-definable i
 
 ## DOI status
 
-Zenodo DOI is intentionally not inserted yet. Add it only after the deposition record has been created.
+Final DOI:
+
+`https://doi.org/10.5281/zenodo.22319301`
+
+The DOI is inserted into both EN and RU LaTeX/PDF title metadata and into the release README.
 
 ## Research status
 
-One-step `SOL-SELECTOR` is frozen for publication at v1.0.
+One-step `SOL-SELECTOR` is frozen and published at v1.0.
 
 Further research, if opened, should proceed under a separate re-entry line because re-entry changes the free object from terminal one-step events to term/tree closure.
