@@ -45,14 +45,8 @@ jobs:
 
       - name: Build DOCX sources
         run: |
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md \
-            --from=markdown+tex_math_dollars \
-            --to=docx \
-            --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.docx
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md \
-            --from=markdown+tex_math_dollars \
-            --to=docx \
-            --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.docx
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars --to=docx --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.docx
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars --to=docx --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.docx
 
       - name: Apply publication DOCX layout
         run: |
@@ -90,7 +84,7 @@ jobs:
                   section.header_distance = Inches(0.35)
                   section.footer_distance = Inches(0.35)
                   hp = section.header.paragraphs[0]
-                  hp.text = 'FCOA · Point-Image Phase Synchronization · v1.0-rc1'
+                  hp.text = 'FCOA - Point-Image Phase Synchronization - v1.0-rc1'
                   hp.alignment = WD_ALIGN_PARAGRAPH.CENTER
                   if hp.runs:
                       hp.runs[0].font.name = 'Liberation Serif'
@@ -100,7 +94,6 @@ jobs:
                   for r in fp.runs:
                       r.font.name = 'Liberation Serif'
                       r.font.size = Pt(8)
-
               styles = doc.styles
               normal = styles['Normal']
               normal.font.name = 'Liberation Serif'
@@ -110,11 +103,11 @@ jobs:
               for name, size in [('Title', 20), ('Subtitle', 13), ('Heading 1', 15), ('Heading 2', 12.5), ('Heading 3', 11.5)]:
                   if name in styles:
                       st = styles[name]
-                      st.font.name = 'Liberation Sans' if 'Heading' in name or name in ('Title','Subtitle') else 'Liberation Serif'
+                      st.font.name = 'Liberation Sans'
                       st.font.size = Pt(size)
                       st.font.bold = name != 'Subtitle'
               for p in doc.paragraphs[:3]:
-                  if p.style.name in ('Title','Heading 1'):
+                  if p.style.name in ('Title', 'Heading 1'):
                       p.alignment = WD_ALIGN_PARAGRAPH.CENTER
               doc.core_properties.title = 'Reflections on Point-Image Phase Synchronization with Commander Sol'
               doc.core_properties.subject = 'FCOA rigidity cost and point-image phase synchronization'
@@ -132,26 +125,15 @@ jobs:
 
       - name: Convert DOCX to PDF
         run: |
-          mkdir -p .build_lqr/lo
-          libreoffice --headless --convert-to pdf --outdir papers/FCOA-LQR-SYNCHRONIZATION/artifacts \
-            papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.docx
-          libreoffice --headless --convert-to pdf --outdir papers/FCOA-LQR-SYNCHRONIZATION/artifacts \
-            papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.docx
+          libreoffice --headless --convert-to pdf --outdir papers/FCOA-LQR-SYNCHRONIZATION/artifacts papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.docx
+          libreoffice --headless --convert-to pdf --outdir papers/FCOA-LQR-SYNCHRONIZATION/artifacts papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.docx
 
       - name: Build HTML and LaTeX sources
         run: |
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md \
-            --standalone --mathml --metadata title="Reflections on Point-Image Phase Synchronization with Commander Sol" \
-            --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.html
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md \
-            --standalone --mathml --metadata title="Размышления о синхронизации фаз по образам точек с Commander Sol" \
-            --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.html
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md \
-            --from=markdown+tex_math_dollars --to=latex \
-            --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.tex
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md \
-            --from=markdown+tex_math_dollars --to=latex \
-            --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.tex
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --standalone --mathml --metadata title="Reflections on Point-Image Phase Synchronization with Commander Sol" --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.html
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --standalone --mathml --metadata title="Размышления о синхронизации фаз по образам точек с Commander Sol" --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.html
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars --to=latex --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.tex
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars --to=latex --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.tex
 
       - name: Copy theorem provenance and verifiers
         run: |
@@ -197,10 +179,8 @@ jobs:
             echo "## Russian"
             pdfinfo papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.pdf
           } > papers/FCOA-LQR-SYNCHRONIZATION/artifacts/qa/PDFINFO.txt
-          pdftoppm -f 1 -singlefile -png -r 120 papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.pdf \
-            papers/FCOA-LQR-SYNCHRONIZATION/artifacts/qa/article_en_page1
-          pdftoppm -f 1 -singlefile -png -r 120 papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.pdf \
-            papers/FCOA-LQR-SYNCHRONIZATION/artifacts/qa/article_ru_page1
+          pdftoppm -f 1 -singlefile -png -r 120 papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.pdf papers/FCOA-LQR-SYNCHRONIZATION/artifacts/qa/article_en_page1
+          pdftoppm -f 1 -singlefile -png -r 120 papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.pdf papers/FCOA-LQR-SYNCHRONIZATION/artifacts/qa/article_ru_page1
           pdftotext papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.pdf .build_lqr/en.txt
           pdftotext papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.pdf .build_lqr/ru.txt
           test -s .build_lqr/en.txt
@@ -218,18 +198,29 @@ jobs:
           cp "$ROOT/SOURCE_MAP.md" "$ROOT/artifacts/"
           if [ -f "$ROOT/ZENODO_METADATA.json" ]; then cp "$ROOT/ZENODO_METADATA.json" "$ROOT/artifacts/"; fi
           if [ -f "$ROOT/RELEASE_NOTES.md" ]; then cp "$ROOT/RELEASE_NOTES.md" "$ROOT/artifacts/"; fi
+          if [ -f "$ROOT/ZENODO_UPLOAD_CHECKLIST.md" ]; then cp "$ROOT/ZENODO_UPLOAD_CHECKLIST.md" "$ROOT/artifacts/"; fi
           cd "$ROOT/artifacts"
           find . -type f ! -name MANIFEST.sha256 -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
           cd ..
           rm -f FCOA-LQR-SYNCHRONIZATION-v1.0-rc1.zip
           zip -qr FCOA-LQR-SYNCHRONIZATION-v1.0-rc1.zip artifacts
 
+      - name: Upload publication bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: FCOA-LQR-SYNCHRONIZATION-v1.0-rc1
+          path: |
+            papers/FCOA-LQR-SYNCHRONIZATION/artifacts
+            papers/FCOA-LQR-SYNCHRONIZATION/FCOA-LQR-SYNCHRONIZATION-v1.0-rc1.zip
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Commit generated publication artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add papers/FCOA-LQR-SYNCHRONIZATION/artifacts \
-                  papers/FCOA-LQR-SYNCHRONIZATION/FCOA-LQR-SYNCHRONIZATION-v1.0-rc1.zip
+          git add papers/FCOA-LQR-SYNCHRONIZATION/artifacts
+          git add -f papers/FCOA-LQR-SYNCHRONIZATION/FCOA-LQR-SYNCHRONIZATION-v1.0-rc1.zip
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
           else
