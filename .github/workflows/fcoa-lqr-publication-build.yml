@@ -45,8 +45,8 @@ jobs:
 
       - name: Build DOCX sources
         run: |
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars --to=docx --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.docx
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars --to=docx --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.docx
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars+tex_math_single_backslash --to=docx --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.docx
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars+tex_math_single_backslash --to=docx --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.docx
 
       - name: Apply publication DOCX layout
         run: |
@@ -130,10 +130,10 @@ jobs:
 
       - name: Build HTML and LaTeX sources
         run: |
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --standalone --mathml --metadata title="Reflections on Point-Image Phase Synchronization with Commander Sol" --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.html
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --standalone --mathml --metadata title="Размышления о синхронизации фаз по образам точек с Commander Sol" --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.html
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars --to=latex --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.tex
-          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars --to=latex --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.tex
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars+tex_math_single_backslash --standalone --mathml --metadata title="Reflections on Point-Image Phase Synchronization with Commander Sol" --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.html
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars+tex_math_single_backslash --standalone --mathml --metadata title="Размышления о синхронизации фаз по образам точек с Commander Sol" --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.html
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_en.md --from=markdown+tex_math_dollars+tex_math_single_backslash --to=latex --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_en.tex
+          pandoc papers/FCOA-LQR-SYNCHRONIZATION/article_ru.md --from=markdown+tex_math_dollars+tex_math_single_backslash --to=latex --output=papers/FCOA-LQR-SYNCHRONIZATION/artifacts/article_ru.tex
 
       - name: Copy theorem provenance and verifiers
         run: |
