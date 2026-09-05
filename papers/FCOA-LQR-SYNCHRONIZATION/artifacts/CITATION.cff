@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite the archival release once its DOI is assigned."
+message: "If you use this work, please cite the archival Zenodo release."
 title: "Reflections on Point-Image Phase Synchronization with Commander Sol: Exact Costs, Cut-Space Packings, and a Sharp Stabilization Threshold in FCOA"
 type: article
 authors:
@@ -7,7 +7,9 @@ authors:
     given-names: "Alex"
     orcid: "https://orcid.org/0009-0008-6009-3196"
 date-released: 2026-08-31
-version: "1.0-rc1"
+version: "1.0"
+doi: "10.5281/zenodo.22342613"
+url: "https://doi.org/10.5281/zenodo.22342613"
 repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
 keywords:
   - FCOA

@@ -2,8 +2,9 @@
 
 **English title:** *Reflections on Point-Image Phase Synchronization with Commander Sol: Exact Costs, Cut-Space Packings, and a Sharp Stabilization Threshold in FCOA*  
 **Russian title:** *Размышления о синхронизации фаз по образам точек с Commander Sol: Точные стоимости, упаковки пространств разрезов и точный порог стабилизации в FCOA*  
-**Status:** complete release candidate / v1.0-rc1  
+**Status:** published / v1.0  
 **Package date:** 2026-09-01  
+**Archival DOI:** https://doi.org/10.5281/zenodo.22342613  
 **Source line:** `delegated/FCOA_RIGIDITY_COST/QGE3/`
 
 ## Canonical FCOA foundation
@@ -42,12 +43,14 @@ The unresolved sector is explicitly restricted to
 
 - `article_en.md` — English manuscript.
 - `article_ru.md` — Russian manuscript with synchronized theorem/formula numbering.
-- `CITATION.cff` — citation metadata; archival DOI intentionally omitted until Zenodo minting.
+- `CITATION.cff` — citation metadata with archival DOI.
 - `metadata.json` — canonical internal release metadata.
-- `ZENODO_METADATA.json` — Zenodo-ready upload metadata.
+- `ZENODO_METADATA.json` — Zenodo upload metadata.
 - `RELEASE_NOTES.md` — archival release notes and theorem summary.
 - `SOURCE_MAP.md` — theorem-to-source and verifier map.
 - `PRE_RELEASE_AUDIT.md` — publication gate.
+
+The published manuscript sources are frozen and were not rewritten after DOI minting.
 
 ## Generated publication artifacts
 
@@ -92,17 +95,11 @@ It must not claim discovery of:
 
 The dedicated literature audit supports only a conservative claim that the exact extremal parameter `L_q(r)` in this same-source point-image form was not located in the searched literature.
 
-## Zenodo upload set
+## Zenodo archival record
 
-Recommended public files for the archival record:
+Archival DOI: https://doi.org/10.5281/zenodo.22342613
 
-1. `article_en.pdf` — primary English article;
-2. `article_ru.pdf` — complete Russian version;
-3. `article_en.docx` and `article_ru.docx` — editable publication copies;
-4. `article_en.html` and `article_ru.html` — browser-readable copies;
-5. `FCOA-LQR-SYNCHRONIZATION-v1.0-rc1.zip` — complete reproducibility bundle.
-
-The `.tex`, source Markdown, theorem provenance, scripts, verification log and checksum manifest are included inside the ZIP and remain available in GitHub.
+The DOI record corresponds to the released bilingual publication package. Repository-side metadata records the DOI without altering the published article text.
 
 ## Release gates
 
@@ -118,7 +115,5 @@ The `.tex`, source Markdown, theorem provenance, scripts, verification log and c
 - [x] Reproducible build workflow prepared.
 - [x] Automated verifier execution included in release build.
 - [x] SHA-256 manifest included in release build.
-- [ ] Actual Zenodo DOI minted.
-- [ ] New DOI propagated into `CITATION.cff`, metadata, manuscripts, README and upstream publication index after minting.
-
-No DOI is to be guessed or prefilled before Zenodo assigns it.
+- [x] Actual Zenodo DOI minted: `10.5281/zenodo.22342613`.
+- [x] DOI recorded in repository citation/release metadata without rewriting the published manuscripts.
