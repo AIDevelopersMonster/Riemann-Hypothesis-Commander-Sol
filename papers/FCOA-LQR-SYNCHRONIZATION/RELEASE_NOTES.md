@@ -1,0 +1,65 @@
+# FCOA LQR Synchronization — Release Notes
+
+**Release:** v1.0  
+**Date:** 2026-09-01  
+**Archival DOI:** https://doi.org/10.5281/zenodo.22342613  
+**License:** CC BY 4.0
+
+## Archival title
+
+**Reflections on Point-Image Phase Synchronization with Commander Sol: Exact Costs, Cut-Space Packings, and a Sharp Stabilization Threshold in FCOA**
+
+Russian title:
+
+**Размышления о синхронизации фаз по образам точек с Commander Sol: точные стоимости, упаковки пространств разрезов и точный порог стабилизации в FCOA**
+
+## Main results
+
+The release introduces the extremal synchronization number `L_q(r)` for exact point-image constraints between local anonymous phases and proves:
+
+- `L_2(r)=r-1`;
+- `L_3(r)=ceil(3(r-1)/2)`;
+- `L_q(2)=q-1`;
+- `L_q(3)=2q-3`;
+- the complete four-phase law
+
+  `L_q(4)=3` for `q=2`, `2q-1` for `3<=q<=5`, `12` for `q=6`, and `3q-7` for `q>=7`;
+
+- the cut-space packing inequality
+
+  `sum_a (2^{d_a}-1) <= 2^{r-1}-1`;
+
+- the exact large-alphabet stabilization law
+
+  `L_q(r)=(r-1)q-(2^{r-1}-1)` for `q>=2^{r-1}-1`;
+
+- exactness of the threshold `q_0(r)=2^{r-1}-1`.
+
+## FCOA dependency
+
+This work follows **FCOA Definition 1.0**:
+
+**Fixed-Carrier Oriented Algebra (FCOA): Definition, Typed Partial Operations, Carrier Erasure, and the Canonical M0 Baseline**  
+DOI: https://doi.org/10.5281/zenodo.22164246
+
+## Reproducibility package
+
+The publication package contains English and Russian manuscripts, DOCX/PDF/HTML/LaTeX exports, theorem provenance, finite verifiers, execution logs, PDF preflight data, and SHA-256 manifests.
+
+## Novelty boundary
+
+The release does **not** claim invention of unique colorability, partial spreads, vector-space partitions, groupoids or general permutation synchronization. The claimed contribution is the FCOA-specific point-image synchronization model and its exact extremal/cut-space theorem chain.
+
+## Open sector after this release
+
+The remaining pre-stabilization sector is finite for each fixed `r`:
+
+`4 <= q < 2^{r-1}-1`, `r>=5`.
+
+No multicolor real-cell repair invariant is introduced in this release.
+
+## Archival state
+
+Zenodo DOI: https://doi.org/10.5281/zenodo.22342613
+
+The repository records the DOI in citation and release metadata. The published English and Russian manuscript source files are intentionally left unchanged after archival publication.
