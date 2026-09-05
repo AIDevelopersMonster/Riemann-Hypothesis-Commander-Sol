@@ -33,21 +33,27 @@ synchronizes exactly when a canonical transversal quotient is uniquely
 necessary pair-union connectivity of every two source-color constraint
 graphs. We then determine several infinite exact families,
 
-{[} L\_2(r)=r-1, \qquad L\_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil,
-\qquad L\_q(2)=q-1, \qquad L\_q(3)=2q-3, {]}
+\[
+L_2(r)=r-1,
+\qquad
+L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil,
+\qquad
+L_q(2)=q-1,
+\qquad
+L_q(3)=2q-3,
+\]
 
 and close the entire four-phase column:
 
-{[} L\_q(4)=
-
+\[
+L_q(4)=
 \begin{cases}
 3,&q=2,\\
 2q-1,&3\le q\le5,\\
 12,&q=6,\\
 3q-7,&q\ge7.
 \end{cases}
-
-{]}
+\]
 
 The main structural result associates to every source color a normalized
 binary cut space \texttt{W(P\_a)\ \textless{}=\ F\_2\^{}\{r-1\}} whose
@@ -55,16 +61,22 @@ dimension equals the saved constraint cost of that color.
 Synchronization forces the nonzero parts of these cut spaces to be
 pairwise disjoint, so
 
-{[} \sum\_a(2\textsuperscript{\{d\_a\}-1)\le2}\{r-1\}-1. {]}
+\[
+\sum_a(2^{d_a}-1)\le2^{r-1}-1.
+\]
 
 A matching binary-cut construction then gives the exact large-alphabet
 law
 
-{[} \boxed{L_q(r)=(r-1)q-(2^{r-1}-1)} {]}
+\[
+\boxed{L_q(r)=(r-1)q-(2^{r-1}-1)}
+\]
 
 for every
 
-{[} q\ge2\^{}\{r-1\}-1, {]}
+\[
+q\ge2^{r-1}-1,
+\]
 
 and we prove that this threshold is exact. Thus the unresolved part of
 the problem is finite for every fixed \texttt{r}. The finite-geometry
@@ -94,31 +106,47 @@ problem.
 
 Let
 
-{[} O=\{0,1,\ldots,q-1\} {]}
+\[
+O=\{0,1,\ldots,q-1\}
+\]
 
 be an anonymous alphabet and let
 
-{[} \pi\_1,\ldots,\pi\_r\in S\_O. {]}
+\[
+\pi_1,\ldots,\pi_r\in S_O.
+\]
 
 For \texttt{1\textless{}=i\textless{}j\textless{}=r} and
 \texttt{a\ in\ O}, a primitive \textbf{point-image constraint} is
 
-{[} {[}i,j;a{]}:\qquad \pi\_i(a)=\pi\_j(a). \tag{1} {]}
+\[
+[i,j;a]:\qquad \pi_i(a)=\pi_j(a).
+\tag{1}
+\]
 
 A set \texttt{S} of such constraints is \textbf{synchronizing} if every
 satisfying tuple is diagonal:
 
-{[} \pi\_1=\cdots=\pi\_r. \tag{2} {]}
+\[
+\pi_1=\cdots=\pi_r.
+\tag{2}
+\]
 
 We define
 
-{[} \boxed{
+\[
+\boxed{
 L_q(r)=\min\{|S|:S\text{ is synchronizing}\}.
-} \tag{3} {]}
+}
+\tag{3}
+\]
 
 The old spanning-tree construction immediately gives
 
-{[} L\_q(r)\le(q-1)(r-1), \tag{4} {]}
+\[
+L_q(r)\le(q-1)(r-1),
+\tag{4}
+\]
 
 because equality of two permutations on \texttt{q-1} source points
 forces equality everywhere. For \texttt{q=2}, this is exact. For
@@ -135,8 +163,10 @@ The main results of this paper are:
   an exact reduction of synchronization to unique colorability of a
   special transversal quotient;
 \item
-  a universal pair-union connectivity condition and the lower bound {[}
-  L\_q(r)\ge\left\lceil\frac{q(r-1)}2\right\rceil; \tag{5} {]}
+  a universal pair-union connectivity condition and the lower bound \[
+  L_q(r)\ge\left\lceil\frac{q(r-1)}2\right\rceil;
+  \tag{5}
+  \]
 \item
   exact formulas on the complete \texttt{q=3} row and \texttt{r=2,3,4}
   columns;
@@ -145,9 +175,11 @@ The main results of this paper are:
   \texttt{F\_2\^{}\{r-1\}};
 \item
   a cut-space packing inequality that matches that construction and
-  yields the exact stabilization theorem {[}
-  L\_q(r)=(r-1)q-(2\^{}\{r-1\}-1) \quad(q\ge2\^{}\{r-1\}-1), \tag{6} {]}
-  with exact threshold.
+  yields the exact stabilization theorem \[
+  L_q(r)=(r-1)q-(2^{r-1}-1)
+  \quad(q\ge2^{r-1}-1),
+  \tag{6}
+  \] with exact threshold.
 \end{enumerate}
 
 The finite pre-stabilization region remains open for
@@ -174,7 +206,9 @@ terminal alphabet \texttt{O}.
 This paper passes to the derived synchronization layer. The phase-index
 carrier is
 
-{[} R=\{1,\ldots,r\}, {]}
+\[
+R=\{1,\ldots,r\},
+\]
 
 and the terminal sort is the anonymous set \texttt{O}. The primitive
 data studied here are not new operation values or new real FCOA cells;
@@ -189,7 +223,11 @@ family of these point-image equalities.
 The \textbf{erasure convention} is that names of terminal values remain
 anonymous: simultaneous left composition
 
-{[} \pi\_i\mapsto\sigma\circ\pi\_i \qquad(\sigma\in S\_q) \tag{7} {]}
+\[
+\pi_i\mapsto\sigma\circ\pi_i
+\qquad(\sigma\in S_q)
+\tag{7}
+\]
 
 changes only the common output naming and preserves every constraint.
 Consequently one may normalize one phase to the identity.
@@ -216,12 +254,18 @@ reduction}\label{constraint-graphs-and-forest-reduction}}
 
 For each source color \texttt{a\ in\ O}, define a graph
 
-{[} \Gamma\_a=\Gamma\_a(S) {]}
+\[
+\Gamma_a=\Gamma_a(S)
+\]
 
 on vertex set \texttt{R} by
 
-{[} \{i,j\}\in E(\Gamma\_a) \quad\Longleftrightarrow\quad
-[i,j;a]\in S. \tag{8} {]}
+\[
+\{i,j\}\in E(\Gamma_a)
+\quad\Longleftrightarrow\quad
+[i,j;a]\in S.
+\tag{8}
+\]
 
 Equality propagates along paths. Hence only the connected-component
 partition of \texttt{Gamma\_a} matters.
@@ -241,12 +285,19 @@ independently for all \texttt{a} proves the claim. \texttt{square}
 
 For a reduced system let
 
-{[} m\_a=\textbar E(\Gamma\_a)\textbar, \qquad
-c\_a=\kappa(\Gamma\_a)=r-m\_a. \tag{9} {]}
+\[
+m_a=|E(\Gamma_a)|,
+\qquad
+c_a=\kappa(\Gamma_a)=r-m_a.
+\tag{9}
+\]
 
 Then
 
-{[} \textbar S\textbar=\sum\_a m\_a. \tag{10} {]}
+\[
+|S|=\sum_a m_a.
+\tag{10}
+\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -259,17 +310,26 @@ Let \texttt{B\_a} be the set of connected components of
 
 Its vertices are
 
-{[} (a,B),\qquad a\in O,~B\in B\_a. \tag{11} {]}
+\[
+(a,B),\qquad a\in O,\ B\in B_a.
+\tag{11}
+\]
 
 For every phase index \texttt{i}, let \texttt{B\_a(i)} be the component
 of \texttt{Gamma\_a} containing \texttt{i}. Join all \texttt{q} vertices
 
-{[} (a,B\_a(i)),\qquad a\in O, \tag{12} {]}
+\[
+(a,B_a(i)),\qquad a\in O,
+\tag{12}
+\]
 
 pairwise. Thus every phase contributes a canonical \texttt{K\_q}
 transversal. There is a canonical proper coloring
 
-{[} \chi\_0(a,B)=a. \tag{13} {]}
+\[
+\chi_0(a,B)=a.
+\tag{13}
+\]
 
 \hypertarget{theorem-4.1-synchronization-unique-coloring-equivalence}{%
 \subsubsection{Theorem 4.1 --- synchronization / unique-coloring
@@ -284,12 +344,17 @@ canonical coloring \texttt{chi\_0} of \texttt{H(S)} is the unique proper
 \texttt{Gamma\_a}, path propagation gives \texttt{pi\_i(a)=pi\_j(a)}.
 Therefore
 
-{[} F(a,B):=\pi\_i(a)\qquad(i\in B) \tag{14} {]}
+\[
+F(a,B):=\pi_i(a)\qquad(i\in B)
+\tag{14}
+\]
 
 is well defined. On the transversal (12) contributed by index
 \texttt{i}, the \texttt{F}-values are
 
-{[} \pi\_i(0),\ldots,\pi\_i(q-1), {]}
+\[
+\pi_i(0),\ldots,\pi_i(q-1),
+\]
 
 which are pairwise distinct. Hence \texttt{F} is a proper
 \texttt{q}-coloring of \texttt{H(S)}.
@@ -298,7 +363,10 @@ Conversely, let \texttt{F} be a proper \texttt{q}-coloring. Every
 canonical transversal is a \texttt{K\_q}, so its vertices receive all
 \texttt{q} colors exactly once. Define
 
-{[} \pi\_i(a)=F(a,B\_a(i)). \tag{15} {]}
+\[
+\pi_i(a)=F(a,B_a(i)).
+\tag{15}
+\]
 
 Then each \texttt{pi\_i} is a permutation. If
 \texttt{{[}i,j;a{]}\ in\ S}, vertices \texttt{i,j} lie in the same
@@ -326,7 +394,10 @@ and identifications occur only within one source-color class.
 If \texttt{S} is synchronizing, then for every two distinct source
 colors \texttt{a,b},
 
-{[} \boxed{\Gamma_a\cup\Gamma_b\text{ is connected}.} \tag{16} {]}
+\[
+\boxed{\Gamma_a\cup\Gamma_b\text{ is connected}.}
+\tag{16}
+\]
 
 \textbf{Proof.} Suppose \texttt{Gamma\_a\ union\ Gamma\_b} is
 disconnected. Let \texttt{X} be a nonempty proper union of its connected
@@ -334,8 +405,12 @@ components. No constraint of source color \texttt{a} or \texttt{b}
 crosses the cut \texttt{(X,R\textbackslash{}X)}. Put
 \texttt{sigma=(a\ b)} and define
 
-{[} \pi\_i=\sigma\quad(i\in X), \qquad \pi\_i=id\quad(i\notin X).
-\tag{17} {]}
+\[
+\pi_i=\sigma\quad(i\in X),
+\qquad
+\pi_i=id\quad(i\notin X).
+\tag{17}
+\]
 
 Every internal constraint compares equal permutations. Every crossing
 constraint has a source color different from \texttt{a,b}, hence fixed
@@ -344,19 +419,27 @@ non-diagonal. Contradiction. \texttt{square}
 
 For a reduced system, (16) implies
 
-{[} m\_a+m\_b\ge r-1. \tag{18} {]}
+\[
+m_a+m_b\ge r-1.
+\tag{18}
+\]
 
 Summing (18) over all unordered pairs gives
 
-{[} (q-1)\sum\_a m\_a\ge\binom q2(r-1). {]}
+\[
+(q-1)\sum_a m_a\ge\binom q2(r-1).
+\]
 
 \hypertarget{corollary-5.2-half-density-bound}{%
 \subsubsection{Corollary 5.2 --- half-density
 bound}\label{corollary-5.2-half-density-bound}}
 
-{[} \boxed{
+\[
+\boxed{
 L_q(r)\ge\left\lceil\frac{q(r-1)}2\right\rceil.
-} \tag{19} {]}
+}
+\tag{19}
+\]
 
 The connectivity statement is the LQR specialization of a classical
 property of uniquely colorable graphs {[}3{]}. Its role here is as the
@@ -378,7 +461,10 @@ permutations of a two-element set. Therefore a connected graph on the
 \hypertarget{theorem-6.1}{%
 \subsubsection{Theorem 6.1}\label{theorem-6.1}}
 
-{[} \boxed{L_2(r)=r-1.} \tag{20} {]}
+\[
+\boxed{L_2(r)=r-1.}
+\tag{20}
+\]
 
 \hypertarget{two-phases}{%
 \subsubsection{6.2 Two phases}\label{two-phases}}
@@ -391,27 +477,43 @@ transposition there.
 \hypertarget{theorem-6.2}{%
 \subsubsection{Theorem 6.2}\label{theorem-6.2}}
 
-{[} \boxed{L_q(2)=q-1.} \tag{21} {]}
+\[
+\boxed{L_q(2)=q-1.}
+\tag{21}
+\]
 
 \hypertarget{three-colors}{%
 \subsubsection{6.3 Three colors}\label{three-colors}}
 
 For \texttt{q=3}, (18) gives
 
-{[} m\_0+m\_1\ge r-1, \quad m\_0+m\_2\ge r-1, \quad m\_1+m\_2\ge r-1,
-{]}
+\[
+m_0+m_1\ge r-1,
+\quad
+m_0+m_2\ge r-1,
+\quad
+m_1+m_2\ge r-1,
+\]
 
 and therefore
 
-{[} L\_3(r)\ge\left\lceil\frac{3(r-1)}2\right\rceil. \tag{22} {]}
+\[
+L_3(r)\ge\left\lceil\frac{3(r-1)}2\right\rceil.
+\tag{22}
+\]
 
 The matching construction is a three-constraint gadget. Suppose
 \texttt{rho} is already synchronized and \texttt{sigma,tau\ in\ S\_3}
 are new. Impose
 
-{[} {[}\rho,\sigma;0{]}, \qquad
-[\rho,\tau;1], \qquad
-[\sigma,\tau;2]. \tag{23} {]}
+\[
+[\rho,\sigma;0],
+\qquad
+[\rho,\tau;1],
+\qquad
+[\sigma,\tau;2].
+\tag{23}
+\]
 
 After global normalization take \texttt{rho=id}. Then \texttt{sigma}
 fixes \texttt{0}, \texttt{tau} fixes \texttt{1}, and
@@ -427,9 +529,12 @@ Attaching two phases at a time gives the lower bound exactly.
 
 For every \texttt{r\textgreater{}=1},
 
-{[} \boxed{
+\[
+\boxed{
 L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil.
-} \tag{24} {]}
+}
+\tag{24}
+\]
 
 \hypertarget{three-phases}{%
 \subsubsection{6.4 Three phases}\label{three-phases}}
@@ -442,11 +547,17 @@ different edges of the phase triangle for their union to be connected.
 There are only three edges, so at most three colors have
 \texttt{m\_a=1}; all remaining colors have \texttt{m\_a=2}. Hence
 
-{[} L\_q(3)\ge3+2(q-3)=2q-3. \tag{25} {]}
+\[
+L_q(3)\ge3+2(q-3)=2q-3.
+\tag{25}
+\]
 
 For the matching construction use the three-color triangle gadget
 
-{[} {[}0,1;0{]},\quad[0,2;1],\quad[1,2;2]\tag{26} {]}
+\[
+[0,1;0],\quad[0,2;1],\quad[1,2;2]
+\tag{26}
+\]
 
 and, for every extra source color \texttt{a\textgreater{}=3}, impose
 \texttt{{[}0,1;a{]}} and \texttt{{[}0,2;a{]}}. The extra colors are
@@ -458,7 +569,10 @@ where (26) synchronizes.
 
 For every \texttt{q\textgreater{}=3},
 
-{[} \boxed{L_q(3)=2q-3.} \tag{27} {]}
+\[
+\boxed{L_q(3)=2q-3.}
+\tag{27}
+\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -469,13 +583,19 @@ column}\label{the-exact-four-phase-column}}
 For \texttt{r=4}, every source color determines a partition
 \texttt{P\_a} of four phase indices. Under forest reduction its rank
 
-{[} m\_a=4-\textbar P\_a\textbar{} {]}
+\[
+m_a=4-|P_a|
+\]
 
 lies in \texttt{\{0,1,2,3\}}.
 
 The compatibility condition from Theorem 5.1 becomes
 
-{[} P\_a\vee P\_b=\mathbf 1 \qquad(a\ne b), \tag{28} {]}
+\[
+P_a\vee P_b=\mathbf 1
+\qquad(a\ne b),
+\tag{28}
+\]
 
 where \texttt{mathbf\ 1} is the one-block partition.
 
@@ -502,20 +622,21 @@ classification:
 Let \texttt{n\_k} be the number of colors of rank \texttt{k}. If no
 rank-zero color occurs,
 
-{[} \textbar S\textbar=n\_1+2n\_2+3n\_3=3q-(2n\_1+n\_2). \tag{29} {]}
+\[
+|S|=n_1+2n_2+3n_3=3q-(2n_1+n_2).
+\tag{29}
+\]
 
 The classification yields the maximal defect
 
-{[} 2n\_1+n\_2=
-
-\begin{cases}
+\[
+2n_1+n_2=\begin{cases}
 q+1,&3\le q\le5,\\
 6,&q=6,\\
 7,&q\ge7.
 \end{cases}
 \tag{30}
-
-{]}
+\]
 
 and therefore the corresponding lower bounds.
 
@@ -534,7 +655,8 @@ colors for \texttt{q\textgreater{}7} are made connected.
 \subsubsection{Theorem 7.1 --- exact four-phase
 cost}\label{theorem-7.1-exact-four-phase-cost}}
 
-{[} \boxed{
+\[
+\boxed{
 L_q(4)=
 \begin{cases}
 3,&q=2,\\
@@ -542,7 +664,9 @@ L_q(4)=
 12,&q=6,\\
 3q-7,&q\ge7.
 \end{cases}
-} \tag{31} {]}
+}
+\tag{31}
+\]
 
 The isolated value at \texttt{q=6} is therefore structural rather than
 numerical noise: the rank-one architecture can coexist with only four
@@ -557,20 +681,34 @@ synchronization}\label{universal-binary-cut-synchronization}}
 
 Fix \texttt{r\textgreater{}=2} and put
 
-{[} n=r-1, \qquad V=\mathbb F\_2\^{}n\setminus\{0\}. \tag{32} {]}
+\[
+n=r-1,
+\qquad
+V=\mathbb F_2^n\setminus\{0\}.
+\tag{32}
+\]
 
 Use one active source color for each vector
 
-{[} v=(v\_1,\ldots,v\_n)\in V. {]}
+\[
+v=(v_1,\ldots,v_n)\in V.
+\]
 
 Thus
 
-{[} q\_0=\textbar V\textbar=2\^{}\{r-1\}-1. \tag{33} {]}
+\[
+q_0=|V|=2^{r-1}-1.
+\tag{33}
+\]
 
 For color \texttt{v}, partition the phases into
 
-{[} B\_v\^{}0=\{0\}\cup\{i:v\_i=0\}, \qquad B\_v\^{}1=\{i:v\_i=1\}.
-\tag{34} {]}
+\[
+B_v^0=\{0\}\cup\{i:v_i=0\},
+\qquad
+B_v^1=\{i:v_i=1\}.
+\tag{34}
+\]
 
 Connect each block internally by a spanning tree. Since there are two
 nonempty blocks, color \texttt{v} costs \texttt{r-2} constraints.
@@ -585,12 +723,20 @@ The family (34) synchronizes the \texttt{r} phases in
 \textbf{Proof.} Normalize \texttt{pi\_0=id}. Fix
 \texttt{i\textgreater{}=1} and define
 
-{[} H\_i=\{v:v\_i=0\}, \qquad A\_i=\{v:v\_i=1\}. \tag{35} {]}
+\[
+H_i=\{v:v_i=0\},
+\qquad
+A_i=\{v:v_i=1\}.
+\tag{35}
+\]
 
 If \texttt{v\ in\ H\_i}, phases \texttt{0} and \texttt{i} lie in the
 same connected block \texttt{B\_v\^{}0}, so
 
-{[} \pi\_i(v)=v. \tag{36} {]}
+\[
+\pi_i(v)=v.
+\tag{36}
+\]
 
 Thus \texttt{pi\_i} fixes \texttt{H\_i} pointwise and preserves
 \texttt{A\_i} setwise.
@@ -598,7 +744,10 @@ Thus \texttt{pi\_i} fixes \texttt{H\_i} pointwise and preserves
 For \texttt{j!=i} and \texttt{v\ in\ A\_i\ cap\ A\_j}, phases
 \texttt{i,j} lie in the same block \texttt{B\_v\^{}1}, hence
 
-{[} \pi\_i(v)=\pi\_j(v). \tag{37} {]}
+\[
+\pi_i(v)=\pi_j(v).
+\tag{37}
+\]
 
 The left side belongs to \texttt{A\_i} and the right side to
 \texttt{A\_j}; therefore the common value lies in
@@ -615,12 +764,19 @@ and together with (36) this gives \texttt{pi\_i=id}. This holds for all
 
 The gadget costs
 
-{[} (r-2)(2\^{}\{r-1\}-1). \tag{38} {]}
+\[
+(r-2)(2^{r-1}-1).
+\tag{38}
+\]
 
 For every \texttt{q\textgreater{}q\_0}, make each extra source color
 connected on the \texttt{r} phases at cost \texttt{r-1}. Therefore
 
-{[} L\_q(r)\le(r-1)q-(2\^{}\{r-1\}-1) \quad(q\ge q\_0). \tag{39} {]}
+\[
+L_q(r)\le(r-1)q-(2^{r-1}-1)
+\quad(q\ge q_0).
+\tag{39}
+\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -633,18 +789,23 @@ source-color component partition.
 
 Let \texttt{P} be a partition of the phase set
 
-{[} R=\{0,1,\ldots,r-1\}. {]}
+\[
+R=\{0,1,\ldots,r-1\}.
+\]
 
 Normalize binary cuts by fixing the bit at phase \texttt{0} to zero and
 identify them with
 
-{[} \mathbb F\_2\^{}\{r-1\}. {]}
+\[
+\mathbb F_2^{r-1}.
+\]
 
 Define
 
-{[}
-W(P)=\{x\in\mathbb F\_2\^{}\{r-1\}:x\text{ is constant on every block of }P\},
-\tag{40} {]}
+\[
+W(P)=\{x\in\mathbb F_2^{r-1}:x\text{ is constant on every block of }P\},
+\tag{40}
+\]
 
 with the understood extension \texttt{x\_0=0}.
 
@@ -653,7 +814,10 @@ with the understood extension \texttt{x\_0=0}.
 
 If \texttt{P} has \texttt{c} blocks, then
 
-{[} \dim W(P)=c-1. \tag{41} {]}
+\[
+\dim W(P)=c-1.
+\tag{41}
+\]
 
 \textbf{Proof.} The block containing phase \texttt{0} is forced to bit
 zero. Every other block chooses its bit independently. Hence
@@ -662,11 +826,17 @@ zero. Every other block chooses its bit independently. Hence
 For the component partition \texttt{P\_a} of a forest-reduced
 \texttt{Gamma\_a}, define the saved cost
 
-{[} d\_a=(r-1)-m\_a. \tag{42} {]}
+\[
+d_a=(r-1)-m_a.
+\tag{42}
+\]
 
 Since \texttt{m\_a=r-c\_a},
 
-{[} d\_a=c\_a-1=\dim W(P\_a). \tag{43} {]}
+\[
+d_a=c_a-1=\dim W(P_a).
+\tag{43}
+\]
 
 \hypertarget{lemma-9.2-joinintersection-identity}{%
 \subsubsection{Lemma 9.2 --- join/intersection
@@ -674,7 +844,10 @@ identity}\label{lemma-9.2-joinintersection-identity}}
 
 For any partitions \texttt{P,Q},
 
-{[} \boxed{W(P)\cap W(Q)=W(P\vee Q).} \tag{44} {]}
+\[
+\boxed{W(P)\cap W(Q)=W(P\vee Q).}
+\tag{44}
+\]
 
 \textbf{Proof.} A normalized binary cut belongs to both spaces exactly
 when it is constant on every block of \texttt{P} and every block of
@@ -684,11 +857,17 @@ class generated jointly by those blocks, namely the blocks of
 
 By Theorem 5.1,
 
-{[} P\_a\vee P\_b=\mathbf 1 \quad(a\ne b), {]}
+\[
+P_a\vee P_b=\mathbf 1
+\quad(a\ne b),
+\]
 
 so
 
-{[} W(P\_a)\cap W(P\_b)=\{0\}. \tag{45} {]}
+\[
+W(P_a)\cap W(P_b)=\{0\}.
+\tag{45}
+\]
 
 Thus the nonzero vectors of the cut spaces are pairwise disjoint. Since
 \texttt{F\_2\^{}\{r-1\}} has \texttt{2\^{}\{r-1\}-1} nonzero vectors:
@@ -699,9 +878,12 @@ inequality}\label{theorem-9.3-defect-packing-inequality}}
 
 Every synchronizing system satisfies
 
-{[} \boxed{
+\[
+\boxed{
 \sum_a(2^{d_a}-1)\le2^{r-1}-1.
-} \tag{46} {]}
+}
+\tag{46}
+\]
 
 The counting step in (46) is standard finite-geometry packing once the
 cut-space reduction has been made; it is not claimed here as a new
@@ -709,15 +891,25 @@ theorem about partial spreads or vector-space partitions {[}5,6{]}.
 
 Since
 
-{[} d\le2\^{}d-1 \qquad(d\ge0), \tag{47} {]}
+\[
+d\le2^d-1
+\qquad(d\ge0),
+\tag{47}
+\]
 
 we get
 
-{[} \sum\_a d\_a\le2\^{}\{r-1\}-1. \tag{48} {]}
+\[
+\sum_a d_a\le2^{r-1}-1.
+\tag{48}
+\]
 
 But by (42),
 
-{[} \textbar S\textbar=(r-1)q-\sum\_a d\_a. \tag{49} {]}
+\[
+|S|=(r-1)q-\sum_a d_a.
+\tag{49}
+\]
 
 Therefore:
 
@@ -725,9 +917,12 @@ Therefore:
 \subsubsection{Corollary 9.4 --- universal defect lower
 bound}\label{corollary-9.4-universal-defect-lower-bound}}
 
-{[} \boxed{
+\[
+\boxed{
 L_q(r)\ge(r-1)q-(2^{r-1}-1).
-} \tag{50} {]}
+}
+\tag{50}
+\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -743,19 +938,29 @@ theorem}\label{theorem-10.1-exact-stabilization-theorem}}
 
 For every \texttt{r\textgreater{}=2} and every
 
-{[} q\ge2\^{}\{r-1\}-1, {]}
+\[
+q\ge2^{r-1}-1,
+\]
 
-{[} \boxed{
+\[
+\boxed{
 L_q(r)=(r-1)q-(2^{r-1}-1).
-} \tag{51} {]}
+}
+\tag{51}
+\]
 
 Moreover the threshold is exact: if
 
-{[} q\textless2\^{}\{r-1\}-1, {]}
+\[
+q<2^{r-1}-1,
+\]
 
 then
 
-{[} L\_q(r)\textgreater(r-1)q-(2\^{}\{r-1\}-1). \tag{52} {]}
+\[
+L_q(r)>(r-1)q-(2^{r-1}-1).
+\tag{52}
+\]
 
 \textbf{Proof.} The lower bound is Corollary 9.4. The binary-cut
 construction gives equality when
@@ -763,12 +968,21 @@ construction gives equality when
 
 Suppose equality held in (50). Then
 
-{[} \sum\_a d\_a=2\^{}\{r-1\}-1. \tag{53} {]}
+\[
+\sum_a d_a=2^{r-1}-1.
+\tag{53}
+\]
 
 From (46) and (47),
 
-{[} \sum\_a d\_a \le \sum\_a(2\^{}\{d\_a\}-1) \le
-2\^{}\{r-1\}-1. \tag{54} {]}
+\[
+\sum_a d_a
+\le
+\sum_a(2^{d_a}-1)
+\le
+2^{r-1}-1.
+\tag{54}
+\]
 
 Equality in (53) forces equality termwise in (47), which for nonnegative
 integers occurs only for \texttt{d\_a\ in\ \{0,1\}}. Hence every
@@ -776,7 +990,9 @@ positive-defect color contributes exactly one nonzero cut vector. To
 obtain total defect \texttt{2\^{}\{r-1\}-1}, at least that many
 positive-defect colors are necessary. Therefore
 
-{[} q\ge2\^{}\{r-1\}-1. {]}
+\[
+q\ge2^{r-1}-1.
+\]
 
 So equality is impossible below that threshold. \texttt{square}
 
@@ -785,15 +1001,24 @@ So equality is impossible below that threshold. \texttt{square}
 
 The stabilization threshold is
 
-{[} \boxed{q_0(r)=2^{r-1}-1.} \tag{55} {]}
+\[
+\boxed{q_0(r)=2^{r-1}-1.}
+\tag{55}
+\]
 
 For example,
 
-{[} L\_q(5)=4q-15\qquad(q\ge15), \tag{56} {]}
+\[
+L_q(5)=4q-15\qquad(q\ge15),
+\tag{56}
+\]
 
 and
 
-{[} L\_q(6)=5q-31\qquad(q\ge31). \tag{57} {]}
+\[
+L_q(6)=5q-31\qquad(q\ge31).
+\tag{57}
+\]
 
 Thus for every fixed \texttt{r}, only finitely many alphabet sizes
 remain outside the exact linear tail.
@@ -807,14 +1032,24 @@ problem}\label{the-finite-pre-stabilization-problem}}
 The proof of Theorem 10.1 gives a stronger interface for the unresolved
 sector. Define
 
-{[} \mathcal D\_r(q) = \max\left\{ \sum\_\{i=1\}\^{}q\dim W(P\_i):
-W(P\_i)\cap W(P\_j)=\{0\}~(i\ne j) \right\}, \tag{58} {]}
+\[
+\mathcal D_r(q)
+=
+\max\left\{
+\sum_{i=1}^q\dim W(P_i):
+W(P_i)\cap W(P_j)=\{0\}\ (i\ne j)
+\right\},
+\tag{58}
+\]
 
 where zero-dimensional spaces may pad the family.
 
 Then necessarily
 
-{[} L\_q(r)\ge(r-1)q-\mathcal D\_r(q). \tag{59} {]}
+\[
+L_q(r)\ge(r-1)q-\mathcal D_r(q).
+\tag{59}
+\]
 
 This is only a lower-bound interface: pairwise trivial intersection is
 necessary for synchronization but need not by itself imply unique
@@ -822,10 +1057,13 @@ colorability of the transversal quotient.
 
 The genuinely unresolved regime is
 
-{[} \boxed{
+\[
+\boxed{
 4\le q<2^{r-1}-1,
 \qquad r\ge5.
-} \tag{60} {]}
+}
+\tag{60}
+\]
 
 For \texttt{r=5}, only \texttt{4\textless{}=q\textless{}=14} remain.
 Exact weighted packing computations provide a useful hostile check, but
@@ -892,11 +1130,18 @@ obtained, counting their nonzero vectors is standard. The novelty claim
 is therefore deliberately restricted to the following chain inside the
 FCOA phase-synchronization problem:
 
-{[} \text{point-image constraints} \longrightarrow
-\text{transversal unique-coloring quotient} \longrightarrow
-\text{component partitions} \longrightarrow
-\text{canonical binary cut spaces} \longrightarrow
-\text{sharp LQR stabilization}. \tag{61} {]}
+\[
+\text{point-image constraints}
+\longrightarrow
+\text{transversal unique-coloring quotient}
+\longrightarrow
+\text{component partitions}
+\longrightarrow
+\text{canonical binary cut spaces}
+\longrightarrow
+\text{sharp LQR stabilization}.
+\tag{61}
+\]
 
 Permutation synchronization also has an established algorithmic
 literature, typically concerned with recovering globally consistent
@@ -957,18 +1202,24 @@ spaces whose nonzero vectors must pack disjointly.
 
 This leads to three layers of exact structure:
 
-{[} L\_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil, {]}
+\[
+L_3(r)=\left\lceil\frac{3(r-1)}2\right\rceil,
+\]
 
 an exact four-phase transition,
 
-{[} L\_q(4)=3,~2q-1,~12,~3q-7 {]}
+\[
+L_q(4)=3,\ 2q-1,\ 12,\ 3q-7
+\]
 
 in its respective ranges, and the general stabilization theorem
 
-{[} \boxed{
+\[
+\boxed{
 L_q(r)=(r-1)q-(2^{r-1}-1)
 \quad\text{iff the linear lower bound is attainable, with attainment beginning exactly at }q=2^{r-1}-1.
-} {]}
+}
+\]
 
 For each fixed number of phases, the unsolved problem is therefore
 finite. In FCOA terms, the result provides an exact capacity theorem for

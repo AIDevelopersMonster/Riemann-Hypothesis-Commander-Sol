@@ -1,6 +1,6 @@
 # FCOA LQR verifier log
-commit: 276ea64561265892673cc881500b78a58e6e3822
-utc: 2026-09-05T11:16:52Z
+commit: f3b08b15a500ce6ec72e82005cb95cefe89dc959
+utc: 2026-09-05T11:19:46Z
 
 ## verify_lqr.py
 QGE3 LQR finite verifier
