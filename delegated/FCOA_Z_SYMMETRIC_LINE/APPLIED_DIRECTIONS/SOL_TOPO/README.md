@@ -3,7 +3,8 @@
 **Scientific direction:** non-Abelian anyons, fusion channels, braid/path memory  
 **Parent:** `delegated/FCOA_Z_SYMMETRIC_LINE/APPLIED_DIRECTIONS/`  
 **Base:** FCOA-Z v1.1, DOI `10.5281/zenodo.22169264`  
-**Status:** RESEARCH ARC COMPLETE / RU+EN PUBLICATION PACKAGE ASSEMBLED / PRE-ZENODO FREEZE
+**Published SOL-TOPO v1.0:** [https://doi.org/10.5281/zenodo.22544786](https://doi.org/10.5281/zenodo.22544786)  
+**Status:** RESEARCH ARC COMPLETE / RU+EN PUBLICATION PUBLISHED
 
 ## Final programme verdict
 
@@ -122,9 +123,11 @@ The final four resources are not forced by the audited one-line FCOA-Z structure
 
 ### Current manuscripts
 
-- `SOL_TOPO_ARTICLE_EN_v1_0.md` — corrected English prepublication manuscript.
-- `SOL_TOPO_ARTICLE_RU_v1_0.md` — corrected Russian prepublication manuscript.
+- `SOL_TOPO_ARTICLE_EN_v1_0.md` — corrected English publication manuscript.
+- `SOL_TOPO_ARTICLE_RU_v1_0.md` — corrected Russian publication manuscript.
 - `CORRIGENDUM_SOL_TOPO_v0_2.md` — mandatory interpretation correction for the historical v0.2 report.
+
+**Published record:** [SOL-TOPO v1.0 — DOI 10.5281/zenodo.22544786](https://doi.org/10.5281/zenodo.22544786).
 
 ### Research-history documents
 
@@ -162,9 +165,9 @@ The intended publication type is therefore a **structural embedding/no-go note**
 ## Publication status
 
 \[
-\boxed{\texttt{PUBLICATION PACKAGE ASSEMBLED}.}
+\boxed{\texttt{PUBLISHED — SOL-TOPO v1.0}.}
 \]
 
-The RU/EN manuscripts, explicit corrigendum, hostile-audit conclusions, theorem numbering, resource ladder, novelty boundary, and core bibliography are now present in the branch.
+Zenodo DOI: **[10.5281/zenodo.22544786](https://doi.org/10.5281/zenodo.22544786)**.
 
-The next operational publication step is branch freeze / final metadata audit / conversion to the release formats used by the Commander Sol programme, followed by Zenodo deposition. No further mathematical theorem is required for the present SOL-TOPO note unless the publication audit exposes a substantive defect.
+The research arc and publication package are complete at the present FCOA-Z line-completion stage. No further mathematical theorem is required for the published SOL-TOPO v1.0 note.
