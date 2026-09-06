@@ -4,7 +4,7 @@
 **Status:** structural continuation of the r=7 trade programme  
 **Scope:** abstract pure defect-two synchronization
 
-This note records the next reduction after `LQR_R7_TRADE_HIERARCHY.md`. It does not close `M_7`, but it replaces the higher-order resolution oracle by an ordinary edge-coloured graph problem with a very rigid set-complement geometry.
+This note records the next reduction after `LQR_R7_TRADE_HIERARCHY.md`. It does not close `M_7`, but it replaces the higher-order resolution oracle by an ordinary edge-coloured graph problem with a very rigid set-complement geometry and records the current sharp test objects for the `15`-plane barrier.
 
 ---
 
@@ -113,33 +113,39 @@ This is the ordinary-graph counterpart of the Incidence–2-Factor Theorem.
 
 ---
 
-## 5. Why ordinary rainbow-matching theory is not enough
+## 5. Why degree-only and peeling criteria fail
 
 The complement graph has two strong properties:
 
 1. each color class is a matching;
-2. an edge of color `a` is not arbitrary: it is forced by the set equation
+2. an edge of color `a` is forced by the Boolean equation
    \[
    B\sqcup C=M_a.
    \]
 
-It is tempting to conjecture that a unique rainbow perfect matching in an edge-coloured graph with matching color classes must have a singleton color class. This is false already on six vertices. For example, with canonical edges
+Ordinary rainbow-matching degree conditions are nevertheless insufficient.
+
+### Counterexample 5.1 — no peelable parent is necessary
+
+There exists a synchronizing compatible six-plane family
+
+```text
+(56, 199, 268, 293, 133, 126)
+```
+
+for which every target color has exactly two complement decompositions: the canonical pair and one noncanonical pair. Hence every color class of `K(F)` has size exactly two, but the canonical rainbow perfect matching remains unique.
+
+The six alternative complement edges are mutually incompatible at the block ports and do not form a rainbow perfect matching.
+
+Therefore the tempting recursive statement
 
 \[
-01,\quad23,\quad45
+\text{unique rainbow matching}\Rightarrow\text{some color has degree one}
 \]
 
-one may take the three color classes
+is false even inside the actual Boolean partition geometry.
 
-\[
-\{01,24\},\qquad
-\{23,04\},\qquad
-\{45,02\}.
-\]
-
-They are pairwise edge-disjoint matchings, every color class has size two, and the canonical rainbow perfect matching is unique.
-
-Therefore any proof of the `r=7` bound must use the Boolean set-complement geometry, not only abstract proper edge-colouring/rainbow-matching arguments.
+Any proof of the `r=7` bound must therefore retain port incidence, not only color degrees.
 
 ---
 
@@ -174,46 +180,129 @@ For `r=7,q=15`, the 45 normalized cuts
 
 are distinct elements of the 63 nonzero vectors of `F_2^6`. Hence only 18 normalized cuts are unused.
 
-A direct random search through compatible fifteen-plane packings found many non-synchronizing families and, among the sampled packings, examples with as few as 51 noncanonical complement edges. This number is search evidence only; no extremal lower bound on `E(F)` is claimed here.
+---
 
-The next structural target is therefore:
+## 7. A near-extremal fifteen-plane test object
+
+A local search over compatible fifteen-plane packings produced the family
+
+```text
+(0, 42, 73, 78, 145, 148, 149, 166, 186, 198, 224, 236, 271, 275, 288)
+```
+
+with exactly **one** noncanonical rainbow perfect matching.
+
+Its target-color complement degrees are
+
+```text
+1, 4, 6, 4, 5, 5, 4, 5, 5, 4, 5, 7, 4, 5, 2
+```
+
+so it has `66` complement edges in total, of which `51` are noncanonical.
+
+The unique noncanonical trade has support exactly five, on source colors
 
 \[
-\boxed{
-\text{derive an extremal complement-energy or rainbow-2-factor criterion from }
-|\mathcal C|=30,\ |\mathcal P|=15,
-\text{ and only 18 unused cuts.}
-}
+\{1,8,11,12,13\},
 \]
 
-Such a criterion would attack `M_7` without enumerating higher trade cores.
+and the symmetric difference with the canonical matching is one alternating cycle of length ten.
+
+This object is important for proof design:
+
+- a `15`-plane obstruction need not have many alternative resolutions;
+- an argument based on lower-bounding the number of trades cannot be robust;
+- if the `45-of-63` lemma is true, it is close to sharp at the level of matching multiplicity.
+
+No one-swap neighbor of this family found in the exact compatibility neighborhood is synchronizing; the best one-swap alternatives still have at least three noncanonical rainbow matchings. This is search evidence only.
 
 ---
 
-## 7. Relation to known matching theory
+## 8. The 45-of-63 Complement Lemma target
 
-The terminology “uniquely restricted matching” is standard for ordinary graphs: a matching is uniquely restricted when it is the unique perfect matching on its saturated vertices. The alternating-cycle characterization belongs to the graph case (Golumbic–Hirst–Lewenstein, 2001).
+The strongest clean statement currently under attack is:
 
-For uniform hypergraphs, Bal–Dudek–Yilma determined the maximum number of edges in a hypergraph with a unique perfect matching (Discrete Mathematics 311 (2011), 2577–2580, DOI `10.1016/j.disc.2011.07.016`). Their general extremal bound is much too coarse for the present sparse Boolean-partition geometry, but it confirms that the unique-perfect-matching viewpoint is standard and should be separated from the programme-specific complement structure.
+### Conjectural Complement Lemma
+Let
 
-The programme-specific object is the rigid combination of:
+\[
+|\mathcal C|=30,
+\qquad
+|\mathcal P|=15,
+\qquad
+\mathcal C\cap\mathcal P=\varnothing,
+\]
 
-- partition-realizable cut planes;
-- pairwise cut-disjointness;
-- fixed marked blocks;
-- complement edge equations `B sqcup C = M_a`;
-- uniqueness of the all-colors rainbow perfect matching.
+where the 45 sets are distinct nonempty subsets of a six-element ground set and are partitioned into 15 canonical triples
+
+\[
+U_a,\ V_a,\ M_a=U_a\sqcup V_a.
+\]
+
+Assume the corresponding fifteen partition planes are pairwise cut-compatible. Then the canonical rainbow perfect matching in the complement graph is not unique.
+
+If true, this gives
+
+\[
+M_7\le14.
+\]
+
+Together with the known synchronizing fourteen-plane construction it would imply
+
+\[
+\boxed{M_7=14}.
+\]
+
+The six-color counterexample above shows that any proof must exploit the density `45/63` and cannot be a purely local unique-matching theorem.
 
 ---
 
-## 8. Current status
+## 9. Exact-search frontier
 
-This reduction does not change the rigorous numerical status
+A separate exact depth-first search is being used as an independent route to the same statement.
+
+The search:
+
+1. works directly on the 301 partition planes;
+2. branches only through pairwise compatible families;
+3. invokes the exact rainbow-resolution oracle after every augmentation;
+4. prunes immediately when a partial family is already non-synchronizing, using obstruction persistence;
+5. fixes the first plane to one of the four `S_7` block-size orbit representatives
+   \[
+   (1,1,5),\ (1,2,4),\ (1,3,3),\ (2,2,3);
+   \]
+6. applies canonical augmentation under the stabilizer of the first plane.
+
+The current symmetry-reduced run has reached synchronizing partial families of size `13` in the first orbit `(1,1,5)`, but has not yet exhausted that orbit. Therefore it is **not** an infeasibility certificate and does not change the rigorous status of `M_7`.
+
+The exact search is retained as a certification route; analytic work continues in parallel.
+
+---
+
+## 10. Relation to known unique-perfect-matching theory
+
+Bal–Dudek–Yilma proved the exact maximum number of edges in a general `k`-uniform hypergraph with a unique perfect matching. For `k=3`, their theorem allows many more edges than occur in the present complement hypergraph, so their global edge bound does not settle the `15`-plane question.
+
+Their proof is nevertheless conceptually relevant: a noncanonical complement edge in the present model intersects exactly three canonical matching edges — its target-color vertex and the two source block-pairs from which its block endpoints come. Thus every LQR trade is a highly restricted covering of canonical matching edges in the sense of general unique-perfect-matching theory.
+
+The missing ingredient is the additional Boolean condition
 
 \[
-14\le M_7\le21.
+B\sqcup C=M_a,
 \]
 
-No synchronizing 15-plane family has been found, but no infeasibility certificate has yet been obtained.
+plus the 45-of-63 density constraint.
 
-The next proof attack should be on the complement-energy/rainbow-2-factor side, not on a full enumeration of minimal support seven and above.
+---
+
+## 11. Current rigorous status
+
+The reductions and searches in this note do not change
+
+\[
+\boxed{14\le M_7\le21.}
+\]
+
+No synchronizing fifteen-plane family has been found. No complete analytic proof or exhaustive infeasibility certificate has yet been obtained.
+
+The next productive attack should target a **dense Boolean port-cycle lemma**: show that every compatible `45`-state canonical system on six Boolean coordinates forces a port-compatible rainbow alternating cycle, rather than merely forcing many complement edges.
