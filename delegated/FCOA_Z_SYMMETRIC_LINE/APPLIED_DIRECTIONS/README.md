@@ -36,9 +36,13 @@ odd–odd gives an anticommutator/symmetric graded bracket, while if at least on
 
 ### SOL-TOPO — Anyons / fusion categories / topological memory
 
+**Published:** [SOL-TOPO v1.0 — DOI 10.5281/zenodo.22544786](https://doi.org/10.5281/zenodo.22544786)
+
 Question: can FCOA terminal-output channels and mixed-sign cells model the distinction between braiding memory and fusion outcomes?
 
-Key caution: non-Abelian anyon fusion generally has multiple channels. Anyon/dual-anyon has a vacuum channel, but “opposite sign automatically makes the interaction trivial/commutative” is not a valid general statement.
+Final audited verdict: `FORMAL FUSION SHADOW + COHERENCE-BARRIER THEOREM`.
+
+Key caution: non-Abelian anyon fusion generally has multiple channels. Anyon/dual-anyon has a vacuum channel, but “opposite sign automatically makes the interaction trivial/commutative” is not a valid general statement. The published note also proves that split-output reflection acts on mirror provenance, not on the fusion-channel factor, and therefore does not by itself generate Ising categorical coherence.
 
 ### SOL-LOCALITY — AQFT / microcausality / geometry-conditioned commutation
 
