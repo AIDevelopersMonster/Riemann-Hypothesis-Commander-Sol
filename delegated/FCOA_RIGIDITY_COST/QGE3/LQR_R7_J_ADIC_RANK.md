@@ -1,17 +1,11 @@
-# QGE3 LQR — J-adic Rank Collapse and Syndrome Compression at r=7
+# QGE3 LQR — J-adic Rank Collapse, Child Corank Four, and Syndrome Compression at r=7
 
 **Branch:** `research/fcoa-lqr-prestabilization`  
 **Status:** active structural continuation  
 **Scope:** pure defect-two synchronization at `r=7`  
-**Proof status:** analytic for the `J^2` rank-collapse theorem; syndrome-degree bound remains conjectural but strongly verified
+**Proof status:** analytic for the `J^2` rank-collapse and child-corank-four theorems; syndrome-degree bound remains conjectural but strongly verified
 
-This note continues `LQR_R7_XOR_CIRCULANT.md`. The purpose is to isolate the first genuinely useful consequence of the augmentation filtration
-
-\[
-J\supset J^2\supset J^3\supset\cdots
-\]
-
-for the fifteen-plane parity barrier.
+This note continues `LQR_R7_XOR_CIRCULANT.md`. It records the augmentation-filtration mechanism behind the first two orders of the observed Pfaffian collapse at the fifteen-plane threshold.
 
 ---
 
@@ -35,30 +29,24 @@ J=(t_1,\dots,t_6)
 
 for the augmentation ideal.
 
-For an oriented fifteen-line system with parent points
+For a parent set
 
 \[
-P=\{p_1,\dots,p_{15}\}\subset V\setminus\{0\},
+P=\{p_1,\dots,p_{15}\}\subset V\setminus\{0\}
 \]
 
-and a coefficient vector
+and a coefficient vector `z`, put
 
 \[
-z=(z_1,\dots,z_{15}),
+g(z)=\sum_{a=1}^{15}z_aT_{p_a}\in A.
 \]
 
-put
-
-\[
-g(z)=\sum_{a=1}^{15} z_a T_{p_a}\in A.
-\]
-
-Its augmentation and linear `J/J^2` part are
+Its augmentation and its class modulo `J^2` are
 
 \[
 \ell_0(z)=\sum_a z_a,
 \qquad
-\ell(z)=\sum_a z_a p_a\in V.
+\ell(z)=\sum_a z_ap_a\in V.
 \]
 
 Thus
@@ -70,7 +58,7 @@ g(z)\in J^2
 \ell_0(z)=0,\quad \ell(z)=0.}
 \]
 
-For Boolean `z=1_S`, this is
+For Boolean `z=1_S`, this says
 
 \[
 |S|\equiv0\pmod2,
@@ -78,7 +66,7 @@ For Boolean `z=1_S`, this is
 \bigoplus_{p\in S}p=0.
 \]
 
-The seven linear syndromes define a map
+The seven syndromes define
 
 \[
 \sigma:\mathbb F_2^{15}\to\mathbb F_2^7,
@@ -86,138 +74,233 @@ The seven linear syndromes define a map
 \sigma(S)=\left(|S|\bmod2,\ \bigoplus_{p\in S}p\right).
 \]
 
-Whenever the parent points span `V`, the kernel has dimension eight.
+When the parents span `V`, `ker sigma` has dimension eight.
 
 ---
 
-## 2. Rank collapse inside J^2
+## 2. Correct six-variable J^2 rank theorem
 
-### Theorem 2.1 — six-variable `J^2` rank bound
+### Theorem 2.1 — full regular-module rank collapse
 
-Let
+For every
 
 \[
-0\ne g\in J^2\subset A.
+g\in J^2\subset A,
 \]
 
-Then multiplication by `g` on the 64-dimensional regular module satisfies
+multiplication by `g` on the 64-dimensional regular module satisfies
 
 \[
 \boxed{\operatorname{rank}m_g\le28.}
 \]
 
 ### Proof
-Use the degree filtration
-
-\[
-A=A_0\oplus A_1\oplus\cdots\oplus A_6,
-\qquad
-\dim A_k=\binom6k.
-\]
+We work first over an algebraic closure of `F_2`; the final rank inequality then descends to every specialization over `F_2`.
 
 Write
 
 \[
-g=g_2+g_3+\cdots+g_6,
+g=q+g_3+\cdots+g_6,
+\qquad q\in A_2.
+\]
+
+Consider the Zariski-open locus on which the quadratic part `q` is a nondegenerate alternating 2-form. After an invertible linear change of the six generators we may assume
+
+\[
+q=t_1t_2+t_3t_4+t_5t_6.
+\tag{2.1}
+\]
+
+We first remove all higher-degree terms by an automorphism tangent to the identity. Suppose terms of degrees `<k` have already been reduced to `q`. Replace
+
+\[
+t_i\longmapsto t_i+a_i,
+\qquad a_i\in A_{k-1},
+\]
+
+with `k>=3`. Because every element of the maximal ideal has square zero under Frobenius, such substitutions respect the relations `t_i^2=0`; their linear part is the identity, so they are algebra automorphisms.
+
+To degree `k`, the change of `q` is
+
+\[
+\sum_{i=1}^6 \frac{\partial q}{\partial t_i}a_i.
+\]
+
+For the symplectic normal form (2.1), the six derivatives are
+
+\[
+t_2,t_1,t_4,t_3,t_6,t_5.
+\]
+
+The map
+
+\[
+A_{k-1}^{\oplus6}\longrightarrow A_k,
 \qquad
-g_j\in A_j,
+(a_i)\longmapsto\sum_i(\partial_iq)a_i
 \]
 
-where `g_2` may be zero.
+is surjective: for any degree-`k` squarefree monomial, choose one variable occurring in it and divide by that variable in the coefficient attached to its symplectic partner. Hence the degree-`k` term of `g` can be killed. Iterating for `k=3,4,5,6` gives an algebra automorphism carrying `g` to `q` whenever the quadratic part is nondegenerate.
 
-Since `g in J^2`, multiplication raises degree by at least two. On the associated graded module the only possible source degrees are `0,1,2,3,4`, giving the crude rank bound
+It remains to compute the rank of multiplication by `q`. Decompose
 
 \[
-1+6+15+7+1=30.
+A=B_1\otimes B_2\otimes B_3,
+\qquad
+B_j=\mathbb F_2[x_j,y_j]/(x_j^2,y_j^2),
 \]
 
-The middle contribution
+and write
 
 \[
-A_2\longrightarrow A_4
+q=q_1+q_2+q_3,
+\qquad q_j=x_jy_j.
 \]
 
-is multiplication by the quadratic initial part `g_2`. If `g_2=0`, its rank is zero and the total bound is already below 30. If `g_2\ne0`, then in characteristic two
+Multiplication by `q` is the tensor-sum differential
 
 \[
-g_2^2=0,
+d=d_1+d_2+d_3,
+\qquad d_j(b)=q_jb.
 \]
 
-because every basis monomial in degree two squares to zero and all mixed products occur twice. Hence
+On one four-dimensional factor `B_j`, `d_j` has image `span{x_jy_j}` and kernel `span{x_j,y_j,x_jy_j}`, so its homology has dimension two, represented by `x_j,y_j`. By the Kunneth formula, the homology of `(A,d)` has dimension
 
 \[
-g_2\in\ker\left(A_2\xrightarrow{\cdot g_2}A_4\right),
+2^3=8.
 \]
 
-so this middle map has rank at most 14. Therefore
+Since `d^2=0`,
 
 \[
-\operatorname{rank}m_g\le
-1+6+14+7+1=29.
+\dim H(A,d)=\dim A-2\operatorname{rank}d,
 \]
 
-Finally `m_g` is represented in the group basis by an alternating matrix: every nonzero translation has zero diagonal, and the zero-augmentation condition removes the identity term. An alternating matrix over `F_2` has even rank. Thus
+and therefore
+
+\[
+\operatorname{rank}d=\frac{64-8}{2}=28.
+\]
+
+Thus multiplication by every `g` with nondegenerate quadratic initial part has rank exactly 28.
+
+Finally, rank `<=28` is the common vanishing condition of all `29 x 29` minors of the multiplication matrix, whose entries are polynomial in the coefficients of `g`. The nondegenerate-quadratic locus is nonempty and Zariski dense in `J^2`. Since all `29 x 29` minors vanish on that dense open set, they vanish identically on `J^2`. Hence every specialization satisfies
 
 \[
 \operatorname{rank}m_g\le28.
 \]
 \(\square\)
 
+### Remark 2.2
+The proof deliberately avoids the earlier crude source/target degree count; the bound `28` comes from the generic symplectic quadratic normal form and the eight-dimensional homology of its multiplication complex.
+
 ---
 
-## 3. Consequence for the child Pfaffian
+## 3. Child corank-four theorem
 
-Let `C` be the 30 child points and let
+Let
 
 \[
-G_C(z)
+C\subset V\setminus(\{0\}\cup P),
+\qquad |C|=30,
 \]
 
-be the `30 x 30` principal child minor of the translation circulant.
+and let `G_C(z)` be the `30 x 30` principal child minor of the translation circulant.
 
-### Corollary 3.1
-If
+### Theorem 3.1 — child rank collapse
+
+Assume
 
 \[
-\ell_0(z)=0,
-\qquad
-\ell(z)=0,
+g(z)=\sum_{p\in P}z_pT_p\in J^2
 \]
 
-then
+and `z` is nonzero. Then
 
 \[
-\boxed{
-\operatorname{Pf}G_C(z)=0.
-}
+\boxed{\operatorname{rank}G_C(z)\le26.}
 \]
 
 ### Proof
-The full multiplication operator has rank at most 28 by Theorem 2.1, so every 30 by 30 minor is singular. Since `G_C(z)` is alternating,
+By Theorem 2.1, the full `64 x 64` multiplication matrix `G(z)` has rank at most 28.
+
+Choose `p_i in P` with `z_i!=0`. Consider the principal submatrix on
 
 \[
-\det G_C(z)=\operatorname{Pf}(G_C(z))^2=0,
+C\cup\{0,p_i\}.
 \]
 
-hence the Pfaffian vanishes. \(\square\)
-
-This is a polynomial statement, not merely a Boolean one: the child Pfaffian vanishes on the entire codimension-seven linear subspace
+Because `P cap C` is empty, the row of the vertex `0` has no nonzero entry into `C`; its entry at `p_i` is exactly `z_i`. In the order `(C,0,p_i)` the submatrix has the form
 
 \[
-\ell_0=\ell_1=\cdots=\ell_6=0
+\begin{pmatrix}
+G_C(z)&0&b\\
+0&0&z_i\\
+b^T&z_i&0
+\end{pmatrix}.
+\tag{3.1}
 \]
 
-over every characteristic-two extension field.
-
-Equivalently,
+Since `z_i` is invertible in the coefficient field, simultaneous row/column operations using the hyperbolic pair `(0,p_i)` clear the vector `b` without changing `G_C(z)`. Thus (3.1) is congruent to
 
 \[
-\boxed{
-\operatorname{Pf}G_C(z)
-\in
-(\ell_0,\ell_1,\dots,\ell_6).
-}
+G_C(z)\oplus
+\begin{pmatrix}0&z_i\\z_i&0\end{pmatrix},
 \]
+
+and hence has rank
+
+\[
+\operatorname{rank}G_C(z)+2.
+\]
+
+It is a principal submatrix of the full matrix, so
+
+\[
+\operatorname{rank}G_C(z)+2
+\le
+\operatorname{rank}G(z)
+\le28.
+\]
+
+Therefore
+
+\[
+\operatorname{rank}G_C(z)\le26.
+\]
+\(\square\)
+
+### Corollary 3.2 — double Pfaffian vanishing
+
+Let
+
+\[
+P_C(z)=\operatorname{Pf}G_C(z).
+\]
+
+On the linear subspace
+
+\[
+L=\{z:\ell_0(z)=0,\ \ell(z)=0\},
+\]
+
+one has
+
+\[
+P_C|_L=0
+\]
+
+and every first derivative of `P_C` also vanishes on `L`.
+
+Indeed, an alternating `30 x 30` matrix has singular-Pfaffian gradient precisely when all its `28 x 28` principal Pfaffians vanish; rank at most 26 guarantees this. Since `G_C(z)` depends linearly on `z`, the chain rule gives vanishing of all first derivatives in the coefficient variables.
+
+Equivalently, if `I(L)` denotes the linear ideal of the syndrome-zero subspace, then
+
+\[
+\boxed{P_C(z)\in I(L)^2.}
+\]
+
+This is the first rigorous explanation for an extra order of ANF-degree collapse beyond mere vanishing on the kernel code.
 
 ---
 
@@ -229,14 +312,12 @@ For Boolean subsets `S subseteq P`, define
 f_C(S)=\operatorname{Pf}(G_S)_C\in\mathbb F_2.
 \]
 
-Then every subset in the eight-dimensional kernel code
+Every word of the kernel code
 
 \[
 K=\ker\sigma
 =
-\left\{
-S:\ |S|\equiv0\pmod2,\ \bigoplus_{p\in S}p=0
-\right\}
+\left\{S:\ |S|\equiv0\pmod2,\ \bigoplus_{p\in S}p=0\right\}
 \]
 
 satisfies
@@ -245,21 +326,21 @@ satisfies
 \boxed{f_C(S)=0.}
 \]
 
-Thus 256 of the 32768 Boolean subset evaluations disappear for structural reasons before any resolution counting is performed.
+More strongly, the polynomial giving `f_C` has multiplicity at least two along the linear syndrome-zero locus.
 
-More importantly, the parity problem can be compressed along the cosets of `K`.
+When the syndrome map has rank seven, `K` has dimension eight.
 
 Define the syndrome aggregate
 
 \[
 F(\tau)
 =
-\bigoplus_{S:\,\sigma(S)=\tau} f_C(S),
+\bigoplus_{S:\sigma(S)=\tau}f_C(S),
 \qquad
 \tau\in\mathbb F_2^7.
 \]
 
-Then the desired full rainbow parity is simply
+Then the full rainbow parity is
 
 \[
 \boxed{
@@ -269,107 +350,106 @@ Then the desired full rainbow parity is simply
 }
 \]
 
-So the final fifteen-variable top coefficient is reduced to a seven-variable Boolean function.
+Thus the fifteen-variable coefficient problem compresses to a seven-variable Boolean function.
 
 ---
 
 ## 5. Observed syndrome-degree collapse
 
-For arbitrary oriented compatible fifteen-line partial spreads tested to date, the syndrome function `F` has algebraic-normal-form degree at most five:
-
-\[
-\boxed{
-\deg_{\rm ANF}F\le5
-}
-\]
-
-in every tested case.
-
-This is substantially stronger than the formal derivative bound
-
-\[
-\deg F\le7
-\]
-
-coming only from summing a fifteen-variable function over an eight-dimensional kernel.
-
-Representative random tests repeatedly produced degree exactly five.
-
-If the bound
-
-\[
-\deg F\le6
-\]
-
-can be proved in general, then the total XOR over the seven-dimensional syndrome cube vanishes automatically. The empirically stronger degree-five statement would therefore more than suffice.
-
-### Syndrome-Degree Conjecture
-For every oriented compatible fifteen-line partial spread in `PG(5,2)`,
+For every compatible/oriented fifteen-line system tested so far, the syndrome aggregate has
 
 \[
 \boxed{\deg_{\rm ANF}F\le5.}
 \]
 
-This conjecture implies the fifteen-line parity theorem and hence, in the partition-realizable LQR sector,
+The empirically observed bound is two degrees below the ambient syndrome dimension seven. Since total XOR over `F_2^7` detects only the degree-seven ANF coefficient, a proof of the weaker statement
 
 \[
-M_7=14.
+\deg F\le6
+\]
+
+would already force even rainbow-resolution parity.
+
+The double-vanishing theorem above explains one additional order of collapse, but by itself it does not yet prove the full degree-six bound. A second structural identity is still needed.
+
+### Syndrome-Degree Conjecture
+For every relevant fifteen-parent system,
+
+\[
+\boxed{\deg_{\rm ANF}F\le5.}
 \]
 
 ---
 
-## 6. Why this is the correct next barrier
+## 6. A stronger experimental target: disjoint parent-child parity
 
-The previous approaches attacked the full resolution hypergraph or the full mixed Pfaffian coefficient. The `J^2` theorem removes an eight-dimensional family of subset states and exposes a much smaller quotient problem.
-
-The remaining task is now:
+The child-rank proof uses only
 
 \[
-\boxed{
-\text{explain the extra two degrees of ANF collapse on }\mathbb F_2^7.
-}
+P\cap C=\varnothing,
+\qquad 0\notin C,
 \]
 
-A likely source is the interaction between:
+and not the existence of a canonical line decomposition. This motivates the stronger statement:
 
-1. the `J^2` rank defect;
-2. the complementary identity
-   \[
-   \operatorname{Pf}G_D=s^2\operatorname{Pf}G_C;
-   \]
-3. the fact that the 15 canonical projective lines are pairwise point-disjoint;
-4. the special dimensions
-   \[
-   |V|=64,\quad |C|=30,\quad |D|=34.
-   \]
+### Disjoint Parent-Child Parity Conjecture
+Let
 
-The next proof attack should therefore be directed at the quotient syndrome function rather than at individual obstruction cores.
+\[
+P,C\subset\mathbb F_2^6\setminus\{0\},
+\qquad |P|=15,\quad |C|=30,\quad P\cap C=\varnothing.
+\]
+
+Then the parity of perfect matchings of `C` whose fifteen distinct edge differences are exactly the elements of `P` is zero.
+
+A necessary condition for any such matching is
+
+\[
+\bigoplus P=\bigoplus C.
+\]
+
+Directed experiments must therefore enforce this balance; unconditioned random tests are mostly vacuous. Balanced disjoint tests performed so far remain uniformly even, whereas analogous statements in dimensions four and five fail. Thus the `d=6,q=15` threshold appears genuinely special.
+
+This stronger conjecture would imply the oriented-line parity theorem, hence the LQR bound `M_7<=14`, without using partition realizability.
 
 ---
 
-## 7. Computational cross-checks
+## 7. Relation to complementary Pfaffians
 
-Independent experiments used the exact determinant/Pfaffian parity formula and gave the following persistent pattern:
+From `LQR_R7_XOR_CIRCULANT.md`, with `D=V\setminus C`,
+
+\[
+\operatorname{Pf}G_D=s^2\operatorname{Pf}G_C,
+\qquad s=\sum_{p\in P}z_p.
+\]
+
+The current evidence suggests that the missing second order of syndrome-degree collapse is created by the interaction of:
+
+1. `P_C in I(L)^2` from child corank four;
+2. the complementary identity above;
+3. `P subseteq D` forced by `P cap C=empty`;
+4. the balanced condition `xor P=xor C` whenever a rainbow matching exists.
+
+This is now a much sharper algebraic target than enumerating higher resolution trades.
+
+---
+
+## 8. Computational status
+
+The following checks have been used only as evidence, not as proofs:
 
 ```text
-q=13 : ANF degree may reach 13
-q=14 : ANF degree may reach 14
-q=15 : all tested systems have child-Pfaffian ANF degree <=13
-        and syndrome-aggregate degree <=5
+- exhaustive/random J^2 samples: full multiplication rank never exceeds 28;
+- zero-syndrome directions in tested q=15 systems: child rank never exceeds 26;
+- q=15 compatible/oriented systems: syndrome ANF degree <=5 in all tests;
+- hundreds of balanced disjoint (P,C) pairs in F_2^6: no odd rainbow parity found;
+- dimension-4 and dimension-5 analogues admit odd examples.
 ```
 
-Thus the algebraic drop appears exactly at the fifteen-line threshold.
-
-These observations are evidence only; the only theorem claimed in this note beyond the previously established circulant identities is the `J^2` rank-collapse theorem and its vanishing corollary.
-
----
-
-## 8. Rigorous status
-
-The exact numerical status remains
+The exact numerical LQR status therefore remains
 
 \[
 \boxed{14\le M_7\le21.}
 \]
 
-The new theorem does not yet prove `M_7=14`, but it reduces the unresolved parity mechanism from fifteen Boolean variables to a seven-dimensional syndrome quotient and supplies the first analytic rank reason for the observed parity collapse.
+The next proof barrier is to convert child corank four plus the complementary-Pfaffian identity into vanishing of the degree-seven syndrome coefficient.
