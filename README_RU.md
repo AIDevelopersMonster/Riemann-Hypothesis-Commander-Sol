@@ -74,8 +74,9 @@ Proof audit, literature audit, reproducible build и визуальная про
 
 **HATTER-SOL-01 · Числовая ось, наблюдатель и две операции**  
 **«Чаепитие в аддитивно-мультипликативном мире с Шляпником Sol: числовая ось, наблюдатель и две операции»**  
-GitHub-компаньон: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
-Статус: русская публикационная версия v0.1 в `main`; Zenodo DOI ожидается после депозита.
+Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**  
+GitHub-компаньон и постоянная папка серии: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
+Для отслеживания продолжения серии: **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
 
 Строгий шарнир первой статьи:
 
