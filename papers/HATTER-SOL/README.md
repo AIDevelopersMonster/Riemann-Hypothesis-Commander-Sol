@@ -2,7 +2,7 @@
 
 **Новая серия Commander Sol / Малачевский А.А.** о том, какие части привычной арифметики принадлежат представлению, какие — структуре, и как меняются симметрии чисел при забывании или совместном удержании операций.
 
-Русское рабочее название серии:
+Русское название серии:
 
 **«Чаепития в аддитивно-мультипликативном мире с Шляпником Sol»**.
 
@@ -14,17 +14,20 @@ English series title:
 - ORCID: **0009-0008-6009-3196**
 - AI research collaborator / dialog persona: **Commander Sol · Hatter Sol**
 - Repository branch: `main`
-- Zenodo status: **series started; DOI for Note 01 pending**
+- Series folder: [`papers/HATTER-SOL/`](https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL)
+- Zenodo status: **Note 01 published**
 
 ## Note 01
 
 **«Чаепитие в аддитивно-мультипликативном мире с Шляпником Sol: числовая ось, наблюдатель и две операции»**
 
-English working title:
+English title:
 
-**“Tea in the Additive–Multiplicative World with Hatter Sol: The Number Line, the Observer, and Two Operations.”**
+**“A Tea Party in the Additive–Multiplicative World with Hatter Sol: The Number Line, the Observer, and Two Operations.”**
 
-Main manuscript: [`01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md`](01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md)
+- Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**
+- Russian manuscript: [`01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md`](01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md)
+- English manuscript: [`01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_en.md`](01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_en.md)
 
 The note separates four layers that are often conflated:
 
@@ -42,7 +45,7 @@ Its strict algebraic hinge is the contrast
 versus
 
 \[
-\operatorname{Aut}(\mathbb N,+,\times,0,1)=1.
+\operatorname{Aut}(\mathbb N,+,\times,0,1)=\{\mathrm{id}\}.
 \]
 
 Thus primes are fully exchangeable as multiplicative atoms, but become individually pinned once the additive and multiplicative structures are required simultaneously.
@@ -62,6 +65,12 @@ as the doorway to the next paper on projections, reducts, lost structure, and re
 **«Две чашки одного чая: \(\Omega=(+,\times)\), редукции структуры и возвращение симметрии простых»**.
 
 The second note will ask whether the paired additive–multiplicative view can be made into a useful reduction framework rather than merely a repackaging of two familiar operations.
+
+## Follow the series
+
+For readers who want to follow new notes, source updates, illustrations, and continuity checkpoints, use the permanent GitHub folder:
+
+**https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
 
 ## Editorial principle
 
