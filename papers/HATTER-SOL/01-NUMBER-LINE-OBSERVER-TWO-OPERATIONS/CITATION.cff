@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the Zenodo record once the DOI is assigned."
+title: "Чаепитие в аддитивно-мультипликативном мире с Шляпником Sol: числовая ось, наблюдатель и две операции"
+type: article
+authors:
+  - family-names: "Malachevsky"
+    given-names: "A.A."
+    orcid: "https://orcid.org/0009-0008-6009-3196"
+abstract: "A reflective mathematical essay separating representation, iteration, addition, multiplication, divisibility, and primality, with a strict automorphism-theoretic hinge between the multiplicative monoid of positive integers and full natural arithmetic."
+keywords:
+  - arithmetic
+  - prime numbers
+  - automorphism
+  - multiplicative monoid
+  - mathematical structuralism
+  - natural numbers
+  - reducts
+  - additive-multiplicative structure
+  - Commander Sol
+  - Hatter Sol
+version: "0.1"
+date-released: 2026-09-07
+repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL/01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS"
