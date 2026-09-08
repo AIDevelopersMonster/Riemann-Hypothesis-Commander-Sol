@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "title": "Reflections on Point-Image Phase Synchronization with Commander Sol: Exact Costs, Cut-Space Packings, and a Sharp Stabilization Threshold in FCOA",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "description": "We study the minimum number L_q(r) of exact same-source point-image constraints pi_i(a)=pi_j(a) needed to force r arbitrary permutations in S_q to be diagonal. In the Fixed-Carrier Oriented Algebra (FCOA) setting, this is the full-support anonymous phase-synchronization cost. We prove an exact reduction to unique q-colorability of a canonical transversal quotient, derive pair-union connectivity, determine L_2(r), L_3(r), L_q(2), L_q(3), and the complete four-phase column L_q(4), and introduce binary cut spaces W(P_a) over F_2^{r-1}. Their pairwise trivial intersection yields the packing inequality sum_a(2^{d_a}-1) <= 2^{r-1}-1. A matching binary-cut construction proves the exact stabilization law L_q(r)=(r-1)q-(2^{r-1}-1) for every q >= 2^{r-1}-1, and proves that this threshold is exact. The article follows FCOA Definition 1.0, DOI 10.5281/zenodo.22164246.",
+    "creators": [
+      {
+        "name": "Malachevsky, Alex",
+        "orcid": "0009-0008-6009-3196"
+      }
+    ],
+    "license": "cc-by-4.0",
+    "language": "eng",
+    "keywords": [
+      "FCOA",
+      "anonymous values",
+      "permutation synchronization",
+      "unique colorability",
+      "set partitions",
+      "cut spaces",
+      "vector space partitions",
+      "rigidity cost"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.22164246",
+        "relation": "isSupplementTo",
+        "resource_type": "publication-article"
+      },
+      {
+        "identifier": "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol",
+        "relation": "isSupplementedBy",
+        "resource_type": "software"
+      }
+    ],
+    "version": "1.0",
+    "notes": "Bilingual publication package: English and Russian manuscripts, DOCX/PDF/HTML/LaTeX exports, theorem provenance, finite verification scripts and logs, SHA-256 manifest. Commander Sol is identified in the title and manuscript as the research collaborator."
+  }
+}

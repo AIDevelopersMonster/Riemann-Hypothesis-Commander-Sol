@@ -1,0 +1,37 @@
+% Shared Pandoc/XeLaTeX publication header for EN/RU builds.
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\setmathfont{Latin Modern Math}
+\definecolor{FCOAblue}{HTML}{183A5A}
+\definecolor{FCOAgray}{HTML}{555555}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{FCOAblue}}{\thesection.}{0.65em}{}
+\titleformat{\subsection}{\large\bfseries\color{FCOAblue}}{\thesubsection.}{0.65em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{FCOAgray}}{\thesubsubsection.}{0.65em}{}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.25em}
+\setlist{itemsep=0.2em,topsep=0.35em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Commander Sol / Fixed-Carrier Oriented Algebra}
+\fancyhead[R]{\small Prescribed-Stabilizer Support}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\headheight}{14pt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=FCOAblue,citecolor=FCOAblue,urlcolor=FCOAblue,pdfborder={0 0 0}}
+\raggedbottom

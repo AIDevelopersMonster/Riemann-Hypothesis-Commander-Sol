@@ -1,7 +1,7 @@
 # Head-Synchronization Threshold — From Finite-State Interval Tests to Additive Transport
 
 **Project:** FCOA Admissibility Geometry  
-**Status:** central theorem candidate; full proof included; hostile audit required before promotion  
+**Status:** audited operational theorem; static-FO interpretation corrected  
 **Scope:** central Arithmetic Leakage programme after the unary U1 wall
 
 ## 1. Motivation
@@ -14,23 +14,17 @@ AL0<AL\text{-}FS<AL1.
 
 The next question is whether the decisive resource is more internal state or something qualitatively different.
 
-The answer is sharper:
+The audited answer is:
 
 \[
 \boxed{
-\text{one moving finite-state head is still below EqGap,}
+\text{one-head finite-state interval predicates remain below EqGap,}
 }
 \]
 
-while
+while a synchronized two-coordinate walk **with unbounded traversal closure** generates EqGap exactly.
 
-\[
-\boxed{
-\text{two synchronized moving heads already generate EqGap exactly.}
-}
-\]
-
-Thus the first additive threshold is a **synchronization dimension** threshold rather than a state-count threshold.
+The critical resource is therefore not a second local symbol by itself, but synchronized product geometry together with unbounded iteration.
 
 ## 2. One-head interval generators
 
@@ -42,152 +36,109 @@ G_m=\{0<1<\cdots<m-1\}
 
 as metamathematical notation for the recovered G4-A order.
 
-A **one-head finite-state interval predicate** is any binary relation \(R(x,y)\), with \(x\le y\), recognized by a fixed finite automaton that starts at \(x\), walks right by successor one step at a time, may read any fixed ultimately-periodic unary background colors, and accepts/rejects when it reaches \(y\).
+A **one-head finite-state interval predicate** is a binary relation \(R(x,y)\), with \(x\le y\), recognized by a fixed finite automaton that starts at \(x\), walks right by successor one step at a time, may read finitely many ultimately-periodic unary background colors, and accepts/rejects when it reaches \(y\).
 
-The automaton, its state set, transition rule, and accepted states are independent of \(m\).
+The machine is independent of \(m\). A finite collection of such predicates and any further fixed FO-definitional compilation are allowed.
 
-A finite collection of such predicates may be added to the order, and any further fixed FO-definitional FCOA compilation is allowed.
+## 3. Marked-word regularity
 
-This class strictly contains the earlier unary phase markers: a unary marker can be represented by running one head from the least point to the queried point.
+Encode a finite chain as a finite word over a finite alphabet carrying the background colors and marker tracks for free variables.
 
-## 3. Marked-word regularity of one-head predicates
-
-Encode a finite chain as a finite word over a finite alphabet containing:
-
-- the finitely many ultimately-periodic background colors;
-- marker tracks for the free variables.
-
-For each one-head interval predicate \(R(x,y)\), the set of marked words satisfying \(R(x,y)\) is regular: a finite automaton ignores the prefix before the `x` marker, simulates the interval machine from `x` through `y`, and then ignores the suffix.
-
-Order, equality, minimum, maximum, and successor between marked variables are also regular marked-word conditions.
+Each one-head interval predicate has a regular marked-word language: a finite automaton ignores the prefix before the \(x\)-marker, simulates the interval machine from \(x\) through \(y\), then ignores the suffix.
 
 ### Lemma 3.1 — regular closure under FO
 
-Let a finite positional signature on finite chains consist only of relations whose marked-word encodings are regular. Then every first-order formula in that signature has a regular marked-word encoding.
+If every primitive relation in a finite positional signature has a regular marked-word encoding, then every uniformly FO-definable relation has a regular marked-word encoding.
 
 ### Proof
 
-Atomic formulas are regular by assumption. Regular languages are closed under Boolean operations. Existential quantification over one position is projection of the corresponding marker track, and regular languages are closed under projection. Universal quantification follows by complement. Induction on formulas completes the proof. \(\square\)
-
-Therefore every relation first-order definable from finite order plus finitely many one-head interval predicates is regular in positional marker encoding.
+Atomic formulas are regular. Regular languages are closed under Boolean operations and projection of marker tracks. Universal quantification follows from complement. \(\square\)
 
 ## 4. EqGap has a nonregular positional skeleton
 
-For forward intervals define
+For forward intervals,
 
 \[
-\operatorname{EqGap}(a,b;c,d)
+EqGap(a,b;c,d)
 \iff
 b-a=d-c
 \]
 
 in external rank notation only.
 
-Restrict to tuples satisfying
+Restrict to
 
 \[
 a=\min,
 \qquad
-c=\operatorname{Succ}(b),
+c=Succ(b),
 \qquad
- d=\max.
+d=\max.
 \]
 
-If \(b\) has rank \(n\ge1\), then \(c\) has rank \(n+1\). EqGap becomes
+The resulting skeleton is
 
 \[
-n=(m-1)-(n+1),
-\]
-
-so
-
-\[
-m=2n+2.
-\]
-
-Erase all background colors and retain only the four positional markers. Up to harmless fixed endpoint-marker conventions, the resulting skeleton language has the form
-
-\[
-L_{\mathrm{gap}}
-=
-\{A\,a^{n-1}B\,C\,a^{n-1}D:n\ge1\}.
+L_{gap}=\{A a^{n-1}BCa^{n-1}D:n\ge1\}.
 \]
 
 ### Lemma 4.1
 
-\(L_{\mathrm{gap}}\) is not regular.
+\(L_{gap}\) is not regular.
 
 ### Proof
 
-After intersecting with the displayed fixed marker pattern and applying a homomorphism deleting the fixed marker letters, one obtains the classical equal-block language
+Use Myhill-Nerode. The prefixes
 
 \[
-\{a^n b^n:n\ge0\},
+p_n=Aa^{n-1}B
 \]
 
-which is not regular. Since regular languages are closed under intersection and homomorphism, \(L_{\mathrm{gap}}\) cannot be regular. \(\square\)
+are pairwise distinguishable: the suffix
+
+\[
+s_n=Ca^{n-1}D
+\]
+
+satisfies \(p_ns_n\in L_{gap}\), while for \(r\ne n\), \(p_rs_n\notin L_{gap}\). Hence infinitely many Nerode classes exist, so the language is not regular. \(\square\)
+
+This replaces the earlier invalid shortcut using a plain homomorphism to an equal-block language.
 
 ## 5. One-Head Wall Theorem
 
 ### Theorem 5.1
 
-No finite expansion of finite linear order by one-head finite-state interval predicates, even with finitely many ultimately-periodic unary background colors, can uniformly first-order define EqGap.
+No finite expansion of finite linear order by one-head finite-state interval predicates, even with finitely many ultimately-periodic unary background colors, uniformly FO-defines EqGap.
 
 ### Proof
 
-If EqGap were definable, then after imposing the regular restrictions
+If EqGap were definable, imposing the regular endpoint restrictions of Section 4 would yield a regular marked-word language by Lemma 3.1, contradicting Lemma 4.1. \(\square\)
 
-\[
-a=\min,
-\quad
-c=\operatorname{Succ}(b),
-\quad
- d=\max,
-\]
-
-Lemma 3.1 would make the corresponding marked-word language regular. Lemma 4.1 says that language is nonregular. Contradiction. \(\square\)
-
-Because truncated addition and EqGap are already known to be FO-interdefinable over the ordered generic sector, we also obtain
+Because Add and EqGap are uniformly FO-interdefinable over the ordered generic sector,
 
 \[
 \boxed{
-\operatorname{Add}
-\text{ is not uniformly FO-definable from any finite one-head finite-state interval layer.}
+Add\text{ is also impossible in the one-head finite-state layer.}
 }
 \]
 
-This strictly strengthens the unary U1 finite-state wall.
+## 6. Local synchronized product step
 
-## 6. Two synchronized heads
-
-Now allow two moving heads and no unbounded internal memory.
-
-Given two forward intervals
+Let
 
 \[
-[a,b],
-\qquad
-[c,d],
+E(a,c;b,d)
+\iff
+Succ(a,b)\land Succ(c,d).
 \]
 
-place head \(H_1\) at \(a\) and head \(H_2\) at \(c\).
+This is the one-step edge of the synchronized product walk.
 
-Repeat the single local transition
+Crucially, \(E\) itself is FO-definable from the base order. Therefore adding \(E\) as a static primitive does not cross the additive leakage wall.
 
-\[
-(H_1,H_2)\mapsto
-(\operatorname{Succ}(H_1),\operatorname{Succ}(H_2))
-\]
+The new power appears only when one admits unbounded traversal of \(E\).
 
-while neither target has been passed.
-
-Accept exactly when the two heads hit \(b\) and \(d\) simultaneously.
-
-Only equality with the two fixed targets and the successor relation are consulted. No numerical rank, counter, arithmetic operation, or carrier-size predicate is available to the machine.
-
-The internal control can be taken to have one running state plus terminal accept/reject status.
-
-## 7. Synchronized-Product Theorem
+## 7. Synchronized-Product Closure Theorem
 
 ### Theorem 7.1
 
@@ -195,134 +146,97 @@ For all forward intervals,
 
 \[
 \boxed{
-\text{the two-head synchronized machine accepts }(a,b;c,d)
+EqGap(a,b;c,d)
 \iff
-\operatorname{EqGap}(a,b;c,d).
+TC(E)((a,c),(b,d)).
 }
 \]
 
 ### Proof
 
-After exactly \(k\) synchronized transitions, the two heads are at the \(k\)-th successors of \(a\) and \(c\), respectively.
+After \(k\) synchronized product steps, the two coordinates are exactly the \(k\)-th successors of \(a\) and \(c\). Reachability from \((a,c)\) to \((b,d)\) therefore holds exactly when the two endpoint displacements are equal. \(\square\)
 
-They hit the targets simultaneously exactly when there exists the same \(k\ge0\) such that
+This theorem is operational/dynamic. It is not a claim that ordinary FO over \((G_m,<,E)\) already contains \(TC(E)\).
 
-\[
-S^k(a)=b
-\qquad\text{and}\qquad
-S^k(c)=d.
-\]
+## 8. Dimension-Two Closure Threshold
 
-On a finite linear order this is equivalent to
+The one-dimensional successor closure is harmless:
 
 \[
-\operatorname{rk}(b)-\operatorname{rk}(a)
-=
-\operatorname{rk}(d)-\operatorname{rk}(c).
+TC(Succ)(a,b)\iff a\le b,
 \]
 
-That is EqGap. \(\square\)
+which is already FO-definable in finite linear order.
 
-This can be expressed graph-theoretically without mentioning ranks. On the product carrier \(G_m^2\), define the local product-successor edge
+But synchronized product closure gives EqGap:
 
 \[
-(a,c)\Rightarrow(b,d)
-\iff
-\operatorname{Succ}(a,b)
-\land
-\operatorname{Succ}(c,d).
+TC(Succ\times Succ)=EqGap.
 \]
 
-Then
+Hence
 
 \[
 \boxed{
-\operatorname{EqGap}(a,b;c,d)
-\iff
-(a,c)\Rightarrow^*(b,d),
+TC(Succ)\in AL0,
+\qquad
+TC(Succ\times Succ)=EqGap\in AL1.
 }
 \]
 
-where \(\Rightarrow^*\) is reflexive-transitive closure.
+This is the clean threshold statement replacing the older unqualified slogan \(H_2^{sync}=AL1\).
 
-Thus additive leakage appears exactly when local successor is allowed to propagate through **two synchronized coordinates with unbounded traversal depth**.
+## 9. Direct synchronized transport operation
 
-## 8. Direct synchronized transport operation
-
-The same mechanism generates truncated addition without importing an addition table.
-
-Let \(0_G\) be the least generic point. For inputs \(x,y\in G_m\):
-
-1. place \(H_1\) at \(0_G\) with target \(y\);
-2. place \(H_2\) at \(x\);
-3. advance both heads synchronously;
-4. when \(H_1\) reaches \(y\), output the current position \(z\) of \(H_2\);
-5. if \(H_2\) would leave the finite chain first, the operation is undefined.
-
-Call the generated partial operation \(\triangleplus\).
+An operational generator for truncated addition is obtained by starting one head at \(0_G\) with target \(y\), the other at \(x\), and advancing synchronously until the first reaches \(y\). If the second remains in the carrier, output its current point \(z\).
 
 Then
 
 \[
 x\triangleplus y=z
 \iff
-\operatorname{EqGap}(0_G,y;x,z),
+EqGap(0_G,y;x,z),
 \]
 
-hence
+so externally
+
+\[
+\operatorname{rk}(z)=\operatorname{rk}(x)+\operatorname{rk}(y)<m.
+\]
+
+The local generator uses only successor, equality to targets, and unbounded iteration. The completed operation graph is non-position-regular: the closure has been compiled into the primitive table.
+
+## 10. Uniformity and prefix consistency
+
+The generator does not inspect final size \(m\). For the completed graph,
+
+\[
+Graph(\triangleplus_m)
+=
+Graph(\triangleplus_\infty)\cap G_m^3.
+\]
+
+Truth of every old triple is stable under extension. Only the existential domain projection may grow when a previously absent result enters the larger carrier.
+
+EqGap itself is prefix-stable on old quadruples.
+
+## 11. Relative head threshold
+
+Within the declared **operational traversal model**:
 
 \[
 \boxed{
-\operatorname{rk}(z)
-=
-\operatorname{rk}(x)+\operatorname{rk}(y)<m.
+H_1\;<\;H_2^{sync}+TC
 }
 \]
 
-So \(\triangleplus\) is exactly canonical truncated rank addition, but its generator uses only local successor synchronization and unbounded iteration.
+with respect to EqGap.
 
-The arithmetic appears in the **result of closure**, not in the local transition rule.
-
-## 9. Uniformity / import audit
-
-The synchronized generator does not inspect the final size \(m\) and does not use an external unary numerical function.
-
-There is one subtlety: on a short finite prefix, an input pair \((x,y)\) may have no output because the required \(z\) lies beyond the current carrier; after extending the carrier, that same pair may become defined.
-
-This is not a size oracle. The correct consistency notion is graph-prefix consistency:
-
-\[
-\operatorname{Graph}(\triangleplus_m)
-=
-\operatorname{Graph}(\triangleplus_\infty)
-\cap G_m^3.
-\]
-
-Thus membership of every old triple \((x,y,z)\) is stable under extension. Only the existential projection forming the finite partial-function domain can grow when a previously absent output point enters the carrier.
-
-The EqGap relation itself is fully prefix-stable on old quadruples.
-
-## 10. Exact synchronization threshold
-
-Combine Theorems 5.1 and 7.1.
-
-Within the declared finite-state traversal hierarchy:
+More precisely:
 
 \[
 \boxed{
-\text{one moving head}
-\;<\;
-\text{two synchronized moving heads}
-}
-\]
-
-with respect to additive leakage.
-
-More explicitly:
-
-\[
-\boxed{
-H_1:\ \text{finite-state interval tests cannot define EqGap},
+H_1:\ \text{finite-state interval predicates stay below EqGap},
 }
 \]
 
@@ -330,172 +244,117 @@ while
 
 \[
 \boxed{
-H_2^{\mathrm{sync}}:\ \text{a one-state synchronized product walk defines EqGap exactly}.
+H_2^{sync}+\text{unbounded traversal closure}:\ \text{generates EqGap exactly}.
 }
 \]
 
-Therefore the minimum number of simultaneously moving coordinates in this traversal model is
+The statement “two heads are minimal” is valid only inside this operational hierarchy. It is not a global minimality theorem for arbitrary FCOA presentations.
+
+## 12. Cost of materializing the closure
+
+If EqGap itself is materialized, then for gap \(k\) there are \(m-k\) intervals of that length, so
 
 \[
-\boxed{2.}
-\]
-
-Increasing finite control state is not what crosses the wall; adding the second synchronized coordinate is.
-
-## 11. Cost of the generated relations
-
-Let \(m=|G_m|\).
-
-### EqGap support
-
-For gap \(k\in\{0,\dots,m-1\}\), there are \(m-k\) forward intervals of length \(k\). Therefore
-
-\[
-|\operatorname{EqGap}_m|
+|EqGap_m|
 =
 \sum_{k=0}^{m-1}(m-k)^2
-=
-\sum_{j=1}^{m}j^2
-\]
-
-and hence
-
-\[
-\boxed{
-|\operatorname{EqGap}_m|
 =
 \frac{m(m+1)(2m+1)}6
 =
 \Theta(m^3).
-}
 \]
 
-This is a 4-ary relation of density \(\Theta(1/m)\) inside the \(m^4\) possible quadruples.
-
-### Truncated-addition operation domain
-
-For each ordered input pair \((x,y)\) with ranks \(i,j\), the generated output exists iff
+If truncated addition is materialized as a partial operation,
 
 \[
-i+j<m.
-\]
-
-Therefore
-
-\[
-|\operatorname{Dom}(\triangleplus)|
+|Dom(\triangleplus)|
 =
 \sum_{i=0}^{m-1}(m-i)
 =
-\boxed{\frac{m(m+1)}2}.
+\frac{m(m+1)}2
+=
+\Theta(m^2).
 \]
 
-Thus the first direct base-sort AL1 operation produced by synchronized transport has quadratic domain support and one active output per defined input pair.
+These are representation costs, not lower bounds for AL1 in all models.
 
-No claim of cell-cost minimality for AL1 is made.
+## 13. Product-sort caution
 
-## 12. FCOA compilation viewpoints
-
-There are two equivalent ways to use the mechanism.
-
-### Base-sort view
-
-Generate the partial operation \(\triangleplus\) directly by synchronized transport from \((0_G,x)\) to \((y,z)\).
-
-This stays on the generic base sort but its values are active carrier points, not anonymous terminals.
-
-### Interval-sort view
-
-Introduce the conceptual interval sort
+The Cartesian configuration sort
 
 \[
-I_m=\{(a,b):a\le b\}.
+C_m=G_m^2
 \]
 
-Equal-gap is then an equivalence relation on intervals by length. A constant-valued partial operation on pairs of intervals can compile its domain:
+is not a fixed finite-copy sort. If it is introduced only with coordinate projections and relations FO-definable from base order, including local product successor, it is a fixed-dimensional FO interpretation of the base chain.
 
-\[
-I\star_{\mathrm{gap}}J=\Omega
-\iff
-\operatorname{length}(I)=\operatorname{length}(J).
-\]
+Therefore ordinary FO on that interpreted structure translates back to FO on finite linear order and still cannot define EqGap.
 
-This is closer to Domain Compilation but pays the explicit cost of a pair/interval sort.
+A primitive reachability relation on \(C_m\) would be exactly the missing closure.
 
-The central theorem does not prefer one compilation; it identifies the generator threshold before representation optimization.
+## 14. Fixed-depth nesting does not suffice
 
-## 13. Conceptual consequence
-
-The post-G4 hierarchy now has a dynamic interpretation:
+Because fixed-depth composition of position-regular primitives remains FO-definable from a finite position-regular signature,
 
 \[
 \boxed{
-\text{absolute finite phase}
-\;<\;
-\text{one-interval regular memory}
-\;<\;
-\text{synchronized two-interval transport}
-\;=\;
-\text{variable displacement}.
-}
+\text{fixed syntactic nesting depth cannot cross to EqGap}.}
 \]
 
-The critical resource is the ability to **transport one unbounded interval length as a synchronization invariant of a second interval**.
+A successful nesting construction must use depth growing with the carrier/input and materialize that history, or otherwise introduce nonregular incidence information.
 
-A finite-state controller does not store the gap numerically. The gap is stored geometrically as the number of simultaneous local transitions before termination.
+## 15. Arithmetic-leakage status
 
-This is precisely the kind of generated memory sought by the FCOA programme: the local rule is weak, but unbounded nesting/iteration of the rule creates a stronger recoverable invariant.
-
-## 14. Arithmetic-leakage status
-
-Because synchronized transport generates EqGap, it reaches
+The static local product step remains in the order layer:
 
 \[
-\boxed{AL1}
+FO[<,E]=FO[<]
 \]
 
-exactly.
+because \(E\) is definable from successor/order.
 
-No multiplication rule is introduced. Nothing in this note proves a jump to AL2.
+The unbounded closure of \(E\) reaches the additive gateway:
 
-Thus the mechanism is a clean additive-gateway witness rather than a full-arithmetic witness.
+\[
+TC(E)=EqGap.
+\]
 
-## 15. What is still open
+No multiplication result follows from this note alone.
 
-The result answers **existence and head-threshold** in the declared traversal model, but not global FCOA minimality.
+## 16. Status
 
-Open optimization questions include:
-
-1. Can AL1 be encoded on the original base sort with subquadratic operation-domain support?
-2. Can bounded anonymous outputs encode EqGap more cheaply than active-output truncated addition?
-3. Can two ordinary FCOA partial operations jointly realize synchronized transport without adding an explicit transitive-closure/reachability primitive?
-4. Is there a strictly weaker two-head mechanism that leaves the one-head wall but remains below EqGap?
-5. Can the nesting/atomicity machinery supply the needed unbounded closure internally rather than as a generator semantics?
-
-These are separate questions and no answer is assumed here.
-
-## 16. Hostile-audit targets
-
-Before promotion, an independent audit should attack:
-
-- whether Lemma 3.1 correctly covers the declared one-head predicates with periodic backgrounds;
-- the positional nonregularity reduction for EqGap;
-- whether the two-head model accidentally smuggles EqGap in through its stopping condition;
-- the distinction between local transition rule and transitive/reachability closure;
-- graph-prefix consistency under finite truncation;
-- whether “two heads are minimal” is stated only relative to this exact traversal hierarchy;
-- whether the direct operation \(\triangleplus\) should be called generated addition rather than a primitive FCOA operation;
-- whether any representation claim silently adds a Cartesian-product sort.
-
-## 17. Status
-
-The proofs in this note support the theorem candidate
+After hostile audit and reconciliation with the Regular-Primitive Barrier:
 
 \[
 \boxed{
-\mathbf W:\ H_1< H_2^{\mathrm{sync}}=AL1
-\text{ with respect to EqGap/additive leakage.}
+\mathbf F:\ \text{one-head finite-state interval layers do not FO-define EqGap/Add}.}
+\]
+
+\[
+\boxed{
+\mathbf F:\ TC(Succ)\in AL0,
+\qquad
+TC(Succ\times Succ)=EqGap\in AL1.
 }
 \]
 
-No numbered G5 operation family is opened by this note.
+\[
+\boxed{
+\mathbf F:\ \text{two-head synchronization alone, as a static local primitive, does not imply AL1}.}
+\]
+
+The retired working slogan
+
+\[
+H_2^{sync}=AL1
+\]
+
+is replaced by
+
+\[
+\boxed{
+H_2^{sync}+\text{unbounded traversal closure}=AL1.
+}
+\]
+
+No numbered G5 operation family is opened here.

@@ -1,7 +1,7 @@
 # Regular-Primitive Barrier and Closure Placement
 
 **Project:** FCOA Admissibility Geometry  
-**Status:** central theorem candidate; proof-complete in stated scope  
+**Status:** audited theorem in stated scope  
 **Scope:** post-U1 / post-head-synchronization Arithmetic Leakage programme
 
 ## 1. Central question
@@ -16,9 +16,9 @@ The synchronized-head construction shows that
 
 where \(\Rightarrow\) is the local product-successor step.
 
-The next question is whether the unbounded closure can be eliminated and the same memory obtained from two ordinary weak FCOA partial operations alone.
+Can the unbounded closure be eliminated and the same memory obtained from finitely many ordinary weak FCOA partial operations alone?
 
-The answer is negative in the natural local/finite-state regime:
+Within the natural local/finite-state regime the answer is negative:
 
 \[
 \boxed{
@@ -26,55 +26,31 @@ The answer is negative in the natural local/finite-state regime:
 }
 \]
 
-Thus synchronized closure cannot disappear. It can only be placed in one of three locations:
+Therefore synchronized closure cannot disappear. It can only be placed in one of three locations:
 
 1. the ambient logic/semantics as unbounded closure or reachability;
 2. a primitive operation/relation whose graph already contains nonregular displacement information;
-3. an additional unbounded carrier/sort whose incidence structure materializes the closure.
+3. an additional unbounded carrier/sort whose incidence structure materializes the missing nonregular information.
 
-This is the **Closure-Placement Principle**.
+This is the working **Closure-Placement Principle**.
 
 ## 2. Position-regular relations
 
 Let
 
 \[
-L_m=([m],<),
-\qquad [m]=\{0,\dots,m-1\}.
+L_m=([m],<),\qquad [m]=\{0,\dots,m-1\}.
 \]
 
-For a fixed arity \(r\), encode a tuple
+For fixed arity \(r\), encode a tuple \(\bar x\in[m]^r\) by a length-\(m\) word whose letter at position \(j\) records which variables equal \(j\). Coincident variables are allowed. Fixed unary background colors may be included in the finite alphabet.
 
-\[
-\bar x=(x_1,\dots,x_r)\in[m]^r
-\]
+A uniform family \(R_m\subseteq[m]^r\) is **position-regular** when the language of correctly marked finite words representing tuples in \(R_m\) is regular.
 
-by a length-\(m\) word whose letter at position \(j\) records which variables \(x_i\) are equal to \(j\). Coincident variables are allowed.
+Examples include order, equality, successor, fixed-distance predicates, ultimately-periodic unary colors, one-head finite-state interval predicates, and operation graphs recognized by a fixed finite automaton scanning the marked carrier.
 
-If fixed unary background colors are present, include their finite color label in the alphabet.
+## 3. Finite-copy presentation
 
-A uniform family of relations
-
-\[
-R_m\subseteq[m]^r
-\]
-
-is called **position-regular** if the language of all correctly marked finite words representing tuples in \(R_m\) is regular.
-
-This is a semantic definition. It does not assume that \(R_m\) is FO-definable in pure order.
-
-Examples include:
-
-- order and equality;
-- successor;
-- fixed-distance relations;
-- ultimately-periodic unary colors;
-- every one-head finite-state interval predicate from `U1_FINITE_STATE_WALL.md`;
-- any operation graph recognized by a fixed finite automaton scanning the marked ordered carrier.
-
-## 3. Finite-copy FCOA presentation
-
-The G4-A collapse already uses a fixed finite-copy transduction of the generic chain. To cover the same style of typed/output architecture, allow a fixed finite collection of copies
+Allow a fixed finite collection of copies
 
 \[
 C_1\times[m],\dots,C_s\times[m]
@@ -82,34 +58,27 @@ C_1\times[m],\dots,C_s\times[m]
 
 plus finitely many singleton roles.
 
-A primitive relation or partial-operation graph on these copies is **finite-copy position-regular** when, after recording the finitely many copy labels of its arguments and marking their source positions, its tuple language is regular.
+A primitive relation or relationalized partial-operation graph is **finite-copy position-regular** when its marked-tuple language, including the finite copy labels, is regular.
 
-This allows active points, terminal-output copies, and fixed boundary/singleton roles while keeping the presentation one-dimensional and finite-state.
+This covers the style of the G4-A fixed-copy transduction.
 
-## 4. Regular closure under first-order formulas
+## 4. FO closure preserves position-regularity
 
-### Lemma 4.1 — base-sort version
+### Lemma 4.1
 
-Let a finite relational signature on \([m]\) consist only of position-regular primitive relations. Then every uniformly first-order definable relation is position-regular.
+Let a finite relational signature on \([m]\) consist only of position-regular primitive relations. Then every uniformly FO-definable relation is position-regular.
 
 ### Proof
 
-Proceed by induction on formulas.
+Atomic formulas are regular by hypothesis. Regular languages are closed under Boolean operations. Existential quantification is projection of a marker track, and regular languages are closed under projection. Universal quantification follows from complement. Correct single-occurrence marker conditions are regular. \(\square\)
 
-- Atomic formulas are regular by hypothesis.
-- Boolean combinations preserve regularity.
-- For \(\exists x\,\varphi(x,\bar y)\), add an \(x\)-marker track, recognize the regular marked-word language for \(\varphi\), and project away the \(x\)-track. Regular languages are closed under projection.
-- Universal quantification follows from complement and existential quantification.
-
-Correctness conditions saying that each variable marker occurs exactly once are themselves regular. \(\square\)
-
-### Lemma 4.2 — finite-copy version
+### Lemma 4.2
 
 The same conclusion holds for a fixed finite-copy presentation.
 
 ### Proof
 
-Quantifying over an element means choosing one of finitely many copy labels and one position, or one of finitely many singleton roles. Existential quantification is therefore a finite union of regular projections. The induction from Lemma 4.1 is unchanged. \(\square\)
+Quantification chooses one of finitely many copy labels and one position, or one of finitely many singleton roles. Existential quantification is therefore a finite union of regular projections. \(\square\)
 
 ## 5. EqGap is not position-regular
 
@@ -126,42 +95,42 @@ For forward intervals,
 Restrict to
 
 \[
-a=\min,
-\qquad
-c=\operatorname{Succ}(b),
-\qquad
-d=\max.
+a=\min,\qquad c=\operatorname{Succ}(b),\qquad d=\max.
 \]
 
-If \(b\) has zero-based rank \(n\ge1\), EqGap forces a marker skeleton of the form
+If \(b\) has zero-based rank \(n\ge1\), the restricted marker skeleton is
 
 \[
-A\,u^{n-1}B\,C\,u^{n-1}D.
+L_{gap}=\{A a^{n-1}BCa^{n-1}D:n\ge1\}.
 \]
 
-If this language were regular, then intersecting with the fixed marker pattern and applying a homomorphism would make the equal-block language
+### Lemma 5.1
+
+\(L_{gap}\) is not regular.
+
+### Proof
+
+Assume it regular and let \(p\) be a pumping length. Choose
 
 \[
-\{u^n v^n:n\ge0\}
+w=Aa^pBCa^pD.
 \]
 
-regular, contradiction.
+After absorbing the fixed initial marker into the pumping constant, any pumping decomposition whose pumped part lies in the first variable \(a\)-block changes only that block while leaving the second block length \(p\). Pumping therefore produces a word not in \(L_{gap}\), contradiction. Equivalently one may use Myhill-Nerode with prefixes \(Aa^nB\), which require pairwise distinct continuations \(Ca^nD\). \(\square\)
 
 Hence
 
 \[
-\boxed{
-\operatorname{EqGap}\text{ is not position-regular.}
-}
+\boxed{\operatorname{EqGap}\text{ is not position-regular}.}
 \]
 
-The same conclusion applies to truncated rank addition because EqGap and Add are already uniformly FO-interdefinable over the ordered generic sector.
+Because EqGap and truncated rank addition are uniformly FO-interdefinable over the ordered generic sector, the same barrier applies to Add.
 
 ## 6. Regular-Primitive Barrier
 
 ### Theorem 6.1
 
-Let \(\mathfrak B_m\) be any uniform finite-signature, fixed finite-copy expansion of the G4-A generic order such that every added primitive relation and every relationalized partial-operation graph is finite-copy position-regular.
+Let \(\mathfrak B_m\) be any uniform finite-signature fixed finite-copy expansion of the G4-A generic order such that every added primitive relation and every relationalized partial-operation graph is finite-copy position-regular.
 
 Then neither EqGap nor canonical truncated rank addition is uniformly first-order definable in \(\mathfrak B_m\).
 
@@ -169,19 +138,11 @@ Then neither EqGap nor canonical truncated rank addition is uniformly first-orde
 
 By Lemma 4.2 every FO-definable base-sort relation in \(\mathfrak B_m\) is position-regular. Section 5 shows EqGap is not. If Add were definable, EqGap would be definable from Add by the already fixed additive-gateway formula. Contradiction. \(\square\)
 
-This theorem is insensitive to the number of primitive operation symbols as long as that number is finite and every primitive graph stays position-regular.
+Thus the result holds for any finite number of position-regular primitive operation symbols.
 
-## 7. Consequence for two ordinary local partial operations
+## 7. Consequence for ordinary local partial operations
 
-Suppose two new partial operations
-
-\[
-\star,\diamond
-\]
-
-are generated by fixed local/finite-state rules on the recovered carrier geometry, and their full operation graphs are position-regular.
-
-Then even the joint reduct
+If \(\star,\diamond\) are generated by fixed local/finite-state rules and their full graphs remain position-regular, then
 
 \[
 (G_m,<,\star,\diamond)
@@ -189,121 +150,125 @@ Then even the joint reduct
 
 cannot FO-recover EqGap.
 
-Therefore:
+Finite joint-rigidity phenomena therefore do not imply variable-displacement memory.
 
-\[
-\boxed{
-\text{two weak ordinary local partial operations do not internalize synchronized transport.}
-}
-\]
+## 8. Algorithmic execution versus static FO
 
-Hybrid interaction can destroy finite automorphisms, synchronize value fibers, or add modular information, but if all primitive graphs remain position-regular then no amount of finite first-order combination crosses the additive gateway.
+Let \(S(x,y)\) be successor. Repeatedly applying successor in parallel can algorithmically compare interval lengths, but the static reduct containing only the one-step relation does not define the reflexive-transitive closure of the product step.
 
-This does not conflict with finite JFS phenomena: finite joint rigidity is much weaker than uniform variable-displacement memory.
-
-## 8. Why repeated execution is not yet internal FO memory
-
-Let \(S(x,y)\) be successor. Externally, an algorithm can compare two interval lengths by repeatedly applying successor in parallel:
-
-\[
-(a,c)\mapsto(Sa,Sc)\mapsto(S^2a,S^2c)\mapsto\cdots.
-\]
-
-This computes EqGap.
-
-But the static first-order reduct containing only the one-step relation does not define the reflexive-transitive closure of the product step.
-
-Thus two notions must not be conflated:
+Hence
 
 \[
 \boxed{
 \text{algorithmic recovery by unbounded execution}
-\neq
+\ne
 \text{uniform FO definability in the static reduct}.
 }
 \]
 
-The central Arithmetic Leakage levels AL0/AL-FS/AL1 concern the second notion.
+The Arithmetic Leakage levels AL0/AL-FS/AL1 concern the second notion unless stated otherwise.
 
-If unbounded execution is admitted as part of semantics, the logic has effectively been strengthened by a closure mechanism.
+## 9. Dimension-Two Closure Threshold
 
-## 9. Closure-Placement Theorem
+The audited reconciliation with the head-synchronization note is especially clean.
 
-### Theorem 9.1
-
-Assume a fixed finite-copy FCOA expansion uniformly FO-recovers EqGap.
-
-Then at least one of the following must occur:
-
-1. some primitive relation/operation graph is not position-regular;
-2. the recovery semantics uses an unbounded closure mechanism not expressible by ordinary FO over the primitive graphs;
-3. the presentation uses an additional unbounded sort or incidence structure outside the finite-copy position-regular model, and that structure itself carries the missing nonregular information.
-
-### Proof
-
-If none of (1)-(3) occurs, the entire presentation falls under Theorem 6.1, which forbids FO-definition of EqGap. \(\square\)
-
-The theorem is deliberately a placement result, not a claim that the three cases are disjoint or exhaustive for every conceivable formalism. It identifies where the nonregular displacement information must enter within the present FCOA programme.
-
-## 10. Recursion does not make the closure disappear
-
-A tempting construction defines an operation recursively by
+In one dimension,
 
 \[
-x\boxplus 0_G=x,
+TC(S)(a,b)\iff a\le b,
 \]
+
+which is already FO-definable in the ordered carrier.
+
+Define the local product-successor edge
 
 \[
-x\boxplus \operatorname{Succ}(y)
-=
-\operatorname{Succ}(x\boxplus y),
+E(a,c;b,d)
+\iff
+S(a,b)\land S(c,d).
 \]
 
-whenever the result remains in the finite carrier.
-
-This looks local, but its completed operation graph is exactly truncated addition:
+The edge \(E\) itself is FO-definable from order and therefore adds no static FO power. But
 
 \[
-\operatorname{rk}(x\boxplus y)
-=
-\operatorname{rk}(x)+\operatorname{rk}(y).
+TC(E)((a,c),(b,d))
+\iff
+EqGap(a,b;c,d).
 \]
 
-Hence its graph is non-position-regular by Theorem 6.1.
-
-The recursive specification has therefore **compiled the unbounded closure into the primitive table**. It is not a counterexample to the barrier.
-
-This gives the useful slogan
+Thus
 
 \[
 \boxed{
-\text{recursion can relocate closure; it cannot erase its logical cost.}
+TC(S)\in AL0,
+\qquad
+TC(S\times S)=EqGap\in AL1.
 }
 \]
 
-## 11. Configuration-sort attempt
+The power source is not “two heads” by itself, but unbounded closure on synchronized two-dimensional product geometry.
 
-Another natural attempt introduces a configuration sort
+## 10. Closure-Placement Theorem
+
+### Theorem 10.1
+
+Assume a fixed finite-copy FCOA expansion uniformly FO-recovers EqGap. Then at least one of the following occurs:
+
+1. some primitive relation/operation graph is not position-regular;
+2. recovery semantics uses an unbounded closure mechanism not expressible by ordinary FO over the primitive graphs;
+3. an additional unbounded sort/incidence structure outside the finite-copy position-regular model carries the missing nonregular information.
+
+### Proof
+
+If none occurs, the presentation falls under Theorem 6.1, contradiction. \(\square\)
+
+This is a placement theorem, not a claim that the three cases are disjoint in every formalism.
+
+## 11. Recursion relocates closure
+
+A recursively specified operation
 
 \[
-C_m=G_m^2
+x\boxplus0_G=x,
+\qquad
+x\boxplus\operatorname{Succ}(y)=\operatorname{Succ}(x\boxplus y)
 \]
 
-and a local synchronized step
+has completed graph equal to truncated addition. Therefore its graph is non-position-regular. The recursive specification has compiled the unbounded closure into the primitive table.
 
 \[
-(a,c)\mapsto(\operatorname{Succ}(a),\operatorname{Succ}(c)).
+\boxed{
+\text{recursion can relocate closure; it cannot erase its logical cost}.}
 \]
 
-The local step itself is weak. EqGap is again reachability in this configuration graph.
+## 12. Cartesian-product sort is a separate case
 
-If the configuration sort is merely the Cartesian product with only local product-successor incidence, ordinary FO still has no transitive closure. Adding a primitive relation saying that one configuration reaches another is exactly adding the missing closure relation.
+The fixed finite-copy theorem does not literally cover a quadratic configuration sort
 
-Thus a product sort by itself does not solve the internalization problem.
+\[
+C_m=G_m^2.
+\]
 
-## 12. Fiber-only encoding needs unboundedly many gap labels
+Nevertheless, if this sort is introduced only as the Cartesian product with coordinate projections and relations FO-definable from \((G_m,<)\), including local product successor, it is a fixed-dimensional FO interpretation of the base order.
 
-There is also a simple value-fiber obstruction.
+Every FO formula over that interpreted pair structure translates to FO over the base order. Since EqGap is not FO-definable in finite linear order, the pair sort plus local step still cannot define EqGap.
+
+Adding a primitive reachability relation on the pair sort is exactly adding the missing closure.
+
+## 13. Fixed-depth nesting barrier
+
+Any fixed-depth term or formula nesting over a finite position-regular primitive signature is still FO-definable in that signature and therefore position-regular.
+
+Hence
+
+\[
+\boxed{
+\text{fixed syntactic nesting depth cannot cross the Regular-Primitive Barrier}.}
+\]
+
+To reach EqGap via nesting, depth must grow with input/carrier and be materialized, or a non-position-regular primitive/incidence relation must be introduced.
+
+## 14. Fiber-only encoding needs unboundedly many gap labels
 
 Let
 
@@ -311,93 +276,51 @@ Let
 I_m=\{(a,b):a\le b\}
 \]
 
-be forward intervals, and suppose a value map
+and suppose \(c:I_m\to O_m\) satisfies
 
 \[
-c:I_m\to O_m
+EqGap(I,J)\iff c(I)=c(J).
 \]
 
-is required to satisfy
-
-\[
-\operatorname{EqGap}(I,J)
-\iff
-c(I)=c(J).
-\]
-
-There are exactly \(m\) possible interval lengths \(0,1,\dots,m-1\). Different lengths must receive different values. Therefore
+There are exactly \(m\) possible interval lengths, so distinct lengths require distinct values:
 
 \[
 \boxed{|O_m|\ge m.}
 \]
 
-Hence a bounded anonymous output alphabet cannot encode EqGap purely as equality of interval-output fibers.
+Bounded outputs can encode EqGap only if the nonregular information is placed elsewhere, for example in the domain.
 
-Bounded outputs remain possible if EqGap is stored in **domain placement** instead, but then the domain itself is the nonregular AL1 relation and closure has again been compiled into the operation.
+## 15. Central consequence
 
-## 13. What the synchronized-head result really established
-
-The synchronized two-head mechanism is best read as a **generator theorem**:
-
-\[
-\boxed{
-\text{a weak local product step + unbounded synchronized closure generates EqGap.}
-}
-\]
-
-It is not yet a theorem that ordinary FCOA first-order semantics automatically contains that closure.
-
-The Regular-Primitive Barrier now makes the missing ingredient exact.
-
-Therefore the previous working slogan
-
-\[
-H_2^{\mathrm{sync}}=AL1
-\]
-
-should be read as
-
-\[
-\boxed{
-H_2^{\mathrm{sync}}+\text{unbounded traversal semantics}=AL1,
-}
-\]
-
-not as a claim that two local operation symbols alone reach AL1.
-
-## 14. Central negative answer
-
-The targeted question was:
-
-\[
-\text{Can synchronized transport be realized inside two ordinary weak FCOA partial operations without explicit transitive closure?}
-\]
-
-Within finite-copy, local/finite-state, static FO semantics, the answer is
-
-\[
-\boxed{\textbf{No}.}
-\]
-
-If the two operations remain position-regular, Theorem 6.1 blocks EqGap.
-
-If one operation is recursively completed until it transports arbitrary gaps, its graph is already nonregular and the closure has merely moved into that primitive operation.
-
-So the scientific boundary is not “one operation versus two operations.” It is
+Within finite-copy local/finite-state static FO semantics:
 
 \[
 \boxed{
 \text{regular local primitives}
 \quad\text{versus}\quad
-\text{materialized/unbounded closure}.
+\text{materialized/unbounded closure}
 }
 \]
 
-## 15. New optimization problem
+is the genuine boundary.
 
-The main line should therefore stop asking whether two weak local operations can magically create Add by finite FO interaction. They cannot in the stated class.
+The previous shorthand
 
-The next genuine optimization problem is:
+\[
+H_2^{sync}=AL1
+\]
+
+must therefore be read only operationally as
+
+\[
+\boxed{
+H_2^{sync}+\text{unbounded traversal closure}=AL1.
+}
+\]
+
+## 16. New optimization problem
+
+The next central question is:
 
 \[
 \boxed{
@@ -405,27 +328,11 @@ The next genuine optimization problem is:
 }
 \]
 
-Three concrete representations should be compared:
-
-1. **active-output addition graph** — quadratic operation domain \(\Theta(m^2)\);
-2. **domain-compiled EqGap** — one terminal output but \(\Theta(m^3)\) four-ary support on interval pairs;
-3. **history/nesting materialization** — add intermediate witness objects generated locally and ask whether their total number/support can be made subquadratic while FO exposing equal displacement.
-
-The third route is now the strongest candidate for a genuinely FCOA-native improvement because it may turn unbounded traversal into explicit finite composition witnesses rather than importing a numerical function.
-
-## 16. Connection to sandbox nesting
-
-The sandbox-atomicity direction supplies a natural language for well-founded predecessor depth. However, ordinal rank there is a semantic invariant of the factor relation; it is not automatically an FO-definable function inside the reduct.
-
-Therefore simply observing that two objects have equal nesting depth would already use a rank-comparison mechanism stronger than the local factor graph.
-
-A central bridge would require **materializing depth witnesses** inside FCOA so that equal depth becomes first-order visible without naming numerical ranks.
-
-This is precisely the history/nesting route in Section 15.
+Direct addition costs \(\Theta(m^2)\) operation-domain support; direct EqGap domain compilation costs \(\Theta(m^3)\) four-ary support. History/nesting materialization may compress this further and is now the main constructive route.
 
 ## 17. Status
 
-The mathematical closure argument is fixed in the following stated scope:
+After hostile audit:
 
 \[
 \boxed{
@@ -435,11 +342,23 @@ The mathematical closure argument is fixed in the following stated scope:
 
 \[
 \boxed{
-\mathbf F:\ \text{bounded-output pure fiber coding of EqGap requires }|O_m|\ge m.
+\mathbf F:\ TC(S)\in AL0\text{ and }TC(S\times S)=EqGap\in AL1.
 }
 \]
 
-The programme-level formulation remains working terminology:
+\[
+\boxed{
+\mathbf F:\ \text{fixed-depth nesting over regular primitives cannot cross the barrier.}
+}
+\]
+
+\[
+\boxed{
+\mathbf F:\ \text{pure fiber EqGap coding requires }|O_m|\ge m.
+}
+\]
+
+Programme terminology remains
 
 \[
 \boxed{
@@ -447,4 +366,4 @@ The programme-level formulation remains working terminology:
 }
 \]
 
-No new G5 operation is accepted here.
+No numbered G5 operation family is opened here.

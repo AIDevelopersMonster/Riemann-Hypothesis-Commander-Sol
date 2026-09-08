@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the archival release once its DOI is assigned."
+title: "Reflections on Point-Image Phase Synchronization with Commander Sol: Exact Costs, Cut-Space Packings, and a Sharp Stabilization Threshold in FCOA"
+type: article
+authors:
+  - family-names: "Malachevsky"
+    given-names: "Alex"
+    orcid: "https://orcid.org/0009-0008-6009-3196"
+date-released: 2026-08-31
+version: "1.0-rc1"
+repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
+keywords:
+  - FCOA
+  - anonymous values
+  - permutation synchronization
+  - unique colorability
+  - set partitions
+  - cut spaces
+  - vector space partitions
+  - rigidity cost
+license: CC-BY-4.0
