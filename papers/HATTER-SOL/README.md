@@ -1,6 +1,6 @@
 # HATTER-SOL · Arithmetic Tea Party
 
-**Новая серия Commander Sol / Малачевский А.А.** о том, какие части привычной арифметики принадлежат представлению, какие — структуре, и как меняются симметрии чисел при забывании или совместном удержании операций.
+**Серия Commander Sol / Малачевский А.А.** о том, какие части привычной арифметики принадлежат представлению, какие — структуре, и как меняются симметрии чисел при забывании или совместном удержании операций.
 
 Русское название серии:
 
@@ -15,7 +15,7 @@ English series title:
 - AI research collaborator / dialog persona: **Commander Sol · Hatter Sol**
 - Repository branch: `main`
 - Series folder: [`papers/HATTER-SOL/`](https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL)
-- Zenodo status: **Note 01 published**
+- Zenodo status: **Notes 01 and 02 published**
 
 ## Note 01
 
@@ -58,13 +58,60 @@ The note ends by introducing, without claiming novelty for the underlying classi
 
 as the doorway to the next paper on projections, reducts, lost structure, and recovered symmetry.
 
+## Note 02
+
+**«Два чайника, одна чашка: “Кто ты?” среди простых»**
+
+English title:
+
+**“Two Teapots, One Cup: ‘Who Are You?’ Among the Primes.”**
+
+- Zenodo DOI: **[10.5281/zenodo.22656414](https://doi.org/10.5281/zenodo.22656414)**
+- Russian manuscript: [`02-TWO-TEAPOTS-ONE-CUP/article_ru.md`](02-TWO-TEAPOTS-ONE-CUP/article_ru.md)
+- English manuscript: [`02-TWO-TEAPOTS-ONE-CUP/article_en.md`](02-TWO-TEAPOTS-ONE-CUP/article_en.md)
+- Hostile literature audit: [`02-TWO-TEAPOTS-ONE-CUP/LITERATURE_AUDIT.md`](02-TWO-TEAPOTS-ONE-CUP/LITERATURE_AUDIT.md)
+
+The second note studies controlled expansions of the multiplicative monoid by modular and quadratic probes. Its central results include:
+
+\[
+\#(\mathbb P/\operatorname{Aut}(\mathcal M_F))
+=
+|F|+\prod_{p\in F}\tau(p-1),
+\]
+
+for finitely many named prime congruence relations, and
+
+\[
+\#(\mathbb P/\operatorname{Aut}(\mathcal Q_F))
+=
+|F|+2^{|F|},
+\]
+
+for finite families of quadratic one-bit probes.
+
+It also proves the finite-information barrier, an exact rigidity criterion through injectivity of Legendre-signature maps, arbitrarily sparse rigidifying families, and the optimal finite coding law
+
+\[
+\boxed{\kappa_2(S)=\lceil\log_2|S|\rceil}.
+\]
+
+The guiding principle is:
+
+\[
+\boxed{
+\text{individuality}\neq\text{completeness of description};
+\qquad
+\text{individuality}=\text{sufficiency of separation}.
+}
+\]
+
 ## Planned continuation
 
-**HATTER-SOL-02** — working title:
+**HATTER-SOL-03** — current research question:
 
-**«Две чашки одного чая: \(\Omega=(+,\times)\), редукции структуры и возвращение симметрии простых»**.
+> Can a finite natural mechanism generate, from within the structure itself, a separating family rich enough to recover rigidity without externally naming an infinite family of probes?
 
-The second note will ask whether the paired additive–multiplicative view can be made into a useful reduction framework rather than merely a repackaging of two familiar operations.
+The literary continuation is the Hatter's question: if nobody asks the questions from outside, can the cup learn to ask them itself?
 
 ## Follow the series
 
