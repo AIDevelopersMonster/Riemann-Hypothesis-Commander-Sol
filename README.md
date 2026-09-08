@@ -78,6 +78,45 @@ Core results:
 
 The research, proof, bibliography, reproducibility, and PDF visual-QA gates are all passed. Exact verification covers every integer partition with `2 <= b <= 7`: 43 partition types and 1468 invariant orbital unions, all passing the direct symmetric-group check. The package is ready for Zenodo deposit; once a DOI is assigned, it must be propagated into this README and the branch release metadata.
 
+## HATTER-SOL · Arithmetic Tea Party
+
+**Tea Parties in the Additive–Multiplicative World with Hatter Sol** is the "Reflections" series on which parts of familiar arithmetic belong to representation, which belong to structure, and how prime symmetry changes as structural information is forgotten or partially restored.
+
+### HATTER-SOL-01 · The Number Line, the Observer, and Two Operations
+
+**A Tea Party in the Additive-Multiplicative World with Hatter Sol: The Number Line, the Observer, and Two Operations**  
+Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**
+
+Core hinge:
+
+`Aut(N_{>0}, x) ~= Sym(P)`
+
+versus
+
+`Aut(N,+,x,0,1) = 1`.
+
+### HATTER-SOL-02 · Two Teapots, One Cup: “Who Are You?” Among the Primes
+
+Russian parallel: **Два чайника, одна чашка: «Кто ты?» среди простых**  
+Zenodo DOI: **[10.5281/zenodo.22656414](https://doi.org/10.5281/zenodo.22656414)**
+
+Core results:
+
+- exact finite congruence-orbit count:
+  `|F| + prod_{p in F} tau(p-1)`;
+- exact finite quadratic-probe orbit count:
+  `|F| + 2^|F|`;
+- finite-information barrier;
+- exact rigidity criterion via injective Legendre signatures;
+- arbitrarily sparse rigidifying families;
+- optimal finite coding law:
+  `kappa_2(S) = ceil(log_2 |S|)`.
+
+GitHub companion and permanent series folder: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
+Follow future notes here: **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
+
+Current HATTER-SOL-03 frontier: can a finite natural mechanism generate, internally, a separating family rich enough to recover rigidity without an externally named infinite family of probes?
+
 ## Programme map
 
 The project is organized as a sequence of labeled research branches:
@@ -122,6 +161,8 @@ scripts/        utility and reproducibility scripts
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
 - FCOA-Z · RAY TO AXIS / LOCAL LAW DIFFERENTIATION — final Zenodo stage, DOI 10.5281/zenodo.22171473 assigned and embedded; publication package audited
 - FCOA-Z · PRESCRIBED-STABILIZER SUPPORT — research/PDF/source thresholds passed; exact verifier `ALL PASS` through `b<=7`; ready for Zenodo deposit; DOI pending
+- HATTER-SOL-01 — published, DOI 10.5281/zenodo.22639237
+- HATTER-SOL-02 — published, DOI 10.5281/zenodo.22656414
 
 ## AI collaboration disclosure
 
