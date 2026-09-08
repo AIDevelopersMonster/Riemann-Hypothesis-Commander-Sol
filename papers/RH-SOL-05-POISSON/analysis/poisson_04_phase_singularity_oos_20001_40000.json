@@ -1,0 +1,149 @@
+{
+  "B": 2000,
+  "amplitude_definition": "min abs(G32) across frozen four modes",
+  "method": "RH-SOL-05 POISSON-04_PHASE_SINGULARITY_OOS",
+  "primary_verdict": {
+    "bottom10_null_pass": true,
+    "bottom_over_middle": 2.9375802391607935,
+    "bottom_over_top": 1.4380979293015628,
+    "ordering_bottom_gt_top_gt_middle": true,
+    "phase_singularity_amplification_confirmed": false,
+    "sensitivity_bottom_gt_middle": true,
+    "top10_null_pass": false
+  },
+  "range": [
+    20001,
+    40000
+  ],
+  "strata": {
+    "bottom10": {
+      "area_residualized_m2_11": 0.029846818093391365,
+      "area_residualized_m2_13": 0.02924896590337709,
+      "n": 1884,
+      "q10": 0.013469199036563101,
+      "q16_q32_phase_stability": {
+        "0,1": {
+          "median_abs_phase_error": 0.032818680081682386,
+          "n": 1724,
+          "rho_phase": 0.9622766379360361,
+          "rms_phase_error": 0.31787280644744803
+        },
+        "1,-1": {
+          "median_abs_phase_error": 0.09501155202174019,
+          "n": 1724,
+          "rho_phase": 0.8892667856406469,
+          "rms_phase_error": 0.5527118131591734
+        },
+        "1,0": {
+          "median_abs_phase_error": 0.035029445998714145,
+          "n": 1724,
+          "rho_phase": 0.960621737226634,
+          "rms_phase_error": 0.3235071343310121
+        },
+        "1,1": {
+          "median_abs_phase_error": 0.09479480923762032,
+          "n": 1724,
+          "rho_phase": 0.9013882960650372,
+          "rms_phase_error": 0.5299593915008706
+        }
+      },
+      "q90": 0.1743241145167231,
+      "requested_n": 2000,
+      "target_jitter_null": {
+        "empirical_p_ge": 0.0004997501249375312,
+        "null_max": 0.025645628642235234,
+        "null_median": 0.021537503576128,
+        "null_q95": 0.023047265245448638,
+        "null_q99": 0.023953429177698334,
+        "observed": 0.02924896590337709
+      },
+      "undefined_phase_dropped": 116
+    },
+    "middle80": {
+      "area_residualized_m2_11": 0.011286660923643119,
+      "area_residualized_m2_13": 0.009956822800432821,
+      "n": 16000,
+      "q10": 0.013469199036563101,
+      "q16_q32_phase_stability": {
+        "0,1": {
+          "median_abs_phase_error": 0.02509550541410225,
+          "n": 16000,
+          "rho_phase": 0.9955760134105863,
+          "rms_phase_error": 0.09834816228385025
+        },
+        "1,-1": {
+          "median_abs_phase_error": 0.04588117609347271,
+          "n": 16000,
+          "rho_phase": 0.9911056292300908,
+          "rms_phase_error": 0.13915067340086495
+        },
+        "1,0": {
+          "median_abs_phase_error": 0.026399494298435924,
+          "n": 16000,
+          "rho_phase": 0.9962989216243305,
+          "rms_phase_error": 0.08746944218433277
+        },
+        "1,1": {
+          "median_abs_phase_error": 0.045793636422402126,
+          "n": 16000,
+          "rho_phase": 0.9908732592271826,
+          "rms_phase_error": 0.1427566286830219
+        }
+      },
+      "q90": 0.1743241145167231,
+      "requested_n": 16000,
+      "target_jitter_null": {
+        "empirical_p_ge": 0.0004997501249375312,
+        "null_max": 0.006145271967424613,
+        "null_median": 0.002341709666098999,
+        "null_q95": 0.0036125274483867317,
+        "null_q99": 0.004663894674909145,
+        "observed": 0.009956822800432821
+      },
+      "undefined_phase_dropped": 0
+    },
+    "top10": {
+      "area_residualized_m2_11": 0.020081216032261425,
+      "area_residualized_m2_13": 0.020338646838593502,
+      "n": 2000,
+      "q10": 0.013469199036563101,
+      "q16_q32_phase_stability": {
+        "0,1": {
+          "median_abs_phase_error": 0.022755341930796348,
+          "n": 2000,
+          "rho_phase": 0.9990798806794057,
+          "rms_phase_error": 0.042963319314054074
+        },
+        "1,-1": {
+          "median_abs_phase_error": 0.034233426202796194,
+          "n": 2000,
+          "rho_phase": 0.9984123545549727,
+          "rms_phase_error": 0.056382046434318246
+        },
+        "1,0": {
+          "median_abs_phase_error": 0.021973733298331473,
+          "n": 2000,
+          "rho_phase": 0.9991622109254895,
+          "rms_phase_error": 0.04095288048587093
+        },
+        "1,1": {
+          "median_abs_phase_error": 0.03628447199967928,
+          "n": 2000,
+          "rho_phase": 0.9984046676838308,
+          "rms_phase_error": 0.056521136651768236
+        }
+      },
+      "q90": 0.1743241145167231,
+      "requested_n": 2000,
+      "target_jitter_null": {
+        "empirical_p_ge": 0.4802598700649675,
+        "null_max": 0.021957929689199896,
+        "null_median": 0.02031897844196505,
+        "null_q95": 0.021083983406415027,
+        "null_q99": 0.02135267015256859,
+        "observed": 0.020338646838593502
+      },
+      "undefined_phase_dropped": 0
+    }
+  }
+}

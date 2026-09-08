@@ -1,0 +1,113 @@
+{
+  "B": 2000,
+  "amplitude_definition": "min abs(G32) across frozen four modes",
+  "exact_contrasts": {
+    "Delta_BM": 0.01929214310294427,
+    "Delta_BT": 0.008910319064783588,
+    "Delta_MT": -0.01038182403816068
+  },
+  "matched_null_contrasts": {
+    "Delta_BM": {
+      "empirical_p_ge": 0.35582208895552225,
+      "empirical_p_le": 0.6446776611694153,
+      "null_max": 0.021331414300079853,
+      "null_mean": 0.019068927729726078,
+      "null_median": 0.019066800167191457,
+      "null_min": 0.01697778962636053,
+      "null_q01": 0.017695439553734763,
+      "null_q05": 0.01811715530559644,
+      "null_q95": 0.020080033353076492,
+      "null_q99": 0.020464863178332387,
+      "null_sd": 0.0006020009177108831,
+      "observed": 0.01929214310294427,
+      "z_from_null_mean": 0.37078909126413107
+    },
+    "Delta_BT": {
+      "empirical_p_ge": 0.0004997501249375312,
+      "empirical_p_le": 1.0,
+      "null_max": 0.006024130898846149,
+      "null_mean": 0.0013151974911745615,
+      "null_median": 0.0012676428260202845,
+      "null_min": -0.001180250176631325,
+      "null_q01": -0.00048717223217272567,
+      "null_q05": -7.111036361874459e-05,
+      "null_q95": 0.002856579567980662,
+      "null_q99": 0.003477314132542595,
+      "null_sd": 0.0008835154051994621,
+      "observed": 0.008910319064783588,
+      "z_from_null_mean": 8.596478939599649
+    },
+    "Delta_MT": {
+      "empirical_p_ge": 0.0004997501249375312,
+      "empirical_p_le": 1.0,
+      "null_max": -0.013077602733390217,
+      "null_mean": -0.017753730238551518,
+      "null_median": -0.017837072720263546,
+      "null_min": -0.01964699365294512,
+      "null_q01": -0.018970103831988983,
+      "null_q05": -0.018685183259628386,
+      "null_q95": -0.016598857274702363,
+      "null_q99": -0.015593884945601563,
+      "null_sd": 0.0006720121284874231,
+      "observed": -0.01038182403816068,
+      "z_from_null_mean": 10.969900523943897
+    }
+  },
+  "matched_null_score_correlation": [
+    [
+      1.0,
+      0.6337745298798078,
+      0.03712788921274871
+    ],
+    [
+      0.6337745298798079,
+      0.9999999999999998,
+      0.013781500407478442
+    ],
+    [
+      0.03712788921274871,
+      0.013781500407478444,
+      1.0
+    ]
+  ],
+  "matched_null_score_correlation_order": [
+    "bottom10",
+    "middle80",
+    "top10"
+  ],
+  "method": "RH-SOL-05 POISSON-04B_MATCHED_NULL_CONTRAST",
+  "q10": 0.013469199036563101,
+  "q90": 0.1743241145167231,
+  "range": [
+    20001,
+    40000
+  ],
+  "seed": 20261004,
+  "status": "post-hoc exploratory diagnostic; cannot alter POISSON-04 frozen FAIL",
+  "strata": {
+    "bottom10": {
+      "exact_score": 0.02924896590337709,
+      "matched_null_score_mean": 0.021629151479253768,
+      "matched_null_score_median": 0.02155537295135019,
+      "n": 1884,
+      "requested_n": 2000,
+      "undefined_phase_dropped": 116
+    },
+    "middle80": {
+      "exact_score": 0.009956822800432821,
+      "matched_null_score_mean": 0.0025602237495276864,
+      "matched_null_score_median": 0.0023495126630922996,
+      "n": 16000,
+      "requested_n": 16000,
+      "undefined_phase_dropped": 0
+    },
+    "top10": {
+      "exact_score": 0.020338646838593502,
+      "matched_null_score_mean": 0.020313953988079204,
+      "matched_null_score_median": 0.020312319638628278,
+      "n": 2000,
+      "requested_n": 2000,
+      "undefined_phase_dropped": 0
+    }
+  }
+}

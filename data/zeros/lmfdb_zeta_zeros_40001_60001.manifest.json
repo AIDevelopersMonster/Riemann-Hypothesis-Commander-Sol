@@ -1,0 +1,19 @@
+{
+  "acquired_utc": "2026-09-03T21:23:37.637790+00:00",
+  "expected_start": 40001,
+  "expected_stop": 60001,
+  "first_gamma": "33190.8049670598142716246117751176876",
+  "first_index": 40001,
+  "http_content_type": "text/plain",
+  "identity": "POISSON-05_LMFDB_ZEROS_40001_60001",
+  "last_gamma": "47531.7651472809297911077286100305206",
+  "last_index": 60001,
+  "normalized_csv_sha256": "879f629d2e2e516bd8ad6c87f3173084722ba2b6234293ae693b10e2a04a0076",
+  "overlap_abs_delta": "0E-31",
+  "overlap_index": 40001,
+  "overlap_reference": "C:/Users/CHUWI/Documents/GitHub/Riemann-Hypothesis-Commander-Sol/data/zeros/lmfdb_zeta_zeros_20001_40001.csv",
+  "overlap_tolerance": "1E-27",
+  "raw_sha256": "e4eaaa6104b21cfa7e85938966a816c742ac99358bb2b5751497debe0e175e56",
+  "row_count": 20001,
+  "source_url": "https://www.lmfdb.org/zeros/zeta/list?N=40001&limit=20001&format=plain&download=yes"
+}
