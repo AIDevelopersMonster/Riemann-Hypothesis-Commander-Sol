@@ -15,7 +15,7 @@ English series title:
 - AI research collaborator / dialog persona: **Commander Sol · Hatter Sol**
 - Repository branch: `main`
 - Series folder: [`papers/HATTER-SOL/`](https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL)
-- Zenodo status: **Notes 01 and 02 published**
+- Zenodo status: **Notes 01, 02 and 03 published**
 
 ## Note 01
 
@@ -28,35 +28,6 @@ English title:
 - Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**
 - Russian manuscript: [`01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md`](01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md)
 - English manuscript: [`01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_en.md`](01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_en.md)
-
-The note separates four layers that are often conflated:
-
-1. individuation / distinguishability;
-2. iteration and the natural-number structure;
-3. additive composition;
-4. multiplicative composition and divisibility.
-
-Its strict algebraic hinge is the contrast
-
-\[
-\operatorname{Aut}(\mathbb N_{>0},\times)\cong\operatorname{Sym}(\mathbb P)
-\]
-
-versus
-
-\[
-\operatorname{Aut}(\mathbb N,+,\times,0,1)=\{\mathrm{id}\}.
-\]
-
-Thus primes are fully exchangeable as multiplicative atoms, but become individually pinned once the additive and multiplicative structures are required simultaneously.
-
-The note ends by introducing, without claiming novelty for the underlying classical construction, the paired map
-
-\[
-\Omega(a,b)=(a+b,ab),
-\]
-
-as the doorway to the next paper on projections, reducts, lost structure, and recovered symmetry.
 
 ## Note 02
 
@@ -71,54 +42,63 @@ English title:
 - English manuscript: [`02-TWO-TEAPOTS-ONE-CUP/article_en.md`](02-TWO-TEAPOTS-ONE-CUP/article_en.md)
 - Hostile literature audit: [`02-TWO-TEAPOTS-ONE-CUP/LITERATURE_AUDIT.md`](02-TWO-TEAPOTS-ONE-CUP/LITERATURE_AUDIT.md)
 
-The second note studies controlled expansions of the multiplicative monoid by modular and quadratic probes. Its central results include:
-
-\[
-\#(\mathbb P/\operatorname{Aut}(\mathcal M_F))
-=
-|F|+\prod_{p\in F}\tau(p-1),
-\]
-
-for finitely many named prime congruence relations, and
-
-\[
-\#(\mathbb P/\operatorname{Aut}(\mathcal Q_F))
-=
-|F|+2^{|F|},
-\]
-
-for finite families of quadratic one-bit probes.
-
-It also proves the finite-information barrier, an exact rigidity criterion through injectivity of Legendre-signature maps, arbitrarily sparse rigidifying families, and the optimal finite coding law
+Key results include exact congruence and quadratic-probe orbit counts, the finite-information barrier, sparse rigidifying families, and
 
 \[
 \boxed{\kappa_2(S)=\lceil\log_2|S|\rceil}.
 \]
 
-The guiding principle is:
+## Note 03
+
+**«Чашка, которая задаёт вопросы сама: анонимные пробы, точный предшественник простого и рекурсивная жёсткость»**
+
+English title:
+
+**“The Cup That Asks Its Own Questions: Anonymous Probes, the Exact Predecessor of a Prime, and Recursive Rigidity.”**
+
+- Zenodo DOI: **[10.5281/zenodo.22679521](https://doi.org/10.5281/zenodo.22679521)**
+- Russian manuscript: [`03-CUP-ASKS-ITSELF/article_ru.md`](03-CUP-ASKS-ITSELF/article_ru.md)
+- English manuscript: [`03-CUP-ASKS-ITSELF/article_en.md`](03-CUP-ASKS-ITSELF/article_en.md)
+- Literature audit: [`03-CUP-ASKS-ITSELF/LITERATURE_AUDIT.md`](03-CUP-ASKS-ITSELF/LITERATURE_AUDIT.md)
+- Reproducible verifier: [`03-CUP-ASKS-ITSELF/verify_coarse_depth_barrier.py`](03-CUP-ASKS-ITSELF/verify_coarse_depth_barrier.py)
+
+The central rigidity theorem is
 
 \[
 \boxed{
-\text{individuality}\neq\text{completeness of description};
+\operatorname{Aut}(\mathbb N_{>0},\times,S_{\mathbb P})
+=\{\mathrm{id}\},
 \qquad
-\text{individuality}=\text{sufficiency of separation}.
+S_{\mathbb P}(n,p)\iff p\in\mathbb P\text{ and }p=n+1.
 }
 \]
 
-## Planned continuation
+The note also isolates
 
-**HATTER-SOL-03** — current research question:
+\[
+R_{\mathbb P}(r,p)\iff r=\operatorname{rad}(p-1)
+\]
 
-> Can a finite natural mechanism generate, from within the structure itself, a separating family rich enough to recover rigidity without externally naming an infinite family of probes?
+as the next unresolved rigidity frontier.
 
-The literary continuation is the Hatter's question: if nobody asks the questions from outside, can the cup learn to ask them itself?
+## Planned continuation · HATTER-SOL-04
+
+The next research line is the **radical-predecessor problem**:
+
+\[
+\boxed{
+\operatorname{Aut}(\mathbb N_{>0},\times,R_{\mathbb P})
+\stackrel{?}{=}
+\{\mathrm{id}\}.
+}
+\]
+
+The central question is whether multiplicities in the factorization of $p-1$ are genuinely necessary for global rigidity, or whether the directed network of prime supports already reconstructs enough of them indirectly.
 
 ## Follow the series
-
-For readers who want to follow new notes, source updates, illustrations, and continuity checkpoints, use the permanent GitHub folder:
 
 **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
 
 ## Editorial principle
 
-The series keeps the “Размышлизмы” style: free explanatory movement is allowed, but every mathematical claim must be distinguished from metaphor, literature background, and open research questions. Classical results are not presented as new. Newness, if any, must enter through a nontrivial theorem, invariant, reduction law, or demonstrably useful synthesis.
+The series keeps the “Размышлизмы” style: free explanatory movement is allowed, but every mathematical claim must be distinguished from metaphor, literature background, and open research questions. Classical results are not presented as new.
