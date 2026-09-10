@@ -16,11 +16,11 @@ HATTER-SOL-01 established the elementary contrast
 \operatorname{Aut}(\mathbb N_{>0},\times)\cong\operatorname{Sym}(\mathbb P)
 \]
 
-versus the rigidity of additive / full natural arithmetic. HATTER-SOL-02 asks for an **intermediate theory**:
+versus the rigidity of additive / full natural arithmetic. HATTER-SOL-02 asks for an intermediate theory:
 
 > If we begin with the multiplicative world and reveal only a controlled amount of additive information, how much prime symmetry disappears, and can that loss be measured exactly?
 
-The central object is no longer merely the paired map \(\Omega(a,b)=(a+b,ab)\). That map remains the literary doorway. The mathematical core is the lattice of **reducts and expansions** of the multiplicative structure and the induced subgroup descent inside \(\operatorname{Sym}(\mathbb P)\).
+The paired map \(\Omega(a,b)=(a+b,ab)\) remains the literary doorway. The mathematical core is the study of reducts/expansions of the multiplicative structure and the induced subgroup descent inside \(\operatorname{Sym}(\mathbb P)\).
 
 ## Basic invariant: prime individuality under a structure
 
@@ -35,16 +35,12 @@ and on primes
 \[
 p\sim_{\mathcal R}q
 \iff
-\exists g\in G_{\mathcal R}: g(p)=q.
+\exists g\in G_{\mathcal R}:g(p)=q.
 \]
 
 The equivalence classes are the **prime-individuality orbits** of \(\mathcal R\).
 
-- one orbit on \(\mathbb P\): maximal prime symmetry;
-- singleton orbits: full prime individuality;
-- intermediate orbit partitions: partial individuality.
-
-If \(\mathcal S\) is an expansion of \(\mathcal R\), then
+If \(\mathcal S\) expands \(\mathcal R\), then
 
 \[
 \operatorname{Aut}(\mathcal S)\le \operatorname{Aut}(\mathcal R),
@@ -52,141 +48,131 @@ If \(\mathcal S\) is an expansion of \(\mathcal R\), then
 
 so prime orbits can only split. This is the monotonicity principle for individuality under added structure.
 
-## First decisive correction / refinement
+## Decisive refinement
 
-Full multiplication is **not** needed to make the natural numbers rigid once addition is present. Already
+Full multiplication is not needed to make the standard natural numbers rigid once addition, successor, or order is fully present. Therefore the interesting zone is **partial additive leakage**: relations carrying genuine additive information without reconstructing the full additive skeleton.
 
-\[
-\operatorname{Aut}(\mathbb N,+)=\{\mathrm{id}\}.
-\]
-
-Likewise, standard order or successor already rigidify \(\mathbb N\). Therefore the interesting intermediate zone is not simply
+The first useful family is not a list of separate prime-modulus relations, but a single congruence relation
 
 \[
-\times \to (+,\times),
+E_m(x,y)\iff x\equiv y\pmod m,
 \]
 
-but structures that leak **partial additive information** without restoring the whole additive skeleton.
-
-## First candidate family: prime-modulus congruence reducts
-
-For a prime \(p\), let
+added to multiplication:
 
 \[
-E_p(x,y)\iff x\equiv y\pmod p,
+\mathcal M_m=(\mathbb N_{>0},\times,E_m).
 \]
 
-and define
+## First established theorem
 
-\[
-\mathcal M_p=(\mathbb N_{>0},\times,E_p).
-\]
-
-For a finite set \(F\subset\mathbb P\), define
-
-\[
-\mathcal M_F=(\mathbb N_{>0},\times,(E_p)_{p\in F}).
-\]
-
-These structures inject genuine additive information (congruence classes) into the multiplicative world, but only at finite resolution.
-
-## First theorem target
-
-For one prime modulus \(p\), let
-
-\[
-C_r=\{q\in\mathbb P\setminus\{p\}:q\equiv r\pmod p\},\qquad r\in\mathbb F_p^\times.
-\]
-
-Expected exact structure:
-
-\[
-1\to \prod_{r\in\mathbb F_p^\times}\operatorname{Sym}(C_r)
-\to \operatorname{Aut}(\mathcal M_p)
-\to \operatorname{Aut}(\mathbb F_p^\times)
-\to1.
-\]
-
-Since \(\mathbb F_p^\times\) is cyclic,
-
-\[
-\operatorname{Aut}(\mathbb F_p^\times)\cong(\mathbb Z/(p-1)\mathbb Z)^\times.
-\]
-
-The sequence should split noncanonically by choosing enumerations of the prime residue classes. Dirichlet's theorem guarantees that every \(C_r\) is infinite.
-
-Consequences:
-
-1. \(p\) is fixed by every automorphism of \(\mathcal M_p\);
-2. every other prime still belongs to an infinite orbit;
-3. one congruence relation creates exactly one named prime but leaves enormous residual prime symmetry.
-
-## Finite-congruence barrier
-
-For finite \(F\subset\mathbb P\), the expected generalization is
-
-\[
-\operatorname{Aut}(\mathcal M_F)
-\cong
-\left(
-\prod_{\mathbf r\in\prod_{p\in F}\mathbb F_p^\times}
-\operatorname{Sym}(C_{\mathbf r})
-\right)
-\rtimes
-\prod_{p\in F}\operatorname{Aut}(\mathbb F_p^\times),
-\]
-
-noncanonically, where \(C_{\mathbf r}\) is the set of primes outside \(F\) with the residue vector \(\mathbf r\). CRT + Dirichlet imply every compatible residue-vector class contains infinitely many primes.
-
-Hence:
+The first strike is proved in [`FIRST_STRIKE_CONGRUENCE.md`](FIRST_STRIKE_CONGRUENCE.md):
 
 \[
 \boxed{
-\text{no finite family of prime-modulus congruence relations can fully individuate the primes.}
+\operatorname{Fix}_{\mathbb P}(\operatorname{Aut}(\mathcal M_m))
+=
+\{p\in\mathbb P:p\mid m\}.
 }
 \]
 
-More sharply, the primes fixed pointwise by all automorphisms should be exactly the moduli in \(F\):
+Thus a single congruence layer modulo \(m\) individuates **exactly** the prime divisors of \(m\), and no other primes.
+
+### Why the proof works
+
+1. Preservation of \(E_m\) induces an automorphism of the finite multiplicative monoid \((\mathbb Z/m\mathbb Z,\times)\).
+2. A prime divisor \(p\mid m\) must map to another prime divisor \(q\mid m\), because units are preserved.
+3. The principal ideal generated by \([p]_m\) has cardinality \(m/p\); this cardinality is an automorphism invariant, forcing \(p=q\).
+4. If \(q\nmid m\), Dirichlet gives another prime \(r\equiv q\pmod m\); swapping \(q\) and \(r\) preserves multiplication and every residue class mod \(m\), so \(q\) is not fixed.
+
+## Finite prime individuality theorem
+
+For any finite nonempty \(F\subset\mathbb P\), set
 
 \[
-\operatorname{Fix}_{\mathbb P}(\operatorname{Aut}(\mathcal M_F))=F.
+m_F=\prod_{p\in F}p.
 \]
 
-This is the current main theorem candidate for HATTER-SOL-02.
+Then
 
-## Why this fits the series metaphor
+\[
+\boxed{
+\operatorname{Fix}_{\mathbb P}(\operatorname{Aut}(\mathcal M_{m_F}))=F.
+}
+\]
 
-- teapot \(\times\): all prime atoms interchangeable;
-- a small pour from the additive teapot: a congruence relation \(E_p\);
-- the cup: the expansion \(\mathcal M_p\);
-- result: one prime becomes individually recognizable, while all remaining primes retain structured residual symmetry.
+So one named congruence relation can individuate any prescribed finite set of primes.
 
-Thus the metaphor can be made exact: **amount/type of added structure corresponds to subgroup descent of the automorphism group.**
+This supersedes the earlier idea of using a whole family \((E_p)_{p\in F}\): a **single composite modulus already carries the whole finite support**.
 
-## Literature guard (preliminary)
+## Residual symmetry
 
-Nearby standard areas found so far:
+For every unit residue class \(a\in(\mathbb Z/m\mathbb Z)^\times\),
 
-- free commutative monoid structure of \((\mathbb N_{>0},\times)\);
-- Presburger arithmetic and reducts of arithmetic;
-- automorphisms of nonstandard models of arithmetic;
-- automorphism groups of multiplicative monoids modulo \(n\);
-- general model-theoretic reduct/expansion formalism.
+\[
+C_a=\{q\in\mathbb P:q\equiv a\pmod m\}
+\]
 
-No exact literature match was found in the initial search for the specific structure \((\mathbb N_{>0},\times,\equiv_p)\) and its prime-orbit decomposition. This is **not yet a novelty claim**; a dedicated literature audit is required before publication.
+is infinite by Dirichlet, and arbitrary permutations inside \(C_a\) lift to automorphisms of \(\mathcal M_m\). Hence
 
-## Immediate next strikes
+\[
+\prod_{a\in(\mathbb Z/m\mathbb Z)^\times}\operatorname{Sym}(C_a)
+\le
+\operatorname{Aut}(\mathcal M_m).
+\]
 
-1. Write and check the full proof of the one-modulus theorem.
-2. Prove the finite-family theorem using CRT + Dirichlet.
-3. Decide whether the semidirect-product splitting should be stated or only the exact sequence.
-4. Define a useful quantitative individuality invariant on finite prime windows that does not depend on arbitrary truncation closure.
-5. Investigate the infinite-family problem: characterize \(F\subseteq\mathbb P\) for which \(\mathcal M_F\) is rigid.
-6. Test a single composite modulus \(m\): how many primes can one congruence relation \(\equiv_m\) individuate?
+Finite additive leakage therefore produces finite individuality while retaining enormous infinite symmetry.
+
+## Exact support cost inside this family
+
+Counting the number of added relations is misleading: one relation \(E_m\) can encode arbitrarily many named primes.
+
+For finite nonempty \(F\subset\mathbb P\), define
+
+\[
+\kappa(F)=
+\min\{\log m:
+\operatorname{Fix}_{\mathbb P}(\operatorname{Aut}(\mathcal M_m))=F\}.
+\]
+
+Then
+
+\[
+\boxed{
+\kappa(F)=\sum_{p\in F}\log p.
+}
+\]
+
+because the smallest modulus with prime support exactly \(F\) is \(\prod_{p\in F}p\).
+
+This is an exact cost **within the congruence family**, not yet a universal information invariant.
+
+## Series interpretation
+
+The metaphor now has a precise mathematical version:
+
+- teapot \(\times\): all primes are interchangeable atoms;
+- a finite-resolution pour from the additive teapot: the periodic relation \(E_m\);
+- the cup: \(\mathcal M_m\);
+- exactly the primes dividing \(m\) become individually recognizable;
+- every other prime remains inside infinite residual symmetry.
+
+The conceptual punchline is:
+
+\[
+\boxed{\text{one pour is not one bit}.}
+\]
+
+The information content is carried by the internal complexity of the modulus.
+
+## Current main research targets
+
+1. **Full orbit theorem.** Determine the exact prime-orbit decomposition of \(\operatorname{Aut}(\mathcal M_m)\), including which unit residue classes can be merged by lifts of automorphisms of \((\mathbb Z/m\mathbb Z,\times)\).
+2. **Weaker periodic leakage.** Replace full congruence equivalence \(E_m\) by weaker unary/partition predicates and determine the minimum leakage needed to fix a prescribed finite prime set.
+3. **Infinite-family rigidity.** Characterize infinite families of periodic relations that force all prime orbits to become singletons without reconstructing full addition.
+4. **Cost comparison.** Compare relation count, modulus size, \(\omega(m)\), and description length as candidate measures of arithmetic individuality cost.
+5. **Literature audit.** Search specifically for automorphisms of \((\mathbb N_{>0},\times,\equiv_m)\), multiplicative semigroups modulo \(m\), reducts of Skolem arithmetic, and definability of congruence relations in multiplicative arithmetic.
 
 ## Publication threshold
 
-Not reached yet. HATTER-SOL-02 becomes publication-worthy if the finite-congruence theorem survives proof and literature audit, preferably together with either:
-
-- an exact infinite-family rigidity criterion, or
-- a nontrivial single-modulus classification / information-cost theorem.
+**Not yet crossed.** The first theorem is now strong enough to justify the branch and a second article, but publication should wait for at least one additional nontrivial layer: preferably the full orbit theorem or a sharp minimal-leakage theorem, followed by a dedicated novelty audit.
