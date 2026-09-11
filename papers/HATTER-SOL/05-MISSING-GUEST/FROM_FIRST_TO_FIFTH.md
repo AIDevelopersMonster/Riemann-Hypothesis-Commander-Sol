@@ -2,21 +2,19 @@
 
 ## Канонический мост серии / Canonical series bridge
 
-Этот файл фиксирует преемственность HATTER-SOL-05 с исходной задачей HATTER-SOL-01. Он предназначен как основа вводного раздела пятой статьи и как контроль против ухода ветки в изолированную задачу о специальных простых.
+Этот файл фиксирует математическую преемственность HATTER-SOL-05 с исходной задачей серии.
 
 ---
 
-# 1. От первой чашки к пятой
-
-Первая статья серии начиналась не с графа простых и не с специальных последовательностей. Она начиналась с вопроса о том, **какая структура делает простые индивидуальными**.
+# 1. Исходная крайность
 
 В чисто мультипликативном мире
 
 \[
-M=(\mathbb N_{>0},\times)
+(\mathbb N_{>0},\times)
 \]
 
-основная теорема арифметики показывает, что положительные целые образуют свободный коммутативный моноид на множестве простых. Поэтому любая перестановка простых продолжается до автоморфизма всего моноида:
+простые являются свободными атомами, поэтому
 
 \[
 \boxed{
@@ -26,159 +24,35 @@ M=(\mathbb N_{>0},\times)
 }
 \]
 
-С точки зрения одной операции умножения простые не имеют индивидуальных имён: \(3\), \(5\), \(101\) и любой другой простой являются атомами одного структурного типа.
-
-Полная натуральная арифметика ведёт себя противоположно. В структуре
+В полной натуральной арифметике
 
 \[
 (\mathbb N,+,\times,0,1)
 \]
 
-единица фиксирована, затем фиксируются \(2=1+1\), \(3=2+1\), и по индукции каждое натуральное число. Поэтому
+все натуральные числа фиксируются, и
 
 \[
 \boxed{
-\operatorname{Aut}(\mathbb N,+,\times,0,1)
-=
-\{\mathrm{id}\}.
+\operatorname{Aut}(\mathbb N,+,\times,0,1)=\{\mathrm{id}\}.
 }
 \]
 
-Так возник исходный вопрос серии:
+Отсюда вопрос всей серии:
 
 \[
 \boxed{
-\text{где между чистым умножением и полной арифметикой простые теряют право менять имена?}
+\text{какой минимальный фрагмент арифметики уже лишает простые права менять имена?}
 }
 \]
 
-HATTER-SOL-05 остаётся внутри именно этой задачи.
-
 ---
 
-# 2. Серия как лестница забывания и восстановления структуры
+# 2. От сильного predecessor к radical predecessor
 
-Удобно рассматривать серию как движение между двумя крайностями:
+HATTER-SOL-03 использует достаточно сильную predecessor-информацию, чтобы получить жёсткость.
 
-\[
-(\mathbb N_{>0},\times)
-\qquad\text{и}\qquad
-(\mathbb N,+,\times,0,1).
-\]
-
-При добавлении структуры группа автоморфизмов может только уменьшаться. Исследовательская программа состоит не в том, чтобы сразу вернуть всю арифметику, а в том, чтобы добавлять ровно столько информации, сколько нужно для разрушения тех или иных симметрий простых.
-
-Схематически:
-
-\[
-\boxed{
-\operatorname{Sym}(\mathbb P)
-\supseteq
-G_{\mathrm{weak}}
-\supseteq
-G_{\mathrm{strong}}
-\supseteq
-\{\mathrm{id}\}.
-}
-\]
-
-В этой лестнице каждый выпуск отвечает на следующий вопрос: **какая информация уже убивает часть симметрий, а какая ещё оставляет их живыми?**
-
----
-
-# 3. HATTER-SOL-01 — все простые взаимозаменяемы
-
-Первая статья установила исходную крайность:
-
-\[
-\operatorname{Aut}(\mathbb N_{>0},\times)
-\cong
-\operatorname{Sym}(\mathbb P).
-\]
-
-Это не новая теорема, а структурный нулевой уровень всей программы.
-
-Именно отсюда возникает конкретная тестовая симметрия
-
-\[
-\tau=(3\ 5).
-\]
-
-В чистом мультипликативном мире она разрешена совершенно свободно.
-
----
-
-# 4. HATTER-SOL-02 — можно ли назвать простой коротким набором проб?
-
-Вторая статья перешла от полной взаимозаменяемости к задаче индивидуализации простых с помощью ограниченных проб.
-
-Главная идея была информационной: если набор наблюдаемых признаков слишком мал, разные простые остаются в одной орбите; если probes достаточно хорошо подобраны, конечное множество простых можно различить.
-
-Тем самым HATTER-SOL-02 исследовал первую форму перехода
-
-\[
-\operatorname{Sym}(\mathbb P)
-\longrightarrow
-\text{меньшая группа симметрий}.
-\]
-
-Но сами probes ещё не являлись окончательным внутренним арифметическим механизмом.
-
----
-
-# 5. HATTER-SOL-03 — сильная внутренняя структура уже даёт жёсткость
-
-Третья статья сделала probes арифметически внутренними и нашла сильную структуру, которая полностью восстанавливает индивидуальность простых.
-
-Для отношения
-
-\[
-S_{\mathbb P}(n,p)
-\iff
-p\in\mathbb P
-\text{ and }
-p=n+1
-\]
-
-получена жёсткость
-
-\[
-\boxed{
-\operatorname{Aut}(\mathbb N_{>0},\times,S_{\mathbb P})
-=
-\{\mathrm{id}\}.
-}
-\]
-
-Таким образом, серия впервые прошла весь путь от
-
-\[
-\operatorname{Sym}(\mathbb P)
-\]
-
-до
-
-\[
-\{\mathrm{id}\}.
-\]
-
-Но возник более острый вопрос: сколько информации в \(p-1\) действительно нужно для этой жёсткости?
-
-Если удалить кратности простых множителей и помнить только support, останется ли структура жёсткой?
-
-Так появился radical predecessor
-
-\[
-R_{\mathbb P}(r,p)
-\iff
-r=\operatorname{rad}(p-1).
-\]
-
----
-
-# 6. HATTER-SOL-04 — радикал забывает кратности
-
-Отношение radical predecessor эквивалентно ориентированному графу на простых
+HATTER-SOL-04 ослабляет эту информацию до directed prime graph
 
 \[
 \Pi=(\mathbb P,D),
@@ -186,83 +60,59 @@ r=\operatorname{rad}(p-1).
 D(q,p)\iff q\mid p-1.
 \]
 
-Здесь от полной аддитивной информации в \(p-1\) остаётся только вопрос:
+Здесь сохраняется только support простых делителей \(p-1\), но забываются их кратности.
 
-> какие простые делят \(p-1\)?
-
-но забывается, **с какими кратностями** они это делают.
-
-Центральная проблема становится
+Центральный вопрос:
 
 \[
 \boxed{
-\operatorname{Aut}(\Pi)
-\stackrel{?}{=}
-\{\mathrm{id}\}.
+\operatorname{Aut}(\Pi)\stackrel?=\{\mathrm{id}\}.
 }
 \]
 
-HATTER-SOL-04 не решил этот yes/no вопрос, но установил строгие ограничения на любой гипотетический нетривиальный автоморфизм. В частности, такой автоморфизм не может быть локальным или малым: его support обязан распространяться на неограниченные Pratt heights и иметь относительную плотность один среди простых; кроме того, он не может быть асимптотически близок к identity по рангу или величине простых.
-
-Ключевой механизм продолжения оказался закодирован в exact predecessor fibers
+HATTER-SOL-04 свёл задачу к exact predecessor fibers
 
 \[
-X_S
-=
-\{p\in\mathbb P:\operatorname{Pred}(p)=S\},
+X_S=\{p:\operatorname{Pred}(p)=S\},
 \qquad
-\mu(S)=|X_S|.
+\mu(S)=|X_S|,
 \]
 
-Автоморфизм конечной высоты продолжается на следующий уровень тогда и только тогда, когда сохраняются соответствующие multiplicities \(\mu(S)\).
-
-Тем самым абстрактная проблема автоморфизмов была сведена к конкретной арифметической проблеме exact supports.
+и к multiplicity tower по Pratt heights.
 
 ---
 
-# 7. Почему первая тестовая симметрия — именно \(3\leftrightarrow5\)
+# 3. Почему тестируем \(3\leftrightarrow5\)
 
-В первой статье перестановка
-
-\[
-3\leftrightarrow5
-\]
-
-является одним из бесчисленных элементов \(\operatorname{Sym}(\mathbb P)\).
-
-После добавления radical-predecessor структуры она не погибает немедленно, потому что
+В чистом мультипликативном мире transposition
 
 \[
-\operatorname{Pred}(3)
-=
-\operatorname{Pred}(5)
-=
-\{2\}.
+\tau=(3\ 5)
 \]
 
-Иными словами, первый слабый арифметический слой всё ещё не умеет отличить \(3\) от \(5\).
+разрешён свободно.
 
-Поэтому вопрос HATTER-SOL-05
+В radical-predecessor graph он не погибает на первом слое, потому что
+
+\[
+\operatorname{Pred}(3)=\operatorname{Pred}(5)=\{2\}.
+\]
+
+Поэтому вопрос
 
 \[
 \boxed{
-\text{может ли }(3\ 5)\text{ продолжиться до глобального автоморфизма?}
+\text{продолжается ли }(3\ 5)\text{ до глобального автоморфизма }\Pi?
 }
 \]
 
-является не новой посторонней задачей, а **минимальным конкретным тестом исходной проблемы HATTER-SOL-01**.
+является минимальным конкретным тестом исходной темы серии.
 
 ---
 
-# 8. Почему возникают exact-support fibers
+# 4. Exact-support arithmetic
 
-Пусть
-
-\[
-S\subset\mathbb P
-\]
-
-конечно и содержит \(2\). Тогда
+Для конечного \(S\ni2\),
 
 \[
 X_S
@@ -273,191 +123,178 @@ X_S
 \right\}.
 \]
 
-Это не случайно выбранные экспоненциальные формы. Они являются арифметическим содержанием графового условия
+Эти экспоненциальные семейства возникают не как внешняя теория специальных простых, а как точное арифметическое содержание condition
 
 \[
 \operatorname{Pred}(p)=S.
 \]
 
-Поэтому сравнение
+На одном конкретном шаге tower, когда действие \(g\) на support уже задано, mismatch
 
 \[
-X_S
-\quad\text{и}\quad
-X_{\tau S}
+\mu(S)\ne\mu(gS)
 \]
 
-точно измеряет, способен ли следующий слой radical-predecessor графа отличить support от его образа при \(3\leftrightarrow5\).
+блокирует это продолжение.
 
-Если существует \(S\), для которого
+Для самого seed \(\tau\) на непосредственном следующем уровне это может иметь вид
 
 \[
-\mu(S)\ne\mu(\tau S),
+\mu(S)\ne\mu(\tau S).
 \]
 
-то \(\tau\) погибает на конечной высоте.
-
-В лучшем случае можно получить
-
-\[
-\mu(S)=0,
-\qquad
-\mu(\tau S)>0,
-\]
-
-или наоборот.
-
-Тогда слабая структура \(D\), не различавшая \(3\) и \(5\) напрямую, различит их **через будущее дерево exact descendants**.
+Но на более поздних высотах нельзя безусловно говорить об одном support witness: предыдущие уровни могут иметь несколько допустимых продолжений. Тогда корректный объект — **finite obstruction family/tree**, блокирующий каждую surviving branch.
 
 ---
 
-# 9. Что уже показала пятая статья
+# 5. Что доказал HATTER-SOL-05
 
-Первые удары HATTER-SOL-05 дали три структурных факта.
+Пятый цикл дал следующий theorem package.
 
-### 9.1. Finite-cover escape
+## 5.1. Finite-cover escape
 
-Для любого exact support \(S\ni2\) и любого конечного множества простых делителей \(T\) существуют exponent vectors, для которых
+Для любого fixed exact support и любого конечного множества fixed prime divisors существуют candidate exponent vectors, избегающие всех этих делителей. Поэтому обычный finite fixed-divisor covering не может доказать emptiness exact fiber.
+
+## 5.2. Cyclotomic dimension jump
+
+Если
 
 \[
-1+\prod_{q\in S}q^{e_q}
+1+\prod q_i^{e_i}
 \]
 
-не делится ни на один простой из \(T\).
+prime, то
 
-Следовательно, пустое exact fiber нельзя доказать обычным конечным fixed-divisor covering argument.
+\[
+\gcd(e_1,\ldots,e_k)
+\]
 
-### 9.2. Cyclotomic dimension jump
+есть степень \(2\).
 
-Если candidate prime, то общий gcd показателей является степенью \(2\). Для singleton support это приводит к Fermat-type collapse и нулевой плотности допустимых exponents. Но для \(|S|\ge2\) cyclotomically admissible exponent vectors имеют положительную плотность
+Для singleton support это Fermat-type collapse; для \(k\ge2\) остаётся положительная плотность
 
 \[
 \frac1{\zeta(k)(1-2^{-k})}.
 \]
 
-То есть higher exact-support fibers находятся по другую сторону настоящего dimension threshold.
+## 5.3. Local \(3\)-versus-\(5\) asymmetry
 
-### 9.3. Cardinality wall
-
-Локальные sieve asymmetries между \(3\)- и \(5\)-ветвями существуют и наследуются вниз по descendant tree. Но radical graph видит только
+Для first competing supports получены exact first-sieve densities
 
 \[
-\mu(S)=|X_S|.
+\{2,3\}:\frac6{\pi^2},
+\qquad
+\{2,5\}:\frac4{\pi^2},
 \]
 
-Если обе paired fibers бесконечны, обе мощности равны \(\aleph_0\), и количественная sieve asymmetry стирается.
+с ratio \(3/2\). В weighted numerical ordering:
 
-Это объясняет, почему исходная symmetry problem не решается простым накоплением локальных арифметических различий.
+\[
+A_{23}(X)
+\sim
+\frac{3}{\pi^2\log2\log3}(\log X)^2,
+\]
+
+\[
+A_{25}(X)
+\sim
+\frac{2}{\pi^2\log2\log5}(\log X)^2.
+\]
+
+## 5.4. Descendant persistence and cardinality wall
+
+The local \(3/2\) gap persists along 3-pure exact-descendant chains. Но multiplicity tower видит только cardinality. Если paired fibers infinite, то
+
+\[
+\mu(S)=\mu(gS)=\aleph_0,
+\]
+
+и количественная асимметрия исчезает из graph-visible data.
+
+## 5.5. Finite-fiber compactness
+
+Under FFC — all exact fibers finite — survival to every finite Pratt height implies global survival by König compactness. Если seed dies globally, то он dies на конечной высоте, и существует finite obstruction family/tree.
+
+## 5.6. Density-one forward cone
+
+Для каждого odd prime \(a\),
+
+\[
+\boxed{d_{\mathbb P}(C^+(a))=1.}
+\]
+
+Более того, уже directed future на расстоянии не более двух имеет relative prime density one.
+
+Для seed transposition causal cone
+
+\[
+C_\tau=C^+(\{3,5\})
+\]
+
+также имеет density one.
+
+## 5.7. Causal survival criterion
+
+Cone-Fiber Infinitude CFI\((\tau)\) требует infinitude только для exact supports, пересекающих causal cone seed symmetry. Это строго локальнее прежнего HFI.
+
+Under CFI\((\tau)\), transposition \((3\ 5)\) extends globally, причём extension можно выбрать фиксирующим все primes outside \(C_\tau\).
 
 ---
 
-# 10. Главная преемственность в одной формуле
+# 6. Что пятая статья не доказывает
 
-Вся линия HATTER-SOL теперь может быть записана так:
+Не доказано ни
 
 \[
-\boxed{
-(\mathbb N_{>0},\times)
-\ \longrightarrow\ 
-(\mathbb N_{>0},\times,R_{\mathbb P})
-\ \longrightarrow\ 
-(\mathbb N_{>0},\times,S_{\mathbb P})
-}
+\operatorname{Aut}(\Pi)=\{\mathrm{id}\},
 \]
 
-с соответствующим сжатием групп автоморфизмов
+ни существование nontrivial automorphism unconditionally.
+
+Не доказана infinitude
+
+\[
+X_{\{2,3\}}
+\]
+
+и тем более general higher-fiber infinitude.
+
+Local sieve asymmetry не является killing certificate сама по себе.
+
+Finite obstruction theorem under FFC не является algorithmic decidability theorem.
+
+---
+
+# 7. Literature boundary
+
+David Feldman's 2012 MathOverflow question and Gjergji Zaimi's answer already identified the graph
+
+\[
+p\to q\iff p\mid q-1
+\]
+
+and the importance of classes with the same exact incoming predecessor set. Therefore HATTER-SOL-05 не заявляет priority за сам exact-support architecture и broad finite/infinite-fiber dichotomy.
+
+Classical ingredients include cyclotomic factorization, PNT in arithmetic progressions, divergence of reciprocal primes in a reduced progression, CRT, Möbius inversion, König's lemma, and standard lattice counting.
+
+Publication claim is the rigorously assembled structural package inside the HATTER-SOL multiplicity-tower programme, with theorem/heuristic boundaries stated explicitly.
+
+---
+
+# 8. Итоговая линия серии
+
+Содержательно путь теперь выглядит так:
 
 \[
 \boxed{
 \operatorname{Sym}(\mathbb P)
-\ \supseteq\ 
+\longrightarrow
 \operatorname{Aut}(\Pi)
-\ \supseteq\ 
+\stackrel?\longrightarrow
 \{\mathrm{id}\}.
 }
 \]
 
-HATTER-SOL-05 исследует **среднее звено**.
+HATTER-SOL-05 не закрывает последний знак вопроса, но точно показывает, где он живёт: не в дешёвом local sieve difference, а в exact-support cardinalities и их orbitwise compatibility through the multiplicity tower.
 
-Поэтому его основной вопрос можно сформулировать без упоминания технических деталей:
-
-\[
-\boxed{
-\text{достаточно ли помнить только prime support числа }p-1,
-\text{ чтобы простые снова получили индивидуальные имена?}
-}
-\]
-
-Техническая работа с \(X_S\), \(\mu(S)\), local sieves и descendant trees — это уже способ ответить на этот вопрос.
-
----
-
-# 11. Формулировка для вводного раздела будущей статьи
-
-> В первой чашке все простые могли менять имена: чистый мультипликативный моноид видел в них свободно переставляемые атомы. В третьей чашке точный предшественник \(p-1\) вернул жёсткость полностью. Четвёртая чашка стёрла кратности и оставила только множество простых делителей \(p-1\). Пятая спрашивает, достаточно ли этого более слабого следа, чтобы в конце концов отличить даже \(3\) от \(5\). Поэтому формы \(1+\prod q^{e_q}\), возникающие ниже, не являются отдельной задачей о специальных простых: это exact fibers того самого промежуточного reduct, который стоит между полной взаимозаменяемостью простых и полной арифметической жёсткостью.
-
----
-
-# 12. English canonical bridge
-
-The first HATTER-SOL paper began with the maximal symmetry of the purely multiplicative world:
-
-\[
-\operatorname{Aut}(\mathbb N_{>0},\times)
-\cong
-\operatorname{Sym}(\mathbb P).
-\]
-
-Every prime may be renamed arbitrarily. At the opposite end, full natural arithmetic is rigid:
-
-\[
-\operatorname{Aut}(\mathbb N,+,\times,0,1)
-=\{\mathrm{id}\}.
-\]
-
-The series therefore asks where, between these two structures, primes lose the right to exchange names.
-
-HATTER-SOL-03 showed that retaining the exact predecessor relation \(p=n+1\) is already enough for rigidity. HATTER-SOL-04 then erased multiplicities in \(p-1\), retaining only its prime support through
-
-\[
-D(q,p)\iff q\mid p-1.
-\]
-
-The resulting graph \(\Pi=(\mathbb P,D)\) lies at the unresolved middle stage
-
-\[
-\operatorname{Sym}(\mathbb P)
-\supseteq
-\operatorname{Aut}(\Pi)
-\supseteq
-\{\mathrm{id}\}.
-\]
-
-The transposition \((3\ 5)\), allowed in the first paper's multiplicative world, survives the first radical-predecessor layer because
-
-\[
-\operatorname{Pred}(3)=\operatorname{Pred}(5)=\{2\}.
-\]
-
-HATTER-SOL-05 asks whether deeper exact-support multiplicities eventually kill this minimal surviving symmetry. The families
-
-\[
-X_S
-=
-\left\{
-1+\prod_{q\in S}q^{e_q}
-\text{ prime}:e_q\ge1
-\right\}
-\]
-
-are therefore not an isolated problem about special prime forms. They are exactly the arithmetic fibers that control whether a symmetry from the first paper survives in the intermediate radical-predecessor reduct.
-
----
-
-## Editorial rule for HATTER-SOL-05
-
-Every technical section of the future article should remain traceable to the series question:
-
-> **Which forgotten part of arithmetic is actually needed to destroy prime-renaming symmetry?**
-
-If a calculation about exact-support primes does not contribute to the survival or death of an automorphism, it belongs in a side note, not in the main proof line.
+Следующий естественный шаг — orbitwise minimal survival criterion, weaker than cone-wide CFI. Это уже задача HATTER-SOL-06 и не должна задерживать freeze пятой статьи.
