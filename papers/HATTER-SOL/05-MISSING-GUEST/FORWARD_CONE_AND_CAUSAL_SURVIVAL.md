@@ -1,239 +1,171 @@
 # HATTER-SOL-05 · Forward Cone, Causal Localization, and a Sharper Survival Criterion
 
-## 0. Purpose
+## 0. Status and purpose
 
-The first paper in the HATTER-SOL series asked how prime-renaming symmetry disappears when arithmetic structure is restored. HATTER-SOL-05 now studies the weakest unresolved reduct
+We study the directed prime graph
 
 \[
-\Pi=(\mathbb P,D),
-\qquad
-D(q,p)\iff q\mid p-1.
+\Pi=(\mathbb P,D),\qquad D(q,p)\iff q\mid p-1.
 \]
 
-The previous strikes showed two things:
+This note isolates the causal region in which a seed permutation can propagate. It proves that the causal future of every odd prime already has relative prime density one, and it localizes the infinitude hypothesis needed to extend a first-layer symmetry.
 
-1. local arithmetic asymmetry between the \(3\)- and \(5\)-sides can be strong and hereditary;
-2. the multiplicity tower forgets all such quantitative asymmetry once paired exact fibers are both countably infinite.
+This is a **v1.0 canonical note**. The hostile proof audit found one scope defect in the former version of Lemma 5.1: forward-closedness alone does not imply that a vertex in the set entered through one of its predecessors, because it may have been inserted as a seed. The lemma below is stated for a **generated cone from lower Pratt levels**, which is exactly the situation used in the survival theorem. The theorem itself is unchanged.
 
-This note isolates the **causal region** in which a seed permutation can actually propagate. It then proves that this region already has relative prime density one, and that infinitude assumptions are only needed inside this region, not on every higher exact support.
+The central question
 
-The result strictly sharpens the Higher-Fiber Infinitude hypothesis introduced earlier.
+\[
+\operatorname{Aut}(\Pi)\stackrel?=\{\mathrm{id}\}
+\]
+
+remains open.
 
 ---
 
-# 1. Forward cones in the prime predecessor graph
+# 1. Forward cones
 
-Let
-
-\[
-\Pi=(\mathbb P,D),
-\qquad
-D(q,p)\iff q\mid p-1.
-\]
-
-For a set \(A\subseteq\mathbb P\), define its **forward cone** \(C^+(A)\) to be the smallest subset of \(\mathbb P\) such that
+For \(A\subseteq\mathbb P\), let \(C^+(A)\) be the smallest set containing \(A\) and satisfying
 
 \[
-A\subseteq C^+(A)
-\]
-
-and
-
-\[
-q\in C^+(A),\ D(q,p)
+q\in C^+(A),\quad q\mid p-1
 \Longrightarrow
 p\in C^+(A).
 \]
 
-Equivalently,
+Equivalently, \(p\in C^+(A)\) iff a directed path
 
 \[
-p\in C^+(A)
+a=q_0\to q_1\to\cdots\to q_m=p,
+\qquad q_j\mid q_{j+1}-1,
 \]
 
-iff there is a directed path
+starts at some \(a\in A\). For a single prime \(a\), write \(C^+(a)\).
+
+For a prime set \(B\), when the limit exists define relative prime density by
 
 \[
-a=q_0\to q_1\to\cdots\to q_m=p
+d_{\mathbb P}(B)
+=
+\lim_{x\to\infty}
+\frac{|B\cap[2,x]|}{\pi(x)}.
 \]
 
-for some \(a\in A\), where each arrow means divisibility into the predecessor:
+For an odd prime \(a\), set
 
 \[
-q_j\mid q_{j+1}-1.
+N^+(a)=\{q\in\mathbb P:q\equiv1\pmod a\}.
 \]
 
-For a single prime \(a\), write
+Then \(N^+(a)\subseteq C^+(a)\), and the classical prime number theorem in arithmetic progressions gives
 
 \[
-C^+(a)=C^+(\{a\}).
+d_{\mathbb P}(N^+(a))=\frac1{a-1}.
+\]
+
+We shall also use the classical divergence
+
+\[
+\sum_{\substack{q\in\mathbb P\\q\equiv1\pmod a}}\frac1q=\infty,
+\]
+
+and therefore
+
+\[
+\sum_{q\in N^+(a)}\frac1{q-1}=\infty.
 \]
 
 ---
 
-# 2. First-layer arithmetic already generates a dense cone
+# 2. Density-one forward cone
 
-For an odd prime \(a\), let
+## Theorem 2.1 — forward-cone density theorem
 
-\[
-N^+(a)
-=
-\{q\in\mathbb P:a\mid q-1\}.
-\]
-
-Then
+For every odd prime \(a\),
 
 \[
-N^+(a)\subseteq C^+(a).
-\]
-
-By the prime number theorem in arithmetic progressions,
-
-\[
-d_{\mathbb P}(N^+(a))
-=
-\frac1{a-1}.
-\]
-
-More important for the next argument is the classical divergence
-
-\[
-\sum_{\substack{q\in\mathbb P\\q\equiv1\pmod a}}
-\frac1q
-=
-\infty.
-\]
-
-Hence also
-
-\[
-\sum_{q\in N^+(a)}\frac1{q-1}
-=
-\infty.
-\]
-
----
-
-# 3. Forward-cone density theorem
-
-## Theorem 3.1 — every odd prime has a density-one forward cone
-
-Let \(a\) be any odd prime. Then
-
-\[
-\boxed{
-d_{\mathbb P}(C^+(a))=1.
-}
-\]
-
-Equivalently,
-
-\[
-\boxed{
-d_{\mathbb P}(\mathbb P\setminus C^+(a))=0.
-}
+\boxed{d_{\mathbb P}(C^+(a))=1.}
 \]
 
 ### Proof
 
-Let
+Take a finite set
 
 \[
-A=N^+(a)
-=
-\{q\in\mathbb P:q\equiv1\pmod a\}.
+Q\subset N^+(a)
 \]
 
-Take a finite subset
-
-\[
-Q=\{q_1,\ldots,q_m\}\subset A.
-\]
-
-If a prime \(p\notin C^+(a)\), then for every \(q\in A\), and hence for every \(q\in Q\), we must have
-
-\[
-q\nmid p-1.
-\]
-
-Indeed, if \(q\in A\), then
-
-\[
-a\to q.
-\]
-
-If in addition \(q\mid p-1\), then
-
-\[
-a\to q\to p,
-\]
-
-which would imply \(p\in C^+(a)\).
-
-Therefore
-
-\[
-\mathbb P\setminus C^+(a)
-\subseteq
-\{p\in\mathbb P:p\not\equiv1\pmod q\text{ for all }q\in Q\}.
-\]
-
-Put
+and put
 
 \[
 M=\prod_{q\in Q}q.
 \]
 
-Among the reduced residue classes modulo \(q\), exactly one of the \(q-1\) classes is forbidden, namely \(1\pmod q\). By the Chinese remainder theorem, among reduced residue classes modulo \(M\), the allowed proportion is
+If a prime \(p\notin C^+(a)\), then
 
 \[
-\prod_{q\in Q}
-\frac{q-2}{q-1}
-=
-\prod_{q\in Q}
-\left(1-\frac1{q-1}\right).
+p\not\equiv1\pmod q
+\qquad(q\in Q),
 \]
 
-The prime number theorem in arithmetic progressions therefore gives
+because otherwise \(a\to q\to p\).
+
+For each \(q\in Q\), exactly one of the \(q-1\) reduced residue classes modulo \(q\) is forbidden. By the Chinese remainder theorem the proportion of reduced classes modulo \(M\) that survive all these exclusions is
+
+\[
+\prod_{q\in Q}\frac{q-2}{q-1}
+=
+\prod_{q\in Q}\left(1-\frac1{q-1}\right).
+\]
+
+Applying the prime number theorem in arithmetic progressions to the finitely many reduced classes modulo \(M\),
 
 \[
 \overline d_{\mathbb P}(\mathbb P\setminus C^+(a))
 \le
-\prod_{q\in Q}
-\left(1-\frac1{q-1}\right).
+\prod_{q\in Q}\left(1-\frac1{q-1}\right).
 \]
 
-Now enlarge \(Q\) through finite subsets of \(A\). Since
+Now let \(Q\) exhaust finite subsets of \(N^+(a)\). Since
 
 \[
-\sum_{q\in A}\frac1{q-1}=\infty,
+\sum_{q\in N^+(a)}\frac1{q-1}=\infty,
 \]
 
-we have
+the finite products tend to zero. Hence
 
 \[
-\prod_{q\in Q}
-\left(1-\frac1{q-1}\right)
-\longrightarrow0.
+\overline d_{\mathbb P}(\mathbb P\setminus C^+(a))=0,
 \]
 
-Hence
+which proves the theorem. \(\square\)
+
+## Corollary 2.2 — two directed steps already have density one
+
+Let
 
 \[
-\overline d_{\mathbb P}(\mathbb P\setminus C^+(a))=0.
+C^+_{\le2}(a)
+=
+\{a\}\cup N^+(a)
+\cup
+\{p\in\mathbb P:\exists q\in N^+(a),\ q\mid p-1\}.
 \]
 
-Thus the complement has relative prime density zero and
+Then
 
 \[
-d_{\mathbb P}(C^+(a))=1.
+\boxed{d_{\mathbb P}(C^+_{\le2}(a))=1.}
 \]
 
-\(\square\)
+### Proof
+
+The proof of Theorem 2.1 used only paths \(a\to q\to p\). Thus the same finite-class estimate applies to the complement of \(C^+_{\le2}(a)\). \(\square\)
+
+This sharpening is conceptually useful: density one is obtained before any deeper Pratt iteration is used.
 
 ---
 
-# 4. Consequence for the seed swap \(3\leftrightarrow5\)
+# 3. The seed transposition
 
 Let
 
@@ -241,203 +173,143 @@ Let
 \tau=(3\ 5)
 \]
 
-and define its causal cone
+on the first Pratt layer and define
 
 \[
-C_\tau
-=
-C^+(\{3,5\}).
+C_\tau=C^+(\{3,5\}).
 \]
 
-Since
+Since \(C^+(3)\subseteq C_\tau\), Theorem 2.1 yields
 
 \[
-C^+(3)\subseteq C_\tau,
+\boxed{d_{\mathbb P}(C_\tau)=1.}
 \]
 
-Theorem 3.1 gives immediately:
+Thus the smallest generated forward region capable of carrying the consequences of the seed transposition already contains almost every prime in relative density.
 
-## Corollary 4.1
-
-\[
-\boxed{
-d_{\mathbb P}(C_\tau)=1.
-}
-\]
-
-Thus the smallest forward-closed region that can carry the consequences of the seed transposition already contains almost every prime in relative density.
-
-This is fully consistent with the density-one movement theorem from HATTER-SOL-04: if \((3\ 5)\) extends nontrivially, its moved set must itself have density one.
-
-The new point is different:
-
-> density one is already built into the **causal geometry** of the directed prime graph, before an automorphism has been constructed.
+This is distinct from the HATTER-SOL-04 theorem saying that the moved set of any nontrivial global automorphism has density one. Here density one belongs to the **potential causal future** before an automorphism has been constructed.
 
 ---
 
-# 5. Causal localization lemma
+# 4. Correct causal localization lemma
 
-Let
-
-\[
-P_{\le n}
-\]
-
-be the Pratt-height truncation, and
+Let \(P_{\le n}\) be the Pratt-height truncation, let \(L_{n+1}\) be the next layer, and let
 
 \[
 G_n=\operatorname{Aut}(\Pi\upharpoonright P_{\le n}).
 \]
 
-Suppose
+For a finite exact support \(S\), write
 
 \[
-g_n\in G_n
+X_S=\{p\in\mathbb P:\operatorname{Pred}(p)=S\}.
 \]
 
-and let
+## Lemma 4.1 — generated-cone localization
+
+Let
 
 \[
-C\subseteq\mathbb P
-\]
-
-be forward closed.
-
-## Lemma 5.1
-
-Assume that
-
-\[
-g_n(p)=p
+A\subseteq P_{\le n},
 \qquad
-\text{for every }p\in P_{\le n}\setminus C.
+C=C^+(A),
 \]
 
-Then every exact support
+and suppose \(g_n\in G_n\) fixes every vertex of \(P_{\le n}\setminus C\).
+
+Let \(S\subseteq P_{\le n}\) be an exact predecessor support for vertices in \(L_{n+1}\). If
 
 \[
-S\subseteq P_{\le n}
-\]
-
-satisfying
-
-\[
-S\cap C=\varnothing
-\]
-
-is fixed pointwise by \(g_n\), hence
-
-\[
-g_nS=S.
-\]
-
-Moreover, every prime
-
-\[
-p\in X_S
-\]
-
-lies outside \(C\).
-
-### Proof
-
-If \(S\cap C=\varnothing\), every element of \(S\) lies outside \(C\), so every element is fixed by hypothesis. Thus \(g_nS=S\).
-
-If some \(p\in X_S\) belonged to \(C\), then because \(C\) is forward closed and \(\operatorname{Pred}(p)=S\), the reason for membership of \(p\) in \(C\) would have to come from a directed path entering \(p\) through one of its predecessors. Hence some \(q\in S\) would lie in \(C\), contradicting \(S\cap C=\varnothing\). \(\square\)
-
-### Equivalent contrapositive
-
-If
-
-\[
-p\notin C,
+S\cap C=\varnothing,
 \]
 
 then
 
 \[
-\operatorname{Pred}(p)\cap C=\varnothing.
+g_nS=S,
 \]
 
-Thus vertices outside a forward cone do not receive any incoming edge from the cone.
+and every \(p\in X_S\cap L_{n+1}\) lies outside \(C\).
+
+### Proof
+
+Every element of \(S\) lies outside \(C\), hence is fixed by \(g_n\), so \(g_nS=S\).
+
+Now take \(p\in X_S\cap L_{n+1}\). Because \(A\subseteq P_{\le n}\), we have \(p\notin A\). If \(p\in C=C^+(A)\), some directed path from \(A\) reaches \(p\). Its last edge has the form
+
+\[
+q\to p
+\]
+
+with \(q\in C\) and \(q\in\operatorname{Pred}(p)=S\). Hence \(q\in S\cap C\), a contradiction. Therefore \(p\notin C\). \(\square\)
+
+### Separate forward-closed contrapositive
+
+For **every** forward-closed \(C\), without any generated-cone assumption,
+
+\[
+\boxed{p\notin C\Longrightarrow\operatorname{Pred}(p)\cap C=\varnothing.}
+\]
+
+Indeed, if \(q\in C\) and \(q\mid p-1\), forward-closedness would force \(p\in C\).
+
+The converse direction is not valid for an arbitrary forward-closed set, because a vertex may belong to the set as an initially inserted seed. This is exactly the scope issue repaired above.
 
 ---
 
-# 6. Cone-Fiber Infinitude
+# 5. Cone-Fiber Infinitude
 
-The earlier Higher-Fiber Infinitude hypothesis HFI required
+The earlier Higher-Fiber Infinitude hypothesis (HFI) required
 
 \[
 \mu(S)=\aleph_0
 \]
 
-for every finite exact support
+for every higher finite exact support \(S\ni2\), \(S\ne\{2\}\), where
 
 \[
-S\ni2,
+\mu(S)=|X_S|.
+\]
+
+For a specified seed symmetry this is stronger than necessary.
+
+## Definition 5.1 — CFI\((g_1)\)
+
+Let \(g_1\in G_1\), let
+
+\[
+M_1=\operatorname{supp}(g_1),
 \qquad
-S\ne\{2\}.
-\]
-
-This is stronger than necessary for extending a specified seed symmetry.
-
-## Definition 6.1 — Cone-Fiber Infinitude for a seed
-
-Let
-
-\[
-g_1\in G_1
-\]
-
-be a first-layer permutation, and let
-
-\[
-M_1=\operatorname{supp}(g_1).
-\]
-
-Define its forward cone
-
-\[
 C=C^+(M_1).
 \]
 
-We say that **CFI\((g_1)\)** holds if
+We say that **Cone-Fiber Infinitude**, CFI\((g_1)\), holds if
 
 \[
-\boxed{
-\mu(S)=\aleph_0
-}
+\boxed{\mu(S)=\aleph_0}
 \]
 
-for every finite exact support \(S\) such that
+for every finite exact support \(S\) satisfying
 
 \[
 S\cap C\ne\varnothing.
 \]
 
-No assumption is made about exact fibers whose support is disjoint from \(C\).
+No assumption is imposed on supports disjoint from \(C\).
 
 ---
 
-# 7. Causal Survival Theorem
+# 6. Causal Survival Theorem
 
-## Theorem 7.1
+## Theorem 6.1
 
-Let
-
-\[
-g_1\in G_1
-\]
-
-be any first-layer automorphism, and let
+Let \(g_1\in G_1\), and put
 
 \[
 C=C^+(\operatorname{supp}(g_1)).
 \]
 
-Assume CFI\((g_1)\).
-
-Then \(g_1\) extends to a global automorphism
+If CFI\((g_1)\) holds, then \(g_1\) extends to a global automorphism
 
 \[
 g\in\operatorname{Aut}(\Pi)
@@ -446,315 +318,106 @@ g\in\operatorname{Aut}(\Pi)
 such that
 
 \[
-\boxed{
-g(p)=p
-\quad\text{for every }p\notin C.
-}
+\boxed{g(p)=p\qquad(p\notin C).}
 \]
-
-Thus all movement can be confined to the forward cone generated by the moved first-layer primes.
 
 ### Proof
 
-We construct compatible automorphisms
-
-\[
-g_n\in G_n
-\]
-
-by induction, with the invariant
+Construct compatible \(g_n\in G_n\) by induction, maintaining
 
 \[
 g_n(p)=p
-\qquad
-(p\in P_{\le n}\setminus C).
+\qquad(p\in P_{\le n}\setminus C).
 \]
 
-The case \(n=1\) holds by definition of \(C\): outside the support of \(g_1\), the first-layer automorphism is fixed, and \(2\) is fixed.
+The base case is immediate from the definition of \(C\).
 
-Assume \(g_n\) has been constructed.
+Assume \(g_n\) has been constructed and consider an exact support \(S\subseteq P_{\le n}\) for a fiber in \(L_{n+1}\).
 
-Consider an exact predecessor support
+**Case 1: \(S\cap C=\varnothing\).**  Apply Lemma 4.1 with \(A=\operatorname{supp}(g_1)\subseteq P_{\le1}\subseteq P_{\le n}\). Then \(g_nS=S\), and every vertex of the relevant fiber lies outside \(C\). Choose the extension to fix that fiber pointwise.
 
-\[
-S\subseteq P_{\le n}
-\]
-
-for vertices of height \(n+1\).
-
-### Case 1: \(S\cap C=\varnothing\)
-
-By Lemma 5.1,
-
-\[
-g_nS=S,
-\]
-
-and every vertex of \(X_S\) lies outside \(C\). We choose the extension to fix \(X_S\) pointwise.
-
-### Case 2: \(S\cap C\ne\varnothing\)
-
-Because \(g_n\) fixes the complement of \(C\), it preserves \(C\cap P_{\le n}\) setwise. Hence
+**Case 2: \(S\cap C\ne\varnothing\).**  Since \(g_n\) is a permutation fixing the complement of \(C\) pointwise, it preserves \(C\cap P_{\le n}\) setwise. Hence
 
 \[
 g_nS\cap C\ne\varnothing.
 \]
 
-By CFI\((g_1)\),
+CFI gives
 
 \[
-\mu(S)=\aleph_0
-=
-\mu(g_nS).
+\mu(S)=\aleph_0=\mu(g_nS).
 \]
 
-Therefore the multiplicity-tower extension criterion from HATTER-SOL-04 is satisfied on every such support orbit. Choose bijections
+Thus the multiplicity-tower extension criterion from HATTER-SOL-04 is satisfied. On each orbit of supports under \(g_n\), choose coherent bijections
 
 \[
-X_S\longrightarrow X_{g_nS}
+X_S\longrightarrow X_{g_nS}.
 \]
 
-coherently around each orbit of supports under \(g_n\).
+Every vertex in a fiber with \(S\cap C\ne\varnothing\) lies in \(C\): if \(q\in S\cap C\) and \(p\in X_S\), then \(q\to p\), so forward-closedness forces \(p\in C\). Therefore no new point outside \(C\) is moved.
 
-Combining the pointwise identity choices from Case 1 with these bijections yields
+The resulting \(g_{n+1}\) extends \(g_n\) and preserves the induction invariant. Passing to the inverse limit
 
 \[
-g_{n+1}\in G_{n+1}
+\varprojlim G_n\cong\operatorname{Aut}(\Pi)
 \]
 
-extending \(g_n\).
-
-Every newly moved vertex lies in some \(X_S\) with \(S\cap C\ne\varnothing\), and because \(C\) is forward closed, all such vertices lie in \(C\). Hence
-
-\[
-g_{n+1}(p)=p
-\qquad
-(p\in P_{\le n+1}\setminus C).
-\]
-
-This completes the induction.
-
-The compatible sequence
-
-\[
-(g_n)_{n\ge1}
-\]
-
-defines an element of the inverse limit
-
-\[
-\varprojlim G_n
-\cong
-\operatorname{Aut}(\Pi).
-\]
-
-The resulting global automorphism fixes every prime outside \(C\). \(\square\)
+gives the required global automorphism. \(\square\)
 
 ---
 
-# 8. The \(3\leftrightarrow5\) corollary
+# 7. Corollary for \(3\leftrightarrow5\)
 
 Let
 
 \[
-\tau=(3\ 5)
-\]
-
-on the first Pratt layer, fixing every other Fermat prime.
-
-Define
-
-\[
+\tau=(3\ 5),
+\qquad
 C_\tau=C^+(\{3,5\}).
 \]
 
-## Corollary 8.1
-
-Assume
+If
 
 \[
 \mu(S)=\aleph_0
 \]
 
-for every finite exact support satisfying
+for every finite exact support with \(S\cap C_\tau\ne\varnothing\), then
 
 \[
-S\cap C_\tau\ne\varnothing.
+\boxed{(3\ 5)\text{ extends to a global automorphism of }\Pi,}
 \]
 
-Then
+and an extension can be chosen to fix every prime outside \(C_\tau\).
 
-\[
-\boxed{
-(3\ 5)
-\text{ extends to a global automorphism of }\Pi.
-}
-\]
-
-Moreover, one can choose the extension so that it fixes every prime outside \(C_\tau\).
-
-Because
-
-\[
-d_{\mathbb P}(C_\tau)=1,
-\]
-
-this localization does not contradict the density-one support theorem: the complement available for pointwise fixing is itself density zero.
+Since \(d_{\mathbb P}(C_\tau)=1\), this is compatible with the density-one movement theorem: the region available for pointwise fixing has density zero.
 
 ---
 
-# 9. Why CFI is strictly weaker than HFI
+# 8. Position of CFI
 
-HFI requires infinitude for **every** higher exact support.
-
-CFI\((\tau)\) requires infinitude only for supports that meet the forward cone generated by \(3\) or \(5\).
-
-For example, supports built entirely from \(2\) and Fermat-layer primes outside \(C_\tau\), such as a hypothetical support involving \(17\) but no descendant of \(3\) or \(5\), are not constrained by CFI unless they also contain some prime from \(C_\tau\).
-
-Thus
+For the seed transposition,
 
 \[
-\boxed{
-\text{HFI}\Longrightarrow\text{CFI}(\tau),
-}
+\text{FSI}\Longrightarrow\text{HFI}\Longrightarrow\text{CFI}(\tau).
 \]
 
-but CFI\((\tau)\) does not formally imply HFI.
+CFI is formally weaker because it says nothing about exact supports disjoint from the causal cone. The fifth paper therefore narrows the conditional survival problem to the part of the multiplicity tower that can actually be causally reached from the moved first-layer primes.
 
-The hypothesis is therefore genuinely more local to the seed symmetry.
+The remaining unconditional problem is not removed:
+
+\[
+\boxed{\text{prove, refute, or weaken CFI}(\tau).}
+\]
+
+In particular, finding a support \(S\) meeting \(C_\tau\) for which \(\mu(S)\) is finite or zero could obstruct the seed swap, while proving the needed orbitwise equalities could sustain it.
 
 ---
 
-# 10. Causal minimality of the cone
+# 9. Publication boundary and next research line
 
-The forward cone has a conceptual meaning independent of infinitude assumptions.
+This note is frozen for HATTER-SOL-05 v1.0 after hostile proof audit.
 
-Suppose a first-layer prime \(x\) moves. A prime \(p\) can detect this movement through the relation \(D\) only if some directed path from \(x\) reaches \(p\). If no such path exists, then every predecessor of \(p\), every predecessor of those predecessors, and so on, avoids \(x\).
+The density-one theorem uses classical ingredients: the prime number theorem in arithmetic progressions, divergence of reciprocal primes in a reduced arithmetic progression, and the Chinese remainder theorem. The publication claim is the proved structural packaging inside the HATTER-SOL multiplicity-tower programme; no claim of literature-wide priority is made for the classical analytic ingredients.
 
-Thus
-
-\[
-C^+(x)
-\]
-
-is the smallest forward-closed region in which the consequences of moving \(x\) can be forced to propagate.
-
-This gives a precise version of the narrative inherited from HATTER-SOL-01:
-
-> a prime does not lose its multiplicative freedom everywhere at once; the loss of freedom propagates through the arithmetic dependency graph generated by the retained fragment of \(p-1\).
-
----
-
-# 11. Relation to the density-one movement theorem
-
-HATTER-SOL-04 proved:
-
-\[
-g\ne\mathrm{id}
-\Longrightarrow
- d_{\mathbb P}(\operatorname{supp}(g))=1.
-\]
-
-Theorem 3.1 here proves a different density-one phenomenon:
-
-\[
-a\text{ odd prime}
-\Longrightarrow
- d_{\mathbb P}(C^+(a))=1.
-\]
-
-The first statement concerns the **actual moved set of a hypothetical automorphism**.
-
-The second concerns the **potential causal region generated by one moved prime**.
-
-Together they produce a striking alignment:
-
-\[
-\boxed{
-\text{one moved odd prime already has a density-one arithmetic future,}
-}
-\]
-
-and any genuine nontrivial automorphism is forced to move a density-one set inside such a density-one future region.
-
-This does not prove that a nontrivial automorphism exists.
-
----
-
-# 12. A sharper survival frontier
-
-The branch now has three nested sufficient hypotheses for survival:
-
-\[
-\text{FSI}
-\Longrightarrow
-\text{HFI}
-\Longrightarrow
-\text{CFI}(\tau).
-\]
-
-Where:
-
-- FSI demanded every support fiber, including \(\{2\}\), be infinite;
-- HFI removed the unnecessary Fermat-prime infinitude assumption;
-- CFI\((\tau)\) removes every higher support that lies outside the causal future of the seed swap.
-
-Hence the conditional non-rigidity theorem has been sharpened twice.
-
-The remaining gap is now much more exact:
-
-\[
-\boxed{
-\text{can CFI}(\tau)
-\text{ be proved, disproved, or weakened further?}
-}
-\]
-
----
-
-# 13. Next strike
-
-There are now two high-value directions.
-
-## Strike A — minimal orbitwise survival
-
-Replace CFI by the exact set of support orbits that are **actually moved** by a minimally supported extension. This may yield a necessary-and-sufficient recursive survival condition strictly weaker than cone-wide infinitude.
-
-## Strike B — arithmetic attack inside the cone
-
-Search for one support
-
-\[
-S\cap C_\tau\ne\varnothing
-\]
-
-for which \(\mu(S)\) can be proved finite or zero. Such a support would directly attack CFI and could kill the seed swap.
-
-Theorem 3.1 shows that this battleground is not sparse in the ordinary density sense: the causal cone itself already occupies density one of the primes.
-
----
-
-# 14. Publication status
-
-The mathematical package of HATTER-SOL-05 is now substantially stronger than its initial plan:
-
-1. finite fixed-divisor coverings are impossible for every exact support;
-2. the cyclotomic obstruction exhibits a one-dimensional Fermat collapse but positive-density survival in every higher support dimension;
-3. the \(3\)- and \(5\)-branches have a persistent local sieve asymmetry;
-4. exact descendants amplify that asymmetry but encounter a cardinality wall;
-5. every moved odd prime has a density-one forward cone;
-6. survival requires infinitude only inside the causal cone of the seed symmetry.
-
-This is now a coherent structural theorem package. It is **close to publication threshold**, but one hostile proof/literature audit should be completed before freezing v1.0. The central yes/no problem
-
-\[
-\operatorname{Aut}(\Pi)\stackrel?=\{\mathrm{id}\}
-\]
-
-remains open and must not be presented as solved.
-
----
-
-# Literature boundary
-
-The proof of the density-one forward-cone theorem uses only classical ingredients: the prime number theorem in arithmetic progressions, divergence of reciprocal primes in a reduced arithmetic progression, and the Chinese remainder theorem. The cone formulation and its role in the HATTER-SOL multiplicity tower are used here as structural consequences for the present programme; no claim of literature-wide priority is made without a dedicated audit.
+The next refinement — replacing cone-wide CFI by the exact support orbits that are actually moved by a minimally supported extension — is **not required for HATTER-SOL-05 v1.0**. It belongs naturally to HATTER-SOL-06.
