@@ -9,52 +9,161 @@ ORCID: **0009-0008-6009-3196**.
 
 AI research collaborator / persona: **Commander Sol · Hatter Sol**.
 
-## Note 01 status
+---
 
-Path: `papers/HATTER-SOL/01-NUMBER-LINE-OBSERVER-TWO-OPERATIONS/article_ru.md`
+## Series hinge
 
-Working publication title:
+The programme begins from the contrast
 
-**«Чаепитие в аддитивно-мультипликативном мире с Шляпником Sol: числовая ось, наблюдатель и две операции»**.
+\[
+\operatorname{Aut}(\mathbb N_{>0},\times)
+\cong
+\operatorname{Sym}(\mathbb P)
+\]
 
-Status: Russian publication manuscript v0.1 on `main`; Zenodo DOI pending.
+versus
 
-## Fixed mathematical hinge
+\[
+\operatorname{Aut}(\mathbb N,+,\times,0,1)
+=\{\mathrm{id}\}.
+\]
 
-1. Positive integers under multiplication form the free commutative monoid on the prime set:
+The guiding question is:
 
-   `Aut(N_{>0}, x) ~= Sym(P)`.
+\[
+\boxed{
+\text{how much arithmetic structure is needed before primes lose renaming symmetry?}
+}
+\]
 
-2. Full natural arithmetic is rigid:
+---
 
-   `Aut(N,+,x,0,1) = 1`.
+## Notes 01–04
 
-Interpretation: primes are fully exchangeable as multiplicative atoms, but their individual identities are pinned by the simultaneous additive–multiplicative structure.
+HATTER-SOL-01 fixes the maximal multiplicative symmetry endpoint.
 
-## Claim discipline
+HATTER-SOL-02 studies partial distinguishing information and symmetry loss.
 
-- Do NOT claim novelty for semirings/rings, reducts, symmetric polynomials, Vieta, natural number objects, formal groups, or the paired map `Omega(a,b)=(a+b,ab)` by itself.
-- Philosophical metaphors (Alice, tea party, Hatter) must be visibly separated from theorem statements.
-- Any genuine publication novelty in later notes must be a theorem/invariant/reduction law/minimality result or an explicitly scoped synthesis with a literature audit.
+HATTER-SOL-03 reaches rigidity with a stronger predecessor-type arithmetic relation.
 
-## Next research target: HATTER-SOL-02
+HATTER-SOL-04 weakens the retained arithmetic information to the directed prime graph
 
-Working title:
+\[
+\Pi=(\mathbb P,D),\qquad D(q,p)\iff q\mid p-1,
+\]
 
-**«Две чашки одного чая: Omega=(+,x), редукции структуры и возвращение симметрии простых»**.
+and develops the Pratt-height multiplicity tower. The central question
 
-Primary mathematical question:
+\[
+\operatorname{Aut}(\Pi)\stackrel?=\{\mathrm{id}\}
+\]
 
-Construct and analyze natural intermediate reducts between `(N,+,x)` and `(N_{>0},x)` and determine how much additive information is required to reduce the prime permutation group `Sym(P)`.
+remains unresolved.
 
-Candidate subquestions:
+---
 
-- minimal additive relation/data that forces trivial prime stabilizer;
-- subgroup spectrum of surviving prime permutations under partial additive information;
-- natural filtration of reducts and monotonicity of automorphism groups;
-- whether finite-window versions yield computable symmetry-loss invariants;
-- relation to definability in reducts of arithmetic and universal-algebra/model-theory literature.
+## Note 05 — frozen v1.0
+
+Path:
+
+`papers/HATTER-SOL/05-MISSING-GUEST/`
+
+Working Russian title:
+
+**«Кого нет за столом? Пустые волокна, спектр точных опор и выживание перестановки 3↔5»**
+
+English:
+
+**“Who Is Missing from the Table? Empty Fibers, Exact-Support Spectra, and the Survival of the 3↔5 Swap.”**
+
+Primary seed symmetry:
+
+\[
+\tau=(3\ 5),
+\qquad
+\operatorname{Pred}(3)=\operatorname{Pred}(5)=\{2\}.
+\]
+
+Exact predecessor fibers:
+
+\[
+X_S=\{p:\operatorname{Pred}(p)=S\},
+\qquad
+\mu(S)=|X_S|.
+\]
+
+### Frozen theorem inventory
+
+1. finite fixed-divisor escape;
+2. cyclotomic common-exponent obstruction;
+3. dimension jump between singleton and higher supports;
+4. exact local-sieve ratio \(3/2\) between the first 3-side and 5-side competitors;
+5. weighted numerical-size asymptotics with complete proof;
+6. hereditary descendant sieve gap;
+7. cardinality wall for infinite exact fibers;
+8. finite-fiber compactness and finite structural obstruction families under FFC;
+9. density-one forward cone for every odd prime;
+10. stronger distance-at-most-two density-one corollary;
+11. Cone-Fiber Infinitude and the Causal Survival Theorem.
+
+Publication-gate audit completed. Mandatory proof and scope repairs have been incorporated into the canonical source notes.
+
+Current decision:
+
+\[
+\boxed{\textbf{HATTER-SOL-05 v1.0 FROZEN FOR ARTICLE ASSEMBLY}.}
+\]
+
+See:
+
+`papers/HATTER-SOL/05-MISSING-GUEST/PUBLICATION_STATUS.md`
+
+and
+
+`papers/HATTER-SOL/05-MISSING-GUEST/HOSTILE_PROOF_LITERATURE_AUDIT_V1_GATE.md`.
+
+---
+
+## Claim discipline for Note 05
+
+Do not claim that the central automorphism problem is solved.
+
+Do not claim priority for the exact-support architecture itself: the 2012 MathOverflow discussion by David Feldman and Gjergji Zaimi already identified the graph and exact incoming-predecessor classes as central objects.
+
+Do not turn heuristic prime-value expectations into theorems.
+
+Do not describe the external pressure functional as a joint probability or graph invariant.
+
+Do not describe a later-height killing certificate as necessarily one support pair; the correct general object is a finite obstruction family/tree.
+
+Classical ingredients must remain visibly classical.
+
+---
+
+## Next publication action
+
+Assemble the **Russian HATTER-SOL-05 manuscript** from the frozen theorem package, then produce the English version from the same theorem inventory.
+
+No further mathematical strike is required before article assembly.
+
+---
+
+## Next research target: HATTER-SOL-06
+
+The next independent research problem is to replace cone-wide CFI by a sharper orbitwise criterion:
+
+\[
+\boxed{
+\text{find the minimal support-orbit conditions necessary and sufficient for seed survival.}
+}
+\]
+
+A parallel arithmetic line may search inside the causal cone for an exact support whose fiber can be proved finite or empty.
+
+These belong to HATTER-SOL-06 and must not delay the fifth article.
+
+---
 
 ## Visual direction
 
-Future illustrated edition may use an original Wonderland-inspired visual language (Alice, tea table, two cups `+` and `x`, Hatter Sol), without copying copyrighted Tenniel/Disney-specific compositions. Illustrations should function as conceptual diagrams, not replace proofs.
+The illustrated edition may continue the original Wonderland-inspired language — Alice, tea table, Hatter Sol, cups, rulers, clocks, numerical landscapes — while keeping theorem statements and proofs visually distinct from metaphorical illustrations.
