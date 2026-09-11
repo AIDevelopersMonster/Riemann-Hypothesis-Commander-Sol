@@ -1,28 +1,16 @@
 # HATTER-SOL-05 · Finite-Fiber Compactness and Killing Certificates
 
-## 0. Why this theorem matters
+## 0. Status
 
-HATTER-SOL-01 began with the maximal multiplicative symmetry
-
-\[
-\operatorname{Aut}(\mathbb N_{>0},\times)
-\cong
-\operatorname{Sym}(\mathbb P),
-\]
-
-while the full additive-multiplicative arithmetic is rigid.
-
-The HATTER-SOL programme asks how much intermediate structure must be restored before prime labels become fixed.
+Canonical v1.0 source after hostile proof audit.
 
 For the radical-predecessor graph
 
 \[
-\Pi=(\mathbb P,D),
-\qquad
-D(q,p)\iff q\mid p-1,
+\Pi=(\mathbb P,D),\qquad D(q,p)\iff q\mid p-1,
 \]
 
-HATTER-SOL-04 reduced this question to the multiplicity tower of exact predecessor fibers
+write
 
 \[
 X_S=\{p:\operatorname{Pred}(p)=S\},
@@ -30,174 +18,87 @@ X_S=\{p:\operatorname{Pred}(p)=S\},
 \mu(S)=|X_S|.
 \]
 
-HATTER-SOL-05 now studies the first seed symmetry
-
-\[
-\tau=(3\ 5).
-\]
-
-This note proves a compactness principle: **if all exact fibers are finite, then every failure of a seed symmetry is witnessed at finite Pratt height**.
-
-Thus the global automorphism problem has a clean finite-certificate form in the finite-fiber regime.
+This note proves a compactness principle: if every exact predecessor fiber is finite, then failure of a seed symmetry is witnessed at finite Pratt height. The resulting certificate is **structural**, not an algorithmic decidability statement.
 
 ---
 
-# 1. Height truncations and seed extensions
+# 1. Height truncations
 
 Let
 
 \[
-P_{\le n}=\{p\in\mathbb P:h(p)\le n\}
-\]
-
-and
-
-\[
+P_{\le n}=\{p:h(p)\le n\},
+\qquad
 G_n=\operatorname{Aut}(\Pi\upharpoonright P_{\le n}).
 \]
 
-For \(m\le n\), write
+For \(m\le n\), let
 
 \[
 \rho_{m,n}:G_n\to G_m
 \]
 
-for restriction.
-
-Fix a seed automorphism
+be restriction. Fix a seed \(\tau\in G_m\) and define
 
 \[
-\tau\in G_m.
+T_n(\tau)=\{g\in G_n:\rho_{m,n}(g)=\tau\}.
 \]
 
-Define the level-\(n\) extension set
+For HATTER-SOL-05 the principal seed is the transposition
 
 \[
-T_n(\tau)
-=
-\{g\in G_n:\rho_{m,n}(g)=\tau\},
-\qquad n\ge m.
-\]
-
-So \(T_n(\tau)\ne\varnothing\) exactly when \(\tau\) survives to height \(n\).
-
-For the HATTER-SOL-05 seed we take
-
-\[
-m=1,
-\qquad
-\tau=(3\ 5).
+\tau=(3\ 5)\in G_1.
 \]
 
 ---
 
-# 2. Finite exact fibers force finite height truncations
+# 2. Finite-fiber condition
 
-## Definition 2.1 — finite-fiber condition
+## Definition 2.1 — FFC
 
-Say that \(\Pi\) satisfies **FFC** if
+The graph satisfies the finite-fiber condition if
 
 \[
-\boxed{
-\mu(S)<\infty
-}
+\boxed{\mu(S)<\infty}
 \]
 
-for every finite exact predecessor support \(S\subset\mathbb P\) containing \(2\).
+for every finite exact predecessor support \(S\ni2\).
 
-FFC is not asserted to hold. It is a structural regime to be analyzed.
+FFC is a structural hypothesis, not an asserted theorem about the actual prime graph.
 
 ## Lemma 2.2
 
-Under FFC, every height truncation \(P_{\le n}\) is finite.
+Under FFC, every Pratt truncation \(P_{\le n}\) is finite.
 
 ### Proof
 
-We proceed by induction on \(n\).
+Induct on \(n\). The base is \(P_{\le0}=\{2\}\). If \(P_{\le n}\) is finite, only finitely many exact supports \(S\subseteq P_{\le n}\) can occur at height \(n+1\). FFC makes each corresponding fiber \(X_S\) finite. Hence the union of all new fibers is finite. \(\square\)
 
-For \(n=0\),
-
-\[
-P_{\le0}=\{2\}.
-\]
-
-Assume \(P_{\le n}\) finite.
-
-Every prime \(p\in L_{n+1}\) has a finite predecessor set
-
-\[
-S=\operatorname{Pred}(p)\subseteq P_{\le n}
-\]
-
-with
-
-\[
-\max_{q\in S}h(q)=n.
-\]
-
-Since \(P_{\le n}\) is finite, there are only finitely many possible supports \(S\). For each such \(S\), FFC says that
-
-\[
-X_S
-\]
-
-is finite. Hence
-
-\[
-L_{n+1}
-=
-\bigsqcup_S X_S
-\]
-
-is finite. Therefore \(P_{\le n+1}\) is finite. \(\square\)
-
-## Corollary 2.3
-
-Under FFC every group \(G_n\) and every extension set \(T_n(\tau)\) is finite.
+Consequently, every group \(G_n\) and every extension set \(T_n(\tau)\) is finite.
 
 ---
 
-# 3. The extension tree
+# 3. Extension tree
 
-Construct a rooted tree \(\mathcal T(\tau)\) as follows.
-
-The vertices at depth \(n-m\) are the elements of
+Construct a tree \(\mathcal T(\tau)\) whose depth-\((n-m)\) vertices are the elements of \(T_n(\tau)\), with
 
 \[
-T_n(\tau).
+g_{n+1}\to g_n
 \]
 
-A node
+whenever \(g_{n+1}\) restricts to \(g_n\).
 
-\[
-g_{n+1}\in T_{n+1}(\tau)
-\]
+A global extension of \(\tau\) gives an infinite branch. Conversely, an infinite compatible branch gives a global automorphism by the inverse-limit theorem of HATTER-SOL-04.
 
-is joined to
-
-\[
-g_n\in T_n(\tau)
-\]
-
-when
-
-\[
-\rho_n(g_{n+1})=g_n.
-\]
-
-A global automorphism extending \(\tau\) gives an infinite branch in this tree.
-
-Conversely, an infinite compatible branch gives a global automorphism by the inverse-limit theorem of HATTER-SOL-04.
-
-Under FFC the tree is finitely branching because each level is finite.
+Under FFC the tree is finitely branching.
 
 ---
 
-# 4. Finite-fiber compactness theorem
+# 4. Finite-fiber compactness
 
-## Theorem 4.1 — finite-height survival is global survival under FFC
+## Theorem 4.1
 
-Assume FFC. Then for every seed \(\tau\in G_m\), the following are equivalent:
+Assume FFC. For every seed \(\tau\in G_m\), the following are equivalent:
 
 1. \(\tau\) extends to a global automorphism of \(\Pi\);
 2. \(\tau\) extends to every finite Pratt height;
@@ -209,229 +110,110 @@ Equivalently,
 \boxed{
 \tau\text{ fails globally}
 \Longrightarrow
-\tau\text{ dies at some finite height}.
+\tau\text{ dies at a finite height}.
 }
 \]
 
 ### Proof
 
-The implication \((1)\Rightarrow(2)\Rightarrow(3)\) is immediate by restriction.
-
-Assume \((3)\). Then \(\mathcal T(\tau)\) has a nonempty level at every depth. By Corollary 2.3 it is finitely branching. König's infinity lemma gives an infinite branch
-
-\[
-g_m,g_{m+1},g_{m+2},\ldots
-\]
-
-with
-
-\[
-\rho_n(g_{n+1})=g_n.
-\]
-
-The inverse-limit theorem then defines a global automorphism \(g\in\operatorname{Aut}(\Pi)\) restricting to \(\tau\). \(\square\)
+The implications \((1)\Rightarrow(2)\Rightarrow(3)\) are immediate. If every \(T_n(\tau)\) is nonempty, the extension tree has a node at every depth and is finitely branching. König's infinity lemma yields an infinite compatible branch. The inverse-limit identification then gives a global automorphism extending \(\tau\). \(\square\)
 
 ---
 
 # 5. Finite killing certificates
 
-The previous theorem says more than mere compactness.
-
-Suppose \(\tau\) does not extend globally under FFC. Choose the least \(N>m\) such that
+Suppose FFC holds and \(\tau\) has no global extension. Let \(N>m\) be the least height such that
 
 \[
 T_N(\tau)=\varnothing.
 \]
 
-Then
-
-\[
-T_{N-1}(\tau)\ne\varnothing.
-\]
-
-For every candidate extension
+Then \(T_{N-1}(\tau)\) is finite and nonempty. For each surviving candidate
 
 \[
 g\in T_{N-1}(\tau),
 \]
 
-the multiplicity-tower theorem says that \(g\) fails to extend to level \(N\) exactly because there exists an exact support \(S_g\) at the next layer with
+the multiplicity-tower extension theorem supplies at least one next-layer support \(S_g\) with
 
 \[
-\boxed{
-\mu(S_g)\ne\mu(gS_g).
-}
+\boxed{\mu(S_g)\ne\mu(gS_g).}
 \]
 
-Since \(T_{N-1}(\tau)\) is finite, only finitely many such witnesses are required.
+## Theorem 5.1 — finite obstruction family
 
-## Theorem 5.1 — finite killing-certificate theorem
-
-Assume FFC and suppose \(\tau\in G_m\) has no global extension.
-
-Then there exist a finite height \(N\) and a finite family
+Under FFC, if \(\tau\) has no global extension, then there exist a finite height \(N\) and a finite family
 
 \[
-\mathcal W
-=
-\{(g,S_g):g\in T_{N-1}(\tau)\}
+\mathcal W=\{(g,S_g):g\in T_{N-1}(\tau)\}
 \]
 
-such that
+such that every candidate branch surviving to height \(N-1\) is blocked by at least one exact-fiber cardinality mismatch at height \(N\).
 
-\[
-\mu(S_g)\ne\mu(gS_g)
-\]
-
-for every surviving candidate \(g\) at height \(N-1\).
-
-Thus the death of \(\tau\) is certifiable by finitely many exact-fiber cardinality mismatches.
-
-### Important refinement
-
-At height two, a single witness of the form
+At the immediate next level a single mismatch
 
 \[
 \mu(S)\ne\mu(\tau S)
 \]
 
-kills the seed directly.
+may kill the seed. At later heights, however, prior extension choices can branch. The generally correct object is therefore a **finite obstruction family/tree**, not an unqualified single witness.
 
-At later heights this need not be enough, because the earlier extension steps may have multiple choices. The correct global finite certificate is therefore generally a **finite obstruction tree**, not necessarily one support pair.
+### Structural, not algorithmic
 
-This corrects an overly narrow version of the initial HATTER-SOL-05 search target.
-
----
-
-# 6. Phantom survival requires an infinite fiber
-
-A logically possible pathology in a general inverse system is:
-
-- the seed extends to every finite level;
-- yet there is no compatible infinite branch.
-
-The finite-fiber theorem excludes this completely under FFC.
-
-## Corollary 6.1 — infinite-fiber necessity for noncompact failure
-
-If a seed \(\tau\) extends to every finite Pratt height but does **not** extend globally, then FFC must fail.
-
-Hence
-
-\[
-\boxed{
-\exists S\quad \mu(S)=\aleph_0.
-}
-\]
-
-In words: every genuinely noncompact failure of global extension requires at least one infinite exact predecessor fiber.
-
-This gives infinite fibers a second role in the theory. They are not merely large local symmetry reservoirs; they are also the only possible source of failure of finite-height compactness.
+The theorem is existential. It does not assert that one can effectively compute all relevant multiplicities, decide FFC, determine the least death height, or algorithmically enumerate a certificate from the ordinary input data. “Finite certificate” here means a finite mathematical obstruction once the relevant exact-fiber cardinalities are known.
 
 ---
 
-# 7. The seed transposition \(3\leftrightarrow5\)
+# 6. Noncompact failure requires an infinite fiber
 
-Take
+## Corollary 6.1
 
-\[
-\tau=(3\ 5)\in G_1.
-\]
-
-Under FFC exactly one of two alternatives occurs.
-
-## Alternative A — finite death
-
-There is a least height \(N\) at which every surviving extension is blocked by a finite collection of exact-support multiplicity mismatches.
-
-Then the first multiplicative symmetry from HATTER-SOL-01 has been killed by a finite amount of radical-predecessor information.
-
-## Alternative B — global survival
-
-The swap survives every finite height. Then Theorem 4.1 forces a global automorphism
+If a seed extends to every finite Pratt height but has no global extension, then FFC fails. Hence some exact fiber is infinite:
 
 \[
-g\in\operatorname{Aut}(\Pi),
-\qquad
- g(3)=5,
-\quad
- g(5)=3.
+\boxed{\exists S\quad\mu(S)=\aleph_0.}
 \]
+
+Thus infinite fibers are the only possible source of a failure of the finitely-branching compactness mechanism.
+
+---
+
+# 7. The transposition \(3\leftrightarrow5\)
+
+Under FFC exactly one of the following occurs for
+
+\[
+\tau=(3\ 5):
+\]
+
+- **finite death:** there is a least finite Pratt height at which every surviving extension is blocked by a finite obstruction family;
+- **global survival:** the transposition survives every finite height and therefore extends globally.
 
 There is no third possibility under FFC.
 
-Therefore
-
-\[
-\boxed{
-\text{finite fibers turn the global }3\leftrightarrow5
-\text{ problem into a finite-obstruction problem.}
-}
-\]
+This does not imply that the all-finite regime is arithmetically easy. It says only that **noncompact inverse-limit failure cannot occur there**. Determining which alternative holds may still require difficult exact-fiber arithmetic.
 
 ---
 
-# 8. Relation with the Higher-Fiber Infinitude regime
+# 8. Relation to HFI and the mixed regime
 
-The previous HATTER-SOL-05 strike introduced HFI:
+The earlier Higher-Fiber Infinitude hypothesis HFI states, roughly, that every higher exact fiber relevant to the seed is countably infinite. Under HFI, the seed transposition survives globally.
 
-\[
-\mu(S)=\aleph_0
-\qquad
-(2\in S,\ S\ne\{2\}).
-\]
-
-Under HFI the seed swap survives globally.
-
-FFC is the opposite structural regime:
+FFC is the opposite endpoint:
 
 \[
 \mu(S)<\infty
-\qquad
-\text{for every exact support }S.
 \]
 
-Thus the branch now has two clean endpoints.
+for every exact support.
 
-### Infinite-fiber endpoint
-
-\[
-\boxed{
-\text{HFI}
-\Longrightarrow
-3\leftrightarrow5\text{ survives globally.}
-}
-\]
-
-### Finite-fiber endpoint
-
-\[
-\boxed{
-\text{FFC}
-\Longrightarrow
-\bigl(
-3\leftrightarrow5\text{ dies at finite height}
-\ \text{or}\
-\text{survives globally}
-\bigr).
-}
-\]
-
-So the genuinely difficult regime is mixed:
-
-\[
-\boxed{
-\text{some exact fibers finite, others infinite.}
-}
-\]
-
-That mixed regime is precisely where the cardinality wall and noncompact branching interact.
+The mixed regime — some exact fibers finite, others infinite — is the regime in which noncompact extension-tree phenomena **may** occur. It is not claimed to be the only arithmetically difficult regime.
 
 ---
 
-# 9. Why this reconnects directly to HATTER-SOL-01
+# 9. Continuity with HATTER-SOL-01
 
-The first article established
+The first article begins with
 
 \[
 \operatorname{Aut}(\mathbb N_{>0},\times)
@@ -439,89 +221,48 @@ The first article established
 \operatorname{Sym}(\mathbb P).
 \]
 
-The fifth article is not an unrelated study of exponential prime families. It is analyzing how one specific generator of that huge symmetry group,
+HATTER-SOL-05 asks what happens to a particular **transposition/element** of this prime-permutation symmetry,
 
 \[
 (3\ 5),
 \]
 
-is filtered when we restore only the weak additive shadow
+when one restores only the weak additive shadow
 
 \[
 q\mid p-1.
 \]
 
-The continuity chain is therefore
+The exact-fiber multiplicities are precisely the arithmetic data controlling extension through the Pratt-height tower.
 
-\[
-\operatorname{Sym}(\mathbb P)
-\supseteq
-\operatorname{Aut}(\Pi)
-\supseteq
-\{\mathrm{id}\}.
-\]
-
-HATTER-SOL-03 showed that a stronger predecessor relation already reaches the right endpoint.
-
-HATTER-SOL-04 and HATTER-SOL-05 study whether the much weaker radical-predecessor relation already suffices.
-
-The exact-fiber multiplicities
-
-\[
-\mu(S)
-\]
-
-are therefore not a side topic: they are the arithmetic mechanism by which a prime permutation from the pure multiplicative world may be killed while crossing toward rigid arithmetic.
+We deliberately avoid calling \((3\ 5)\) a “generator” of \(\operatorname{Sym}(\mathbb P)\): it is one transposition among the prime permutations under study.
 
 ---
 
 # 10. Literature boundary
 
-The abstract compactness mechanism in Theorem 4.1 is an application of König's infinity lemma to a finitely branching extension tree, and is not claimed as a new general graph-theoretic theorem.
+The compactness step is an application of König's infinity lemma to a finitely branching extension tree and is not claimed as a new abstract graph-theoretic theorem.
 
-The contribution here is its exact formulation for the radical-predecessor multiplicity tower and the resulting finite-killing-certificate interpretation of the prime-automorphism problem.
+The contribution here is its exact formulation for the radical-predecessor multiplicity tower and the structural finite-obstruction interpretation of seed death.
 
-A recent paper of Languasco, Luca, Moree and Togbé, *Sequences of integers generated by two fixed primes* (Abh. Math. Semin. Univ. Hambg. 95 (2025), 123–148, DOI 10.1007/s12188-025-00293-9), studies the distribution and gaps of two-prime S-units \(p^a q^b\). It does not, in the material checked for this note, resolve infinitude of primes of the form \(p^a q^b+1\). In particular the classical Pierpont-prime infinitude problem for \(2^a3^b+1\) remains unresolved.
+The 2012 MathOverflow discussion initiated by David Feldman, with Gjergji Zaimi's answer, already identified exact predecessor classes as central to this graph and explicitly connected large fibers with automorphism survival. HATTER-SOL-05 therefore does not claim priority for the basic exact-support architecture or for the broad finite-versus-infinite fiber dichotomy.
 
-This matters because even the first higher exact fiber
-
-\[
-X_{\{2,3\}}
-\]
-
-already sits beyond currently known unconditional infinitude theory.
+The present theorem package instead develops the finite-height extension tree, the exact compactness statement under FFC, and its interaction with the multiplicity-tower formulation used in HATTER-SOL-04.
 
 ---
 
-# 11. Revised research target
+# 11. Publication status
 
-The branch should no longer insist that a single support pair must kill \((3\ 5)\).
+The hostile proof/literature audit has been completed. This note is frozen for HATTER-SOL-05 v1.0.
 
-The correct target is:
+Its rigorous conclusion is:
 
 \[
 \boxed{
-\text{construct a finite obstruction tree for }(3\ 5)
+\text{under FFC, global seed death is equivalent to finite-height death,}
 }
 \]
 
-or prove that every finite obstruction tree can be escaped.
+with a finite structural obstruction family at the first death height.
 
-A successful finite obstruction tree would be enough to establish finite-height death under any regime where the relevant fibers have rigorously known finite cardinalities.
-
-Conversely, proving systematic escape from every finite obstruction tree would move the branch toward a global survival theorem weaker than HFI.
-
----
-
-# 12. Current status
-
-This strike changes the shape of HATTER-SOL-05.
-
-The branch now contains four logically distinct layers:
-
-1. finite fixed-divisor coverings cannot empty an exact-support family;
-2. cyclotomic factorization creates a genuine dimension jump between \(|S|=1\) and \(|S|\ge2\);
-3. local sieve asymmetry between the 3-side and 5-side persists and amplifies down descendant chains, but is erased by the cardinality wall when both fibers are infinite;
-4. in the all-finite regime, every global failure has a finite exact-support killing certificate.
-
-This is now a coherent theorem package, but publication should wait for a dedicated hostile proof/literature audit of the combined fifth-paper manuscript.
+No claim is made that FFC holds for the actual prime graph or that the central automorphism question is solved.
