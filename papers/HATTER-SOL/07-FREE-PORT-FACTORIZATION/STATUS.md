@@ -3,7 +3,7 @@
 **Branch:** `research/hatter-sol-free-ports`  
 **Path:** `papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/`  
 **Status date:** 2026-09-12  
-**Status:** active research; first nontrivial structural theorem obtained; publication threshold not yet declared.
+**Status:** **PUBLICATION THRESHOLD REACHED** — short RU/EN research note should now be assembled.
 
 ## Core model
 
@@ -21,7 +21,15 @@ B(T,\mathbf a)=2+\sum_v(a_v-2).
 
 Hence the original chain quantity `F=\sum(a_i-2)` is exactly the tree free boundary after designating two global terminals as input/output.
 
-## New result 1 — fixed-decomposition spectrum
+## Classical backbone / claim discipline
+
+For a fixed capacity vector, minimizing free boundary is exactly maximum-cardinality simple `b`-matching / an `f`-bounded-subgraph problem on the complete host graph. This classical optimization layer is not claimed as new.
+
+The literature audit also records classical vertex detachment/splitting and Matula-Goebel number/tree encodings. The publication must explicitly separate these from the candidate new theorem.
+
+See `LITERATURE_AUDIT.md`.
+
+## Result 1 — fixed-decomposition spectrum
 
 For a fixed decomposition `\mathbf a=(a_1,...,a_k)`, let
 
@@ -38,114 +46,163 @@ Then
 }
 \]
 
-So every fixed decomposition has a complete parity interval of boundary values. Any holes in the global integer spectrum must arise when the spectra of different multiplicative decompositions are united.
+Thus the boundary spectrum of one fixed factorization is a complete parity interval.
 
-Proof: choose a maximum-edge admissible connected graph and a spanning tree inside it; adding arbitrary subsets of the extra edges realizes every intermediate edge count.
+## Result 2 — refinement inversion
 
-## New result 2 — refinement inversion theorem
-
-The tree-only model has strict refinement monotonicity: replacing `ab` by `a,b` decreases tree free boundary by
+Multiplicative refinement need not improve topological saturation. There are infinite families with
 
 \[
-(ab-2)-[(a-2)+(b-2)]
-=(a-1)(b-1)+1>0.
+\lambda(\text{refined})>\lambda(\text{coarse}).
 \]
 
-But this monotonicity fails in the general connected-simple-network model.
-
-For every odd `q>=3` and every `m>=2q`, define
+In particular, for odd `q>=3` and `m>=2q`, replacing the coarse vector
 
 \[
-\mathbf A=(2q,2^m)
+(2q,2^m)
 \]
 
-meaning one capacity-`2q` node and `m` capacity-two nodes, and refine it to
+by
 
 \[
-\mathbf A'=(q,2^{m+1}).
+(q,2^{m+1})
 \]
 
-Then
+gives
 
 \[
-\boxed{\lambda(\mathbf A)=0,\qquad \lambda(\mathbf A')=1,}
+\lambda(2q,2^m)=0,
+\qquad
+\lambda(q,2^{m+1})=1.
 \]
 
-where `\lambda` is minimum free boundary over connected simple capacity-respecting networks.
+See `REFINEMENT_INVERSION.md`.
 
-The coarse network is fully saturable by using the `2q` hub to close `q` disjoint paths of capacity-two vertices. The refined total capacity is odd, forcing boundary at least one; an explicit bouquet-of-triangles plus one tail realizes boundary exactly one.
+## Main theorem — exact sharp one-step inversion amplitude
 
-See `REFINEMENT_INVERSION.md` for the full proof.
-
-## Arithmetic corollary
-
-For odd prime `q` and `m>=2q`, let
-
-\[
-n=q2^{m+1}.
-\]
-
-The full prime decomposition `(q,2^{m+1})` has minimum boundary one, whereas the coarser decomposition `(2q,2^m)` has minimum boundary zero.
-
-Thus
-
-\[
-\boxed{\text{complete prime refinement need not minimize free boundary}.}
-\]
-
-The first explicit member obtained in the search is
-
-\[
-384=3\cdot2^7,
-\]
-
-with prime-resolution minimum `1`, while
-
-\[
-384=6\cdot2^6
-\]
-
-has a saturated boundary-zero realization.
-
-Do not call `384` the globally smallest refinement-inversion integer unless a separate exhaustive proof is recorded.
-
-## Conceptual hinge
-
-The programme has moved beyond the chain identity. There is now a genuine competition:
+Let a capacity `ab` be refined to capacities `a,b`, with `a,b>=2`. Then for every ambient capacity vector,
 
 \[
 \boxed{
-\text{multiplicative refinement}
-\quad\text{vs}\quad
-\text{topological closure / cycle capacity}.
+\lambda(\ldots,a,b,\ldots)
+-
+\lambda(\ldots,ab,\ldots)
+\le
+ab-a-b.
 }
 \]
 
-Refining a factor exposes more arithmetic structure, but it can destroy a parity or graphical condition required to saturate all ports. Hence "more factorized" no longer means "less free boundary" once topology is allowed to reorganize.
-
-## Prior-art caution
-
-There is classical literature encoding natural numbers by rooted trees through recursive prime factorization (Matula-Goebel numbers / Matula numbering), and a large classical theory of graphical degree sequences and bounded-degree graph realization. These must be discussed in a future literature audit. No priority claim is made yet for the broad idea "factorization represented by a graph".
-
-The candidate novel object here is narrower: multiplicative decompositions as vertex-capacity multisets, free boundary under connected simple wiring, and behavior of that boundary under multiplicative refinement.
-
-## Immediate next strike
-
-1. Characterize when `\lambda(\mathbf a)=0` (full port saturation) in terms of graphical sequences dominated by the capacity vector.
-2. Determine the exact effect of a one-step refinement `ab -> a,b` on `\lambda`: can the increase exceed `1`, or is refinement inversion universally parity-limited?
-3. Determine the globally smallest `n` admitting refinement inversion, with a certified exhaustive search/proof.
-4. Characterize global spectrum
+Moreover this bound is sharp for every pair `a,b>=2`:
 
 \[
-\mathcal B(n)=\bigcup_{\prod a_i=n}\mathcal B(\mathbf a)
+\boxed{
+\sup_{\text{ambient decompositions}}
+\Bigl[
+\lambda(\ldots,a,b,\ldots)
+-
+\lambda(\ldots,ab,\ldots)
+\Bigr]
+=ab-a-b.
+}
 \]
 
-and decide which parity/arithmetic gaps can occur between decomposition spectra.
-5. Separate what follows immediately from classical b-matching / graphical-sequence theorems from what is genuinely arithmetic in the factorization poset.
+Hence refinement inversion is not bounded by any universal constant.
 
-## Claim discipline
+Examples:
 
-- The handshake identity, cycle-rank formula, graphical-sequence facts, Matula-Goebel encoding, and additive functions such as `sopfr` and `Omega` are classical or elementary and are not claimed as new.
-- `m` ports for factor `m` is a chosen model, not a canonical interpretation of multiplication.
-- The current theorem is structural inside this model; it is not a primality test or factorization algorithm.
-- Publication gate remains open pending literature audit and at least one sharper characterization or extremal theorem.
+\[
+6\to2\cdot3:\quad \Delta\lambda_{\max}=1,
+\]
+
+\[
+8\to2\cdot4:\quad \Delta\lambda_{\max}=2,
+\]
+
+\[
+9\to3\cdot3:\quad \Delta\lambda_{\max}=3.
+\]
+
+The split `4->2*2` is the unique pair `a,b>=2` with zero worst-case inversion.
+
+See `SHARP_REFINEMENT_BOUND.md`.
+
+## Iterated corollary
+
+If `\mathbf d` is obtained from `\mathbf c` by a sequence of multiplicative refinements and
+
+\[
+S(\mathbf c)=\sum_i c_i,
+\]
+
+then
+
+\[
+\boxed{
+\lambda(\mathbf d)-\lambda(\mathbf c)
+\le
+S(\mathbf c)-S(\mathbf d).
+}
+\]
+
+Equivalently,
+
+\[
+\boxed{
+\lambda(\mathbf d)+S(\mathbf d)
+\le
+\lambda(\mathbf c)+S(\mathbf c).
+}
+\]
+
+So `lambda+S` is refinement-nonincreasing in this model.
+
+## Literature-audit result
+
+The hostile audit located:
+
+1. classical maximum simple `b`-matching / `f`-bounded-subgraph theory;
+2. generalized Tutte-Berge deficiency formulas;
+3. one-vertex capacity sensitivity results;
+4. extensive vertex detachment/splitting theory;
+5. Matula-Goebel factorization/tree encodings.
+
+It did **not** locate an explicit theorem equivalent to the exact sharp response
+
+\[
+\Delta_{a,b}^{\max}=ab-a-b
+\]
+
+for the complete-host simple-network operation that replaces one capacity `ab` by two capacities `a,b` and re-optimizes all edges.
+
+This is a serious negative search, not an absolute priority guarantee.
+
+## Publication decision
+
+\[
+\boxed{\textbf{PUBLICATION THRESHOLD REACHED}.}
+\]
+
+A short standalone HATTER-SOL-07 research note is justified because:
+
+- the classical layer has now been identified and fenced off;
+- the central theorem is exact, sharp, and proved;
+- sharpness holds for every local split `a,b`;
+- the inversion amplitude is unbounded;
+- there is a natural iterated monotone;
+- the closest prior-art families found do not state the same multiplicative-split theorem.
+
+## Publication framing
+
+Recommended central formulation:
+
+> We introduce a factor-capacity network viewpoint on multiplicative decompositions and isolate a sharp sensitivity law for minimum unused capacity under the arithmetic split `ab -> (a,b)`. For each fixed capacity vector the optimization is classical maximum simple b-matching; the contribution is the exact interaction between this deficiency and multiplicative refinement.
+
+## Next actions
+
+1. Assemble `article_ru.md` in the HATTER-SOL / Wonderland “Размышлизмы” style, with a visibly separate rigorous theorem section.
+2. Produce synchronized `article_en.md`.
+3. Include the hostile literature audit and conservative novelty statement.
+4. Audit theorem numbering, proof completeness, bibliography, DOI metadata, author line, and ORCID.
+5. Only after that produce publication PDF(s) and Zenodo package.
+
+Do not merge or publish automatically unless explicitly requested; this branch is the canonical publication-working branch.
