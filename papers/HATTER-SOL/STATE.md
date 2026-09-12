@@ -62,19 +62,23 @@ remains unresolved.
 
 ---
 
-## Note 05 — frozen v1.0
+## Note 05 — published
 
 Path:
 
 `papers/HATTER-SOL/05-MISSING-GUEST/`
 
-Working Russian title:
+Russian title:
 
 **«Кого нет за столом? Пустые волокна, спектр точных опор и выживание перестановки 3↔5»**
 
 English:
 
-**“Who Is Missing from the Table? Empty Fibers, Exact-Support Spectra, and the Survival of the 3↔5 Swap.”**
+**“Who Is Missing from the Table? Empty Fibers, Exact-Support Spectra, and the Survival of the 3↔5 Transposition.”**
+
+Zenodo DOI:
+
+**10.5281/zenodo.22718278**
 
 Primary seed symmetry:
 
@@ -92,7 +96,7 @@ X_S=\{p:\operatorname{Pred}(p)=S\},
 \mu(S)=|X_S|.
 \]
 
-### Frozen theorem inventory
+### Published theorem inventory
 
 1. finite fixed-divisor escape;
 2. cyclotomic common-exponent obstruction;
@@ -106,64 +110,160 @@ X_S=\{p:\operatorname{Pred}(p)=S\},
 10. stronger distance-at-most-two density-one corollary;
 11. Cone-Fiber Infinitude and the Causal Survival Theorem.
 
-Publication-gate audit completed. Mandatory proof and scope repairs have been incorporated into the canonical source notes.
+Note 05 is closed for theorem development. New structural work belongs to Note 06.
 
-Current decision:
+---
+
+## Note 06 — active research
+
+Path:
+
+`papers/HATTER-SOL/06-ORBITWISE-SURVIVAL/`
+
+Primary research file:
+
+`ORBITWISE_SURVIVAL_KERNEL.md`
+
+The target is to replace cone-wide CFI by an exact branch-dependent orbitwise survival criterion.
+
+### First HATTER-SOL-06 strike
+
+For a seed symmetry \(\tau\) with generated causal cone
 
 \[
-\boxed{\textbf{HATTER-SOL-05 v1.0 FROZEN FOR ARTICLE ASSEMBLY}.}
+C=C^+(\operatorname{supp}\tau),
 \]
 
-See:
+define cone-localized partial extensions
 
-`papers/HATTER-SOL/05-MISSING-GUEST/PUBLICATION_STATUS.md`
+\[
+\mathcal T_n^C(\tau)
+=
+\{g\in G_n:g|_{P_{\le m}}=\tau,\ g(p)=p\text{ outside }C\}.
+\]
 
-and
+At height \(n\), only active supports
 
-`papers/HATTER-SOL/05-MISSING-GUEST/HOSTILE_PROOF_LITERATURE_AUDIT_V1_GATE.md`.
+\[
+\mathcal A_n(C)
+=
+\{S:S\cap C\ne\varnothing\}
+\]
 
----
+can carry nontrivial causal motion.
 
-## Claim discipline for Note 05
-
-Do not claim that the central automorphism problem is solved.
-
-Do not claim priority for the exact-support architecture itself: the 2012 MathOverflow discussion by David Feldman and Gjergji Zaimi already identified the graph and exact incoming-predecessor classes as central objects.
-
-Do not turn heuristic prime-value expectations into theorems.
-
-Do not describe the external pressure functional as a joint probability or graph invariant.
-
-Do not describe a later-height killing certificate as necessarily one support pair; the correct general object is a finite obstruction family/tree.
-
-Classical ingredients must remain visibly classical.
-
----
-
-## Next publication action
-
-Assemble the **Russian HATTER-SOL-05 manuscript** from the frozen theorem package, then produce the English version from the same theorem inventory.
-
-No further mathematical strike is required before article assembly.
-
----
-
-## Next research target: HATTER-SOL-06
-
-The next independent research problem is to replace cone-wide CFI by a sharper orbitwise criterion:
+The one-step extension criterion sharpens to:
 
 \[
 \boxed{
-\text{find the minimal support-orbit conditions necessary and sufficient for seed survival.}
+ g\in\mathcal T_n^C(\tau)
+\text{ extends cone-locally}
+\iff
+\mu_n(S)=\mu_n(gS)
+\text{ for every moved active support }S.
 }
 \]
 
-A parallel arithmetic line may search inside the causal cone for an exact support whose fiber can be proved finite or empty.
+Fixed active supports and supports disjoint from \(C\) impose no additional arithmetic condition.
 
-These belong to HATTER-SOL-06 and must not delay the fifth article.
+This leads to the cone-localized extension tree
+
+\[
+\mathscr T_C(\tau)
+\]
+
+and its transfinite pruning kernel
+
+\[
+\mathscr K_C(\tau).
+\]
+
+The exact global criterion is
+
+\[
+\boxed{
+\tau\text{ survives globally with the complement of }C\text{ fixed}
+\iff
+\tau\in\mathscr K_C(\tau).
+}
+\]
+
+Equivalently, \(\mathscr T_C(\tau)\) must contain one compatible infinite branch.
+
+### New structural trichotomy
+
+A seed can now fail or survive in exactly three structurally distinct ways:
+
+\[
+\boxed{
+\text{finite killing}
+\quad/\quad
+\text{transfinite noncompact killing}
+\quad/\quad
+\text{global survival}.}
+\]
+
+Under FFC only finite killing is possible, recovering HATTER-SOL-05 compactness. CFI makes every active support orbit automatically balanced and is recovered as a uniform sufficient condition.
+
+The orbitwise kernel itself contains no infinitude hypothesis and is the exact coinductive survival condition.
+
+---
+
+## Current research target
+
+For
+
+\[
+\tau=(3\ 5),
+\qquad
+C_\tau=C^+(\{3,5\}),
+\]
+
+the next strike is no longer to prove cone-wide infinitude. It is to locate the first **reachable moved active support orbit** on which the multiplicity coloring is nonconstant.
+
+For a compatible candidate branch \(g_\bullet\), define
+
+\[
+\mathcal R(g_\bullet)
+=
+\bigcup_n
+\{S\in\mathcal A_n(C_\tau):g_nS\ne S\}.
+\]
+
+The branch survives exactly when
+
+\[
+\mu_n(S)=\mu_n(g_nS)
+\]
+
+for every support actually encountered in \(\mathcal R(g_\bullet)\).
+
+So the immediate mathematical target is:
+
+\[
+\boxed{
+\text{compute or force the first nonconstant multiplicity color on a reachable moved active orbit.}
+}
+\]
+
+A parallel target is to determine whether noncompact transfinite death can actually occur in this particular prime-graph tower or whether some hidden compactness principle rules it out.
+
+---
+
+## Claim discipline
+
+Do not claim that the central automorphism problem is solved.
+
+Do not infer global survival merely from extension to arbitrarily large finite heights unless one compatible branch is produced or compactness is proved.
+
+Do not identify the orbitwise survival kernel with CFI: CFI is only a uniform sufficient condition.
+
+Do not infer that transfinite noncompact death occurs in the prime graph merely because the abstract extension tree permits it.
+
+Do not turn numerical evidence for multiplicity equality or inequality into an exact theorem without certified fiber cardinalities.
 
 ---
 
 ## Visual direction
 
-The illustrated edition may continue the original Wonderland-inspired language — Alice, tea table, Hatter Sol, cups, rulers, clocks, numerical landscapes — while keeping theorem statements and proofs visually distinct from metaphorical illustrations.
+The illustrated edition may continue the Wonderland-inspired language — Alice, tea table, Hatter Sol, cups, rulers, clocks, numerical landscapes — while keeping theorem statements and proofs visually distinct from metaphorical illustrations.
