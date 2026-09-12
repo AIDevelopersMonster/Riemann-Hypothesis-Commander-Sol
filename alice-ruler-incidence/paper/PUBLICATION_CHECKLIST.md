@@ -1,6 +1,6 @@
 # Publication checklist — Alice Throws Away the Ruler II
 
-Status: **publication manuscript assembled; pre-release audit required**  
+Status: **mathematical proof audit passed; manuscript synchronization and release QA remain**  
 Date: 2026-09-12
 
 ## Canonical title
@@ -83,18 +83,42 @@ New deductions to foreground:
 
 Classical/source-derived ingredients must be identified as such.
 
-## Bibliography audit required before release
+## Mathematical proof audit — PASSED 2026-09-12
 
-Verify final metadata and DOI formatting for:
+The publication-core proof note was line-by-line hardened in commit
+`5c8fc288973fe77ca9ee1d8f65dc83e9a21815ab`.
 
-1. Danziger–Mendelsohn–Grannell–Griggs, *Five-line configurations in Steiner triple systems*, Utilitas Mathematica 49 (1996), 153–159.
-2. Král'–Máčajová–Pór–Sereni, Canadian Journal of Mathematics 62(2) (2010), 355–381, DOI `10.4153/CJM-2010-021-9`.
-3. Král'–Máčajová–Pór–Sereni technical report IUUK-CE-ITI 2007-352.
-4. Král'–Máčajová–Pór–Sereni, ENDM 29 (2007), 17–21, DOI `10.1016/j.endm.2007.07.004`.
-5. Teirlinck, Geometriae Dedicata 4 (1975), 39–44, DOI `10.1007/BF00147400`.
-6. Grannell–Griggs–Mendelsohn, JCD 3(1) (1995), 51–59, DOI `10.1002/jcd.3180030107`.
-7. Stinson–Wei, Discrete Mathematics 105 (1992), 207–219, DOI `10.1016/0012-365X(92)90143-4`.
-8. Colbourn–Rosa, *Triple Systems*, OUP, 1999.
+The audit closed the following reviewer-sensitive points:
+
+1. **Explicit anti-mitre identification.** The three representative five-block failure witnesses in the bulk-charging lemma now have explicit incidence-preserving relabellings to canonical
+   `C_A = 012,034,135,236,457`.
+2. **Fano two-colour lemma.** The claim that every red/blue colouring of the seven Fano lines has a monochromatic pencil is now proved directly rather than called merely elementary.
+3. **No Fano subsystem in `S_9`.** A direct proof is included: a Steiner subsystem of `AG(2,3)` is, after translation, an additive subgroup of `F_3^2`, so its size is only `1,3,9`, never `7`.
+4. **Localized use of the 2007 finite proof.** The single place where the source proof uses four-point independence is isolated. If the exceptional triple `d_A,d_B,d_C` is a block, `{A,B,d}` is immediately a `D` root; otherwise the source red-star argument proceeds unchanged. The blue-star branch needs no stronger assumption.
+5. **Query-template audit.** All phase queries used by the finite proof fall into the four reconstruction classes
+   `{d,u,v}`, `{d_x,u,v}`, `{u,d_x,d_y}`, `{d_x,d_y,d_z}`.
+6. **Reverse multiplicity.** Each reconstruction class has `O(v)` reverse fiber; together with at most `84` `P/H` edges per mixed `(F,d)` pair this gives `s<=C_I v|D|`.
+7. **Constant normalization.** The theorem is recorded consistently as
+   `min(rho_P,rho_H) <= C c_A/N`, with `c_A/N=3 alpha`.
+8. **Zero-defect conclusion.** The all-`P`/all-`H` phase conclusion is separated from the classical final identification as projective/Hall.
+
+**Audit verdict:** no unresolved logical step remains in the proof chain currently used for the main theorem. This is a mathematical-proof verdict, not yet a release/layout verdict.
+
+## Bibliography audit
+
+Verified/anchored during the proof audit:
+
+1. P. Danziger, E. Mendelsohn, M. J. Grannell, T. S. Griggs, *Five-Line Configurations in Steiner Triple Systems*, *Utilitas Mathematica* **49** (1996), 153–159. Primary PDF inspected for configurations #4 and #7 and their count formulas.
+2. D. Král', E. Máčajová, A. Pór, J.-S. Sereni, *Characterisation Results for Steiner Triple Systems and Their Application to Edge-Colourings of Cubic Graphs*, *Canadian Journal of Mathematics* **62**(2) (2010), 355–381, DOI `10.4153/CJM-2010-021-9`.
+3. D. Král', E. Máčajová, A. Pór, J.-S. Sereni, *Characterization Results for Steiner Triple Systems and Their Application to Edge-Colorings of Cubic Graphs*, technical report IUUK-CE-ITI 2007-352. Primary report inspected for the finite phase-purity proof and Figures 6–10.
+4. D. Král', E. Máčajová, A. Pór, J.-S. Sereni, *Characterization of affine Steiner triple systems and Hall triple systems*, *Electronic Notes in Discrete Mathematics* **29** (2007), 17–21, DOI `10.1016/j.endm.2007.07.004`.
+5. L. Teirlinck, *On linear spaces in which every plane is either projective or affine*, *Geometriae Dedicata* **4** (1975), 39–44, DOI `10.1007/BF00147400`.
+
+Still to normalize against final publisher/catalogue metadata before release:
+
+6. M. J. Grannell, T. S. Griggs, E. Mendelsohn, *A small basis for four-line configurations in Steiner triple systems*, *Journal of Combinatorial Designs* **3**(1) (1995), 51–59, DOI `10.1002/jcd.3180030107`.
+7. D. R. Stinson, Y. J. Wei, *Some results on quadrilaterals in Steiner triple systems*, *Discrete Mathematics* **105** (1992), 207–219, DOI `10.1016/0012-365X(92)90143-4`.
+8. C. J. Colbourn, A. Rosa, *Triple Systems*, Oxford University Press, New York, 1999.
 
 ## Priority-search boundary
 
@@ -116,16 +140,29 @@ This is evidence only, not a formal guarantee of priority.
 - [x] proof note isolated.
 - [x] v0.6 configuration-identification correction recorded.
 - [x] novelty boundary recorded.
-- [ ] line-by-line theorem/proof audit against proof note.
-- [ ] verify all bibliography metadata/DOIs against primary pages.
-- [ ] normalize notation (`S_7/S_9`, `C_A`, `r_7`, `alpha`, `rho_*`).
-- [ ] ensure no claim of edit-distance stability remains.
-- [ ] decide final version number (`v1.0` recommended for Article II).
+- [x] line-by-line theorem/proof audit against proof note.
+- [x] explicit `C_A` witness isomorphisms added to proof note.
+- [x] Fano two-colour pencil lemma proved.
+- [x] `S_9` contains no `S_7` lemma proved.
+- [x] localized source-proof dependency audited.
+- [x] query-template/reverse-fiber audit completed.
+- [ ] synchronize the strengthened proof text into EN manuscript.
+- [ ] synchronize the strengthened proof text into RU manuscript.
+- [ ] finish bibliography metadata normalization for refs. 6–8.
+- [ ] normalize notation (`S_7/S_9`, `C_A`, `r_7`, `alpha`, `rho_*`) across EN/RU.
+- [x] ensure no theorem-level claim of edit-distance stability remains in the proof core.
+- [x] final version number chosen: `v1.0` for Article II.
 - [ ] generate final EN PDF.
 - [ ] generate final RU PDF.
 - [ ] run PDF visual/layout audit.
-- [ ] create Zenodo release metadata.
+- [ ] create final Zenodo release metadata.
 - [ ] after DOI issuance, insert DOI into both manuscript metadata blocks and repository status.
+
+## Publication threshold decision
+
+**Mathematical threshold: crossed.** The main theorem is now sufficiently closed to proceed to publication hardening; I do not see a remaining proof obligation that should block preparation of the final preprint.
+
+**Release threshold: not yet crossed.** Do not upload to Zenodo until the strengthened proof is mirrored into both language manuscripts, remaining bibliography metadata is normalized, and both final PDFs pass visual QA.
 
 ## Zenodo metadata draft
 
