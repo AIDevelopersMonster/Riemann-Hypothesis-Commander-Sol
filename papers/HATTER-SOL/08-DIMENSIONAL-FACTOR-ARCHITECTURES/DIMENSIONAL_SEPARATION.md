@@ -1,11 +1,11 @@
 # HATTER-SOL-08 · Dimensional separation for `2q -> (2,q)`
 
-**Status:** proved theorem layer; publication-level candidate result.  
+**Status:** audited theorem layer. The earlier outerplanar block-reduction claim is retracted; the planar suppression theorem survives.  
 **Date:** 2026-09-12.
 
 ## 1. Setup
 
-For a graph class `C` and a capacity vector `c`, define
+For a graph class `C` and capacity vector `c`, define
 
 \[
 M_C(\mathbf c)=\max\{|E(G)|:\;G\in C,\ G\text{ connected},\ \deg(v_i)\le c_i\},
@@ -17,7 +17,7 @@ and
 \lambda_C(\mathbf c)=\sum_i c_i-2M_C(\mathbf c).
 \]
 
-For the one-step split
+For the split
 
 \[
 2q\longrightarrow(2,q),\qquad q\ge3,
@@ -32,81 +32,170 @@ write
 The unrestricted / 3D theorem of HATTER-SOL-07 gives
 
 \[
-\Delta_A^{\max}(2,q)=q-2=\delta.
+\boxed{\Delta_A^{\max}(2,q)=q-2=\delta.}
 \]
 
-The goal here is to show that outerplanar and planar architecture restrictions suppress this worst-case inversion by a factor bounded away from one.
+Strict 1D gives
+
+\[
+\boxed{\Delta_P^{\max}(2,q)=-q.}
+\]
+
+The HATTER-SOL-07 cactus/bouquet construction is outerplanar and, for odd `q>=3`, gives an explicit ambient family with
+
+\[
+\Delta_O=\Delta_{Pl}=\Delta_A=+1.
+\]
+
+Thus the same arithmetic split already reverses sign between strict 1D and every richer class.
 
 ---
 
-## 2. Local block-reduction lemma: outerplanar case
+## 2. Hostile audit: retraction of the first outerplanar block lemma
 
-Let `G` be an outerplanar graph and let `x` have degree `d`. Use a one-page (equivalently outerplane circular) embedding and cut the circular order at `x`, so the neighbors of `x` occur in a linear order
+The first draft claimed that for three consecutive neighbors `a,b,c` of a vertex `x` in an outerplane embedding, deleting the three spokes `xa,xb,xc` and adding any missing edge among `a,b,c` could always be done while preserving outerplanarity.
+
+That statement is false.
+
+### Explicit counterexample
+
+Take the graph on vertices `0,1,2,3,4,5,6` with edge set
 
 \[
-y_1,\ldots,y_d.
+\{05,06,12,16,23,26,34,45,46,56\}.
 \]
 
-Consider three consecutive neighbors `a,b,c` in this order.
-
-Because an outerplanar graph is `K_4`-free, the three edges
+It has an outerplane embedding with boundary order
 
 \[
-ab,\quad bc,\quad ac
+6,1,2,3,4,5,0
 \]
 
-cannot all be present: together with the spokes `xa,xb,xc` they would induce a `K_4` on `x,a,b,c`.
-
-Choose one missing edge among the three.
-
-- If `ab` is missing, delete `xa,xb,xc`, add `ab`.
-- If `bc` is missing, delete `xa,xb,xc`, add `bc`.
-- Otherwise `ab` and `bc` are present, hence `ac` is missing; delete `xa,xb,xc`, add `ac`.
-
-In every case:
-
-- the degree of `x` drops by `3`;
-- the total edge count drops by only `2`;
-- no degree outside `x` increases beyond its original value: the two endpoints of the new edge each lost their spoke to `x` first;
-- outerplanarity is preserved.
-
-For the last point, use the one-page order. The endpoints of the inserted edge lie inside one consecutive block of neighbors of `x`. Any pre-existing edge that crossed the inserted chord would already have crossed one of the deleted extreme spokes from `x`; edges from `x` to vertices inside the chosen block are deleted. Operations on disjoint consecutive blocks therefore remain noncrossing.
-
-### Lemma 2.1
-
-A consecutive block of three incidences at `x` can be removed while replacing one edge, so that
+and the rotation of the neighbors of `x=6` contains the consecutive triple
 
 \[
-\Delta\deg(x)=-3,
+(1,0,5).
+\]
+
+Among this triple the edge `05` is present while `10` and `15` are absent.
+
+Delete the three spokes
+
+\[
+61,60,65.
+\]
+
+If we add `10`, the resulting graph contains three internally vertex-disjoint `(2,4)` paths
+
+\[
+2-3-4,
 \qquad
-\Delta|E|=-2,
+2-6-4,
+\qquad
+2-1-0-5-4,
 \]
 
-with outerplanarity and all other degree upper bounds preserved.
+hence a subdivision of `K_{2,3}` and is not outerplanar.
 
-For a remainder of one or two incidences we simply delete them; hence reducing the degree of `x` by an arbitrary integer `r>=0` costs at most
+If instead we add `15`, the same obstruction occurs via
 
 \[
-L_O(r)
-=2\left\lfloor\frac r3\right\rfloor+(r\bmod3)
-=\left\lceil\frac{2r}{3}\right\rceil
+2-3-4,
+\qquad
+2-6-4,
+\qquad
+2-1-5-4.
 \]
 
-edges.
+Therefore `K_4`-freeness alone does not guarantee that a missing chord created by the local reduction is outerplanar-admissible.
+
+### Consequence
+
+The previously stated outerplanar bound
+
+\[
+2\left\lceil\frac{2(q-2)}3\right\rceil-(q-2)
+\]
+
+and the derived claim
+
+\[
+\Delta_O^{\max}(2,5)=1
+\]
+
+are **withdrawn**. They are not part of the proved theorem layer.
+
+The safe outerplanar statements currently remain:
+
+\[
+\Delta_O^{\max}(2,q)\le q-2,
+\]
+
+from the general class-preserving split bound, and for odd `q>=3`,
+
+\[
+\Delta_O^{\max}(2,q)\ge1,
+\]
+
+from the explicit cactus/bouquet family. For `q=3`, these meet and give the exact value `1`.
 
 ---
 
-## 3. Outerplanar refinement bound
+## 3. Planar four-block lemma
 
-Take a maximum-edge feasible outerplanar graph for the coarse capacity vector and let `x` be the vertex of capacity `2q`, with
+The planar case is different because a local planar disk, rather than outer-face incidence, is enough.
+
+Let `G` be a plane graph and let `x` be a vertex. Take four consecutive incidences around `x`, with neighbors
 
 \[
-d=\deg(x)\le2q.
+a,b,c,d.
 \]
 
-If `d<=q+2`, split `x` directly into capacities `2` and `q` with no edge loss, assigning two consecutive incidences to the capacity-2 piece and the remaining incidences to the capacity-`q` piece.
+If every pair among `a,b,c,d` were adjacent, then together with `x` they would span a `K_5`, impossible in a planar graph. Hence at least one pair `u,v` among the four is nonadjacent.
 
-If `d>q+2`, define
+Delete all four spokes from `x` to this consecutive block. The deleted spokes free a topological disk sector around `x`. Draw the new edge `uv` inside a sufficiently small neighborhood of the union of the deleted arcs `ux` and `xv`, staying inside that freed sector. Because the four incidences were consecutive, all remaining incidences of `x` lie outside the sector; because the original drawing was planar, the thin neighborhoods of the deleted arcs contain no other edges except at their endpoints.
+
+Thus the new edge can be inserted without crossing.
+
+At each endpoint `u,v`, one deleted spoke is replaced by the new edge, so no degree outside `x` exceeds its previous value.
+
+Hence the operation has
+
+\[
+\Delta\deg(x)=-4,
+\qquad
+\Delta|E|=-3,
+\]
+
+and preserves planarity and all degree upper bounds.
+
+### Lemma 3.1
+
+A consecutive block of four incidences at a plane vertex can be removed and one missing edge inserted so that the degree of the center drops by four while the edge count drops by only three.
+
+Repeated operations on disjoint consecutive incidence blocks are supported in disjoint local sectors and therefore commute topologically.
+
+For a requested degree reduction `r`, partition the removed incidences into blocks of four and a remainder. This yields an edge loss at most
+
+\[
+L_{Pl}(r)
+=3\left\lfloor\frac r4\right\rfloor+(r\bmod4)
+=\left\lceil\frac{3r}{4}\right\rceil.
+\]
+
+---
+
+## 4. Planar refinement suppression theorem
+
+Take a maximum-edge feasible planar graph for the coarse capacity vector and let `x` be the capacity-`2q` vertex with degree
+
+\[
+d\le2q.
+\]
+
+If `d<=q+2`, split `x` locally into capacities `2` and `q` by cutting the cyclic order into two contiguous incidence intervals; no edge need be lost.
+
+If `d>q+2`, set
 
 \[
 r=d-(q+2).
@@ -118,174 +207,37 @@ Then
 0<r\le q-2=\delta.
 \]
 
-Apply Lemma 2.1 to reduce the degree of `x` by `r`, losing at most
+Use Lemma 3.1 to reduce the degree of `x` by `r`, at an edge cost of at most
 
 \[
-\left\lceil\frac{2r}{3}\right\rceil
+\left\lceil\frac{3r}{4}\right\rceil.
 \]
 
-edges. Now `x` has degree at most `q+2` and can be detached into adjacent vertices of capacities `2` and `q` without further edge loss. The detachment preserves a one-page embedding by assigning two extreme incidences to the capacity-2 piece and the remaining consecutive block to the capacity-`q` piece.
+Now split `x` into capacities `2` and `q` using contiguous incidence blocks.
 
-The intermediate graph need not be connected. As established in the HATTER-SOL-08 connectivity lemma, for capacities at least two the maximum feasible outerplanar edge count is attained by a connected graph. Therefore
+The produced graph may be disconnected. The previously established planar connectivity-recovery lemma shows that for capacities at least two, the maximum feasible planar edge count is attained by a connected graph. Therefore
 
 \[
-M_O(\mathbf c')
+M_{Pl}(\mathbf c')
 \ge
-M_O(\mathbf c)
+M_{Pl}(\mathbf c)
 -
-\left\lceil\frac{2r}{3}\right\rceil.
+\left\lceil\frac{3r}{4}\right\rceil.
 \]
 
-The total capacity drops by `delta`, hence
+Since total capacity decreases by `delta=q-2`,
 
 \[
-\lambda_O(\mathbf c')-\lambda_O(\mathbf c)
+\lambda_{Pl}(\mathbf c')-\lambda_{Pl}(\mathbf c)
 \le
 -\delta
-+2\left\lceil\frac{2r}{3}\right\rceil
++2\left\lceil\frac{3r}{4}\right\rceil
 \le
 -\delta
-+2\left\lceil\frac{2\delta}{3}\right\rceil.
++2\left\lceil\frac{3\delta}{4}\right\rceil.
 \]
 
-### Theorem 3.1 — outerplanar suppression bound
-
-For every ambient capacity vector,
-
-\[
-\boxed{
-\lambda_O(\ldots,2,q,\ldots)
--
-\lambda_O(\ldots,2q,\ldots)
-\le
-U_O(q),
-}
-\]
-
-where
-
-\[
-\boxed{
-U_O(q)
-:=
-2\left\lceil\frac{2(q-2)}{3}\right\rceil-(q-2).
-}
-\]
-
-Equivalently,
-
-\[
-\boxed{
-\Delta_O^{\max}(2,q)
-\le U_O(q).
-}
-\]
-
-Since
-
-\[
-U_O(q)<q-2
-\]
-
-for every `q>=5`, we obtain a strict infinite-family separation from the unrestricted / 3D value.
-
-### Corollary 3.2 — strict outerplanar/3D separation
-
-For every `q>=5`,
-
-\[
-\boxed{
-\Delta_O^{\max}(2,q)
-<
-\Delta_A^{\max}(2,q)=q-2.
-}
-\]
-
-Asymptotically,
-
-\[
-U_O(q)=\frac{q-2}{3}+O(1),
-\]
-
-so the worst possible outerplanar inversion is at most roughly one third of the unrestricted sharp amplitude.
-
----
-
-## 4. Exact case `10 -> 2*5`
-
-For odd `q`, the explicit cactus/bouquet family from HATTER-SOL-07 is already outerplanar and gives
-
-\[
-\Delta_O^{\max}(2,q)\ge1.
-\]
-
-For `q=5`, `delta=3`, and Theorem 3.1 gives
-
-\[
-U_O(5)
-=2\left\lceil\frac{6}{3}\right\rceil-3
-=1.
-\]
-
-Therefore the lower and upper bounds meet.
-
-### Corollary 4.1
-
-\[
-\boxed{
-\Delta_O^{\max}(2,5)=1.
-}
-\]
-
-But unrestricted / 3D sharpness is
-
-\[
-\Delta_A^{\max}(2,5)=3.
-\]
-
-Hence the split
-
-\[
-10\to2\cdot5
-\]
-
-already exhibits an exact threefold dimensional suppression of worst-case refinement inversion:
-
-\[
-\boxed{
-1\quad\text{(outerplanar)}
-\qquad\text{vs}\qquad
-3\quad\text{(3D/unrestricted)}.
-}
-\]
-
----
-
-## 5. Planar block-reduction lemma
-
-The same argument works in the planar class with blocks of four consecutive incidences.
-
-Let `a,b,c,d` be four consecutive neighbors of `x` in the rotation around `x`. If every pair among these four neighbors were adjacent, then together with `x` they would form a `K_5`, impossible in a planar graph. Hence at least one pair `u,v` among the four is nonadjacent.
-
-Delete all four spokes from `x` to the block and add the missing edge `uv`. The inserted edge is routed through the local disk formerly occupied by those four spokes. Thus:
-
-\[
-\Delta\deg(x)=-4,
-\qquad
-\Delta|E|=-3,
-\]
-
-while planarity and all other degree upper bounds are preserved.
-
-For an arbitrary degree reduction `r`, partition into blocks of four plus a remainder. The edge loss is at most
-
-\[
-L_{Pl}(r)
-=3\left\lfloor\frac r4\right\rfloor+(r\bmod4)
-=\left\lceil\frac{3r}{4}\right\rceil.
-\]
-
-### Theorem 5.1 — planar suppression bound
+### Theorem 4.1 — planar suppression
 
 For every ambient capacity vector,
 
@@ -293,71 +245,112 @@ For every ambient capacity vector,
 \boxed{
 \Delta_{Pl}^{\max}(2,q)
 \le
-U_{Pl}(q),
-}
-\]
-
-where
-
-\[
-\boxed{
 U_{Pl}(q)
 :=
-2\left\lceil\frac{3(q-2)}{4}\right\rceil-(q-2).
+2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2).
 }
 \]
+
+For `q>=6`,
+
+\[
+\boxed{U_{Pl}(q)<q-2,}
+\]
+
+whereas HATTER-SOL-07 gives
+
+\[
+\Delta_A^{\max}(2,q)=q-2.
+\]
+
+Therefore:
+
+### Corollary 4.2 — infinite planar/3D separation
 
 For every `q>=6`,
 
 \[
-U_{Pl}(q)<q-2,
-\]
-
-and hence
-
-\[
 \boxed{
 \Delta_{Pl}^{\max}(2,q)
 <
-\Delta_A^{\max}(2,q)=q-2.
+\Delta_A^{\max}(2,q).
 }
 \]
 
 Asymptotically,
 
 \[
-U_{Pl}(q)=\frac{q-2}{2}+O(1).
+U_{Pl}(q)=\frac{q-2}{2}+O(1),
 \]
 
-Thus planarity allows more inversion than outerplanarity in the upper-bound scale, but still suppresses the unrestricted sharp amplitude by a factor asymptotically at least two.
+so the planar worst-case inversion amplitude is at most approximately one half of the unrestricted / 3D sharp amplitude.
+
+For every odd `q>=7`, the explicit outerplanar inversion family is also planar and supplies
+
+\[
+\boxed{
+1\le\Delta_{Pl}^{\max}(2,q)
+\le U_{Pl}(q)<q-2.
+}
+\]
+
+Thus the planar class still admits genuine positive refinement inversion, but it cannot realize the unrestricted sharp amplitude on this infinite family.
 
 ---
 
-## 6. Dimension ladder for the split `2q -> (2,q)`
+## 5. Exact special case `6 -> 2*3`
 
-The current rigorous picture is now:
+For `q=3`, the general class-preserving one-step bound gives
+
+\[
+\Delta_O^{\max}(2,3),\Delta_{Pl}^{\max}(2,3)\le1.
+\]
+
+The explicit outerplanar family attains `+1`. Hence
+
+\[
+\boxed{
+\Delta_O^{\max}(2,3)
+=
+\Delta_{Pl}^{\max}(2,3)
+=
+\Delta_A^{\max}(2,3)
+=1.
+}
+\]
+
+Strict 1D instead gives
+
+\[
+\boxed{\Delta_P^{\max}(2,3)=-3.}
+\]
+
+This remains the first exact sign-reversal point of the dimensional programme.
+
+---
+
+## 6. Audited dimension ladder
+
+For the split `2q -> (2,q)`:
 
 ### strict 1D
 
 \[
-\boxed{
-\Delta_P^{\max}(2,q)=-q.
-}
+\boxed{\Delta_P^{\max}(2,q)=-q.}
 \]
-
-Refinement always improves the 1D boundary; inversion is impossible.
 
 ### outerplanar / circular
 
+Safe bounds only:
+
 \[
 \boxed{
-\Delta_O^{\max}(2,q)
-\le
-2\left\lceil\frac{2(q-2)}{3}\right\rceil-(q-2).
+1\le\Delta_O^{\max}(2,q)\le q-2
+\quad\text{for odd }q\ge3.
 }
 \]
 
-For odd `q`, the explicit inversion family gives the lower bound `>=1`; for even `q`, the same family gives a zero-change realization after saturating the even hub and subdividing cycles, so `Delta_O^max(2,q)>=0`.
+Exact at `q=3`; otherwise open.
 
 ### planar 2D
 
@@ -365,57 +358,60 @@ For odd `q`, the explicit inversion family gives the lower bound `>=1`; for even
 \boxed{
 \Delta_{Pl}^{\max}(2,q)
 \le
-2\left\lceil\frac{3(q-2)}{4}\right\rceil-(q-2).
+2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2).
 }
 \]
+
+For odd `q>=7`, the value is positive but strictly below `q-2`.
 
 ### unrestricted / 3D
 
 \[
-\boxed{
-\Delta_A^{\max}(2,q)=q-2.
-}
+\boxed{\Delta_A^{\max}(2,q)=q-2.}
 \]
 
-The scale therefore changes from
+The rigorously established dimensional phenomenon is therefore:
 
-\[
--q
-\quad\longrightarrow\quad
-O(q/3)
-\quad\longrightarrow\quad
-O(q/2)
-\quad\longrightarrow\quad
-q-2.
-\]
-
-This is the first genuine **dimensional suppression law** in the HATTER-SOL programme.
+- strict 1D forces negative response;
+- outerplanar and planar classes already permit positive response;
+- planar geometry suppresses the worst possible amplitude by an asymptotic factor of at least two relative to unrestricted/3D;
+- the exact outerplanar extremal function remains open.
 
 ---
 
-## 7. Literature boundary
+## 7. Hostile computational check
 
-The proof uses classical facts that are not novelty claims:
+A finite check over all connected planar graphs in the NetworkX graph atlas up to seven vertices found no violation of the planar four-block operation: for every tested plane rotation, deleting any four consecutive spokes and adding a missing edge among their endpoints preserved planarity.
 
-- outerplanar graphs are one-page embeddable and exclude `K_4` (indeed exclude `K_4` and `K_{2,3}` minors);
+This computation is **not** used as a proof; it is only regression support for Lemma 3.1.
+
+The same style of finite hostile search is what exposed the outerplanar counterexample in Section 2.
+
+---
+
+## 8. Literature boundary
+
+Classical ingredients, not novelty claims:
+
 - planar graphs exclude `K_5`;
-- vertex splitting / detachment and splitting-off are classical graph operations;
-- outerplanar and planar degree-sequence realization have substantial prior literature and remain incompletely characterized in general.
+- outerplanar graphs exclude `K_4` and `K_{2,3}` minors;
+- plane vertex splitting requires partitioning the cyclic order of incident edges into contiguous intervals;
+- vertex splitting / detachment / splitting-off are classical operations;
+- outerplanar and planar degree-realization problems have substantial prior literature.
 
-Relevant modern degree-realization references include:
+Relevant references:
 
-- A. Bar-Noy, T. Böhnlein, D. Peleg, Y. Ran, D. Rawitz, *On Key Parameters Affecting the Realizability of Degree Sequences*, MFCS 2024, DOI `10.4230/LIPIcs.MFCS.2024.1`.
 - A. Bar-Noy, T. Böhnlein, D. Peleg, Y. Ran, D. Rawitz, *Approximate realizations for outerplanaric degree sequences*, Journal of Computer and System Sciences 148 (2025), 103588, DOI `10.1016/j.jcss.2024.103588`.
 - M. Gronemann, M. Nöllenburg, A. Villedieu, *Splitting Plane Graphs to Outerplanarity*, JGAA 28(3) (2024), 31–48, DOI `10.7155/jgaa.v28i3.2970`.
 
-The claim here is not that splitting itself is new. The candidate new statement is the **quantitative arithmetic-refinement sensitivity law across dimensional graph classes**, with the forbidden-clique size controlling how much of the HATTER-SOL-07 unrestricted inversion amplitude can survive.
+The candidate contribution remains narrower: **quantitative free-boundary response to the arithmetic split `2q -> (2,q)` across nested architecture classes**. The hostile audit also establishes a useful negative result: forbidden-clique counting alone is insufficient to transfer the planar local-reduction argument to outerplanarity.
 
 ---
 
-## 8. Next proof obligations
+## 9. Next proof obligations
 
-1. Determine whether the outerplanar upper bound `U_O(q)` is sharp for infinitely many `q`.
-2. Determine whether the planar upper bound `U_Pl(q)` is sharp for infinitely many `q`.
-3. Close the exact outerplanar values for `q=4,6,7,...`.
-4. Investigate the general split `ab -> (a,b)`: identify the correct local excess-degree parameter and whether clique-exclusion yields a comparable suppression law.
-5. Abstract the block argument to classes with bounded clique number / bounded page number without overclaiming closure properties.
+1. Search for a correct outerplanar replacement theorem using induced-cycle / `K_{2,3}` structure rather than `K_4`-freeness alone.
+2. Determine whether the planar upper bound `U_Pl(q)` is sharp on an infinite family.
+3. Determine exact values for small planar `q>=4`.
+4. Extend the audited planar argument from `2q -> (2,q)` to general `ab -> (a,b)`.
+5. Keep the outerplanar problem open until a class-preserving local operation is actually proved.
