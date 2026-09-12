@@ -15,7 +15,7 @@ English series title:
 - AI research collaborator / dialog persona: **Commander Sol · Hatter Sol**
 - Repository branch: `main`
 - Series folder: [`papers/HATTER-SOL/`](https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL)
-- Zenodo status: **Notes 01, 02 and 03 published**
+- Zenodo status: **Notes 01, 02, 03 and 05 published; Note 04 remains a publication candidate**
 
 ## Note 01
 
@@ -81,9 +81,24 @@ R_{\mathbb P}(r,p)\iff r=\operatorname{rad}(p-1)
 
 as the next unresolved rigidity frontier.
 
-## Planned continuation · HATTER-SOL-04
+## Note 05
 
-The next research line is the **radical-predecessor problem**:
+**«Кого нет за столом? Пустые волокна, спектр точных опор и выживание перестановки 3↔5»**
+
+English title:
+
+**“Who Is Missing from the Table? Empty Fibers, Exact-Support Spectra, and the Survival of the 3↔5 Transposition.”**
+
+- Zenodo DOI: **[10.5281/zenodo.22718278](https://doi.org/10.5281/zenodo.22718278)**
+- Russian manuscript: [`05-MISSING-GUEST/article_ru.md`](05-MISSING-GUEST/article_ru.md)
+- English manuscript: [`05-MISSING-GUEST/article_en.md`](05-MISSING-GUEST/article_en.md)
+- Publication gate: [`05-MISSING-GUEST/PUBLICATION_STATUS.md`](05-MISSING-GUEST/PUBLICATION_STATUS.md)
+
+The note isolates the exact-support arithmetic controlling survival of the transposition \(3\leftrightarrow5\), proves the cardinality wall and finite-fiber compactness, and shows that the forward cone of every odd prime already has relative prime density one within directed distance at most two.
+
+## Note 04 · publication candidate
+
+The radical-predecessor problem is
 
 \[
 \boxed{
