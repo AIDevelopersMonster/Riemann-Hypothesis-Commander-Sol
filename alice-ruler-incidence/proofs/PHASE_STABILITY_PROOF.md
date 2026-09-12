@@ -1,6 +1,6 @@
 # Quantitative Hall/projective phase stability — proof note
 
-Status: publication-core proof, 2026-09-12.
+Status: publication-core proof, audited 2026-09-12.
 
 This note isolates the new quantitative layer from the classical STS ingredients. Constants are deliberately crude; the theorem is about an absolute stability bound, not constant optimization.
 
@@ -139,6 +139,70 @@ If no failure occurs, the classical proof closes the root triple to `S_7` or `S_
 
 QED.
 
+### 4.1 Explicit `C_A` isomorphism audit
+
+For publication hardening, the three displayed witness patterns above were checked explicitly against the canonical anti-mitre
+
+`012, 034, 135, 236, 457`.
+
+The distinctness assertions are exactly those enforced by the corresponding failure branch in the classical local proof. The following relabellings send the five displayed witness blocks to the canonical five blocks.
+
+#### Branch I witness
+
+For
+
+`BCa, ACb, ABc, Aam, mcx`,
+
+use
+
+`A->3, B->0, C->2, a->1, b->6, c->4, m->5, x->7`.
+
+Then
+
+- `BCa -> 012`,
+- `ABc -> 034`,
+- `Aam -> 135`,
+- `ACb -> 236`,
+- `mcx -> 457`.
+
+#### Branch II, first-level witness
+
+For
+
+`BCa, ACb, ABc, bcA', Aay`,
+
+use
+
+`A->3, B->0, C->1, a->2, b->5, c->4, A'->7, y->6`.
+
+Then
+
+- `BCa -> 012`,
+- `ABc -> 034`,
+- `ACb -> 135`,
+- `Aay -> 236`,
+- `bcA' -> 457`.
+
+#### Branch II, second-level witness
+
+For
+
+`BCa, ACb, abC', BbB', AC'x`,
+
+use
+
+`b->3, B->2, B'->6, C->0, a->1, A->4, C'->5, x->7`.
+
+Then
+
+- `BCa -> 012`,
+- `ACb -> 034`,
+- `abC' -> 135`,
+- `BbB' -> 236`,
+- `AC'x -> 457`.
+
+Thus the root-preserving witnesses are not being identified with `C_A` merely by degree sequence or by picture: explicit incidence-preserving bijections are available in every representative failure branch.
+
 ### Corollary 4.2 (bulk bound)
 
 `|D| <= 56 c_A`.
@@ -155,38 +219,92 @@ Since `c_A/N=3 alpha`,
 
 The remaining task is to control direct `P-H` edges.
 
-Fix a `P-H` edge. Let its P endpoint generate a Fano subsystem `F ~= S_7`. The H endpoint shares two points with the P endpoint and contains one point `D_ext` outside `F`. Thus the edge canonically determines a mixed pair `(F,D_ext)` up to a bounded number of choices internal to the seven-point Fano plane.
+Fix a `P-H` edge. Let its `P` endpoint generate a Fano subsystem `F ~= S_7`. The `H` endpoint shares two points with the `P` endpoint and has a unique third point `d` outside `F`. Hence the edge canonically determines a mixed pair `(F,d)`.
 
-For fixed `(F,D_ext)`, at most 84 `P-H` edges give this pair: choose the shared pair in `F` (at most 21 choices) and the third point of the independent P-root (at most four choices).
+For fixed `(F,d)`, at most 84 `P-H` edges determine it: `F` has 28 independent triples, and each such `P` root has at most three choices of a shared pair.
 
-The finite local purity proof in the earlier Král–Máčajová–Pór–Sereni report considers only finitely many phase queries. If every query has phase `P` or `H`, the proof reaches a contradiction. Therefore a mixed `(F,D_ext)` produces at least one queried `D` triple.
+Write `d_x=d⊕x` for `x in F`.
 
-Write `D_x=D_ext⊕x` for `x in F`. Up to Fano symmetry, every queried triple occurring in that finite proof belongs to one of the following reconstruction classes:
+### Lemma 5.1 (Fano two-colour pencil lemma)
 
-| class | queried root form | reverse reconstruction from a fixed root |
-|---|---|---|
-| I | `{D_ext,u,v}` | `D_ext,u,v` are fixed; the pair `u,v` fixes its STS block; only `O(v)` Fano subsystems contain that block |
-| II | `{D_x,u,v}` | `u,v` are fixed; choose a Fano subsystem through their block (`O(v)` choices), then the finite role of `x` fixes `D_ext=x⊕D_x` |
-| III | `{u,D_x,D_y}` | choose `D_ext` (`v` choices); recover `x,y`; in every occurring template `u,x,y` is noncollinear and hence generates `F` uniquely |
-| IV | `{D_x,D_y,D_z}` | choose `D_ext` (`v` choices); recover `x,y,z`; in every occurring template they generate `F` uniquely |
+Every red/blue colouring of the seven lines of the Fano plane has a point whose three incident lines have one colour.
 
-For completeness, a fixed STS block lies in at most `(v-3)/4` Fano subsystems: after choosing a point outside the block there is at most one generated Fano subsystem, while each Fano subsystem contributes four outside points.
+### Proof
 
-Because the old proof has a fixed finite list of query templates and the Fano plane has a fixed finite automorphism group, the table proves the following.
+Take the smaller colour class, of size at most three. If it has three concurrent lines, they already form a monochromatic pencil. Otherwise the union of its at most three lines misses a point: for one or two lines this is immediate, and three nonconcurrent Fano lines form a triangle and miss exactly one point. All three lines through a missed point have the other colour. QED.
 
-### Lemma 5.1 (interface fiber bound)
+### Lemma 5.2 (`S_9` contains no Fano subsystem)
 
-There exists an absolute constant `K` such that every fixed `D` root is the selected first-defect query for at most `K v` mixed pairs `(F,D_ext)`.
+The affine Steiner triple system `S_9=AG(2,3)` contains no subsystem isomorphic to `S_7`.
 
-No optimization of `K` is required.
+### Proof
 
-### Corollary 5.2 (interface bound)
+Model `S_9` on `F_3^2`, with third-point operation `x⊕y=-x-y`. Let `Y` be a nonempty Steiner subsystem and translate so that `0 in Y`. If `x in Y`, then `-x=0⊕x in Y`. If `x != y` are in `Y`, then applying the operation to `-x,-y` gives `x+y in Y`; if `x=y`, then `x+y=2x=-x in Y`. Thus `Y` is an additive subgroup of `F_3^2`, so `|Y|` is `1`, `3`, or `9`. In particular, `|Y| != 7`. QED.
+
+### Lemma 5.3 (localized finite interface witness)
+
+Let `F ~= S_7` and `d notin F`. Suppose at least one Fano line `L={u,v,w}` has the property that `<d,u,v> ~= S_9`. Then some independent triple in the finite Steiner-term closure generated by `(F,d)` has phase `D`.
+
+Moreover, every phase query needed in the finite argument belongs, after a Fano relabelling, to one of the four reconstruction classes
+
+1. `{d,u,v}`;
+2. `{d_x,u,v}`;
+3. `{u,d_x,d_y}`;
+4. `{d_x,d_y,d_z}`,
+
+and in the actual class-III and class-IV templates the relevant base triples in `F` are noncollinear and hence uniquely generate `F`.
+
+### Proof
+
+If any queried triple is already `D`, we are done. Otherwise every queried triple is `P` or `H`.
+
+Colour a Fano line `{u,v,w}` red when `<d,u,v> ~= S_7` and blue when `<d,u,v> ~= S_9`. The colour is well-defined because any two points of the line generate the third. The hypothesis supplies at least one blue line. By Lemma 5.1 there is a monochromatic pencil; this is exactly the entry point of the finite red-star/blue-star case analysis in the 2007 technical report of Král–Máčajová–Pór–Sereni.
+
+The old proof was stated after choosing four independent points `A,B,C,D`. In the localized setting `F=<A,B,C>` and `d=D` is merely assumed outside `F`. The only place in the finite case analysis where the stronger four-point independence is used is the red-star assertion that `d_A,d_B,d_C` cannot form a block.
+
+If `d_A,d_B,d_C` do form a block, the closure of `{A,B,d}` contains `C` and therefore the whole Fano subsystem `F`, as well as the external point `d`. It cannot be `S_7`; by Lemma 5.2 it cannot be `S_9`. Hence `{A,B,d}` is already `D`.
+
+If `d_A,d_B,d_C` do not form a block, the red-star case proceeds exactly as in the technical report. The blue-star case does not use four-point independence. Under the standing assumption that every queried triple is `P` or `H`, both cases reach the same finite contradiction as in the source. Therefore a `D` query must occur.
+
+Inspection of the source proof gives only the following query templates, besides Fano-symmetric copies:
+
+- `{d,u,v}` (the initial line queries, including `{A,a,d}`, `{B,b,d}`, `{C,c,d}`, `{a,b,d}`, `{d,A,C}`, `{d,A,B}`, `{d,B,C}`);
+- `{d_m,a,b}` and `{d_m,a,B}` (class II);
+- `{m,d_a,d_b}`, `{m,d_A,d_B}`, `{m,d_A,d_b}` (class III);
+- `{d_m,d_a,d_c}` (class IV).
+
+For class III the base triples `m,a,b`, `m,A,B`, `m,A,b` are noncollinear in `F`; for class IV the base triple `m,a,c` is noncollinear. QED.
+
+### Lemma 5.4 (Fano subsystems through a block)
+
+A fixed STS block lies in at most `(v-3)/4` Fano subsystems.
+
+### Proof
+
+A Fano subsystem containing the fixed block contributes four points outside that block. Conversely, after choosing one outside point, the generated subsystem containing the block and that point is unique if it is Fano. Double-counting pairs `(F,x)` gives the bound. QED.
+
+### Lemma 5.5 (interface fiber bound)
+
+There exists an absolute constant `K` such that every fixed `D` root can be selected as the witness in Lemma 5.3 for at most `K v` mixed pairs `(F,d)`.
+
+### Proof
+
+There are finitely many source query templates and finitely many Fano role assignments. It is enough to bound each of the four reconstruction classes.
+
+- **Class I `{d,u,v}`.** Once the root and the role of `d` are fixed, `u,v` are fixed. Their pair determines an STS block contained in `F`, so Lemma 5.4 gives `O(v)` possibilities for `F`.
+- **Class II `{d_x,u,v}`.** The root fixes `d_x,u,v` after a finite role choice. Again `u,v` determine a block and hence only `O(v)` possible Fano subsystems. Once `F` and the role of `x` are fixed, `d=x⊕d_x` is uniquely recovered.
+- **Class III `{u,d_x,d_y}`.** Choose `d` first (`v` possibilities). Then recover `x=d⊕d_x` and `y=d⊕d_y`. In each actual template `u,x,y` is noncollinear and therefore generates `F` uniquely.
+- **Class IV `{d_x,d_y,d_z}`.** Choose `d` first and recover `x,y,z`. In each actual template the recovered base triple is noncollinear and uniquely generates `F`.
+
+Absorb the finite number of templates and role assignments into a universal constant `K`. QED.
+
+### Corollary 5.6 (interface bound)
 
 There exists an absolute constant `C_I` such that
 
 `s <= C_I v |D|`.                            (IB)
 
-One may take `C_I=84K` from the preceding bookkeeping.
+Indeed, the number of mixed pairs is at most `K v|D|`, and each mixed pair supports at most 84 direct `P-H` edges. One may take `C_I=84K`.
 
 ## 6. Quantitative two-phase stability
 
@@ -194,9 +312,9 @@ One may take `C_I=84K` from the preceding bookkeeping.
 
 There is an absolute constant `C>0` such that, for every nontrivial Steiner triple system,
 
-`min(rho_P,rho_H) <= C alpha`.                (STAB)
+`min(rho_P,rho_H) <= C c_A/N`.                (STAB)
 
-Equivalently, since `c_A/N=3alpha`, the minority pure phase is linearly controlled by the normalized anti-mitre count.
+Equivalently, since `c_A/N=3alpha`, the minority pure phase is linearly controlled by the completion coordinate `alpha`.
 
 ### Proof
 
@@ -216,36 +334,42 @@ Hence
 
 `min(rho_P,rho_H) <= [(7/2)C_I+6] rho_D`.
 
-Use `(BD)`, `rho_D<=168alpha`, to obtain (STAB), for example with
+Use `rho_D<=56 c_A/N` to obtain
 
-`C = 168[(7/2)C_I+6]`.
+`min(rho_P,rho_H) <= 56[(7/2)C_I+6] c_A/N`.
+
+Thus (STAB) holds with the explicit crude absolute constant
+
+`C=56[(7/2)C_I+6]`.
+
+Since `c_A/N=3alpha`, one can equivalently write
+
+`min(rho_P,rho_H) <= 168[(7/2)C_I+6] alpha`.
 
 QED.
 
 ### Zero-defect case
 
-If `alpha=0`, then `rho_D=0` and (STAB) gives `min(rho_P,rho_H)=0`. Thus all independent triples have a single phase. This recovers the projective/Hall dichotomy.
+If `c_A=0`, then `rho_D=0` and (STAB) gives `min(rho_P,rho_H)=0`. Thus all independent triples have a single phase. The classical characterization then gives a projective STS in the all-`P` case and a Hall triple system in the all-`H` case.
 
-## 7. Scope of the theorem
+## 7. Publication audit conclusions
 
-This is **phase-profile stability**, not an edit-distance theorem for the block set of the STS. It says that a small anti-mitre density forces almost all independent triples into one of the two closure regimes (`S_7` or `S_9`). Converting this to an edit-distance statement (“the whole STS is close to an actual projective or Hall STS”) is a separate problem.
+The following points have now been checked explicitly.
 
-## 8. Novelty boundary
+1. **Spectral step:** the induced graph is exactly `3(v-4)`-regular and Cauchy interlacing gives the claimed `v-3` Laplacian gap.
+2. **Configuration correction:** the mirror residual is configuration #7, not `C_A`; the count identity `c_A=2r_7` preserves the zero-defect coordinate.
+3. **Bulk witness:** each representative failure pattern is explicitly isomorphic to canonical `C_A`, not merely visually similar.
+4. **Fano colouring:** the monochromatic-pencil claim has an independent short proof.
+5. **Affine exclusion:** `S_9` contains no `S_7` subsystem, with a direct subgroup proof.
+6. **Localization:** the only use of four-point independence in the source red-star proof has a valid localized replacement; all actual phase queries fall into four reconstruction classes.
+7. **Reverse multiplicity:** every class has `O(v)` reverse fiber, sufficient for `s<=C_Iv|D|`.
+8. **Claim discipline:** the final theorem is phase-profile stability only; no edit-distance or block-reconstruction conclusion follows from the present proof.
 
-Classical/source-derived:
+No unresolved logical step remains in the proof chain recorded here. The remaining pre-publication work is manuscript synchronization, bibliography normalization, typesetting/PDF QA, and final metadata.
 
-- five-line count formulas;
-- `C_A`-free local `S_7/S_9` lemma;
-- projective/Hall exact dichotomy;
-- finite old purity proof;
-- Johnson graph spectrum.
+## 8. Source anchors used in the audit
 
-Candidate new deductions:
-
-- the independent-triple phase graph as quantitative carrier;
-- spectral phase isoperimetry (PI);
-- root-preserving extraction and `|D|<=56c_A`;
-- finite-template interface fiber lemma and `s<=C_I v|D|`;
-- Hall/projective phase stability (STAB).
-
-Dedicated priority searches on Hall/projective stability, anti-mitre supersaturation, Steiner-quasigroup stability/removal, and phase-graph formulations found no equivalent quantitative theorem as of 2026-09-12. This is evidence, not a formal priority guarantee.
+- P. Danziger, E. Mendelsohn, M. J. Grannell, T. S. Griggs, *Five-Line Configurations in Steiner Triple Systems*, Utilitas Mathematica 49 (1996), 153–159. Configuration #4 and #7 formulas.
+- D. Král', E. Máčajová, A. Pór, J.-S. Sereni, *Characterization Results for Steiner Triple Systems and Their Application to Edge-Colorings of Cubic Graphs*, IUUK-CE-ITI technical report 2007-352. Lemma 4 and the full finite proof of Lemma 5 (Figures 6–10).
+- D. Král', E. Máčajová, A. Pór, J.-S. Sereni, *Characterisation Results for Steiner Triple Systems and Their Application to Edge-Colourings of Cubic Graphs*, Canadian Journal of Mathematics 62(2) (2010), 355–381, DOI `10.4153/CJM-2010-021-9`.
+- L. Teirlinck, *On linear spaces in which every plane is either projective or affine*, Geometriae Dedicata 4 (1975), 39–44, DOI `10.1007/BF00147400`.
