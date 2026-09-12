@@ -6,19 +6,26 @@
 **Author line:** Malachevsky, A.A. / Малачевский А.А.  
 **ORCID:** 0009-0008-6009-3196
 
-## STATUS: PUBLICATION THRESHOLD REACHED
+## STATUS: MATHEMATICAL PUBLICATION THRESHOLD REACHED; PROOF AUDIT PASSED
 
-The research line now contains a closed quantitative result strong enough to justify a standalone publication manuscript:
+The research line contains a closed quantitative result strong enough for a standalone publication manuscript:
 
-> **Hall/projective phase stability.** There exists an absolute constant `C` such that for every nontrivial `STS(v)`,
+> **Hall/projective phase-profile stability.** There exists an absolute constant `C` such that for every nontrivial `STS(v)`,
 >
-> `min(rho_P,rho_H) <= C alpha`,
+> `min(rho_P,rho_H) <= C c_A/N`,
 >
-> where `rho_P,rho_H` are the proportions of independent triples generating `S_7` and `S_9`, and `alpha` is the residual completion-simplex coordinate, equivalently one third of the normalized Král anti-mitre count: `c_A/N=3alpha`.
+> where `rho_P,rho_H` are the proportions of independent triples generating `S_7` and `S_9`, `c_A` is the Král anti-mitre count, and `N=v(v-1)(v-3)/6`.
 
-The exact proof is isolated in:
+Equivalently, since `c_A/N=3alpha`,
+
+`min(rho_P,rho_H) <= C_alpha alpha`.
+
+The exact proof is isolated and publication-hardened in:
 
 `alice-ruler-incidence/proofs/PHASE_STABILITY_PROOF.md`.
+
+The mathematical audit was completed in commit
+`5c8fc288973fe77ca9ee1d8f65dc83e9a21815ab`.
 
 This is **phase-profile stability**, not edit-distance stability of the whole block set.
 
@@ -28,7 +35,7 @@ The mirror-completion residual and Král's anti-mitre `C_A` were incorrectly ide
 
 - mirror residual = Danziger et al. configuration #7:
   `R_7={012,034,135,246,567}`;
-- Král anti-mitre = Danziger et al. configuration #4, e.g.
+- Král anti-mitre = Danziger et al. configuration #4:
   `C_A~={012,034,135,236,457}`.
 
 Their exact five-line counting formulas imply
@@ -89,7 +96,11 @@ For `V=P sqcup H sqcup D`, `s=e(P,H)`, `q=min{|P|,|H|}`:
 
 ### Bulk charging
 
-A branch-by-branch audit of the constructive local `S_7/S_9` lemma shows that every `D` root lies in an eight-point anti-mitre `C_A` witness containing all three root points.
+Every `D` root lies in an eight-point anti-mitre `C_A` witness containing all three root points.
+
+The publication audit now includes explicit incidence-preserving relabellings from each representative five-block failure witness to canonical
+
+`C_A=012,034,135,236,457`.
 
 Therefore
 
@@ -101,16 +112,21 @@ and since `c_A/N=3alpha`,
 
 ### Interface charging
 
-The old finite local purity proof can be read as a fixed finite list of phase queries around a mixed pair `(F,D_ext)` with `F~=S_7`.
+For a mixed pair `(F,d)` with `F~=S_7` and at least one Hall line relative to `d`, the finite phase-purity proof forces a `D` query.
 
-Every queried D-root has, up to Fano symmetry, one of four reconstruction forms:
+The localization audit now includes:
 
-`{D_ext,u,v}`,
-`{D_x,u,v}`,
-`{u,D_x,D_y}`,
-`{D_x,D_y,D_z}`.
+- a direct proof that every two-colouring of the Fano lines has a monochromatic pencil;
+- a direct proof that `S_9=AG(2,3)` contains no `S_7` subsystem;
+- isolation of the only use of four-point independence in the 2007 source proof and its valid replacement in the localized setting;
+- complete classification of phase queries into four reconstruction forms:
 
-The reverse fiber of each form is `O(v)`. For the first two forms this uses the bound that a fixed block lies in at most `(v-3)/4` Fano subsystems; for the last two, choosing `D_ext` recovers a generating triple of the Fano subsystem.
+`{d,u,v}`,
+`{d_x,u,v}`,
+`{u,d_x,d_y}`,
+`{d_x,d_y,d_z}`.
+
+The reverse fiber of each form is `O(v)`. For the first two forms this uses the bound that a fixed block lies in at most `(v-3)/4` Fano subsystems; for the last two, choosing `d` recovers a noncollinear generating triple of the Fano subsystem.
 
 Thus an absolute constant `C_I` exists with
 
@@ -118,7 +134,24 @@ Thus an absolute constant `C_I` exists with
 
 Combining (PI), (IB), and the bulk bound gives
 
-`min(rho_P,rho_H)<=C alpha`.
+`min(rho_P,rho_H)<=C c_A/N`.
+
+## Proof-audit verdict
+
+No unresolved logical step remains in the proof chain currently used for the main theorem.
+
+The proof audit specifically closed the reviewer-sensitive points:
+
+1. anti-mitre witness identification;
+2. Fano line-colouring claim;
+3. `S_9`/`S_7` exclusion;
+4. localized dependence on four-point independence;
+5. exhaustive phase-query templates;
+6. `O(v)` reverse multiplicity;
+7. normalization of the final stability constant;
+8. separation of new quantitative deductions from the classical exact dichotomy.
+
+This verdict concerns the mathematics, not yet final typesetting/release QA.
 
 ## Source audit
 
@@ -128,6 +161,7 @@ Classical/source-derived:
 - Král–Máčajová–Pór–Sereni forbidden-configuration characterization;
 - local `S_7/S_9` generation in the `C_A`-free case;
 - their earlier finite local purity argument;
+- Teirlinck's exact projective/affine local-to-global theorem;
 - Johnson graph spectrum and Cauchy interlacing.
 
 Candidate new layer:
@@ -135,20 +169,24 @@ Candidate new layer:
 - independent-triple phase graph;
 - spectral phase isoperimetry;
 - root-preserving quantitative anti-mitre charging `|D|<=56c_A`;
-- finite-template interface charging;
-- quantitative Hall/projective phase stability.
+- localized finite-template interface charging;
+- quantitative Hall/projective phase-profile stability.
 
 Dedicated searches on Hall/projective stability, anti-mitre supersaturation, Steiner-quasigroup stability/removal, and phase-graph formulations found no equivalent quantitative theorem as of 2026-09-12. This is a serious priority check, not an absolute priority guarantee.
 
 ## Publication assembly now active
 
-Next actions are publication work, not another research-seed PDF:
+The mathematical threshold is crossed. The remaining work is publication hardening:
 
-1. rewrite the English manuscript around the quantitative phase theorem;
-2. produce synchronized Russian version;
-3. correct residual `R_7` versus anti-mitre `C_A` throughout v0.6;
-4. state all constants and finite-template claims conservatively;
-5. full theorem/numbering/bibliography/DOI audit;
-6. only then generate final RU/EN publication PDFs and Zenodo package.
+1. synchronize the strengthened proof text into `paper/PHASE_RIGIDITY_EN.md`;
+2. synchronize the same additions into `paper/PHASE_RIGIDITY_RU.md`;
+3. finish bibliography normalization for the remaining background references;
+4. normalize notation and theorem cross-references across EN/RU;
+5. generate final RU/EN publication PDFs;
+6. run visual PDF QA;
+7. prepare the final Zenodo package and metadata;
+8. after DOI issuance, insert the DOI into both manuscripts and this status file.
+
+Do **not** upload the current manuscript package to Zenodo before steps 1–6 are complete.
 
 The next mathematical extension after this paper is **edit-distance rigidity**: whether `alpha=o(1)` forces the entire STS, after few block edits, close to a projective or Hall system. This is explicitly not claimed in the present theorem.
