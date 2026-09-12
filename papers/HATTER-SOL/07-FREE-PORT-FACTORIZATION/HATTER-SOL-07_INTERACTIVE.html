@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HATTER-SOL-07 · Free-Port Factorization</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#0f1720;--text:#e6edf3;--muted:#9da7b3;--line:#30363d;--accent:#d29922;--accent2:#58a6ff;--ok:#3fb950;--warn:#f85149}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#172130 0,#0d1117 45%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.5}
+a{color:var(--accent2)} .wrap{max-width:1200px;margin:auto;padding:24px}.hero{padding:32px 0 18px}.kicker{color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}.hero h1{font-size:clamp(2rem,5vw,4rem);margin:.2em 0 .1em}.subtitle{font-size:1.15rem;color:var(--muted);max-width:900px}.doi{display:inline-block;margin-top:12px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#111820}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0}.tab{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer}.tab.active{border-color:var(--accent2);box-shadow:0 0 0 1px var(--accent2) inset}.scene{display:none}.scene.active{display:block}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 12px 30px #0005}.card h2,.card h3{margin-top:0}.math{font-family:Cambria Math,STIX Two Math,serif;font-size:1.15rem}.bigmath{font-size:clamp(1.3rem,3vw,2rem);text-align:center;padding:16px}.controls{display:grid;gap:12px}.control label{display:flex;justify-content:space-between;color:var(--muted)}input[type=range]{width:100%}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:#0b1320;border:1px solid var(--line);border-radius:12px;padding:12px}.metric b{display:block;font-size:1.45rem}.metric span{color:var(--muted);font-size:.85rem}
+svg{width:100%;height:auto;background:#0a0f16;border:1px solid var(--line);border-radius:14px}.edge{stroke:#8b949e;stroke-width:3}.edge.hot{stroke:var(--accent)}.node{fill:#172033;stroke:#58a6ff;stroke-width:2}.nodeLabel{fill:#fff;font-size:16px;font-weight:700;text-anchor:middle;dominant-baseline:middle}.port{fill:var(--accent)}.free{fill:var(--warn)}.caption{color:var(--muted);font-size:.9rem}.choicebar{display:flex;gap:8px;flex-wrap:wrap}.choice{padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:#0b1320;color:var(--text);cursor:pointer}.choice.active{border-color:var(--accent)}.notice{border-left:4px solid var(--accent);padding:12px 14px;background:#1a160b;border-radius:8px}.future{opacity:.75}.footer{margin:40px 0 20px;color:var(--muted);font-size:.9rem}.value{color:var(--accent);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="kicker">HATTER-SOL-07 · Arithmetic Tea Party</div>
+<h1>Alice in the Land of Free Threads</h1>
+<div class="subtitle">Interactive companion to <b>Free-Port Factorization</b>: factors are treated as capacity-nodes, edges consume ports, cycles consume boundary, and multiplicative refinement can reverse the naive monotonicity of closure.</div>
+<a class="doi" href="https://doi.org/10.5281/zenodo.22724185" target="_blank" rel="noopener">Zenodo DOI · 10.5281/zenodo.22724185</a>
+</header>
+
+<nav class="tabs" aria-label="Scenes">
+<button class="tab active" data-scene="architectures">1 · Factor architectures</button>
+<button class="tab" data-scene="cycle">2 · Tree vs cycle</button>
+<button class="tab" data-scene="inversion">3 · Refinement inversion</button>
+<button class="tab" data-scene="sharp">4 · Sharp theorem explorer</button>
+<button class="tab future" data-scene="future">Preview · 1D/2D/3D</button>
+</nav>
+
+<section id="architectures" class="scene active">
+<div class="grid">
+<div class="card">
+<h2>One integer, several architectures</h2>
+<div class="choicebar" id="archChoices">
+<button class="choice active" data-arch="12">12</button>
+<button class="choice" data-arch="3x4">3×4</button>
+<button class="choice" data-arch="2x2x3">2×2×3</button>
+</div>
+<svg id="archSvg" viewBox="0 0 760 360" role="img" aria-label="Factor architecture"></svg>
+<p class="caption">The picture does not change the product. It changes which multiplicative structure is exposed as network architecture.</p>
+</div>
+<div class="card">
+<h3>Chain convention</h3>
+<p>For a through-chain node of capacity <span class="math">m</span>, one port is used as input and one as output:</p>
+<div class="bigmath math">f(m)=m−2</div>
+<div class="metrics">
+<div class="metric"><b id="archProduct">12</b><span>product</span></div>
+<div class="metric"><b id="archF">10</b><span>chain free-port count F</span></div>
+<div class="metric"><b id="archNodes">1</b><span>factor nodes</span></div>
+<div class="metric"><b id="archSum">12</b><span>sum of capacities</span></div>
+</div>
+<p class="notice">Equal product does not mean equal organization.</p>
+</div>
+</div>
+</section>
+
+<section id="cycle" class="scene">
+<div class="grid">
+<div class="card">
+<h2>Topology changes the boundary</h2>
+<div class="choicebar">
+<button class="choice active" id="treeBtn">Tree</button>
+<button class="choice" id="cycleBtn">Add one cycle</button>
+</div>
+<svg id="cycleSvg" viewBox="0 0 760 390"></svg>
+</div>
+<div class="card">
+<h3>Live identity</h3>
+<div class="bigmath math">B(G;c)=Σcᵢ−2|E|</div>
+<div class="bigmath math">B=2+Σ(cᵢ−2)−2β₁</div>
+<div class="metrics">
+<div class="metric"><b id="cyE">3</b><span>|E|</span></div>
+<div class="metric"><b id="cyBeta">0</b><span>β₁</span></div>
+<div class="metric"><b id="cyB">8</b><span>free boundary B</span></div>
+<div class="metric"><b id="cyDelta">0</b><span>change from tree</span></div>
+</div>
+<p class="notice">For fixed capacities, every added independent cycle changes the free boundary by exactly <b>−2</b>.</p>
+</div>
+</div>
+</section>
+
+<section id="inversion" class="scene">
+<div class="grid">
+<div class="card">
+<h2>Refinement inversion</h2>
+<p>The chain picture suggests that splitting a factor should always improve closure. General networks break that intuition.</p>
+<svg id="invSvg" viewBox="0 0 760 420"></svg>
+</div>
+<div class="card">
+<h3>Exact family</h3>
+<p class="math">A=(2q,2,…,2), &nbsp; A′=(q,2,…,2)</p>
+<p>with odd <span class="math">q≥3</span> and <span class="math">m≥2q</span>, where the split is <span class="math">2q→(2,q)</span>.</p>
+<div class="bigmath math">λ(A)=0,&nbsp;&nbsp; λ(A′)=1</div>
+<p>First explicit member used in the article:</p>
+<div class="bigmath math">384=6·2⁶ &nbsp;→&nbsp; 3·2⁷</div>
+<p class="notice">More detailed arithmetic can leave a larger minimum free boundary.</p>
+</div>
+</div>
+</section>
+
+<section id="sharp" class="scene">
+<div class="grid">
+<div class="card">
+<h2>Sharp one-step refinement theorem</h2>
+<div class="controls">
+<div class="control"><label><span>a</span><span class="value" id="aVal">2</span></label><input id="aRange" type="range" min="2" max="12" value="2"></div>
+<div class="control"><label><span>b</span><span class="value" id="bVal">3</span></label><input id="bRange" type="range" min="2" max="12" value="3"></div>
+</div>
+<div class="bigmath math">δ(a,b)=ab−a−b=<span id="deltaVal">1</span></div>
+<svg id="sharpSvg" viewBox="0 0 760 430"></svg>
+</div>
+<div class="card">
+<h3>Main result</h3>
+<div class="bigmath math">λ(…,a,b,…)−λ(…,ab,…)≤ab−a−b</div>
+<p>and the bound is sharp:</p>
+<div class="bigmath math">sup Δλ = ab−a−b</div>
+<div class="metrics">
+<div class="metric"><b id="cVal">6</b><span>coarse capacity c=ab</span></div>
+<div class="metric"><b id="ambientVal">7</b><span>coarse sharpness vertices c+1</span></div>
+<div class="metric"><b id="sharpDelta">1</b><span>worst-case inversion</span></div>
+<div class="metric"><b id="specialVal">no</b><span>zero-inversion split?</span></div>
+</div>
+<p class="caption">Sharpness construction: coarse side uses K<sub>c+1</sub> with capacity c at every vertex; after splitting one c into a,b, the refined construction leaves exactly c−a−b free ports.</p>
+</div>
+</div>
+</section>
+
+<section id="future" class="scene">
+<div class="card">
+<h2>Research bridge — not part of the proved HATTER-SOL-07 theorem set</h2>
+<p>This panel records the next programme without retroactively adding claims to the published paper.</p>
+<div class="choicebar">
+<button class="choice">1D</button><button class="choice">circle / outerplanar</button><button class="choice">2D planar</button><button class="choice">3D / unrestricted</button><button class="choice">square</button><button class="choice">triangle</button>
+</div>
+<div class="bigmath math">factorization → capacity → topology → geometry</div>
+<p>Future questions include dimension-dependent minima <span class="math">λ<sub>d</sub></span>, factorization state spaces, and geometry-transfer morphisms preserving selected invariants.</p>
+<p class="notice">Preview only. These are research seeds for HATTER-SOL-08–10.</p>
+</div>
+</section>
+
+<footer class="footer">Malachevsky, A.A. · ORCID 0009-0008-6009-3196 · Commander Sol / Hatter Sol research series · Zenodo 10.5281/zenodo.22724185</footer>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs={},text=''){const x=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))x.setAttribute(k,v);if(text)x.textContent=text;return x}
+function line(svg,x1,y1,x2,y2,hot=false){svg.appendChild(el('line',{x1,y1,x2,y2,class:'edge'+(hot?' hot':'')}))}
+function node(svg,x,y,label,r=28){svg.appendChild(el('circle',{cx:x,cy:y,r,class:'node'}));svg.appendChild(el('text',{x,y,class:'nodeLabel'},label))}
+function text(svg,x,y,t,size=16,anchor='start'){svg.appendChild(el('text',{x,y,fill:'#c9d1d9','font-size':size,'text-anchor':anchor},t))}
+function clear(svg){while(svg.firstChild)svg.removeChild(svg.firstChild)}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.scene').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.scene).classList.add('active')});
+
+const archData={
+ '12':{factors:[12],F:10,sum:12},
+ '3x4':{factors:[3,4],F:3,sum:7},
+ '2x2x3':{factors:[2,2,3],F:1,sum:7}
+};
+function drawArch(key){const d=archData[key],svg=document.getElementById('archSvg');clear(svg);const n=d.factors.length;const xs=n===1?[380]:n===2?[270,490]:[210,380,550];for(let i=0;i<n-1;i++)line(svg,xs[i]+30,180,xs[i+1]-30,180,true);d.factors.forEach((f,i)=>{node(svg,xs[i],180,String(f),34);const ports=Math.min(f,12);for(let p=0;p<ports;p++){const ang=(Math.PI*2*p/ports);const rr=50;svg.appendChild(el('circle',{cx:xs[i]+Math.cos(ang)*rr,cy:180+Math.sin(ang)*rr,r:4,class:'port'}))}});text(svg,380,70,key==='12'?'12':key.replaceAll('x','×'),30,'middle');text(svg,380,310,'Product = 12',18,'middle');document.getElementById('archProduct').textContent=12;document.getElementById('archF').textContent=d.F;document.getElementById('archNodes').textContent=n;document.getElementById('archSum').textContent=d.sum}
+document.querySelectorAll('#archChoices .choice').forEach(b=>b.onclick=()=>{document.querySelectorAll('#archChoices .choice').forEach(x=>x.classList.remove('active'));b.classList.add('active');drawArch(b.dataset.arch)});drawArch('12');
+
+const capacities=[4,4,3,3];function drawCycle(hasCycle){const svg=document.getElementById('cycleSvg');clear(svg);const P=[[190,110],[570,110],[570,290],[190,290]];[[0,1],[1,2],[2,3]].forEach(e=>line(svg,...P[e[0]],...P[e[1]],false));if(hasCycle)line(svg,...P[3],...P[0],true);P.forEach((p,i)=>node(svg,p[0],p[1],String(capacities[i]),30));const E=hasCycle?4:3,beta=E-4+1,sum=14,B=sum-2*E;document.getElementById('cyE').textContent=E;document.getElementById('cyBeta').textContent=beta;document.getElementById('cyB').textContent=B;document.getElementById('cyDelta').textContent=(B-(14-6));text(svg,380,55,hasCycle?'One independent cycle':'Tree',24,'middle')}
+document.getElementById('treeBtn').onclick=()=>{treeBtn.classList.add('active');cycleBtn.classList.remove('active');drawCycle(false)};document.getElementById('cycleBtn').onclick=()=>{cycleBtn.classList.add('active');treeBtn.classList.remove('active');drawCycle(true)};drawCycle(false);
+
+function drawInversion(){const svg=document.getElementById('invSvg');clear(svg);text(svg,190,55,'coarse',22,'middle');text(svg,570,55,'refined',22,'middle');node(svg,190,190,'6',38);for(let i=0;i<6;i++){const a=2*Math.PI*i/6,x=190+110*Math.cos(a),y=190+110*Math.sin(a);node(svg,x,y,'2',20);line(svg,190+35*Math.cos(a),190+35*Math.sin(a),x-20*Math.cos(a),y-20*Math.sin(a),false)}text(svg,190,360,'λ=0',22,'middle');node(svg,520,165,'3',34);node(svg,620,165,'2',28);line(svg,554,165,592,165,true);for(let i=0;i<5;i++){const x=500+i*35,y=280;node(svg,x,y,'2',18);if(i)line(svg,x-53,y,x-18,y,false)}line(svg,520,199,500,262,false);svg.appendChild(el('circle',{cx:658,cy:280,r:6,class:'free'}));line(svg,640,280,658,280,true);text(svg,570,360,'λ=1',22,'middle');text(svg,380,405,'schematic intuition; theorem family is stated at right',14,'middle')};drawInversion();
+
+function drawSharp(){const a=+aRange.value,b=+bRange.value,c=a*b,delta=c-a-b;document.getElementById('aVal').textContent=a;document.getElementById('bVal').textContent=b;document.getElementById('deltaVal').textContent=delta;document.getElementById('cVal').textContent=c;document.getElementById('ambientVal').textContent=c+1;document.getElementById('sharpDelta').textContent=delta;document.getElementById('specialVal').textContent=delta===0?'yes':'no';const svg=document.getElementById('sharpSvg');clear(svg);text(svg,190,45,'coarse',20,'middle');text(svg,570,45,'refined',20,'middle');node(svg,190,185,String(c),46);text(svg,190,265,'fully saturable',15,'middle');text(svg,190,295,'λ = 0',22,'middle');node(svg,525,155,String(a),35);node(svg,615,155,String(b),35);line(svg,560,155,580,155,true);const shown=Math.min(8,Math.max(3,Math.ceil(Math.sqrt(c))));for(let i=0;i<shown;i++){const ang=2*Math.PI*i/shown,x=570+105*Math.cos(ang),y=270+75*Math.sin(ang);node(svg,x,y,String(c),16)}text(svg,570,385,'sharp Δλ = '+delta,22,'middle');text(svg,380,420,'δ = ab − a − b',16,'middle')}
+aRange.oninput=bRange.oninput=drawSharp;drawSharp();
+</script>
+</body>
+</html>
