@@ -3,7 +3,8 @@
 **Branch:** `research/hatter-sol-free-ports`  
 **Path:** `papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/`  
 **Status date:** 2026-09-12  
-**Status:** **PUBLICATION THRESHOLD REACHED; RU PUBLICATION CANDIDATE ASSEMBLED AND PDF-QA PASSED**.
+**Status:** **PUBLISHED ON ZENODO; RU/EN PUBLICATION CANDIDATES ASSEMBLED; INTERACTIVE HTML COMPANION IN PROGRESS**.  
+**Zenodo DOI:** https://doi.org/10.5281/zenodo.22724185
 
 ## Core model
 
@@ -156,16 +157,34 @@ Bibliographic audit on 2026-09-12 corrected several metadata details in the Driv
 - `ARTICLE_RU_v0.9.md` assembled in this branch.
 - Native Google Docs publication candidate assembled in project folder `03_Manuscript`.
 - Seven Alice/Hatter illustrations inserted in the approved order.
-- `03.png` is explicitly captioned as a schematic intuition for refinement inversion, not a proof diagram.
-- `07.png` is explicitly captioned as a schematic sharpness-construction map; exact counts are in the theorem text.
-- corrected `05.png` is used, with `12=[2]x[2]x[3]` visually unambiguous.
 - PDF export visually inspected page-by-page: 14 pages, all seven figures present, no clipping/overlap.
-- unsupported Unicode subscript `ₖ`, which rendered as a box in the first PDF pass, was replaced by `_k` in the Google Docs publication candidate.
-- QA PDF saved in Drive as `HATTER-SOL-07_RU_v0.9_publication_candidate.pdf`.
 
-### Important sync note
+### English version
 
-The Google Docs/PDF candidate contains the latest bibliography corrections listed above. Before tagging a GitHub v1.0 or publishing to Zenodo, synchronize those final bibliography edits back into the Markdown article and rerun the mandatory RU/EN publication audit.
+- Native Google Docs English publication candidate assembled from the RU layout.
+- All theorem numbering and equations synchronized with the RU version.
+- Seven illustrations preserved.
+- PDF export visually inspected: 13 pages, no clipping/overlap detected.
+- Author line: `Malachevsky, A.A.`
+
+### Zenodo
+
+- Official record: **10.5281/zenodo.22724185**.
+- README now links the DOI and marks HATTER-SOL-07 as published.
+
+## Interactive companion
+
+Next artifact in this same branch:
+
+`HATTER-SOL-07_INTERACTIVE.html`
+
+Planned scenes:
+
+1. `12`, `3×4`, `2×2×3` as distinct factor-capacity architectures.
+2. Tree vs cycle with live display of `|E|`, `β1`, and `B`.
+3. Refinement inversion.
+4. Sharp-theorem explorer with sliders `a,b` and live `δ=ab-a-b`.
+5. A clearly marked bridge to later `1D / circle / 2D / 3D / square / triangle` research, without presenting that future material as a theorem of HATTER-SOL-07.
 
 ## Publication framing
 
@@ -175,10 +194,6 @@ Recommended central formulation:
 
 ## Next actions
 
-1. Perform one final hostile mathematical audit of Lemma 5.1 and the sharpness proof against edge cases.
-2. Synchronize the corrected bibliography from the Drive candidate into GitHub Markdown.
-3. Produce synchronized English article `ARTICLE_EN_v0.9.md`.
-4. Audit numbering, DOI/date metadata, author line, ORCID, RU/EN consistency and figure captions.
-5. Only then promote RU/EN files to final publication PDFs and prepare the Zenodo package.
-
-Do not merge or publish automatically unless explicitly requested; this branch remains the canonical publication-working branch.
+1. Add and test `HATTER-SOL-07_INTERACTIVE.html`.
+2. Synchronize final RU/EN Markdown files with the published Zenodo version and bibliography.
+3. Preserve HATTER-SOL-07 as the closed theorem package; route new dimensional and geometry-transfer mathematics to the HATTER-SOL-08–10 programme.
