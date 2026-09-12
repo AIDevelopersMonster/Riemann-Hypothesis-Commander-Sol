@@ -2,13 +2,13 @@
 
 **Branch:** `research/alice-ruler-edit-rigidity`  
 **Working folder:** `alice-ruler-edit-rigidity/`  
-**Status date:** 2026-09-12  
+**Status date:** 2026-09-13  
 **Parent publication:** *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects*  
 **Zenodo DOI:** https://doi.org/10.5281/zenodo.22722951
 
-## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED
+## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED
 
-Primary target remains: upgrade the published phase-profile stability theorem to genuine structural/edit-distance rigidity, or identify the sharp obstruction showing why the naive upgrade fails.
+Primary target is now corrected: upgrade phase-profile stability to **carrier-adjusted** structural/edit-distance rigidity, or identify the sharp obstruction. Exact same-order rigidity at arbitrary `o(1)` P-phase impurity is false.
 
 ## Closed step 1 — `PROJECTIVE_ASSOCIATOR_BRIDGE`
 
@@ -121,7 +121,7 @@ d_blk(S,T)
 }
 ```
 
-Hence the projective edit-rigidity theorem is closed in the ultra-low scale `1-rho_P=O(1/v)`.
+Hence the projective edit-rigidity theorem is closed in an explicit small-constant `1/v` scale (and therefore in every `o(1/v)` regime).
 
 ---
 
@@ -169,8 +169,6 @@ already forces the approximating group to be Boolean and forces the exact order 
 \boxed{n=2^m}.
 ```
 
-This improves the earlier absolute condition `t<n/2` to a genuine normalized constant threshold.
-
 ### Identity alignment costs only `O(n)`
 
 If the group identity is not the added Steiner-loop point `0`, transpose those two labels and transport the Boolean group law. The multiplication table changes in at most
@@ -180,14 +178,6 @@ If the group identity is not the added Steiner-loop point `0`, transpose those t
 ```
 
 cells.
-
-Thus there is a Boolean group law with identity `0` at distance at most
-
-```math
-t+6n
-```
-
-from the Steiner loop.
 
 ### Exact conversion to STS edit distance
 
@@ -206,96 +196,163 @@ d_blk(S,T)
 }
 ```
 
-Therefore, if one proves only
-
-```math
-t/n^2 <= f(s/n^3),
-qquad f(delta)->0,
-```
-
-then **all remaining projective consequences follow automatically**:
-
-- elementary abelian `2`;
-- exact projective order `v+1=2^m` once `f(delta)<1/8`;
-- correct distinguished zero after `o(n^2)` relabeling cost;
-- projective STS on the same point set;
-- block edit distance `f(delta)+o(1)`.
-
 ---
 
-## Translation formulation of the sole remaining bottleneck
+## Closed step 4 — `PROJECTIVE_WRONG_ORDER_OBSTRUCTION`
 
-For the Steiner loop define translations
+Full proof:
 
-```math
-T_x(z)=x∘z.
-```
+`notes/PROJECTIVE_WRONG_ORDER_OBSTRUCTION.md`
 
-Every `T_x` is an involution, and Latin cancellation gives
+Commit:
 
-```math
-d_H(T_x,T_y)=n
-```
+`0f9b7222388fd6d176257dd9239be52877b4b7d2`
 
-for `x!=y`.
+### Exact wrong-order sequence
 
-Moreover associativity is exactly
+Using Grannell--Lovegrove's Add 4 maxi-Pasch construction, for every `k>=2` there is an STS `T_k` of order
 
 ```math
-T_{x∘y}(z)=T_xT_y(z).
+w_k=2^{2k}+3
 ```
 
-Thus the total failure count is
+whose loop order
+
+```math
+n_k=w_k+1=2^{2k}+4
+```
+
+is not a power of `2`.
+
+Their exact Pasch count, combined with Kozlik's formula for associative triples in Steiner loops, gives
 
 ```math
 \boxed{
-s
-=
-\sum_{x,y} d_H(T_{x∘y},T_xT_y).
+s_k=4(w_k-7)(7w_k-48).
 }
 ```
 
-The uniform projective problem can therefore be restated as stability of an `n`-point family of pairwise maximally separated involutions in `Sym(n)` whose products lie near the family on average.
+Hence
 
-This translation viewpoint is now the preferred route for an in-house proof.
+```math
+s_k/n_k^3 = 28/w_k + O(1/w_k^2) -> 0.
+```
+
+The associator bridge then yields
+
+```math
+\boxed{1-rho_P(T_k)=Theta(1/w_k),}
+```
+
+so in particular
+
+```math
+rho_P(T_k)->1
+```
+
+along a sequence of **wrong projective orders**.
+
+### Same-set 99% reconstruction is false
+
+If any group law on the same `n_k`-point set were at table distance `<n_k^2/8`, the robust Boolean recovery theorem would force `n_k=2^m`, contradiction. Therefore
+
+```math
+\boxed{
+\min_{\text{group laws }*\text{ on }L_k}
+d_H(\circ_k,*)
+\ge n_k^2/8,
+}
+```
+
+while `s_k/n_k^3->0`.
+
+Thus the former target
+
+```math
+s/n^3 -> 0
+=>
+t/n^2 -> 0
+```
+
+for a group law on the **same carrier** is false even for Steiner loops.
+
+### Exact order rigidity at `o(1)` phase impurity is false
+
+The same sequence refutes
+
+```math
+1-rho_P=o(1)
+=>
+v+1=2^m.
+```
+
+Therefore no unconditional theorem can take distance to `P_v` on the same order for every `rho_P->1`, since `P_v` is empty on the above orders.
+
+### Sharp scale
+
+The Drápal-regime lower bound for every wrong-order STS is
+
+```math
+1-rho_P
+>=
+3(v+1)^2/[32v(v-1)(v-3)]
+=
+3/(32v)+O(1/v^2).
+```
+
+The explicit Add 4 sequence has
+
+```math
+1-rho_P=O(1/v).
+```
+
+Therefore the exact projective **order-rigidity scale is Theta(1/v)** up to absolute constants.
+
+This is a genuine sharpness result, not merely an obstruction.
 
 ---
 
-## Literature/stability audit
+## Corrected projective target
 
-- **Drápal 1983:** exact same-set Hamming reconstruction, but only when `s<3n^2/32`.
-- **Gowers–Long 2020:** explicitly state that Elad Levi proved the 99% case: if associativity holds for almost all triples, the quasigroup table agrees almost everywhere, after injection, with multiplication in a group of approximately the same size. Published Gowers–Long do not reproduce that proof; their reference is Levi's M.A. thesis/private communication.
-- **Levi source audit:** web search confirms the thesis title *Symmetric abstract independence relations and the group configuration theorem* and that Levi completed an M.A. under Ehud Hrushovski in 2013, but no accessible thesis text/proof has yet been located. Thus it is not imported as a publication-grade black box.
-- **Gowers–Long positive-density theorem:** gives rough approximate-group structure for the 1% regime, not directly whole-table Hamming reconstruction.
-- **Property testers:** no checked theorem yet converts uniform associativity-failure density directly into same-set group-table distance with the required quantitative control.
+The projective problem must now allow a nearby carrier/order.
+
+The Grannell--Lovegrove sequence is itself only four points away from its projective source: it is constructed from projective order `2^{2k}-1` and has order `2^{2k}+3`.
+
+The new target is therefore:
+
+> if `s/n^3=o(1)` (equivalently on the P-dominant branch `1-rho_P=o(1)`), recover a Boolean group / projective STS on a carrier of size `n'=n+o(n)` and show agreement on `1-o(1)` of the relevant multiplication cells / STS pairs or blocks.
+
+This is **open**, not assumed true.
+
+It is also the correct shape of the 99% theorem attributed to Elad Levi by Gowers--Long: an injection into a group of approximately the same size, not necessarily a group law on the identical carrier.
 
 ## Current bottleneck / next attack
 
-There is now exactly one substantive projective obstruction:
-
-```math
-\boxed{
-s/n^3 -> 0
-\quad\Longrightarrow?\quad
-t/n^2 -> 0
-}
-```
-
-where `s` is the number of nonassociative triples of the Steiner loop and `t` is distance to a group law on the same set (or to a group law after an `o(n)`-size adjustment that can then be transferred back).
-
-Two active routes:
-
-1. reconstruct a proof of the Levi 99% theorem in the special Steiner setting using the translation family `T_x`;
-2. derive a dense partial group law and complete it, exploiting pairwise distance `n`, involutivity, and commutativity.
-
-Hall/distributive branch remains second priority.
+1. formulate a precise carrier-adjusted edit metric compatible with STS block distance;
+2. source-check/reconstruct the Levi 99% theorem in a form usable for Steiner loops;
+3. determine quantitative `|n'-n|/n` and edit error from `delta_assoc`;
+4. use the Add 4/Add 6 families as lower-bound/extremal tests;
+5. only after projective branch is settled, move to the Hall/distributive analogue.
 
 ## Publication threshold
 
-The branch now contains three closed mathematical contributions:
+The branch has now crossed a stronger publication threshold than before:
 
-1. exact local P-phase / associator certificate plus explicit counterexample to the naive criterion;
-2. ultra-low-defect projective edit-rigidity with explicit order gap;
-3. robust normalized Boolean recovery showing that **any** uniform near-group theorem immediately yields the desired projective STS reconstruction.
+1. exact local P-phase / associator certificate;
+2. explicit counterexample to the naive root criterion;
+3. explicit ultra-low-defect projective edit-rigidity theorem;
+4. robust Boolean recovery from group distance;
+5. **explicit wrong-order counterexample to uniform same-set reconstruction**;
+6. **sharp `Theta(1/v)` scale for exact projective order rigidity**.
 
-This is already publication-relevant as a substantial Article III core. However the intended main theorem remains the uniform `o(1)` edit-rigidity statement, so hold final PDF/Zenodo while the sole remaining 99% stability step is attacked.
+This is enough for a mathematically substantive Article III even if the carrier-adjusted 99% theorem remains open. However, because the new obstruction changes the headline theorem, hold final PDF/Zenodo until the carrier-adjusted formulation is attacked and the paper architecture is rewritten around the positive theorem + sharp obstruction dichotomy.
+
+## Research discipline
+
+- no theorem without proof;
+- attack counterexamples first;
+- keep order-spectrum assumptions explicit;
+- distinguish same-order rigidity from carrier-adjusted rigidity;
+- distinguish phase-profile stability from edit-distance stability;
+- no intermediate PDFs;
+- update this file after each closed mathematical step.
