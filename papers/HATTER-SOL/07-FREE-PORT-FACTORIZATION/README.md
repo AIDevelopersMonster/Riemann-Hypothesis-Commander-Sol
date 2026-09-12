@@ -9,7 +9,9 @@
 - AI research collaborator / persona: **Commander Sol · Hatter Sol**
 - Branch: `research/hatter-sol-free-ports`
 - Zenodo DOI: **https://doi.org/10.5281/zenodo.22724185**
-- Publication status: **RU + EN release published on Zenodo; interactive HTML companion in progress**
+- YouTube video: **https://youtu.be/80rIpjZ3iuM**
+- Interactive demo: `HATTER-SOL-07_INTERACTIVE.html`
+- Publication status: **RU + EN release published on Zenodo; interactive HTML companion assembled; YouTube presentation published**
 
 ## Publication result
 
@@ -36,9 +38,15 @@ The bound is attained for every pair `a,b>=2` in a suitable ambient capacity vec
 
 A fixed capacity vector remains classical maximum simple `b`-matching / `f`-bounded-subgraph territory. The contribution claimed here is the exact interaction between that deficiency and the arithmetic split `ab -> (a,b)`.
 
+## Publication and media
+
+- **Zenodo:** https://doi.org/10.5281/zenodo.22724185
+- **YouTube presentation:** https://youtu.be/80rIpjZ3iuM
+- **Interactive HTML companion:** `HATTER-SOL-07_INTERACTIVE.html`
+
 ## Interactive HTML companion
 
-A standalone interactive demonstration is being built in this directory as `HATTER-SOL-07_INTERACTIVE.html`.
+A standalone interactive demonstration is available in this directory as `HATTER-SOL-07_INTERACTIVE.html`.
 
 Its core scenes are:
 
