@@ -21,6 +21,23 @@ Zenodo DOI: **10.5281/zenodo.22060296**
 
 ## Additional published mathematical branches
 
+### Alice Throws Away the Ruler II · Phase Rigidity in Steiner Triple Systems
+
+**Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects**  
+Russian parallel: **Фазовая жёсткость в системах троек Штейнера: количественная устойчивость Холл–проективной дихотомии через anti-mitre-дефекты**  
+Zenodo DOI: **[10.5281/zenodo.22722951](https://doi.org/10.5281/zenodo.22722951)**  
+GitHub companion: [`alice-ruler-incidence/`](alice-ruler-incidence/)
+
+Core result:
+
+`small normalized anti-mitre count -> one of the two local closure phases (projective S_7 or Hall S_9) has small minority density`.
+
+The paper introduces the independent-triple phase graph, proves the spectral gap `mu_2 >= v-3`, establishes `|D| <= 56 c_A`, controls direct `P/H` interfaces by `s <= C_I v |D|`, and derives the quantitative phase-profile stability theorem
+
+`min(rho_P,rho_H) <= C c_A/N`.
+
+The theorem is intentionally phase-profile stability, not an edit-distance theorem for the whole Steiner triple system.
+
 ### FCOA · Admissibility Geometry
 
 **Reflections on Admissibility Geometry with Commander Sol: How a Partial Operation Remembers an Oriented Carrier**  
@@ -157,6 +174,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-02 · SHIFT — next priority
 - RH-SOL-03 · REALZERO — planned
 - RH-SOL-04 · FIREWALL — planned
+- ALICE-RULER-II · PHASE RIGIDITY — published, DOI 10.5281/zenodo.22722951; quantitative Hall/projective phase-profile stability
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
 - FCOA-Z · RAY TO AXIS / LOCAL LAW DIFFERENTIATION — final Zenodo stage, DOI 10.5281/zenodo.22171473 assigned and embedded; publication package audited
