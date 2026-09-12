@@ -2,10 +2,10 @@
 
 **Branch:** `research/hatter-sol-dimensional-factor-morphisms`  
 **Path:** `papers/HATTER-SOL/08-DIMENSIONAL-FACTOR-ARCHITECTURES/`  
-**Status date:** 2026-09-12  
-**Status:** **PUBLICATION THRESHOLD REACHED; repaired planar/3D theorem layer audited; RU/EN v0.9 PDF candidates assembled and visually QA-checked.**
+**Status date:** 2026-09-13  
+**Status:** **v1.0 FROZEN · PUBLICATION-READY · ZENODO DEPOSIT PENDING**
 
-## Audited theorem layer
+## Final audited theorem layer
 
 ### 1. Exact 1D law
 
@@ -108,48 +108,42 @@ U_{Pl}(q)=\frac{q-2}{2}+O(1).
 
 Thus planar architecture suppresses worst-case refinement inversion by an asymptotic factor of at least two relative to unrestricted/3D architecture.
 
-For odd `q>=7`, the explicit outerplanar family is also planar and gives
+## Hostile-audit correction retained
 
-\[
-\boxed{
-1\le\Delta_{planar}^{max}(2,q)
-\le U_{Pl}(q)<q-2.
-}
-\]
+The attempted stronger outerplanar suppression theorem remains **withdrawn**. The seven-vertex counterexample in `DIMENSIONAL_SEPARATION.md` shows that deleting three spokes and adding a missing edge may create a `K_{2,3}` subdivision.
 
-## Proof-audit state
+Safe outerplanar statements:
 
-The obligations are closed and recorded in `PLANAR_PROOF_AUDIT.md`:
+- exact `q=3` value `Delta_outer^max(2,3)=1`;
+- for odd `q>=3`, explicit lower bound `Delta_outer^max(2,q)>=1`;
+- exact outerplanar extremal function for `q>3` remains open.
 
-1. planar connectivity-recovery lemma rewritten at publication level;
-2. four-incidence lemma rewritten as a local topological-disk argument;
-3. repeated disjoint block reductions justified;
-4. small cases and the exact threshold `q>=6` checked explicitly;
-5. finite hostile-search regression support noted separately from proof.
+## Proof and literature audit
 
-## Retracted outerplanar claim
+Closed and recorded in `PLANAR_PROOF_AUDIT.md` / `LITERATURE_AUDIT.md`:
 
-The attempted stronger outerplanar block-reduction theorem is **withdrawn**. A seven-vertex counterexample in `DIMENSIONAL_SEPARATION.md` shows that deleting three spokes and adding a missing edge may create a `K_{2,3}` subdivision. Therefore no universal stronger outerplanar suppression formula is currently claimed.
+- planar connectivity recovery;
+- four-incidence local topological-disk reduction;
+- repeated-block justification;
+- threshold `q>=6` and small cases;
+- targeted prior-art search on vertex splitting, splitting-off, planar edge splitting, plane-to-outerplane splitting, and degree realization.
 
-Safe outerplanar statements remain:
+Bibliographic metadata was rechecked before v1.0. In particular, the Nagamochi–Eades entry now includes DOI `10.1023/A:1024470929537`.
 
-- the exact `q=3` value `Delta_outer^max(2,3)=1`;
-- for odd `q>=3`, the explicit lower bound `Delta_outer^max(2,q)>=1`;
-- the exact outerplanar extremal function for `q>3` is open.
+## Final v1.0 artifacts
 
-## Literature audit state
+GitHub source:
 
-`LITERATURE_AUDIT.md` records classical prior art on vertex splitting, constrained edge-splitting / splitting-off, planar edge splitting, plane-to-outerplane vertex splitting, and outerplanar degree realization.
+- `ARTICLE_RU_v1.0.md`
+- `ARTICLE_EN_v1.0.md`
+- `ZENODO_METADATA_v1.0.md`
 
-No explicit equivalent was located for the HATTER-SOL planar free-boundary sensitivity bound under the arithmetic split `2q->(2,q)`. This remains a serious negative search, not an absolute priority guarantee.
+Final PDFs, each 12 pages and visually QA-checked:
 
-## Illustration and PDF QA state
+- `HATTER-SOL-08_RU_v1.0.pdf`
+- `HATTER-SOL-08_EN_v1.0.pdf`
 
-Canonical illustration folder:
-
-`https://drive.google.com/drive/folders/1miJ-qqHMykpn_tQPfWCSKdowrQO5ct6g`
-
-The canonical publication figure set is now exactly:
+Canonical five-figure set:
 
 - `01.png` — dimensional ladder;
 - `02.png` — sign reversal `6 -> 2 x 3`;
@@ -157,48 +151,22 @@ The canonical publication figure set is now exactly:
 - `04.png` — corrected exact planar/3D separation graph;
 - `05.png` — complete-capacity dimensional staircase.
 
-The earlier incorrect version of `04.png` was replaced in the Drive folder on 2026-09-12. The current `04.png` is the corrected graph generated from the theorem formula
+Publication Drive folder:
 
-\[
-U_{Pl}(q)=2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2).
-\]
+`https://drive.google.com/drive/folders/1ZnhcoqblWKr3mxioQ2zsza74cUU2ATCL`
 
-There is no longer a separate canonical `04_exact.png`; the corrected file has replaced `04.png` in place.
+It contains both v1.0 PDFs, `ZENODO_METADATA_HATTER-SOL-08_v1.0.md`, `SHA256SUMS_HATTER-SOL-08_v1.0.txt`, and `HATTER-SOL-08_v1.0_source-and-figures.zip`.
 
-RU and EN publication candidates were rendered and visually inspected page-by-page:
+## Metadata freeze
 
-- `HATTER-SOL-08_RU_v0.9_publication_candidate.pdf` — 12 pages;
-- `HATTER-SOL-08_EN_v0.9_publication_candidate.pdf` — 12 pages.
+- Author RU: **Малачевский А.А.**
+- Author EN/Zenodo: **Malachevsky, A.A.**
+- ORCID: `0009-0008-6009-3196`
+- Version: `1.0`
+- Publication date: `2026-09-13`
+- Parent DOI: `10.5281/zenodo.22724185`
+- HATTER-SOL-08 DOI: **pending Zenodo deposit**
 
-No clipping, broken formulas, image overflow, or missing pages were found in the rendered QA pass.
+## Next action
 
-## Manuscript state
-
-Branch sources:
-
-- `ARTICLE_RU_v0.8.md`
-- `ARTICLE_EN_v0.8.md`
-- `PLANAR_PROOF_AUDIT.md`
-- `DIMENSIONAL_SEPARATION.md`
-- `LITERATURE_AUDIT.md`
-- `ILLUSTRATIONS.md`
-
-Publication-layout v0.9 additionally incorporates:
-
-- the HATTER-SOL-07 Zenodo citation `10.5281/zenodo.22724185`;
-- verified DOI metadata for Jordán and Nagamochi–Eades;
-- five figures, with corrected canonical Figure 4 generated from the exact planar bound.
-
-## Publication threshold
-
-**Reached.**
-
-HATTER-SOL-08 now contains a publication-ready mathematical core and visually QA-checked RU/EN PDF candidates.
-
-## Next actions before Zenodo
-
-1. final metadata audit: author line, ORCID, DOI/date, bibliography, RU/EN consistency;
-2. freeze the corrected five-figure set and final RU/EN PDFs as `v1.0` if no theorem text changes;
-3. publish RU/EN package to Zenodo;
-4. record the new DOI in README/status and cross-link from HATTER-SOL-07;
-5. keep the outerplanar exact extremal problem open for a later paper rather than delaying HATTER-SOL-08.
+Publish the frozen v1.0 package to Zenodo. After Zenodo assigns the DOI, update `README.md`, this status file, and cross-link HATTER-SOL-07. No theorem/content change is planned before deposit.
