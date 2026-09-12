@@ -10,232 +10,265 @@
 
 Research line on arithmetic and rigidity emerging from bounded incidence rules in Steiner triple systems (STS), continuing the RU/EN research seed **“Alice Throws Away the Ruler / Алиса выбрасывает линейку” v0.6**.
 
-The current goal is a quantitative Hall/projective two-phase rigidity theorem built from local closure types of independent triples.
+Current target: a quantitative Hall/projective two-phase rigidity theorem built from local closure types of independent triples.
 
-## Stable input from v0.6
+## Mandatory correction to v0.6: residual #7 is not Král's anti-mitre C_A
 
-For an STS(v), with
+This nomenclature error was found during the publication audit.
+
+The residual five-line configuration produced by the mirror-completion test is Danziger–Mendelsohn–Grannell–Griggs configuration **#7**:
+
+`R_7 = {012,034,135,246,567}`.
+
+Its count is
+
+`r_7 = n(v)/4 - 6p - 3m`,
+
+where `n(v)=v(v-1)(v-3)=24P(v)`.
+
+The anti-mitre configuration `C_A` used by Král–Máčajová–Pór–Sereni is a different eight-point five-line configuration. In the same 56-configuration table it is configuration **#4**, e.g.
+
+`C_A ~= {012,034,135,236,457}`,
+
+with count
+
+`c_A = n(v)/2 - 12p - 6m`.
+
+Therefore the two configurations are not isomorphic, but their counts satisfy the exact identity
+
+`c_A = 2 r_7`.
+
+Hence the completion-simplex coordinate must be written
+
+`alpha = r_7/(6P(v)) = c_A/(12P(v))`.
+
+Consequently the important zero-set statement survives unchanged:
+
+`alpha=0  <=>  r_7=0  <=>  c_A=0`.
+
+Thus the Hall/projective phantom-edge argument is still valid, but the manuscript must never identify `R_7` itself with the anti-mitre `C_A`.
+
+## Completion simplex and six-line projection
+
+For an STS(v), let
 
 - `p` = Pasch count,
 - `m` = mitre count,
-- `a=c_A` = residual five-line configuration count `C_A`,
-- `P(v)=v(v-1)(v-3)/24`,
+- `r_7` = count of residual configuration #7,
+- `P(v)=v(v-1)(v-3)/24`.
 
-use
+Define
 
-`kappa = p/P(v)`, `eta = m/(2P(v))`, `alpha = a/(6P(v))`,
+`kappa=p/P(v)`, `eta=m/(2P(v))`, `alpha=r_7/(6P(v))=c_A/(12P(v))`.
 
-so that
+Then
 
-`kappa + eta + alpha = 1`.
+`kappa+eta+alpha=1`.
 
-At six lines, with `f` the Fano-line count, set
+At six lines, with `f` the Fano-line count, set `psi=f/P(v)`. The projected coherence polytope yields
 
-`psi = f/P(v)`
+`d:=kappa-psi >= 0`,
 
-(and `phi=f/p` when `p>0`, so `psi=kappa*phi`).
+`d <= min{kappa,alpha,(alpha+eta)/2}`.
 
-The projected six-line coherence polytope has vertices
-
-`A=(0,0,0)`, `H=(0,1,0)`, `B=(1/3,0,0)`, `D=(1/3,1/3,0)`, `P=(1,0,1)`
-
-in `(kappa,eta,psi)` and yields
-
-`d := kappa-psi >= 0`,
-
-`d <= min{kappa, alpha, (alpha+eta)/2}`.
-
-On `alpha=0`, the convex relaxation contains the entire Hall/projective segment
+On `alpha=0`, the convex relaxation contains the Hall/projective segment
 
 `E={(t,1-t,t):0<=t<=1}`,
 
-while realizable `C_A`-free STS lie only at the Hall or projective endpoints. This is the **phantom-edge / ghost-edge** phenomenon. Any convex outer relaxation containing both endpoints necessarily contains the whole segment, so linear projected configuration inequalities alone cannot prove the exact dichotomy.
+while realizable systems lie only at the Hall or projective endpoints because `alpha=0 <=> c_A=0` and the classical characterization applies. This is the **phantom-edge / ghost-edge** phenomenon.
 
 ## Phase graph
 
-For every independent (non-block) triple `tau`, define its closure phase
+For every independent (non-block) triple `tau`, define
 
-- `P` if `<tau> ~= S_7` (Fano/projective closure),
-- `H` if `<tau> ~= S_9` (affine Hall closure),
+- `P` if `<tau> ~= S_7`,
+- `H` if `<tau> ~= S_9`,
 - `D` otherwise.
 
-Let `G_ind(S)` be the graph whose vertices are independent triples, with adjacency when two triples share exactly two points.
+Let `G_ind(S)` have independent triples as vertices, adjacent when they share exactly two points.
 
-Number of vertices:
+`N=|V(G_ind)|=C(v,3)-v(v-1)/6=v(v-1)(v-3)/6`.
 
-`N = C(v,3) - v(v-1)/6 = v(v-1)(v-3)/6`.
-
-Degree:
-
-`d_G = 3(v-4)`.
+`d_G=3(v-4)`.
 
 ### Spectral expansion — rigorous
 
-`G_ind(S)` is the induced principal subgraph of the Johnson graph `J(v,3)` obtained by deleting the STS blocks. The Johnson adjacency eigenvalues are
+`G_ind(S)` is the induced principal subgraph of `J(v,3)` obtained by deleting the STS blocks. The Johnson adjacency eigenvalues are
 
 `3(v-3), 2v-9, v-7, -3`.
 
-By Cauchy interlacing,
+Cauchy interlacing gives
 
-`lambda_2(G_ind) <= 2v-9`.
+`lambda_2(G_ind)<=2v-9`.
 
-Since `G_ind` is `3(v-4)`-regular, its Laplacian gap satisfies
+Because `G_ind` is `3(v-4)`-regular,
 
-`mu_2(G_ind) >= 3(v-4)-(2v-9)=v-3`.
+`mu_2(G_ind)>=3(v-4)-(2v-9)=v-3`.
 
-Hence for every `A subset V(G_ind)`,
+Therefore for every `A subset V(G_ind)`,
 
 `e_G(A,A^c) >= (v-3)|A|(1-|A|/N)`.
 
-In particular, when `|A|<=N/2`,
+For `|A|<=N/2`,
 
 `e_G(A,A^c) >= ((v-3)/2)|A|`.
-
-This sharpens the earlier crude coefficient `(v/2-3)` and proves connectivity for every nontrivial STS.
 
 ## Quantitative phase isoperimetry — rigorous
 
 Write
 
-`V = P sqcup H sqcup D`,
+`V=P sqcup H sqcup D`,
 
-let
+`s=e_G(P,H)`,
 
-`s = e_G(P,H)`,
+`q=min{|P|,|H|}`.
 
-and put
+Then
 
-`q = min{|P|,|H|}`.
+`(v-3)q(1-q/N) <= s+3(v-4)|D|`.       (PI)
 
-Applying the spectral cut bound to the smaller pure phase and using
+In particular,
 
-`e(P,D) <= 3(v-4)|D|`
-
-(or the symmetric H version) gives
-
-`(v-3) q (1-q/N) <= s + 3(v-4)|D|`.       (PI)
-
-The coarse consequence is
-
-`((v-3)/2) min{|P|,|H|} <= s + 3(v-4)|D|`.  (PI-coarse)
+`((v-3)/2) min{|P|,|H|} <= s+3(v-4)|D|`.  (PI-coarse)
 
 With
 
 `rho_P=|P|/N`, `rho_H=|H|/N`, `rho_D=|D|/N`,
 
-`sigma = s/[3(v-4)N]`,
+`sigma=s/[3(v-4)N]`,
 
-we obtain
+we get
 
-`min(rho_P,rho_H) <= [6(v-4)/(v-3)] (sigma+rho_D)`.
+`min(rho_P,rho_H) <= [6(v-4)/(v-3)](sigma+rho_D)`.
 
 Define the phase-coherence energy
 
 `E(S)=s+3(v-4)|D|`.
 
-Then (PI) is a discrete surface-tension inequality: a macroscopic P/H mixture has a macroscopic interface-or-bulk cost.
+## Rooted anti-mitre charging — CLOSED
 
-A sharper inverted form is available. Put
+The constructive proof of the classical local lemma (Král–Máčajová–Pór–Sereni) starts from an independent root triple
 
-`eps = E(S)/[(v-3)N]`.
+`tau={A,B,C}`
 
-If `eps<=1/4`, then
+and puts
 
-`q/N <= (1-sqrt(1-4 eps))/2`.
+`a=B⊕C`, `b=A⊕C`, `c=A⊕B`.
+
+If the root does not close to `S_7` or `S_9`, one of the completion identities used in the proof fails. Auditing both principal branches and the second-level completion shows that the exposed anti-mitre witness can always be chosen to contain **all three root points A,B,C**. The symmetric branches have the same property.
+
+Therefore charge each `D`-root to one such copy of `C_A` containing the root. Every `D`-root receives a witness, whereas a fixed eight-point `C_A` contains at most
+
+`C(8,3)=56`
+
+three-point subsets. Hence
+
+`|D| <= 56 c_A`.                                      (BD)
+
+Since
+
+`c_A = 12P(v) alpha`
+
+and
+
+`N = 4P(v)`,
+
+we have
+
+`c_A/N = 3 alpha`,
+
+so
+
+`rho_D <= 168 alpha`.                                 (BD-density)
+
+This closes the bulk-defect half of the desired stability theorem with an explicit absolute constant. The constant 56 is intentionally crude; it counts all triples inside the eight-point witness, not only admissible roots.
 
 ## Source audit: published proof versus technical report
-
-This distinction is now mandatory.
 
 ### Published Král–Máčajová–Pór–Sereni paper (Canadian J. Math. 62 (2010))
 
 The published proof establishes:
 
 1. `C_A`-free implies every independent triple generates `S_7` or `S_9`;
-2. a theorem of Teirlinck then implies that all independent triples have one type: all `S_7` or all `S_9`;
+2. Teirlinck's theorem then implies all independent triples have one type;
 3. hence a `C_A`-free STS is projective or Hall.
 
-The published paper does **not** contain the earlier claimed standalone “15-point local phase-switch lemma”. That claim is withdrawn.
+### Earlier technical report
 
-### Authors' 2007 technical report
+An earlier official technical report by the same authors gives a longer finite local proof of the purity step, based on an `S_7` subsystem `F`, an external point, and a red/blue (`S_7/S_9`) analysis of the Fano lines. This finite proof is useful for quantitative charging but must not be cited as a standalone published “15-point phase-switch lemma”.
 
-An earlier official technical report by the same authors contains a longer finite local proof of the purity step. Starting from an `S_7` subsystem `F`, an external point `D`, and a mixed red/blue assignment of Fano-line pairs corresponding to `S_7/S_9` behavior, it performs a finite sequence of Steiner completions and derives a contradiction under the assumption that every queried independent triple remains of type `S_7` or `S_9`.
+Safe classical consequence: a local pure-phase mixture around `(F,D_ext)` cannot persist without producing a local defect/anti-mitre witness after finitely many Steiner completions.
 
-Safe consequence for the current program:
+## Remaining proof obligation: phase-interface charging
 
-> a local P/H phase mixture around `(F,D)` forces at least one `D`-phase triple in a bounded Steiner closure of `(F,D)`.
+Only the interface term remains.
 
-The bound is an absolute constant independent of `v`; do not use the earlier unsupported number 15 until the finite proof is fully template-audited.
+Need an explicit bound
 
-This qualitative bounded-witness principle is classical/source-derived. The intended **quantitative charging theorem** below is the new target.
+`s=e_G(P,H) <= C_I v c_A`,
 
-## Current proof obligations
+or, equivalently using (BD), it would suffice to prove
 
-There are now two clean finite-fiber problems.
+`s <= C'_I v |D|`.
 
-### A. Phase-interface charging
+A `P-H` edge determines
 
-Every `P-H` edge determines a Fano subsystem `F` from its P endpoint and an external point `D_ext` from its H endpoint. For fixed `(F,D_ext)`, only constantly many P-H edges are possible (at most the number of point-pairs/triples inside the seven-point Fano subsystem).
+1. the Fano subsystem `F` generated by its P endpoint;
+2. one external point supplied by its H endpoint;
+3. a bounded finite completion template from the old local purity proof.
 
-The 2007 finite proof supplies at least one `D`-phase triple in a bounded term-closure of a mixed `(F,D_ext)`.
+For a fixed `(F,D_ext)`, only constantly many `P-H` edges can occur. The remaining task is the reverse-fiber bound: for a fixed local `D` or `C_A` witness, count the number of `(F,D_ext)` pairs that can charge to it.
 
-Need to prove a fiber bound of the form
+The expected `O(v)` scale is natural because a fixed STS block can lie in only `O(v)` Fano subsystems: after fixing the block, choosing one point outside it determines the generated Fano candidate, and each actual Fano subsystem is counted by its four points outside the block.
 
-`# {(F,D_ext): canonical witness is a fixed tau_D} <= C_switch * v`.
+This argument must still be matched branch-by-branch to the finite purity proof before the interface theorem is declared proved.
 
-This would give
+## Candidate final theorem after interface closure
 
-`s <= C_1 v |D|`.
+Combining
 
-### B. Rooted anti-mitre charging
+- phase isoperimetry (PI),
+- `|D|<=56c_A`,
+- `s<=C_I v c_A`,
 
-The published local proof that `C_A`-free forces each independent triple into `S_7` or `S_9` is constructive: starting from a root independent triple it performs finitely many Steiner completions; if one of the required identities fails, a copy of `C_A` is exposed.
+would yield a quantitative Hall/projective stability inequality
 
-Need to choose a canonical first failure and prove
+`min(rho_P,rho_H) <= C alpha`
 
-`# {root D-triples charged to a fixed C_A copy} <= C_D`
+with an absolute constant `C` (after translating `c_A=3N alpha`).
 
-with an absolute constant `C_D`.
-
-This would give
-
-`|D| <= C_D c_A`.
-
-Combining A+B with (PI) would yield the target anti-mitre stability theorem
-
-`min(rho_P,rho_H) <= C * rho_{C_A}`
-
-(up to the exact normalization chosen for the density of `C_A`).
+Exact `alpha=0` recovers the classical Hall/projective dichotomy.
 
 ## Nearby literature / novelty boundary
 
 Known ingredients:
 
-- projective/Hall characterization and `C_A`-free dichotomy;
+- five-line counting formulas;
+- projective/Hall characterization by forbidden configurations;
 - local `S_7/S_9` generation in the `C_A`-free case;
-- the old finite local proof of phase purity;
+- old finite local purity proof;
 - Johnson graph spectrum / interlacing.
 
-Current candidate new layer:
+Candidate new layer:
 
-- the independent-triple phase graph as the carrier of the Hall/projective dichotomy;
-- the explicit spectral phase-isoperimetric inequality (PI);
-- the phase-coherence energy interpretation;
-- quantitative finite-fiber charging of P/H interfaces and `D` closures into `C_A` copies;
-- consequent anti-mitre stability theorem, if A+B close.
+- independent-triple phase graph;
+- explicit spectral phase-isoperimetric inequality;
+- phase-coherence energy;
+- rooted quantitative bound `|D|<=56c_A`;
+- quantitative interface charging and consequent anti-mitre stability, if the last bound closes.
 
-Priority search has not yet found an equivalent quantitative phase-graph theorem; this remains provisional until the final literature audit.
+Priority search has not yet found an equivalent quantitative phase-graph theorem; this remains provisional until final audit.
 
 ## Publication gate
 
 Do **not** publish yet.
 
-Publication threshold is crossed only after:
+Publication threshold is crossed after:
 
-1. finite-template audit of the 2007 mixed-phase proof;
-2. proof or failure of the `O(v)` phase-interface fiber bound;
-3. proof or failure of the `O(1)` D-to-`C_A` fiber bound;
-4. priority search for STS stability / phase-graph / Johnson-expansion formulations;
-5. theorem/proof and bibliography/DOI audit, RU/EN synchronization.
+1. branch-by-branch finite-template audit of phase-interface charging;
+2. proof (or principled failure) of the `O(v)` interface fiber bound;
+3. final priority search;
+4. correction of the residual/#7 versus anti-mitre `C_A` nomenclature throughout RU/EN v0.6;
+5. theorem numbering, complete proofs, bibliography/DOI audit, RU/EN synchronization.
 
-If A+B close, immediately move from research seed to a publication manuscript and prepare Zenodo-ready RU/EN versions without an intermediate PDF.
+If the interface bound closes, immediately move from research seed to publication manuscript and prepare Zenodo-ready RU/EN versions without an intermediate research-seed PDF.
