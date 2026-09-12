@@ -3,7 +3,7 @@
 **Branch:** `research/hatter-sol-free-ports`  
 **Path:** `papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/`  
 **Status date:** 2026-09-12  
-**Status:** **PUBLICATION THRESHOLD REACHED** — short RU/EN research note should now be assembled.
+**Status:** **PUBLICATION THRESHOLD REACHED; RU PUBLICATION CANDIDATE ASSEMBLED AND PDF-QA PASSED**.
 
 ## Core model
 
@@ -50,13 +50,7 @@ Thus the boundary spectrum of one fixed factorization is a complete parity inter
 
 ## Result 2 — refinement inversion
 
-Multiplicative refinement need not improve topological saturation. There are infinite families with
-
-\[
-\lambda(\text{refined})>\lambda(\text{coarse}).
-\]
-
-In particular, for odd `q>=3` and `m>=2q`, replacing the coarse vector
+Multiplicative refinement need not improve topological saturation. For odd `q>=3` and `m>=2q`, replacing
 
 \[
 (2q,2^m)
@@ -106,23 +100,7 @@ Moreover this bound is sharp for every pair `a,b>=2`:
 }
 \]
 
-Hence refinement inversion is not bounded by any universal constant.
-
-Examples:
-
-\[
-6\to2\cdot3:\quad \Delta\lambda_{\max}=1,
-\]
-
-\[
-8\to2\cdot4:\quad \Delta\lambda_{\max}=2,
-\]
-
-\[
-9\to3\cdot3:\quad \Delta\lambda_{\max}=3.
-\]
-
-The split `4->2*2` is the unique pair `a,b>=2` with zero worst-case inversion.
+Hence refinement inversion is not bounded by any universal constant. The split `4->2*2` is the unique pair `a,b>=2` with zero worst-case inversion.
 
 See `SHARP_REFINEMENT_BOUND.md`.
 
@@ -140,11 +118,11 @@ then
 \boxed{
 \lambda(\mathbf d)-\lambda(\mathbf c)
 \le
-S(\mathbf c)-S(\mathbf d).
+S(\mathbf c)-S(\mathbf d)
 }
 \]
 
-Equivalently,
+and hence
 
 \[
 \boxed{
@@ -154,42 +132,40 @@ Equivalently,
 }
 \]
 
-So `lambda+S` is refinement-nonincreasing in this model.
-
 ## Literature-audit result
 
-The hostile audit located:
-
-1. classical maximum simple `b`-matching / `f`-bounded-subgraph theory;
-2. generalized Tutte-Berge deficiency formulas;
-3. one-vertex capacity sensitivity results;
-4. extensive vertex detachment/splitting theory;
-5. Matula-Goebel factorization/tree encodings.
-
-It did **not** locate an explicit theorem equivalent to the exact sharp response
+The hostile audit located classical maximum simple `b`-matching / `f`-bounded-subgraph theory, generalized Tutte-Berge deficiency formulas, one-vertex capacity sensitivity, vertex detachment/splitting, and Matula-Goebel encodings. It did **not** locate an explicit theorem equivalent to
 
 \[
 \Delta_{a,b}^{\max}=ab-a-b
 \]
 
-for the complete-host simple-network operation that replaces one capacity `ab` by two capacities `a,b` and re-optimizes all edges.
+for the complete-host simple-network operation that replaces one capacity `ab` by two capacities `a,b` and re-optimizes all edges. This is a serious negative search, not an absolute priority guarantee.
 
-This is a serious negative search, not an absolute priority guarantee.
+Bibliographic audit on 2026-09-12 corrected several metadata details in the Drive publication candidate, notably:
 
-## Publication decision
+- Qu **Z.** and West **D. B.**, *Journal of Graph Theory* 112(2) (2026), 145–150, DOI `10.1002/jgt.70019`;
+- Fleiner, *SIAM Journal on Discrete Mathematics* 18(3) (2004), 581–591;
+- Korte–Vygen, 6th ed. (2018), DOI `10.1007/978-3-662-56039-6`;
+- Göbel DOI `10.1016/0095-8956(80)90049-0`.
 
-\[
-\boxed{\textbf{PUBLICATION THRESHOLD REACHED}.}
-\]
+## Publication assembly state
 
-A short standalone HATTER-SOL-07 research note is justified because:
+### Russian version
 
-- the classical layer has now been identified and fenced off;
-- the central theorem is exact, sharp, and proved;
-- sharpness holds for every local split `a,b`;
-- the inversion amplitude is unbounded;
-- there is a natural iterated monotone;
-- the closest prior-art families found do not state the same multiplicative-split theorem.
+- `ARTICLE_RU_v0.9.md` assembled in this branch.
+- Native Google Docs publication candidate assembled in project folder `03_Manuscript`.
+- Seven Alice/Hatter illustrations inserted in the approved order.
+- `03.png` is explicitly captioned as a schematic intuition for refinement inversion, not a proof diagram.
+- `07.png` is explicitly captioned as a schematic sharpness-construction map; exact counts are in the theorem text.
+- corrected `05.png` is used, with `12=[2]x[2]x[3]` visually unambiguous.
+- PDF export visually inspected page-by-page: 14 pages, all seven figures present, no clipping/overlap.
+- unsupported Unicode subscript `ₖ`, which rendered as a box in the first PDF pass, was replaced by `_k` in the Google Docs publication candidate.
+- QA PDF saved in Drive as `HATTER-SOL-07_RU_v0.9_publication_candidate.pdf`.
+
+### Important sync note
+
+The Google Docs/PDF candidate contains the latest bibliography corrections listed above. Before tagging a GitHub v1.0 or publishing to Zenodo, synchronize those final bibliography edits back into the Markdown article and rerun the mandatory RU/EN publication audit.
 
 ## Publication framing
 
@@ -199,10 +175,10 @@ Recommended central formulation:
 
 ## Next actions
 
-1. Assemble `article_ru.md` in the HATTER-SOL / Wonderland “Размышлизмы” style, with a visibly separate rigorous theorem section.
-2. Produce synchronized `article_en.md`.
-3. Include the hostile literature audit and conservative novelty statement.
-4. Audit theorem numbering, proof completeness, bibliography, DOI metadata, author line, and ORCID.
-5. Only after that produce publication PDF(s) and Zenodo package.
+1. Perform one final hostile mathematical audit of Lemma 5.1 and the sharpness proof against edge cases.
+2. Synchronize the corrected bibliography from the Drive candidate into GitHub Markdown.
+3. Produce synchronized English article `ARTICLE_EN_v0.9.md`.
+4. Audit numbering, DOI/date metadata, author line, ORCID, RU/EN consistency and figure captions.
+5. Only then promote RU/EN files to final publication PDFs and prepare the Zenodo package.
 
-Do not merge or publish automatically unless explicitly requested; this branch is the canonical publication-working branch.
+Do not merge or publish automatically unless explicitly requested; this branch remains the canonical publication-working branch.
