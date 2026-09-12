@@ -3,17 +3,19 @@
 **Branch:** `research/hatter-sol-dimensional-factor-morphisms`  
 **Path:** `papers/HATTER-SOL/08-DIMENSIONAL-FACTOR-ARCHITECTURES/`  
 **Status date:** 2026-09-12  
-**Status:** **PUBLICATION THRESHOLD REACHED; hostile proof audit required before manuscript assembly.**
+**Status:** **PUBLICATION THRESHOLD REACHED FOR A REPAIRED PLANAR/3D THEOREM LAYER; outerplanar suppression claim retracted after hostile audit.**
 
-## Proven theorem layer
+## Audited theorem layer
 
 ### 1. Exact 1D law
 
+For a capacity vector `c=(c_1,...,c_k)`, `c_i>=2`, strict 1D forces a path and
+
 \[
-\lambda_{1D}(\mathbf c)=\sum_i c_i-2(k-1),
+\lambda_{1D}(\mathbf c)=\sum_i c_i-2(k-1).
 \]
 
-and for `ab->(a,b)`
+For one multiplicative refinement `ab->(a,b)`,
 
 \[
 \boxed{
@@ -46,14 +48,18 @@ For `c^(k)=(k-1,...,k-1)`:
 
 This calibration family follows from classical extremal edge bounds and is not itself a novelty claim.
 
-### 3. Class-preserving one-step bound
+### 3. General one-step upper bound
 
-For `C in {outer, planar}`:
+The HATTER-SOL-07 one-step bound survives in the planar class, and the current branch also retains the previously established outerplanar class-preserving split bound:
 
 \[
 \lambda_C(\ldots,a,b,\ldots)-\lambda_C(\ldots,ab,\ldots)
-\le ab-a-b.
+\le ab-a-b,
 \]
+
+for the audited planar case and, subject to the separate connectivity/splitting formulation in `RESEARCH_KERNEL.md`, the outerplanar baseline case.
+
+No stronger outerplanar bound is currently claimed.
 
 ### 4. Exact dimensional sign reversal
 
@@ -63,7 +69,7 @@ For odd `q>=3`, `m>=2q`, and
 (2q,2^m)\to(q,2^{m+1}),
 \]
 
-there are outerplanar realizations with
+the HATTER-SOL-07 cactus/bouquet constructions are outerplanar and give
 
 \[
 \Delta_{outer}=\Delta_{planar}=\Delta_{3D}=+1,
@@ -75,15 +81,23 @@ while strict 1D gives
 \Delta_{1D}=-q.
 \]
 
-For `q=3` this yields the exact special case
+For `q=3`:
 
 \[
+\boxed{
 \Delta_{outer}^{max}(2,3)
 =\Delta_{planar}^{max}(2,3)
-=\Delta_{3D}^{max}(2,3)=1.
+=\Delta_{3D}^{max}(2,3)=1,
+}
 \]
 
-### 5. New dimensional suppression theorem for `2q -> (2,q)`
+while
+
+\[
+\boxed{\Delta_{1D}^{max}(2,3)=-3.}
+\]
+
+### 5. Audited planar suppression theorem for `2q -> (2,q)`
 
 Let
 
@@ -91,19 +105,7 @@ Let
 \delta=q-2.
 \]
 
-Using forbidden-clique block reduction at the split vertex, the current theorem layer gives
-
-\[
-\boxed{
-\Delta_{outer}^{max}(2,q)
-\le
-U_O(q)
-:=
-2\left\lceil\frac{2(q-2)}{3}\right\rceil-(q-2).
-}
-\]
-
-and
+Using a four-incidence local reduction in a plane embedding, we obtain
 
 \[
 \boxed{
@@ -111,11 +113,11 @@ and
 \le
 U_{Pl}(q)
 :=
-2\left\lceil\frac{3(q-2)}{4}\right\rceil-(q-2).
+2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2).
 }
 \]
 
-In contrast HATTER-SOL-07 gives the unrestricted / 3D exact value
+HATTER-SOL-07 gives the unrestricted / 3D exact value
 
 \[
 \boxed{
@@ -123,51 +125,56 @@ In contrast HATTER-SOL-07 gives the unrestricted / 3D exact value
 }
 \]
 
-Therefore:
-
-- for every `q>=5`, outerplanar worst-case inversion is strictly smaller than the 3D/unrestricted value;
-- for every `q>=6`, planar worst-case inversion is strictly smaller than the 3D/unrestricted value;
-- asymptotically the upper-bound scales are approximately `q/3`, `q/2`, and `q` for outerplanar, planar, and unrestricted/3D classes.
-
-This is the first infinite-family **dimensional suppression law** in the programme.
-
-### 6. Exact new outerplanar value
-
-For `q=5`, the explicit odd-`q` outerplanar inversion family gives the lower bound `1`, while the suppression theorem gives
-
-\[
-U_O(5)=1.
-\]
-
-Hence
+Hence for every `q>=6`,
 
 \[
 \boxed{
-\Delta_{outer}^{max}(2,5)=1.
+\Delta_{planar}^{max}(2,q)
+<
+\Delta_{3D}^{max}(2,q).
 }
 \]
 
-while
+Asymptotically,
+
+\[
+U_{Pl}(q)=\frac{q-2}{2}+O(1).
+\]
+
+Thus planar architecture suppresses the worst possible refinement-inversion amplitude by an asymptotic factor of at least two relative to unrestricted/3D architecture.
+
+For odd `q>=7`, the explicit outerplanar family remains planar and supplies
 
 \[
 \boxed{
-\Delta_{3D}^{max}(2,5)=3.
+1\le\Delta_{planar}^{max}(2,q)
+\le U_{Pl}(q)<q-2.
 }
 \]
 
-Thus the split
+This is the main publication-level result of HATTER-SOL-08 after audit.
 
-\[
-10\to2\cdot5
-\]
+## Retracted claim found by hostile audit
 
-has exact worst-case inversion amplitude `1` in the outerplanar class versus `3` in unrestricted/3D architecture.
+The first draft attempted to prove an outerplanar suppression bound by taking three consecutive neighbors of a vertex, deleting the three incident spokes, and inserting a missing edge among those neighbors.
 
-See `DIMENSIONAL_SEPARATION.md` for the proof layer.
+This local operation does **not** always preserve outerplanarity.
 
-## Computational support
+A seven-vertex counterexample is recorded explicitly in `DIMENSIONAL_SEPARATION.md`. The added edge can create a subdivision of `K_{2,3}` even though it was absent before the operation.
 
-Exploratory MILP checks were used only as hostile-search support while forming the theorem. They are **not** part of the proof. In particular, circular-order MILP searches found outerplanar realizations consistent with the low-boundary constructions for tested `q=5,...,10` and did not supply any theorem claim by themselves.
+Therefore the following earlier claims are withdrawn:
+
+- the formula `U_O(q)=2 ceil(2(q-2)/3)-(q-2)` as a universal outerplanar bound;
+- strict outerplanar/3D separation derived from that formula;
+- the claimed exact value `Delta_outer^max(2,5)=1`.
+
+These must not appear in a publication manuscript unless independently re-proved by a different argument.
+
+## Computational hostile-search support
+
+A finite regression check over all connected planar graphs in the NetworkX graph atlas up to seven vertices found no counterexample to the four-incidence planar local operation. This is **not** part of the proof; it is only a hostile-search sanity check.
+
+The analogous hostile search is what exposed the outerplanar flaw.
 
 ## Prior-art boundary
 
@@ -176,28 +183,26 @@ Classical / not claimed as new:
 - outerplanar edge bound `2n-3`;
 - planar edge bound `3n-6`;
 - Fary straight-line planarity;
-- 3D straight-line graph drawings;
+- crossing-free straight-line drawings of finite graphs in `R^3`;
 - vertex splitting / detachment / splitting-off;
-- `K_4` exclusion in outerplanar graphs and `K_5` exclusion in planar graphs;
-- outerplanar and planar degree-realization theory.
+- `K_4` and `K_{2,3}` exclusion for outerplanar graphs;
+- `K_5` exclusion for planar graphs;
+- planar and outerplanar degree-realization theory.
 
-Candidate contribution:
+Candidate contribution after audit:
 
-> quantitative free-boundary sensitivity under the arithmetic split `ab -> (a,b)` across nested dimensional graph classes, including exact 1D monotonicity, sign reversal, and strict infinite-family suppression of the unrestricted sharp inversion amplitude.
+> quantitative free-boundary response to the arithmetic split `2q -> (2,q)` across dimensional architecture classes, including exact 1D monotonicity, explicit sign reversal, and an infinite-family strict planar-versus-unrestricted separation theorem.
 
-## Mandatory proof-audit obligations before article assembly
+## Remaining proof obligations before article assembly
 
-1. Audit the local outerplanar block-reduction lemma in a fixed one-page embedding, especially the routing argument for the inserted missing chord after deleting three spokes.
-2. Audit the planar four-neighbor block-reduction lemma inside the local disk around the split vertex.
-3. Verify that repeated block reductions on disjoint consecutive incidence blocks commute without introducing crossings or parallel edges.
-4. Re-audit the connectivity-recovery lemma for the outerplanar and planar capacity-constrained maxima.
-5. Verify all ceiling identities and threshold claims (`q>=5`, `q>=6`).
-6. Expand literature audit specifically for local splitting-off in outerplanar/planar classes and clique-exclusion based edge-preserving reductions.
-
-No final PDF or Zenodo release until these six obligations are closed.
+1. Re-audit the planar connectivity-recovery lemma in publication-level detail.
+2. Rewrite the planar four-block proof without relying on a particular drawing convention beyond a fixed plane embedding and contiguous incidence sector.
+3. Verify the ceiling threshold `q>=6` and all small cases separately.
+4. Run a targeted literature audit for planar splitting-off / detachment operations that might already imply the four-block inequality.
+5. Treat the outerplanar exact extremal function as open; do not import the retracted bound.
 
 ## Publication threshold
 
-**Reached, conditionally on hostile audit.**
+**Reached for the repaired planar/3D theorem layer.**
 
-The branch now contains more than a research seed: it has an infinite-family strict separation theorem and an exact nontrivial outerplanar value `Delta_outer^max(2,5)=1` versus unrestricted value `3`. This is sufficient to begin publication assembly after the proof audit.
+The result is now narrower than the first draft but stronger in reliability: the branch contains an exact 1D law, an explicit sign reversal, and a strict infinite-family planar-versus-3D separation theorem. Manuscript assembly may begin after the remaining planar proof and literature audit items are closed.
