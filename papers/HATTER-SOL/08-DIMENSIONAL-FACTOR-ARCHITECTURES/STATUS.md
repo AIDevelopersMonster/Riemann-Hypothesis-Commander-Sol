@@ -3,7 +3,7 @@
 **Branch:** `research/hatter-sol-dimensional-factor-morphisms`  
 **Path:** `papers/HATTER-SOL/08-DIMENSIONAL-FACTOR-ARCHITECTURES/`  
 **Status date:** 2026-09-12  
-**Status:** **PUBLICATION THRESHOLD REACHED; repaired planar/3D theorem layer audited; RU/EN v0.8 manuscripts assembled.**
+**Status:** **PUBLICATION THRESHOLD REACHED; repaired planar/3D theorem layer audited; RU/EN v0.9 PDF candidates assembled and visually QA-checked.**
 
 ## Audited theorem layer
 
@@ -51,10 +51,8 @@ For `q=3`:
 \[
 \boxed{
 \Delta_{outer}^{max}(2,3)
-=
-\Delta_{planar}^{max}(2,3)
-=
-\Delta_{3D}^{max}(2,3)=1,
+=\Delta_{planar}^{max}(2,3)
+=\Delta_{3D}^{max}(2,3)=1,
 }
 \]
 
@@ -121,7 +119,7 @@ For odd `q>=7`, the explicit outerplanar family is also planar and gives
 
 ## Proof-audit state
 
-The following obligations are closed and recorded in `PLANAR_PROOF_AUDIT.md`:
+The obligations are closed and recorded in `PLANAR_PROOF_AUDIT.md`:
 
 1. planar connectivity-recovery lemma rewritten at publication level;
 2. four-incidence lemma rewritten as a local topological-disk argument;
@@ -141,43 +139,60 @@ Safe outerplanar statements remain:
 
 ## Literature audit state
 
-`LITERATURE_AUDIT.md` now records classical prior art on:
+`LITERATURE_AUDIT.md` records classical prior art on vertex splitting, constrained edge-splitting / splitting-off, planar edge splitting, plane-to-outerplane vertex splitting, and outerplanar degree realization.
 
-- vertex splitting and detachment;
-- constrained edge-splitting / splitting-off (Jordán);
-- planar edge splitting (Nagamochi–Eades);
-- plane-to-outerplane vertex splitting (Gronemann–Nöllenburg–Villedieu);
-- outerplanar degree realization (Bar-Noy et al.).
+No explicit equivalent was located for the HATTER-SOL planar free-boundary sensitivity bound under the arithmetic split `2q->(2,q)`. This remains a serious negative search, not an absolute priority guarantee.
 
-No explicit equivalent was located for the HATTER-SOL planar free-boundary sensitivity bound under the arithmetic split `2q->(2,q)`. This is a serious negative search, not an absolute priority guarantee.
+## Illustration and PDF QA state
+
+Canonical illustration folder:
+
+`https://drive.google.com/drive/folders/1miJ-qqHMykpn_tQPfWCSKdowrQO5ct6g`
+
+Illustrations `01.png`, `02.png`, `03.png`, and `05.png` passed publication use review as explanatory figures.
+
+The originally generated `04.png` did **not** match the exact staircase values of
+
+\[
+U_{Pl}(q)=2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2)
+\]
+
+at several `q` values and is therefore **not approved for publication use**. A corrected programmatic figure `04_exact.png` was generated directly from the theorem formula and used in both v0.9 PDF candidates.
+
+RU and EN publication candidates were rendered and visually inspected page-by-page:
+
+- `HATTER-SOL-08_RU_v0.9_publication_candidate.pdf` — 12 pages;
+- `HATTER-SOL-08_EN_v0.9_publication_candidate.pdf` — 12 pages.
+
+No clipping, broken formulas, image overflow, or missing pages were found in the rendered QA pass.
 
 ## Manuscript state
 
-Assembled in this branch:
+Branch sources:
 
 - `ARTICLE_RU_v0.8.md`
 - `ARTICLE_EN_v0.8.md`
 - `PLANAR_PROOF_AUDIT.md`
 - `DIMENSIONAL_SEPARATION.md`
 - `LITERATURE_AUDIT.md`
+- `ILLUSTRATIONS.md`
 
-The RU and EN manuscripts are synchronized around the same audited theorem set. The retracted outerplanar formula does not appear as a theorem.
+Publication-layout v0.9 additionally incorporates:
+
+- the HATTER-SOL-07 Zenodo citation `10.5281/zenodo.22724185`;
+- verified DOI metadata for Jordán and Nagamochi–Eades;
+- five figures, with Figure 5 rebuilt programmatically from the exact bound.
 
 ## Publication threshold
 
 **Reached.**
 
-HATTER-SOL-08 now contains a publication-ready mathematical core:
-
-- exact 1D monotonicity;
-- explicit dimension-dependent sign reversal;
-- infinite-family strict planar-versus-3D separation;
-- an audited negative result showing why the naive outerplanar analogue fails.
+HATTER-SOL-08 now contains a publication-ready mathematical core and visually QA-checked RU/EN PDF candidates.
 
 ## Next actions before Zenodo
 
-1. final RU/EN notation and bibliography audit;
-2. add or design publication figures for the dimensional ladder and the four-block planar reduction;
-3. produce native document/PDF candidates and perform visual QA;
-4. assign final title/version and Zenodo metadata;
+1. decide final publication title/version (`v1.0` if no further theorem changes);
+2. place the corrected `04_exact.png` and final RU/EN PDFs in the canonical Drive publication folder;
+3. final metadata audit: author line, ORCID, DOI/date, bibliography, RU/EN consistency;
+4. publish RU/EN package to Zenodo;
 5. keep the outerplanar exact extremal problem open for a later paper rather than delaying HATTER-SOL-08.
