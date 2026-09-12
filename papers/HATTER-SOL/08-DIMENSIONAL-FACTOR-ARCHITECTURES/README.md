@@ -3,11 +3,11 @@
 **Working title:** *From a Line to Space: Dimensional Release in Factor-Capacity Networks*  
 **Series:** HATTER-SOL · Arithmetic Tea Party  
 **Branch:** `research/hatter-sol-dimensional-factor-morphisms`  
-**Status:** active research; first theorem layer obtained; publication threshold not yet declared.
+**Status:** publication threshold reached for repaired planar/3D theorem layer; outerplanar strengthening retracted after hostile audit.
 
 ## Question
 
-HATTER-SOL-07 optimized the free boundary over abstract simple graphs. HATTER-SOL-08 asks what happens when the same factor-capacity network is restricted to progressively richer architecture classes:
+HATTER-SOL-07 optimized the free boundary over abstract simple graphs. HATTER-SOL-08 asks what changes when the same factor-capacity network is restricted to progressively richer architecture classes:
 
 \[
 \text{1D path}
@@ -25,7 +25,7 @@ For a capacity vector
 \mathbf c=(c_1,\ldots,c_k),\qquad c_i\ge2,
 \]
 
-and an admissible graph class `C`, define
+and admissible graph class `C`, define
 
 \[
 M_C(\mathbf c)
@@ -47,13 +47,11 @@ The immediate hierarchy is
 \lambda_{1D}\ge\lambda_{\circ}\ge\lambda_{2D}\ge\lambda_{3D}.
 \]
 
-Here `circle` means the outerplanar / one-page class, and `3D` means crossing-free straight-line realizability in three-dimensional space. Since every finite simple graph has such a 3D drawing, `lambda_3D` is exactly the unrestricted `lambda` of HATTER-SOL-07.
+Here `circle` means the outerplanar / one-page class, and `3D` means the unrestricted simple-graph class, which is realizable crossing-free by straight segments in three dimensions.
 
-## First exact results
+## Exact 1D law
 
-### 1D exact law
-
-If `k>=2`, the only connected straight-line non-overlapping architecture on a line is a path. Hence
+For `k>=2`, strict 1D forces a path. Hence
 
 \[
 \boxed{
@@ -61,16 +59,10 @@ If `k>=2`, the only connected straight-line non-overlapping architecture on a li
 }
 \]
 
-Under one multiplicative refinement
+Under
 
 \[
 ab\to(a,b),
-\]
-
-with
-
-\[
-\delta(a,b)=ab-a-b,
 \]
 
 we obtain
@@ -78,14 +70,13 @@ we obtain
 \[
 \boxed{
 \lambda_{1D}(\mathbf c')-\lambda_{1D}(\mathbf c)
-=-(\delta+2)
 =-(ab-a-b+2)<0.
 }
 \]
 
-Thus **refinement inversion is impossible in 1D**.
+Thus refinement inversion is impossible in 1D.
 
-### Complete-capacity staircase
+## Complete-capacity dimensional staircase
 
 For
 
@@ -93,7 +84,7 @@ For
 \mathbf c^{(k)}=(k-1,\ldots,k-1)
 \]
 
-on `k>=4` vertices, degree constraints do not bind before the architecture-class edge bound. Therefore
+on `k>=4` vertices,
 
 \[
 \boxed{\lambda_{1D}=(k-1)(k-2)},
@@ -111,136 +102,141 @@ on `k>=4` vertices, degree constraints do not bind before the architecture-class
 \boxed{\lambda_{3D}=0}.
 \]
 
-This follows from the classical edge maxima `k-1`, `2k-3`, `3k-6`, and `C(k,2)` for paths, outerplanar graphs, planar graphs, and unrestricted simple graphs, respectively.
+These formulas are calibration consequences of classical extremal edge counts, not novelty claims.
 
-The corresponding dimensional release gains are
+## Exact sign reversal
 
-\[
-\lambda_{1D}-\lambda_{\circ}=2(k-2),
-\]
+For odd `q>=3`, `m>=2q`, consider
 
 \[
-\lambda_{\circ}-\lambda_{2D}=2(k-3),
+(2q,2^m)\to(q,2^{m+1}).
 \]
+
+The HATTER-SOL-07 constructions are outerplanar and yield
 
 \[
-\lambda_{2D}-\lambda_{3D}=(k-3)(k-4).
+\Delta_{outer}=\Delta_{planar}=\Delta_{3D}=+1,
 \]
 
-These formulas are a baseline consequence of classical extremal edge counts, not by themselves a novelty claim.
+while strict 1D gives
 
-## Refinement across sparse architecture classes
+\[
+\Delta_{1D}=-q.
+\]
 
-A first new theorem candidate has been proved in `RESEARCH_KERNEL.md`:
+So the same arithmetic refinement changes sign solely because the admissible architecture class changes.
 
-for `C` equal to the outerplanar or planar class, one still has the one-step universal bound
+For `q=3`:
 
 \[
 \boxed{
-\lambda_C(\ldots,a,b,\ldots)
--
-\lambda_C(\ldots,ab,\ldots)
-\le ab-a-b.
+\Delta_{outer}^{max}(2,3)
+=\Delta_{planar}^{max}(2,3)
+=\Delta_{3D}^{max}(2,3)=1,
 }
 \]
 
-The proof uses local consecutive vertex splitting in an embedding plus a connectivity-recovery lemma for maximum-edge feasible planar/outerplanar graphs.
+while strict 1D gives `-3`.
 
-What is **not** yet proved is that this upper bound is sharp for every pair `a,b` in the outerplanar or planar classes.
+## Main audited theorem: planar suppression for `2q -> (2,q)`
 
-## First dimensional phase transition
-
-The HATTER-SOL-07 inversion construction for
+Let
 
 \[
-(2q,2^m)\to(q,2^{m+1}),
-\qquad q\ge3\text{ odd},\;m\ge2q,
+\delta=q-2.
 \]
 
-is already outerplanar: the coarse saturated construction is a cactus of cycles sharing one hub, and the refined boundary-one construction is a bouquet of triangles plus one tail.
-
-Hence
-
-\[
-\lambda_{\circ}(2q,2^m)=0,
-\qquad
-\lambda_{\circ}(q,2^{m+1})=1.
-\]
-
-So the sign of refinement response changes as soon as one leaves strict 1D.
-
-For the smallest split `6 -> 2*3`, the general outerplanar/planar upper bound equals `1`, while the explicit outerplanar construction attains `1`. Therefore
+The unrestricted / 3D theorem of HATTER-SOL-07 gives
 
 \[
 \boxed{
-\Delta^{\max}_{\circ}(2,3)
-=
-\Delta^{\max}_{2D}(2,3)
-=
-\Delta^{\max}_{3D}(2,3)
-=1,
+\Delta_{3D}^{max}(2,q)=q-2.
 }
 \]
 
-whereas in 1D the same split always gives
+In the planar class, a four-incidence local reduction gives
 
 \[
 \boxed{
-\lambda_{1D}(\mathbf c')-\lambda_{1D}(\mathbf c)=-3.
-}
-\]
-
-This is the first exact dimensional sign-reversal theorem in the programme.
-
-## Prior-art boundary
-
-The following are classical / known and must not be claimed as new:
-
-- outerplanar graphs have at most `2n-3` edges;
-- planar graphs have at most `3n-6` edges for `n>=3`;
-- every finite graph has a crossing-free straight-line drawing in 3D (for example via the moment curve);
-- vertex splitting is a classical graph operation;
-- planar and outerplanar degree-realization problems have substantial prior literature, and full degree-sequence characterizations remain open in important cases.
-
-The candidate contribution is narrower: **free-boundary sensitivity under the arithmetic split `ab -> (a,b)` compared across nested realization classes**.
-
-## Next attack
-
-Define
-
-\[
-\Delta_C(a,b)
+\Delta_{planar}^{max}(2,q)
+\le
+U_{Pl}(q)
 :=
-\sup_{\text{ambient capacity vectors}}
-\left[
-\lambda_C(\ldots,a,b,\ldots)
--
-\lambda_C(\ldots,ab,\ldots)
-\right].
+2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2).
+}
 \]
 
-Known now:
+For every `q>=6`,
 
 \[
-\Delta_{1D}(a,b)=-(ab-a-b+2),
+\boxed{
+\Delta_{planar}^{max}(2,q)
+<
+\Delta_{3D}^{max}(2,q)=q-2.
+}
 \]
+
+Asymptotically,
 
 \[
-\Delta_{3D}(a,b)=ab-a-b,
+U_{Pl}(q)=\frac{q-2}{2}+O(1).
 \]
 
-and
+Thus planar geometry suppresses the worst possible refinement inversion by an asymptotic factor of at least two relative to unrestricted/3D architecture.
+
+For odd `q>=7`, the explicit inversion family gives the positive lower bound
 
 \[
-\Delta_{\circ}(a,b),\Delta_{2D}(a,b)\le ab-a-b.
+\boxed{
+1\le\Delta_{planar}^{max}(2,q)
+\le U_{Pl}(q)<q-2.
+}
 \]
 
-Also
+This strict infinite-family planar-versus-3D separation is the central publication candidate of HATTER-SOL-08.
+
+## Hostile-audit correction: outerplanar strengthening withdrawn
+
+An earlier draft attempted to derive an outerplanar suppression bound from `K_4`-freeness by deleting three spokes at a vertex and inserting a missing edge among the three neighboring endpoints.
+
+That local operation is **not** always outerplanar-preserving.
+
+A seven-vertex counterexample is recorded in `DIMENSIONAL_SEPARATION.md`; the attempted inserted edge produces a `K_{2,3}` subdivision. Therefore the earlier proposed outerplanar bound and the claimed exact value for `10 -> 2*5` have been withdrawn.
+
+Current safe outerplanar bounds for odd `q` are only
 
 \[
-\Delta_{\circ}(2,3)=\Delta_{2D}(2,3)=1.
+\boxed{
+1\le\Delta_{outer}^{max}(2,q)\le q-2,
+}
 \]
 
-The immediate open problem is to determine `Delta_circle(a,b)` and `Delta_2D(a,b)` exactly, or find the first pair for which either is strictly below `ab-a-b`.
+with equality known at `q=3` and the general exact function still open.
 
-See `RESEARCH_KERNEL.md` and `STATUS.md`.
+This correction is intentional: HATTER-SOL publication policy prefers a narrower theorem that survives hostile audit over a stronger but unproved claim.
+
+## Claim discipline
+
+Classical / not claimed as new:
+
+- outerplanar edge bound `2n-3`;
+- planar edge bound `3n-6`;
+- Fary straight-line planarity;
+- crossing-free straight-line realizability in `R^3`;
+- vertex splitting / detachment / splitting-off;
+- forbidden-minor facts for planar and outerplanar graphs;
+- planar and outerplanar degree-realization theory.
+
+Candidate contribution after audit:
+
+> quantitative free-boundary sensitivity under the arithmetic split `2q -> (2,q)` across nested dimensional graph classes, including exact 1D monotonicity, architecture-dependent sign reversal, and an infinite-family strict planar-versus-unrestricted separation theorem.
+
+## Next actions
+
+1. Finish publication-level audit of the planar connectivity-recovery lemma.
+2. Harden the four-incidence plane-local proof and small-`q` edge cases.
+3. Run a targeted literature audit for an equivalent planar splitting-off sensitivity theorem.
+4. Assemble the RU/EN manuscript around the audited planar/3D theorem layer.
+5. Keep the outerplanar extremal function as an explicit open problem.
+
+See `RESEARCH_KERNEL.md`, `DIMENSIONAL_SEPARATION.md`, and `STATUS.md`.
