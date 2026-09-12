@@ -149,15 +149,21 @@ Canonical illustration folder:
 
 `https://drive.google.com/drive/folders/1miJ-qqHMykpn_tQPfWCSKdowrQO5ct6g`
 
-Illustrations `01.png`, `02.png`, `03.png`, and `05.png` passed publication use review as explanatory figures.
+The canonical publication figure set is now exactly:
 
-The originally generated `04.png` did **not** match the exact staircase values of
+- `01.png` — dimensional ladder;
+- `02.png` — sign reversal `6 -> 2 x 3`;
+- `03.png` — planar four-block reduction;
+- `04.png` — corrected exact planar/3D separation graph;
+- `05.png` — complete-capacity dimensional staircase.
+
+The earlier incorrect version of `04.png` was replaced in the Drive folder on 2026-09-12. The current `04.png` is the corrected graph generated from the theorem formula
 
 \[
-U_{Pl}(q)=2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2)
+U_{Pl}(q)=2\left\lceil\frac{3(q-2)}4\right\rceil-(q-2).
 \]
 
-at several `q` values and is therefore **not approved for publication use**. A corrected programmatic figure `04_exact.png` was generated directly from the theorem formula and used in both v0.9 PDF candidates.
+There is no longer a separate canonical `04_exact.png`; the corrected file has replaced `04.png` in place.
 
 RU and EN publication candidates were rendered and visually inspected page-by-page:
 
@@ -181,7 +187,7 @@ Publication-layout v0.9 additionally incorporates:
 
 - the HATTER-SOL-07 Zenodo citation `10.5281/zenodo.22724185`;
 - verified DOI metadata for Jordán and Nagamochi–Eades;
-- five figures, with Figure 5 rebuilt programmatically from the exact bound.
+- five figures, with corrected canonical Figure 4 generated from the exact planar bound.
 
 ## Publication threshold
 
@@ -191,8 +197,8 @@ HATTER-SOL-08 now contains a publication-ready mathematical core and visually QA
 
 ## Next actions before Zenodo
 
-1. decide final publication title/version (`v1.0` if no further theorem changes);
-2. place the corrected `04_exact.png` and final RU/EN PDFs in the canonical Drive publication folder;
-3. final metadata audit: author line, ORCID, DOI/date, bibliography, RU/EN consistency;
-4. publish RU/EN package to Zenodo;
+1. final metadata audit: author line, ORCID, DOI/date, bibliography, RU/EN consistency;
+2. freeze the corrected five-figure set and final RU/EN PDFs as `v1.0` if no theorem text changes;
+3. publish RU/EN package to Zenodo;
+4. record the new DOI in README/status and cross-link from HATTER-SOL-07;
 5. keep the outerplanar exact extremal problem open for a later paper rather than delaying HATTER-SOL-08.
