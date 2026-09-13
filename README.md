@@ -104,35 +104,34 @@ The research, proof, bibliography, reproducibility, and PDF visual-QA gates are 
 **A Tea Party in the Additive-Multiplicative World with Hatter Sol: The Number Line, the Observer, and Two Operations**  
 Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**
 
-Core hinge:
-
-`Aut(N_{>0}, x) ~= Sym(P)`
-
-versus
-
-`Aut(N,+,x,0,1) = 1`.
+Core hinge: `Aut(N_{>0}, x) ~= Sym(P)` versus `Aut(N,+,x,0,1) = 1`.
 
 ### HATTER-SOL-02 · Two Teapots, One Cup: “Who Are You?” Among the Primes
 
 Russian parallel: **Два чайника, одна чашка: «Кто ты?» среди простых**  
 Zenodo DOI: **[10.5281/zenodo.22656414](https://doi.org/10.5281/zenodo.22656414)**
 
-Core results:
+Core results include exact finite congruence/quadratic-probe orbit counts, the finite-information barrier, sparse rigidifying families, and `kappa_2(S)=ceil(log_2|S|)`.
 
-- exact finite congruence-orbit count:
-  `|F| + prod_{p in F} tau(p-1)`;
-- exact finite quadratic-probe orbit count:
-  `|F| + 2^|F|`;
-- finite-information barrier;
-- exact rigidity criterion via injective Legendre signatures;
-- arbitrarily sparse rigidifying families;
-- optimal finite coding law:
-  `kappa_2(S) = ceil(log_2 |S|)`.
+### HATTER-SOL-07 · Free-Port Factorization
+
+**Alice in the Land of Free Threads: Factors as Nodes and the Exact Cost of Multiplicative Splitting**  
+Zenodo DOI: **[10.5281/zenodo.22724185](https://doi.org/10.5281/zenodo.22724185)**  
+GitHub companion: [`papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/`](papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/)
+
+Core law: `B(G;c)=sum c_i-2|E|`, with exact splitting cost and topology correction through the cycle rank.
+
+### HATTER-SOL-10 · Ideal Factor Networks
+
+**Ideal Factor Networks Beyond Unique Element Factorization**  
+Russian parallel: **Идеальные факторные сети за пределами однозначной факторизации элементов**  
+Zenodo DOI: **[10.5281/zenodo.22734865](https://doi.org/10.5281/zenodo.22734865)**  
+GitHub companion: [`papers/HATTER-SOL/10-IDEAL-FACTOR-NETWORKS/`](papers/HATTER-SOL/10-IDEAL-FACTOR-NETWORKS/)
+
+Core progression: `prime-ideal factorization -> minimal principalization witnesses -> witness-state sets -> residue fibers -> typed network optimization -> phase switching / residue-forced coexistence`.
 
 GitHub companion and permanent series folder: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
 Follow future notes here: **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
-
-Current HATTER-SOL-03 frontier: can a finite natural mechanism generate, internally, a separating family rich enough to recover rigidity without an externally named infinite family of probes?
 
 ## Programme map
 
@@ -181,6 +180,8 @@ scripts/        utility and reproducibility scripts
 - FCOA-Z · PRESCRIBED-STABILIZER SUPPORT — research/PDF/source thresholds passed; exact verifier `ALL PASS` through `b<=7`; ready for Zenodo deposit; DOI pending
 - HATTER-SOL-01 — published, DOI 10.5281/zenodo.22639237
 - HATTER-SOL-02 — published, DOI 10.5281/zenodo.22656414
+- HATTER-SOL-07 — published, DOI 10.5281/zenodo.22724185
+- HATTER-SOL-10 — published, DOI 10.5281/zenodo.22734865
 
 ## AI collaboration disclosure
 

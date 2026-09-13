@@ -15,7 +15,7 @@ English series title:
 - AI research collaborator / dialog persona: **Commander Sol · Hatter Sol**
 - Repository branch: `main`
 - Series folder: [`papers/HATTER-SOL/`](https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL)
-- Zenodo status: **Notes 01, 02, 03 and 05 published; Note 04 remains a publication candidate**
+- Zenodo status: **Notes 01, 02, 03, 05, 07 and 10 published; Note 04 remains a publication candidate**
 
 ## Note 01
 
@@ -95,6 +95,42 @@ English title:
 - Publication gate: [`05-MISSING-GUEST/PUBLICATION_STATUS.md`](05-MISSING-GUEST/PUBLICATION_STATUS.md)
 
 The note isolates the exact-support arithmetic controlling survival of the transposition \(3\leftrightarrow5\), proves the cardinality wall and finite-fiber compactness, and shows that the forward cone of every odd prime already has relative prime density one within directed distance at most two.
+
+## Note 07 · Free-Port Factorization
+
+**«Алиса в Стране Свободных Нитей: множители как узлы и точная цена мультипликативного расщепления»**
+
+English title:
+
+**“Alice in the Land of Free Threads: Factors as Nodes and the Exact Cost of Multiplicative Splitting.”**
+
+- Zenodo DOI: **[10.5281/zenodo.22724185](https://doi.org/10.5281/zenodo.22724185)**
+- Research folder: [`07-FREE-PORT-FACTORIZATION/`](07-FREE-PORT-FACTORIZATION/)
+
+Core law:
+
+\[
+B(G;c)=\sum_i c_i-2|E(G)|,
+\]
+
+with the exact splitting penalty and the topology correction through the cycle rank.
+
+## Note 10 · Ideal Factor Networks
+
+**«Идеальные факторные сети за пределами однозначной факторизации элементов»**
+
+English title:
+
+**“Ideal Factor Networks Beyond Unique Element Factorization.”**
+
+- Zenodo DOI: **[10.5281/zenodo.22734865](https://doi.org/10.5281/zenodo.22734865)**
+- Research folder: [`10-IDEAL-FACTOR-NETWORKS/`](10-IDEAL-FACTOR-NETWORKS/)
+
+Core progression:
+
+`prime-ideal factorization -> minimal principalization witnesses -> witness-state sets -> principalization-residue fibers -> typed network optimization`.
+
+Key results include nonprincipal multistate nodes, witness-state switching, an exact complete-host phase-transition law, a purity theorem, and residue-enforced mixed witness phases.
 
 ## Note 04 · publication candidate
 
