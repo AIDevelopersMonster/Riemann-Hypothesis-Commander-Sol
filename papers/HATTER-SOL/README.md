@@ -15,7 +15,7 @@ English series title:
 - AI research collaborator / dialog persona: **Commander Sol · Hatter Sol**
 - Repository branch: `main`
 - Series folder: [`papers/HATTER-SOL/`](https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL)
-- Zenodo status: **Notes 01, 02, 03, 05, 07 and HATTER-SOL-10 published; Note 04 remains a publication candidate**
+- Zenodo status: **Notes 01, 02, 03, 05, 07 and 10 published; Note 04 remains a publication candidate**
 
 ## Note 01
 
@@ -100,38 +100,37 @@ The note isolates the exact-support arithmetic controlling survival of the trans
 
 **«Алиса в Стране Свободных Нитей: множители как узлы и точная цена мультипликативного расщепления»**
 
+English title:
+
+**“Alice in the Land of Free Threads: Factors as Nodes and the Exact Cost of Multiplicative Splitting.”**
+
 - Zenodo DOI: **[10.5281/zenodo.22724185](https://doi.org/10.5281/zenodo.22724185)**
 - Research folder: [`07-FREE-PORT-FACTORIZATION/`](07-FREE-PORT-FACTORIZATION/)
 
-Core network quantity:
+Core law:
 
 \[
 B(G;c)=\sum_i c_i-2|E(G)|,
 \]
 
-with the exact chain split cost
+with the exact splitting penalty and the topology correction through the cycle rank.
 
-\[
-F(\ldots,ab,\ldots)-F(\ldots,a,b,\ldots)=(a-1)(b-1)+1>0.
-\]
-
-## HATTER-SOL-10 · Ideal Factor Networks Beyond Unique Element Factorization
-
-Russian title:
+## Note 10 · Ideal Factor Networks
 
 **«Идеальные факторные сети за пределами однозначной факторизации элементов»**
 
-- Status: **published**
+English title:
+
+**“Ideal Factor Networks Beyond Unique Element Factorization.”**
+
 - Zenodo DOI: **[10.5281/zenodo.22734865](https://doi.org/10.5281/zenodo.22734865)**
-- Research and theorem-audit folder: [`10-IDEAL-FACTOR-NETWORKS/`](10-IDEAL-FACTOR-NETWORKS/)
+- Research folder: [`10-IDEAL-FACTOR-NETWORKS/`](10-IDEAL-FACTOR-NETWORKS/)
 
 Core progression:
 
 `prime-ideal factorization -> minimal principalization witnesses -> witness-state sets -> principalization-residue fibers -> typed network optimization`.
 
-Key results include nonprincipal multistate nodes, failure of nodewise Pareto pruning, witness switching and an exact host-size phase-transition law, a purity theorem on even complete hosts, residue/composition injectivity, residue-enforced mixed witness phases, and residue-refined block convolution.
-
-The publication itself is referenced through the DOI above; article/preprint binaries are not embedded in this README.
+Key results include nonprincipal multistate nodes, witness-state switching, an exact complete-host phase-transition law, a purity theorem, and residue-enforced mixed witness phases.
 
 ## Note 04 · publication candidate
 
