@@ -38,6 +38,25 @@ The paper introduces the independent-triple phase graph, proves the spectral gap
 
 The theorem is intentionally phase-profile stability, not an edit-distance theorem for the whole Steiner triple system.
 
+### Alice Throws Away the Ruler III · Partial Projective Geometry and Rank-2 Boolean Fiberization
+
+**From Local Fano Phase to Partial Projective Geometry: Sharp Obstructions and Rank-2 Boolean Fiberization**  
+Russian parallel: **От локальной фазы Фано к частичной проективной геометрии: точные препятствия и булева фибрация ранга 2**  
+Zenodo DOI: **[10.5281/zenodo.22737943](https://doi.org/10.5281/zenodo.22737943)**  
+GitHub companion: [`alice-ruler-edit-rigidity/`](alice-ruler-edit-rigidity/)
+
+Core results:
+
+- exact three-associator certificate for the local projective/Fano phase;
+- ultra-low same-carrier projective edit rigidity;
+- explicit wrong-order obstruction showing the sharp exact-order scale is `Theta(1/v)` up to constants;
+- exact localization of associator defect by Pasch deficits and the `C14` configuration;
+- cross-order partial-core projective cost with a universal linear converse;
+- exact rank-2 Fano fiberization on a `1-O(1-rho_P)` fraction of the carrier;
+- publication-audited interaction bound `|Z| < 40(1-rho_P)v^2` and exact affine law on clean fiber pairs.
+
+The full linear upper bound `D_pc(S,P) <= C(1-rho_P)` remains an explicit open quotient-completion problem and is not claimed as proved.
+
 ### FCOA · Admissibility Geometry
 
 **Reflections on Admissibility Geometry with Commander Sol: How a Partial Operation Remembers an Oriented Carrier**  
@@ -175,6 +194,7 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-03 · REALZERO — planned
 - RH-SOL-04 · FIREWALL — planned
 - ALICE-RULER-II · PHASE RIGIDITY — published, DOI 10.5281/zenodo.22722951; quantitative Hall/projective phase-profile stability
+- ALICE-RULER-III · PARTIAL PROJECTIVE GEOMETRY — published, DOI 10.5281/zenodo.22737943; sharp exact-order obstruction and rank-2 Boolean fiberization
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
 - FCOA-Z · RAY TO AXIS / LOCAL LAW DIFFERENTIATION — final Zenodo stage, DOI 10.5281/zenodo.22171473 assigned and embedded; publication package audited
