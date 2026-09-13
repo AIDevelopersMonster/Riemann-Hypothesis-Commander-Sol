@@ -6,7 +6,7 @@
 **Author:** Malachevsky, A.A. / Малачевский А.А.  
 **ORCID:** 0009-0008-6009-3196  
 **Publication status:** Published on Zenodo  
-**Zenodo DOI:** [10.5281/zenodo.22722951](https://doi.org/10.5281/zenodo.22722951)
+**Zenodo DOI:** [10.5281/zenodo.22737879](https://doi.org/10.5281/zenodo.22737879)
 
 Russian title:
 
@@ -110,7 +110,7 @@ The zero-defect and phantom-edge conclusions therefore survive the correction.
 
 Canonical publication record:
 
-**Zenodo:** [https://doi.org/10.5281/zenodo.22722951](https://doi.org/10.5281/zenodo.22722951)
+**Zenodo:** [https://doi.org/10.5281/zenodo.22737879](https://doi.org/10.5281/zenodo.22737879)
 
 ---
 
@@ -118,7 +118,7 @@ Canonical publication record:
 
 Suggested short citation:
 
-> Malachevsky, A.A. (2026). *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects*. Alice Throws Away the Ruler II. Zenodo. https://doi.org/10.5281/zenodo.22722951
+> Malachevsky, A.A. (2026). *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects*. Alice Throws Away the Ruler II. Zenodo. https://doi.org/10.5281/zenodo.22737879
 
 ---
 
