@@ -43,6 +43,72 @@ Search first for counterexamples showing that:
 
 If any of these occur, the naive filtration is not canonical and must be replaced by a weaker invariant.
 
+## Closed correction to the naive strongest-first idea
+
+`ORBIT_FUSION_CLASSIFICATION.md` now closes the first hostile layer:
+
+- generic imaginary-quadratic worlds have two natural direction orbits;
+- the Gaussian and Eisenstein worlds are exactly the two orbit-fusion exceptions;
+- a canonical norm-shell filtration exists in generic worlds;
+- **universal sequential activation does not**.
+
+In particular, T11.6 gives elements whose geodesic usage lies entirely in the outer shell while the inner shell has zero usage. Therefore no universal arithmetic law of the form
+
+\[
+\text{inner / stronger orbit must saturate before outer / weaker orbit activates}
+\]
+
+is permitted.
+
+This no-go result does **not** prohibit using a strongest- or maximal-first convention as an explicitly chosen experimental search rule.
+
+## Maximal-first geometry probe — methodological, not canonical
+
+An earlier HATTER-SOL working convention was to inspect, as one controlled trajectory, constructions that use or saturate the largest available factor-capacities before smaller ones. Its purpose was to avoid duplicating every search branch while asking what changes when the ambient geometry changes.
+
+That convention is restored here with strict semantics:
+
+\[
+\boxed{
+\text{maximal-first is an optional probe, not a model axiom.}
+}
+\]
+
+It must not be inferred from `P>=Q`, from norm-shell order, or from the existence of an orbital filtration.
+
+The full formal statement is in `MAXIMAL_FIRST_GEOMETRY_PROBE.md`.
+
+For arithmetic data `A`, geometry `G`, and an explicit priority rule `pi`, the restricted family
+
+\[
+\mathfrak F_{\mathrm{MF}}(A;G,\pi)
+\subseteq
+\mathfrak F(A;G)
+\]
+
+is compared with the full feasible family. For any nonnegative scalarization `w`, define
+
+\[
+D_w(A;G,\pi)
+=
+\Phi_w^{\mathrm{MF}}(A;G,\pi)
+-
+\Phi_w^{\mathrm{full}}(A;G)
+\ge0.
+\]
+
+For a geometry change `G_0 -> G_1`, the exact bookkeeping identity is
+
+\[
+\boxed{
+\Delta_w^{\mathrm{MF}}-\Delta_w^{\mathrm{full}}
+=
+D_w(A;G_1,\pi)-D_w(A;G_0,\pi).
+}
+\]
+
+Thus a maximal-first probe reproduces the exact geometry signal precisely when its selection penalty is unchanged across the compared geometries. This is a control protocol, not a novelty claim.
+
 ## Candidate canonical data
 
 For a witness `alpha`, possible intrinsic objects to test include:
@@ -106,21 +172,61 @@ The HATTER-SOL-10 observation
 
 is only a heuristic decomposition and is **not** to be treated as a theorem.
 
+## Side line retained but no longer the main road
+
+The binary-tail / residue-sector work later produced genuine information-loss results at the network projection stage, including the post-pair-flip collision mechanism and the exact count-support theorem.
+
+Those results are retained as evidence that ordinary network response can forget arithmetic information, but further scalar-network classification is **paused** here. It is auxiliary to the central orbital question rather than a replacement for it.
+
+The main direction is again
+
+\[
+\boxed{
+\text{intrinsic directions}
+\to
+\text{symmetry orbits / norm shells}
+\to
+\text{full response}
+\to
+(P,Q)\text{ forgetting}
+}
+\]
+
+with the maximal-first trajectory available only as an optional geometry probe.
+
 ## Publication discipline
 
 Do not claim:
 
 - a canonical port hierarchy without proving basis/symmetry invariance;
 - strongest-first activation from the inequality `P>=Q` alone;
+- maximal-first search order as a universal arithmetic law;
+- equality of maximal-first and full responses without proof;
 - new group-action facts that are standard orbit/stabilizer theory;
 - a physical interpretation where only a combinatorial filtration has been proved.
 
 A publishable HATTER-SOL-11 result requires at least one of:
 
 1. a canonical nontrivial orbit filtration with an exact forgetting theorem;
-2. a no-go theorem proving that no such filtration can be recovered from the natural symmetry data under stated axioms;
-3. a classification theorem identifying precisely when an ordered port-orbit hierarchy exists.
+2. a no-go theorem proving that no stronger ordered filtration can be recovered from the natural symmetry data under stated axioms;
+3. a classification theorem identifying precisely when an ordered port-orbit hierarchy exists;
+4. a theorem showing that an explicitly stated restricted probe is sufficient for a specified family of geometry changes.
 
 ## Immediate next step
 
-Compute the natural symmetry/stabilizer actions for the `Q(sqrt(-15))` laboratory and attack the naive ordered-orbit hypothesis by counterexample first.
+Do **not** continue the scalar-network collision line first.
+
+Return to the existing orbital classification and attack the forgetting map itself:
+
+1. define the direction-labelled geodesic object before magnitude sorting;
+2. identify exactly which information is lost in the map to `(P,Q)`;
+3. classify when two non-isomorphic labelled/orbital states have the same folded pair;
+4. only then compare full geometry response with the optional maximal-first probe on those collision classes.
+
+The next theorem target is therefore a **classification of the fibers of the forgetting map**
+
+\[
+\mathcal O(\alpha)\longrightarrow(P,Q),
+\]
+
+not another residue-response collision theorem.
