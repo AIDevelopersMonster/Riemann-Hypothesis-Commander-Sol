@@ -200,15 +200,15 @@ Put
 \[
 l=(4-O)_+,
 \qquad
-u=\min(A,4).
+u_*=\min(A,4).
 \]
 
-Since `A+O>=4`, we have `l<=u`.
+Since `A+O>=4`, we have `l<=u_*`.
 
 By Lemma T11.38.1 every axial edge count
 
 \[
-3l\le e_A\le3u
+3l\le e_A\le3u_*
 \]
 
 is realized on the full twelve-edge support. Translating by
@@ -428,13 +428,29 @@ N u_i,
 \quad
 S v_i,
 \quad
-u_i u_{i+1},
+u_i^{(u)}:=u_i u_{i+1},
 \quad
 v_i v_{i+1},
 \quad
-u_i v_i,
+u_i^{(0)}:=u_i v_i,
 \quad
-u_i v_{i-1}.
+nu_i^{(-1)}:=u_i v_{i-1}.
+\]
+
+Equivalently, in plain edge notation the six edge families are
+
+\[
+N-u_i,
+\quad
+S-v_i,
+\quad
+u_i-u_{i+1},
+\quad
+v_i-v_{i+1},
+\quad
+u_i-v_i,
+\quad
+u_i-v_{i-1}.
 \]
 
 The following six edges form a perfect matching:
@@ -442,7 +458,7 @@ The following six edges form a perfect matching:
 \[
 \boxed{
 M=
-\{Nu_0,Sv_0,u_1v_1,u_2v_2,u_3v_3,u_4v_4\}.
+\{N-u_0,S-v_0,u_1-v_1,u_2-v_2,u_3-v_3,u_4-v_4\}.
 }
 \]
 
