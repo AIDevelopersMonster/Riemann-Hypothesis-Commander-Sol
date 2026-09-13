@@ -1,7 +1,15 @@
-# HATTER-SOL-11 · Complete Outerplanar Rank-Swap Classification
+# HATTER-SOL-11 · Complete Outerplanar Rank-Swap Classification in the Orbit-Total Model
 
 **Branch:** `research/hatter-sol-orbital-port-filtrations`  
-**Status:** closed theorem layer.
+**Status:** closed theorem layer; hostile-audit corrections applied.
+
+**Model scope.** The response polynomial in this note is the two-channel response of the canonical orbit-total projection
+
+\[
+\Xi=(A,O)=(a,b+c)
+\]
+
+from `ORBITAL_NETWORK_FIBER_SEPARATION.md`. The classification is complete for this `Xi` model and is not asserted for every possible richer network semantics retaining the full orbital datum `Omega=(a;{b,c})`.
 
 This note closes the regime left open in `OUTERPLANAR_RANK_SWAP_NO_GO.md`:
 
@@ -21,7 +29,7 @@ Fix an even outerplanar host size
 n=2m\ge4.
 \]
 
-For a two-channel orbital capacity state `(A,O)`, define the axial boundary floor
+For a two-channel orbit-total capacity state `(A,O)`, define the axial boundary floor
 
 \[
 \boxed{
@@ -109,7 +117,13 @@ nA-2(2n-3)
 =n(A-4)+6.
 \]
 
-Take any maximal outerplanar graph on `n` vertices, color every edge axial, and use no oblique edge. It has exactly `2n-3` edges, is connected, and is feasible because every vertex degree is at most `n-1` while only the channel bound matters locally; to make sharpness uniform in `A=4`, use the chain-of-triangles graph `H_n` from `OUTERPLANAR_RANK_SWAP_NO_GO.md`, whose maximum degree is exactly `4`. For `A>=4` the same graph is feasible and has `2n-3` axial edges. Thus equality holds. QED.
+Use the chain-of-triangles graph `H_n` from `OUTERPLANAR_RANK_SWAP_NO_GO.md`. It has exactly `2n-3` edges and
+
+\[
+\Delta(H_n)\le4
+\]
+
+(`Delta(H_4)=3`, while `Delta(H_n)=4` for even `n>=6`). Color every edge axial and use no oblique edge. For every `A>=4` this is feasible and connected, so equality holds. QED.
 
 ---
 
@@ -151,7 +165,7 @@ Let
 P>Q\ge3.
 \]
 
-The two rank-swapped orbital states are
+The two rank-swapped orbit-total states are
 
 \[
 \Xi_I=(P,Q),
@@ -193,7 +207,7 @@ For every generic-odd interior fiber with
 \boxed{P>Q\ge3}
 \]
 
-and every even outerplanar host of size at least four, the two rank-swapped canonical orbital states remain distinguishable by the full outerplanar response.
+and every even outerplanar host of size at least four, the two rank-swapped canonical orbit-total states remain distinguishable by the full outerplanar `Xi` response.
 
 No outerplanar rank-swap collision exists in this regime.
 
@@ -249,7 +263,7 @@ independently of host size.
 
 ---
 
-## 6. Complete rank-swap classification
+## 6. Complete rank-swap classification in the `Xi` model
 
 We can now combine three earlier layers:
 
@@ -281,7 +295,7 @@ These cases exhaust all integers
 P>Q>0.
 \]
 
-### Theorem T11.33 — complete outerplanar rank-swap classification
+### Theorem T11.33 — complete outerplanar rank-swap classification in the orbit-total model
 
 For every generic-odd interior forgetting fiber
 
@@ -307,13 +321,13 @@ Z^{\mathrm{orb}}_{O,n}(Q,P;X,Y)
 }
 \]
 
-Thus the unique rank-swapped mixed-state collision in the entire generic-odd interior family is
+Thus the unique rank-swapped mixed-state collision among the three `Xi` states attached to the generic-odd interior fiber is
 
 \[
 \boxed{(2,1)\leftrightarrow(1,2).}
 \]
 
-There is no infinite hidden collision family at larger capacities.
+There is no infinite hidden collision family at larger capacities in this model.
 
 ---
 
@@ -356,10 +370,10 @@ A\ge4\mapsto n(A-4)+6.
 
 For the low-capacity values `1,2`, the zero floor assumes the complementary channel is large enough to supply connectivity; that is exactly the situation in the rank-swapped fibers covered by T11.30. The `(2,1)` case is handled separately by its exact full response theorem.
 
-The key point is that the spectrum has exactly one nontrivial degeneracy:
+The key point is that the effective spectrum relevant to the rank-swap problem has exactly one nontrivial degeneracy:
 
 \[
-\boxed{\phi(1)=\phi(2)=0.}
+\boxed{1\sim2\text{ at floor }0.}
 \]
 
 That degeneracy is the source of the unique rank-swap collision.
@@ -424,7 +438,7 @@ This is the same qualitative mechanism seen in `(3,1)`, now entirely inside the 
 
 The outerplanar stage is now much more rigid than the first `(2,1)` experiment suggested.
 
-For mixed interior fibers:
+For mixed interior fibers in the `Xi` response model:
 
 \[
 \boxed{
@@ -440,9 +454,9 @@ So the exact staircase
 
 found for `(2,1)` is a minimal exceptional phenomenon, not the generic dimensional law.
 
-For every other interior fiber, at least the two mixed orbital members remain distinct in the outerplanar class.
+For every other interior fiber, at least the two mixed orbit-total members remain distinct in the outerplanar class.
 
-The remaining question is no longer rank-swap collision. It is the **full three-state class count**:
+The remaining question is no longer rank-swap collision. It is the **full three-state class count in the `Xi` model**:
 
 > when, if ever, can one of the mixed states collide with the pure-oblique state `(0,P+Q)` in outerplanar geometry?
 
@@ -455,7 +469,7 @@ That is the next genuine open outerplanar problem.
 Define
 
 \[
-\nu_{O,n}(P,Q)
+\nu^{\Xi}_{O,n}(P,Q)
 =
 \left|
 \left\{
@@ -466,7 +480,7 @@ Z_O(0,P+Q)
 \right|.
 \]
 
-T11.33 fixes the mixed/mixed relation completely.
+T11.33 fixes the mixed/mixed relation completely in the orbit-total model.
 
 The next hostile target is to classify mixed/pure collisions:
 
@@ -479,7 +493,7 @@ Z_O(Q,P)=Z_O(0,P+Q).
 The smallest already-known example is `(2,1)`, where the pure-oblique state remains distinct. The next tests should determine whether
 
 \[
-\boxed{\nu_{O,n}(P,Q)=3}
+\boxed{\nu^{\Xi}_{O,n}(P,Q)=3}
 \]
 
-for every interior fiber except `(2,1)`, which has `nu=2`, or whether a second exceptional family exists.
+for every interior fiber except `(2,1)`, which has `nu^Xi=2`, or whether a second exceptional family exists.
