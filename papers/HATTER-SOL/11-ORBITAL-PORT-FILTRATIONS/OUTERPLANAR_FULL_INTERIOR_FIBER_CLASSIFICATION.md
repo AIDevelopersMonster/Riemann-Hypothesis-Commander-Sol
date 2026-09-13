@@ -1,9 +1,17 @@
-# HATTER-SOL-11 · Complete Outerplanar Classification of Interior Forgetting Fibers
+# HATTER-SOL-11 · Complete Outerplanar Classification of Interior Forgetting Fibers in the Orbit-Total Model
 
 **Branch:** `research/hatter-sol-orbital-port-filtrations`  
-**Status:** closed theorem layer.
+**Status:** closed theorem layer; hostile-audit corrections applied.
 
-This note closes the outerplanar interior-fiber problem for every generic-odd folded pair
+**Model scope.** This note classifies the two-channel response of the canonical orbit-total projection
+
+\[
+\Xi=(A,O)=(a,b+c)
+\]
+
+from `ORBITAL_NETWORK_FIBER_SEPARATION.md`. It does not claim completeness for every richer network semantics retaining the full orbital datum `Omega=(a;{b,c})`.
+
+This note closes the outerplanar interior-fiber problem in the `Xi` model for every generic-odd folded pair
 
 \[
 P>Q>0.
@@ -15,7 +23,7 @@ The answer is no.
 
 ---
 
-## 1. The three canonical orbital states
+## 1. The three canonical orbit-total states
 
 Fix a generic-odd interior forgetting fiber
 
@@ -112,7 +120,13 @@ If `S>=4`, every outerplanar graph has at most `2n-3` edges, hence
 B_O\ge nS-2(2n-3)=n(S-4)+6.
 \]
 
-The chain-of-triangles graph `H_n` from `OUTERPLANAR_RANK_SWAP_NO_GO.md` has exactly `2n-3` edges and maximum degree `4`, so it is feasible for every `S>=4` and attains equality. QED.
+The chain-of-triangles graph `H_n` from `OUTERPLANAR_RANK_SWAP_NO_GO.md` has exactly `2n-3` edges and satisfies
+
+\[
+\Delta(H_n)\le4
+\]
+
+(with `Delta(H_4)=3` and `Delta(H_n)=4` for even `n>=6`), so it is feasible for every `S>=4` and attains equality. QED.
 
 ---
 
@@ -165,7 +179,7 @@ Z_I=X^2+Y^2,
 Z_{III}=Y^2.
 \]
 
-Hence the Type-I state never collides with the pure-oblique state for any interior fiber.
+Hence the Type-I state never collides with the pure-oblique state for any interior fiber in the `Xi` model.
 
 ### Theorem T11.35 — Type-I / pure separation
 
@@ -335,7 +349,7 @@ Z_O(Q,P)\ne Z_O(0,P+Q).
 
 ---
 
-## 6. Complete interior three-state classification
+## 6. Complete interior three-state classification in the `Xi` model
 
 We now combine:
 
@@ -346,7 +360,7 @@ We now combine:
 Define
 
 \[
-\nu_{O,n}(P,Q)
+\nu^{\Xi}_{O,n}(P,Q)
 :=
 \left|
 \left\{
@@ -357,7 +371,7 @@ Z_O(0,P+Q)
 \right|.
 \]
 
-### Theorem T11.37 — complete outerplanar interior-fiber law
+### Theorem T11.37 — complete outerplanar interior-fiber law in the orbit-total model
 
 For every generic-odd interior forgetting fiber
 
@@ -373,147 +387,51 @@ n=2m\ge4,
 
 \[
 \boxed{
-\nu_{O,n}(P,Q)=
+\nu^{\Xi}_{O,n}(P,Q)=
 \begin{cases}
 2,&(P,Q)=(2,1),\\
 3,&\text{otherwise}.
 \end{cases}}
 \]
 
-Equivalently:
+Thus the only information loss among the three canonical `Xi` states is the collision
 
-- the unique nontrivial outerplanar collision is
+\[
+(2,1)\leftrightarrow(1,2).
+\]
+
+---
+
+## 7. Publication interpretation
+
+The outerplanar theorem spine is complete for the canonical orbit-total network response:
 
 \[
 \boxed{
-(2,1)\leftrightarrow(1,2);
+\Omega
+\to
+\Xi=(A,O)
+\to
+Z_O^{\Xi}.
 }
 \]
 
-- the pure-oblique state is never identified with either mixed state;
-- every other interior fiber remains fully resolved by the outerplanar polynomial response.
+The full orbital signature `Omega=(a;{b,c})` contains finer information than `Xi`, and no theorem here asserts that every network model using that finer information has the same collision classes.
 
-This completely solves the outerplanar classification for generic-odd interior fibers.
-
----
-
-## 7. Structural interpretation
-
-The result is sharper than the first dimensional-memory staircase suggested.
-
-Strict 1D preserves all interior orbital states:
-
-\[
-\nu_P=3.
-\]
-
-Outerplanar geometry performs only one exceptional identification:
-
-\[
-\boxed{
-(2,1)\sim(1,2),
-}
-\]
-
-because capacities `1` and `2` are exactly the two positive uniform channel capacities that can still occupy the outerplanar zero-floor phase.
-
-All capacities `>=3` carry a positive, strictly ordered boundary floor. That floor prevents further rank-swap collapse.
-
-The pure-oblique state remains distinguishable because concentrating the entire total capacity `P+Q` in one orbit raises the optimal single-channel boundary above the minimum boundary visible in the mixed state, except in the already separately solved `(2,1)` case where the full polynomial still separates it.
-
-So outerplanar geometry is much less destructive than planar/unrestricted geometry:
-
-\[
-\boxed{
-\text{it forgets exactly one mixed rank swap and nothing else in the interior family.}
-}
-\]
+The publication statement must preserve this distinction.
 
 ---
 
-## 8. Polynomial witness hierarchy
+## 8. Next target
 
-The classification can be read from three increasingly strong polynomial witnesses.
+The outerplanar `Xi` classification is closed.
 
-### Witness 1 — zero `X` exponent
-
-If one mixed state's axial capacity is at least `3`, a positive axial floor prevents any zero-`X` monomial.
-
-### Witness 2 — minimum `X` exponent
-
-For both capacities at least `3`, the strict monotonicity
-
-\[
-\phi_n(P)>\phi_n(Q)
-\]
-
-distinguishes the rank swap.
-
-### Witness 3 — minimum `Y` exponent
-
-When the axial capacity is `1` or `2`, zero-`X` no longer helps. The minimum oblique exponent
-
-\[
-\phi_n(P)
-\]
-
-still lies strictly below the pure-oblique exponent
-
-\[
-\psi_n(P+Q),
-\]
-
-and separates the mixed state from the pure one.
-
-Thus the full classification does not require enumerating every Pareto monomial for every pair. A small set of extremal polynomial exponents suffices.
-
----
-
-## 9. Publication significance
-
-HATTER-SOL-11 now has, for generic odd discriminant worlds:
-
-1. a canonical symmetry-resolved orbital geodesic object;
-2. an exact forgetting map to the published `(P,Q)` pair;
-3. a complete classification of the forgetting-map fibers;
-4. proof that the hidden orbital information is operationally visible to networks;
-5. exact host-scale forgetting on unrestricted even complete hosts;
-6. exact permanent memory in strict 1D;
-7. an exact dimensional staircase for the minimal `(2,1)` fiber;
-8. a complete outerplanar classification for every interior fiber.
-
-This is now beyond an exploratory note. The branch has a coherent theorem spine suitable for assembling a publication candidate, subject to hostile audit and consolidation of duplicated lemmas.
-
----
-
-## 10. Next target
-
-The next mathematical frontier is planar geometry.
-
-The coarse edge-density obstruction already shows that pure total capacity
-
-\[
-S\ge6
-\]
-
-cannot fully close in a planar graph, while smaller capacities can.
-
-The natural next question is the planar analogue of T11.37:
-
-> classify the number of distinct orbital response classes for every generic-odd interior fiber under planar geometry.
-
-The first hostile tests should be organized by total capacity
-
-\[
-S=P+Q,
-\]
-
-with critical values around
+The next mathematical target is planar geometry, beginning with the critical total capacities
 
 \[
 S=5,6,7,
 \]
 
-because `S=6` is exactly where the planar edge-density obstruction changes the saturation regime.
+where the planar edge ceiling and low-degree constraints change regime.
 
-Before extending further, the present outerplanar theorem spine should undergo a hostile proof audit, especially the shared use of the extremal graphs `G_m` and `H_n` and the exact polynomial claims at small host sizes.
+Continue to use the polynomial-valued response. Do not introduce a geometry Laplacian until a canonical geometry-transition operator is independently justified.
