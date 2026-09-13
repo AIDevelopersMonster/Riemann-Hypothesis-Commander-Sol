@@ -112,10 +112,21 @@ Core results:
 - optimal finite coding law:
   `kappa_2(S) = ceil(log_2 |S|)`.
 
+### HATTER-SOL-10 · Ideal Factor Networks Beyond Unique Element Factorization
+
+Russian parallel: **Идеальные факторные сети за пределами однозначной факторизации элементов**  
+Status: **published**  
+Zenodo DOI: **[10.5281/zenodo.22734865](https://doi.org/10.5281/zenodo.22734865)**  
+GitHub companion: [`papers/HATTER-SOL/10-IDEAL-FACTOR-NETWORKS/`](papers/HATTER-SOL/10-IDEAL-FACTOR-NETWORKS/)
+
+Core progression:
+
+`prime-ideal factorization -> minimal principalization witnesses -> witness-state sets -> principalization-residue fibers -> typed network optimization`
+
+Core results include nonprincipal multistate nodes, witness switching and an exact host-size phase-transition law, a purity theorem on even complete hosts, and residue-enforced mixed witness phases.
+
 GitHub companion and permanent series folder: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
 Follow future notes here: **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
-
-Current HATTER-SOL-03 frontier: can a finite natural mechanism generate, internally, a separating family rich enough to recover rigidity without an externally named infinite family of probes?
 
 ## Programme map
 
@@ -163,6 +174,7 @@ scripts/        utility and reproducibility scripts
 - FCOA-Z · PRESCRIBED-STABILIZER SUPPORT — research/PDF/source thresholds passed; exact verifier `ALL PASS` through `b<=7`; ready for Zenodo deposit; DOI pending
 - HATTER-SOL-01 — published, DOI 10.5281/zenodo.22639237
 - HATTER-SOL-02 — published, DOI 10.5281/zenodo.22656414
+- HATTER-SOL-10 — published, DOI 10.5281/zenodo.22734865
 
 ## AI collaboration disclosure
 
