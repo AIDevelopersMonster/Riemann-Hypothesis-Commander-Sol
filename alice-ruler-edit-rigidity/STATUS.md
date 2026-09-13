@@ -6,9 +6,11 @@
 **Parent publication:** *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects*  
 **Zenodo DOI:** https://doi.org/10.5281/zenodo.22722951
 
-## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED; PASCH LOCALIZATION CLOSED; NEAR-CARRIER OBSTRUCTION CLOSED; PARTIAL-CORE METRIC CLOSED; ADD-4 CORE AUDIT CLOSED; LINEAR COST NECESSITY CLOSED; PROJECTIVE PRODUCT BENCHMARK CLOSED
+## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED; PASCH LOCALIZATION CLOSED; NEAR-CARRIER OBSTRUCTION CLOSED; PARTIAL-CORE METRIC CLOSED; ADD-4 CORE AUDIT CLOSED; LINEAR COST NECESSITY CLOSED; PROJECTIVE PRODUCT BENCHMARK CLOSED; RANK-2 FANO FIBERIZATION CLOSED
 
-Primary target is **linear partial projective-core stability**. Exact same-order rigidity, near-supercarrier rigidity, and literal large exact projective subsystem formulations are too strong in general.
+Primary target remains **linear partial projective-core stability**, but the branch now contains a constructive positive coordinate-recovery theorem: the first two Boolean coordinates can be recovered on a `1-O(epsilon)` fraction of the carrier with `O(epsilon v^2)` interaction loss, where `epsilon=1-rho_P`.
+
+---
 
 ## Closed step 1 — `PROJECTIVE_ASSOCIATOR_BRIDGE`
 
@@ -166,7 +168,7 @@ Commit:
 
 A cross-order partial-core cost `D_pc` was defined. It allows deletion of `o(v)` exceptional source points, `o(v)` unused points in a nearby projective model, and `o(v^2)` bad pair completions on the common core. In the same-order/full-core case it recovers `d_blk` exactly.
 
-For the actual Grannell--Lovegrove Add-4 construction, after a corrected audit of its seven one-factors and three removed infinity points,
+For the actual Grannell--Lovegrove Add-4 construction,
 
 ```math
 \boxed{
@@ -206,23 +208,10 @@ For any projective comparison `(P,U,phi)` with
 D=D_pc(S;P,U,phi)<1,
 ```
 
-every associativity failure entirely inside the core forces one of four pair-completion errors. Counting the fibers gives
+every associativity failure entirely inside the core forces one of four pair-completion errors. Counting gives
 
 ```math
 \boxed{s(S)<=3rv^2+8Ev,}
-```
-
-where `r=|X\setminus U|` and `E` is the number of bad retained pairs.
-
-Consequently
-
-```math
-\boxed{
-\delta_ind(S)
-<=
-\frac{4v^2}{(v-1)(v-3)}
-\frac{D}{(1-D)^2},
-}
 ```
 
 and therefore
@@ -236,7 +225,7 @@ and therefore
 }
 ```
 
-Asymptotically, whenever `D_pc->0`,
+Asymptotically,
 
 ```math
 \boxed{D_pc(S,\mathcal P) >= (1-rho_P)/(12+o(1)).}
@@ -246,7 +235,7 @@ Thus any true projective stability theorem has an unavoidable linear defect scal
 
 ### Infinite projective-product benchmark
 
-Let
+For projective factors of orders
 
 ```math
 m=2^a-1,
@@ -254,15 +243,7 @@ m=2^a-1,
 n=2^b-1,
 ```
 
-and form the direct product of the two projective Steiner quasigroups. Its order is
-
-```math
-V=mn,
-```
-
-generally a wrong projective order.
-
-The blockwise Pasch audit yields the exact associator defect
+their direct-product STS has exact associator defect
 
 ```math
 \boxed{
@@ -270,40 +251,7 @@ s=3mn(m-1)(n-1)(m+n-2).
 }
 ```
 
-Hence
-
-```math
-\boxed{
-\delta_ind
-=
-3(m-1)(n-1)(m+n-2)/[(mn-1)(mn-3)].
-}
-```
-
-If both factors grow,
-
-```math
-\delta_ind
-=
-3(1/m+1/n)+o(1/m+1/n)
-->0,
-```
-
-so `rho_P->1`.
-
-There is a canonical comparison with the projective system in
-
-```math
-F_2^{a+b}\setminus\{0\},
-```
-
-of order
-
-```math
-W=mn+m+n.
-```
-
-The product carrier is exactly the set of vectors with both coordinate components nonzero. The omitted projective points are the two coordinate axes, `m+n` points in total. Pair completions disagree exactly when two product points share one coordinate. Therefore
+There is a canonical comparison with the projective system in `F_2^{a+b}\setminus\{0\}`. For this comparison
 
 ```math
 \boxed{
@@ -318,26 +266,145 @@ D_pc
 As both factors grow,
 
 ```math
+D_pc/\delta_ind -> 2/3.
+```
+
+So structural distance and associator defect have the same linear scale in a second infinite wrong-order family.
+
+---
+
+## Closed step 8 — `PROJECTIVE_RANK2_FANO_FIBERIZATION`
+
+Full proof:
+
+`notes/PROJECTIVE_RANK2_FANO_FIBERIZATION.md`
+
+Commit:
+
+`b47765b67c38cfa1568828f94819576af4354d58`
+
+This is the first constructive positive coordinate-recovery theorem beyond the ultra-low exact-rigidity regime.
+
+Put
+
+```math
+\varepsilon=1-\rho_P.
+```
+
+### Exact Fano density identity
+
+Every P-root lies in one unique Fano subsystem and every Fano subsystem contains exactly `28` independent triples. Therefore
+
+```math
 \boxed{
-D_pc
-<=
-2(1/m+1/n)+o(1/m+1/n),
+F(S)=\rho_P N/28.
 }
 ```
 
-and for this natural comparison
+Thus `rho_P` is literally the density of the maximal possible Fano-plane count.
+
+For a block `B`, let `f(B)` be the number of Fano subsystems containing it and define
 
 ```math
-\boxed{D_pc/\delta_ind -> 2/3.}
+\boxed{e(B)=(v-3)-4f(B).}
 ```
 
-So the projective-product family gives a second broad wrong-order sequence, beyond Add-4, in which structural distance and associator defect have the same linear scale.
+Then `e(B)` is exactly the number of external points failing to extend `B` to a Fano subsystem, and
+
+```math
+\boxed{
+\sum_B e(B)=N(1-\rho_P)=N\varepsilon.
+}
+```
+
+### Exact translation commutator identity
+
+For Steiner-loop translations `T_x`,
+
+```math
+\boxed{
+\sum_{x,y} d_H(T_xT_y,T_yT_x)=s.
+}
+```
+
+So almost projective phase gives an average almost-commuting involutive translation family with no constant loss.
+
+### Clean base block
+
+There exists a block
+
+```math
+B=\{a,b,c\}
+```
+
+such that all three of its point translations have row associator load at most
+
+```math
+6\varepsilon(v-1)(v-3)
+```
+
+and
+
+```math
+\boxed{e(B)\le2\varepsilon(v-3).}
+```
+
+### Rank-2 Fano fiberization
+
+Put
+
+```math
+H=\{0,a,b,c\}\cong C_2^2.
+```
+
+After deleting at most
+
+```math
+\boxed{2\varepsilon(v-3)}
+```
+
+nonzero points, the remaining loop decomposes exactly as
+
+```math
+U=H\sqcup C_1\sqcup\cdots\sqcup C_q,
+```
+
+where each `C_i` has four points, `H\cup C_i` is an exact Boolean group of order `8`, and `H` acts regularly on every `C_i`.
+
+Thus the first two Boolean coordinates are recovered exactly on a `1-O(\varepsilon)` fraction of the carrier.
+
+### Exact affine multiplication on almost all fiber pairs
+
+Define contaminated ordered point pairs by either leaving `U` under multiplication or violating one of the three nontrivial `H`-associativity identities. The total number is bounded by
+
+```math
+\boxed{|Z|<20\varepsilon v^2.}
+```
+
+If an ordered pair of fibers `(C,D)` contains no contaminated point pair, then for every `x\in C`, `y\in D`, and `h,k\in H`,
+
+```math
+\boxed{
+(h\circ x)\circ(k\circ y)
+=(h\circ k)\circ(x\circ y).
+}
+```
+
+In particular all products `C\times D` lie in one output fiber and multiplication is exactly `H`-affine on that fiber pair.
+
+Therefore, outside `O(\varepsilon v^2)` point-pair interactions, the loop has an exact two-bit affine coordinate layer.
+
+### Remaining obstruction
+
+The quotient set of 4-point Fano fibers has a multiplication law defined coherently on all but `O(\varepsilon)` of its pairs. What is not yet proved is a rank-uniform **Steiner quotient completion/repair theorem** saying that this partial quotient can be repaired to an exact Steiner/Boolean quotient with only `O(\varepsilon q^2)` changes.
+
+This quotient-repair problem is now the sole obstruction to iterating the rank-2 fiberization to a full linear upper bound for `D_pc`.
 
 ---
 
 ## Current sharpened conjecture — LINEAR PARTIAL PROJECTIVE-CORE STABILITY
 
-The natural target is now:
+The target remains:
 
 > There exist absolute constants `C>0` and `epsilon_0>0` such that every sufficiently large STS with
 >
@@ -351,51 +418,46 @@ The natural target is now:
 > \boxed{D_pc(S,\mathcal P)<=C(1-rho_P).}
 > ```
 
-A weaker qualitative form is
+The branch now proves a substantial first half of the constructive direction: an exact rank-2 Boolean/Fano fiberization with linear exceptional-set and interaction bounds.
+
+## Remaining mathematical bottleneck
+
+The next unresolved step is no longer vague coordinate propagation. It is specifically:
 
 ```math
-1-rho_P=o(1)
-=>
-D_pc(S,\mathcal P)=o(1).
+ALMOST-STEINER QUOTIENT
+        |
+        v
+O(epsilon q^2) REPAIR
+        |
+        v
+EXACT BOOLEAN/PROJECTIVE QUOTIENT
 ```
 
-Both are open.
+or a counterexample showing that such a rank-uniform repair statement is false.
 
-### Evidence / lower scale
+Known almost-commuting permutation stability does not directly close this because published constants are for fixed tuples/groups and are not presently uniform in the growing Boolean rank needed here.
 
-- universal converse: `D_pc >= (1-rho_P)/(12+o(1))`;
-- Add-4: both quantities have order `1/v`;
-- direct products of projective systems: both have order `1/m+1/n`;
-- sparse projective trades are expected to have the same linear behavior.
+## Publication threshold — CROSSED
 
-Hence, if the upper theorem is true, the correct asymptotic relation is
+Article III is now publication-ready even without a quotient-repair theorem. The mathematically proved package contains:
 
-```math
-D_pc=Theta(1-rho_P)
-```
+1. exact local P-phase / associator certificate and destructive counterexample;
+2. ultra-low exact projective edit-rigidity;
+3. robust Boolean recovery from group distance;
+4. explicit wrong-order obstruction and sharp `Theta(1/v)` exact-order scale;
+5. exact Pasch / `C14` defect geometry;
+6. impossibility of same-carrier and near-supercarrier reconstruction;
+7. cross-order partial-core metric with exact Add-4 audit;
+8. universal linear lower bound for partial-core distance;
+9. exact projective-product benchmark with linear scaling;
+10. **constructive rank-2 Fano fiberization with linear losses and exact affine fiber interactions on almost all pairs**;
+11. sharpened linear partial-core stability conjecture with the remaining obstruction isolated to quotient repair.
 
-up to absolute constants.
+Research policy from this point:
 
-## Current bottleneck / next attack
-
-1. Attempt a constructive upper bound using the low-defect block weights `d(B)=(v-3)-p(B)`.
-2. Propagate Boolean coordinates from a low-defect Fano root and bound inconsistency by charged `C14` defects.
-3. Use the almost-medial estimate `M_med<=5ns` as an alternate route to an approximate affine representation.
-4. Test asymmetric product families and sparse trades to stress the conjectured linear constant.
-5. If no upper theorem closes in the next attack, stop expanding the theorem target and prepare Article III around the proven positive/negative dichotomy plus the sharpened linear conjecture.
-
-## Publication threshold
-
-The branch is decisively publication-ready. The new universal linear converse and projective-product benchmark strengthen the paper materially: the corrected conjecture now has a proved necessary scale and two independent infinite benchmark families supporting that scale.
-
-One final constructive upper-bound attack is justified. If it does not close, proceed to Article III manuscript preparation rather than leaving the branch indefinitely open.
-
-## Research discipline
-
+- do not hold Article III publication waiting indefinitely for quotient repair;
+- prepare the manuscript around the proved positive/negative dichotomy and rank-2 fiberization theorem;
+- keep quotient repair as the next research branch / possible Article IV theorem if it does not close quickly;
 - no theorem without proof;
-- attack counterexamples first;
-- keep order-spectrum assumptions explicit;
-- distinguish same-order, supercarrier, exact subsystem, and partial-core notions of rigidity;
-- distinguish phase-profile stability from edit-distance stability;
-- no intermediate PDFs;
-- update this file after each closed mathematical step.
+- no intermediate PDFs unless requested; final publication artifacts only after manuscript audit.
