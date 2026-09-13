@@ -21,6 +21,23 @@ Zenodo DOI: **10.5281/zenodo.22060296**
 
 ## Additional published mathematical branches
 
+### Alice Throws Away the Ruler II · Phase Rigidity in Steiner Triple Systems
+
+**Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects**  
+Russian parallel: **Фазовая жёсткость в системах троек Штейнера: количественная устойчивость Холл–проективной дихотомии через anti-mitre-дефекты**  
+Zenodo DOI: **[10.5281/zenodo.22722951](https://doi.org/10.5281/zenodo.22722951)**  
+GitHub companion: [`alice-ruler-incidence/`](alice-ruler-incidence/)
+
+Core result:
+
+`small normalized anti-mitre count -> one of the two local closure phases (projective S_7 or Hall S_9) has small minority density`.
+
+The paper introduces the independent-triple phase graph, proves the spectral gap `mu_2 >= v-3`, establishes `|D| <= 56 c_A`, controls direct `P/H` interfaces by `s <= C_I v |D|`, and derives the quantitative phase-profile stability theorem
+
+`min(rho_P,rho_H) <= C c_A/N`.
+
+The theorem is intentionally phase-profile stability, not an edit-distance theorem for the whole Steiner triple system.
+
 ### FCOA · Admissibility Geometry
 
 **Reflections on Admissibility Geometry with Commander Sol: How a Partial Operation Remembers an Oriented Carrier**  
@@ -87,43 +104,31 @@ The research, proof, bibliography, reproducibility, and PDF visual-QA gates are 
 **A Tea Party in the Additive-Multiplicative World with Hatter Sol: The Number Line, the Observer, and Two Operations**  
 Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**
 
-Core hinge:
-
-`Aut(N_{>0}, x) ~= Sym(P)`
-
-versus
-
-`Aut(N,+,x,0,1) = 1`.
+Core hinge: `Aut(N_{>0}, x) ~= Sym(P)` versus `Aut(N,+,x,0,1) = 1`.
 
 ### HATTER-SOL-02 · Two Teapots, One Cup: “Who Are You?” Among the Primes
 
 Russian parallel: **Два чайника, одна чашка: «Кто ты?» среди простых**  
 Zenodo DOI: **[10.5281/zenodo.22656414](https://doi.org/10.5281/zenodo.22656414)**
 
-Core results:
+Core results include exact finite congruence/quadratic-probe orbit counts, the finite-information barrier, sparse rigidifying families, and `kappa_2(S)=ceil(log_2|S|)`.
 
-- exact finite congruence-orbit count:
-  `|F| + prod_{p in F} tau(p-1)`;
-- exact finite quadratic-probe orbit count:
-  `|F| + 2^|F|`;
-- finite-information barrier;
-- exact rigidity criterion via injective Legendre signatures;
-- arbitrarily sparse rigidifying families;
-- optimal finite coding law:
-  `kappa_2(S) = ceil(log_2 |S|)`.
+### HATTER-SOL-07 · Free-Port Factorization
 
-### HATTER-SOL-10 · Ideal Factor Networks Beyond Unique Element Factorization
+**Alice in the Land of Free Threads: Factors as Nodes and the Exact Cost of Multiplicative Splitting**  
+Zenodo DOI: **[10.5281/zenodo.22724185](https://doi.org/10.5281/zenodo.22724185)**  
+GitHub companion: [`papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/`](papers/HATTER-SOL/07-FREE-PORT-FACTORIZATION/)
 
+Core law: `B(G;c)=sum c_i-2|E|`, with exact splitting cost and topology correction through the cycle rank.
+
+### HATTER-SOL-10 · Ideal Factor Networks
+
+**Ideal Factor Networks Beyond Unique Element Factorization**  
 Russian parallel: **Идеальные факторные сети за пределами однозначной факторизации элементов**  
-Status: **published**  
 Zenodo DOI: **[10.5281/zenodo.22734865](https://doi.org/10.5281/zenodo.22734865)**  
 GitHub companion: [`papers/HATTER-SOL/10-IDEAL-FACTOR-NETWORKS/`](papers/HATTER-SOL/10-IDEAL-FACTOR-NETWORKS/)
 
-Core progression:
-
-`prime-ideal factorization -> minimal principalization witnesses -> witness-state sets -> principalization-residue fibers -> typed network optimization`
-
-Core results include nonprincipal multistate nodes, witness switching and an exact host-size phase-transition law, a purity theorem on even complete hosts, and residue-enforced mixed witness phases.
+Core progression: `prime-ideal factorization -> minimal principalization witnesses -> witness-state sets -> residue fibers -> typed network optimization -> phase switching / residue-forced coexistence`.
 
 GitHub companion and permanent series folder: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
 Follow future notes here: **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
@@ -168,12 +173,14 @@ scripts/        utility and reproducibility scripts
 - RH-SOL-02 · SHIFT — next priority
 - RH-SOL-03 · REALZERO — planned
 - RH-SOL-04 · FIREWALL — planned
+- ALICE-RULER-II · PHASE RIGIDITY — published, DOI 10.5281/zenodo.22722951; quantitative Hall/projective phase-profile stability
 - FCOA · ADMISSIBILITY GEOMETRY — published, DOI 10.5281/zenodo.22129787; GitHub companion restored
 - FCOA · VALUE-RIGIDITY / IDENTITY DIGRAPHS — published, DOI 10.5281/zenodo.22160014
 - FCOA-Z · RAY TO AXIS / LOCAL LAW DIFFERENTIATION — final Zenodo stage, DOI 10.5281/zenodo.22171473 assigned and embedded; publication package audited
 - FCOA-Z · PRESCRIBED-STABILIZER SUPPORT — research/PDF/source thresholds passed; exact verifier `ALL PASS` through `b<=7`; ready for Zenodo deposit; DOI pending
 - HATTER-SOL-01 — published, DOI 10.5281/zenodo.22639237
 - HATTER-SOL-02 — published, DOI 10.5281/zenodo.22656414
+- HATTER-SOL-07 — published, DOI 10.5281/zenodo.22724185
 - HATTER-SOL-10 — published, DOI 10.5281/zenodo.22734865
 
 ## AI collaboration disclosure
