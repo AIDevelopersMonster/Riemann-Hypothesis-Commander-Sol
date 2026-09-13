@@ -1,6 +1,6 @@
 # HATTER-SOL-09 — Two-block world feasibility
 
-Status: exact complete-support reduction for two arithmetic typed blocks; first lattice-front witness 65.
+Status: exact complete-support reduction for two arithmetic typed blocks; verified lattice-front witness 65. The earlier explicit Gamma formula has been withdrawn after audit: it was a parity-factor criterion, not a general `(g,f)`-factor criterion.
 
 ## 1. Two split blocks
 
@@ -31,115 +31,50 @@ Define
 \boxed{g_j:=\max(0,c-Q_j),\qquad f_j:=\min(P_j,c).}
 \]
 
-Thus complete-support feasibility is exactly the existence of a `(g,f)`-factor of `K_N` with block-constant lower and upper degree bounds.
+### Theorem 1.1 — exact reduction
 
-This reduction is classical graph theory. The HATTER-SOL-specific part is that the bounds are generated canonically by arithmetic factor blocks.
+Complete typed support exists if and only if `K_N` has a `(g,f)`-factor with block-constant lower and upper degree bounds `g_j,f_j`.
 
-## 2. Symmetry reduction to four integers
+### Proof
 
-Lovasz's `(g,f)`-factor criterion ranges over disjoint vertex sets `S,T`. Because `g` and `f` are constant on each arithmetic block, only the block counts matter.
-
-Put
+If a complete typed support exists, let `H` be its P-edge subgraph. Since every non-P edge is Q-colored,
 
 \[
-s_j:=|S\cap V_j|,
-\qquad
-t_j:=|T\cap V_j|,
+d_Q(v)=c-d_H(v).
 \]
 
-with
+The conditions `d_H(v)<=P_j` and `d_Q(v)<=Q_j` are exactly
 
 \[
-0\le s_j,t_j,
-\qquad s_j+t_j\le n_j.
+\max(0,c-Q_j)\le d_H(v)\le\min(P_j,c).
 \]
 
-Let
+Conversely, any spanning subgraph `H` satisfying these bounds may be colored P, with its complement in `K_N` colored Q, producing a capacity-respecting complete typed support. □
 
-\[
-s=s_1+s_2,
-\qquad t=t_1+t_2,
-\qquad u=N-s-t.
-\]
+This reduction is classical graph theory. The HATTER-SOL-specific layer is that the interval bounds are generated canonically by arithmetic factor blocks.
 
-If `u>0`, the residual graph `K_N-(S\cup T)` is one connected component. Define the parity term
+## 2. What the audit changed
 
-\[
-\epsilon(s_1,s_2,t_1,t_2)
-=
-\begin{cases}
-1,&u>0\text{ and }g(U)+ut\text{ is odd},\\
-0,&\text{otherwise},
-\end{cases}
-\]
+An earlier draft wrote an explicit four-variable obstruction function `Gamma` using an odd-component parity correction and claimed it characterized arbitrary `(g,f)`-factors.
 
-where
+That statement is withdrawn.
 
-\[
-g(U)=(n_1-s_1-t_1)g_1+(n_2-s_2-t_2)g_2.
-\]
+The audited formula is a Lovasz-type criterion for **parity factors**, not for unrestricted `(g,f)`-factors. Our typed complete-support problem is an unrestricted interval-degree factor problem unless an additional parity constraint is imposed.
 
-Then the complete-graph `(g,f)` obstruction is
+Therefore the following are retained as proved:
 
-\[
-\boxed{
-\Gamma_\Pi(s_1,s_2,t_1,t_2)
-=
-s_1f_1+s_2f_2
-+t_1(c-g_1)+t_2(c-g_2)
--st
--\epsilon.
-}
-\]
+1. the exact reduction in Theorem 1.1;
+2. polynomial-time decidability by standard `(g,f)`-factor machinery;
+3. the verified explicit arithmetic witnesses below.
 
-### Theorem 2.1
+The following are **not yet claimed**:
 
-Assume `g_j<=f_j` for both blocks. Complete typed support exists if and only if
+- a closed four-variable necessary-and-sufficient obstruction formula for arbitrary two-block profiles;
+- a scalar world obstruction margin derived from that withdrawn formula.
 
-\[
-\boxed{
-\Gamma_\Pi(s_1,s_2,t_1,t_2)\ge0
-}
-\]
+A low-dimensional block criterion remains an open target.
 
-for every admissible integer quadruple `(s_1,s_2,t_1,t_2)`.
-
-Hence an apparently exponential vertex-subset condition collapses, for a two-block arithmetic profile, to a four-dimensional finite lattice check.
-
-## 3. World obstruction margin
-
-Define
-
-\[
-\boxed{
-\mu(\Pi):=
-\min\Gamma_\Pi(s_1,s_2,t_1,t_2).
-}
-\]
-
-Then
-
-\[
-\boxed{
-\mu(\Pi)\ge0
-\iff
-K_N\text{ admits a capacity-respecting P/Q coloring}.
-}
-\]
-
-The argmin set should be retained as data:
-
-\[
-\boxed{
-\mathcal M(\Pi):=\operatorname{Argmin}\Gamma_\Pi.
-}
-\]
-
-Two worlds may have the same scalar margin but different minimizing block cuts. This makes `(mu,M)` a more informative pre-operator observable than the old scalar HATTER-SOL boundary alone.
-
-For `b` arithmetic blocks the same symmetry argument gives `2b` count coordinates `(s_1,...,s_b,t_1,...,t_b)`.
-
-## 4. First genuine two-split-block witness: 65
+## 3. First genuine two-split-block witness: 65
 
 ### Square world
 
@@ -173,7 +108,7 @@ Complete support `K_4` has six edges, so every complete-support boundary point s
 B_P+B_Q=10+6-12=4.
 \]
 
-All three possible nonnegative parity points are attainable:
+All three nonnegative parity-compatible points are attainable:
 
 \[
 \boxed{
@@ -183,11 +118,13 @@ All three possible nonnegative parity points are attainable:
 }
 \]
 
-Explicit realizations:
+Explicit realizations, with split vertices `A,B` of type `(2,1)` and `C,D` of type `(3,2)`:
 
-- `(4,0)`: choose three P-edges so each `(2,1)` vertex has P-degree 2 and each `(3,2)` vertex P-degree 1; color the complement Q.
-- `(2,2)`: choose four P-edges, equivalently two Q-edges, one incident with each `(2,1)` vertex.
-- `(0,4)`: choose five P-edges and make the unique Q-edge join the two `(2,1)` vertices.
+- `(4,0)`: P-edges `AB, AC, BD`; the complementary Q-graph has degrees `(1,1,2,2)`.
+- `(2,2)`: choose a 4-cycle as the P-graph; the complementary Q-graph is a perfect matching.
+- `(0,4)`: let `AB` be the unique Q-edge and color the other five edges P; P-degrees are `(2,2,3,3)`.
+
+Each realization respects every typed capacity. Since all complete-support points have the minimum possible scalar sum `4`, and the three displayed points exhaust the possible even P-boundaries on that line, this is the exact Pareto frontier.
 
 Thus the square world produces the first Pareto segment with an interior lattice point.
 
@@ -219,26 +156,32 @@ So changing the arithmetic world changes not merely a scalar boundary value but 
 2\text{ in the triangular world}.
 \]
 
-## 5. Pre-operator interpretation
+## 4. Safe pre-operator data
 
-The natural object attached to a world is no longer only
-
-\[
-R\mapsto\Lambda_R(n).
-\]
-
-The current hierarchy is
+Until an exact block obstruction formula is proved, the canonical world data retained are
 
 \[
-R
-\longmapsto
-\Gamma_R
-\longmapsto
-(\mu_R,\mathcal M_R)
-\longmapsto
-\partial_P\mathfrak B_R^{(2)}(n).
+\boxed{
+R\longmapsto
+\left(
+\mathcal P_R(n),
+\partial_P\mathfrak B_R^{(2)}(n)
+\right).
+}
 \]
 
-A future operator of worlds should act on this structured response, or on a controlled projection of it, rather than on the scalar boundary alone.
+The first component is the arithmetic typed factor profile; the second is the network response.
 
-No world Laplacian is defined yet. The next task is to determine natural inter-world comparison maps between the block-count obstruction landscapes.
+A future world operator should be built only after a natural comparison map between these world-dependent response objects is established.
+
+No world Laplacian is defined yet.
+
+## 5. Next target
+
+Derive an exact block criterion for two block-constant interval degree classes directly, without importing a parity-factor theorem. Possible routes:
+
+1. exploit symmetry of `K_N` to characterize feasible block degree totals;
+2. formulate the problem as a small-dimensional `b`-matching / flow polytope after equitable symmetrization;
+3. determine whether every feasible fractional block point admits an integral realization, and identify the parity corrections if not.
+
+Only after this is closed should a scalar obstruction landscape be reintroduced.
