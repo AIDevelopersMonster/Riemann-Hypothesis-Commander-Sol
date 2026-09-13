@@ -6,9 +6,9 @@
 **Parent publication:** *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects*  
 **Zenodo DOI:** https://doi.org/10.5281/zenodo.22722951
 
-## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED; PASCH LOCALIZATION CLOSED; NEAR-CARRIER OBSTRUCTION CLOSED; PARTIAL-CORE METRIC CLOSED; ADD-4 CORE AUDIT CLOSED
+## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED; PASCH LOCALIZATION CLOSED; NEAR-CARRIER OBSTRUCTION CLOSED; PARTIAL-CORE METRIC CLOSED; ADD-4 CORE AUDIT CLOSED; LINEAR COST NECESSITY CLOSED; PROJECTIVE PRODUCT BENCHMARK CLOSED
 
-Primary target is now refined to **partial projective-core stability**. Exact same-order rigidity, near-supercarrier rigidity, and literal large exact projective subsystem formulations are too strong in general.
+Primary target is **linear partial projective-core stability**. Exact same-order rigidity, near-supercarrier rigidity, and literal large exact projective subsystem formulations are too strong in general.
 
 ## Closed step 1 — `PROJECTIVE_ASSOCIATOR_BRIDGE`
 
@@ -120,8 +120,6 @@ Commit:
 
 `39d81ee754208e416fe003817fead0df33b118ba`
 
-### Exact blockwise defect geometry
-
 For a block
 
 ```math
@@ -134,31 +132,25 @@ if `p(B)` is the number of Pasch configurations through `B`, then
 \boxed{r_{xy}=r_{x,x∘y}=r_{y,x∘y}=(v-3)-p(B).}
 ```
 
-Hence associator defect is exactly local Pasch-incidence deficit.
-
-Globally,
+Thus associator defect is exactly local Pasch-incidence deficit. Globally,
 
 ```math
-\boxed{s=v(v-1)(v-3)-24P(S)=24(M(v)-P(S)).}
+\boxed{s=v(v-1)(v-3)-24P(S)=24(M(v)-P(S))}
 ```
 
-and, for the classical four-block configuration `C14`,
+and for the classical four-block configuration `C14`,
 
 ```math
 \boxed{s=4c_{14}.}
 ```
 
-Thus the projective stability problem is exactly an STS-relative sparse `C14` stability/removal problem.
-
-### Near-supercarrier obstruction
-
-If `phi:L->G` is injective and preserves all but `t_phi` products, then `G` contains at least `n-2t_phi/n` involutions. For a non-Boolean ambient group of size `m=lambda n`,
+If `phi:L->G` is injective and preserves all but `t_phi` products, then for a non-Boolean group of size `m=lambda n`,
 
 ```math
 \boxed{t_phi/n^2 >= 1/2-3lambda/8.}
 ```
 
-Therefore vanishing-error embeddings of all points into groups of size `(1+o(1))n` would force the ambient group to be Boolean. The Add-4 sequence shows this is impossible: the smallest Boolean supercarrier has asymptotic size ratio `2`.
+The Add-4 sequence therefore also obstructs vanishing-error embeddings of all points into groups of size `(1+o(1))n`.
 
 ---
 
@@ -172,43 +164,9 @@ Commit:
 
 `86d43167ea9ba8ea42501443d8b65fe413ea2749`
 
-### Literal large exact projective subsystem is too strong
+A cross-order partial-core cost `D_pc` was defined. It allows deletion of `o(v)` exceptional source points, `o(v)` unused points in a nearby projective model, and `o(v^2)` bad pair completions on the common core. In the same-order/full-core case it recovers `d_blk` exactly.
 
-Because projective orders are `2^m-1`, the next smaller admissible projective order may be only about half as large. Therefore even a local perturbation of a projective STS need not leave an exact projective subsystem on `v-o(v)` points.
-
-The robust notion must compare a large retained subset with a full projective model of nearby order, without requiring the retained set itself to be closed.
-
-### Partial-core projective cost
-
-For `S=(X,B_S)`, a projective model `P=(Y,B_P)`, a retained subset `U⊂X`, and an injection `phi:U->Y`, define a bad unordered pair `{x,y}⊂U` when either its completion leaves `U` or the completion disagrees with the projective model under `phi`.
-
-With `N_*=max{|X|,|Y|}`, define
-
-```math
-\boxed{
-D_pc(S;P,U,phi)
-=
-(|X\U|+|Y\phi(U)|)/N_*
-+
-2E/(N_*(N_*-1)).
-}
-```
-
-This exactly recovers the branch block metric `d_blk` in the same-order/full-core case.
-
-Deleting `r` points creates at most
-
-```math
-r(v-1)/2
-```
-
-boundary pair errors, so `r=o(v)` is compatible with `o(v^2)` pair error.
-
-### Correct audit of Add-4
-
-The previous shorthand that the Add-4 system simply contains the old projective STS plus four points was too crude. The actual construction removes three infinity points, introduces seven new points, and reroutes old pairs along a 7-regular graph `G_7` on `v-3` old points.
-
-Comparing the resulting wrong-order system `T` of order `w=v+4` with its source projective STS on the common old core gives exactly
+For the actual Grannell--Lovegrove Add-4 construction, after a corrected audit of its seven one-factors and three removed infinity points,
 
 ```math
 \boxed{
@@ -218,85 +176,219 @@ D_pc(T;P_v,V',id)
 }
 ```
 
-Hence
+Hence `D_pc(T,\mathcal P)=O(1/w)->0` despite the same-carrier and near-supercarrier obstructions.
+
+Also, if `M_med` counts failed medial/parallelogram identities, then
 
 ```math
-\boxed{D_pc(T,\mathcal P)=O(1/w)->0.}
+\boxed{M_med<=5ns.}
 ```
 
-So Add-4 obstructs carrier identity, but not partial projective geometry.
-
-### Almost-medial consequence
-
-For a commutative loop, five associativity identities connect
-
-```math
-(x∘y)∘(z∘w)
-```
-
-to
-
-```math
-(x∘z)∘(y∘w).
-```
-
-Therefore if `M_med` counts failed medial/parallelogram identities,
-
-```math
-\boxed{M_med <= 5ns.}
-```
-
-Thus normalized medial defect is at most five times normalized associator defect. Exact mediality in a unital loop implies exact associativity by setting one variable to the identity.
-
-No publication-grade quantitative repair theorem for almost-medial quasigroups has yet been located.
+Thus almost associativity implies almost mediality with constant-factor loss.
 
 ---
 
-## Current projective conjecture — PARTIAL PROJECTIVE-CORE STABILITY
+## Closed step 7 — `PROJECTIVE_LINEAR_COST_AND_PRODUCT_BENCHMARK`
 
-The first formulation surviving all destructive audits is:
+Full proof:
 
-> If `1-rho_P=o(1)`, then `D_pc(S,\mathcal P)=o(1)`.
+`notes/PROJECTIVE_LINEAR_COST_AND_PRODUCT_BENCHMARK.md`
 
-Equivalently: after deleting `o(v)` points from `S`, allowing `o(v)` unused points in a nearby projective model, and permitting `o(v^2)` bad pair completions on the common core, the structure should become asymptotically projective.
+Commit:
 
-This is **open**.
+`717094726c33d7420b32dd6f56d49e1bf79295a7`
 
-### Why this formulation is presently preferred
+### Universal linear converse for `D_pc`
 
-- same-carrier reconstruction: false;
-- `(1+o(1))` supercarrier embedding of all points: false;
-- exact projective subsystem on `v-o(v)` points: too rigid because of discrete projective orders;
-- partial-core comparison: survives the Add-4 extremal test with explicit `O(1/v)` cost.
+For any projective comparison `(P,U,phi)` with
 
-### Literature boundary
+```math
+D=D_pc(S;P,U,phi)<1,
+```
 
-Generic dense hypergraph removal has the wrong normalization because an STS has `Theta(v^2)` blocks inside a `Theta(v^3)` host. General Latin-square repair is also not presently available as a black box: a strong removal/repair statement for Latin squares is still formulated as a conjectural direction in the modern limits literature. Therefore any proof here must use additional Steiner structure: commutativity, involutory translations, exact `C14` localization, local Pasch deficits, or the almost-medial law.
+every associativity failure entirely inside the core forces one of four pair-completion errors. Counting the fibers gives
 
-## Next attack
+```math
+\boxed{s(S)<=3rv^2+8Ev,}
+```
 
-1. Try to prove partial-core stability directly from the block weights
-   ```math
-   d(B)=(v-3)-p(B).
-   ```
-2. Study concentration/regularization of low-defect blocks and whether their pair-completion graph admits a global Boolean coordinate system.
-3. Exploit the almost-medial estimate `M_med<=5ns` and search for a Steiner-specific quantitative Toyoda--Bruck repair argument.
-4. Audit Add-6 and sparse projective trades in `D_pc` to determine lower bounds on the best possible `F(delta)`.
-5. If partial-core stability resists proof, close Article III around the established positive theorem + sharp obstruction + exact defect geometry + corrected conjecture.
+where `r=|X\setminus U|` and `E` is the number of bad retained pairs.
+
+Consequently
+
+```math
+\boxed{
+\delta_ind(S)
+<=
+\frac{4v^2}{(v-1)(v-3)}
+\frac{D}{(1-D)^2},
+}
+```
+
+and therefore
+
+```math
+\boxed{
+1-rho_P(S)
+<=
+\frac{12v^2}{(v-1)(v-3)}
+\frac{D}{(1-D)^2}.
+}
+```
+
+Asymptotically, whenever `D_pc->0`,
+
+```math
+\boxed{D_pc(S,\mathcal P) >= (1-rho_P)/(12+o(1)).}
+```
+
+Thus any true projective stability theorem has an unavoidable linear defect scale.
+
+### Infinite projective-product benchmark
+
+Let
+
+```math
+m=2^a-1,
+\qquad
+n=2^b-1,
+```
+
+and form the direct product of the two projective Steiner quasigroups. Its order is
+
+```math
+V=mn,
+```
+
+generally a wrong projective order.
+
+The blockwise Pasch audit yields the exact associator defect
+
+```math
+\boxed{
+s=3mn(m-1)(n-1)(m+n-2).
+}
+```
+
+Hence
+
+```math
+\boxed{
+\delta_ind
+=
+3(m-1)(n-1)(m+n-2)/[(mn-1)(mn-3)].
+}
+```
+
+If both factors grow,
+
+```math
+\delta_ind
+=
+3(1/m+1/n)+o(1/m+1/n)
+->0,
+```
+
+so `rho_P->1`.
+
+There is a canonical comparison with the projective system in
+
+```math
+F_2^{a+b}\setminus\{0\},
+```
+
+of order
+
+```math
+W=mn+m+n.
+```
+
+The product carrier is exactly the set of vectors with both coordinate components nonzero. The omitted projective points are the two coordinate axes, `m+n` points in total. Pair completions disagree exactly when two product points share one coordinate. Therefore
+
+```math
+\boxed{
+D_pc
+=
+\frac{m+n}{mn+m+n}
++
+\frac{mn(m+n-2)}{(mn+m+n)(mn+m+n-1)}.
+}
+```
+
+As both factors grow,
+
+```math
+\boxed{
+D_pc
+<=
+2(1/m+1/n)+o(1/m+1/n),
+}
+```
+
+and for this natural comparison
+
+```math
+\boxed{D_pc/\delta_ind -> 2/3.}
+```
+
+So the projective-product family gives a second broad wrong-order sequence, beyond Add-4, in which structural distance and associator defect have the same linear scale.
+
+---
+
+## Current sharpened conjecture — LINEAR PARTIAL PROJECTIVE-CORE STABILITY
+
+The natural target is now:
+
+> There exist absolute constants `C>0` and `epsilon_0>0` such that every sufficiently large STS with
+>
+> ```math
+> 1-rho_P<=epsilon_0
+> ```
+>
+> satisfies
+>
+> ```math
+> \boxed{D_pc(S,\mathcal P)<=C(1-rho_P).}
+> ```
+
+A weaker qualitative form is
+
+```math
+1-rho_P=o(1)
+=>
+D_pc(S,\mathcal P)=o(1).
+```
+
+Both are open.
+
+### Evidence / lower scale
+
+- universal converse: `D_pc >= (1-rho_P)/(12+o(1))`;
+- Add-4: both quantities have order `1/v`;
+- direct products of projective systems: both have order `1/m+1/n`;
+- sparse projective trades are expected to have the same linear behavior.
+
+Hence, if the upper theorem is true, the correct asymptotic relation is
+
+```math
+D_pc=Theta(1-rho_P)
+```
+
+up to absolute constants.
+
+## Current bottleneck / next attack
+
+1. Attempt a constructive upper bound using the low-defect block weights `d(B)=(v-3)-p(B)`.
+2. Propagate Boolean coordinates from a low-defect Fano root and bound inconsistency by charged `C14` defects.
+3. Use the almost-medial estimate `M_med<=5ns` as an alternate route to an approximate affine representation.
+4. Test asymmetric product families and sparse trades to stress the conjectured linear constant.
+5. If no upper theorem closes in the next attack, stop expanding the theorem target and prepare Article III around the proven positive/negative dichotomy plus the sharpened linear conjecture.
 
 ## Publication threshold
 
-The branch is already publication-ready as a substantial Article III. The new partial-core metric and exact Add-4 audit significantly improve the paper architecture by turning the previous obstruction into a precise corrected stability conjecture.
+The branch is decisively publication-ready. The new universal linear converse and projective-product benchmark strengthen the paper materially: the corrected conjecture now has a proved necessary scale and two independent infinite benchmark families supporting that scale.
 
-Hold final PDF/Zenodo only while the partial-core conjecture receives the current serious proof attack. If this next attack does not close the conjecture, prepare the paper as:
-
-- exact local associator certificate;
-- ultra-low exact projective rigidity;
-- sharp `Theta(1/v)` wrong-order obstruction;
-- exact Pasch / `C14` defect geometry;
-- impossibility of same-carrier and near-supercarrier reconstruction;
-- partial-core cost and Add-4 compatibility;
-- partial projective-core stability conjecture.
+One final constructive upper-bound attack is justified. If it does not close, proceed to Article III manuscript preparation rather than leaving the branch indefinitely open.
 
 ## Research discipline
 
