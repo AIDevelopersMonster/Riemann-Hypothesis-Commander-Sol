@@ -1,7 +1,15 @@
 # HATTER-SOL-11 · Outerplanar Rank-Swap No-Go Beyond the `(2,1)` Exception
 
 **Branch:** `research/hatter-sol-orbital-port-filtrations`  
-**Status:** closed theorem layer.
+**Status:** closed theorem layer; hostile-audit corrections applied.
+
+**Model scope.** All network responses in this note are responses of the canonical orbit-total projection
+
+\[
+\Xi=(A,O)=(a,b+c)
+\]
+
+from `ORBITAL_NETWORK_FIBER_SEPARATION.md`. They do not claim completeness for every richer network semantics retaining the full unordered oblique pair in `Omega=(a;{b,c})`.
 
 This note attacks the hostile target left by `OUTERPLANAR_ORBITAL_MEMORY_21.md`: is the outerplanar collision
 
@@ -75,17 +83,27 @@ This is a chain of triangles, hence outerplanar, and has
 
 edges, so it is maximal outerplanar.
 
-Its degree sequence is
+For `n=4` its degree sequence is
+
+\[
+2,3,3,2,
+\]
+
+while for even `n>=6` it is
 
 \[
 2,3,4,\ldots,4,3,2.
 \]
 
-Thus
+Therefore the uniform statement used below is
 
 \[
-\Delta(H_n)=4.
+\boxed{
+\Delta(H_n)\le4,
+}
 \]
+
+with `Delta(H_4)=3` and `Delta(H_n)=4` for even `n>=6`.
 
 This one graph will provide all hostile witnesses below.
 
@@ -155,7 +173,7 @@ Every vertex then has exactly two incidences in that channel, so it is saturated
 The complementary graph `H_n-C_n` has degree at most
 
 \[
-4-2=2
+\Delta(H_n)-2\le2
 \]
 
 at every vertex. Therefore it is feasible in the other channel for every
@@ -186,7 +204,7 @@ Now take a generic-odd interior forgetting fiber
 P>Q>0.
 \]
 
-Its two rank-swapped orbital-total states are
+Its two rank-swapped orbit-total states are
 
 \[
 \Xi_I=(P,Q),
@@ -241,7 +259,7 @@ In Type II, the axial channel has capacity `Q`.
 - If `Q=1`, Section 3 constructs a feasible outerplanar network with `B_A=0`.
 - If `Q=2`, Section 4 constructs one with `B_A=0`.
 
-Taking a Pareto-minimal boundary vector among those with zero axial boundary shows that the Type-II response contains a monomial with `X` exponent zero.
+Taking a Pareto-minimal boundary vector among those with zero axial boundary shows that the Type-II response contains a monomial with zero `X` exponent.
 
 Hence the two response polynomials cannot be equal. QED.
 
@@ -311,7 +329,7 @@ M_{m-2}
 \{\{3,4\},\{5,6\},\ldots,\{n-3,n-2\}\}.
 \]
 
-It covers every degree-4 vertex. Coloring this matching by the capacity-1 channel and the complement by the capacity-3 channel gives
+It covers every degree-4 vertex (vacuously at `n=4`). Coloring this matching by the capacity-1 channel and the complement by the capacity-3 channel gives
 
 \[
 (B_A,B_O)=(2,4).
@@ -365,7 +383,7 @@ Z_O(1,3)=Y^6+X^2Y^4+X^4Y^2.
 
 The rank swap is visible for every even host size at least four.
 
-For the pure-oblique member `(0,4)`, the same graph `H_n` is feasible because its maximum degree is four, so
+For the pure-oblique member `(0,4)`, the same graph `H_n` is feasible because its maximum degree is at most four, so
 
 \[
 \boxed{
@@ -375,7 +393,7 @@ Z_O(0,4)=Y^6.
 }
 \]
 
-Thus the `(3,1)` fiber retains all three canonical orbital members under the full outerplanar response:
+Thus the `(3,1)` fiber retains all three canonical orbit-total members under the full outerplanar response:
 
 \[
 \boxed{
@@ -395,7 +413,7 @@ For
 \[
 (P,Q)=(2,2),
 \]
-the generic-odd fiber has only two canonical orbital members:
+the generic-odd fiber has only two canonical orbital signatures, whose orbit-total states are
 
 \[
 \Xi_D=(2,2),
@@ -463,7 +481,7 @@ Z_O(0,4)=Y^6.
 }
 \]
 
-So the diagonal fiber remains nontrivially separated in the outerplanar class.
+So the diagonal fiber remains nontrivially separated in the orbit-total outerplanar model.
 
 ---
 
@@ -522,16 +540,16 @@ This is exactly the sort of information that a scalar total boundary would miss:
 
 ## 11. What is now closed
 
-We now have:
+Within the orbit-total `Xi` model we now have:
 
 1. exact outerplanar collapse for `(2,1)`;
 2. a general low-degree obstruction `B_H>=2(H-2)` for any channel capacity `H>=3`;
-3. a universal maximal outerplanar test graph `H_n`;
+3. a universal maximal outerplanar test graph `H_n` with `Delta(H_n)<=4`;
 4. saturation constructions for capacity-1 and capacity-2 channels;
 5. an infinite no-go family proving rank-swap separation for every `P>=3`, `Q=1,2`;
 6. exact full outerplanar polynomials for `(3,1)` and `(2,2)`.
 
-Thus the naive universal outerplanar rule `I=II` is dead.
+Thus the naive universal outerplanar rule `I=II` is dead in the `Xi` response model.
 
 ---
 
@@ -547,7 +565,7 @@ There the low-degree obstruction hits **both** rank-swapped channels, so the zer
 
 The next hostile question is therefore:
 
-> for `P>Q>=3`, can the two outerplanar rank-swapped response polynomials ever coincide, or does the asymmetry survive in a subtler boundary profile?
+> for `P>Q>=3`, can the two outerplanar rank-swapped orbit-total response polynomials ever coincide, or does the asymmetry survive in a subtler boundary profile?
 
 The smallest test is
 
