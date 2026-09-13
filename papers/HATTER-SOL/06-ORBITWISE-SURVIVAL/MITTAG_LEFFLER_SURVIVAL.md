@@ -486,7 +486,7 @@ Therefore genuine noncompact death has the following normal form:
 \boxed{
 \begin{array}{c}
 \text{a fixed lower automorphism }g,\\[2mm]
-\text{infinitely many admissible next-layer fiber bijections},\\[2mm]
+\text{infinitely many admissible next-layer fiber-bijection choices},\\[2mm]
 \text{each killed by a finite future obstruction},\\[2mm]
 \text{with killing heights unbounded.}
 \end{array}
@@ -497,17 +497,65 @@ This is considerably sharper than merely saying that some coordinate image escap
 
 ---
 
-# 9. Why infinite fibers are necessary at the bottleneck
+# 9. Correct branching-source dichotomy
 
-If every exact fiber participating in the extension of the bottleneck node \(g\) were finite, then only finitely many bijections would be available at the next layer, because only finitely many vertices occur in each finite fiber and, under FFC at that truncation, only finitely many relevant fibers occur.
+An infinite number of children does **not** by itself force an infinite exact fiber.
 
-Theorem 7.1 shows that the bottleneck node has infinitely many children. Hence the noncompact mechanism must use an infinite source of next-layer choices.
+The reason is that the next layer may contain infinitely many independent nontrivial finite fibers. Even if each individual fiber admits only finitely many permutations or bijections, choosing independently in infinitely many such coordinates can already produce infinitely many, and potentially continuum many, children.
 
-At minimum, some exact-support orbit involved in the child construction must contribute infinitely many distinct bijection choices.
+Therefore the correct statement is the following.
 
-This is consistent with the HATTER-SOL-05 cardinality wall: infinite exact fibers are precisely where finite multiplicity colors cease to distinguish choices and noncompact branching can enter.
+## Proposition 9.1 — branching-source dichotomy
 
-No claim is made here that one particular fiber alone must account for all child variation; the variation may be distributed over infinitely many fiber coordinates.
+Fix a node
+
+\[
+g\in T_n.
+\]
+
+If every active next-layer exact fiber is finite and only finitely many active supports \(S\) satisfy
+
+\[
+\mu_n(S)\ge2,
+\]
+
+then \(g\) has only finitely many children in \(T_{n+1}\).
+
+Consequently, if a bottleneck node has infinitely many children, then at least one of the following must occur:
+
+1. some active exact fiber is infinite;
+2. infinitely many active supports have multiplicity at least two.
+
+### Proof
+
+A child of \(g\) is obtained by choosing bijections
+
+\[
+\beta_S:X_S\to X_{gS}
+\]
+
+across the active support orbits. A fiber of cardinality \(0\) or \(1\) contributes no nontrivial choice. A finite fiber of cardinality \(k\ge2\) contributes only finitely many choices. If there are only finitely many such nontrivial finite coordinates and no infinite fiber, the product of all available choices is finite. \(\square\)
+
+This is the exact correction to the tempting but false claim that infinite branching alone implies an infinite exact fiber.
+
+Under full FFC, every Pratt truncation is finite; in particular there are only finitely many relevant supports at each step and all fibers are finite. Hence Proposition 9.1 recovers finite branching, and König compactness applies.
+
+Outside FFC, noncompact branching can therefore enter in two distinct ways:
+
+\[
+\boxed{
+\text{concentrated branching through an infinite fiber}
+}
+\]
+
+or
+
+\[
+\boxed{
+\text{diffuse branching through infinitely many nontrivial finite fibers}.}
+\]
+
+Both must remain in scope for HATTER-SOL-06.
 
 ---
 
@@ -672,7 +720,8 @@ This strike establishes:
 4. a death-height spectrum with arbitrarily late finite deaths;
 5. the bottleneck-node theorem;
 6. localization of noncompact choice to next-layer fiber bijections over one fixed lower automorphism;
-7. the dual necessary signature: ML failure plus EBFI failure.
+7. the corrected branching-source dichotomy: concentrated infinite-fiber branching or diffuse branching across infinitely many nontrivial finite fibers;
+8. the dual necessary signature: ML failure plus EBFI failure.
 
 No publication claim is made yet, but the structural package of HATTER-SOL-06 is now substantially stronger.
 
