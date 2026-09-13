@@ -6,9 +6,9 @@
 **Parent publication:** *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects*  
 **Zenodo DOI:** https://doi.org/10.5281/zenodo.22722951
 
-## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED
+## STATUS: RESEARCH OPEN — PROJECTIVE LOCAL BRIDGE CLOSED; ULTRA-LOW EDIT RIGIDITY CLOSED; POST-GROUP ALGEBRA CLOSED; WRONG-ORDER OBSTRUCTION CLOSED; PASCH LOCALIZATION CLOSED; NEAR-CARRIER OBSTRUCTION CLOSED
 
-Primary target is now corrected: upgrade phase-profile stability to **carrier-adjusted** structural/edit-distance rigidity, or identify the sharp obstruction. Exact same-order rigidity at arbitrary `o(1)` P-phase impurity is false.
+Primary target is now corrected again: the robust projective statement cannot be same-carrier and cannot require injection of all points into a Boolean/group carrier of size `(1+o(1))n`. The next viable target is **large projective-core stability after deleting `o(n)` exceptional points and making `o(n^2)` block/pair repairs**.
 
 ## Closed step 1 — `PROJECTIVE_ASSOCIATOR_BRIDGE`
 
@@ -76,8 +76,6 @@ The third identity is exactly the missing Fano condition
 
 ### Destructive audit result
 
-The naive equivalence is false even in the strong root-only form.
-
 An explicit Pasch trade in the projective `STS(15)=PG(3,2)` produces a D-phase root for which **all six permutations of the root associate**, while the derived associativity identity fails. Therefore root associativity by itself cannot characterize P-phase.
 
 ---
@@ -88,23 +86,9 @@ Full proof:
 
 `notes/PROJECTIVE_DRAPAL_EDIT_RIGIDITY.md`
 
-Commit introducing the proof note:
+Commit:
 
 `5ab6870d986b3c94bbad6717bf6496b411a65ff8`
-
-### Imported theorem checked
-
-Aleš Drápal, *On quasigroups rich in associative triples*, Discrete Mathematics 44 (1983), 251–265, gives for a quasigroup of order `n`:
-
-```math
-1 <= s < 3n^2/32
-\quad\Longrightarrow\quad
-3tn < s,
-```
-
-where `s` is the number of failed associativity triples and `t` is the Hamming distance to a group operation on the same underlying set.
-
-### Consequence
 
 For the Steiner loop of `STS(v)`, if
 
@@ -116,8 +100,7 @@ then `v+1` is a power of `2` and there exists a projective Steiner triple system
 
 ```math
 \boxed{
-d_blk(S,T)
-< s/[3(v+1)v(v-1)].
+d_blk(S,T)<s/[3(v+1)v(v-1)].
 }
 ```
 
@@ -135,65 +118,16 @@ Commit:
 
 `4dd80fc1ffbfc25dcb6e213ac75321f30fbd4b33`
 
-This step removes every algebraic obstruction **after** a same-set near-group theorem is obtained.
-
-Let the Steiner loop have order `n=v+1`, and suppose an arbitrary group law `*` on the same set is at Hamming distance `t` from the Steiner table.
-
-### Robust involution count
-
-For each row `a`, compare the group translation `P_a` with the Steiner involution `Q_a`. If `a*a` is not the group identity, then
+Any same-set group law at table distance
 
 ```math
-r_a=d_H(P_a,Q_a) >= n/2.
+t<n^2/8
 ```
 
-Therefore the approximating group contains at least
-
-```math
-n-2t/n
-```
-
-involutions.
-
-### Boolean threshold
-
-A finite group with more than `3n/4` involutions is elementary abelian `2`. Consequently
-
-```math
-\boxed{t<n^2/8}
-```
-
-already forces the approximating group to be Boolean and forces the exact order spectrum
-
-```math
-\boxed{n=2^m}.
-```
-
-### Identity alignment costs only `O(n)`
-
-If the group identity is not the added Steiner-loop point `0`, transpose those two labels and transport the Boolean group law. The multiplication table changes in at most
-
-```math
-6n
-```
-
-cells.
-
-### Exact conversion to STS edit distance
-
-For two Boolean/Steiner tables with common identity `0`, table mismatch and block mismatch satisfy exactly
+from a Steiner loop is automatically elementary abelian `2`; after aligning identities at `O(n)` cost it yields a projective STS with exact conversion
 
 ```math
 d_blk(S,T)=t_0/[v(v-1)].
-```
-
-Hence any same-set group approximation with `t<n^2/8` yields a projective STS `T` with
-
-```math
-\boxed{
-d_blk(S,T)
-<= (t+6n)/[(n-1)(n-2)].
-}
 ```
 
 ---
@@ -208,151 +142,168 @@ Commit:
 
 `0f9b7222388fd6d176257dd9239be52877b4b7d2`
 
-### Exact wrong-order sequence
-
-Using Grannell--Lovegrove's Add 4 maxi-Pasch construction, for every `k>=2` there is an STS `T_k` of order
+Using Grannell--Lovegrove's Add-4 maxi-Pasch construction, for every `k>=2` there is an STS `T_k` of order
 
 ```math
 w_k=2^{2k}+3
 ```
 
-whose loop order
+with loop order `n_k=2^{2k}+4`, not a power of `2`, and exact associativity defect
 
 ```math
-n_k=w_k+1=2^{2k}+4
-```
-
-is not a power of `2`.
-
-Their exact Pasch count, combined with Kozlik's formula for associative triples in Steiner loops, gives
-
-```math
-\boxed{
-s_k=4(w_k-7)(7w_k-48).
-}
+\boxed{s_k=4(w_k-7)(7w_k-48).}
 ```
 
 Hence
 
 ```math
-s_k/n_k^3 = 28/w_k + O(1/w_k^2) -> 0.
+s_k/n_k^3=28/w_k+O(1/w_k^2)->0,
 ```
 
-The associator bridge then yields
+while every group law on the same carrier stays at distance at least `n_k^2/8`. Therefore uniform same-carrier `99% associativity => o(n^2)` group reconstruction is false even for Steiner loops.
+
+The same construction, together with the Drápal lower bound, proves the exact projective order-rigidity scale is
 
 ```math
-\boxed{1-rho_P(T_k)=Theta(1/w_k),}
+\boxed{Theta(1/v)}
 ```
 
-so in particular
-
-```math
-rho_P(T_k)->1
-```
-
-along a sequence of **wrong projective orders**.
-
-### Same-set 99% reconstruction is false
-
-If any group law on the same `n_k`-point set were at table distance `<n_k^2/8`, the robust Boolean recovery theorem would force `n_k=2^m`, contradiction. Therefore
-
-```math
-\boxed{
-\min_{\text{group laws }*\text{ on }L_k}
-d_H(\circ_k,*)
-\ge n_k^2/8,
-}
-```
-
-while `s_k/n_k^3->0`.
-
-Thus the former target
-
-```math
-s/n^3 -> 0
-=>
-t/n^2 -> 0
-```
-
-for a group law on the **same carrier** is false even for Steiner loops.
-
-### Exact order rigidity at `o(1)` phase impurity is false
-
-The same sequence refutes
-
-```math
-1-rho_P=o(1)
-=>
-v+1=2^m.
-```
-
-Therefore no unconditional theorem can take distance to `P_v` on the same order for every `rho_P->1`, since `P_v` is empty on the above orders.
-
-### Sharp scale
-
-The Drápal-regime lower bound for every wrong-order STS is
-
-```math
-1-rho_P
->=
-3(v+1)^2/[32v(v-1)(v-3)]
-=
-3/(32v)+O(1/v^2).
-```
-
-The explicit Add 4 sequence has
-
-```math
-1-rho_P=O(1/v).
-```
-
-Therefore the exact projective **order-rigidity scale is Theta(1/v)** up to absolute constants.
-
-This is a genuine sharpness result, not merely an obstruction.
+up to absolute constants.
 
 ---
 
-## Corrected projective target
+## Closed step 5 — `PROJECTIVE_PASCH_LOCALIZATION_AND_CARRIER_GAP`
 
-The projective problem must now allow a nearby carrier/order.
+Full proof:
 
-The Grannell--Lovegrove sequence is itself only four points away from its projective source: it is constructed from projective order `2^{2k}-1` and has order `2^{2k}+3`.
+`notes/PROJECTIVE_PASCH_LOCALIZATION_AND_CARRIER_GAP.md`
 
-The new target is therefore:
+Commit:
 
-> if `s/n^3=o(1)` (equivalently on the P-dominant branch `1-rho_P=o(1)`), recover a Boolean group / projective STS on a carrier of size `n'=n+o(n)` and show agreement on `1-o(1)` of the relevant multiplication cells / STS pairs or blocks.
+`39d81ee754208e416fe003817fead0df33b118ba`
 
-This is **open**, not assumed true.
+### Exact blockwise defect geometry
 
-It is also the correct shape of the 99% theorem attributed to Elad Levi by Gowers--Long: an injection into a group of approximately the same size, not necessarily a group law on the identical carrier.
+For a block
+
+```math
+B={x,y,x∘y}
+```
+
+let `p(B)` be the number of Pasch configurations through `B`, and let
+
+```math
+r_xy=d_H(T_{x∘y},T_xT_y).
+```
+
+Then
+
+```math
+\boxed{r_{xy}=r_{x,x∘y}=r_{y,x∘y}=(v-3)-p(B).}
+```
+
+Thus associator defect is not an abstract Latin-square error: it is exactly the **local Pasch-incidence deficit of the STS block**.
+
+Summing over blocks recovers
+
+```math
+\boxed{s=v(v-1)(v-3)-24P(S)=24(M(v)-P(S)).}
+```
+
+### Exact `C14` equivalence
+
+Each associativity failure determines the classical seven-point four-block configuration `C14`, and each `C14` gives exactly four ordered failures. Therefore
+
+```math
+\boxed{s=4c_{14}.}
+```
+
+Hence the projective stability problem is exactly an STS-relative sparse `C14`-removal/stability problem.
+
+### Regularized core
+
+If `delta=s/n^3`, deleting at most `sqrt(delta)n` points leaves every surviving point with first-coordinate associator load at most
+
+```math
+sqrt(delta)n^2.
+```
+
+This is rigorous regularization, but not yet a projective-core theorem.
+
+### Near-carrier injection is also impossible
+
+Suppose `phi:L->G` is injective and preserves all but `t_phi` products. Then `G` contains at least
+
+```math
+n-2t_phi/n
+```
+
+involutions. If `G` is non-Boolean and `|G|=lambda n`, then necessarily
+
+```math
+\boxed{t_phi/n^2 >= 1/2-3lambda/8.}
+```
+
+Thus when `|G|=(1+o(1))n`, vanishing product error forces `G` to be Boolean.
+
+For the Add-4 sequence `n_k=2^{2k}+4`, the smallest Boolean group large enough for an injection has order `2^{2k+1}`, so its size ratio tends to `2`, not `1`. Therefore there is **no** reconstruction of all points into a group of order `(1+o(1))n` with `o(n^2)` product errors.
+
+This strengthens the wrong-order obstruction: both same-carrier and near-supercarrier formulations are false.
+
+---
+
+## Corrected projective target — LARGE PROJECTIVE CORE
+
+The Add-4 obstruction does not kill deletion/core stability: its carrier is only four points larger than the projective source.
+
+The next honest target is:
+
+> If `1-rho_P=o(1)`, can one delete `o(v)` exceptional points and then, after `o(v^2)` repairs, obtain a projective STS / Boolean loop on a projective order `q-1` with `q=2^m=v+1-o(v)`?
+
+Two versions must be separated:
+
+1. **partial-core agreement:** compare only products/pairs remaining inside the large core;
+2. **subsystem reconstruction:** after deletion and `o(v^2)` repairs, the retained structure is itself projective.
+
+Attack (1) first.
+
+The preferred internal language is now
+
+```math
+associator failures
+<-> block Pasch deficits
+<-> C14 occurrences.
+```
+
+Generic dense hypergraph removal is not enough without an STS-relative/sparse normalization because an STS has only `Theta(v^2)` blocks among `Theta(v^3)` possible triples.
 
 ## Current bottleneck / next attack
 
-1. formulate a precise carrier-adjusted edit metric compatible with STS block distance;
-2. source-check/reconstruct the Levi 99% theorem in a form usable for Steiner loops;
-3. determine quantitative `|n'-n|/n` and edit error from `delta_assoc`;
-4. use the Add 4/Add 6 families as lower-bound/extremal tests;
-5. only after projective branch is settled, move to the Hall/distributive analogue.
+1. prove or refute large-core stability from `c14=o(v^3)`;
+2. exploit the block weights `d(B)=(v-3)-p(B)` and their incidence distribution;
+3. test Add-4/Add-6 and other high-Pasch constructions as extremal lower bounds for required vertex deletion;
+4. search specifically for STS-relative linear-hypergraph removal/stability results preserving pair-completion;
+5. only after projective core stability is resolved, move to the Hall/distributive analogue.
 
 ## Publication threshold
 
-The branch has now crossed a stronger publication threshold than before:
+The branch is firmly publication-ready as a positive-theorem + sharp-obstruction paper even if large-core stability remains open. The new blockwise Pasch localization and the strengthened near-carrier obstruction materially improve the Article III architecture.
 
-1. exact local P-phase / associator certificate;
-2. explicit counterexample to the naive root criterion;
-3. explicit ultra-low-defect projective edit-rigidity theorem;
-4. robust Boolean recovery from group distance;
-5. **explicit wrong-order counterexample to uniform same-set reconstruction**;
-6. **sharp `Theta(1/v)` scale for exact projective order rigidity**.
+Hold final PDF/Zenodo until the large-core question receives one serious proof attack and the paper is rewritten around:
 
-This is enough for a mathematically substantive Article III even if the carrier-adjusted 99% theorem remains open. However, because the new obstruction changes the headline theorem, hold final PDF/Zenodo until the carrier-adjusted formulation is attacked and the paper architecture is rewritten around the positive theorem + sharp obstruction dichotomy.
+- local associator certificate;
+- ultra-low exact rigidity;
+- sharp `Theta(1/v)` order obstruction;
+- blockwise Pasch / `C14` defect geometry;
+- impossibility of same-carrier and `(1+o(1))` supercarrier reconstruction;
+- corrected large-projective-core conjecture.
 
 ## Research discipline
 
 - no theorem without proof;
 - attack counterexamples first;
 - keep order-spectrum assumptions explicit;
-- distinguish same-order rigidity from carrier-adjusted rigidity;
+- distinguish same-order, supercarrier, and deletion/core notions of rigidity;
 - distinguish phase-profile stability from edit-distance stability;
 - no intermediate PDFs;
 - update this file after each closed mathematical step.
