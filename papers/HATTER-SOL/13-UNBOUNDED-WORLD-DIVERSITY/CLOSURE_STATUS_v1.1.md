@@ -3,7 +3,8 @@
 **Date:** 2026-09-14  
 **Branch:** `research/hatter-sol-unbounded-world-diversity`  
 **Research status:** CLOSED / theorem work complete  
-**Publication status:** v1.1 publication-ready; Zenodo DOI pending external deposit.
+**Publication status:** PUBLISHED  
+**DOI:** `10.5281/zenodo.22754637`
 
 ## Final theorem spine
 
@@ -31,9 +32,7 @@ The arithmetic prime-decomposition data are canonical. The graph carrier is an a
 
 ## Handoff to HATTER-SOL-14
 
-The remaining structural weakness of H13 is deliberate: carriers were allowed to be arbitrary connected simple graphs and were not required to respect the Galois action on the prime ideals above `2`.
-
-H14 therefore begins with the question:
+H14 begins with the question:
 
 > What survives of the H13 erasure theory when the carrier itself must be canonical with respect to arithmetic symmetry?
 
@@ -44,6 +43,6 @@ X_k=\operatorname{Gal}(K_k/\mathbb Q)/D_k,
 \qquad D_k=\langle 2\rangle,
 \]
 
-and, because the cyclotomic Galois group is abelian, the quotient acts regularly on `X_k`. Galois-equivariant carriers are therefore expected to reduce to Cayley-type graphs on the quotient group.
+and the quotient acts regularly on `X_k`. Galois-equivariant carriers are therefore expected to reduce to Cayley-type graphs on the quotient group.
 
-No further research should be added to H13 except DOI insertion, archival corrections, or errata.
+No further research should be added to H13 except archival corrections or errata.
