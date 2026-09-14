@@ -1,7 +1,7 @@
 # HATTER-SOL-13 · STATUS
 
 **Date:** 2026-09-14  
-**State:** active research; central scalar theorem spine established
+**State:** active research; publication-level theorem spine nearly closed
 
 ## Closed
 
@@ -16,7 +16,7 @@
   g_k=\frac{\varphi(2^k-1)}{k}\to\infty.
   \]
   See `CYCLOTOMIC_FIXED_PRIME_UNBOUNDED_SUPPORT.md`.
-- The intrinsic residue-degree observer already has unbounded range.
+- The intrinsic residue-degree observer has unbounded range.
 - Under the residue-degree port lift, a path/tree carrier preserves unbounded response:
   \[
   B_f(P_{g_k})=g_k(k-2)+2\to\infty.
@@ -35,30 +35,45 @@
   |\mathcal B_k|=\frac{g_k(k-2)}2+2\to\infty.
   \]
   See `EXACT_CARRIER_BOUNDARY_SPECTRUM.md`.
+- A canonical local ideal-type response is
+  \[
+  A_k(E,F)=g_kEF^k.
+  \]
+  The family is linearly independent over `Q`, with
+  \[
+  \dim_Q\operatorname{span}\{A_2,\ldots,A_m\}=m-1,
+  \]
+  and centered difference rank `m-2`. See `LOCAL_IDEAL_TYPE_POLYNOMIAL_RANK.md`.
+- Galois transitivity gives a node-level symmetry no-go: individual prime ideals above `2` cannot be distinguished by any Galois-invariant observer depending only on local `(e,f)` type.
+- Prior-art/novelty audit completed with claim narrowing. See `PRIOR_ART_AND_NOVELTY_AUDIT.md`.
 
 ## Current theorem picture
 
-The same fixed integer `2` exhibits three distinct levels of unboundedness:
+The same fixed integer `2` exhibits four exact forms of structural growth:
 
-1. **arithmetic support:** number of prime ideals above `2` is unbounded;
-2. **observer response:** residue-degree support observer is unbounded;
-3. **network response:** sparse carriers preserve unbounded scalar boundary diversity.
+1. **arithmetic support:** the number `g_k` of prime ideals above `2` is unbounded;
+2. **world-response rank:** the local ideal-type polynomial family has unbounded linear rank;
+3. **network survival:** sparse carriers produce unbounded scalar boundary response;
+4. **within-world carrier spectrum:** each sufficiently large world has the complete response interval
+   \[
+   \mathcal B_k=\{0,2,\ldots,g_k(k-2)+2\}.
+   \]
 
-But carrier enrichment can also erase the same scalar memory completely, and the entire interpolation between the two extremes is known exactly.
+At the same time, saturated carriers erase the scalar residue-degree boundary completely. This gives an exact infinite-world survival/collapse law.
 
 ## Remaining proof obligations
 
-1. Lift the theorem from scalar residue-degree capacity to a richer HATTER ideal-typed response compatible with HATTER-SOL-10.
-2. Determine whether the richer response has unbounded support size, polynomial diversity, or linear rank.
-3. Run hostile prior-art/novelty audit of the final composed theorem.
-4. Decide publication threshold only after the richer-response question is either solved or shown unnecessary by a strong no-go result.
+1. Run a hostile internal consistency audit across all H13 theorem files, especially the distinction between standard decomposition data and HATTER-specific response packaging.
+2. Decide whether a stronger nonlocal ideal observer beyond `(e,f,g)` is mathematically necessary for H13, or should be deferred to H14.
+3. Freeze article architecture and bibliography.
+4. Signal publication threshold only if the hostile audit finds no hidden domain or novelty defect.
 
 ## Claim discipline
 
-Already proved: unbounded structural and scalar network-response diversity for one fixed rational integer across a natural world family.
+Already proved: one fixed rational integer supports a natural arithmetic-world response of unbounded symbolic rank and an exact unbounded carrier-response spectrum.
 
-Not proved: independent information, entropy, arbitrary payload capacity, cryptographic hardness, or unbounded rank of the full ideal-typed Pareto polynomial.
+Not proved or claimed: independent information, Shannon entropy, arbitrary payload capacity, cryptographic hardness, or novelty of classical prime decomposition data itself.
 
 ## Next action
 
-Attack the HATTER-SOL-10-compatible ideal-typed lift. First try to prove that the prime ideals above `2` in the cyclotomic family carry a canonical typed state whose aggregate response retains more than the scalar residue degree. If conjugacy forces all typed states to coincide, record that as a symmetry no-go and identify the weakest richer observer that survives.
+Perform the final hostile H13 consistency audit. If it passes, freeze the H13 article around the bounded/unbounded dichotomy, unbounded polynomial rank, and exact carrier survival/collapse spectrum rather than expanding into new machinery.
