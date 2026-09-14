@@ -1,52 +1,64 @@
 # HATTER-SOL-13 · STATUS
 
 **Date:** 2026-09-14  
-**State:** active research
+**State:** active research; central scalar theorem spine established
 
 ## Closed
 
 - H12 finite-world structural-memory framework is published: DOI `10.5281/zenodo.22747698`.
 - Fixed quadratic conductor towers do not yield unbounded fixed-integer factor/interface diversity. See `CONDUCTOR_TOWER_NO_GO.md`.
+- For the fixed rational prime `2` and worlds
+  \[
+  K_k=\mathbb Q(\zeta_{2^k-1}),
+  \]
+  the prime-ideal support is unbounded:
+  \[
+  g_k=\frac{\varphi(2^k-1)}{k}\to\infty.
+  \]
+  See `CYCLOTOMIC_FIXED_PRIME_UNBOUNDED_SUPPORT.md`.
+- The intrinsic residue-degree observer already has unbounded range.
+- Under the residue-degree port lift, a path/tree carrier preserves unbounded response:
+  \[
+  B_f(P_{g_k})=g_k(k-2)+2\to\infty.
+  \]
+- Explicit connected `k`-regular saturated carriers collapse the same response to
+  \[
+  B_f=0.
+  \]
+  See `RESIDUE_DEGREE_CARRIER_DICHOTOMY.md`.
+- For all sufficiently large `k`, the full connected simple feasible scalar carrier spectrum is exactly
+  \[
+  \boxed{\mathcal B_k=\{0,2,4,\ldots,g_k(k-2)+2\}.}
+  \]
+  Hence
+  \[
+  |\mathcal B_k|=\frac{g_k(k-2)}2+2\to\infty.
+  \]
+  See `EXACT_CARRIER_BOUNDARY_SPECTRUM.md`.
 
-## Current main target
+## Current theorem picture
 
-Prove a positive fixed-integer unbounded-diversity theorem using a natural higher-degree family.
+The same fixed integer `2` exhibits three distinct levels of unboundedness:
 
-Primary probe:
+1. **arithmetic support:** number of prime ideals above `2` is unbounded;
+2. **observer response:** residue-degree support observer is unbounded;
+3. **network response:** sparse carriers preserve unbounded scalar boundary diversity.
 
-\[
-n=2.
-\]
+But carrier enrichment can also erase the same scalar memory completely, and the entire interpolation between the two extremes is known exactly.
 
-Primary world family:
+## Remaining proof obligations
 
-\[
-K_k=\mathbb Q(\zeta_{2^k-1}),\qquad k\ge2.
-\]
+1. Lift the theorem from scalar residue-degree capacity to a richer HATTER ideal-typed response compatible with HATTER-SOL-10.
+2. Determine whether the richer response has unbounded support size, polynomial diversity, or linear rank.
+3. Run hostile prior-art/novelty audit of the final composed theorem.
+4. Decide publication threshold only after the richer-response question is either solved or shown unnecessary by a strong no-go result.
 
-Target arithmetic branching count:
+## Claim discipline
 
-\[
-g_k=\#\{\mathfrak p\subset\mathcal O_{K_k}:\mathfrak p\mid2\mathcal O_{K_k}\}
-=\frac{\varphi(2^k-1)}{k}.
-\]
+Already proved: unbounded structural and scalar network-response diversity for one fixed rational integer across a natural world family.
 
-## Proof obligations
-
-1. Prove `ord_{2^k-1}(2)=k` exactly.
-2. Prove the cyclotomic decomposition formula for `2` in `K_k` applies because `2` is unramified.
-3. Prove `g_k` is unbounded; prefer an elementary lower bound strong enough for the result.
-4. Define the weakest intrinsic HATTER observer whose output already detects `g_k`.
-5. Separate unbounded ideal support from unbounded network-response diversity.
-6. Determine whether a canonical carrier response preserves an unbounded subsequence or collapses it.
-7. Run prior-art/novelty audit before publication claims.
-
-## Current conjectural theorem shape
-
-There exists one fixed rational integer `n=2` and a natural sequence of number fields `K_k` for which the number of prime-ideal directions above `2` is unbounded.
-
-This would establish unbounded **arithmetic structural diversity**. It does not yet establish unbounded entropy, message capacity, or an unbounded HATTER network response.
+Not proved: independent information, entropy, arbitrary payload capacity, cryptographic hardness, or unbounded rank of the full ideal-typed Pareto polynomial.
 
 ## Next action
 
-Close obligations 1-3 in a self-contained theorem note, then attack observer survival.
+Attack the HATTER-SOL-10-compatible ideal-typed lift. First try to prove that the prime ideals above `2` in the cyclotomic family carry a canonical typed state whose aggregate response retains more than the scalar residue degree. If conjugacy forces all typed states to coincide, record that as a symmetry no-go and identify the weakest richer observer that survives.
