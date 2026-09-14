@@ -33,40 +33,68 @@ Under the standing hypotheses, the support faces can be retriangulated so that t
 
 ### Proof
 
-Only one old incidence must be removed from `x`. Choose any support face `C` incident with `x` whose old `x`-load is positive.
+Only one old incidence must be removed from `x`. Call a vertex of `Q` **hot** if its `Q`-degree is at least five.
 
-Call a vertex of `Q` hot if its degree is at least five.
+### Case A — no hot vertex
 
-### No hot vertex on `C`
+Choose any loaded face `C` at `x` and apply T11.72 at `x`.
 
-Apply T11.72 at `x`. Then `x` loses at least one incidence and falls to degree at most six. Every other boundary vertex has `Q`-degree at most four and receives at most two new diagonals, hence has final degree at most six.
+The center loses at least one incidence and therefore falls to degree at most six. Every other boundary vertex has `Q`-degree at most four and receives at most two new diagonals, so its final added degree is at most six.
 
-### Exactly one hot vertex `u` on `C`
+### Case B — exactly one hot vertex `u`
+
+Because `x` is the unique overloaded vertex of `F`,
+
+`5<=d_Q(u)<=6`.
+
+If some loaded face `C` at `x` does **not** contain `u`, apply T11.72 to that face. Every boundary vertex of `C` has `Q`-degree at most four, so the repair is immediately safe.
+
+Assume therefore that every loaded face at `x` contains `u`.
+
+Two vertices of a 3-connected simple plane graph lie together on at most two support faces: one if they are nonadjacent, exactly two if they are adjacent. Hence all seven old `x`-incidences lie in at most two common faces of `x,u`. One such face `C` has old `x`-load
+
+`k_C>=4`.
+
+Retriangulate `C` by T11.72 **at `u`**, not at `x`.
+
+The hot vertex `u` receives no new diagonal. All `k_C` old `x`-diagonals in `C` disappear, while the new triangulation contributes at most two diagonals at `x`. Therefore
+
+`d'(x)<=7-k_C+2<=5`.
+
+Every other boundary vertex has `Q`-degree at most four and receives at most two new diagonals, hence remains at degree at most six. Thus the repair is complete.
+
+### Case C — two hot vertices `u,v`
+
+By T11.102,
+
+`d_Q(u)=d_Q(v)=5`, `uv in Q`,
+
+and every edge of `Q` is incident with `u` or `v`.
+
+Because `uv` is an added edge, `u,v` are nonadjacent in the support and therefore share a unique support face, namely the face containing the diagonal `uv`.
+
+Choose any loaded face `C` at `x`.
+
+#### C1. `C` contains neither hot vertex
+
+Apply T11.72 at `x`. Every boundary vertex has `Q`-degree at most two, so the local bound two is harmless.
+
+#### C2. `C` contains exactly one hot vertex, say `u`
 
 Apply T11.77 at `x`, protecting `u`.
 
-The center `x` again falls to at most six. The protected vertex receives at most one new diagonal.
+The protected vertex has degree at most `5+1=6`. Every other boundary vertex has `Q`-degree at most two, because all nine edges of `Q` are covered by the two hot centers, so the local bound three is safe. The center `x` loses at least one old incidence and falls to degree at most six.
 
-If `u` is the only hot vertex, then `d_Q(u)<=6` because a degree-seven vertex of `Q` would be a second overloaded vertex of `F`. Any old `Q`-edge lying inside `C` is deleted before retriangulation, so the outside-`C` degree of `u` is at most six and is in fact at most five whenever `C` contains one of its old diagonals. Thus `u` has final degree at most six after protection.
+#### C3. `C` contains both hot vertices
 
-For every other boundary vertex, if `d_Q(u)>=5`, at most four of the nine edges avoid `u`; including a possible edge to `u`, its `Q`-degree is at most five, and the only way to reach five would create a second hot vertex. Hence every unprotected boundary vertex has `Q`-degree at most four and T11.77's local bound at most three is safe except at degree four. If a degree-four boundary vertex occurs, use Lemma T11.97 when it is a boundary neighbor of `x`; otherwise orient the protected zig-zag so that this unique degree-four vertex is the low-incidence end. It then receives at most two new incidences. Thus the bound remains six.
+Then `C` is the unique common support face of `u,v` and contains the old diagonal `uv`.
 
-### Two hot vertices `u,v`
-
-By T11.102 they both have degree five, `uv` is an added edge, and every edge of `Q` meets `u` or `v`.
-
-Because `uv` is added, `u,v` are nonadjacent in the support and therefore lie together on a unique support face, namely the face containing the diagonal `uv`.
-
-If `C` contains neither hot vertex, T11.72 is safe: every boundary vertex has `Q`-degree at most two.
-
-If `C` contains exactly one hot vertex, use T11.77 protecting it. Every other boundary vertex has `Q`-degree at most two, so the local bound three is harmless, while the protected hot vertex has degree at most `5+1=6`.
-
-If `C` contains both hot vertices, then `C` is their unique common support face and contains the old diagonal `uv`. Retriangulating `C` deletes `uv`, so each hot vertex has outside-`C` `Q`-degree at most four. Apply the ordinary T11.72 at `x`. Every boundary vertex, including `u,v`, then has final degree at most
+Retriangulating `C` deletes `uv`, so each hot vertex has outside-`C` `Q`-degree at most four. Apply T11.72 at `x`. Each boundary vertex, including `u,v`, then has final added degree at most
 
 `4+2=6`.
 
-Thus every possible placement of the hot structure admits a repair with `Delta<=6`. QED.
+Thus every possible hot configuration admits a repair with `Delta<=6`. QED.
 
 ## Consequence
 
-The new two-hot phenomenon at nine off-center edges is not an order-44 obstruction. The remaining one-center degrees at `r=16` are `8<=d<=16`; for `d>=8` the off-center graph has at most eight edges and therefore at most one degree-five hot vertex, returning to the single-hot regime of T11.95.
+The new two-hot phenomenon at nine off-center edges is not an order-44 obstruction. The remaining one-center degrees at `r=16` are `8<=d<=16`; for `d>=8`, the off-center graph has at most eight edges and therefore at most one degree-five hot vertex, returning to the single-hot regime of T11.95.
