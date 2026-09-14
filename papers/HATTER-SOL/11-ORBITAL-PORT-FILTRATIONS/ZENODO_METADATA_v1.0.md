@@ -6,12 +6,14 @@ Creator: Malachevsky, A.A.
 ORCID: 0009-0008-6009-3196
 
 Title: Orbital Port Filtrations: How Network Geometry Forgets Arithmetic Direction Data
+Zenodo DOI: 10.5281/zenodo.22746559
 
 Related HATTER-SOL DOI ledger:
 - H07: 10.5281/zenodo.22724185
 - H08: 10.5281/zenodo.22744644
 - H09: 10.5281/zenodo.22732435
 - H10: 10.5281/zenodo.22734865
+- H11: 10.5281/zenodo.22746559
 
 Languages: English, Russian.
 
