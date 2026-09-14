@@ -1,7 +1,7 @@
 # HATTER-SOL-12
 ## Observer Laws, World Rotation, and Structural Memory of an Integer
 
-**Version:** v0.1 theorem-spine draft  
+**Version:** v0.1 theorem-spine draft, hostile-audit patched  
 **Date:** 2026-09-14  
 **Author:** Malachevsky, A.A.  
 **ORCID:** 0009-0008-6009-3196
@@ -28,9 +28,9 @@ three nested observers distinguish respectively `1`, `2`, and `3` classes, while
 3\xrightarrow{d=P}2\xrightarrow{d=P+Q}1.
 \]
 
-Second, for the fixed probe `61^6`, the nine imaginary-quadratic class-number-one worlds admit a strict finite resolving ladder from numerical equality to split/inert separation and then, inside the split sector, to complete four-world separation.
+Second, for the fixed probe `61^6`, the nine imaginary-quadratic class-number-one worlds split first into two scalar-response classes (split versus inert). Conditional on the four-world split sector, asymmetric weighted planar observations refine the resolution from one class at the symmetric direction to three classes with one generic sample and four classes with two samples; a single rich polynomial response also separates all four.
 
-Third, for the four split worlds `Delta=-4,-3,-19,-163`, the same one-parameter weighted scalar observer has different exact resolving profiles on planar and toroidal carriers:
+Third, for the four split worlds `Delta=-4,-3,-19,-163`, the same one-parameter weighted scalar observer has different exact resolving profiles on the planar class and on the full class `Tor_12` of connected simple twelve-vertex toroidal carriers:
 
 \[
 D_{Pl}(r)=
@@ -40,7 +40,7 @@ D_{Pl}(r)=
 3,&r>1,
 \end{cases}
 \qquad
-D_T(r)=
+D_{Tor}(r)=
 \begin{cases}
 3,&0<r<1,\\
 2,&r=1,\\
@@ -51,10 +51,10 @@ D_T(r)=
 Hence
 
 \[
-\boxed{D_T(r)-D_{Pl}(r)=1\quad\text{for every }r>0.}
+\boxed{D_{Tor}(r)-D_{Pl}(r)=1\quad\text{for every }r>0.}
 \]
 
-The associated HATTER tomographic dimension drops from `2` on the planar carrier to `1` on the explicit triangular torus. The results show that structural visibility is controlled jointly by arithmetic world, carrier, and observer, rather than by the integer alone.
+The associated HATTER tomographic dimension drops from `2` on the planar carrier class to `1` on `Tor_12`. The results show that structural visibility is controlled jointly by arithmetic world, carrier, and observer, rather than by the integer alone.
 
 ---
 
@@ -277,13 +277,21 @@ T_q^2=I,
 T_pT_q=T_qT_p.
 \]
 
-For a finite set of toggle primes `Q` and base world `R_0`, write
+Fix a finite prime set `Q`, a base world `R_0`, and assume that the chosen HATTER response `Z_R(n;X,Y)` is defined at **every** vertex of the generated prime-toggle cube
+
+\[
+\mathcal C_Q(R_0)=\{T_AR_0:A\subseteq Q\}.
+\]
+
+This domain condition is automatic for the abstract squareclass signal but is not automatic for the current element-factorization response if a toggle leaves the chosen UFD laboratory.
+
+Write
 
 \[
 T_A=\prod_{q\in A}T_q
 \]
 
-for `A subseteq Q` and define the polynomial response field
+for `A subseteq Q` and define
 
 \[
 F_n(A)=Z_{T_AR_0}(n;X,Y).
@@ -300,7 +308,7 @@ These are standard Boolean-lattice finite differences applied to the HATTER worl
 
 ### Proposition 4.1 — finite world-cube reconstruction
 
-For every `A subseteq Q`,
+Under the full-cube response-domain assumption above, for every `A subseteq Q`,
 
 \[
 Z_{T_AR_0}(n)
@@ -310,7 +318,7 @@ Z_{T_AR_0}(n)
 
 with the inverse relation supplied by the same Boolean-lattice Möbius calculus.
 
-The algebraic transform itself is standard. The HATTER role of the transform is to provide exact coordinates for a polynomial-valued arithmetic-world response field.
+The algebraic transform itself is standard. The HATTER role of the transform is to provide exact coordinates for a polynomial-valued arithmetic-world response field on any admissible finite cube.
 
 ---
 
@@ -336,11 +344,11 @@ then `O_{H_2}` refines `O_{H_1}` and therefore
 \mathcal F_{O_{H_1}}(s).
 \]
 
-Examples of canonical HATTER horizons include:
+Examples of HATTER observation horizons include:
 
-- world-digit order `|B|<=r`;
+- world-digit order `|B|<=r` on an admissible response cube;
 - polynomial support cutoff `a+b<=L`;
-- finite world radius;
+- finite world radius inside an admissible response domain;
 - finite orbit set;
 - bounded carrier scale.
 
@@ -370,35 +378,45 @@ with local folded states
 
 while the five remaining worlds are inert with rational-axis state `(61,0)`.
 
-### Level 0: numerical observer
+### Stage A: the nine-world laboratory
 
-The observer
+The numerical observer
 
 \[
 O_{num}(W)=61^6
 \]
 
-assigns the same value to all nine worlds. Therefore it gives one class.
+assigns the same value to all nine worlds, hence gives one class.
 
-### Level 1: scalar geometry gain
-
-Let
+For the scalar geometry gain
 
 \[
-g_W=\Lambda_{1D}(W)-\Lambda_{Pl}(W).
+g_W=\Lambda_{1D}(W)-\Lambda_{Pl}(W),
 \]
 
-The exact HATTER splitting-character law gives
+HATTER-SOL-11 gives
 
 \[
 \boxed{g_W=38\text{ on split worlds},\qquad g_W=14\text{ on inert worlds}.}
 \]
 
-Thus the scalar observer yields exactly two classes.
+Thus on the fixed nine-world domain
 
-### Level 2: one weighted planar sample
+\[
+\boxed{1\longrightarrow2.}
+\]
 
-Restrict to the four split worlds and let `r=w_O/w_A>0`. For every fixed `r>1`, the planar weighted responses take three distinct values:
+### Stage B: conditional resolution inside the split sector
+
+Now restrict explicitly to
+
+\[
+\mathcal W_{split}=\{-4,-3,-19,-163\}.
+\]
+
+At the symmetric planar direction `r=1`, all four worlds have the same weighted gain and therefore form one class.
+
+For every fixed `r>1`, the planar weighted responses are
 
 \[
 38r,
@@ -407,12 +425,10 @@ Restrict to the four split worlds and let `r=w_O/w_A>0`. For every fixed `r>1`, 
 \qquad
 38,
 \qquad
-38.
+38,
 \]
 
-Hence one such sample gives three classes.
-
-### Level 3: two planar samples or one rich typed response
+and therefore form three classes.
 
 Choose
 
@@ -420,21 +436,23 @@ Choose
 0<r_-<1<r_+.
 \]
 
-The pair of samples
+The two-sample map
 
 \[
 W\mapsto\bigl(G_W(r_-),G_W(r_+)\bigr)
 \]
 
-is injective on the four split worlds. A single polynomial-valued typed response is also injective on that four-world laboratory.
+is injective on the four split worlds. A single polynomial-valued typed response is also injective on this four-world laboratory.
 
-Thus the same integer realizes the exact finite ladder
+Hence the split-sector resolving diagram is
 
 \[
-\boxed{1\to2\to3\to4,}
+\boxed{1\longrightarrow3\longrightarrow4,}
 \]
 
-with the last two stages restricted to the split sector as stated.
+where the first arrow changes the observation direction and the second enriches the observation to two scalar samples (or one rich polynomial observation).
+
+The two stages together should **not** be read as one refinement chain `1->2->3->4` on a fixed world domain. They form a nested-domain resolving diagram for the same rational integer.
 
 ---
 
@@ -498,9 +516,15 @@ No one planar sample separates all four worlds, while two samples on opposite si
 
 ---
 
-## 8. Explicit triangular torus and one-shot separation
+## 8. Twelve-vertex toroidal carrier class
 
-Let
+Let `Tor_12` be the class of connected simple twelve-vertex graphs embeddable in the torus. Every member satisfies
+
+\[
+|E|\le3\cdot12=36.
+\]
+
+As an extremal witness, let `T_12` have
 
 \[
 V=\mathbb Z_3\times\mathbb Z_4
@@ -516,12 +540,20 @@ x\pm e_2,
 x\pm(e_1+e_2).
 \]
 
-This gives a simple 6-regular graph on twelve vertices with the standard triangular embedding on the torus. The three generator directions are edge-disjoint 2-factors.
+This is a simple 6-regular 36-edge toroidal graph. Its three generator directions are pairwise edge-disjoint 2-factors, and the `e_2` factor contains a perfect matching of six edges.
 
-For this explicit toroidal carrier, the exact normalized weighted responses are
+For any twelve-vertex toroidal carrier and uniform typed state `(A,O)`, the channel bounds imply
 
 \[
-F_{-4}^{T}(r)=
+e_A\le6A,
+\qquad e_O\le6O,
+\qquad e_A+e_O\le36.
+\]
+
+For each of the four split states `(6,5),(5,4),(7,1),(4,1)`, the explicit host `T_12` attains the corresponding linear upper bound in every positive weight regime. Therefore the following are exact **geometry-class** signatures on `Tor_12`:
+
+\[
+F_{-4}^{Tor}(r)=
 \begin{cases}
 50,&r\le1,\\
 12+38r,&r\ge1,
@@ -529,7 +561,7 @@ F_{-4}^{T}(r)=
 \]
 
 \[
-F_{-3}^{T}(r)=
+F_{-3}^{Tor}(r)=
 \begin{cases}
 38+12r,&r\le1,\\
 24+26r,&r\ge1,
@@ -537,11 +569,11 @@ F_{-3}^{T}(r)=
 \]
 
 \[
-F_{-19}^{T}(r)=50,
+F_{-19}^{Tor}(r)=50,
 \]
 
 \[
-F_{-163}^{T}(r)=
+F_{-163}^{Tor}(r)=
 \begin{cases}
 26+12r,&r\le1,\\
 38,&r\ge1.
@@ -552,7 +584,7 @@ F_{-163}^{T}(r)=
 
 \[
 \boxed{
-D_T(r)=
+D_{Tor}(r)=
 \begin{cases}
 3,&0<r<1,\\
 2,&r=1,\\
@@ -580,10 +612,10 @@ For `r>1`, the values are
 
 The first exceeds the second by `12(r-1)>0`, the second exceeds `50` for every `r>1`, and `50\ne38`. Therefore all four are pairwise distinct. \(\square\)
 
-It follows immediately that
+It follows that
 
 \[
-\boxed{\operatorname{tdim}_{T^2}=1.}
+\boxed{\operatorname{tdim}_{Tor}=1.}
 \]
 
 ---
@@ -598,7 +630,7 @@ For every positive weight ratio,
 
 \[
 \boxed{
-D_T(r)-D_{Pl}(r)=1,
+D_{Tor}(r)-D_{Pl}(r)=1,
 \qquad r>0.
 }
 \]
@@ -607,14 +639,14 @@ D_T(r)-D_{Pl}(r)=1,
 
 For `0<r<1`, the counts are `3` and `2`; at `r=1`, they are `2` and `1`; for `r>1`, they are `4` and `3`. \(\square\)
 
-Thus the toroidal carrier resolves exactly one additional arithmetic-world class at every observation direction in this finite laboratory.
+Thus the twelve-vertex toroidal carrier class resolves exactly one additional arithmetic-world class at every observation direction in this finite laboratory.
 
 This statement is stronger than the minimum-sample comparison
 
 \[
 \operatorname{tdim}_{Pl}=2,
 \qquad
-\operatorname{tdim}_{T^2}=1,
+\operatorname{tdim}_{Tor}=1,
 \]
 
 because it compares the entire one-parameter resolving profile.
@@ -669,7 +701,7 @@ The next mathematical targets are:
 1. homology-resolved typed carrier states on the torus;
 2. exact examples with the same ordinary boundary response but different homological memory;
 3. extension of carrier-resolving profiles to higher-genus surfaces;
-4. strict world-digit order hierarchies on natural finite prime-toggle cubes;
+4. strict world-digit order hierarchies on natural admissible prime-toggle cubes;
 5. a proof or obstruction for unbounded fixed-number structural diversity in richer arithmetic world families.
 
 These are future directions and are not used in the present theorem spine.
@@ -678,13 +710,11 @@ These are future directions and are not used in the present theorem spine.
 
 ## 13. Publication status
 
-This file is an EN v0.1 theorem-spine draft. The mathematical core is assembled from closed theorem layers in HATTER-SOL-09, HATTER-SOL-11, and the current branch.
+This file is an EN v0.1 theorem-spine draft patched after a hostile mathematical audit. The inherited `61^6` formulas, the regular-factorizable host theorem, the generic-odd fiber classification, and the prime-toggle operator relations have been checked directly against their source theorem layers. The toroidal witness formulas have additionally been lifted to the full twelve-vertex simple toroidal carrier class in `TORUS_GEOMETRY_CLASS_LIFT.md`.
 
-Before publication candidate status it still requires:
+Before publication-candidate status it still requires:
 
-- bibliography insertion and DOI verification;
-- theorem-dependency audit against source files;
-- hostile mathematical reread of all inherited `61^6` formulas;
-- notation harmonization;
-- final novelty wording audit;
+- full bibliography insertion and DOI verification;
+- notation and theorem-number harmonization;
+- final novelty wording audit against the bibliography;
 - Russian counterpart after the English theorem spine stabilizes.
