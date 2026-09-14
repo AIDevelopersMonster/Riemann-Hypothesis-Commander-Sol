@@ -2,57 +2,125 @@
 
 **Purpose:** preserve secondary lines without diluting the main research effort.
 
-## Priority A — main line
+## Priority A — non-Abelian main line
 
-### A1. Mahler / regulator decomposition of the dihedral spectral curve
+### A1. Dihedral commutator -> Ramanujan -> zeta
 
-Current exact input:
+The H15 core is the non-Abelian two-port Schreier system
+
+\[
+R:i\mapsto i+1,
+\qquad
+S:i\mapsto-i,
+\qquad
+K=[R,S]=R^2.
+\]
+
+On the centered Schreier representation
+
+\[
+V_0=\mathbf C[\mathbf F_p]\ominus\mathbf1,
+\]
+
+we now have the exact theorem
+
+\[
+\boxed{
+\operatorname{Tr}(K^m\mid V_0)=c_p(m)
+}
+\]
+
+for every `m>=1`, hence
+
+\[
+\boxed{
+\mathcal Z_p^{\rm comm}(s)
+:=\sum_{m\ge1}\frac{\operatorname{Tr}([R,S]^m\mid V_0)}{m^s}
+=(p^{1-s}-1)\zeta(s).
+}
+\]
+
+This reconnects the previously separate H15 layers:
+
+\[
+\boxed{
+\text{non-Abelian route-order defect}
+\to
+\text{plaquette holonomy}
+\to
+\text{centered Schreier character}
+\to
+\text{Ramanujan sequence}
+\to
+\text{cyclotomic contour jump}
+\to
+\zeta(s).
+}
+\]
+
+Exact contour/commutator identity:
+
+\[
+I_{p,m}(\rho>1)
+=
+\operatorname{Tr}([R,S]^m\mid V_0)
+=c_p(m).
+\]
+
+**Primary return criterion:** find a genuinely new geometric/spectral constraint on this commutator response — positivity, self-adjoint transfer, trace identity, regulator identity, or another theorem not automatic from the classical Ramanujan/Dirichlet-series formula.
+
+**Claim boundary:** Ramanujan sums, their character interpretations, the Dirichlet-series identity, dihedral character theory, and closed-walk holonomy traces are classical. Any H15 novelty must lie in the full composition through the non-normal Schreier world and ordered-port commutator, not in any one classical ingredient.
+
+### A2. Non-Abelian spectral observer and Mahler regulator character filter
+
+For the dihedral Floquet spectral curve,
 
 \[
 J(C_k)\sim E_{ab}\times E_{ac}\times E_{bc}\times J(C_{abc}).
 \]
 
-Primary target: determine whether the regulator class underlying the Mahler measure of the block determinant decomposes compatibly with these factors, yielding a formula in elliptic/genus-two L-data.
+The natural Mahler regulator form is not a mixture of all four positive-genus sectors. It transforms by the pure `abc` character under the multiquadratic involutions. Therefore
 
-Immediate laboratory: `p=3`, `mu=4` (`lambda=0`). Then `theta=-1` and
+\[
+(\pi_{ab})_*\eta
+=(\pi_{ac})_*\eta
+=(\pi_{bc})_*\eta
+=0,
+\]
+
+while
+
+\[
+\pi_{abc}^*\bar\eta=\eta.
+\]
+
+Thus the natural Mahler observer sees only the genus-two `abc` sector.
+
+In the immediate laboratory `p=3`, `mu=4` (`lambda=0`),
 
 \[
 Q(u)=u^2+4u+13,
 \qquad
-Q(u)-4=u^2+4u+9.
+Q(u)-4=u^2+4u+9,
 \]
 
-The three elliptic quotient quartics are
-
-\[
-E_{ab}: y^2=(u^2-4)(u^2+4u+13),
-\]
-
-\[
-E_{ac}: y^2=(u^2-4)(u^2+4u+9),
-\]
-
-\[
-E_{bc}: y^2=(u^2+4u+13)(u^2+4u+9).
-\]
-
-The genus-two factor is
+and
 
 \[
 C_{abc}:y^2=(u^2-4)(u^2+4u+13)(u^2+4u+9).
 \]
 
-One elliptic quotient has rational model
+After `x=u+2`,
 
 \[
-y^2=x^3+117x+918
+C:y^2=x(x-4)(x^2+5)(x^2+9).
 \]
 
-and is a classical modular elliptic curve (conductor 360; verify minimal model/isogeny label before publication).
+A separate theorem layer gives an absolutely-simple genus-two Jacobian in this laboratory.
 
-**Return criterion:** exact regulator pullback/pushforward identity, recognized L-value relation, or a rigorous obstruction showing no simple decomposition.
+**Return criterion:** verify the descended motivic `K_2` class/tame symbols, identify the genus-two `L`-data, and test whether the Jensen/Mahler period matches the selected simple motive.
 
-### A2. Jensen / transfer-root representation
+### A3. Jensen / transfer-root representation
 
 For each mirror block, after setting `t=w^2`,
 
@@ -76,48 +144,27 @@ Hence the `w`-circle Jensen integral keeps only the exterior transfer root:
 \log\max(1,|t_+(z)|).
 \]
 
-Primary target: turn the full two-torus Mahler measure into a period/regulator integral on the quotient curves above.
+Primary target: turn the full two-torus Mahler measure into a period/regulator integral on the observer-selected genus-two quotient.
 
 ## Priority B — strong secondary lines
 
-### B1. Cyclotomic contour / Ramanujan / zeta
+### B1. Family of cyclotomic contours and Ramanujan-Fourier arithmetic
 
-Exact identity already proved:
-
-\[
-I_{p,m}(\rho>1)=c_p(m)
-\]
-
-and
-
-\[
-\sum_{m\ge1}\frac{c_p(m)}{m^s}
-=(p^{1-s}-1)\zeta(s).
-\]
-
-Interpretation:
-
-\[
-\text{contour jump}
-=\text{Ramanujan sum}
-=\text{centered rotation character}.
-\]
-
-**Return criterion:** a new transform or positivity/spectral statement constraining the non-explicit zeros of this Dirichlet series, not merely rephrasing RH.
-
-### B2. Family of cyclotomic contours and Ramanujan-Fourier arithmetic
-
-Generalize from prime conductor `p` to all `q`:
+Generalize from prime conductor `p` to all odd `q`:
 
 \[
 \Phi_q'/\Phi_q\quad\leadsto\quad c_q(n).
 \]
 
-Potential target: reconstruct prime-sensitive arithmetic functions by a controlled Ramanujan expansion and interpret the coefficients as contour/observer weights.
+For composite odd `q`, the full centered Schreier representation is larger than the primitive cyclotomic sector; the primitive frequency subspace recovers
 
-**Caution:** Ramanujan expansions of classical arithmetic functions are old; novelty could only lie in a new port/surface/spectral constraint or in a new convergence/positivity structure.
+\[
+\operatorname{Tr}(R^{2m}\mid V_q^{\rm prim})=c_q(m).
+\]
 
-### B3. Double Fourier -> Dirichlet channels
+Potential target: determine whether the primitive-sector projection has a natural port/surface meaning rather than being an imposed Fourier truncation.
+
+### B2. Double Fourier -> Dirichlet channels
 
 Exact two-stage structure:
 
@@ -135,7 +182,7 @@ where `chi` ranges over even Dirichlet characters mod `p`.
 
 **Return criterion:** geometry-induced relations between character channels that are not automatic from character orthogonality or cyclotomic Galois theory.
 
-### B4. Square torus / Dirac zeta split
+### B3. Square torus / Dirac zeta split
 
 Known exact identities:
 
@@ -162,7 +209,7 @@ Same ports `(R,S)`:
 
 - violate torus law `[R,S]=1`;
 - exactly satisfy Klein bottle law `SRS^{-1}=R^{-1}`;
-- become flat on orientable genus 2 by commutator compensation.
+- become flat on orientable genus `2` by commutator compensation.
 
 ### C2. Branched torus genus cost
 
@@ -186,7 +233,13 @@ The first closed square walk appears at length four, so the fourth spectral mome
 \operatorname{Tr}[A,B]+\operatorname{Tr}[A,B]^{-1}.
 \]
 
-For permutation ports this counts fixed points of the commutator.
+Repeated plaquette traversals give
+
+\[
+\operatorname{Tr}([A,B]^m).
+\]
+
+For the dihedral H15 pair, their centered values are exactly `c_p(m)`.
 
 ### C4. Non-Abelian Floquet pairing and Dirac-like cones
 
@@ -224,10 +277,11 @@ World-space transform is a regular-simplex/tight-frame transform. It exactly rep
 
 ## Global claim discipline
 
-1. Classical components (Riemann-Hurwitz, Kani–Rosen, Mahler measure, Jensen, Ramanujan sums, Artin formalism, Dirichlet characters, Epstein zeta) must be cited as classical.
-2. H15 novelty, if any, must lie in a **specific synthesis, exact arithmetic specialization, or new constraint**, not in renaming known machinery.
-3. No RH/GRH claim unless a genuinely new zero-control theorem is proved.
-4. Keep distinct:
+1. H15 is fundamentally the **non-Abelian two-port article**. Spectral curves, surfaces, regulators and zeta transforms are observers of that noncommutative structure, not replacements for the central subject.
+2. Classical components (Riemann-Hurwitz, Kani-Rosen, Mahler measure, Jensen, Ramanujan sums, Artin formalism, Dirichlet characters, Epstein zeta, standard dihedral representation theory) must be cited as classical.
+3. H15 novelty, if any, must lie in a **specific synthesis, exact arithmetic specialization, or new constraint**, not in renaming known machinery.
+4. No RH/GRH claim unless a genuinely new zero-control theorem is proved.
+5. Keep distinct:
 
 \[
 \text{graph genus},
@@ -241,12 +295,19 @@ World-space transform is a regular-simplex/tight-frame transform. It exactly rep
 \text{arithmetic L-data}.
 \]
 
-5. Primary working hypothesis to test, not assume:
+6. The two most serious active H15 questions are now:
 
 \[
 \boxed{
-\text{Mahler/regulator of the dihedral spectral determinant}
-\stackrel{?}{=}
-\text{sum of quotient-motive L-data}.
+\text{Does non-Abelian geometry impose a new analytic constraint on }
+\mathcal Z_p^{\rm comm}(s)?
+}
+\]
+
+and
+
+\[
+\boxed{
+\text{Does the natural Mahler observer produce an exact regulator/}L\text{-value law on the selected simple genus-two motive?}
 }
 \]
