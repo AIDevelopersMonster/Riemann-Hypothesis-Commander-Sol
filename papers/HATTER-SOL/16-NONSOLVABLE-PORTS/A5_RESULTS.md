@@ -1,6 +1,10 @@
 # HATTER-SOL-16 · A5 results
 
-Current closed facts:
+## Current status
+
+The principal scalar-observer problem in the first nonsolvable laboratory is now **closed for the full natural range `mu >= 4`**.
+
+Closed facts:
 
 - `A5` has 2280 ordered generating pairs and 38 simultaneous-conjugacy orbits;
 - generating commutators occur only in classes `3A`, `5A`, `5B`, with pair counts `1080`, `600`, `600`;
@@ -21,45 +25,68 @@ Current closed facts:
   which is injective on all five conjugacy classes;
 - for an `A5`-Galois extension, the corresponding unramified three-dimensional Artin local factor therefore determines the Frobenius conjugacy class;
 - exact balanced moments through order 40 collapse the 38 generating-pair orbits to `6` moment types in class `3A`, `4` in `5A`, and `4` in `5B`;
-- an exact rational interval certificate proves
+- a typewise tensor-gap certificate over `Q(sqrt(5))` proves positive rational tensor gaps for all fourteen Mahler types, with minimum
 
   \[
-  \boxed{
-  M_{5A}(\mu)<M_{3A}(\mu)<M_{5B}(\mu)
-  \quad\text{for every generating pair and every }\mu\ge 23/5.
-  }
+  \gamma>\frac15;
   \]
 
-This improves the first crude threshold `mu >= 58`, and the intermediate `mu >= 21/4`, to
+- exact determinant Laurent polynomials, outward-rounded interval arithmetic, and the tensor-gap aliasing theorem prove the boundary ordering
+
+  \[
+  M_{5A}(4)<M_{3A}(4)<M_{5B}(4);
+  \]
+
+- the exact large-parameter certificate proves the same ordering for
+
+  \[
+  \mu\ge\frac{23}{5};
+  \]
+
+- the final compact-strip certificate introduces the normalized observer
+
+  \[
+  G(\mu)=M(\mu)-3\log\mu+\frac6{\mu^2}
+  \]
+
+  and uses
+
+  \[
+  G'(\mu)=\sum_{m\ge2}\frac{S_{2m}}{\mu^{2m+1}}\ge0
+  \]
+
+  together with 60 rational parameter slabs of width `1/100` to close
+
+  \[
+  4\le\mu\le\frac{23}{5}.
+  \]
+
+Therefore the global theorem is
 
 \[
-\boxed{\mu\ge 4.6}.
+\boxed{
+M_{5A}(\mu)<M_{3A}(\mu)<M_{5B}(\mu)
+\qquad\text{for every generating pair and every }\mu\ge4.
+}
 \]
 
-- the positivity/convergence obstruction at the natural boundary is closed exactly: every Cayley graph attached to a generating pair has diameter at most `10`, and Schur orthogonality gives a uniform spectral estimate
+More strongly, at every fixed `mu >= 4`, all four `5A` Mahler types lie below all six `3A` types, which in turn lie below all four `5B` types.
 
-  \[
-  \sup_{\theta,\phi}\|H_{A,B}(\theta,\phi)\|<4-\frac1{120}.
-  \]
+The compact-strip certificate has positive certified slab margins throughout; the smallest diagnostic margins are approximately
 
-- a stronger typewise tensor-gap certificate over `Q(sqrt(5))` reduces the 38 pair-orbits to the same 14 Mahler types and proves rational tensor Cayley gaps
+\[
+1.1253\times10^{-2}
+\]
 
-  \[
-  \gamma>\frac34,\frac32,\frac38,1,\frac54,\frac35,\frac15,
-  \frac9{10},\frac45,\frac3{10},\frac12,\frac34,\frac23,\frac45.
-  \]
+for the `5A < 3A` comparison and
 
-- using those typewise gaps, exact determinant Laurent polynomials in `Q(sqrt(5))`, outward-rounded interval arithmetic, and a rigorous trapezoidal aliasing bound, the natural boundary itself is now closed:
+\[
+1.6184\times10^{-3}
+\]
 
-  \[
-  \boxed{
-  M_{5A}(4)<M_{3A}(4)<M_{5B}(4).
-  }
-  \]
+for `3A < 5B`.
 
-  More strongly, every one of the four `5A` Mahler types lies below every one of the six `3A` types, and every `3A` type lies below every one of the four `5B` types.
-
-Relevant theorem layers and certificates:
+## Theorem and certificate chain
 
 - `certificates/a5_generating_pair_commutator_certificate.py`
 - `A5_ARTIN_LOCAL_FACTOR_TOMOGRAPHY.md`
@@ -71,26 +98,35 @@ Relevant theorem layers and certificates:
 - `certificates/a5_type_tensor_gap_certificate.py`
 - `certificates/a5_boundary_mahler_mu4_interval_certificate.py`
 - `A5_BOUNDARY_MAHLER_ORDERING_MU4.md`
+- `certificates/a5_global_mahler_mu_ge_4_certificate.py`
+- `A5_GLOBAL_MAHLER_ORDERING_MU_GE_4.md`
 
-## Current barrier
+## Interpretation
 
-The endpoint `mu=4` is no longer an open problem: both positivity and strict class ordering are now certified.
+The A5 laboratory answers the first H16 universality question in a precise form.
 
-The large-parameter regime is also closed for
-
-\[
-\mu\ge\frac{23}{5}.
-\]
-
-The only remaining scalar-parameter gap in the A5 laboratory is therefore the compact open strip
+The literal H15 first-harmonic argument does not survive unchanged. What survives is the deeper chain
 
 \[
-\boxed{4<\mu<\frac{23}{5}}.
+\boxed{
+\text{higher-dimensional representation}
+\to
+\text{length-four commutator trace}
+\to
+\text{spectral gap}
+\to
+\text{global determinant/Mahler class separation}.
+}
 \]
 
-Numerical scans across that strip show the same ordering with no crossing, but this remains diagnostic until a compact-parameter interval certificate or an analytic no-crossing theorem is completed.
+The three-dimensional Artin local factor and the Mahler observer are controlled by the same representation-theoretic class information.
 
-The next strike is now sharply defined:
+## Next main strike
 
-1. certify the Mahler differences on the compact parameter strip `4 < mu < 23/5`, preferably by intervalizing the exact determinant polynomials in `mu` and reusing the typewise tensor gaps; then
-2. once the all-`mu >= 4` A5 ordering is closed, move the main line to `PSL(2,7)` and test whether a single irreducible channel still separates the relevant commutator/Frobenius classes.
+The first nonsolvable laboratory is now sufficiently closed to move the main line to
+
+\[
+\boxed{PSL(2,7)}.
+\]
+
+The next question is whether one irreducible channel still separates the relevant commutator/Frobenius classes, or whether `PSL(2,7)` is the first point where genuinely vector-valued non-Abelian tomography becomes necessary.
