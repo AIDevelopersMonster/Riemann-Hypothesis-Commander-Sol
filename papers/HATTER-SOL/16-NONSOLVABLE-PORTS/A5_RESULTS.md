@@ -36,22 +36,28 @@ This improves the first crude threshold `mu >= 58`, and the intermediate `mu >= 
 \boxed{\mu\ge 4.6}.
 \]
 
-- the former positivity/convergence obstruction at the natural boundary is now closed exactly: every Cayley graph attached to a generating pair has diameter at most `10`, and Schur orthogonality then gives the uniform spectral estimate
+- the positivity/convergence obstruction at the natural boundary is closed exactly: every Cayley graph attached to a generating pair has diameter at most `10`, and Schur orthogonality gives a uniform spectral estimate
+
+  \[
+  \sup_{\theta,\phi}\|H_{A,B}(\theta,\phi)\|<4-\frac1{120}.
+  \]
+
+- a stronger typewise tensor-gap certificate over `Q(sqrt(5))` reduces the 38 pair-orbits to the same 14 Mahler types and proves rational tensor Cayley gaps
+
+  \[
+  \gamma>\frac34,\frac32,\frac38,1,\frac54,\frac35,\frac15,
+  \frac9{10},\frac45,\frac3{10},\frac12,\frac34,\frac23,\frac45.
+  \]
+
+- using those typewise gaps, exact determinant Laurent polynomials in `Q(sqrt(5))`, outward-rounded interval arithmetic, and a rigorous trapezoidal aliasing bound, the natural boundary itself is now closed:
 
   \[
   \boxed{
-  \sup_{\theta,\phi}\|H_{A,B}(\theta,\phi)\|
-  <4-\frac1{120}.
+  M_{5A}(4)<M_{3A}(4)<M_{5B}(4).
   }
   \]
 
-  Therefore
-
-  \[
-  4I-H_{A,B}(\theta,\phi)\succeq \frac1{120}I
-  \]
-
-  and the logarithmic trace series converges absolutely and uniformly already at `mu=4`.
+  More strongly, every one of the four `5A` Mahler types lies below every one of the six `3A` types, and every `3A` type lies below every one of the four `5B` types.
 
 Relevant theorem layers and certificates:
 
@@ -62,32 +68,29 @@ Relevant theorem layers and certificates:
 - `A5_MAHLER_SEPARATION_MU_23_OVER_5.md`
 - `certificates/a5_uniform_spectral_gap_diameter_certificate.py`
 - `A5_UNIFORM_BOUNDARY_SPECTRAL_GAP.md`
+- `certificates/a5_type_tensor_gap_certificate.py`
+- `certificates/a5_boundary_mahler_mu4_interval_certificate.py`
+- `A5_BOUNDARY_MAHLER_ORDERING_MU4.md`
 
 ## Current barrier
 
-The boundary `mu=4` is no longer singular: the determinant is uniformly positive and the moment expansion converges there.
+The endpoint `mu=4` is no longer an open problem: both positivity and strict class ordering are now certified.
 
-What remains is strictly narrower. Numerical quadrature at `mu=4` over all 38 simultaneous-conjugacy representatives gives separated bands approximately
-
-\[
-M_{5A}\in[3.5817,3.6082],\qquad
-M_{3A}\in[3.6322,3.6508],\qquad
-M_{5B}\in[3.6552,3.6641],
-\]
-
-so the large-`mu` ordering appears to persist all the way to the natural boundary. These decimals are diagnostic only, not a theorem.
-
-The remaining theorem obligation is now the **class-ordering gap** on
+The large-parameter regime is also closed for
 
 \[
-4\le\mu<23/5,
+\mu\ge\frac{23}{5}.
 \]
 
-especially the small `5B-3A` boundary gap. The exact diameter bound `1/120` is sufficient for uniform convergence but too coarse, by itself, to make the old order-40 geometric tail smaller than that gap.
+The only remaining scalar-parameter gap in the A5 laboratory is therefore the compact open strip
 
-The next strike is therefore to obtain either:
+\[
+\boxed{4<\mu<\frac{23}{5}}.
+\]
 
-1. sharper orbit-wise spectral radii and a certified higher-moment tail; or
-2. a direct interval certificate for the Mahler difference on the compact box `mu in [4,23/5]`, `(theta,phi) in T^2`.
+Numerical scans across that strip show the same ordering with no crossing, but this remains diagnostic until a compact-parameter interval certificate or an analytic no-crossing theorem is completed.
 
-Once this class-ordering gap is closed, the A5 laboratory will have a complete boundary theorem and the main line can move to `PSL(2,7)`.
+The next strike is now sharply defined:
+
+1. certify the Mahler differences on the compact parameter strip `4 < mu < 23/5`, preferably by intervalizing the exact determinant polynomials in `mu` and reusing the typewise tensor gaps; then
+2. once the all-`mu >= 4` A5 ordering is closed, move the main line to `PSL(2,7)` and test whether a single irreducible channel still separates the relevant commutator/Frobenius classes.
