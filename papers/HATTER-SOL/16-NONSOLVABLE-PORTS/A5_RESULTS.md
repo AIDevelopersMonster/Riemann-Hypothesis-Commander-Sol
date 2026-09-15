@@ -21,7 +21,7 @@ Current closed facts:
   which is injective on all five conjugacy classes;
 - for an `A5`-Galois extension, the corresponding unramified three-dimensional Artin local factor therefore determines the Frobenius conjugacy class;
 - exact balanced moments through order 40 collapse the 38 generating-pair orbits to `6` moment types in class `3A`, `4` in `5A`, and `4` in `5B`;
-- an exact rational interval certificate now proves
+- an exact rational interval certificate proves
 
   \[
   \boxed{
@@ -36,6 +36,23 @@ This improves the first crude threshold `mu >= 58`, and the intermediate `mu >= 
 \boxed{\mu\ge 4.6}.
 \]
 
+- the former positivity/convergence obstruction at the natural boundary is now closed exactly: every Cayley graph attached to a generating pair has diameter at most `10`, and Schur orthogonality then gives the uniform spectral estimate
+
+  \[
+  \boxed{
+  \sup_{\theta,\phi}\|H_{A,B}(\theta,\phi)\|
+  <4-\frac1{120}.
+  }
+  \]
+
+  Therefore
+
+  \[
+  4I-H_{A,B}(\theta,\phi)\succeq \frac1{120}I
+  \]
+
+  and the logarithmic trace series converges absolutely and uniformly already at `mu=4`.
+
 Relevant theorem layers and certificates:
 
 - `certificates/a5_generating_pair_commutator_certificate.py`
@@ -43,19 +60,34 @@ Relevant theorem layers and certificates:
 - `certificates/a5_mahler_separation_mu_21_over_4_certificate.py`
 - `certificates/a5_mahler_separation_mu_23_over_5_certificate.py`
 - `A5_MAHLER_SEPARATION_MU_23_OVER_5.md`
+- `certificates/a5_uniform_spectral_gap_diameter_certificate.py`
+- `A5_UNIFORM_BOUNDARY_SPECTRAL_GAP.md`
 
 ## Current barrier
 
-Numerical quadrature at `mu=4` still shows the same strict class ordering across all 38 simultaneous-conjugacy representatives, but this is not yet a theorem.
+The boundary `mu=4` is no longer singular: the determinant is uniformly positive and the moment expansion converges there.
 
-The remaining obstruction is now sharply localized: the crude tail proof uses `||H|| <= 4`, so its geometric remainder degenerates at the natural boundary `mu=4`.
-
-The next strike is to prove a uniform finite-lab spectral gap
+What remains is strictly narrower. Numerical quadrature at `mu=4` over all 38 simultaneous-conjugacy representatives gives separated bands approximately
 
 \[
-\sup_{\theta,\phi}\|H_{A,B}(\theta,\phi)\|<4
+M_{5A}\in[3.5817,3.6082],\qquad
+M_{3A}\in[3.6322,3.6508],\qquad
+M_{5B}\in[3.6552,3.6641],
 \]
 
-for every generating pair, preferably with an exact common constant over the 38 orbit types. Once this gap is certified, the moment/tail argument can be rerun directly at `mu=4`.
+so the large-`mu` ordering appears to persist all the way to the natural boundary. These decimals are diagnostic only, not a theorem.
 
-Only after that boundary question is closed should the main line move to `PSL(2,7)`.
+The remaining theorem obligation is now the **class-ordering gap** on
+
+\[
+4\le\mu<23/5,
+\]
+
+especially the small `5B-3A` boundary gap. The exact diameter bound `1/120` is sufficient for uniform convergence but too coarse, by itself, to make the old order-40 geometric tail smaller than that gap.
+
+The next strike is therefore to obtain either:
+
+1. sharper orbit-wise spectral radii and a certified higher-moment tail; or
+2. a direct interval certificate for the Mahler difference on the compact box `mu in [4,23/5]`, `(theta,phi) in T^2`.
+
+Once this class-ordering gap is closed, the A5 laboratory will have a complete boundary theorem and the main line can move to `PSL(2,7)`.
