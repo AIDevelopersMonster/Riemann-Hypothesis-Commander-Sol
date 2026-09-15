@@ -2,18 +2,24 @@
 
 ## Current status
 
-The principal scalar-observer problem in the first nonsolvable laboratory is now **closed for the full natural range `mu >= 4`**.
+The principal scalar-observer problem in the first nonsolvable laboratory is **closed for the full natural range `mu >= 4`**.
 
 Closed facts:
 
 - `A5` has 2280 ordered generating pairs and 38 simultaneous-conjugacy orbits;
 - generating commutators occur only in classes `3A`, `5A`, `5B`, with pair counts `1080`, `600`, `600`;
 - one real three-dimensional irreducible character separates all five conjugacy classes of `A5`;
-- the fourth torus moment retains the H15 length-four mechanism beyond the dihedral case:
+- the corrected universal fourth torus moment is
 
   \[
-  \langle\operatorname{Tr}H_{\rho_3}^4\rangle
-  =48+8\chi_3([A,B]);
+  S_4=28d+4\operatorname{Tr}\rho(K)+4\operatorname{Tr}\rho(K^{-1}),
+  \qquad K=[A,B],
+  \]
+
+  and therefore, for the real 3D irrep,
+
+  \[
+  \boxed{S_4=84+8\chi_3([A,B]).}
   \]
 
 - the same three-dimensional representation gives an exact Artin local-factor observer
@@ -23,7 +29,7 @@ Closed facts:
   \]
 
   which is injective on all five conjugacy classes;
-- for an `A5`-Galois extension, the corresponding unramified three-dimensional Artin local factor therefore determines the Frobenius conjugacy class;
+- for an `A5`-Galois extension, the corresponding unramified three-dimensional Artin local factor determines the Frobenius conjugacy class;
 - exact balanced moments through order 40 collapse the 38 generating-pair orbits to `6` moment types in class `3A`, `4` in `5A`, and `4` in `5B`;
 - a typewise tensor-gap certificate over `Q(sqrt(5))` proves positive rational tensor gaps for all fourteen Mahler types, with minimum
 
@@ -43,7 +49,7 @@ Closed facts:
   \mu\ge\frac{23}{5};
   \]
 
-- the final compact-strip certificate introduces the normalized observer
+- the compact-strip certificate introduces
 
   \[
   G(\mu)=M(\mu)-3\log\mu+\frac6{\mu^2}
@@ -61,7 +67,7 @@ Closed facts:
   4\le\mu\le\frac{23}{5}.
   \]
 
-Therefore the global theorem is
+Therefore
 
 \[
 \boxed{
@@ -70,15 +76,15 @@ M_{5A}(\mu)<M_{3A}(\mu)<M_{5B}(\mu)
 }
 \]
 
-More strongly, at every fixed `mu >= 4`, all four `5A` Mahler types lie below all six `3A` types, which in turn lie below all four `5B` types.
+More strongly, at every fixed `mu >= 4`, all four `5A` Mahler types lie below all six `3A` types, which lie below all four `5B` types.
 
-The compact-strip certificate has positive certified slab margins throughout; the smallest diagnostic margins are approximately
+The compact-strip certificate has positive certified slab margins throughout. The smallest diagnostic margins are approximately
 
 \[
 1.1253\times10^{-2}
 \]
 
-for the `5A < 3A` comparison and
+for `5A < 3A`, and
 
 \[
 1.6184\times10^{-3}
@@ -86,11 +92,10 @@ for the `5A < 3A` comparison and
 
 for `3A < 5B`.
 
-## Theorem and certificate chain
+## Certificate chain
 
 - `certificates/a5_generating_pair_commutator_certificate.py`
 - `A5_ARTIN_LOCAL_FACTOR_TOMOGRAPHY.md`
-- `certificates/a5_mahler_separation_mu_21_over_4_certificate.py`
 - `certificates/a5_mahler_separation_mu_23_over_5_certificate.py`
 - `A5_MAHLER_SEPARATION_MU_23_OVER_5.md`
 - `certificates/a5_uniform_spectral_gap_diameter_certificate.py`
@@ -102,8 +107,6 @@ for `3A < 5B`.
 - `A5_GLOBAL_MAHLER_ORDERING_MU_GE_4.md`
 
 ## Interpretation
-
-The A5 laboratory answers the first H16 universality question in a precise form.
 
 The literal H15 first-harmonic argument does not survive unchanged. What survives is the deeper chain
 
@@ -119,14 +122,4 @@ The literal H15 first-harmonic argument does not survive unchanged. What survive
 }
 \]
 
-The three-dimensional Artin local factor and the Mahler observer are controlled by the same representation-theoretic class information.
-
-## Next main strike
-
-The first nonsolvable laboratory is now sufficiently closed to move the main line to
-
-\[
-\boxed{PSL(2,7)}.
-\]
-
-The next question is whether one irreducible channel still separates the relevant commutator/Frobenius classes, or whether `PSL(2,7)` is the first point where genuinely vector-valued non-Abelian tomography becomes necessary.
+The `A5` laboratory is publication-closed. HATTER-SOL-16 continues only through the already completed `PSL(2,7)` engineering layer and then hands implementation to HATTER-SOL-17.
