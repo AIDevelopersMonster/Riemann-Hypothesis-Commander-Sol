@@ -53,7 +53,7 @@ DOI: https://doi.org/10.5281/zenodo.22754637
 
 Separates abstract carrier topology from equivariant arithmetic cycle memory: the same graph can support inequivalent regular arithmetic actions with different homology modules.
 
-At HATTER-SOL-15 v0.4 assembly time, no installment-specific Zenodo DOI for HATTER-SOL-14 was present in the project metadata and no matching Zenodo record was identified in the targeted check. The series umbrella DOI is therefore **not** substituted for a missing installment DOI.
+DOI: https://doi.org/10.5281/zenodo.22757307
 
 Current repository source:
 https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/research/hatter-sol-galois-equivariant-carriers/papers/HATTER-SOL/14-GALOIS-EQUIVARIANT-CARRIERS
@@ -71,4 +71,4 @@ https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/res
 | HATTER-SOL-11 | https://doi.org/10.5281/zenodo.22746559 |
 | HATTER-SOL-12 | https://doi.org/10.5281/zenodo.22747698 |
 | HATTER-SOL-13 | https://doi.org/10.5281/zenodo.22754637 |
-| HATTER-SOL-14 | DOI pending/not present in project metadata; repository source above |
+| HATTER-SOL-14 | https://doi.org/10.5281/zenodo.22757307 |
