@@ -4,83 +4,109 @@
 **State:** active implementation research.  
 **Date:** 16 September 2026.
 
-## Closed implementation layer: H17-01
+## Closed: H17-01 canonical golden model
 
-A deterministic canonical golden model for the final H16 `PSL(2,7)` handoff now exists.
+The deterministic `PSL(2,7)` golden model is fixed: 168 group elements, 114 simultaneous-conjugacy orbits of generating pairs, and 114 unique five-probe signatures. Canonical orbit IDs `0..113` are stable under Python hash/set iteration.
 
-Exact verified counts:
+Source: `tools/generate_psl27_golden_model.py`.
 
-```text
-|PSL(2,7)| = 168
-generating-pair simultaneous-conjugacy orbits = 114
-unique five-probe signatures = 114
-```
+## Closed mathematically: H17-02 admissibility law
 
-Canonical orbit IDs are independent of Python set/hash iteration: each simultaneous-conjugacy orbit is represented by its lexicographically minimal permutation pair, the 114 representatives are sorted, and IDs `0..113` are assigned in that order.
+A new exhaustive finite certificate strengthens the H16 handoff.
 
-Source:
-
-`tools/generate_psl27_golden_model.py`
-
-The generator emits a CSV golden table, a complete 114-entry SystemVerilog decoder, and an exhaustive 114-vector decoder testbench.
-
-## Active implementation layer: H17-02
-
-A second generator has been added:
-
-`tools/generate_psl27_port_engine.py`
-
-It removes the H16 demonstration shortcut of supplying five conjugacy-class labels externally.
-
-The generated architecture accepts `A,B` as exact 8-point permutations and computes internally
-
-\[
-A,\quad B,\quad AB,\quad AB^{-1},\quad[A,B].
-\]
-
-It also emits an exact 168-entry permutation-to-conjugacy-class classifier preserving the split `7A/7B` orientation.
-
-The Python algebraic model was exhaustively checked over all
-
-\[
-168^2=28224
-\]
-
-ordered port pairs. For every pair, inverse, composition, mixed probe, and commutator values remain in the exact `PSL(2,7)` model and are classifiable.
-
-Local generator result:
+For all `168^2 = 28,224` ordered pairs `(A,B)`:
 
 ```text
-PASS: exhaustive Python port-engine algebra over 168^2 ordered port pairs
-PASS: classifier and five-probe engine RTL emitted
+generating ordered pairs        = 19,152
+non-generating ordered pairs    =  9,072
+generating signature image      =    114
+non-generating signature image  =     66
+intersection                    =      0
 ```
 
-## Current verification gap
+Therefore, for valid `PSL(2,7)` ports, the same 114-entry signature ROM is an exact generation-domain recognizer:
 
-The current execution environment has neither `iverilog` nor `verilator`. Therefore the generated SystemVerilog has not yet crossed the HDL-simulation gate in this environment.
+`signature_hit <=> <A,B> = PSL(2,7)`.
 
-This is not marked closed until an HDL simulator reproduces every golden vector.
+No separate subgroup-generation checker is required on this laboratory path.
+
+Certificate: `certificates/psl27_signature_admissibility_certificate.py`.
+
+## First erasure law
+
+The exact five-probe signature has
+
+```text
+minimum generating-orbit signature distance = 1
+minimum generating/non-generating distance  = 2
+```
+
+Hence one lost probe may destroy orbit reconstruction, but any one lost probe still preserves generating/non-generating separation.
+
+Exact single-channel deletion statistics are recorded in:
+
+`docs/H17_02_SIGNATURE_ADMISSIBILITY_AND_ERASURE.md`.
+
+## New depth-4 barrier
+
+The complete H16 cyclic trace family of all primitive words of depth at most four has 25 coordinates. Exhaustive comparison of the 114 orbit codewords gives
+
+```text
+minimum orbit-code distance = 1
+number of distance-1 orbit pairs = 7
+unique separating coordinate for all 7 pairs = ABab = [A,B]
+```
+
+Therefore exact one-erasure orbit recovery is impossible for **any** observer system restricted to the full depth-`<=4` cyclic-trace family. Redundancy at the same depth cannot repair the problem.
+
+This converts the next strike into a sharp mathematical question: find the shortest depth `>4` probe family (or a different observer type) that raises orbit-code distance to at least two.
+
+## End-to-end RTL generator added
+
+`tools/generate_psl27_end_to_end.py`
+
+It composes the existing H17 generators and emits:
+
+```text
+psl27_classify_perm.sv
+psl27_five_probe_engine.sv
+psl27_orbit_rom.sv
+psl27_tomography_core.sv
+tb_psl27_tomography_core.sv
+psl27_114_orbit_signatures.csv
+```
+
+The end-to-end data path is
+
+```text
+A,B
+ -> exact word engine
+ -> oriented six-class channel
+ -> 15-bit five-probe signature
+ -> 114-entry ROM
+ -> orbit_valid / canonical orbit_id
+```
+
+The generated testbench covers all 180 five-probe signatures realized by `PSL(2,7)^2`:
+
+- 114 generating signatures must accept with the correct canonical orbit ID;
+- one representative of each of the 66 non-generating signatures must reject.
+
+## Verification boundary
+
+The exact Python certificates pass. The current execution environment has no `iverilog`, `verilator`, or `yosys`, so the generated SystemVerilog has not yet crossed the external HDL-simulation/synthesis gate. That gate remains explicitly open.
 
 ## Next strike
 
-Build the end-to-end RTL composition
+Search primitive trace words beginning at depth five and determine the minimum additional probe cost needed to raise the 114-orbit code distance from `1` to at least `2`.
 
-\[
-(A,B)
-\to
-\text{five-probe engine}
-\to
-\text{class/orientation signature}
-\to
-\text{114-orbit ROM}
-\to
-orbit\_id
-\]
+Priority order:
 
-and generate an exhaustive testbench from all 114 canonical representatives.
-
-After this passes simulation, compare the depth-4 five-probe interface against the depth-14 balanced closed-loop interface as a hardware cost experiment.
+1. prove whether depth five already breaks all seven depth-4 defect pairs;
+2. minimize the number of added probes over the original five-probe core;
+3. if possible, raise distance to `3` for stronger erasure/error protection;
+4. generate the redundant RTL interface and compare its word-depth/resource cost against the minimal core.
 
 ## Integer-to-port note
 
-The observation `6=2\cdot3` naturally exposes two ordinary multiplicative ports in `Z`, while primes such as `17` or `53` do not split into two ordinary multiplicative integer ports. They may split into prime-ideal/decomposition branches only after an arithmetic world/extension is specified. This is a legitimate future frontend connecting H07/H10/H14 to the H17 processor, but it is intentionally kept outside the current `PSL(2,7)` core so that the first hardware theorem remains exact and minimal.
+`6=2*3` naturally exposes two ordinary multiplicative ports in `Z`, whereas primes such as `17` or `53` require a chosen arithmetic extension/world before nontrivial decomposition ports appear. This remains a future H07/H10/H14 -> H17 frontend and is intentionally not mixed into the exact `PSL(2,7)` hardware theorem.
