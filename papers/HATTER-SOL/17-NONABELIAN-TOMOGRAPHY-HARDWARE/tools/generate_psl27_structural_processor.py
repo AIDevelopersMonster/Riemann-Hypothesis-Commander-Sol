@@ -33,17 +33,32 @@ function automatic logic perm_is_bijection(input logic [23:0] p);
       perm_is_bijection=ok;
     end
 endfunction
+// Projective determinant in F_7.  This form is fully combinational and avoids
+// while/modulo constructs that older Yosys versions treat as constant-only.
 function automatic [2:0] det_point(input logic [2:0] x,input logic [2:0] y);
     integer t;
     begin
       if(x==3'd7 && y==3'd7) det_point=3'd0;
       else if(x==3'd7) det_point=3'd1;
       else if(y==3'd7) det_point=3'd6;
-      else begin t=x-y; while(t<0)t=t+7; det_point=t%7; end
+      else begin
+        t=x-y;
+        if(t<0) t=t+7;
+        det_point=t;
+      end
     end
 endfunction
 function automatic [2:0] mul7(input logic [2:0] a,input logic [2:0] b);
-    integer t; begin t=a*b; mul7=t%7; end
+    integer t;
+    begin
+      t=a*b;
+      if(t>=35) t=t-35;
+      else if(t>=28) t=t-28;
+      else if(t>=21) t=t-21;
+      else if(t>=14) t=t-14;
+      else if(t>=7) t=t-7;
+      mul7=t;
+    end
 endfunction
 function automatic logic orient_pos(input logic [2:0] a,input logic [2:0] b,input logic [2:0] c);
     logic [2:0] v;
@@ -154,7 +169,6 @@ def emit_tb(path):
         lines.append(f"check_valid(24'h{pack(g):06x},3'd{CLASS_CODE[CLASS[g]]});")
     for p in invalid:
         lines.append(f"check_invalid(24'h{pack(p):06x});")
-    # deliberately non-bijective packed value as an additional malformed input
     lines.append("check_invalid(24'h000000);")
     lines += [
       '$display("PASS: structural classifier checked all 168 PSL elements plus invalid witnesses");',
