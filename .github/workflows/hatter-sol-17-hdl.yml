@@ -46,3 +46,30 @@ jobs:
             generated_robust8/psl27_robust8_core.sv \
             generated_robust8/tb_psl27_robust8_core.sv
           vvp generated_robust8/robust8_sim
+
+  romfree-repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate ROM-free repair processor
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_robust8.py --out-dir generated_romfree
+          python3 tools/generate_psl27_romfree_repair.py --out-dir generated_romfree
+      - name: Simulate ROM-free erasure repair
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -o generated_romfree/repair_sim \
+            generated_romfree/psl27_robust8_repair.sv \
+            generated_romfree/tb_psl27_robust8_repair.sv
+          vvp generated_romfree/repair_sim
+      - name: Compile full ROM-free processor core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -s psl27_robust8_romfree_core -o generated_romfree/romfree_core_compile \
+            generated_romfree/psl27_structural_classify.sv \
+            generated_romfree/psl27_robust8_engine.sv \
+            generated_romfree/psl27_robust8_repair.sv \
+            generated_romfree/psl27_robust8_romfree_core.sv
