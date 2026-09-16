@@ -1,7 +1,7 @@
 # HATTER-SOL-17 · STATUS
 
 **Branch:** `research/hatter-sol-17-nonabelian-tomography-hardware`  
-**State:** active implementation research.  
+**State:** active processor implementation research.  
 **Date:** 16 September 2026.
 
 ## Closed: H17-01 canonical golden model
@@ -138,6 +138,48 @@ minimum H16-frozen robust channel count = 9
 
 This replaces the earlier provisional four-depth-five extension as the preferred backward-compatible architecture.
 
+## Closed: H17-05 LUT-free structural group/class processor
+
+The H16 HDL proof-of-concept accepted already classified probes. H17 now derives the class channels from raw 24-bit permutations without a 168-entry element/class LUT.
+
+For an arbitrary 8-point permutation, five cross-ratio equalities test whether it is induced by a `PGL(2,7)` transformation. A quadratic-character orientation test on the image of `(0,1,infinity)` selects the `PSL(2,7)` subgroup.
+
+Exhaustive enumeration gives exactly
+
+```text
+all S8 permutations checked = 40320
+PGL(2,7) accepted           =   336
+PSL(2,7) accepted           =   168
+```
+
+and the accepted 168 elements coincide exactly with the independent determinant-one matrix construction.
+
+For a valid element, permutation order computes the classes
+
+```text
+order 1 -> 1A
+order 2 -> 2A
+order 3 -> 3A
+order 4 -> 4A.
+```
+
+For order seven, the quadratic orientation of three successive points on the unique 7-cycle separates the two remaining classes exactly:
+
+```text
+7A -> +1 (24 elements)
+7B -> -1 (24 elements).
+```
+
+Therefore both group membership and all six conjugacy classes are computed structurally from the raw permutation. No element lookup table is required before the final orbit decoder.
+
+Certificate: `certificates/psl27_structural_class_engine_certificate.py`.
+
+Detailed note: `docs/H17_05_LUT_FREE_STRUCTURAL_PROCESSOR.md`.
+
+RTL generator: `tools/generate_psl27_structural_processor.py`.
+
+The robust8 generator has been switched to instantiate `psl27_structural_classify` for `A`, `B`, and all eight observer words.
+
 ## Exact observer tiers now fixed
 
 H17 now has three mathematically distinct hardware targets:
@@ -146,30 +188,25 @@ H17 now has three mathematically distinct hardware targets:
 2. **8-channel robust redesign** — globally minimal one-erasure trace observer in the depth-`<=5` candidate class;
 3. **9-channel H16-compatible robust core** — minimal one-erasure extension if the original five H16 channels are frozen.
 
-The eight-channel design is the preferred new implementation target. The nine-channel design is the preferred migration target.
+The eight-channel design is the preferred new processor target. The nine-channel design is the preferred migration target.
 
-## End-to-end RTL baseline
-
-`tools/generate_psl27_end_to_end.py`
-
-Current five-channel baseline data path:
+## Preferred H17 processor path
 
 ```text
-A,B
- -> exact word engine
- -> oriented six-class channel
- -> 15-bit five-probe signature
- -> 114-entry ROM
- -> orbit_valid / canonical orbit_id
+raw A,B permutations
+ -> structural PSL(2,7) membership
+ -> exact inverse/compose word arithmetic
+ -> structural order/orientation class engine
+ -> 8 x 3-bit robust signature
+ -> known one-erasure projection
+ -> canonical 114-orbit decoder
 ```
 
-The generated testbench covers the 114 generating and 66 non-generating five-probe signature states.
-
-The next implementation layer must generalize this pipeline to the eight-channel and nine-channel robust codes and test every single erased coordinate.
+The final `signature -> orbit_id` stage remains finite memory. It names a proved finite sufficient statistic; it is no longer being used to imitate the group operations or conjugacy-class computation.
 
 ## Verification boundary
 
-Exact Python finite certificates pass. This execution environment currently has no `iverilog`, `verilator`, or `yosys`, so external SystemVerilog simulation and synthesis remain open gates. No HDL timing/resource claim is made yet.
+Exact Python finite certificates pass, including the `40320`-permutation structural membership test and the six-class structural classifier. This execution environment currently has no `iverilog`, `verilator`, or `yosys`, so the emitted SystemVerilog has not yet crossed external simulation and synthesis gates. No HDL timing/resource/board claim is made yet.
 
 ## Arithmetic two-port frontend seed
 
@@ -199,8 +236,9 @@ Seed: `docs/INTEGER_TWO_PORT_MAXIMAL_FIRST_FRONTEND_SEED.md`.
 
 ## Next strike
 
-1. generate the eight-channel robust word engine and erasure-aware orbit decoder;
-2. generate the nine-channel H16-compatible robust variant;
-3. exhaustively verify all 114 generating states and all 66 non-generating signature states under each single erased coordinate;
+1. generate and freeze the complete structural robust8 RTL bundle;
+2. add a structural-classifier HDL testbench covering all 168 valid group elements plus invalid `S8` witnesses;
+3. generate the nine-channel H16-compatible structural variant;
 4. cross the external HDL simulation gate;
-5. synthesize and compare channel count, primitive word depth, logic/resource cost, and latency against the five-channel baseline.
+5. synthesize and compare logic/resource/latency cost against the original table-classified five-channel baseline;
+6. then investigate whether the final 114-orbit ROM can be logic-minimized or replaced by a smaller factored decoder without losing canonical IDs.
