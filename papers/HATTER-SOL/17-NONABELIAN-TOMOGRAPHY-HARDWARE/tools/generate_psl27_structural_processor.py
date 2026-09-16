@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
-"""Emit LUT-free structural PSL(2,7) membership/classification SystemVerilog.
-
-The emitted classifier contains no 168-entry permutation table.  It checks:
-  1. the 24-bit input is an 8-point permutation;
-  2. five projective cross-ratio identities, hence membership in PGL(2,7);
-  3. the projective triple orientation of (0,1,infinity), selecting PSL(2,7);
-  4. element order 1,2,3,4,7 by permutation composition;
-  5. for order 7 only, the orientation of three consecutive points in the
-     unique 7-cycle, separating 7A from 7B.
-
-Class codes agree with H16/H17: 1A=0,2A=1,3A=2,4A=3,7A=4,7B=5.
-"""
+"""Emit LUT-free structural PSL(2,7) classifier and exhaustive HDL vectors."""
 from pathlib import Path
+from itertools import product, permutations
 import argparse
+
+P=7; N=8; INF=7; ID=tuple(range(N))
+CLASS_CODE={'1A':0,'2A':1,'3A':2,'4A':3,'7A':4,'7B':5}
 
 SV = r'''// Auto-generated H17-05 structural PSL(2,7) classifier. No class ROM.
 module psl27_structural_classify(
@@ -35,14 +28,11 @@ function automatic logic perm_is_bijection(input logic [23:0] p);
     integer i,j; logic ok;
     begin
       ok=1'b1;
-      for(i=0;i<8;i=i+1) begin
-        if(getp(p,i)>3'd7) ok=1'b0;
+      for(i=0;i<8;i=i+1)
         for(j=i+1;j<8;j=j+1) if(getp(p,i)==getp(p,j)) ok=1'b0;
-      end
       perm_is_bijection=ok;
     end
 endfunction
-// det of homogeneous representatives: finite x=(x,1), infinity 7=(1,0).
 function automatic [2:0] det_point(input logic [2:0] x,input logic [2:0] y);
     integer t;
     begin
@@ -110,10 +100,74 @@ end
 endmodule
 '''
 
+def invmod(a): return pow(a,P-2,P)
+def mob(a,b,c,d):
+    out=[]
+    for x in range(P):
+        den=(c*x+d)%P; num=(a*x+b)%P
+        out.append(INF if den==0 else num*invmod(den)%P)
+    out.append(INF if c%P==0 else a*invmod(c)%P)
+    return tuple(out)
+def compose(p,q): return tuple(p[q[i]] for i in range(N))
+def inverse(p):
+    out=[0]*N
+    for i,j in enumerate(p): out[j]=i
+    return tuple(out)
+def pack(p):
+    v=0
+    for i,x in enumerate(p): v|=x<<(3*i)
+    return v
+
+G=sorted({mob(a,b,c,d) for a,b,c,d in product(range(P),repeat=4) if (a*d-b*c)%P==1})
+INV={g:inverse(g) for g in G}
+def conj(h,g): return compose(compose(h,g),INV[h])
+def order(g):
+    x=ID
+    for n in range(1,169):
+        x=compose(x,g)
+        if x==ID:return n
+    raise AssertionError
+unseen=set(G); classes=[]
+while unseen:
+    g=min(unseen); C={conj(h,g) for h in G}; classes.append(C); unseen-=C
+classes.sort(key=lambda C:(order(next(iter(C))),min(C)))
+names=('1A','2A','3A','4A','7A','7B')
+CLASS={g:n for n,C in zip(names,classes) for g in C}
+
+def emit_tb(path):
+    invalid=[]
+    GSET=set(G)
+    for p in permutations(range(8)):
+        if p not in GSET:
+            invalid.append(p)
+            if len(invalid)==64: break
+    lines=[
+      '`timescale 1ns/1ps',
+      'module tb_psl27_structural_classify;',
+      'logic [23:0] perm; logic valid; logic [2:0] class_code;',
+      'psl27_structural_classify dut(.perm(perm),.valid(valid),.class_code(class_code));',
+      'task automatic check_valid(input logic [23:0] p,input logic [2:0] c); begin perm=p; #1; if(!valid||class_code!==c) begin $display("FAIL valid p=%h got v=%b c=%0d expected=%0d",p,valid,class_code,c); $fatal(1); end end endtask',
+      'task automatic check_invalid(input logic [23:0] p); begin perm=p; #1; if(valid) begin $display("FAIL invalid accepted p=%h c=%0d",p,class_code); $fatal(1); end end endtask',
+      'initial begin'
+    ]
+    for g in G:
+        lines.append(f"check_valid(24'h{pack(g):06x},3'd{CLASS_CODE[CLASS[g]]});")
+    for p in invalid:
+        lines.append(f"check_invalid(24'h{pack(p):06x});")
+    # deliberately non-bijective packed value as an additional malformed input
+    lines.append("check_invalid(24'h000000);")
+    lines += [
+      '$display("PASS: structural classifier checked all 168 PSL elements plus invalid witnesses");',
+      '$finish; end endmodule',''
+    ]
+    path.write_text('\n'.join(lines),encoding='utf-8')
+
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--out-dir',default='generated_structural'); args=ap.parse_args()
     out=Path(args.out_dir); out.mkdir(parents=True,exist_ok=True)
     (out/'psl27_structural_classify.sv').write_text(SV,encoding='utf-8')
-    print('PASS: emitted LUT-free structural classifier')
+    emit_tb(out/'tb_psl27_structural_classify.sv')
+    print('PASS: emitted LUT-free structural classifier + HDL testbench')
+    print('valid vectors = 168; invalid witnesses = 65')
 
 if __name__=='__main__': main()
