@@ -1,0 +1,91 @@
+name: H17 ECP5 benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-17-nonabelian-tomography-hardware
+    paths:
+      - 'papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/**'
+      - '.github/workflows/h17-ecp5-benchmark.yml'
+
+jobs:
+  ecp5-45f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install open ECP5 toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yosys nextpnr-ecp5
+          yosys -V
+          nextpnr-ecp5 --version
+
+      - name: Generate closure-aware cores and registered timing wrappers
+        run: |
+          python3 tools/generate_psl27_closure_compare.py --out-dir generated_h17_08
+          python3 tools/generate_psl27_ecp5_bench_wrappers.py --out-dir generated_h17_09
+
+      - name: ECP5 map flat core for area
+        run: |
+          yosys -ql flat-area-yosys.log -p "read_verilog -sv generated_h17_08/psl27_closure_flat_core.sv; synth_ecp5 -top psl27_closure_flat_core -json flat-area.json; stat -top psl27_closure_flat_core"
+          grep -E 'TRELLIS_COMB|TRELLIS_FF|DP16KD|MULT18X18D|Number of cells' flat-area-yosys.log || true
+
+      - name: ECP5 map ROM-free core for area
+        run: |
+          yosys -ql romfree-area-yosys.log -p "read_verilog -sv generated_h17_08/psl27_closure_romfree_core.sv; synth_ecp5 -top psl27_closure_romfree_core -json romfree-area.json; stat -top psl27_closure_romfree_core"
+          grep -E 'TRELLIS_COMB|TRELLIS_FF|DP16KD|MULT18X18D|Number of cells' romfree-area-yosys.log || true
+
+      - name: ECP5 map registered flat benchmark
+        run: |
+          yosys -ql flat-timing-yosys.log -p "read_verilog -sv generated_h17_08/psl27_closure_flat_core.sv generated_h17_09/psl27_closure_flat_bench.sv; synth_ecp5 -top psl27_closure_flat_bench -json flat-timing.json; stat -top psl27_closure_flat_bench"
+
+      - name: ECP5 place and route registered flat benchmark
+        run: |
+          nextpnr-ecp5 --45k --package CABGA381 --speed 6 --freq 25 --timing-allow-fail --json flat-timing.json --textcfg flat-timing.config 2>&1 | tee flat-nextpnr.log
+
+      - name: ECP5 map registered ROM-free benchmark
+        run: |
+          yosys -ql romfree-timing-yosys.log -p "read_verilog -sv generated_h17_08/psl27_closure_romfree_core.sv generated_h17_09/psl27_closure_romfree_bench.sv; synth_ecp5 -top psl27_closure_romfree_bench -json romfree-timing.json; stat -top psl27_closure_romfree_bench"
+
+      - name: ECP5 place and route registered ROM-free benchmark
+        run: |
+          nextpnr-ecp5 --45k --package CABGA381 --speed 6 --freq 25 --timing-allow-fail --json romfree-timing.json --textcfg romfree-timing.config 2>&1 | tee romfree-nextpnr.log
+
+      - name: Summarize target-specific evidence
+        if: always()
+        run: |
+          {
+            echo '# H17 ECP5-45F benchmark'
+            echo
+            echo 'Target: LFE5U-45F, CABGA381, speed grade 6.'
+            echo 'Timing wrappers: one input register bank + one output register bank.'
+            echo
+            echo '## Flat area mapping'
+            grep -E 'TRELLIS_COMB|TRELLIS_FF|DP16KD|MULT18X18D|Number of cells' flat-area-yosys.log || true
+            echo
+            echo '## ROM-free area mapping'
+            grep -E 'TRELLIS_COMB|TRELLIS_FF|DP16KD|MULT18X18D|Number of cells' romfree-area-yosys.log || true
+            echo
+            echo '## Flat place/route timing and utilisation'
+            grep -E 'Device utilisation|TRELLIS_COMB|TRELLIS_FF|DP16KD|MULT18X18D|Max frequency|Max delay|Slack|timing' flat-nextpnr.log || true
+            echo
+            echo '## ROM-free place/route timing and utilisation'
+            grep -E 'Device utilisation|TRELLIS_COMB|TRELLIS_FF|DP16KD|MULT18X18D|Max frequency|Max delay|Slack|timing' romfree-nextpnr.log || true
+          } | tee H17_09_ECP5_RESULTS.md
+
+      - name: Upload ECP5 benchmark evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h17-09-ecp5-45f-benchmark
+          path: |
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_09_ECP5_RESULTS.md
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/*-yosys.log
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/*-nextpnr.log
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/*-timing.config
