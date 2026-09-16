@@ -99,3 +99,61 @@ jobs:
         working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
         run: |
           yosys -Q -p 'read_verilog -sv generated_romfree/psl27_structural_classify.sv generated_romfree/psl27_robust8_engine.sv generated_romfree/psl27_robust8_repair.sv generated_romfree/psl27_robust8_romfree_core.sv; synth -top psl27_robust8_romfree_core; stat' | tee robust8_romfree_yosys.log
+
+  closure-aware-compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog and Yosys
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys
+      - name: Generate two separate H17-08 Verilog designs
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: python3 tools/generate_psl27_closure_compare.py --out-dir generated_h17_08
+      - name: Exhaustively simulate closure-aware frontend
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -s tb_psl27_closure_engine -o generated_h17_08/closure_engine_sim \
+            generated_h17_08/psl27_closure_flat_core.sv \
+            generated_h17_08/tb_psl27_closure_engine.sv
+          vvp generated_h17_08/closure_engine_sim
+      - name: Simulate separate flat orbit-ID core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -s tb_psl27_closure_flat_core -o generated_h17_08/closure_flat_sim \
+            generated_h17_08/psl27_closure_flat_core.sv \
+            generated_h17_08/tb_psl27_closure_flat_core.sv
+          vvp generated_h17_08/closure_flat_sim
+      - name: Simulate separate ROM-free fingerprint core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -s tb_psl27_closure_romfree_core -o generated_h17_08/closure_romfree_sim \
+            generated_h17_08/psl27_closure_romfree_core.sv \
+            generated_h17_08/tb_psl27_closure_romfree_core.sv
+          vvp generated_h17_08/closure_romfree_sim
+      - name: Synthesize membership-only block
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_h17_08/psl27_closure_flat_core.sv; synth -top psl27_membership; stat' | tee h17_08_membership_yosys.log
+      - name: Synthesize class-only block
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_h17_08/psl27_closure_flat_core.sv; synth -top psl27_member_classify; stat' | tee h17_08_member_class_yosys.log
+      - name: Synthesize closure-aware frontend
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_h17_08/psl27_closure_flat_core.sv; synth -top psl27_closure_engine; stat' | tee h17_08_frontend_yosys.log
+      - name: Synthesize separate flat orbit-ID design
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_h17_08/psl27_closure_flat_core.sv; synth -top psl27_closure_flat_core; stat' | tee h17_08_flat_yosys.log
+      - name: Synthesize separate ROM-free fingerprint design
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_h17_08/psl27_closure_romfree_core.sv; synth -top psl27_closure_romfree_core; stat' | tee h17_08_romfree_yosys.log
+      - name: Upload H17-08 Verilog and synthesis logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: h17-08-closure-aware-compare
+          path: |
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/generated_h17_08/*.sv
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/h17_08_*_yosys.log
