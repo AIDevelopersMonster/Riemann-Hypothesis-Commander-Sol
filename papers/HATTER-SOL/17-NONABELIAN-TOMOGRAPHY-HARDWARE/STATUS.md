@@ -12,8 +12,6 @@ Source: `tools/generate_psl27_golden_model.py`.
 
 ## Closed mathematically: H17-02 admissibility law
 
-A new exhaustive finite certificate strengthens the H16 handoff.
-
 For all `168^2 = 28,224` ordered pairs `(A,B)`:
 
 ```text
@@ -24,59 +22,121 @@ non-generating signature image  =     66
 intersection                    =      0
 ```
 
-Therefore, for valid `PSL(2,7)` ports, the same 114-entry signature ROM is an exact generation-domain recognizer:
+Therefore, for valid `PSL(2,7)` ports, the H16 five-probe 114-entry ROM is simultaneously an exact generation-domain recognizer and an orbit decoder:
 
 `signature_hit <=> <A,B> = PSL(2,7)`.
 
-No separate subgroup-generation checker is required on this laboratory path.
-
 Certificate: `certificates/psl27_signature_admissibility_certificate.py`.
 
-## First erasure law
+## Closed: H17-03 minimum depth for one-erasure orbit recovery
 
-The exact five-probe signature has
-
-```text
-minimum generating-orbit signature distance = 1
-minimum generating/non-generating distance  = 2
-```
-
-Hence one lost probe may destroy orbit reconstruction, but any one lost probe still preserves generating/non-generating separation.
-
-Exact single-channel deletion statistics are recorded in:
-
-`docs/H17_02_SIGNATURE_ADMISSIBILITY_AND_ERASURE.md`.
-
-## New depth-4 barrier
-
-The complete H16 cyclic trace family of all primitive words of depth at most four has 25 coordinates. Exhaustive comparison of the 114 orbit codewords gives
+The complete cyclic trace family through primitive depth four contains 25 coordinates but still has
 
 ```text
-minimum orbit-code distance = 1
-number of distance-1 orbit pairs = 7
-unique separating coordinate for all 7 pairs = ABab = [A,B]
+d_min = 1
 ```
 
-Therefore exact one-erasure orbit recovery is impossible for **any** observer system restricted to the full depth-`<=4` cyclic-trace family. Redundancy at the same depth cannot repair the problem.
+on the 114 generating orbits. Exactly seven orbit pairs are at distance one, and in every case the only separating depth-`<=4` coordinate is
 
-This converts the next strike into a sharp mathematical question: find the shortest depth `>4` probe family (or a different observer type) that raises orbit-code distance to at least two.
+`ABab = [A,B]`.
 
-## End-to-end RTL generator added
+Therefore one-erasure exact orbit recovery is impossible at depth `<=4` even if every one of the 25 available coordinates is measured.
+
+At exact depth five, the single word
+
+`AABAb`
+
+separates all seven defect pairs. Hence the 25-word depth-`<=4` family plus `AABAb` has distance two. Thus
+
+```text
+minimum possible maximum primitive depth for one-erasure orbit recovery = 5
+```
+
+within the present cyclic-trace observer class.
+
+Moreover the complete 51-word family through depth five has
+
+```text
+d_min = 5.
+```
+
+Certificate: `certificates/psl27_depth5_erasure_certificate.py`.
+
+Detailed note: `docs/H17_03_DEPTH5_ONE_ERASURE.md`.
+
+## Backward-compatible erasure architecture
+
+If the original H16 five probes
+
+```text
+A, B, AB, Ab, ABab
+```
+
+must remain present, exhaustive search proves that one, two, or three exact-depth-five additions never reach distance two. Four additions suffice. One exact extension is
+
+```text
+AAABB
+AAAbb
+AABab
+ABBaB
+```
+
+Therefore the minimum backward-compatible depth-five one-erasure interface has nine probes.
+
+## Globally redesigned depth-five orbit code
+
+A binary MILP over all 51 cyclic words of depth `<=5`, with one distance-`>=2` constraint for every unordered pair of the 114 generating orbits, returns an optimum of eight probes with zero MIP gap and dual bound eight; the same model constrained to at most seven probes is infeasible.
+
+Among eight-probe solutions, the minimum number of exact-depth-five probes is four. A minimum-total-word-length solution is
+
+```text
+AAB
+ABB
+AAAb
+Abbb
+AABAb
+AAbAb
+ABaBB
+AbAbb
+```
+
+with total primitive word length 34.
+
+This cardinality-eight optimum is recorded as **solver-certified** rather than promoted beyond what the optimization certificate itself supports.
+
+## New separation: orbit recovery is not admissibility
+
+The globally optimized eight-probe orbit code has distance two on the 114 generating orbits, but its generating signature image intersects the non-generating image in two signatures.
+
+Therefore the following are distinct hardware objectives:
+
+1. generating-orbit recovery distance;
+2. generating/non-generating admissibility separation.
+
+The original five-probe H16 code has the second property exceptionally cleanly; a redesigned erasure code must not silently discard it.
+
+The next mathematical optimization target is therefore a joint code satisfying at least
+
+```text
+d_gen/gen >= 2
+S_gen intersection S_non = empty
+```
+
+and preferably
+
+```text
+d_gen/non >= 2
+```
+
+so that both exact orbit recovery and generation admissibility survive any one probe erasure.
+
+A first full joint MILP attempt exceeded the current execution window and is explicitly not treated as a result.
+
+## End-to-end RTL generator
 
 `tools/generate_psl27_end_to_end.py`
 
-It composes the existing H17 generators and emits:
-
-```text
-psl27_classify_perm.sv
-psl27_five_probe_engine.sv
-psl27_orbit_rom.sv
-psl27_tomography_core.sv
-tb_psl27_tomography_core.sv
-psl27_114_orbit_signatures.csv
-```
-
-The end-to-end data path is
+Data path:
 
 ```text
 A,B
@@ -87,26 +147,41 @@ A,B
  -> orbit_valid / canonical orbit_id
 ```
 
-The generated testbench covers all 180 five-probe signatures realized by `PSL(2,7)^2`:
+The generated testbench covers the 114 generating and 66 non-generating five-probe signature states. External HDL simulation/synthesis remains an open gate because this execution environment has no `iverilog`, `verilator`, or `yosys`.
 
-- 114 generating signatures must accept with the correct canonical orbit ID;
-- one representative of each of the 66 non-generating signatures must reject.
+## Arithmetic two-port frontend seed
 
-## Verification boundary
+The integer-side idea has been restored from H07/H11 without conflating it with the `PSL(2,7)` theorem.
 
-The exact Python certificates pass. The current execution environment has no `iverilog`, `verilator`, or `yosys`, so the generated SystemVerilog has not yet crossed the external HDL-simulation/synthesis gate. That gate remains explicitly open.
+For composite `n`, define the two-factor family
+
+```text
+D2(n) = {(a,b): a >= b >= 2, ab = n}.
+```
+
+The historical H11 maximal-first protocol inspects the lexicographically largest pair first. Equivalently,
+
+```text
+MF2(n) = (n / p_min(n), p_min(n)),
+```
+
+where `p_min(n)` is the smallest prime divisor.
+
+Examples:
+
+```text
+52: D2 = {(26,2),(13,4)} -> maximal-first (26,2)
+ 9: D2 = {(3,3)}        -> maximal-first (3,3)
+ 6: D2 = {(3,2)}        -> maximal-first (3,2)
+```
+
+The full family remains mathematically present; maximal-first is an experimental selection rule, not a canonical orbit law.
+
+Seed: `docs/INTEGER_TWO_PORT_MAXIMAL_FIRST_FRONTEND_SEED.md`.
 
 ## Next strike
 
-Search primitive trace words beginning at depth five and determine the minimum additional probe cost needed to raise the 114-orbit code distance from `1` to at least `2`.
-
-Priority order:
-
-1. prove whether depth five already breaks all seven depth-4 defect pairs;
-2. minimize the number of added probes over the original five-probe core;
-3. if possible, raise distance to `3` for stronger erasure/error protection;
-4. generate the redundant RTL interface and compare its word-depth/resource cost against the minimal core.
-
-## Integer-to-port note
-
-`6=2*3` naturally exposes two ordinary multiplicative ports in `Z`, whereas primes such as `17` or `53` require a chosen arithmetic extension/world before nontrivial decomposition ports appear. This remains a future H07/H10/H14 -> H17 frontend and is intentionally not mixed into the exact `PSL(2,7)` hardware theorem.
+1. solve the joint depth-`<=5` optimization with both orbit-erasure and generation-admissibility constraints;
+2. determine the exact minimum probe count for one-erasure-safe admissible tomography;
+3. generate the corresponding redundant RTL interface;
+4. only then compare hardware resource/latency cost against the five-probe minimal core and the nine-probe backward-compatible code.
