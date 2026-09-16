@@ -2,194 +2,256 @@
 
 ## Research task
 
-**Working title:** *Zero-Oracle Non-Abelian Tomography: Algorithms, Erasure Robustness, and FPGA Port Processors*
+**Working title:** *Zero-Oracle Non-Abelian Tomography: Canonical Orbit Decoding, Erasure Robustness, and FPGA Port Processors*
 
-**Status:** application/hardware research branch.  
-**Parents:** HATTER-SOL-15 and the finite-group laboratories of HATTER-SOL-16.  
-**Goal:** turn the observer architecture into explicit reconstruction algorithms and a hardware demonstrator without claiming more than the proved observer model supports.
-
----
-
-## 1. Terminology discipline
-
-The phrase **zero-oracle tomography** will mean:
-
-> reconstruction from externally addressable port actions and externally measured response channels, with no direct read access to internal state labels.
-
-It will **not** initially mean reconstruction of an arbitrary unknown network topology. H15 proves invertibility for a specific labelled reaction ensemble; arbitrary topology recovery requires a new identifiability theorem.
-
-Likewise, invertibility of the full response matrix does **not** by itself imply lossless recovery after arbitrary channel failures. Erasure robustness must be proved from submatrix rank/singular-value conditions.
+**Status:** active application/hardware research branch.  
+**Parents:** HATTER-SOL-15 and the closed finite-group theorem layers of HATTER-SOL-16.  
+**Goal:** turn the proved observer architecture into an exact end-to-end reconstruction machine and then quantify its hardware and robustness costs.
 
 ---
 
-## 2. Article A: finite zero-oracle tomography
+## 1. Frozen H16 handoff
 
-Start with a deliberately finite statement.
+HATTER-SOL-16 is closed at the theorem layer relevant to H17.
 
-### Input
+For generating pairs in
 
-- a known port group/action family;
-- an unknown reaction/state label from a finite set;
-- a selectable family of port words / commutator probes;
-- measured labelled observer responses.
+\[
+G=PSL(2,7),
+\]
 
-### Output
+there are exactly 114 simultaneous-conjugacy orbits. The five oriented trace probes
 
-- reaction class;
-- confidence/residual;
-- if sufficient probes exist, the exact hidden finite state.
+\[
+\boxed{A,\quad B,\quad AB,\quad AB^{-1},\quad[A,B]}
+\]
 
-### Main theorem target
+separate all 114 orbits. Primitive trace depth four is necessary and sufficient, and no subfamily of at most four probes from the complete depth-at-most-four candidate family separates all 114 orbits.
 
-Given an observer matrix `A`, characterize the smallest probe subset `S` for which
+The engineering interface handed to H17 is therefore frozen as
 
-`A_S x = A_S y => x=y`
+\[
+\boxed{
+\text{PORT WORD ENGINE}
+\to
+\text{ORIENTED 3D CHANNEL}
+\to
+\text{5-PROBE SIGNATURE}
+\to
+\text{114-ORBIT DECODER}.
+}
+\]
 
-on the admissible reaction set, and separately on the full zero-sum linear span.
-
-For linear tomography the basic quantities are:
-
-- rank of `A_S`;
-- smallest singular value;
-- condition number;
-- erasure distance: minimum number of observer rows whose removal destroys injectivity.
-
-This is the correct route from H15 invertibility to fault tolerance.
-
----
-
-## 3. Article B: erasure-resilient observer frames
-
-Replace the phrase “topological memory with zero loss” by a theorem-driven formulation:
-
-> **erasure-resilient non-Abelian observer memory**.
-
-For an analysis operator `A:C^d -> C^m`, define exact `e`-erasure recovery by requiring every row-deleted operator `A_E`, `|E|<=e`, to remain injective.
-
-Research goals:
-
-1. compute exact erasure tolerance for the dihedral primitive Mahler frame;
-2. bound the worst-case post-erasure singular value;
-3. construct redundant probe sets maximizing robustness;
-4. compare projective-code coarse observers with Mahler linear observers;
-5. identify whether the H15 code distance and linear-frame erasure distance are related or genuinely different invariants.
-
-Only after these are proved may the article claim recovery under channel failures.
+H17 must not re-prove this finite tomography theorem as its main task. It must implement it end to end.
 
 ---
 
-## 4. FPGA demonstrator architecture
+## 2. Terminology discipline
 
-The first hardware should compute exact finite-group observables, not the full transcendental Mahler integral.
+**Zero-oracle tomography** means reconstruction from externally addressable port actions and externally measured response channels, with no direct read access to the hidden simultaneous-conjugacy orbit label.
 
-### FPGA block 1 — Port engine
+It does not initially mean reconstruction of an arbitrary unknown network topology. Arbitrary topology recovery requires a separate identifiability theorem.
 
-Represent a permutation port as a LUT/memory map.
-
-Operations:
-
-- apply port `A` or `B`;
-- compose words;
-- inverse lookup;
-- compute commutator `ABA^{-1}B^{-1}`;
-- stream cycle/fixed-point statistics.
-
-For matrix groups `PSL(2,q)`, use finite-field matrix multiplication and inversion.
-
-### FPGA block 2 — Closed-word observer
-
-Given a programmed list of words, evaluate:
-
-- fixed-point counts;
-- permutation traces;
-- matrix traces;
-- selected powers `Tr K^m`;
-- compact fingerprints.
-
-This block is exact over finite groups and is the most natural first prototype.
-
-### FPGA block 3 — Character/representation projection
-
-For small groups, store representation matrices or character-table values in ROM and accumulate class/trace channels.
-
-### FPGA block 4 — Host-linked spectral observer
-
-Initial version:
-
-- FPGA generates exact port/word data and sample matrices;
-- host PC evaluates eigenvalues, log determinants, and 2D Mahler quadrature.
-
-Second-generation version may move fixed-point spectral quadrature onto FPGA using fixed-point arithmetic, CORDIC/log LUTs, and a pipelined torus grid.
-
-Do not start with hardware logarithms before the exact finite core is validated.
+Likewise, injectivity of the full five-probe signature does not imply recovery after arbitrary probe/channel loss. Erasure robustness is a separate theorem layer.
 
 ---
 
-## 5. Suggested first FPGA scale
+## 3. H17-01 · canonical 114-orbit golden model
 
-Three progressively harder targets:
+The first active strike is now the final H16 handoff, not the older H15-dihedral audit.
 
-1. `D_{2p}` with small prime `p` — reproduce H15 commutator, traces, and labelled channels;
-2. `A5` as permutations of five letters — first nonsolvable port processor;
-3. `PSL(2,7)` — finite-field matrix engine and higher-dimensional representation channels.
+Construct a deterministic, reproducible software model that:
 
-The same serial command protocol should select the group, port pair, word, and observer.
+1. enumerates `PSL(2,7)` exactly;
+2. enumerates all generating pairs `(A,B)`;
+3. quotients by simultaneous conjugacy;
+4. chooses the lexicographically minimal pair in each orbit as canonical representative;
+5. sorts the 114 representatives and assigns canonical `orbit_id = 0..113`;
+6. evaluates the five frozen probes;
+7. emits a 15-bit class signature using the encoding
+
+   `1A=000, 2A=001, 3A=010, 4A=011, 7A=100, 7B=101`;
+
+8. verifies that all 114 signatures are distinct;
+9. generates the complete 114-entry SystemVerilog orbit ROM and exhaustive test vectors.
+
+The generator itself, not a hand-edited table, is the source of truth.
 
 ---
 
-## 6. Test-vector and benchmark format
+## 4. H17-02 · full port-word engine
+
+The H16 HDL appendix accepted five class labels as inputs. H17 must remove that shortcut.
+
+Input:
+
+- exact representations of hidden ports `A,B` in `PSL(2,7)`.
+
+Hardware computes:
+
+\[
+A,\quad B,\quad AB,\quad AB^{-1},\quad ABA^{-1}B^{-1}.
+\]
+
+Required sub-blocks:
+
+- exact finite-field / permutation representation of group elements;
+- multiplication/composition;
+- inversion;
+- depth-four word sequencer;
+- deterministic probe scheduler.
+
+The first implementation may use the faithful permutation action on `P^1(F_7)` because it is exact and compact. A finite-field matrix engine is a later optimization/alternative architecture.
+
+---
+
+## 5. H17-03 · oriented class/representation channel
+
+Each of the five word values must be mapped to one of
+
+\[
+1A,2A,3A,4A,7A,7B.
+\]
+
+The split `7A/7B` orientation must be preserved. H16 proved that outer-invariant scalarization loses this distinction, while the oriented 3D channel retains it.
+
+The hardware-facing real orientation code is
+
+\[
+Q_4=0\mapsto00,\qquad Q_4=+1\mapsto01,\qquad Q_4=-1\mapsto10.
+\]
+
+A design that merges `7A` and `7B` is not a valid H17 tomography implementation.
+
+---
+
+## 6. H17-04 · complete 114-orbit decoder
+
+The five class labels form a 15-bit signature.
+
+H17 must provide:
+
+- all 114 canonical ROM entries;
+- a `valid` output for signatures outside the admissible set;
+- a 7-bit canonical orbit ID;
+- orientation output;
+- exhaustive simulation against all 114 golden vectors.
+
+This replaces the two-entry demonstration LUT in the H16 appendix.
+
+---
+
+## 7. H17-05 · interface-cost experiment
+
+H16 also proved a closed-loop-only alternative.
+
+General oriented words:
+
+\[
+\boxed{5\text{ probes},\quad \text{maximum primitive depth }4.}
+\]
+
+Balanced closed-loop-only words:
+
+\[
+\boxed{8\text{ explicit sufficient probes},\quad \text{maximum depth }14,}
+\]
+
+and depth 14 is necessary and sufficient for the complete balanced-word family.
+
+H17 should implement both interfaces and measure the actual cost of forbidding open/mixed probes:
+
+- word-engine state;
+- latency;
+- ROM/control cost;
+- switching/activity;
+- total logic and memory resources.
+
+This is the hardware analogue of the earlier HATTER-SOL structural cost laws.
+
+---
+
+## 8. H17-06 · erasure-resilient observer memory
+
+Only after the exact 114-orbit processor is working should H17 return to redundancy and failure tolerance.
+
+For a probe family `S`, compute:
+
+- exact injectivity after deleting specified probes;
+- minimum erasure count that produces a collision;
+- redundant probe families maximizing erasure distance;
+- post-erasure minimum separation / singular-value analogues where a linear embedding is used;
+- fault-injection agreement between theory and RTL.
+
+Do not claim “zero loss” or arbitrary fault tolerance before these conditions are proved.
+
+---
+
+## 9. FPGA architecture stages
+
+### Stage 1 — exact finite core
+
+`A,B -> word engine -> class/orientation -> five-probe signature -> 114-orbit decoder`.
+
+No Mahler integral and no hardware logarithm.
+
+### Stage 2 — robust core
+
+Add redundant probes and fault injection after the exact erasure theorem is known.
+
+### Stage 3 — spectral host extension
+
+The FPGA may stream exact word/representation data to a host PC for eigenvalue, determinant, or Mahler analysis.
+
+### Stage 4 — optional spectral FPGA
+
+Only after the finite exact path is stable may fixed-point quadrature, CORDIC/log LUTs, or pipelined spectral channels be considered.
+
+---
+
+## 10. Common benchmark record
 
 Every software/hardware experiment should emit a common record containing:
 
-- group ID;
-- representation/action ID;
-- port IDs `A,B`;
-- word/probe ID;
-- exact commutator/class result;
-- exact trace/fixed-point response;
-- optional floating spectral/Mahler response;
-- expected reconstruction label;
-- timing and resource data.
+- group/action ID;
+- canonical input port IDs or representatives;
+- probe word;
+- exact word value/class;
+- orientation state;
+- five-probe signature;
+- expected orbit ID;
+- observed orbit ID;
+- pass/fail;
+- cycles/latency;
+- synthesis resource data when available.
 
-This allows bit-for-bit comparison between Python reference, FPGA simulation, and physical board.
-
----
-
-## 7. What can be claimed at each stage
-
-### Stage 1 — exact demonstrator
-
-Claim only:
-
-- correct realization of noncommuting ports;
-- exact commutator/trace observer;
-- finite-state reconstruction matching the proved software model.
-
-### Stage 2 — robust tomography
-
-Claim only after proof and fault injection:
-
-- exact recovery under a specified number/pattern of erased channels;
-- quantified condition number/noise tolerance.
-
-### Stage 3 — hidden-network inference
-
-Only after an identifiability theorem:
-
-- recovery of unknown internal topology/parameters from external probes.
-
-Until then, “zero-oracle” refers to hidden state, not arbitrary unknown graph reconstruction.
+This allows exact comparison among Python golden model, HDL simulation, and physical FPGA.
 
 ---
 
-## 8. First active strike
+## 11. Claim boundary
 
-The first H17 deliverable is a **reference observer matrix and erasure audit for the H15 prime-dihedral laboratory**, followed by a cycle-accurate FPGA architecture for the exact commutator/trace core.
+At Stage 1 H17 may claim only:
 
-Hardware article threshold:
+- exact realization of noncommuting finite ports;
+- exact evaluation of the frozen five-probe observer;
+- exact recovery of the hidden generating-pair orbit within the proved 114-state laboratory.
 
-- software golden model;
-- HDL simulation agrees on all test vectors;
-- synthesis report on a real FPGA target;
-- at least one physical-board experiment;
-- reproducible resource/timing table.
+Recovery of arbitrary graph topology, arbitrary hidden groups, noisy analog systems, or general arithmetic structure is outside the Stage-1 theorem.
+
+---
+
+## 12. Hardware publication threshold
+
+H17 crosses its hardware publication threshold only after all of the following exist:
+
+1. deterministic software golden model;
+2. complete 114-entry decoder;
+3. HDL simulation agreeing on every golden vector;
+4. an end-to-end port-word engine rather than externally supplied class labels;
+5. synthesis report for a real FPGA target;
+6. timing/resource table;
+7. at least one physical-board experiment;
+8. reproducible source/test-vector package and hashes.
+
+Until then the branch is active research/implementation, not a finished hardware article.
