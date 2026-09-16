@@ -1,6 +1,11 @@
 # Appendix A · HDL proof-of-concept for the H16 orbit decoder
 
-This appendix records the first hardware-facing validation of the frozen HATTER-SOL-16 engineering interface. It is intentionally a **proof of concept**, not yet the full HATTER-SOL-17 implementation.
+This appendix records the first hardware-facing validation of the frozen HATTER-SOL-16 engineering interface. It is intentionally a **control / demonstration exercise**, not yet the full HATTER-SOL-17 implementation.
+
+**Public EDA Playground demonstration:** https://www.edaplayground.com/x/Z4Bx  
+**RTL source:** `hdl/h16_orbit_decoder.v`  
+**Testbench:** `hdl/tb_h16_orbit_decoder.v`  
+**Detailed reports:** `HDL_DEMONSTRATION_RU_v1.0.md`, `HDL_DEMONSTRATION_EN_v1.0.md`
 
 The tested block realizes the final H16 data path
 
@@ -54,128 +59,80 @@ The assigned orbit IDs in this proof-of-concept are demonstration LUT entries; t
 
 ## Verilog module
 
+The publication source is stored separately in `hdl/h16_orbit_decoder.v`. Its principal logic is:
+
 ```verilog
-`timescale 1ns/1ps
+assign q4_next = (class_K == 3'd4) ? 2'b01 : // 7A -> +1
+                 (class_K == 3'd5) ? 2'b10 : // 7B -> -1
+                                     2'b00;
 
-module h16_orbit_decoder (
-    input  wire       clk,
-    input  wire       rst_n,
-    input  wire       valid_in,
-    input  wire [2:0] class_A,
-    input  wire [2:0] class_B,
-    input  wire [2:0] class_AB,
-    input  wire [2:0] class_AB_inv,
-    input  wire [2:0] class_K,
+wire [14:0] signature = {class_A, class_B, class_AB, class_AB_inv, class_K};
 
-    output reg        valid_out,
-    output reg  [1:0] q4_orientation,
-    output reg  [6:0] orbit_id
-);
-
-    wire [1:0] q4_next;
-    assign q4_next = (class_K == 3'd4) ? 2'b01 : // 7A -> +1
-                     (class_K == 3'd5) ? 2'b10 : // 7B -> -1
-                                         2'b00;  // 3A, 4A -> 0
-
-    wire [14:0] signature = {class_A, class_B, class_AB, class_AB_inv, class_K};
-
-    reg [6:0] lut_orbit;
-
-    always @(*) begin
-        case (signature)
-            15'b011_011_010_011_100: lut_orbit = 7'd42;
-            15'b011_011_010_011_101: lut_orbit = 7'd43;
-            default:                  lut_orbit = 7'h7F;
-        endcase
-    end
-
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            valid_out      <= 1'b0;
-            q4_orientation <= 2'b00;
-            orbit_id       <= 7'd0;
-        end else begin
-            valid_out      <= valid_in;
-            q4_orientation <= q4_next;
-            orbit_id       <= lut_orbit;
-        end
-    end
-
-endmodule
+always @(*) begin
+    case (signature)
+        15'b011_011_010_011_100: lut_orbit = 7'd42;
+        15'b011_011_010_011_101: lut_orbit = 7'd43;
+        default:                  lut_orbit = 7'h7F;
+    endcase
+end
 ```
+
+The result is registered synchronously on the next positive clock edge.
 
 ## Testbench
 
-```verilog
-`timescale 1ns/1ps
+The full testbench is stored as `hdl/tb_h16_orbit_decoder.v`. It performs reset, applies the `7A` golden vector, changes only the commutator class to `7B`, and writes `dump.vcd` for waveform inspection.
 
-module tb_h16_orbit_decoder;
+## Observed result
 
-    reg        clk;
-    reg        rst_n;
-    reg        valid_in;
-    reg  [2:0] class_A, class_B, class_AB, class_AB_inv, class_K;
+The supplied EDA Playground waveform shows the expected state transition:
 
-    wire       valid_out;
-    wire [1:0] q4_orientation;
-    wire [6:0] orbit_id;
-
-    h16_orbit_decoder dut (
-        .clk(clk),
-        .rst_n(rst_n),
-        .valid_in(valid_in),
-        .class_A(class_A),
-        .class_B(class_B),
-        .class_AB(class_AB),
-        .class_AB_inv(class_AB_inv),
-        .class_K(class_K),
-        .valid_out(valid_out),
-        .q4_orientation(q4_orientation),
-        .orbit_id(orbit_id)
-    );
-
-    always #5 clk = ~clk;
-
-    initial begin
-        $dumpfile("dump.vcd");
-        $dumpvars(0, tb_h16_orbit_decoder);
-
-        clk = 0; rst_n = 0; valid_in = 0;
-        class_A = 0; class_B = 0; class_AB = 0; class_AB_inv = 0; class_K = 0;
-
-        #20 rst_n = 1;
-        #10;
-
-        class_A = 3'd3; class_B = 3'd3; class_AB = 3'd2; class_AB_inv = 3'd3; class_K = 3'd4;
-        valid_in = 1;
-        #10;
-
-        class_A = 3'd3; class_B = 3'd3; class_AB = 3'd2; class_AB_inv = 3'd3; class_K = 3'd5;
-        #10;
-
-        valid_in = 0;
-        #20 $finish;
-    end
-
-    always @(posedge clk) begin
-        if (valid_out) begin
-            $display("[T=%0t ps] Orbit ID = %0d | Q4 State = %b (%s)",
-                     $time, orbit_id, q4_orientation,
-                     (q4_orientation == 2'b01) ? "+1 (7A)" :
-                     (q4_orientation == 2'b10) ? "-1 (7B)" : "0");
-        end
-    end
-
-endmodule
+```text
+class_K        : 4 -> 5
+q4_orientation : 1 -> 2     // binary 01 -> 10
+orbit_id       : 2a -> 2b   // hexadecimal 42 -> 43
 ```
 
-## Interpretation
+Thus the experiment demonstrates the implementation-level distinction between the split order-seven classes using the exact orientation channel established mathematically in H16.
+
+## Reproduction
+
+The shared EDA Playground page provides the browser demonstration. EDA Playground documentation states that simulator execution requires sign-in, although a shared page can be used as a public code/demo reference.
+
+The HDL is not tied to the web service. With Icarus Verilog it can be run from a normal terminal:
+
+```bash
+iverilog -g2012 -o h16_sim \
+  hdl/h16_orbit_decoder.v hdl/tb_h16_orbit_decoder.v
+vvp h16_sim
+```
+
+and the generated waveform can be opened with
+
+```bash
+gtkwave dump.vcd
+```
+
+## Interpretation and practical significance
 
 This experiment validates three implementation facts already proved mathematically in H16:
 
-1. the five-probe signature fits into a compact fixed-width interface;
+1. the five-probe class signature fits into a compact 15-bit fixed-width interface;
 2. the orientation bit is extracted by a trivial combinational map from the commutator class;
 3. orbit recovery can be implemented as a finite lookup stage followed by a synchronous registered output.
+
+Consequently the frozen H16 information interface already has the form of an ordinary FPGA datapath:
+
+\[
+\boxed{
+5\times3\text{ input bits}
+\to 15\text{-bit signature}
+\to 2\text{-bit orientation}
+\to 7\text{-bit orbit ID}.
+}
+\]
+
+This is the practical conclusion required by H16: there is no architectural gap between the exact five-probe tomography theorem and a conventional LUT/ROM-based synchronous digital implementation.
 
 The present appendix deliberately does **not** claim a complete 114-orbit hardware decoder, synthesis result, fixed-point robustness, timing closure, or physical-board demonstration. Those belong to HATTER-SOL-17.
 
