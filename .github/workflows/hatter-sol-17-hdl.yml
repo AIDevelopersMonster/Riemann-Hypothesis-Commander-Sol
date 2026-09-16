@@ -73,3 +73,29 @@ jobs:
             generated_romfree/psl27_robust8_engine.sv \
             generated_romfree/psl27_robust8_repair.sv \
             generated_romfree/psl27_robust8_romfree_core.sv
+
+  yosys-synthesis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys
+        run: sudo apt-get update && sudo apt-get install -y yosys
+      - name: Generate all processor variants
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_structural_processor.py --out-dir generated_structural
+          python3 tools/generate_psl27_robust8.py --out-dir generated_robust8
+          python3 tools/generate_psl27_robust8.py --out-dir generated_romfree
+          python3 tools/generate_psl27_romfree_repair.py --out-dir generated_romfree
+      - name: Synthesize structural classifier
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_structural/psl27_structural_classify.sv; synth -top psl27_structural_classify; stat' | tee structural_yosys.log
+      - name: Synthesize flat robust8 core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_robust8/psl27_structural_classify.sv generated_robust8/psl27_robust8_engine.sv generated_robust8/psl27_robust8_decoder.sv generated_robust8/psl27_robust8_core.sv; synth -top psl27_robust8_core; stat' | tee robust8_flat_yosys.log
+      - name: Synthesize ROM-free fingerprint core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_romfree/psl27_structural_classify.sv generated_romfree/psl27_robust8_engine.sv generated_romfree/psl27_robust8_repair.sv generated_romfree/psl27_robust8_romfree_core.sv; synth -top psl27_robust8_romfree_core; stat' | tee robust8_romfree_yosys.log
