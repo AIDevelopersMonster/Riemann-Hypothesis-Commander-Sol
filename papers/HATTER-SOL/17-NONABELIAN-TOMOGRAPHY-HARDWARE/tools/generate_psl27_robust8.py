@@ -10,8 +10,10 @@ The decoder therefore accepts a known erased coordinate index 0..7, ignores that
 coordinate, reconstructs the canonical generating orbit ID, and rejects all
 non-generating full-signature states after any one erasure.
 
-The emitted SystemVerilog is generated from exact finite tables; no floating
-point arithmetic is used.
+H17-05 removes the 168-entry permutation/class ROM.  The emitted bundle uses a
+structural classifier based on permutation validity, projective cross-ratios,
+PSL orientation, permutation order, and the order-seven orientation invariant.
+Only the final signature-to-orbit decoder remains a finite ROM/case table.
 """
 from __future__ import annotations
 
@@ -20,7 +22,8 @@ from itertools import combinations
 from pathlib import Path
 
 from generate_psl27_golden_model import G, REPS, CLASS_CODE, CLASS_OF, eval_word, subgroup
-from generate_psl27_port_engine import emit_classifier, pack
+from generate_psl27_port_engine import pack
+from generate_psl27_structural_processor import SV as STRUCTURAL_CLASSIFIER_SV
 
 PROBES = ("AAB", "Abb", "AAAB", "Abbb", "AABAb", "AAbAb", "ABABB", "ABaBB")
 
@@ -64,7 +67,7 @@ def compose_expr(word):
 
 def emit_engine(path: Path):
     lines = [
-        "// Auto-generated H17 optimal eight-probe permutation word engine.",
+        "// Auto-generated H17 optimal eight-probe structural word engine.",
         "module psl27_robust8_engine(",
         "    input logic [23:0] A, input logic [23:0] B,",
         "    output logic valid, output logic [23:0] signature",
@@ -91,10 +94,10 @@ def emit_engine(path: Path):
     lines.append("  signature={c0,c1,c2,c3,c4,c5,c6,c7};")
     lines.append("  valid=vA&vB&v0&v1&v2&v3&v4&v5&v6&v7;")
     lines.append("end")
-    lines.append("psl27_classify_perm uA(.perm(A),.valid(vA),.class_code(cA_unused));")
-    lines.append("psl27_classify_perm uB(.perm(B),.valid(vB),.class_code(cB_unused));")
+    lines.append("psl27_structural_classify uA(.perm(A),.valid(vA),.class_code(cA_unused));")
+    lines.append("psl27_structural_classify uB(.perm(B),.valid(vB),.class_code(cB_unused));")
     for i in range(8):
-        lines.append(f"psl27_classify_perm u{i}(.perm(w{i}),.valid(v{i}),.class_code(c{i}));")
+        lines.append(f"psl27_structural_classify u{i}(.perm(w{i}),.valid(v{i}),.class_code(c{i}));")
     lines += ["endmodule", ""]
     path.write_text("\n".join(lines), encoding="utf-8")
 
@@ -146,7 +149,7 @@ def emit_decoder(path: Path, gen):
 
 
 def emit_core(path: Path):
-    path.write_text("""// H17 optimal eight-channel one-erasure tomography core.
+    path.write_text("""// H17 optimal eight-channel one-erasure tomography processor.
 module psl27_robust8_core(
     input logic [23:0] A, input logic [23:0] B, input logic [2:0] erased_idx,
     output logic input_valid, output logic orbit_valid,
@@ -197,14 +200,15 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--out-dir", default="generated_robust8"); args = ap.parse_args()
     out = Path(args.out_dir); out.mkdir(parents=True, exist_ok=True)
     gen, non = verify()
-    emit_classifier(out / "psl27_classify_perm.sv")
+    (out / "psl27_structural_classify.sv").write_text(STRUCTURAL_CLASSIFIER_SV, encoding="utf-8")
     emit_engine(out / "psl27_robust8_engine.sv")
     emit_decoder(out / "psl27_robust8_decoder.sv", gen)
     emit_core(out / "psl27_robust8_core.sv")
     emit_tb(out / "tb_psl27_robust8_core.sv", gen, non)
-    print("PASS: H17 robust8 exact generator emitted")
+    print("PASS: H17 robust8 structural processor bundle emitted")
     print("probes =", PROBES)
     print("test states =", 114*8, "generating +", 66*8, "non-generating")
+    print("class/membership LUT entries = 0")
 
 
 if __name__ == "__main__":
