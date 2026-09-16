@@ -178,35 +178,95 @@ Detailed note: `docs/H17_05_LUT_FREE_STRUCTURAL_PROCESSOR.md`.
 
 RTL generator: `tools/generate_psl27_structural_processor.py`.
 
-The robust8 generator has been switched to instantiate `psl27_structural_classify` for `A`, `B`, and all eight observer words.
+The robust8 generator instantiates `psl27_structural_classify` for `A`, `B`, and all eight observer words.
+
+## Closed mathematically: H17-06 ROM-free erasure repair
+
+The 24-bit robust8 signature itself is a canonical fingerprint of the 114 generating simultaneous-conjugacy orbits relative to the fixed ordered observer family. The integer `orbit_id=0..113` is therefore optional external naming metadata rather than a necessary mathematical output.
+
+For each known erased coordinate, exact dynamic programming optimizes a decision tree over the seven surviving class coordinates. Leaves output either the missing generating class or `NON`.
+
+For every erasure position the exact minimum worst-case decision depth is
+
+```text
+4 class queries.
+```
+
+Among depth-optimal trees, internal-node counts are
+
+```text
+AAB    41
+Abb    41
+AAAB   43
+Abbb   43
+AABAb  30
+AAbAb  39
+ABABB  39
+ABaBB  30
+```
+
+for 306 internal nodes before synthesis/factoring across erasure modes.
+
+Thus H17 has a ROM-free mathematical core:
+
+```text
+raw A,B
+ -> structural PSL membership
+ -> permutation word arithmetic
+ -> structural class computation
+ -> robust8 signature
+ -> depth-4 erasure repair/admissibility tree
+ -> 24-bit canonical orbit fingerprint
+```
+
+No element ROM and no 114-orbit ROM are required in this core.
+
+Certificate: `certificates/psl27_erasure_repair_tree_certificate.py`.
+
+Generator: `tools/generate_psl27_romfree_repair.py`.
+
+Detailed note: `docs/H17_06_ROM_FREE_ERASURE_REPAIR.md`.
+
+The generated adversarial repair test overwrites the erased three-bit coordinate with `3'b111`, so the repair logic cannot recover by reading the supposedly missing value.
+
+## Independent HDL simulation status
+
+GitHub Actions workflow `HATTER-SOL-17 HDL` has crossed the first external simulation gate with Icarus Verilog 12.0.
+
+The following jobs have passed independently on GitHub-hosted Ubuntu runners:
+
+```text
+structural-classifier : PASS
+robust8               : PASS
+```
+
+The structural-classifier simulation checks all 168 valid `PSL(2,7)` elements plus invalid witnesses.
+
+The robust8 simulation checks
+
+```text
+114 * 8 = 912 generating one-erasure states
+ 66 * 8 = 528 non-generating one-erasure states
+```
+
+and reports
+
+```text
+PASS: robust8 checked 114*8 generating and 66*8 non-generating erasure states
+```
+
+The new `romfree-repair` CI job is now part of the workflow and is the next HDL gate. Until that job completes successfully, H17-06 is recorded as mathematically closed and RTL-generated, but not yet externally simulated.
+
+No synthesis timing/resource/board claim is made yet.
 
 ## Exact observer tiers now fixed
 
-H17 now has three mathematically distinct hardware targets:
+H17 now has four hardware targets:
 
 1. **5-channel baseline** — minimal exact orbit/admissibility decoder, no erasure tolerance;
-2. **8-channel robust redesign** — globally minimal one-erasure trace observer in the depth-`<=5` candidate class;
-3. **9-channel H16-compatible robust core** — minimal one-erasure extension if the original five H16 channels are frozen.
-
-The eight-channel design is the preferred new processor target. The nine-channel design is the preferred migration target.
-
-## Preferred H17 processor path
-
-```text
-raw A,B permutations
- -> structural PSL(2,7) membership
- -> exact inverse/compose word arithmetic
- -> structural order/orientation class engine
- -> 8 x 3-bit robust signature
- -> known one-erasure projection
- -> canonical 114-orbit decoder
-```
-
-The final `signature -> orbit_id` stage remains finite memory. It names a proved finite sufficient statistic; it is no longer being used to imitate the group operations or conjugacy-class computation.
-
-## Verification boundary
-
-Exact Python finite certificates pass, including the `40320`-permutation structural membership test and the six-class structural classifier. This execution environment currently has no `iverilog`, `verilator`, or `yosys`, so the emitted SystemVerilog has not yet crossed external simulation and synthesis gates. No HDL timing/resource/board claim is made yet.
+2. **8-channel robust flat-ID decoder** — globally minimal one-erasure observer with historical `orbit_id` ROM;
+3. **8-channel robust ROM-free fingerprint processor** — preferred mathematical processor core;
+4. **9-channel H16-compatible robust core** — preferred migration target if the original H16 channels must remain exposed.
 
 ## Arithmetic two-port frontend seed
 
@@ -236,9 +296,9 @@ Seed: `docs/INTEGER_TWO_PORT_MAXIMAL_FIRST_FRONTEND_SEED.md`.
 
 ## Next strike
 
-1. generate and freeze the complete structural robust8 RTL bundle;
-2. add a structural-classifier HDL testbench covering all 168 valid group elements plus invalid `S8` witnesses;
-3. generate the nine-channel H16-compatible structural variant;
-4. cross the external HDL simulation gate;
-5. synthesize and compare logic/resource/latency cost against the original table-classified five-channel baseline;
-6. then investigate whether the final 114-orbit ROM can be logic-minimized or replaced by a smaller factored decoder without losing canonical IDs.
+1. cross the independent HDL simulation gate for `romfree-repair`;
+2. synthesize the structural classifier, flat robust8 decoder, and ROM-free repair design with Yosys;
+3. compare logic cells, mux/decode structure, critical combinational depth proxies, and inferred memories;
+4. generate the nine-channel H16-compatible structural variant;
+5. only after synthesis choose the preferred FPGA architecture and pipeline/register placement;
+6. then move to vendor FPGA timing closure and physical-board verification.
