@@ -1,0 +1,48 @@
+name: HATTER-SOL-17 HDL
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-17-nonabelian-tomography-hardware
+    paths:
+      - 'papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/**'
+      - '.github/workflows/hatter-sol-17-hdl.yml'
+
+jobs:
+  structural-classifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate structural classifier
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: python3 tools/generate_psl27_structural_processor.py --out-dir generated_structural
+      - name: Simulate structural classifier
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -o generated_structural/structural_sim \
+            generated_structural/psl27_structural_classify.sv \
+            generated_structural/tb_psl27_structural_classify.sv
+          vvp generated_structural/structural_sim
+
+  robust8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate robust8 processor
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: python3 tools/generate_psl27_robust8.py --out-dir generated_robust8
+      - name: Simulate robust8 processor
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          iverilog -g2012 -o generated_robust8/robust8_sim \
+            generated_robust8/psl27_structural_classify.sv \
+            generated_robust8/psl27_robust8_engine.sv \
+            generated_robust8/psl27_robust8_decoder.sv \
+            generated_robust8/psl27_robust8_core.sv \
+            generated_robust8/tb_psl27_robust8_core.sv
+          vvp generated_robust8/robust8_sim
