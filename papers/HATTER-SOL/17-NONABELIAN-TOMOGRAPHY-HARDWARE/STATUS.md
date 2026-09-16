@@ -30,113 +30,129 @@ Certificate: `certificates/psl27_signature_admissibility_certificate.py`.
 
 ## Closed: H17-03 minimum depth for one-erasure orbit recovery
 
-The complete cyclic trace family through primitive depth four contains 25 coordinates but still has
-
-```text
-d_min = 1
-```
-
-on the 114 generating orbits. Exactly seven orbit pairs are at distance one, and in every case the only separating depth-`<=4` coordinate is
+The complete cyclic trace family through primitive depth four contains 25 coordinates but still has `d_min=1` on the 114 generating orbits. Exactly seven orbit pairs are at distance one, and in every case the only separating depth-`<=4` coordinate is
 
 `ABab = [A,B]`.
 
-Therefore one-erasure exact orbit recovery is impossible at depth `<=4` even if every one of the 25 available coordinates is measured.
+Therefore one-erasure exact orbit recovery is impossible at depth `<=4` even if all 25 coordinates are measured.
 
-At exact depth five, the single word
-
-`AABAb`
-
-separates all seven defect pairs. Hence the 25-word depth-`<=4` family plus `AABAb` has distance two. Thus
+The exact-depth-five word `AABAb` separates all seven defect pairs, so
 
 ```text
 minimum possible maximum primitive depth for one-erasure orbit recovery = 5
 ```
 
-within the present cyclic-trace observer class.
-
-Moreover the complete 51-word family through depth five has
-
-```text
-d_min = 5.
-```
+within the present cyclic-trace observer class. The complete 51-word family through depth five has `d_min=5`.
 
 Certificate: `certificates/psl27_depth5_erasure_certificate.py`.
 
 Detailed note: `docs/H17_03_DEPTH5_ONE_ERASURE.md`.
 
-## Backward-compatible erasure architecture
+## Closed: H17-04 optimal joint one-erasure tomography
 
-If the original H16 five probes
+The correct robust objective is simultaneous
+
+```text
+d_gen/gen >= 2
+d_gen/non >= 2
+```
+
+so that deletion of any one known coordinate preserves both canonical generating-orbit recovery and generating/non-generating admissibility.
+
+The candidate family consists of all 51 cyclic trace coordinates of primitive depth `<=5`. The exact finite model has 114 generating orbits, 83 non-generating simultaneous-conjugacy orbits, and 66 distinct non-generating full signatures. These produce 13,965 binary covering constraints.
+
+A zero-gap binary MILP gives the exact optimum
+
+```text
+minimum joint one-erasure probe count = 8
+```
+
+One optimal family is
+
+```text
+AAB
+Abb
+AAAB
+Abbb
+AABAb
+AAbAb
+ABABB
+ABaBB
+```
+
+and direct finite verification gives
+
+```text
+d_gen/gen = 2
+d_gen/non = 2
+```
+
+Among all eight-probe joint optima, at least four probes must have exact depth five. With exactly four depth-five probes, the minimum total primitive word length is 34. Thus an optimal depth profile is
+
+```text
+(3,3,4,4,5,5,5,5)
+```
+
+and the displayed family realizes it.
+
+Certificate: `certificates/psl27_joint_one_erasure_code_certificate.py`.
+
+Detailed note: `docs/H17_04_OPTIMAL_JOINT_ONE_ERASURE_CODE.md`.
+
+## Closed: H16-backward-compatible robust minimum
+
+If the original H16 five channels
 
 ```text
 A, B, AB, Ab, ABab
 ```
 
-must remain present, exhaustive search proves that one, two, or three exact-depth-five additions never reach distance two. Four additions suffice. One exact extension is
+must remain exposed, eight total probes are impossible. Exhaustive enumeration of all `C(46,3)=15,180` three-coordinate extensions proves this independently of MILP optimization.
+
+A nine-channel joint one-erasure interface exists:
 
 ```text
-AAABB
-AAAbb
-AABab
-ABBaB
-```
-
-Therefore the minimum backward-compatible depth-five one-erasure interface has nine probes.
-
-## Globally redesigned depth-five orbit code
-
-A binary MILP over all 51 cyclic words of depth `<=5`, with one distance-`>=2` constraint for every unordered pair of the 114 generating orbits, returns an optimum of eight probes with zero MIP gap and dual bound eight; the same model constrained to at most seven probes is infeasible.
-
-Among eight-probe solutions, the minimum number of exact-depth-five probes is four. A minimum-total-word-length solution is
-
-```text
-AAB
+A
+B
+AA
+AB
+Ab
 ABB
-AAAb
-Abbb
-AABAb
-AAbAb
+Abb
+ABab
 ABaBB
-AbAbb
 ```
 
-with total primitive word length 34.
-
-This cardinality-eight optimum is recorded as **solver-certified** rather than promoted beyond what the optimization certificate itself supports.
-
-## New separation: orbit recovery is not admissibility
-
-The globally optimized eight-probe orbit code has distance two on the 114 generating orbits, but its generating signature image intersects the non-generating image in two signatures.
-
-Therefore the following are distinct hardware objectives:
-
-1. generating-orbit recovery distance;
-2. generating/non-generating admissibility separation.
-
-The original five-probe H16 code has the second property exceptionally cleanly; a redesigned erasure code must not silently discard it.
-
-The next mathematical optimization target is therefore a joint code satisfying at least
+with
 
 ```text
-d_gen/gen >= 2
-S_gen intersection S_non = empty
+d_gen/gen = 2
+d_gen/non = 2
 ```
 
-and preferably
+Only one of the four added probes has depth five. Therefore
 
 ```text
-d_gen/non >= 2
+minimum H16-frozen robust channel count = 9
 ```
 
-so that both exact orbit recovery and generation admissibility survive any one probe erasure.
+This replaces the earlier provisional four-depth-five extension as the preferred backward-compatible architecture.
 
-A first full joint MILP attempt exceeded the current execution window and is explicitly not treated as a result.
+## Exact observer tiers now fixed
 
-## End-to-end RTL generator
+H17 now has three mathematically distinct hardware targets:
+
+1. **5-channel baseline** — minimal exact orbit/admissibility decoder, no erasure tolerance;
+2. **8-channel robust redesign** — globally minimal one-erasure trace observer in the depth-`<=5` candidate class;
+3. **9-channel H16-compatible robust core** — minimal one-erasure extension if the original five H16 channels are frozen.
+
+The eight-channel design is the preferred new implementation target. The nine-channel design is the preferred migration target.
+
+## End-to-end RTL baseline
 
 `tools/generate_psl27_end_to_end.py`
 
-Data path:
+Current five-channel baseline data path:
 
 ```text
 A,B
@@ -147,25 +163,27 @@ A,B
  -> orbit_valid / canonical orbit_id
 ```
 
-The generated testbench covers the 114 generating and 66 non-generating five-probe signature states. External HDL simulation/synthesis remains an open gate because this execution environment has no `iverilog`, `verilator`, or `yosys`.
+The generated testbench covers the 114 generating and 66 non-generating five-probe signature states.
+
+The next implementation layer must generalize this pipeline to the eight-channel and nine-channel robust codes and test every single erased coordinate.
+
+## Verification boundary
+
+Exact Python finite certificates pass. This execution environment currently has no `iverilog`, `verilator`, or `yosys`, so external SystemVerilog simulation and synthesis remain open gates. No HDL timing/resource claim is made yet.
 
 ## Arithmetic two-port frontend seed
 
-The integer-side idea has been restored from H07/H11 without conflating it with the `PSL(2,7)` theorem.
-
-For composite `n`, define the two-factor family
+For composite `n`, define
 
 ```text
 D2(n) = {(a,b): a >= b >= 2, ab = n}.
 ```
 
-The historical H11 maximal-first protocol inspects the lexicographically largest pair first. Equivalently,
+The restored H07/H11 maximal-first protocol inspects the pair with largest first factor first, equivalently
 
 ```text
-MF2(n) = (n / p_min(n), p_min(n)),
+MF2(n) = (n / p_min(n), p_min(n)).
 ```
-
-where `p_min(n)` is the smallest prime divisor.
 
 Examples:
 
@@ -175,13 +193,14 @@ Examples:
  6: D2 = {(3,2)}        -> maximal-first (3,2)
 ```
 
-The full family remains mathematically present; maximal-first is an experimental selection rule, not a canonical orbit law.
+The full factor family remains present; maximal-first is an experimental selection protocol, not a canonical orbit theorem.
 
 Seed: `docs/INTEGER_TWO_PORT_MAXIMAL_FIRST_FRONTEND_SEED.md`.
 
 ## Next strike
 
-1. solve the joint depth-`<=5` optimization with both orbit-erasure and generation-admissibility constraints;
-2. determine the exact minimum probe count for one-erasure-safe admissible tomography;
-3. generate the corresponding redundant RTL interface;
-4. only then compare hardware resource/latency cost against the five-probe minimal core and the nine-probe backward-compatible code.
+1. generate the eight-channel robust word engine and erasure-aware orbit decoder;
+2. generate the nine-channel H16-compatible robust variant;
+3. exhaustively verify all 114 generating states and all 66 non-generating signature states under each single erased coordinate;
+4. cross the external HDL simulation gate;
+5. synthesize and compare channel count, primitive word depth, logic/resource cost, and latency against the five-channel baseline.
