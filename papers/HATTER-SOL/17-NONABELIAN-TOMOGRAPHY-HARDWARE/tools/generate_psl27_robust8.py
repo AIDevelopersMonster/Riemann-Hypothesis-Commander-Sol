@@ -29,13 +29,6 @@ def full_signature(a, b):
     return tuple(CLASS_OF[eval_word(w, a, b)] for w in PROBES)
 
 
-def code(sig):
-    v = 0
-    for name in sig:
-        v = (v << 3) | CLASS_CODE[name]
-    return v
-
-
 def erase_key(sig, erased):
     return tuple(sig[i] for i in range(8) if i != erased)
 
@@ -88,6 +81,7 @@ def emit_engine(path: Path):
         "    begin r='0; for(i=0;i<8;i=i+1) begin pi=getp(p,i); r[pi*3 +: 3]=i[2:0]; end inverse_perm=r; end",
         "endfunction",
         "logic [23:0] invA,invB;",
+        "logic vA,vB; logic [2:0] cA_unused,cB_unused;",
     ]
     for i in range(8):
         lines.append(f"logic [23:0] w{i}; logic v{i}; logic [2:0] c{i};")
@@ -95,8 +89,10 @@ def emit_engine(path: Path):
     for i, w in enumerate(PROBES):
         lines.append(f"  w{i}={compose_expr(w)}; // {w}")
     lines.append("  signature={c0,c1,c2,c3,c4,c5,c6,c7};")
-    lines.append("  valid=v0&v1&v2&v3&v4&v5&v6&v7;")
+    lines.append("  valid=vA&vB&v0&v1&v2&v3&v4&v5&v6&v7;")
     lines.append("end")
+    lines.append("psl27_classify_perm uA(.perm(A),.valid(vA),.class_code(cA_unused));")
+    lines.append("psl27_classify_perm uB(.perm(B),.valid(vB),.class_code(cB_unused));")
     for i in range(8):
         lines.append(f"psl27_classify_perm u{i}(.perm(w{i}),.valid(v{i}),.class_code(c{i}));")
     lines += ["endmodule", ""]
@@ -117,14 +113,14 @@ def emit_decoder(path: Path, gen):
         "logic [20:0] projected;",
         "always_comb begin",
         "  case(erased_idx)",
-        "    3'd0: projected={signature[20:0]};",
+        "    3'd0: projected=signature[20:0];",
         "    3'd1: projected={signature[23:21],signature[17:0]};",
         "    3'd2: projected={signature[23:18],signature[14:0]};",
         "    3'd3: projected={signature[23:15],signature[11:0]};",
         "    3'd4: projected={signature[23:12],signature[8:0]};",
         "    3'd5: projected={signature[23:9],signature[5:0]};",
         "    3'd6: projected={signature[23:6],signature[2:0]};",
-        "    default: projected={signature[23:3]};",
+        "    default: projected=signature[23:3];",
         "  endcase",
         "end",
         "always_comb begin",
@@ -157,15 +153,16 @@ module psl27_robust8_core(
     output logic [6:0] orbit_id, output logic [23:0] signature
 );
 logic dec_valid;
+logic [6:0] decoded_id;
 psl27_robust8_engine u_eng(.A(A),.B(B),.valid(input_valid),.signature(signature));
-psl27_robust8_decoder u_dec(.signature(signature),.erased_idx(erased_idx),.valid(dec_valid),.orbit_id(orbit_id));
+psl27_robust8_decoder u_dec(.signature(signature),.erased_idx(erased_idx),.valid(dec_valid),.orbit_id(decoded_id));
 assign orbit_valid=input_valid & dec_valid;
+assign orbit_id=orbit_valid ? decoded_id : 7'h7f;
 endmodule
 """, encoding="utf-8")
 
 
 def emit_tb(path: Path, gen, non):
-    # one representative for each non-generating full signature
     non_rep = {}
     for a in G:
         for b in G:
@@ -180,13 +177,13 @@ def emit_tb(path: Path, gen, non):
         "logic input_valid,orbit_valid; logic [6:0] orbit_id; logic [23:0] signature;",
         "psl27_robust8_core dut(.A(A),.B(B),.erased_idx(erased_idx),.input_valid(input_valid),.orbit_valid(orbit_valid),.orbit_id(orbit_id),.signature(signature));",
         "task automatic check_gen(input logic [23:0] a,input logic [23:0] b,input logic [2:0] e,input logic [6:0] oid); begin A=a;B=b;erased_idx=e;#1;if(!input_valid||!orbit_valid||orbit_id!==oid)$fatal(1);end endtask",
-        "task automatic check_non(input logic [23:0] a,input logic [23:0] b,input logic [2:0] e); begin A=a;B=b;erased_idx=e;#1;if(!input_valid||orbit_valid)$fatal(1);end endtask",
+        "task automatic check_non(input logic [23:0] a,input logic [23:0] b,input logic [2:0] e); begin A=a;B=b;erased_idx=e;#1;if(!input_valid||orbit_valid||orbit_id!==7'h7f)$fatal(1);end endtask",
         "initial begin",
     ]
     for oid, (a, b) in enumerate(REPS):
         for e in range(8):
             lines.append(f"check_gen(24'h{pack(a):06x},24'h{pack(b):06x},3'd{e},7'd{oid});")
-    for s, (a, b) in sorted(non_rep.items()):
+    for _, (a, b) in sorted(non_rep.items()):
         for e in range(8):
             lines.append(f"check_non(24'h{pack(a):06x},24'h{pack(b):06x},3'd{e});")
     lines += [
