@@ -1,0 +1,6 @@
+PASS: all exact assertions succeeded
+near_lower = 0.035403115821673055
+near_margin_sq = 6.819542469761168e-05
+series_bound = 0.06661764484578646 < 0.06666666666666667
+far_endpoint_squared_ratio = 5.012771695274961
+global_H_min = 3.513888888888889
