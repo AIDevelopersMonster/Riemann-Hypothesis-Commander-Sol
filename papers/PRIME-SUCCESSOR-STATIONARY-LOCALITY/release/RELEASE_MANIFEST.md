@@ -65,14 +65,13 @@ The release must not state:
 - a global automorphism theorem for the full two-sorted structure;
 - historical priority without a dedicated literature audit.
 
-## Source status
+## Current source branch
 
-The theorem/manuscript source work from `research/stationary-locality` was merged into `main`.
+`research/stationary-locality`
 
-## Publication status
+## Current publication status
 
 Mathematical proof audit: PASS after local repairs.  
-Version: 1.0.  
-Publication date: 2026-08-26.  
-Zenodo DOI: **10.5281/zenodo.22110465**.  
-Persistent URL: https://doi.org/10.5281/zenodo.22110465
+Binary layout/render QA: pending.  
+Zenodo record: not yet created.  
+Version planned for first deposit: 1.0.
