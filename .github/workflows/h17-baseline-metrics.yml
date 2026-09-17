@@ -1,0 +1,41 @@
+name: H17 baseline synthesis metrics
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-17-nonabelian-tomography-hardware
+    paths:
+      - '.github/workflows/h17-baseline-metrics.yml'
+      - 'papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_robust8_dag.py'
+      - 'papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_romfree_repair.py'
+
+jobs:
+  baseline-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys
+        run: sudo apt-get update && sudo apt-get install -y yosys
+      - name: Generate full-classifier baseline designs
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_robust8_dag.py --out-dir generated_baseline
+          python3 tools/generate_psl27_romfree_repair.py --out-dir generated_baseline
+      - name: Synthesize full-classifier frontend
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_baseline/psl27_structural_classify.sv generated_baseline/psl27_robust8_engine.sv; synth -top psl27_robust8_engine; stat' | tee h17_08_baseline_frontend_yosys.log
+      - name: Synthesize full-classifier flat core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_baseline/psl27_structural_classify.sv generated_baseline/psl27_robust8_engine.sv generated_baseline/psl27_robust8_decoder.sv generated_baseline/psl27_robust8_core.sv; synth -top psl27_robust8_core; stat' | tee h17_08_baseline_flat_yosys.log
+      - name: Synthesize full-classifier ROM-free core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          yosys -Q -p 'read_verilog -sv generated_baseline/psl27_structural_classify.sv generated_baseline/psl27_robust8_engine.sv generated_baseline/psl27_robust8_repair.sv generated_baseline/psl27_robust8_romfree_core.sv; synth -top psl27_robust8_romfree_core; stat' | tee h17_08_baseline_romfree_yosys.log
+      - name: Upload baseline synthesis logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: h17-08-full-classifier-baseline
+          path: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/h17_08_baseline_*_yosys.log
