@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "Reflections on Hybrid Memory with Commander Sol: Minimal Joint Rigidity of Partial Operations"
+message: "If you use this work, please cite the Zenodo record."
+type: article
+authors:
+  - family-names: Malachevsky
+    given-names: Alex
+    orcid: https://orcid.org/0009-0008-6009-3196
+version: 1.0.0
+date-released: 2026-08-29
+doi: 10.5281/zenodo.22165651
+url: https://doi.org/10.5281/zenodo.22165651
+repository-code: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol
+license: CC-BY-4.0
+keywords:
+  - partial algebra
+  - partial operations
+  - automorphism group
+  - hybrid memory
+  - joint rigidity
+  - symmetry breaking
+  - value erasure
+  - fiber synchronization
+  - carrier-value selection
