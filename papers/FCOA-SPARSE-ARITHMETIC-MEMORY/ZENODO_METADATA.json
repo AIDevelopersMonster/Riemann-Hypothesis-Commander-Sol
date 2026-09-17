@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "title": "Reflections on Sparse Arithmetic Memory with Commander Sol: An Exact Conjunctive-Query Width Threshold for Finite Addition",
+    "additional_titles": [
+      {
+        "title": "Размышлизмы о разреженной арифметической памяти с Commander Sol: точный порог ширины конъюнктивного запроса для конечного сложения",
+        "type": {"id": "translated-title"},
+        "lang": {"id": "rus"}
+      }
+    ],
+    "publication_date": "2026-09-03",
+    "resource_type": {"id": "publication-preprint"},
+    "creators": [
+      {
+        "person_or_org": {
+          "type": "personal",
+          "given_name": "Alex",
+          "family_name": "Malachevsky",
+          "identifiers": [{"scheme": "orcid", "identifier": "0009-0008-6009-3196"}]
+        }
+      }
+    ],
+    "rights": [{"id": "cc-by-4.0"}],
+    "description": "Article B of the FCOA / SOL-HYBRID line. The paper proves an exact near-linear conjunctive-query variable-width threshold k_+=9 for canonical truncated finite addition under whole-structure static relational preprocessing, and derives the same threshold for the canonical AL2 benchmark.",
+    "subjects": [
+      {"subject": "conjunctive queries"},
+      {"subject": "finite model theory"},
+      {"subject": "entropy bounds"},
+      {"subject": "factorised representations"}
+    ],
+    "version": "1.0.0",
+    "doi": "10.5281/zenodo.22286064",
+    "identifiers": [{"scheme": "doi", "identifier": "10.5281/zenodo.22286064"}]
+  }
+}
