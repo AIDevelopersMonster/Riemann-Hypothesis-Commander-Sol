@@ -1,0 +1,25 @@
+{
+  "columns": [
+    "A_hex",
+    "B_hex",
+    "mode_hex",
+    "status_hex",
+    "orbit_id_hex",
+    "raw_hex",
+    "observed_hex",
+    "repaired_hex"
+  ],
+  "full_count": 29911,
+  "quick_count": 1796,
+  "words": [
+    "AAB",
+    "Abb",
+    "AAAB",
+    "Abbb",
+    "AABAb",
+    "AAbAb",
+    "ABABB",
+    "ABaBB"
+  ],
+  "canonical_commit": "6d7f3ba6a6906ec66613fa113977234923749db7"
+}

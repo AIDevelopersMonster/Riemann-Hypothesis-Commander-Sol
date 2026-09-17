@@ -1,0 +1,73 @@
+"""Deterministic tables and independent end-to-end input vectors. No third-party Python deps."""
+from pathlib import Path
+import sys,json,random,itertools
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'vendor'))
+import generate_psl27_golden_model as g
+WORDS=['AAB','Abb','AAAB','Abbb','AABAb','AAbAb','ABABB','ABaBB']
+def pack(p):return sum(x<<(3*i) for i,x in enumerate(p))
+def sig(a,b):return sum(g.CLASS_CODE[g.CLASS_OF[g.eval_word(w,a,b)]]<<(21-3*i) for i,w in enumerate(WORDS))
+def main():
+ signatures=[sig(a,b) for a,b in g.REPS];assert len(set(signatures))==114
+ ids={}
+ for oid,(a,b) in enumerate(g.REPS):
+  for h in g.G:ids[g.conjugate(h,a),g.conjugate(h,b)]=oid
+ assert len(ids)==19152
+ vs=['function [26:0] group_row; input integer idx; begin case(idx)']
+ hs=['library ieee; use ieee.std_logic_1164.all; use ieee.numeric_std.all;','package h17_tables is','subtype word24 is std_logic_vector(23 downto 0);','function group_row(idx:natural) return std_logic_vector;','function orbit_row(idx:natural) return word24;','function probe_len(idx:natural) return natural;','function probe_letter(w:natural; k:natural) return natural;','end package;','package body h17_tables is','function group_row(idx:natural) return std_logic_vector is begin case idx is']
+ for i,p in enumerate(g.G):
+  val=(g.CLASS_CODE[g.CLASS_OF[p]]<<24)|pack(p)
+  vs.append(f"{i}: group_row=27'h{val:07x};")
+  hs.append(f'when {i} => return std_logic_vector(to_unsigned({val},27));')
+ vs+=['default:group_row=0; endcase end endfunction','function [23:0] orbit_row; input integer idx; begin case(idx)']
+ hs+=['when others => return std_logic_vector(to_unsigned(0,27)); end case; end function;','function orbit_row(idx:natural) return word24 is begin case idx is']
+ for i,s in enumerate(signatures):vs.append(f"{i}:orbit_row=24'h{s:06x};");hs.append(f'when {i} => return x"{s:06x}";')
+ vs+=['default:orbit_row=0; endcase end endfunction','function integer probe_len; input integer idx; begin case(idx)']
+ hs+=['when others => return x"000000"; end case; end function;','function probe_len(idx:natural) return natural is begin case idx is']
+ for i,w in enumerate(WORDS):vs.append(f'{i}:probe_len={len(w)};');hs.append(f'when {i} => return {len(w)};')
+ vs+=['default:probe_len=0; endcase end endfunction','function integer probe_letter; input integer w,k; begin case(w*5+k)']
+ hs+=['when others => return 0; end case; end function;','function probe_letter(w:natural; k:natural) return natural is begin case w*5+k is']
+ for i,w in enumerate(WORDS):
+  for j,c in enumerate(w):
+   v={'A':0,'B':1,'a':2,'b':3}[c];vs.append(f'{i*5+j}:probe_letter={v};');hs.append(f'when {i*5+j} => return {v};')
+ vs+=['default:probe_letter=0; endcase end endfunction']
+ hs+=['when others => return 0; end case; end function;','end package body;']
+ (ROOT/'rtl/verilog/h17_tables.vh').write_text('\n'.join(vs)+'\n')
+ (ROOT/'rtl/vhdl/h17_tables.vhd').write_text('\n'.join(hs)+'\n')
+ rows=[];non={}
+ def add(a,b,mode):
+  valid=a in g.INV and b in g.INV
+  s=sig(a,b) if valid else 0;oid=ids.get((a,b),127)
+  status=4 if mode>8 else 0 if not valid else 1 if oid==127 else 2
+  if status in (0,4):s=0
+  observed=(s & ~(7<<(24-3*mode)))|(7<<(24-3*mode)) if mode in range(1,9) and valid else s
+  if status==4:observed=0
+  repaired=s if status==2 else 0
+  rows.append(f'{pack(a):06x} {pack(b):06x} {mode:x} {status:x} {oid if status==2 else 127:02x} {s:06x} {observed:06x} {repaired:06x}')
+ for a in g.G:
+  for b in g.G:
+   add(a,b,0)
+   if (a,b) not in ids:non.setdefault(sig(a,b),(a,b))
+ assert len(non)==66
+ for a,b in list(g.REPS)+list(non.values()):
+  for mode in range(1,9):add(a,b,mode)
+ # Invalid permutations, non-bijections, invalid B, both invalid, reserved modes.
+ rng=random.Random(1709);bad=[]
+ for p in itertools.permutations(range(8)):
+  if p not in g.INV:
+   if len(bad)<40:bad.append(p)
+ for _ in range(40):bad.append(tuple(rng.randrange(8) for _ in range(8)))
+ for p in bad:add(p,g.ID,0);add(g.ID,p,1);add(p,p,8)
+ for mode in range(9,16):add(*g.REPS[0],mode)
+ (ROOT/'vectors/full.txt').write_text('\n'.join(rows)+'\n')
+ quick=rows[::281]+rows[28224:]+[rows[0],rows[-1]]
+ (ROOT/'vectors/quick.txt').write_text('\n'.join(quick)+'\n')
+ (ROOT/'vectors/demo.txt').write_text('\n'.join([rows[0],rows[28224],rows[28225],rows[-8],rows[-1]])+'\n')
+ (ROOT/'vectors/format.json').write_text(json.dumps({'columns':['A_hex','B_hex','mode_hex','status_hex','orbit_id_hex','raw_hex','observed_hex','repaired_hex'],'full_count':len(rows),'quick_count':len(quick),'words':WORDS,'canonical_commit':'6d7f3ba6a6906ec66613fa113977234923749db7'},indent=2))
+ # Verify erasure separation over all signatures independently of HDL scanning.
+ for mode in range(9):
+  mask=0xffffff if mode==0 else 0xffffff ^ (7<<(24-3*mode))
+  gen={s&mask for s in signatures};assert len(gen)==114
+  assert not gen.intersection(s&mask for s in non)
+ print('PASS golden model:',len(rows),'full vectors;',len(quick),'quick; exact erasure separation')
+if __name__=='__main__':main()
