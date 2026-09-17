@@ -1,62 +1,71 @@
 # Commander Sol project freeze — 2026-09-17
 
-Status: **FROZEN / archival consolidation in progress**.
+Status: **FROZEN / final branch retirement audit in progress**.
 
-This repository is being frozen conservatively. `main` is the canonical archival entry point. The freeze preserves theorem layers, research status, publication metadata, reproducibility material and historical commit ancestry without allowing older branch trees to overwrite newer canonical state.
+`main` is the canonical archival entry point. Scientific development is stopped. This freeze preserves theorem layers, research status, publication metadata, reproducibility material, release artifacts and historical commit ancestry without allowing obsolete branch trees to overwrite newer canonical state.
 
 ## Freeze rules
 
 1. No branch is retired merely because its name looks obsolete.
-2. A branch is retirement-safe only after `main...branch` reports `ahead_by = 0` or an explicit archival ancestry/salvage operation has made its head reachable from `main`.
-3. Merge commits are preferred because they preserve ancestry.
-4. Unfinished `STATUS` / `RESEARCH_TZ` material remains unfinished; archival inclusion does not promote conjectures, experiments or future-work seeds to theorems.
-5. Conflicting historical branches are not wholesale-applied over newer canonical files. Where necessary, a topology-only merge records the historical head as a parent while leaving the `main` tree unchanged.
-6. Scientific work is frozen: no new theorem layers, experiments, HATTER numbers, FCOA modules or RH-SOL branches during archival consolidation.
+2. Retirement requires `main...branch` to report `ahead_by = 0`, or an explicit archival operation that makes the branch head reachable from `main`.
+3. Clean content/release tails are physically merged. Conflicting historical lines are preserved by zero-diff ancestry merges.
+4. Archival inclusion never promotes conjectures, experiments, incomplete STATUS material or future-work seeds to proved results.
+5. No new HATTER, FCOA, RH-SOL or PRIME-SUCCESSOR research is started during the freeze.
 
 ## Content integrated during freeze
 
-- PR #19 — HATTER-SOL 11–15 cumulative chain.
-- PR #20 — HATTER-SOL-13 late closure/README corrections.
-- PR #21 — HATTER-SOL-14 Hecke/Zenodo publication tail.
-- PR #22 — HATTER-SOL-16 nonsolvable-ports package.
-- PR #23 — HATTER-SOL-17 current hardware state, including unfinished STATUS.
-- PR #24 — HATTER-SOL-18 future-work seed.
-- PR #25 — Alice Ruler III / edit-rigidity current state.
-- PR #26 — Alice Ruler II / incidence late publication and QA tail.
-- PR #28 — FCOA nesting atomicity package.
-- PR #30 — RH-SOL-04/05 experimental chain and reproducibility scripts.
-- PR #31 — PRIME-SUCCESSOR operator meta experiments.
-- PR #32 — finite-subset carrier-wall late research layers.
-- PR #34 — threshold-spectrum-rigidity proof/audit package.
+PRs #19–26 and #28 integrated the HATTER-SOL 11–18, Alice Ruler II/III and FCOA nesting-atomicity packages. PR #30 integrated RH-SOL-04/05. PR #31 integrated PRIME-SUCCESSOR operator meta experiments. PR #32 integrated finite-subset carrier-wall. PR #34 integrated threshold-spectrum-rigidity. The canonical FCOA PR #13 salvage was already integrated through PR #18.
 
-The canonical FCOA PR #13 salvage was already integrated through PR #18.
+Final publication/research pass:
+
+- PR #41 — `paper/exact-zero-one-boundary-v1`: publication README/history physically integrated.
+- PR #42 — `director/fcoa-rigidity-cost`: remaining FCOA-LQR-SYNCHRONIZATION RC1 release commit, including binary DOCX/PDF/ZIP artifacts, checksums and metadata, physically integrated.
+- PR #43 — `research/fcoa-lqr-prestabilization`: 21-commit QGE3 prestabilization research line and verification scripts physically integrated.
+- PR #45 — `research/fixed-ball-interior`: divergent research ancestry preserved with a zero-diff merge after direct PR #44 was rejected as conflicting.
+- PR #46 — `paper/fixed-ball-v1.1`: later fixed-ball v1.1 publication state physically integrated and authoritative for its publication files.
+- PR #48 — `research/prime-status-corridor`: 15-commit historical research/publication line preserved by zero-diff ancestry after direct PR #47 remained nonmergeable. The separate `paper/prime-status-corridor-v1.0` head is already an ancestor of main.
+- PR #49 — `paper/support-cardinality-v1.1`: review response, release candidate and proof-audit publication tail physically integrated.
 
 ## Conflict branches archived by ancestry
 
-Direct historical merges were rejected where they would mix obsolete tree state with newer canonical material. Their complete commit histories are now made reachable from `main` through zero-diff topology-only merge commits:
+- `research/stationary-locality` — source head `777b4d378e4dace0d5c7eda677f63caea02cde94`; dangerous direct content attempt rejected; ancestry preserved by PR #37.
+- `director/fcoa-selector` — source head `4de03fa7982fb8ed06003465b40d359ec9e30716`; ancestry PR #38.
+- `director/fcoa-z-symmetric-line` — source head `9e1d646f5a2dd1f4fee992e9a2410979485a314d`; ancestry PR #39.
+- `director/fcoa-hybrid-memory` — source head `963edac456faf1b930441c65c55616b31ba96130`; ancestry PR #40.
+- `research/fixed-ball-interior` — source head `d01ffe97ccecad10c4cf489d0555a94c9d58fbde`; ancestry PR #45.
+- `research/prime-status-corridor` — source head `95e311bb01c0048585aa85c8b123aa2c3a6e7edc`; ancestry PR #48.
 
-- `research/stationary-locality` — source head `777b4d378e4dace0d5c7eda677f63caea02cde94`; direct content attempt PR #36 was rejected after showing 427 deletions; clean ancestry PR #37 merged. Post-merge verification: `ahead_by = 0`.
-- `director/fcoa-selector` — source head `4de03fa7982fb8ed06003465b40d359ec9e30716`; historical direct PR #35 was not merged; clean ancestry PR #38 merged with 0 changed files. Post-merge verification: `ahead_by = 0`.
-- `director/fcoa-z-symmetric-line` — source head `9e1d646f5a2dd1f4fee992e9a2410979485a314d`; historical direct PR #27 was not merged; clean ancestry PR #39 merged with 0 changed files. Post-merge verification: `ahead_by = 0`.
-- `director/fcoa-hybrid-memory` — source head `963edac456faf1b930441c65c55616b31ba96130`; historical direct PR #29 was not merged because it overlaps newer canonical PR #13/#18 material; clean ancestry PR #40 merged with 0 changed files. Post-merge verification: `ahead_by = 0`.
+All of these lines remain recoverable from `main` history while the canonical tree remains authoritative.
 
-These four original branch heads are now retirement-safe from the history-preservation perspective. Their old trees remain recoverable through Git history, while the current `main` tree remains authoritative.
+## Verified retirement-safe branches in this pass
 
-## Recovery checkpoints
+The following were explicitly checked against current `main` and returned `ahead_by = 0`:
 
-- `archive/freeze-2026-09-17-pre-final` — checkpoint before the final retirement/salvage pass.
-- Additional temporary `archive/freeze-*` branches were created solely to carry ancestry merge commits. Once the final branch audit is complete and the corresponding commits are confirmed reachable from `main`, these temporary carrier branches are themselves retirement-safe.
+- `agent/prime-successor-operator-meta`
+- `agent/rh-sol-02-shift`
+- `agent/rh-sol-03-realzero`
+- `agent/rh-sol-04-firewall`
+- `agent/rh-sol-05-poisson`
+- `director/fcoa-nesting-atomicity`
+- `paper/prime-status-corridor-v1.0`
+- `paper/prime-successor-algebra`
+- `paper/prime-successor-operator`
+- `research/alice-ruler-edit-rigidity`
+- `research/alice-ruler-incidence`
+- `research/finite-subset-carrier-wall`
+- `research/hatter-sol-dimensional-factor-morphisms`
+- `research/hatter-sol-free-ports`
+- `research/hatter-sol-ideal-factor-networks`
+- `research/hatter-sol-world-interface-operators`
+- `research/threshold-spectrum-rigidity`
+- `tmp-never-use`
 
-## Historical lines already subsumed
+The newly integrated/ancestry-preserved heads listed above are also intended for retirement after the final mechanical verification sweep.
 
-The cumulative HATTER-SOL chain subsumes several intermediate HATTER heads, including the old `tmp-never-use` lineage and intermediate HATTER-SOL-11/12 work. HATTER-SOL-13 and HATTER-SOL-14 divergent late tails were separately integrated before retirement.
+## Recovery branches
 
-The integrated RH-SOL-05 chain is expected to subsume earlier RH-SOL agent heads; each must still pass the final `ahead_by = 0` verification before deletion.
-
-## Remaining retirement gate
-
-The final pass must compare every remaining branch against current `main`, especially remaining FCOA director/research heads and PRIME-SUCCESSOR research/publication branches. Any branch with `ahead_by > 0` remains protected until merged or archived by ancestry. Any branch with `ahead_by = 0` is safe to delete from the content/history perspective, except the intentionally retained recovery checkpoint.
+`archive/freeze-2026-09-17-pre-final` is the intentional pre-final recovery checkpoint. Temporary `archive/freeze-*` ancestry carrier branches exist only to transport topology-only merge commits; once their commits are reachable from `main`, they are themselves disposable. `archive/freeze-2026-09-17-prime-salvage` remains a recovery checkpoint until branch cleanup is completed.
 
 ## Canonical restart point
 
-If the programme is ever resumed, start from `main` and this ledger. Do not resume from an old research branch without first comparing it with the then-current `main` and reading its branch-local `STATUS`, `RESEARCH_TZ`, publication audit and theorem-dependency records.
+If the programme is ever reactivated, begin from `main` and this ledger. Do not resume an old research branch directly. First compare it with the then-current `main`, then read its STATUS/RESEARCH_TZ, publication audit and theorem dependency records. The freeze itself does not authorize new mathematical claims.
