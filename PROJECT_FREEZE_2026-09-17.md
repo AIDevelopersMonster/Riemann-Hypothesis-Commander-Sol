@@ -1,60 +1,63 @@
 # Commander Sol project freeze — 2026-09-17
 
-Status: **FROZEN / conservative archival mode**.
+Status: **FROZEN / archival consolidation in progress**.
 
-This repository is being frozen conservatively. `main` is the canonical archival entry point. No unfinished research is promoted to a proved result by archival inclusion.
+This repository is being frozen conservatively. The objective is to make `main` the canonical archival entry point without losing unique theorem layers, research status, publication metadata, reproducibility scripts, certificates, or the ancestry of completed work.
 
 ## Freeze rules
 
-1. Never delete a branch because its name looks obsolete.
-2. Retire a branch only when its unique content/history is reachable from `main`, or when an explicit archival salvage preserves what must survive.
-3. Prefer merge commits for clean freeze integrations so branch ancestry remains reachable.
-4. Preserve `STATUS`, `RESEARCH_TZ`, audits, manuscripts, publication metadata, scripts and certificates for unfinished work.
-5. Never wholesale-merge a historical branch that conflicts with a newer canonical layer; use path-level salvage instead.
+1. No branch is to be deleted merely because its name looks obsolete.
+2. A branch may be retired only after its unique content is present in `main` **and** its relevant history is reachable from `main`, or after an explicit archival salvage records the material that must survive.
+3. Merge commits are preferred for freeze integration because they preserve branch ancestry.
+4. Unfinished branches are archived with their current `STATUS`/`RESEARCH_TZ`; archival inclusion does not upgrade conjectures, open obligations, experiments, or seeds into proved results.
+5. Historical branches that conflict with a newer canonical layer must not be wholesale-merged. They require path-level salvage.
+6. Project is now scientifically frozen: no new theorem layers, experiments, HATTER, FCOA or RH-SOL research branches are to be started during archival consolidation.
 
 ## Integrated during freeze
 
-- PR #19 — HATTER-SOL 11–15 cumulative chain.
-- PR #20 — HATTER-SOL-13 late corrections.
-- PR #21 — HATTER-SOL-14 publication tail.
-- PR #22 — HATTER-SOL-16.
-- PR #23 — HATTER-SOL-17 current state.
-- PR #24 — HATTER-SOL-18 research seed.
-- PR #25 — Alice Ruler III current state.
-- PR #26 — Alice Ruler II publication/QA tail.
-- PR #28 — FCOA nesting atomicity.
-- PR #30 — RH-SOL-04/05 firewall/Poisson experimental chain and reproducibility scripts.
-- PR #31 — PRIME-SUCCESSOR-OPERATOR meta experiments.
-- PR #32 — finite-subset carrier-wall remaining theorem/research layers.
-- PR #34 — threshold-spectrum-rigidity proof/audit package.
+- HATTER-SOL 11–15 cumulative research chain (PR #19).
+- HATTER-SOL-13 late closure/README corrections (PR #20).
+- HATTER-SOL-14 late Hecke/Zenodo publication tail (PR #21).
+- HATTER-SOL-16 nonsolvable-ports package (PR #22).
+- HATTER-SOL-17 current hardware research state, explicitly including unfinished status (PR #23).
+- HATTER-SOL-18 future-work seed (PR #24).
+- Alice Ruler III / edit-rigidity current state (PR #25).
+- Alice Ruler II / incidence late publication and QA tail (PR #26).
+- FCOA nesting atomicity research/publication package (PR #28).
+- RH-SOL-04/05 experimental chain and reproducibility scripts (PR #30).
+- PRIME-SUCCESSOR operator meta experiments (PR #31).
+- PRIME-SUCCESSOR finite-subset carrier-wall late research layers (PR #32).
+- PRIME-SUCCESSOR threshold-spectrum-rigidity proof/audit package (PR #34).
 
-The earlier canonical FCOA PR #13 salvage is present through PR #18.
+The earlier canonical FCOA PR #13 salvage is already in `main` through PR #18.
 
-## Safety checkpoints
+## Recovery checkpoint
 
-Before the second consolidation pass, `archive/freeze-2026-09-17-pre-final` was created from the then-current `main` as a recovery point. `archive/freeze-2026-09-17-prime-salvage` is an additional checkpoint from the same consolidation era.
+`archive/freeze-2026-09-17-pre-final` records the canonical `main` state before the final retirement/salvage pass.
 
-## Subsumed HATTER history
+## Historical branches already subsumed by later ancestry
 
-The cumulative HATTER chain makes intermediate HATTER-11/HATTER-12 heads and `tmp-never-use` redundant from a content/history perspective. HATTER-13 and HATTER-14 had late divergent corrections, so their tails were separately integrated before retirement.
+The HATTER-SOL cumulative chain makes several intermediate heads historically redundant once branch deletion is performed: `tmp-never-use`, the HATTER-SOL-11 orbital-port branch, and the HATTER-SOL-12 observer-world branch are ancestors of the integrated HATTER-SOL-15 chain. HATTER-SOL-13 and HATTER-SOL-14 had late divergent corrections; those tails were separately integrated before retirement.
 
-## Deliberately NOT wholesale-merged
+Likewise, intermediate RH-SOL agent branches that are ancestors of the integrated RH-SOL-05 chain may be retired after final ancestry verification.
 
-The following freeze PRs were closed without merge because current canonical `main` and the historical branch conflict or overlap in ways that make a wholesale merge unsafe:
+## Branches deliberately NOT wholesale-merged
+
+The following freeze PRs were audited and closed without merge because a direct merge would mix historical state with newer canonical material:
 
 - PR #27 — `director/fcoa-z-symmetric-line`.
 - PR #29 — `director/fcoa-hybrid-memory`.
 - PR #33 — `research/stationary-locality`.
 - PR #35 — `director/fcoa-selector`.
 
-These branches are **archival sources and must not be deleted yet**. FCOA selector contains substantial unique `delegated/FCOA_SELECTOR` and accumulated Z-symmetric material; hybrid-memory overlaps the canonical PR #13 salvage; stationary-locality contains a unique theorem/manuscript/release package but no longer merges cleanly after later integrations.
+These branches must remain until path-level archival salvage is complete. In particular, the hybrid-memory line overlaps the canonical PR #13 salvage; the selector and Z-symmetric lines contain large historical/applied trees whose root README state conflicts with current `main`; stationary-locality contains a self-contained publication package plus an RH-SOL-06 analysis note but no longer merges cleanly after later integrations.
 
 ## Remaining retirement gate
 
-Branch deletion is intentionally deferred until every remaining branch has been re-compared with the final `main`. Cleanly integrated branches should report no unique commits relative to `main`; conflicting archival-source branches above are exceptions and must remain until path-level salvage is completed.
+Audit every still-ahead branch against the current `main`. Priority salvage families include the four conflict sources above, remaining FCOA director/research heads, PRIME-SUCCESSOR research/publication tails, and any other branch for which `main...branch` still reports `ahead_by > 0`.
 
-The project is scientifically frozen: do not start new theorem layers, experiments, HATTER numbers, FCOA modules, or RH-SOL branches during this freeze. The only permitted repository work is archival consolidation, provenance repair, metadata correction, or later explicit reactivation.
+A branch with `ahead_by = 0` after this consolidation is safe to retire from the content/history perspective. A branch with `ahead_by > 0` is **not** safe to delete until its unique commits are merged or explicitly salvaged.
 
 ## Canonical restart point
 
-If the programme is resumed, start from `main` and this ledger. Do not resume directly from an old research branch without comparing it against the then-current `main` and reading its branch-local status/audit records.
+If the programme is ever resumed, start from `main` and this freeze ledger. Do not resume from an old research branch without first comparing it against the then-current `main` and reading the branch-local `STATUS`, `RESEARCH_TZ`, publication audit, and theorem dependency records.
