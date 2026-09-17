@@ -1,119 +1,83 @@
-# Размышления о гипотезе Римана с Commander Sol
+# Commander Sol / Гипотеза Римана — замороженный исследовательский архив
 
-**Серия:** *Размышления о гипотезе Римана и живучести логарифмических арифметических структур с Commander Sol*.
+> **ПРОГРАММА ЗАМОРОЖЕНА — 17.09.2026.** Научное развитие этого репозитория остановлено. `main` является каноническим архивным деревом. Слова `active`, `next`, `planned`, `in progress`, «следующий шаг», «рабочий рубеж», «будущая работа» в старых локальных файлах отражают состояние на момент их написания и не являются действующими указаниями после заморозки.
 
-Репозиторий предназначен для воспроизводимой серии вычислительных исследований: Argand-петли дзета-функции Римана, бинарное кодирование целочисленной решёткой, сохранение частот Дирихле, sampling/aliasing, нулевые модели и оценка того, сколько арифметической информации переживает нелинейную геометрическую квантизацию.
+Актуальный статус программы: **[`PROGRAMME_STATUS_2026-09-17.md`](PROGRAMME_STATUS_2026-09-17.md)**. Механика консолидации веток и сохранения истории: **[`PROJECT_FREEZE_2026-09-17.md`](PROJECT_FREEZE_2026-09-17.md)**.
 
-## Первая публикация
+English navigation: [`README.md`](README.md).
 
-**RH-SOL-01 · LATTICE**  
-*Integer-Lattice Encoding of Riemann-Zeta Argand Loops: Persistence of Dirichlet Frequencies under Binary Geometric Quantization*  
-Автор: **Alex Malachevsky**  
-ORCID: **0009-0008-6009-3196**  
-Zenodo DOI: **10.5281/zenodo.22060296**
+## Что сохранено
 
-## Дополнительные опубликованные математические ветви
+Это консолидированный архив математической программы Commander Sol: RH-SOL, Prime-Successor Algebra и связанные исследования простых, FCOA, HATTER-SOL и линия Alice/Ruler. При заморозке в `main` сохранены theorem layers, исследовательские checkpoints, рукописи, публикационные метаданные, воспроизводимые эксперименты и необходимая история Git.
 
-### FCOA · Геометрия допустимости
+Сам факт наличия материала в архиве не означает, что каждая гипотеза, theorem candidate, эксперимент, roadmap или future-work note доказаны либо опубликованы. Публикационный статус определяется явной DOI/release-информацией; математический статус — соответствующим проверенным theorem/manuscript layer.
 
-**«Размышлизмы о геометрии допустимости с Commander Sol: как частичная операция запоминает ориентированный носитель»**  
-Zenodo DOI: **10.5281/zenodo.22129787**  
-GitHub-компаньон: [`papers/FCOA-ADMISSIBILITY-GEOMETRY/`](papers/FCOA-ADMISSIBILITY-GEOMETRY/)  
-Интерактивная демонстрация: [`demos/fcoa-domain-compilation/`](demos/fcoa-domain-compilation/)
+## Основные направления
 
-Основная цепочка:
+| Направление | Статус | Каноническое расположение |
+|---|---|---|
+| RH-SOL | **FROZEN** | `programme/`, `papers/RH-SOL-*` |
+| PRIME-SUCCESSOR | **FROZEN** | `papers/PRIME-*` и связанные release-материалы |
+| FCOA | **FROZEN** | `papers/FCOA-*`, delegated/release-материалы |
+| HATTER-SOL | **FROZEN** | `papers/HATTER-SOL/` |
+| ALICE-RULER | **FROZEN** | `alice-ruler-incidence/`, `alice-ruler-edit-rigidity/` |
 
-`M0 -> G1 -> G2`
+Подробный статус отдельных линий: [`PROGRAMME_STATUS_2026-09-17.md`](PROGRAMME_STATUS_2026-09-17.md).
 
-и центральный механизм:
+## Публикации, явно зафиксированные в каноническом дереве
 
-`отношение -> область частичной операции -> восстанавливаемая структурная память`.
+Эта таблица служит навигацией и не заменяет release metadata. Здесь перечислены только записи, для которых название и DOI явно присутствуют в консолидированном дереве.
 
-### FCOA · Ценностная жёсткость / Identity-орграфы
+| Линия | Публикация | DOI |
+|---|---|---|
+| RH-SOL-01 · LATTICE | *Integer-Lattice Encoding of Riemann-Zeta Argand Loops: Persistence of Dirichlet Frequencies under Binary Geometric Quantization* | `10.5281/zenodo.22060296` |
+| Alice Ruler II | *Phase Rigidity in Steiner Triple Systems: Quantitative Hall–Projective Stability from Anti-Mitre Defects* | `10.5281/zenodo.22722951` |
+| Alice Ruler III | *From Local Fano Phase to Partial Projective Geometry: Sharp Obstructions and Rank-2 Boolean Fiberization* | `10.5281/zenodo.22737943` |
+| FCOA · Admissibility Geometry | *Reflections on Admissibility Geometry with Commander Sol: How a Partial Operation Remembers an Oriented Carrier* | `10.5281/zenodo.22129787` |
+| FCOA · Value-Rigidity / Identity Digraphs | *Reflections on Value-Rigidity with Commander Sol: Two Anonymous Outputs, Identity Digraphs, and Sparse Rigid Fibers* | `10.5281/zenodo.22160014` |
+| FCOA-Z · Ray to Axis | *Reflections on How a Ray Becomes an Axis: And why old operations reveal new local laws after a second direction appears* | `10.5281/zenodo.22171473` |
+| HATTER-SOL-01 | *A Tea Party in the Additive-Multiplicative World with Hatter Sol: The Number Line, the Observer, and Two Operations* | `10.5281/zenodo.22639237` |
+| HATTER-SOL-02 | *Two Teapots, One Cup: “Who Are You?” Among the Primes* | `10.5281/zenodo.22656414` |
+| HATTER-SOL-07 | *Alice in the Land of Free Threads: Factors as Nodes and the Exact Cost of Multiplicative Splitting* | `10.5281/zenodo.22724185` |
+| HATTER-SOL-10 | *Ideal Factor Networks Beyond Unique Element Factorization* | `10.5281/zenodo.22734865` |
 
-**«Размышлизмы о ценностной жёсткости с Commander Sol: два анонимных выхода, identity-орграфы и разреженные жёсткие волокна»**  
-Zenodo DOI: **[10.5281/zenodo.22160014](https://doi.org/10.5281/zenodo.22160014)**  
-GitHub-компаньон: [`papers/FCOA-VALUE-RIGIDITY-IDENTITY-DIGRAPHS/`](papers/FCOA-VALUE-RIGIDITY-IDENTITY-DIGRAPHS/)
+DOI в историческом candidate-файле сам по себе не повышает статус работы, если это не подтверждается канонической release/publication-информацией.
 
-Ключевые результаты:
+## RH-SOL на момент заморозки
 
-`|O|=1 -> VRI=1`, а при `|O|=2` достижим абсолютный максимум `VRI=n!`; задача о минимальном числе специальных клеток сводится к классическому экстремальному `m(n)` для identity digraph, для которого получены точная конечная формула, второй асимптотический член и фазовый закон последнего слоя.
+Старая карта серии сохранена как история программы, но её прежние метки `Active` и `Planned` больше не являются оперативными. На 17.09.2026: RH-SOL-01 опубликована; исследования RH-SOL-02/03/04 завершены без финальной публикационной сборки; RH-SOL-05/06 остались незавершёнными; RH-SOL-07..15 — зафиксированные направления/замыслы. См. [`programme/SERIES_MAP.md`](programme/SERIES_MAP.md).
 
-## FCOA-пакеты на финальной стадии Zenodo
+## HATTER-SOL на момент заморозки
 
-### FCOA-Z · Луч в ось / локальная дифференциация закона
+Нумерованные каталоги HATTER-SOL — архивные единицы программы, а не действующие ветки. Материал HATTER-SOL 01–18 сохранён в `main`. HATTER-SOL-17 заморожен в незавершённом исследовательско-аппаратном состоянии; HATTER-SOL-18 — future-work seed. Номер каталога сам по себе не означает наличие опубликованной статьи.
 
-**«Размышлизмы о том, как луч становится осью: И почему старые операции после появления второго направления обнаруживают новые локальные законы»**  
-Zenodo DOI: **[10.5281/zenodo.22171473](https://doi.org/10.5281/zenodo.22171473)**  
-GitHub-компаньон: [`papers/FCOA-Z-RAY-AXIS/`](papers/FCOA-Z-RAY-AXIS/)
+## Исторические статусные файлы
 
-Пакет v1.1 теоремно завершён, прошёл hostile audit и PDF preflight; DOI внесён в публикационные материалы.
+Локальные `STATUS.md`, `RESEARCH_TZ.md`, `DIALOGUE_TZ.md`, `PUBLICATION_CANDIDATE.md`, roadmap и старые README намеренно сохранены: это история развития программы. При противоречии используется следующий приоритет:
 
-### FCOA-Z · Предписанная стабилизаторная опора
+1. явная каноническая DOI/publication record;
+2. канонические release metadata и manifests;
+3. [`PROGRAMME_STATUS_2026-09-17.md`](PROGRAMME_STATUS_2026-09-17.md);
+4. локальные исторические статусы — только для восстановления хронологии.
 
-**«Предписанная стабилизаторная опора в фиксированно-носительной ориентированной алгебре: Wreath-когерентность, сжатие разбиений и точное орбитальное разделение»**  
-Английская версия: **Prescribed-Stabilizer Support in Fixed-Carrier Oriented Algebra: Wreath Coherence, Partition Compression, and Exact Orbital Separation**  
-GitHub-компаньон: [`papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/`](papers/FCOA-Z-PRESCRIBED-STABILIZER-SUPPORT/)  
-Zenodo DOI: **ожидается после депозита**
+## Структура архива
 
-Ключевые результаты:
+```text
+programme/                 история RH-SOL и замороженная карта серии
+papers/                    математические и публикационные материалы
+alice-ruler-incidence/     архив Alice/Ruler II
+alice-ruler-edit-rigidity/ архив Alice/Ruler III и продолжения
+experiments/               сохранённые вычислительные эксперименты
+demos/                     демонстрации
+reviews/                   рецензии и аудиты
+releases/                  release/Zenodo metadata
+scripts/                   воспроизводимость и служебные скрипты
+```
 
-- точная цена global coherence: `b(b-1)t`;
-- точная цена произвольной partition+phase coherence: `t sum_j n_j(n_j-1)`;
-- точная partition-only редукция `t^2 d(P)`;
-- Partition-Overgroup Dichotomy;
-- Macro-Mover Double-Coset Lemma;
-- точная Orbital XOR-Separation Program для произвольного конечного типа разбиения;
-- явная ресурсная немонотонность между partition-only и phase-coherent памятью.
+## Правило возобновления
 
-Proof audit, literature audit, reproducible build и визуальная проверка PDF завершены. Exact verifier проверен прямым перебором для всех integer partitions при `2 <= b <= 7`: 43 типа разбиений, 1468 invariant orbital unions, итог **ALL PASS**. Публикационный пакет готов к Zenodo; после выдачи DOI его нужно внести в этот README и release metadata ветки.
+Если программа когда-либо будет возобновлена, исходной точкой являются `main`, `PROGRAMME_STATUS_2026-09-17.md` и `PROJECT_FREEZE_2026-09-17.md`. Нельзя автоматически продолжать старую ветку или воспринимать старую запись «следующий шаг» как текущую задачу без новой сверки.
 
-## Новая серия · HATTER-SOL
+## Авторство
 
-**«Чаепития в аддитивно-мультипликативном мире с Шляпником Sol»** — серия «Размышлизмов» о том, какие свойства арифметики принадлежат представлению, какие — структуре, и как меняется симметрия простых при забывании или дозированном возвращении дополнительной структуры.
-
-**HATTER-SOL-01 · Числовая ось, наблюдатель и две операции**  
-**«Чаепитие в аддитивно-мультипликативном мире с Шляпником Sol: числовая ось, наблюдатель и две операции»**  
-Zenodo DOI: **[10.5281/zenodo.22639237](https://doi.org/10.5281/zenodo.22639237)**
-
-Строгий шарнир первой статьи:
-
-`Aut(N_{>0}, x) ~= Sym(P)`
-
-против
-
-`Aut(N,+,x,0,1) = 1`.
-
-**HATTER-SOL-02 · Два чайника, одна чашка: «Кто ты?» среди простых**  
-Английская версия: **Two Teapots, One Cup: “Who Are You?” Among the Primes**  
-Zenodo DOI: **[10.5281/zenodo.22656414](https://doi.org/10.5281/zenodo.22656414)**
-
-Ключевые результаты второй статьи:
-
-- точное число орбит простых для конечного семейства congruence-проб:
-  `|F| + prod_{p in F} tau(p-1)`;
-- точное число орбит для конечных квадратичных бинарных проб:
-  `|F| + 2^|F|`;
-- finite-information barrier;
-- точный критерий жёсткости через инъективность Legendre-signature;
-- существование сколь угодно разреженных жёстких семейств;
-- оптимальный конечный coding law:
-  `kappa_2(S) = ceil(log_2 |S|)`.
-
-GitHub-компаньон и постоянная папка серии: [`papers/HATTER-SOL/`](papers/HATTER-SOL/)  
-Для отслеживания продолжения серии: **https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL**
-
-Рабочий рубеж **HATTER-SOL-03**: может ли конечный естественный механизм сам порождать достаточно богатое разделяющее семейство, не требуя внешне именованной бесконечной семьи проб?
-
-## Принцип серии
-
-Каждая ветка должна иметь точное определение объекта, гипотезу, полный upstream-конвейер, нулевые/суррогатные контроли, воспроизводимые рисунки и таблицы, а также фиксацию отрицательных результатов.
-
-Карта серии: [`programme/SERIES_MAP.md`](programme/SERIES_MAP.md).
-
-## Статус FCOA-публикаций
-
-- 27.08.2026 — **FCOA · Геометрия допустимости**, Zenodo DOI **10.5281/zenodo.22129787**.
-- 29.08.2026 — **FCOA · Ценностная жёсткость / Identity-орграфы**, Zenodo DOI **10.5281/zenodo.22160014**.
-- 30.08.2026 — **FCOA-Z · Луч в ось / локальная дифференциация закона**, DOI **10.5281/zenodo.22171473**, финальный пакет подготовлен.
-- 01.09.2026 — **FCOA-Z · Предписанная стабилизаторная опора**, research/PDF/source thresholds пройдены, exact verifier **ALL PASS**, готово к Zenodo, DOI ожидается.
+Автор / владелец программы: **Alex Malachevsky**, ORCID **0009-0008-6009-3196**. Commander Sol использовался как ИИ-соавтор исследовательского процесса: генерация гипотез, вычислительный дизайн, планирование фальсификаций, помощь с кодом, литературный поиск, аудит и подготовка рукописей. Статус математических утверждений определяется их явным доказательным/вычислительным статусом.
