@@ -7,7 +7,7 @@
       "orcid": "0009-0008-6009-3196"
     }
   ],
-  "version": "1.0-rc1",
+  "version": "1.0",
   "date": "2026-08-31",
   "publication_type": "article",
   "license": "CC-BY-4.0",
@@ -15,7 +15,8 @@
   "repository": "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol",
   "branch_at_assembly": "director/fcoa-rigidity-cost",
   "foundation_doi": "10.5281/zenodo.22164246",
-  "doi": null,
+  "doi": "10.5281/zenodo.22342613",
+  "doi_url": "https://doi.org/10.5281/zenodo.22342613",
   "keywords": [
     "FCOA",
     "anonymous values",
@@ -26,5 +27,5 @@
     "vector space partitions",
     "rigidity cost"
   ],
-  "notes": "Commander Sol is identified in the work title and manuscript as the research collaborator. Archival DOI must be populated only after Zenodo assigns it."
+  "notes": "Commander Sol is identified in the work title and manuscript as the research collaborator. Archival Zenodo DOI: 10.5281/zenodo.22342613. Published manuscript sources remain frozen."
 }
