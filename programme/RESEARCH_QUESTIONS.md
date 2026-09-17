@@ -1,10 +1,12 @@
-# Research Questions
+# Research Questions — historical agenda frozen 2026-09-17
+
+> **Status: FROZEN.** These questions record the research agenda that existed before the programme freeze. They are preserved as unresolved or partially resolved historical questions, not as an active work queue. See [`../PROGRAMME_STATUS_2026-09-17.md`](../PROGRAMME_STATUS_2026-09-17.md).
 
 ## Umbrella question
 
 **How much arithmetic information survives geometric quantization?**
 
-## Primary questions
+## Historical primary questions
 
 1. Which Dirichlet frequencies survive the map from `zeta(1/2+it)` to loop interior to binary lattice occupancy?
 2. Is the observed comb invariant under lattice translation and grid resolution?
@@ -15,6 +17,8 @@
 7. Can Dirichlet phase be decoded from the quantized geometric observable?
 8. Does the phenomenon generalize to Dirichlet L-functions?
 9. What remains after removing all known Dirichlet and low-order intermodulation frequencies?
+
+The status of each RH-SOL unit at the freeze date is recorded in [`SERIES_MAP.md`](SERIES_MAP.md). Questions associated with unfinished or planned-only units remain archival open questions; their presence here does not imply active continuation.
 
 ## Rule for novelty claims
 
