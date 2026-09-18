@@ -3,7 +3,7 @@
 **Date:** 2026-09-18  
 **Series DOI:** 10.5281/zenodo.17996774  
 **ORCID:** 0009-0008-6009-3196  
-**Article DOI:** pending Zenodo reservation; not invented in advance.
+**Article DOI:** **10.5281/zenodo.22832502** (reserved for the H17 Zenodo record).
 
 ## Publication decision
 
@@ -25,15 +25,13 @@ The assembled Zenodo package contains:
 
 ## DOI workflow
 
-After Zenodo reserves the H17 DOI:
+Zenodo DOI reserved: **10.5281/zenodo.22832502**. Before publishing the record:
 
-1. insert DOI into RU/EN sources and metadata;
-2. rebuild PDF/DOCX;
-3. update CITATION.cff;
-4. regenerate SHA-256 manifest;
-5. upload final bytes;
-6. publish;
-7. create `ZENODO_PUBLICATION.md` and update the HATTER-SOL series navigation.
+1. use the DOI-bearing RU/EN sources and PDF/DOCX from this package;
+2. verify `CITATION.cff`, metadata and `SHA256SUMS.txt`;
+3. upload the final bytes;
+4. publish the Zenodo record;
+5. after publication, create `ZENODO_PUBLICATION.md` and update HATTER-SOL series navigation.
 
 ## H18 handoff
 
