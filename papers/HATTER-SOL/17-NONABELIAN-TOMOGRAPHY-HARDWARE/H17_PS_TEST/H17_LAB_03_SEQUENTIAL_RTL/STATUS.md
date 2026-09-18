@@ -62,8 +62,8 @@ testbench PASS/progress output.
 - [x] compile sequential LAB-03 with Icarus;
 - [x] pass one-vector smoke;
 - [x] record smoke wall-clock time: 0.081 s;
-- [ ] record exact wait-cycle count from visible testbench stdout;
-- [ ] pass quick 1,796 vectors;
+- [x] record exact wait-cycle count from visible testbench stdout: 26 cycles;
+- [x] pass quick 1,796 vectors in 4.682 s;
 - [ ] pass full 29,911 vectors;
 - [ ] compare LAB-02 combinational and LAB-03 sequential outputs on a finite
       regression subset;
@@ -74,3 +74,20 @@ testbench PASS/progress output.
 
 The sequential clock used by the testbench is a simulation clock.  No target
 Fmax or physical latency is claimed before target synthesis/place-and-route.
+
+
+## Quick regression result
+
+On the same independent Windows 10 host, the LAB-03 quick regression completed successfully on 2026-09-18.
+
+Observed result:
+
+- vectors: **1,796 / 1,796 PASS**;
+- maximum observed transaction wait: **26 cycles**;
+- simulator-reported final time: **443150000 ps**;
+- PowerShell wall-clock elapsed time: **4.682 s**;
+- no mismatches in status, raw signature, observed erased signature or repaired signature.
+
+This closes the practical simulation gate that blocked LAB-02.  The result is an RTL-simulation result only; it is not a target-FPGA timing or throughput claim.
+
+The next validation gate is the full **29,911-vector** regression.
