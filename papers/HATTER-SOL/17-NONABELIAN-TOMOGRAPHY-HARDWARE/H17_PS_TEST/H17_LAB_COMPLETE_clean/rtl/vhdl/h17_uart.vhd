@@ -1,8 +1,19 @@
+-- ============================================================================
+-- HATTER-SOL-17 / H17-LAB-01
+-- Board-independent byte UART.
+--
+-- 8N1, LSB first, integer DIVISOR.
+-- RX uses a two-flop synchronizer; rx_valid pulses after a valid stop bit.
+-- A bad stop bit waits for RX to return high.
+-- TX accepts tx_start only while tx_busy='0'.
+-- Packet framing and H17 semantics live in h17_uart_top.vhd.
+-- ============================================================================
 library ieee;use ieee.std_logic_1164.all;use ieee.numeric_std.all;
 entity h17_uart is generic(DIVISOR:positive:=868);port(clk,rst,rx:in std_logic;tx:out std_logic;
  rx_data:out std_logic_vector(7 downto 0);rx_valid:out std_logic;
  tx_data:in std_logic_vector(7 downto 0);tx_start:in std_logic;tx_busy:out std_logic);end;
 architecture rtl of h17_uart is
+ -- Two-flop synchronizer for asynchronous RX.
  signal rx_meta,rx_sync:std_logic:='1';attribute ASYNC_REG:string;attribute ASYNC_REG of rx_meta,rx_sync:signal is "TRUE";
  signal rs:natural range 0 to 4:=0;signal rc,tc:natural range 0 to DIVISOR:=0;
  signal rb:natural range 0 to 7:=0;signal tb:natural range 0 to 9:=0;
