@@ -111,3 +111,18 @@ The remaining pre-hardware tasks are:
 1. archive a publication-quality waveform for one representative transaction;
 2. generic-synthesize LAB-03 and compare area/latency with LAB-02;
 3. then select candidate FPGA targets.
+
+
+## Waveform generation result
+
+On 2026-09-19 the dedicated publication-waveform test completed successfully:
+
+- VCD created: `build/h17_lab03_waveform.vcd`;
+- measured transaction wait: **26 cycles**;
+- raw signature: **8d256a**;
+- mode-1 observed signature: **ed256a**;
+- repaired signature: **8d256a**;
+- testbench final simulation time: **330000 ps**.
+
+The waveform file is generated and internally self-checked.  Visual inspection
+in GTKWave remains a separate gate.
