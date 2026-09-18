@@ -21,7 +21,13 @@ if ($LASTEXITCODE -ne 0) { throw "closure generator failed" }
 py -3 (Join-Path $H17 "tools\generate_psl27_romfree_repair.py") --out-dir $Generated
 if ($LASTEXITCODE -ne 0) { throw "ROM-free generator failed" }
 
-$VectorFile = Resolve-Path (Join-Path $Ref "vectors\$Set.txt")
+# Keep the +VECTORS argument short. The Verilog testbench receives it in a
+# 1024-bit packed string, so this avoids truncating long absolute Windows paths.
+$VectorArg = "../H17_LAB_COMPLETE_clean/vectors/$Set.txt"
+if (-not (Test-Path (Join-Path $Ref "vectors\$Set.txt"))) {
+    throw "vector file missing: $(Join-Path $Ref "vectors\$Set.txt")"
+}
+
 $Sim = Join-Path $Build "h17_lab02_controller_sim"
 
 $Sources = @(
@@ -40,5 +46,11 @@ $Sources = @(
 & iverilog @Sources
 if ($LASTEXITCODE -ne 0) { throw "iverilog compile failed" }
 
-& vvp $Sim "+VECTORS=$($VectorFile.Path)"
-if ($LASTEXITCODE -ne 0) { throw "controller simulation failed" }
+Push-Location $Lab
+try {
+    & vvp $Sim "+VECTORS=$VectorArg"
+    if ($LASTEXITCODE -ne 0) { throw "controller simulation failed" }
+}
+finally {
+    Pop-Location
+}
