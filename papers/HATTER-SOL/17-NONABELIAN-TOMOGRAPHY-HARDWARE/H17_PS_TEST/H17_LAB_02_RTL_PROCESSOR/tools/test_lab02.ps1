@@ -23,7 +23,17 @@ Write-Host "== H17-LAB-02: generate ROM-free repair =="
 py -3 (Join-Path $H17 "tools\generate_psl27_romfree_repair.py") --out-dir $Generated
 if ($LASTEXITCODE -ne 0) { throw "ROM-free generator failed" }
 
-$VectorFile = Resolve-Path (Join-Path $Ref "vectors\$Set.txt")
+# IMPORTANT:
+# tb_h17_lab02_vectors.sv stores +VECTORS in a 1024-bit packed string
+# (128 bytes). The absolute Windows repository path is longer than that,
+# so passing the resolved absolute path truncates its LEFT side.
+#
+# Run vvp from $Lab and pass a short relative path instead.
+$VectorArg = "../H17_LAB_COMPLETE_clean/vectors/$Set.txt"
+if (-not (Test-Path (Join-Path $Ref "vectors\$Set.txt"))) {
+    throw "vector file missing: $(Join-Path $Ref "vectors\$Set.txt")"
+}
+
 $Sim = Join-Path $Build "h17_lab02_sim"
 
 Write-Host "== H17-LAB-02: compile pure SystemVerilog =="
@@ -44,5 +54,11 @@ $Sources = @(
 if ($LASTEXITCODE -ne 0) { throw "iverilog compile failed" }
 
 Write-Host "== H17-LAB-02: run $Set vectors =="
-& vvp $Sim "+VECTORS=$($VectorFile.Path)"
-if ($LASTEXITCODE -ne 0) { throw "H17-LAB-02 simulation failed" }
+Push-Location $Lab
+try {
+    & vvp $Sim "+VECTORS=$VectorArg"
+    if ($LASTEXITCODE -ne 0) { throw "H17-LAB-02 simulation failed" }
+}
+finally {
+    Pop-Location
+}
