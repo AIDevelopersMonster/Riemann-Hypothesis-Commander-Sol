@@ -59,9 +59,20 @@ Write-Host "  input_valid fingerprint_valid status"
 Write-Host ""
 
 $Gtk = Get-Command gtkwave -ErrorAction SilentlyContinue
+$GtkExe = $null
 if ($Gtk) {
-    Write-Host "GTKWave found. Opening VCD..."
-    & gtkwave $Vcd
+    $GtkExe = $Gtk.Source
+} elseif (Test-Path "C:\msys64\ucrt64\bin\gtkwave.exe") {
+    $GtkExe = "C:\msys64\ucrt64\bin\gtkwave.exe"
+}
+
+if ($GtkExe) {
+    Write-Host "GTKWave found: $GtkExe"
+    Write-Host "Opening VCD..."
+    & $GtkExe $Vcd
 } else {
-    Write-Host "GTKWave is not in PATH. Open the VCD manually after installing/adding GTKWave."
+    Write-Host "GTKWave is not installed in the expected MSYS2 UCRT64 location."
+    Write-Host "Install package: mingw-w64-ucrt-x86_64-gtkwave"
+    Write-Host "Then rerun this script, or open:"
+    Write-Host $Vcd
 }
