@@ -36,7 +36,7 @@ def emit_engine(path: Path):
     for i in range(8):
         lines.append(f"logic [2:0] c{i};")
     lines += [
-        "always_comb begin",
+        "always @* begin",
         "  invA=inverse_perm(A); invB=inverse_perm(B);",
     ]
     for w, l, r in DAG:
