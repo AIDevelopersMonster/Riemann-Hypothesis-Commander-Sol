@@ -72,7 +72,7 @@ function automatic logic pgl_ok(input logic [23:0] p);
       pgl_ok=ok;
     end
 endfunction
-always_comb begin
+always @* begin
     valid = pgl_ok(perm) & orient_pos(getp(perm,0),getp(perm,1),getp(perm,7));
 end
 endmodule
@@ -129,7 +129,7 @@ logic [23:0] p2,p3,p4,p7;
 logic is_id,is_o2,is_o3,is_o4,is_o7;
 logic [2:0] start,y,z;
 integer i;
-always_comb begin
+always @* begin
     p2=compose_perm(perm,perm);
     p3=compose_perm(p2,perm);
     p4=compose_perm(p2,p2);
