@@ -68,6 +68,8 @@ initial begin
             $fatal(1,"fingerprint_valid mismatch at vector %0d",n);
 
         n=n+1;
+        if((n % 25)==0)
+            $display("PROGRESS H17-LAB-02: %0d vectors; sim_time=%0t",n,$time);
     end
 
     $fclose(fd);
