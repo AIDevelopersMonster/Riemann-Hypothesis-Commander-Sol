@@ -7,10 +7,11 @@ authors:
     given-names: "A.A."
     orcid: "https://orcid.org/0009-0008-6009-3196"
 version: "1.0"
+doi: "10.5281/zenodo.22832502"
 date-released: "2026-09-18"
 repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.17996774"
     description: "HATTER-SOL series DOI"
-notes: "AI research collaborator / coauthor of the research dialogue: Commander Sol / Hatter Sol. Add the installment DOI after Zenodo reservation."
+notes: "AI research collaborator / coauthor of the research dialogue: Commander Sol / Hatter Sol. The H17 installment DOI is reserved in Zenodo and embedded in this release."
