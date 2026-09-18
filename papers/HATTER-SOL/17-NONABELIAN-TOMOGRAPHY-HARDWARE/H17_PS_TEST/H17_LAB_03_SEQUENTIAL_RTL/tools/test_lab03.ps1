@@ -42,12 +42,13 @@ $VectorArg = "../H17_LAB_COMPLETE_clean/vectors/$Set.txt"
 Write-Host "== H17-LAB-03: run $Set vectors =="
 Push-Location $Lab
 try {
-    $elapsed = Measure-Command {
-        & vvp $Sim "+VECTORS=$VectorArg"
-        if ($LASTEXITCODE -ne 0) { throw "LAB-03 simulation failed" }
-    }
+    $sw = [System.Diagnostics.Stopwatch]::StartNew()
+    & vvp $Sim "+VECTORS=$VectorArg"
+    $rc = $LASTEXITCODE
+    $sw.Stop()
+    if ($rc -ne 0) { throw "LAB-03 simulation failed" }
 }
 finally {
     Pop-Location
 }
-Write-Host ("LAB-03 {0} ELAPSED: {1:N3} seconds" -f $Set,$elapsed.TotalSeconds)
+Write-Host ("LAB-03 {0} ELAPSED: {1:N3} seconds" -f $Set,$sw.Elapsed.TotalSeconds)
