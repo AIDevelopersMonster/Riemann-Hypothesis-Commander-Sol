@@ -1,12 +1,25 @@
-// UART 8N1; integer divider; RX synchronized. DIV >= 8.
+/*
+ * HATTER-SOL-17 / H17-LAB-01
+ * Board-independent byte UART for the laboratory transport layer.
+ *
+ * 8N1, LSB first, integer divider DIV (DIV >= 8).
+ * RX uses a two-flop synchronizer and samples near the bit centre.
+ * rx_valid pulses for one clock after a valid stop bit.
+ * A bad stop bit enters framing recovery until RX returns high.
+ * TX accepts tx_start only while tx_busy=0.
+ *
+ * Packet framing, CRC and H17 semantics are handled in h17_uart_top.v.
+ */
 module h17_uart #(parameter DIV=868)(input clk,rst,input rx,output reg tx,
  output reg [7:0] rx_data,output reg rx_valid,
  input [7:0] tx_data,input tx_start,output reg tx_busy);
+// CDC front end for asynchronous RX.
 (* ASYNC_REG="TRUE" *) reg rx_meta,rx_sync;
 reg [2:0] rs;integer rc,rb,tc,tb;reg [7:0] rx_shift;reg [9:0] tx_shift;
 always @(posedge clk)begin
  if(rst)begin rx_meta<=1;rx_sync<=1;end else begin rx_meta<=rx;rx_sync<=rx_meta;end
 end
+// RX FSM: start detect -> data bits -> stop validation.
 always @(posedge clk)begin
  if(rst)begin rs<=0;rc<=0;rb<=0;rx_shift<=0;rx_data<=0;rx_valid<=0;end
  else begin rx_valid<=0;
@@ -19,6 +32,7 @@ always @(posedge clk)begin
  default:rs<=0;
  endcase end
 end
+// TX FSM: start + 8 data + stop, one bit every DIV clocks.
 always @(posedge clk)begin
  if(rst)begin tx<=1;tx_busy<=0;tc<=0;tb<=0;tx_shift<=10'h3ff;end
  else if(!tx_busy)begin
