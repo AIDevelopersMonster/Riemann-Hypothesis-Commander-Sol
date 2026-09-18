@@ -1,6 +1,26 @@
-// Board-independent synchronous top; rst is active high and synchronous.
+/*
+ * HATTER-SOL-17 / H17-LAB-01
+ * UART packet wrapper around h17_core.
+ *
+ * Request (12 bytes):
+ *   A5 5A | version=01 | seq | mode | A[23:0] LE | B[23:0] LE | CRC8
+ *
+ * Response (16 bytes):
+ *   5A A5 | version=01 | seq | status | orbit_id |
+ *   raw[23:0] LE | observed[23:0] LE | repaired[23:0] LE | CRC8
+ *
+ * CRC-8 polynomial 0x07, init 0x00.
+ * Packet-layer status 5: bad CRC/version or mode byte > 0x0f.
+ * Core modes 9..15 are packet-valid and return core status 4.
+ * Partial receive frames time out after about 0.1 s.
+ *
+ * busy_led reports wrapper activity, not h17_core.busy.
+ * pass_led reports status==2 from the last completed core request.
+ * rst is active-high and synchronous.
+ */
 module h17_uart_top #(parameter CLK_HZ=100000000,BAUD=115200)(input clk,rst,uart_rx,output uart_tx,
  output busy_led,output reg pass_led);
+// Rounded integer UART divider.
 localparam DIV=(CLK_HZ+BAUD/2)/BAUD;
 wire [7:0] rxd;wire rv,tbusy;reg [7:0] txd;reg ts;
 h17_uart #(.DIV(DIV)) uart(clk,rst,uart_rx,uart_tx,rxd,rv,txd,ts,tbusy);
@@ -8,6 +28,7 @@ reg cs;reg [23:0] a,b;reg [3:0] mode;wire cb,cd;wire [2:0] status;wire [6:0] oid
 h17_core core(clk,rst,cs,a,b,mode,cb,cd,status,oid,raw,obs,rep);
 reg [7:0] req[0:11];reg [127:0] response;integer pos,timer,txpos,state,j;reg [7:0] crc;reg [127:0] frame;
 assign busy_led=(state!=0);
+// CRC-8 update for one byte.
 function [7:0] crc8;input [7:0] c,d;reg [7:0] x;integer i;begin x=c^d;for(i=0;i<8;i=i+1)x=x[7]?(x<<1)^8'h07:x<<1;crc8=x;end endfunction
 function [127:0] reply;input [7:0] seq,st,id;input [23:0] r,o,p;reg [127:0] f;reg [7:0] c;integer i;
 begin f={8'h00,p,o,r,id,st,seq,8'h01,8'ha5,8'h5a};c=0;for(i=0;i<15;i=i+1)c=crc8(c,f[8*i+:8]);f[127:120]=c;reply=f;end endfunction
@@ -15,6 +36,7 @@ always @(posedge clk)begin
  if(rst)begin pos<=0;timer<=0;txpos<=0;state<=0;ts<=0;txd<=0;cs<=0;a<=0;b<=0;mode<=0;response<=0;pass_led<=0;for(j=0;j<12;j=j+1)req[j]<=0;end
  else begin ts<=0;cs<=0;
  case(state)
+ // state 0: receive/resynchronise the request frame.
  0:begin
  if(pos!=0)begin if(timer>=CLK_HZ/10)begin pos<=0;timer<=0;end else timer<=timer+1;end
  if(rv)begin timer<=0;
@@ -26,7 +48,9 @@ always @(posedge clk)begin
  else begin a<={req[7],req[6],req[5]};b<={req[10],req[9],req[8]};mode<=req[4][3:0];cs<=1;state<=1;end
  end else begin req[pos]<=rxd;pos<=pos+1;end
  end end
+ // state 1: wait for the mathematical core.
  1:if(cd)begin response<=reply(req[3],{5'b0,status},{1'b0,oid},raw,obs,rep);pass_led<=(status==2);txpos<=0;state<=2;end
+ // states 2..4: stop-and-wait response transmission.
  2:if(!tbusy)begin txd<=response[8*txpos+:8];ts<=1;state<=3;end
  3:if(tbusy)state<=4;
  4:if(!tbusy)begin if(txpos==15)state<=0;else begin txpos<=txpos+1;state<=2;end end
