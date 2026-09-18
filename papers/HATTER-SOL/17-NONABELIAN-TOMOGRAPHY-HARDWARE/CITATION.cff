@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use HATTER-SOL-17, please cite this record."
+title: "HATTER-SOL-17: From Non-Abelian Ports to a Computing Device — Exact Orbit Tomography, Known-Erasure Recovery, and the Path to FPGA"
+type: article
+authors:
+  - family-names: "Malachevsky"
+    given-names: "A.A."
+    orcid: "https://orcid.org/0009-0008-6009-3196"
+version: "1.0"
+date-released: "2026-09-18"
+repository-code: "https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.17996774"
+    description: "HATTER-SOL series DOI"
+notes: "AI research collaborator / coauthor of the research dialogue: Commander Sol / Hatter Sol. Add the installment DOI after Zenodo reservation."
