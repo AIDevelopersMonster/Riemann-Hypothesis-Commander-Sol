@@ -1,3 +1,20 @@
+-- ============================================================================
+-- HATTER-SOL-17 / H17-LAB-01
+-- UART packet wrapper around h17_core.
+--
+-- Request 12 bytes:
+--   A5 5A | version 01 | seq | mode | A LE | B LE | CRC8
+-- Response 16 bytes:
+--   5A A5 | version 01 | seq | status | orbit_id |
+--   raw LE | observed LE | repaired LE | CRC8
+--
+-- CRC-8 polynomial 0x07, init 0x00.
+-- Packet status 5: bad CRC/version or mode byte > 0x0f.
+-- Core mode 9..15 is packet-valid but returns core status 4.
+-- Partial frames time out after about 0.1 s.
+-- busy_led reports wrapper activity; pass_led reports last core status=2.
+-- rst is active-high and synchronous.
+-- ============================================================================
 library ieee;use ieee.std_logic_1164.all;use ieee.numeric_std.all;
 entity h17_uart_top is generic(CLK_HZ:positive:=100000000;BAUD:positive:=115200);
  port(clk,rst,uart_rx:in std_logic;uart_tx,busy_led,pass_led:out std_logic);end;
@@ -10,6 +27,7 @@ architecture rtl of h17_uart_top is
  signal status:std_logic_vector(2 downto 0);signal oid:std_logic_vector(6 downto 0);
  signal pos:natural range 0 to 11:=0;signal timer:natural range 0 to CLK_HZ/10:=0;
  signal txpos:natural range 0 to 15:=0;signal state:natural range 0 to 4:=0;
+ -- CRC-8 update for one byte.
  function crc8(c,d:byte)return byte is variable x:unsigned(7 downto 0);begin x:=unsigned(c xor d);
  for i in 0 to 7 loop if x(7)='1' then x:=shift_left(x,1) xor x"07";else x:=shift_left(x,1);end if;end loop;return std_logic_vector(x);end;
  function reply(seq,st,id:byte;r,o,p:word24)return frame128 is variable f:frame128;variable c:byte:=x"00";
