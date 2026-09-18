@@ -47,8 +47,8 @@ No TARGET SYNTHESIS or MEASURED HARDWARE label is used without evidence.
 
 ## DOI rule
 
-The article DOI is assigned by Zenodo at deposition and must not be pre-invented.
+Zenodo reserved DOI **10.5281/zenodo.22832502** for the H17 record. The DOI is embedded in the final v1.0 publication files and will be registered when the Zenodo record is published.
 
-## After DOI reservation
+## Final Zenodo gate
 
-Insert DOI into RU/EN sources and metadata, rebuild PDF/DOCX, regenerate SHA-256 manifest, perform visual QA, publish Zenodo record, then add ZENODO_PUBLICATION.md and update HATTER-SOL navigation.
+The reserved DOI has been inserted into RU/EN sources, PDF/DOCX, metadata and citation files. Regenerate and verify the SHA-256 manifest, upload these exact bytes, inspect the Zenodo preview, and publish. After publication, add `ZENODO_PUBLICATION.md` and update HATTER-SOL navigation.
