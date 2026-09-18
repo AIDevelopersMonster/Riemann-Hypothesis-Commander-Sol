@@ -40,12 +40,13 @@ if ($LASTEXITCODE -ne 0) { throw "iverilog compile failed" }
 Write-Host "== H17-LAB-03 smoke: run exactly one vector =="
 Push-Location $Lab
 try {
-    $elapsed = Measure-Command {
-        & vvp $Sim "+VECTORS=build/smoke1.txt"
-        if ($LASTEXITCODE -ne 0) { throw "smoke simulation failed" }
-    }
+    $sw = [System.Diagnostics.Stopwatch]::StartNew()
+    & vvp $Sim "+VECTORS=build/smoke1.txt"
+    $rc = $LASTEXITCODE
+    $sw.Stop()
+    if ($rc -ne 0) { throw "smoke simulation failed" }
 }
 finally {
     Pop-Location
 }
-Write-Host ("SMOKE ELAPSED: {0:N3} seconds" -f $elapsed.TotalSeconds)
+Write-Host ("SMOKE ELAPSED: {0:N3} seconds" -f $sw.Elapsed.TotalSeconds)
