@@ -64,7 +64,7 @@ testbench PASS/progress output.
 - [x] record smoke wall-clock time: 0.081 s;
 - [x] record exact wait-cycle count from visible testbench stdout: 26 cycles;
 - [x] pass quick 1,796 vectors in 4.682 s;
-- [ ] pass full 29,911 vectors;
+- [x] pass full 29,911 vectors in 91.984 s;
 - [ ] compare LAB-02 combinational and LAB-03 sequential outputs on a finite
       regression subset;
 - [ ] synthesize LAB-03 generically and compare area with LAB-02;
@@ -91,3 +91,23 @@ Observed result:
 This closes the practical simulation gate that blocked LAB-02.  The result is an RTL-simulation result only; it is not a target-FPGA timing or throughput claim.
 
 The next validation gate is the full **29,911-vector** regression.
+
+
+## Full regression result
+
+On 2026-09-18 the independent Windows 10 host completed the full frozen
+LAB-01/LAB-03 regression:
+
+- vectors: **29,911 / 29,911 PASS**;
+- maximum observed transaction wait: **26 cycles**;
+- simulator final time: **8315830000 ps**;
+- wall-clock elapsed time: **91.984 s**;
+- no mismatches in status, raw signature, observed erased signature,
+  repaired signature or fingerprint_valid.
+
+This closes the full pure-RTL equivalence gate for the frozen vector corpus.
+
+The remaining pre-hardware tasks are:
+1. archive a publication-quality waveform for one representative transaction;
+2. generic-synthesize LAB-03 and compare area/latency with LAB-02;
+3. then select candidate FPGA targets.
