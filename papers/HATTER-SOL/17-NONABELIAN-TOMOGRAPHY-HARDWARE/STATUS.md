@@ -255,3 +255,61 @@ H17-08 closes the architecture-level generic synthesis question. The next hardwa
 6. then perform physical-board verification with exact golden vectors.
 
 A later mathematical extension, separate from this hardware gate, is the stronger unknown-location single-error problem (`d_min>=3`) rather than the present known-erasure problem (`d_min>=2`).
+
+
+## H17-09 · sequential RTL laboratory and waveform — CLOSED at RTL level
+
+The fully combinational LAB-02 architecture remains the generic-synthesis
+reference, but Icarus event simulation proved impractically slow on independent
+Windows hosts.
+
+LAB-03 serializes the same H17 mathematics:
+
+```text
+A,B latch
+ -> 2 x membership-only
+ -> 14 H17-07 DAG compositions, one per cycle
+ -> 1 x reused member-class-only engine
+ -> 8 x 3-bit fingerprint registers
+ -> known erasure mask
+ -> H17-06 ROM-free repair
+ -> done
+```
+
+Independent Windows 10 verification:
+
+```text
+smoke: 1 vector PASS, 0.081 s
+quick: 1,796 / 1,796 PASS, max_wait_cycles=26, 4.682 s
+full : 29,911 / 29,911 PASS, max_wait_cycles=26, 91.984 s
+```
+
+Publication waveform:
+
+```text
+A        = 5e3b88
+B        = 7ecc11
+mode     = 1
+raw      = 8d256a
+observed = ed256a
+repaired = 8d256a
+status   = 2
+wait     = 26 cycles
+```
+
+Detailed note: `docs/H17_09_SEQUENTIAL_LAB03_AND_WAVEFORM.md`.
+
+Required publication figure path:
+
+`figures/H17_LAB03_WAVEFORM_26_CYCLES.png`.
+
+The 26-cycle figure is RTL transaction latency of the current FSM, not a
+target-FPGA Fmax or physical latency claim.
+
+## Updated next strike
+
+1. generic-synthesize LAB-03 under the same methodology as LAB-02;
+2. compare area versus 26-cycle transaction latency;
+3. only then choose a concrete FPGA family/part;
+4. perform target mapping/place-and-route/STA;
+5. finally build the physical-board experiment.
