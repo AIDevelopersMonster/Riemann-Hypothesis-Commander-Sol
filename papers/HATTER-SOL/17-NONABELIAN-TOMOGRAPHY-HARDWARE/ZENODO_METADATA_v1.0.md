@@ -2,7 +2,8 @@
 
 **Upload type:** Publication / Preprint  
 **Publication date:** 2026-09-18  
-**Version:** 1.0
+**Version:** 1.0  
+**Reserved DOI:** **10.5281/zenodo.22832502**
 
 ## Title
 
