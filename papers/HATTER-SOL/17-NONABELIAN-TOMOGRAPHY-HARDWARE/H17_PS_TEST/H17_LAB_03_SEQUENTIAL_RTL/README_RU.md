@@ -133,3 +133,13 @@ It does **not** yet establish LUT/FF/Fmax/power on a target FPGA.
 
 LAB-03 is the architecture needed to make pure RTL simulation practical before
 hardware selection.
+
+## First measured smoke result
+
+On an independent Windows 10 host, the first LAB-03 one-vector smoke completed successfully in **0.081 s wall-clock** after deterministic generator PASS and Icarus compilation.
+
+On the same host the corresponding fully combinational LAB-02 one-vector smoke had accumulated about **17,841 CPU seconds without completion**.
+
+This is not reported as an FPGA performance ratio. It is evidence that the problem was the event-driven simulation architecture and that time-multiplexing makes the RTL model practically executable.
+
+The first wrapper used PowerShell `Measure-Command`, which suppressed the testbench PASS/progress stdout. The wrapper now uses `Stopwatch`, preserving simulator output and therefore exposing the measured transaction wait-cycle count.
