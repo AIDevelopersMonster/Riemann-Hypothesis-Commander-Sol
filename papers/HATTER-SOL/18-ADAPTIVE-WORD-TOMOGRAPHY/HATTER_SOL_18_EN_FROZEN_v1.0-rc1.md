@@ -1,5 +1,5 @@
 # HATTER-SOL-18
-# Adaptive Non-Abelian Tomography: Nielsen Dynamics, Higman Trace, Query-Language Compression, and Hardware Images of Mathematics
+# Adaptive Non-Abelian Tomography: Nielsen Dynamics, Commutator-Lift Trace, Query-Language Compression, and Hardware Images of Mathematics
 
 **Status:** PUBLICATION FREEZE · EN v1.0-rc1  
 **Author:** Alex Malachevsky  
@@ -1240,7 +1240,7 @@ The following remain open **without blocking this publication**:
    Mathematics 12, American Mathematical Society (1969), 14–32.
    DOI: 10.1090/pspum/012/0262379.
 
-10. A. Malachevsky / Commander Sol programme archive, **HATTER-SOL-17 ·
+10. Alex Malachevsky (with Commander Sol as AI research collaborator), **HATTER-SOL-17 ·
     Non-Abelian Tomography Hardware**, repository
     `AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol`,
     `papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/`,
