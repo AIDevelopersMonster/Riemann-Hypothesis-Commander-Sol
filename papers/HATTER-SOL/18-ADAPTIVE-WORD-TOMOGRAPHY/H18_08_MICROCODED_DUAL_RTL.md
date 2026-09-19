@@ -178,3 +178,33 @@ H18-08 closes only when:
 - CI artifacts preserve the emitted RTL, ROM images/packages and logs.
 
 After that, H18 can move to publication assembly while later hardware layers attack word-prefix caching and target-FPGA implementation.
+
+
+## 8. Baseline status after H18-10/H18-11
+
+H18-08 remains the **baseline 24-query canonical microcode experiment**.  It
+must not be silently rewritten to the later restricted alphabet because its
+purpose is to provide a reproducible representation comparison against the
+original H18-07 strategy.
+
+Later theorem layers established a smaller exact alternative:
+
+- H18-10: a 12-query alphabet still achieves
+  \[
+  D_0=4,\qquad S_1=4,\qquad A_1=5;
+  \]
+- H18-11: deterministic rematerialization of that restricted strategy gives
+  \[
+  305=67+238
+  \]
+  query nodes and an explicit program payload of
+  \[
+  18425\text{ bits}.
+  \]
+
+These numbers are **successor architecture results**, not retroactive changes
+to the H18-08 baseline.
+
+The baseline H18-08 CI therefore still has to close independently in both
+SystemVerilog and VHDL-2008.  Once that evidence is frozen, the restricted
+12-query implementation can be compared against it as a separate laboratory.
