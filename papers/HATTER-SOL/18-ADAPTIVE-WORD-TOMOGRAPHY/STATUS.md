@@ -654,7 +654,7 @@ M_1(W_4)in{9,10,11,12}.
 ]
 
 
-## H18-LAB-03 · restricted-12 target FPGA — IN PROGRESS
+## H18-LAB-03 · restricted-12 target FPGA — RTL VERIFIED / TARGET P&R IN PROGRESS
 
 A target-FPGA successor to H18-11 is now materialized.
 
@@ -678,6 +678,22 @@ The mathematical contract remains
 \[
 \boxed{D_0=4,\qquad S_1=4,\qquad A_1=5}.
 \]
+
+Altera ModelSim 10.1d has now verified the complete frozen SystemVerilog
+regression:
+
+\[
+\boxed{197\times5=985/985\ \mathrm{PASS}}
+\]
+
+with
+
+\[
+\boxed{\max\ attempts=5,\qquad\max\ RTL\ wait=42\ cycles}.
+\]
+
+The 42-cycle figure is a sequential RTL architecture count, not a physical
+latency measurement and not evidence of 100 MHz timing closure.
 
 Target-FPGA LE/ALM, RAM, DSP, Fmax and routed-delay claims remain open until
 the local Quartus reports are produced.
