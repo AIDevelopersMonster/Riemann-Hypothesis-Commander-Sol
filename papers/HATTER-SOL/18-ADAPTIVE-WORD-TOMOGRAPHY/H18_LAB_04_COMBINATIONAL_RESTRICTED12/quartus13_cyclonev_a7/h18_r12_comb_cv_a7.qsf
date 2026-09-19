@@ -1,0 +1,12 @@
+# H18-LAB-04 combinational restricted-12 matched Cyclone V benchmark.
+# Same target as the already-characterized H17-LAB-02 Cyclone V control.
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CEFA7F23C6
+set_global_assignment -name TOP_LEVEL_ENTITY h18_r12_comb_controller
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_comb/psl27_membership_only.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_comb/psl27_member_class_only.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_comb/h18_r12_comb_core.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_comb/h18_r12_comb_controller.sv
+set_global_assignment -name SDC_FILE h18_r12_comb_cv_a7.sdc
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
