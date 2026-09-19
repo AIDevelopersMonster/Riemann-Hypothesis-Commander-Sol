@@ -119,3 +119,21 @@ The strongest next question is now:
 versus the class-only optimum \(D^\*(\mathcal W_4)=4\).
 
 In parallel, continue the one-query-erasure adaptive problem.
+
+
+## H18-04 · adaptive W4 plus Higman trace — CLOSED negative result
+
+Adding the canonical commutator-lift trace \(\tau\) as a 51st query does not
+improve the exact adaptive optimum:
+
+\[
+D^\*_{W_4+\tau}=4,
+\qquad
+\bar D_{\min}=\frac{191}{57},
+\]
+
+with the same minimum total path length 382 and a selected 48-node optimum
+rooted at \(AAB\).
+
+So \(\tau\) is decisive for explaining Nielsen components but redundant for
+the already rich short-word class-query pool.
