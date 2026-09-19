@@ -89,8 +89,9 @@ Cyclone IV EP4CE115F29C7:
 - 15.721 ns cell delay;
 - 30.579 ns routing delay.
 
-The exact H18 115K fit-area summary remains pending extraction from the
-existing local reports.
+The existing local report extractor gives 26,460 logic elements and 69
+registers at MAP stage.  This value is retained as a MAP estimate only; no
+separate final-fit utilization value is inferred from it.
 
 Cyclone V 5CEFA7F23C6:
 
@@ -178,6 +179,35 @@ This is a genuine Pareto tradeoff: H18 spends more spatial/hard-block
 resources while producing a slightly shorter and shallower selected critical
 path.
 
+
+## 4A. Same-mathematics architecture control — Cyclone V
+
+H18-LAB-03 and H18-LAB-04 share the same restricted-12 H18-11 mathematical
+certificate and differ principally in temporal versus spatial execution.
+
+Measured 5CEFA7F23C6 result:
+
+\[
+\begin{array}{c|cc}
+& \mathrm{LAB03\ temporal} & \mathrm{LAB04\ spatial}\\
+\hline
+\mathrm{ALM} & 1455 & 10627\\
+\mathrm{DSP} & 26 & 48\\
+F_{\max} & 47.02\ \mathrm{MHz} & 28.52\ \mathrm{MHz}\\
+\mathrm{data\ delay} & 21.075\ \mathrm{ns} & 34.827\ \mathrm{ns}\\
+\mathrm{logic\ levels} & 18 & 30\\
+N_{\rm cyc} & 42 & 1
+\end{array}
+\]
+
+At measured Fmax the worst transaction times are approximately 0.893 us and
+0.0351 us respectively.
+
+Hence full spatialization costs approximately 7.30x ALMs while reducing
+worst transaction latency approximately 25.5x.
+
+This is now the principal architecture-effect control in H18-12.
+
 ## 5. H18-12 theory claim boundary
 
 The proposed map
@@ -227,12 +257,21 @@ not a propagation-delay measurement of the post-fit FPGA.
 
 ## 7. Remaining publication gates
 
-Only two immediate hardware evidence gaps remain in the current manuscript:
+The immediate hardware matrix is now closed for the intended manuscript:
 
-1. extract the exact EP4CE115F29C7 H18-LAB-04 area/resource summary from the
-   already-generated reports;
-2. run H18-LAB-03 on 5CEFA7F23C6 to obtain the second-technology
-   same-mathematics architecture control.
+- H17-LAB-02 spatial: Cyclone IV and Cyclone V;
+- H18-LAB-04 spatial: Cyclone IV and Cyclone V;
+- H18-LAB-03 temporal: Cyclone IV and Cyclone V.
 
-After these two measurements, update the RU v0.3 tables, produce EN v0.3, and
-perform a final bibliography/claim/reproducibility freeze.
+The EP4CE115F29C7 H18 value 26,460 remains explicitly labelled MAP estimate
+until a separate final-fit utilization line is archived.
+
+Remaining gates are now editorial/theoretical rather than required physical
+measurements:
+
+1. final bibliography verification;
+2. final claim/non-claim consistency pass;
+3. EN v0.3 synchronization with RU v0.3;
+4. optional exact closure of (M_1(W_4)in{9,10,11,12}) if completed before
+   publication freeze;
+5. final RU/EN PDF assembly.
