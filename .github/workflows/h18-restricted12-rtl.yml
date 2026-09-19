@@ -1,0 +1,61 @@
+name: HATTER-SOL-18 restricted-12 RTL
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-18-adaptive-word-tomography
+    paths:
+      - 'papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/**'
+      - 'papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_11_RESTRICTED12_CONTROLLER.md'
+      - '.github/workflows/h18-restricted12-rtl.yml'
+
+jobs:
+  restricted12-rtl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog and Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog yosys
+
+      - name: Generate closure-aware membership and classifier
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_closure_classifiers.py             --out-dir ../18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12
+
+      - name: Generate exact restricted-12 microcode and RTL
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA
+        run: |
+          python3 tools/generate_h18_r12_rtl.py --out-dir generated_r12
+          cat generated_r12/H18_R12_PROGRAM_SUMMARY.md
+
+      - name: Full 197 x 5 SystemVerilog regression
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12
+        run: |
+          iverilog -g2012 -s tb_h18_r12_microcoded             -o h18_r12_sim             psl27_membership_only.sv             psl27_member_class_only.sv             h18_r12_microcoded_core.sv             tb_h18_r12_microcoded.sv
+          vvp ./h18_r12_sim +VECTORS=h18_r12_vectors.txt | tee h18_r12_sim.log
+          grep -q "PASS H18-LAB-03 restricted12: 197 states x 5 schedules = 985 runs" h18_r12_sim.log
+
+      - name: Generic Yosys synthesis
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12
+        run: |
+          yosys -Q -p '
+            read_verilog -sv psl27_membership_only.sv psl27_member_class_only.sv h18_r12_microcoded_core.sv;
+            synth -top h18_r12_microcoded_core;
+            stat;
+            write_json h18_r12_generic.json
+          ' | tee h18_r12_yosys.log
+
+      - name: Upload restricted-12 evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: h18-restricted12-rtl-evidence
+          path: |
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12/H18_R12_PROGRAM_SUMMARY.md
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12/h18_r12_program.json
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12/h18_r12_sim.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12/h18_r12_yosys.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_03_RESTRICTED12_TARGET_FPGA/generated_r12/h18_r12_generic.json
