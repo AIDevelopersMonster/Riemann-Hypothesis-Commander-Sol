@@ -252,7 +252,7 @@ components
 
 Projective commutator class не различает два 32-state sectors.
 
-## 5. Canonical lift trace и Higman invariant
+## 5. Canonical lift trace и Higman invariant [1,9]
 
 Выберем determinant-one lifts
 
@@ -309,7 +309,7 @@ y=\operatorname{tr}\widetilde B,\qquad
 z=\operatorname{tr}(\widetilde A\widetilde B).
 \]
 
-Fricke identity:
+Fricke identity [1,9]:
 
 \[
 \tau=x^2+y^2+z^2-xyz-2.
@@ -857,6 +857,9 @@ T_{\rm temporal}/T_{\rm spatial}\approx25.5.
 
 ## 16. H17 против H18: сравнение двух математических представлений
 
+Конструкция и аппаратные baseline-данные H17 зафиксированы в programme
+repository [10].
+
 ### 16.1 Граница эквивалентности
 
 H17 и H18 не следует называть двумя побитово идентичными RTL одного интерфейса.
@@ -1340,19 +1343,18 @@ H18-12 framework:
 
 ## 21. Литературная граница и смежные complexity frameworks
 
-Classical Nielsen equivalence, Fricke identity и Higman invariant не являются
-результатами H18. В рамках этой работы вклад H18 состоит в exact finite integration этих
+Classical Nielsen equivalence, commutator-trace methods, Fricke identity и
+Higman invariant не являются результатами H18 [1,9]. Для смежного контекста
+generating pairs в projective special linear groups см. также [2]. В рамках этой работы вклад H18 состоит в exact finite integration этих
 классических структур с adaptive query design, fault-aware compression и
 hardware realization; отдельная priority claim на саму эту общую связь не
 заявляется.
 
 Для algebra-to-hardware interpretation используются как смежные основания:
-
-- straight-line program complexity в arbitrary algebras;
-- relative complexity of algebraic presentations/implementations;
-- circuits over finite algebraic structures;
-- Thompson area-time VLSI complexity;
-- FPGA LUT technology mapping.
+straight-line program complexity и relative complexity of algebras [3,4],
+algebraic implementation complexity [5], Thompson area-time VLSI complexity
+[6], FPGA LUT technology mapping [7] и circuits over finite algebraic
+structures [8].
 
 H18 не утверждает, что эти области ранее не были связаны вообще. Более узкая
 исследовательская постановка — использовать fixed Boolean/FPGA realization
