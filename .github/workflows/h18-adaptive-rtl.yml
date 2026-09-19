@@ -53,15 +53,15 @@ jobs:
           yosys -Q -p 'read_verilog -sv generated/psl27_membership_only.sv generated/psl27_member_class_only.sv generated/h18_adaptive_erasure_core.sv; synth -top h18_adaptive_erasure_core; stat; write_json h18_adaptive.json' | tee h18_adaptive_yosys.log
 
       - name: Generic synthesize H17 LAB-03 fixed robust8 core
-        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
         run: |
-          yosys -Q -p 'read_verilog -sv generated/psl27_membership_only.sv generated/psl27_member_class_only.sv generated/psl27_robust8_repair.sv rtl/h17_lab03_sequential_core.sv; synth -top h17_lab03_sequential_core; stat; write_json h17_lab03.json' | tee h17_lab03_yosys.log
+          yosys -Q -p 'read_verilog -sv h17_generated/psl27_membership_only.sv h17_generated/psl27_member_class_only.sv h17_generated/psl27_robust8_repair.sv reference/h17_lab03_sequential_core.sv; synth -top h17_lab03_sequential_core; stat; write_json h17_lab03.json' | tee h17_lab03_yosys.log
 
       - name: Compare generic netlists
         working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
         run: |
           python3 tools/compare_yosys_json.py \
-            --h17 ../../../17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/h17_lab03.json \
+            --h17 h17_lab03.json \
             --h18 h18_adaptive.json \
             --out H18_VS_H17_GENERIC_SYNTHESIS.md
 
@@ -75,4 +75,4 @@ jobs:
             papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h18_adaptive_sim.log
             papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h18_adaptive_yosys.log
             papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/H18_VS_H17_GENERIC_SYNTHESIS.md
-            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/h17_lab03_yosys.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h17_lab03_yosys.log
