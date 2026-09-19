@@ -39,13 +39,13 @@ jobs:
             generated/tb_h18_adaptive_erasure.sv
           vvp generated/h18_adaptive_sim | tee h18_adaptive_sim.log
 
-      - name: Generate H17 closure classifiers for LAB-03
+      - name: Generate H17 reference support RTL
         working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
         run: |
           python3 tools/generate_psl27_closure_classifiers.py \
-            --out-dir H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/generated
+            --out-dir ../18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h17_generated
           python3 tools/generate_psl27_romfree_repair.py \
-            --out-dir H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/generated
+            --out-dir ../18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h17_generated
 
       - name: Generic synthesize H18 adaptive core
         working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
