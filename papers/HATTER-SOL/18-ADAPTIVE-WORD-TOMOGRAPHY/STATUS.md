@@ -635,7 +635,7 @@ The dominant cost remains the six-way class-transition table, so query-label
 compression alone cannot deliver a large memory reduction.
 
 Shortest elementary Nielsen programs were also computed for the ten primitive
-labels in the 12-query witness. Six tie direct word execution and four require
+labels in the 12-query witness. Seven tie direct word execution and three require
 one additional move. Therefore Nielsen structure is a semantic/control
 compression tool here, not an automatic permutation-arithmetic speedup.
 
