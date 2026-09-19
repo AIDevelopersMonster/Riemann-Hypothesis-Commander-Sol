@@ -314,8 +314,8 @@ def emit_sv(path: Path, builder: StrategyBuilder, root: int):
         ");",
         "",
         f"localparam integer NODE_W = {node_w};",
-        f"localparam [NODE_W-1:0] ROOT_NODE = NODE_W'd{root};",
-        f"localparam [NODE_W-1:0] BAD_NODE = NODE_W'd{bad_id};",
+        f"localparam [NODE_W-1:0] ROOT_NODE = {root};",
+        f"localparam [NODE_W-1:0] BAD_NODE = {bad_id};",
         "localparam [2:0]",
         "    ST_IDLE=3'd0, ST_CHECK=3'd1, ST_DISPATCH=3'd2,",
         "    ST_WORD=3'd3, ST_CLASSIFY=3'd4, ST_DONE=3'd5;",
@@ -395,7 +395,7 @@ def emit_sv(path: Path, builder: StrategyBuilder, root: int):
         if node["kind"] == "QUERY":
             wlen, wcode = encode_word(node["word"])
             lines += [
-                f"      NODE_W'd{nid}: begin",
+                f"      {nid}: begin",
                 "        node_kind = NK_QUERY;",
                 f"        node_word_len = 3'd{wlen};",
                 f"        node_word_code = 8'h{wcode:02x};",
@@ -403,12 +403,12 @@ def emit_sv(path: Path, builder: StrategyBuilder, root: int):
                     "        node_can_erase = 1'b"
                     + ("1;" if node["can_erase"] else "0;")
                 ),
-                f"        erase_next = NODE_W'd{node['erase_next']};",
+                f"        erase_next = {node['erase_next']};",
                 "        case (class_code)",
             ]
             for cls, next_id in enumerate(node["class_next"]):
                 lines.append(
-                    f"          3'd{cls}: class_next = NODE_W'd{next_id};"
+                    f"          3'd{cls}: class_next = {next_id};"
                 )
             lines += [
                 "          default: class_next = BAD_NODE;",
@@ -418,18 +418,18 @@ def emit_sv(path: Path, builder: StrategyBuilder, root: int):
         elif node["kind"] == "ORBIT":
             lines += [
                 (
-                    f"      NODE_W'd{nid}: begin "
+                    f"      {nid}: begin "
                     f"node_kind=NK_ORBIT; "
                     f"node_orbit=7'd{node['orbit_id']}; end"
                 )
             ]
         elif node["kind"] == "REJECT":
             lines += [
-                f"      NODE_W'd{nid}: begin node_kind=NK_REJECT; end"
+                f"      {nid}: begin node_kind=NK_REJECT; end"
             ]
         else:
             lines += [
-                f"      NODE_W'd{nid}: begin node_kind=NK_FAULT; end"
+                f"      {nid}: begin node_kind=NK_FAULT; end"
             ]
 
     lines += [
