@@ -61,3 +61,61 @@ for the same finite query pool.
 ## Publication threshold
 
 Not yet declared crossed. H18 now has two exact computational layers, but the planned standalone paper still needs at least one structural theorem connecting the adaptive and Nielsen views beyond the finite certificates.
+
+
+## H18-03 · Higman / canonical lift trace — CLOSED
+
+The previously unresolved split of the two 32-state \(4A\) Nielsen components is now identified exactly.
+
+For a projective generating pair, lift \(A,B\) arbitrarily to \(SL(2,7)\) and define
+
+\[
+\tau(A,B)=\operatorname{tr}([\widetilde A,\widetilde B]).
+\]
+
+The commutator lift is independent of the signs of the two lifts.
+
+Exact H17-state fibers:
+
+\[
+\tau=6:36,\qquad
+\tau=4:32,\qquad
+\tau=3:32,\qquad
+\tau=5:14.
+\]
+
+Each fiber is exactly one connected Nielsen component.
+
+The two 32-state components have the same projective commutator class \(4A\), but different canonical lift traces:
+
+\[
+\boxed{
+4A^{(+)}:\tau=3,
+\qquad
+4A^{(-)}:\tau=4=-3.
+}
+\]
+
+Thus the missing invariant was not new: it is the classical Higman/commutator-trace invariant for \(PSL(2,q)\), exposed in H18 coordinates.
+
+A nontrivial outer \(PGL(2,7)\) automorphism pairs all 114 inner-conjugacy states and preserves \(\tau\), giving quotient sizes
+
+\[
+18,\ 16,\ 16,\ 7,
+\]
+
+consistent with known \(PSL(2,7)\) T-system data.
+
+### Updated next target
+
+The strongest next question is now:
+
+\[
+\boxed{
+\text{adaptive tomography with one canonical lift-trace query}
+}
+\]
+
+versus the class-only optimum \(D^\*(\mathcal W_4)=4\).
+
+In parallel, continue the one-query-erasure adaptive problem.
