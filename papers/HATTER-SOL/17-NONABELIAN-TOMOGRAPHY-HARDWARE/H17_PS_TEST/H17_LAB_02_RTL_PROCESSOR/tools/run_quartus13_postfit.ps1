@@ -43,17 +43,36 @@ try {
   if ($LASTEXITCODE -ne 0) { throw "quartus_eda failed" }
 } finally { Pop-Location }
 
-$Vo = Get-ChildItem -Path $QDir -Recurse -Filter "$Project.vo" | Select-Object -First 1
-if (-not $Vo) { $Vo = Get-ChildItem -Path $QDir -Recurse -Filter "*.vo" | Select-Object -First 1 }
-$Sdo = Get-ChildItem -Path $QDir -Recurse -Filter "*.sdo" | Where-Object { $_.Name -like "$Project*" } | Select-Object -First 1
-if (-not $Sdo) { $Sdo = Get-ChildItem -Path $QDir -Recurse -Filter "*.sdo" | Select-Object -First 1 }
-if (-not $Vo) { throw "No post-fit .vo generated" }
-if (-not $Sdo) { throw "No post-fit .sdo generated" }
+# Use one matched corner-specific VO/SDO pair.
+# This is the same slow 1200 mV / 85 C corner that produced the
+# TimeQuest sign-off Fmax = 24.52 MHz.
+$SimDir = Join-Path $QDir "simulation\modelsim"
+$Vo = Get-Item (Join-Path $SimDir ($Project + "_6_1200mv_85c_slow.vo")) -ErrorAction SilentlyContinue
+$Sdo = Get-Item (Join-Path $SimDir ($Project + "_6_1200mv_85c_v_slow.sdo")) -ErrorAction SilentlyContinue
+
+# Old Quartus installations may omit the corner-specific pair. In that case,
+# fall back to the generic pair, but never mix one VO with another SDO.
+if (-not $Vo -or -not $Sdo) {
+  $Vo = Get-Item (Join-Path $SimDir ($Project + ".vo")) -ErrorAction SilentlyContinue
+  $Sdo = Get-Item (Join-Path $SimDir ($Project + "_v.sdo")) -ErrorAction SilentlyContinue
+}
+
+if (-not $Vo) { throw "No matched post-fit .vo generated" }
+if (-not $Sdo) { throw "No matched post-fit .sdo generated" }
 
 Write-Host ("VO : " + $Vo.FullName)
 Write-Host ("SDO: " + $Sdo.FullName)
+# Copy the selected pair together. The generated VO contains an SDF reference
+# by file name, so both files must exist side-by-side in the ModelSim work dir.
 Copy-Item $Vo.FullName (Join-Path $Build $Vo.Name) -Force
 Copy-Item $Sdo.FullName (Join-Path $Build $Sdo.Name) -Force
+
+# Also copy the generic SDO when present. Some Quartus 13.1 netlists retain
+# the generic h17_lab02_q13_v.sdo reference even for a corner-specific VO.
+$GenericSdo = Join-Path $SimDir ($Project + "_v.sdo")
+if (Test-Path $GenericSdo) {
+  Copy-Item $GenericSdo (Join-Path $Build ($Project + "_v.sdo")) -Force
+}
 Copy-Item (Join-Path $Lab "tb\tb_h17_lab02_postfit.sv") (Join-Path $Build "tb_h17_lab02_postfit.sv") -Force
 Copy-Item (Join-Path $Lab "tb\h17_lab02_postfit.do") (Join-Path $Build "h17_lab02_postfit.do") -Force
 
