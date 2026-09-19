@@ -551,8 +551,8 @@ because the dominant term is the six-way transition table.
 Shortest elementary Nielsen programs were computed for the ten primitive
 labels in the 12-query witness.
 
-For six labels, shortest Nielsen cost equals direct \(L-1\) permutation
-composition cost. For four labels, Nielsen execution requires one additional
+For seven labels, shortest Nielsen cost equals direct \(L-1\) permutation
+composition cost. For three labels, Nielsen execution requires one additional
 move.
 
 Therefore
