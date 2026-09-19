@@ -652,3 +652,32 @@ while the parallel theorem target remains exact determination of
 [
 M_1(W_4)in{9,10,11,12}.
 ]
+
+
+## H18-LAB-03 · restricted-12 target FPGA — IN PROGRESS
+
+A target-FPGA successor to H18-11 is now materialized.
+
+Frozen architecture:
+
+\[
+\boxed{12\text{ query labels},\quad305=67+238\text{ query nodes},\quad18425\text{ program bits}.}
+\]
+
+The laboratory contains:
+
+- deterministic restricted-12 SystemVerilog generator;
+- exhaustive 197-state / five-schedule regression testbench;
+- generic Yosys path;
+- Quartus II 13.1 project for Cyclone IV EP4CE22F17C6;
+- Quartus II 13.1 project for Cyclone V 5CEFA7F23C6;
+- detailed TimeQuest worst-path scripts for both targets.
+
+The mathematical contract remains
+
+\[
+\boxed{D_0=4,\qquad S_1=4,\qquad A_1=5}.
+\]
+
+Target-FPGA LE/ALM, RAM, DSP, Fmax and routed-delay claims remain open until
+the local Quartus reports are produced.
