@@ -700,24 +700,39 @@ Therefore LAB-04 has no valid routed timing result on this target.
 This no-fit result is already informative: full spatialization of the H18
 presentation crosses a physical capacity boundary that H17-LAB-02 did not.
 
-### Matched large-device experiment
+### Matched large-device experiment — TIMING MEASURED
 
-H17-LAB-02 has already been characterized on EP4CE115F29C7.
+H17-LAB-02 and H18-LAB-04 have now both been routed and timed on the same
+EP4CE115F29C7 target under the same C7 speed grade and Slow 1200 mV / 85 C
+analysis model.
 
-H18-LAB-04 is now being run on that same device and speed grade.
+Selected worst-path data:
 
-That experiment will supply the first clean large-device one-cycle comparison:
+| quantity | H17-LAB-02 | H18-LAB-04 |
+| --- | ---: | ---: |
+| data delay | 47.249 ns | 46.516 ns |
+| logic levels | 65 | 65 |
+| data-path cell delay | 17.092 ns | 15.721 ns |
+| data-path routing delay | 29.941 ns | 30.579 ns |
+| reciprocal-delay frequency | 21.16 MHz | 21.50 MHz |
+
+Thus H18's selected data path is about 1.55% shorter.  The two paths have
+exactly the same reported logic-level count, while H18 exchanges about 8.0%
+less cell delay for about 2.1% more routing delay.
+
+This is the first matched evidence for a central H18-12 point:
 
 \[
 \boxed{
-H17_{\rm comb}
-\quad\text{vs}\quad
-H18_{\rm comb}
-\quad\text{on the same }\Theta.
+\text{similar physical scalar cost can hide different internal physical
+factorizations.}
 }
 \]
 
-No H18-LAB-04 115K area or timing claim is made before that report exists.
+The timing coordinate is now closed for this matched comparison.  The exact
+115K H18 area coordinate remains pending extraction from the map/fit summary;
+it is not inferred from the earlier 22K no-fit estimate.
+
 
 ---
 
