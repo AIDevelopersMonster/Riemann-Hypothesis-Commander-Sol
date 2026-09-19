@@ -5,7 +5,7 @@
 **Автор:** Alex Malachevsky / Малачевский А.А.  
 **ORCID:** 0009-0008-6009-3196  
 **AI research collaborator:** Commander Sol · Hatter Sol  
-**Ветка:** \`research/hatter-sol-18-adaptive-word-tomography\`  
+**Ветка:** `research/hatter-sol-18-adaptive-word-tomography`  
 **Родительская работа:** HATTER-SOL-17  
 **Дата состояния:** 19 сентября 2026
 
@@ -294,7 +294,7 @@ Projective commutator class не различает два 32-state sectors.
 
 H18 не заявляет открытие Higman invariant. Классический Higman invariant
 формулируется через conjugacy classes коммутатора и его inverse; используемый
-здесь (	au) — canonical determinant-one commutator-lift trace. Новый
+здесь \(\tau\) — canonical determinant-one commutator-lift trace. Новый
 H18-результат состоит в exact finite identification его fibers с Nielsen
 components внутри H17/H18 state model и в связи этого trace invariant с
 adaptive query structure.
@@ -956,9 +956,9 @@ delay и примерно на 2.1% больший routing delay.
 
 Для этого 115K run отдельный extractor дал MAP estimate
 
-[
-oxed{26460	ext{ logic elements}}
-]
+\[
+\boxed{26460\text{ logic elements}}
+\]
 
 и 69 registers. Это число в статье используется именно как **MAP estimate**,
 а не как final fitter utilization: текущий сохранённый вывод не содержит
@@ -1308,15 +1308,15 @@ returning IDENTIFIED/orbit 0.
 
 Основные certificates:
 
-- \`h18_adaptive_depth4_certificate.py\`;
-- \`h18_nielsen_dynamics_certificate.py\`;
-- \`h18_higman_trace_lift_certificate.py\`;
-- \`h18_adaptive_with_tau_certificate.py\`;
-- \`h18_three_shadow_higman_decoder.py\`;
-- \`h18_adaptive_one_erasure_certificate.py\`;
-- \`h18_nielsen_query_compression_certificate.py\`;
-- \`h18_query_alphabet_compression_certificate.py\`;
-- \`h18_restricted12_controller_certificate.py\`.
+- `h18_adaptive_depth4_certificate.py`;
+- `h18_nielsen_dynamics_certificate.py`;
+- `h18_higman_trace_lift_certificate.py`;
+- `h18_adaptive_with_tau_certificate.py`;
+- `h18_three_shadow_higman_decoder.py`;
+- `h18_adaptive_one_erasure_certificate.py`;
+- `h18_nielsen_query_compression_certificate.py`;
+- `h18_query_alphabet_compression_certificate.py`;
+- `h18_restricted12_controller_certificate.py`.
 
 Hardware layers:
 
@@ -1327,19 +1327,19 @@ Hardware layers:
 
 LAB-04 reproducibility commands include:
 
-\`\`\`powershell
+```powershell
 .\tools\run_regression.ps1
 .\tools\run_quartus13_115k_c7.ps1
 .\tools\run_worst_path_115k_c7.ps1
 .\tools\run_quartus13_cyclonev_a7.ps1
 .\tools\run_worst_path_cyclonev_a7.ps1
 .\tools\run_waveform.ps1
-\`\`\`
+```
 
 H18-12 framework:
 
-- \`H18_12_ALGEBRA_TO_PHYSICAL_COMPLEXITY.md\`;
-- \`H18_12_MATHEMATICS_COMPARISON_PROTOCOL.md\`.
+- `H18_12_ALGEBRA_TO_PHYSICAL_COMPLEXITY.md`;
+- `H18_12_MATHEMATICS_COMPARISON_PROTOCOL.md`.
 
 ## 21. Литературная граница и смежные complexity frameworks
 
@@ -1377,11 +1377,11 @@ audit завершён 19 сентября 2026 года.
 Следующие направления **не являются блокерами этой публикации** и остаются
 открытыми после freeze:
 
-- точное значение (M_1(W_4)in{9,10,11,12});
+- точное значение \(M_1(W_4)\in\{9,10,11,12\}\);
 - дополнительные technology points и DSP-disabled controls;
 - provable Boolean/circuit lower bounds;
 - отдельная final-fit utilization line для 115K H18, если она понадобится
-  позднее; текущее (26{,}460) сохраняется только как MAP estimate.
+  позднее; текущее \(26{,}460\) сохраняется только как MAP estimate.
 
 **Release status:** `PUBLICATION_READY_PENDING_RENDER_AUDIT`.
 
