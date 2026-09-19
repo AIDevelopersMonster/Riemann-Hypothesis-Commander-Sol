@@ -1,0 +1,12 @@
+package require ::quartus::project
+package require ::quartus::sta
+
+project_open h17_lab02_q13_cyclonev_a7
+create_timing_netlist
+read_sdc
+# Cyclone V nominal VCC is 1.1 V. Request the slow commercial 85 C corner.
+set_operating_conditions -model slow -temperature 85 -voltage 1100
+update_timing_netlist
+report_timing -setup -from_clock clk -to_clock clk -npaths 3 -detail full_path -show_routing -file worst_path_full.rpt
+delete_timing_netlist
+project_close
