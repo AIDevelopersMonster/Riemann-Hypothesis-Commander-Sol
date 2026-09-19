@@ -365,3 +365,37 @@ Evidence artifact from successful run \`35428529384\`:
   \`91c14f80d847c8811e230821149fee692a45f349a561b1231108fefcb815dcab\`.
 
 No target FPGA LUT/FF/Fmax/power claim is made.
+
+
+## H18-07 · adaptive erasure RTL handoff — ARCHITECTURE CLOSED
+
+The exact H18-06 strategy has been deterministically materialized.
+
+Frozen structural metrics:
+
+- 308 nonterminal controller states;
+- 69 pre-erasure states;
+- 239 post-erasure states;
+- 24 distinct word labels used;
+- max word length 4;
+- worst 5 attempts / 4 successful class answers;
+- worst 19 naive sequential letter-compositions;
+- no-erasure worst 4 attempts / 15 letter-compositions.
+
+A board-independent sequential RTL core, generated controller ROM, word
+microcode generator, 1182-vector regression generator/testbench and generic
+Yosys runner are now present under \`H18_LAB_01_ADAPTIVE_ERASURE_RTL/\`.
+
+### Structural comparison
+
+H17 ROM-free repair has 306 internal decision nodes versus 308 nonterminal
+states in the selected H18 adaptive controller. This is a structural proxy,
+not a LUT-area result.
+
+### Open validation gates
+
+- run generated 1182-vector Icarus regression independently;
+- record observed H18 transaction-cycle maximum;
+- generic-synthesize H18 and H17 LAB-03 under the same Yosys methodology;
+- then decide whether adaptive prefix caching is required before FPGA target
+  selection.
