@@ -734,6 +734,45 @@ The timing coordinate is now closed for this matched comparison.  The exact
 it is not inferred from the earlier 22K no-fit estimate.
 
 
+
+### Matched Cyclone V experiment — SECOND TECHNOLOGY POINT
+
+The same one-cycle H17-LAB-02 and H18-LAB-04 presentations have now also been
+mapped, fitted, and timed on the same 5CEFA7F23C6 target under Quartus II 13.1
+and the Slow 1100 mV / 85 C model.
+
+| quantity | H17-LAB-02 | H18-LAB-04 | H18/H17 |
+| --- | ---: | ---: | ---: |
+| ALMs | 7,941 | 10,627 | 1.338 |
+| DSP blocks | 40 | 48 | 1.200 |
+| registers | 132 | 69 | 0.523 |
+| Fmax | 27.85 MHz | 28.52 MHz | 1.024 |
+| worst data delay | 35.694 ns | 34.827 ns | 0.976 |
+| logic levels | 34 | 30 | 0.882 |
+| cell delay | 12.726 ns | 13.556 ns | 1.065 |
+| routing delay | 22.969 ns | 21.270 ns | 0.926 |
+
+This point is more discriminating than the large Cyclone-IV result.  The
+spatialized H18 presentation is substantially more expensive in ALMs and DSPs,
+yet it is slightly faster and has fewer reported logic levels.  Its critical
+path pays more cell delay but less routing delay.
+
+Therefore the two presentations occupy different coordinates of a
+technology-relative area/depth/routing frontier rather than admitting a
+single scalar ordering.
+
+An important empirical regularity also appears: the H18/H17 area ratio on
+Cyclone V is about 1.338, close to the approximately 1.35 pre-fit
+combinational-node ratio seen on the Cyclone-IV 22K experiment.  This
+cross-technology similarity is evidence worth testing on further targets, but
+it is not yet treated as an invariant.
+
+The two matched technology points now support a stronger experimental reading
+of H12-H1: presentation-sensitive hardware images persist across more than one
+FPGA target.  They do not yet establish technology-independent ordering or
+circuit lower bounds.
+
+
 ---
 
 ## 18. Preliminary hypotheses
@@ -807,12 +846,13 @@ These are future theorem targets.
 
 The next steps are:
 
-1. complete matched EP4CE115F29C7 H17/H18-LAB-04 comparison;
-2. record the presentation-effect vector;
-3. retain H18-LAB-03/LAB-04 as architecture-effect control;
+1. complete the missing 115K H18 area coordinate from the fit summary;
+2. retain the two matched H17/H18 technology points as the first
+   presentation-effect dataset;
+3. retain H18-LAB-03/LAB-04 as the architecture-effect control;
 4. formalize a common H17/H18 abstract fault relation;
 5. define a small family of alternative mathematically equivalent
-   factorizations and test whether physical ordering is stable;
+   factorizations and test whether the area/depth ordering is stable;
 6. search for the first provable lower bound connecting decision/query
    structure to circuit size/depth.
 
