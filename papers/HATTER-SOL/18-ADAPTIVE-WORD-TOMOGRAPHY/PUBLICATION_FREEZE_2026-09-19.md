@@ -28,13 +28,15 @@ The scientific/content freeze is complete.
 7. Any later scientific strengthening requires a new manuscript version rather
    than silent modification of the frozen files.
 
-## Next publication operation
+## Render closure
 
-Assemble synchronized RU/EN PDFs from the frozen Markdown, perform a full
-render/visual audit, and only then change release status from
+Synchronized RU/EN PDFs were assembled from the frozen Markdown and passed a
+full visual/render audit on 20 September 2026.
 
-`PUBLICATION_READY_PENDING_RENDER_AUDIT`
+Canonical render receipt:
 
-to
+- `PDF_RENDER_AUDIT_2026-09-20.md`
+
+Final release status:
 
 `PUBLICATION_READY`.
