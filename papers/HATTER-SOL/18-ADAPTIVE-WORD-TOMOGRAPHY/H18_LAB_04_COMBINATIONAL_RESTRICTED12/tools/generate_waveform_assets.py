@@ -118,13 +118,10 @@ initial begin
 
   repeat(2) @(negedge clk);
   $display("PASS H18-LAB-04 waveform: same orbit with and without root-query erasure");
-  $finish;
+  $display("Waveform demo remains alive for interactive 'run 100 ns', 'run 1 us', etc.");
+  forever @(negedge clk);
 end
 
-initial begin
-  #1000;
-  $fatal(1,"wave demo watchdog");
-end
 endmodule
 """
 
