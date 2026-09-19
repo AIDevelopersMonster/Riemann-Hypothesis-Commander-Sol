@@ -541,3 +541,57 @@ commutator class.
 Next layer: build and synthesize a Nielsen-microcoded H18 controller, and test
 whether reduced observer diversity lowers the H18-08 program/storage and
 datapath cost.
+
+
+## H18-10 · exact global query-alphabet compression — CLOSED
+
+H18-06 minimizes queries per transaction. H18-10 asks how many distinct query
+labels must be supported globally while retaining the same one-erasure
+four-successful-answer theorem.
+
+Seven H17 critical pairs are distinguished in the full 50-query W4 pool by
+only the two oriented commutator queries `ABab` and `AbaB`. Therefore both
+labels are forced in every one-erasure-capable distance-two alphabet.
+
+Exhaustion of all
+
+[
+inom{48}{6}=12,271,512
+]
+
+possible size-eight completions proves that no distance-two W4 alphabet of size
+eight exists. A nine-query distance-two witness exists, hence the minimum
+distance-two alphabet size is exactly nine.
+
+A separate exact dynamic-programming check gives a 12-query adaptive witness:
+
+[
+A,B,ABab,AbaB,ABB,Abb,AAb,AAAB,AAAb,Baa,aab,abb.
+]
+
+It preserves
+
+[
+oxed{D_0=4,qquad S_1=4,qquad A_1=5}.
+]
+
+Thus, for the minimum global alphabet (M_1(W_4)) that preserves the complete
+H18-06 one-erasure adaptive contract,
+
+[
+oxed{9le M_1(W_4)le12}.
+]
+
+The witness has ten primitive/Nielsen-coordinate observers and the two forced
+commutator orientations.
+
+New exact theorem target:
+
+[
+oxed{
+	ext{decide whether }M_1(W_4)=9,10,11,	ext{ or }12.
+}
+]
+
+In parallel, hardware should now target the 12-query witness rather than the
+older 24-word selected strategy.
