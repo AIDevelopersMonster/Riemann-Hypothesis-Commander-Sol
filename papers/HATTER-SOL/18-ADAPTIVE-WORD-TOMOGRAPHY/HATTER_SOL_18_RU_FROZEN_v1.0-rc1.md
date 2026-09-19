@@ -1383,7 +1383,7 @@ audit завершён 19 сентября 2026 года.
 - отдельная final-fit utilization line для 115K H18, если она понадобится
   позднее; текущее \(26{,}460\) сохраняется только как MAP estimate.
 
-**Release status:** `PUBLICATION_READY_PENDING_RENDER_AUDIT`.
+**Release status:** `PUBLICATION_READY`.
 
 ## References
 
