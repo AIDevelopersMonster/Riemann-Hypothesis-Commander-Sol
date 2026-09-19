@@ -2,243 +2,260 @@
 # Adaptive Non-Abelian Tomography: When the Next Word Is Chosen by the Previous Observation
 
 **Status:** publication working draft EN v0.1  
-**Ветка:** `research/hatter-sol-18-adaptive-word-tomography`  
-**Родитель:** HATTER-SOL-17
+**Branch:** `research/hatter-sol-18-adaptive-word-tomography`  
+**Parent:** HATTER-SOL-17
 
-## Editorial note
+## Abstract
 
-This English draft is synchronized structurally with the Russian publication draft. HATTER-SOL-18 continues the finite mathematical/hardware laboratory
-(PSL(2,7)), established in HATTER-SOL-17 by replacing a fixed observer family with an adaptive interrogation program.
+HATTER-SOL-18 continues the finite (PSL(2,7)) mathematical/hardware
+laboratory of HATTER-SOL-17 by replacing a fixed observer family with an
+adaptive interrogation program.
 
-Состояния — simultaneous-conjugacy орбиты упорядоченных пар ((A,B)). Для
-порождающих пар имеется 114 орбит. Для полного identify-or-REJECT контракта
-учитываются все 197 орбит пар в (PSL(2,7)^2): 114 generating и 83
+The states are simultaneous-conjugacy orbits of ordered pairs ((A,B)).
+There are 114 generating orbits. For the full identify-or-REJECT contract we
+use all 197 pair orbits in (PSL(2,7)^2): 114 generating and 83
 non-generating.
 
-Для class-valued observers, задаваемых freely reduced words длины не более
-четырёх, 160 сырых слов индуцируют 50 различных запросов. Точный
-dynamic-programming certificate показывает, что минимальная worst-case
-adaptive depth равна четырём, тогда как fixed observation требует минимум
-пять запросов в том же пуле:
+Among freely reduced words of length at most four, 160 raw words induce 50
+distinct class-valued queries. Exact dynamic programming proves that the
+minimum worst-case adaptive decision depth is four, whereas any fixed
+separating family in the same pool needs at least five queries:
 
 [
 oxed{5_{m fixed}	o4_{m adaptive}}.
 ]
 
-Минимальная суммарная длина путей depth-4 дерева на 114 generating states равна
-382, поэтому оптимальная средняя глубина равна
+Among depth-four trees, the minimum total state-path length is 382, giving
+minimum mean depth
 
 [
 rac{191}{57}approx3.350877.
 ]
 
-На пространстве 114 generating-orbits стандартные Nielsen moves порождают
-четыре компонента размеров
+Standard Nielsen moves on the 114 generating orbit states produce four
+connected components of sizes
 
 [
 36, 32, 32, 14.
 ]
 
-Они в точности являются слоями canonical commutator-lift trace
+These are exactly the fibers of the canonical commutator-lift trace
 
 [
 	au(A,B)=operatorname{tr}([widetilde A,widetilde B])inmathbb F_7
 ]
 
-со значениями (6,4,3,5). Тем самым расщепление двух projective (4A)-секторов
-на (32+32) связывается с классическим Higman invariant.
+with values (6,4,3,5). Thus the previously unexplained (32+32) split
+inside projective commutator class (4A) is identified with the classical
+Higman/commutator-trace invariant.
 
-Далее доказывается three-shadow theorem: три projective class observations
+A three-shadow theorem then shows that the projective classes of
 
 [
 A^2B^2,qquad ABAB^{-1},qquad ABA^{-1}B
 ]
 
-восстанавливают (	au) на generating locus, и три является минимальным
-числом (W_4)-наблюдений для этой задачи.
+reconstruct (	au) on the generating locus, and that three is minimal among
+the (W_4) class observers.
 
-При одном persistent known query erasure четыре успешных class-ответа всё ещё
-достаточны, поэтому worst-case число попыток равно пяти:
+Under one persistent known query erasure, four successful class answers still
+suffice, so at most five attempts are required:
 
 [
 oxed{S_1=4,qquad A_1=5}.
 ]
 
-Наконец, Nielsen structure позволяет существенно сократить глобальный словарь
-опросов. Сначала полный 50-query пул уменьшается до 26 queries =
-24 primitive Nielsen-coordinate observers + две ориентации commutator без
-изменения worst-case adaptive bounds. Затем найден 12-query alphabet,
-сохраняющий полный one-erasure контракт. Точная exhaustive lower bound даёт
+Finally, Nielsen structure compresses the globally supported query vocabulary.
+The full 50-query pool first reduces to 26 queries consisting of 24 primitive
+Nielsen-coordinate observers plus the two oriented commutator observers,
+without changing the worst-case adaptive bounds. A further 12-query alphabet
+preserves the full one-erasure theorem. An exact exhaustive lower bound gives
 
 [
 oxed{9le M_1(W_4)le12},
 ]
 
-где (M_1(W_4)) — минимальное число globally supported query labels,
-достаточное для exact four-successful-answer one-erasure strategy.
+where (M_1(W_4)) is the minimum number of globally supported query labels
+needed to retain the exact four-successful-answer one-erasure strategy.
 
-Работа связывает adaptive decision trees, Nielsen dynamics, Fricke trace
-geometry и последовательную RTL-архитектуру. Аппаратные результаты
-рассматриваются как отдельный engineering layer и не подменяют математические
-теоремы.
+The resulting chain connects adaptive decision trees, Nielsen dynamics,
+Fricke trace geometry, query-language compression, and sequential RTL. The
+hardware layers are reported separately from the mathematical theorems.
 
 ## 1. From a fixed fingerprint to an interrogation program
 
-H17 показал, что восемь специально выбранных class-valued word observers
-образуют robust fingerprint, допускающий восстановление одной известной
-стёртой координаты.
+H17 showed that a fixed family of eight class-valued word observers forms a
+robust fingerprint with exact recovery from one erased coordinate when the
+erased position is known.
 
-H18 меняет постановку. Вместо вычисления всех probes заранее наблюдатель
-выбирает следующее слово по уже полученному class result:
+H18 changes the information model. Rather than evaluating every probe in
+advance, the observer chooses the next group word from the class answers
+already obtained:
 
 [
 w_1	o c_1	o w_2(c_1)	o c_2	ocdots.
 ]
 
-Следовательно, семейство групповых слов становится не только кодом, но и
+The observer family is therefore no longer only a code. It becomes a
 branching program.
 
-Основные сложности теперь разделяются на три уровня:
+Three complexity measures must be separated:
 
-1. **transaction complexity** — сколько ответов нужно конкретному состоянию;
-2. **query-alphabet complexity** — сколько различных labels должна поддерживать
-   машина глобально;
-3. **hardware realization complexity** — сколько памяти, логики, циклов и
-   маршрутизации стоит такое ветвление.
+1. **transaction complexity:** how many answers are needed on one path;
+2. **query-alphabet complexity:** how many distinct query labels must be
+   supported globally;
+3. **realization complexity:** how much controller memory, logic, arithmetic,
+   routing, and latency are required in hardware.
 
-H18 рассматривает эти уровни раздельно.
+H18 treats these as different optimization problems.
 
-## 2. Finite model
+## 2. Finite state and query model
 
-Пусть
+Let
 
 [
 G=PSL(2,7),qquad |G|=168.
 ]
 
-Элемент реализуется как перестановка восьми точек (mathbb P^1(mathbb F_7)).
+Elements are represented by their exact permutation action on
+(mathbb P^1(mathbb F_7)).
 
-Для пары ((A,B)in G^2) рассматривается simultaneous conjugacy:
+For ((A,B)in G^2), identify pairs under simultaneous conjugacy:
 
 [
 (A,B)sim(hAh^{-1},hBh^{-1}).
 ]
 
-Порождающие пары дают 114 орбит. Полный quotient всех ordered pairs содержит
+The generating pairs form 114 simultaneous-conjugacy orbits. The quotient of
+all ordered pairs contains
 
 [
 oxed{197=114+83}
 ]
 
-орбит, где 83 non-generating states объединяются терминальным ответом REJECT.
+orbits: 114 generating and 83 non-generating. The latter share the common
+terminal output REJECT.
 
-Для freely reduced words длины (1,dots,4) имеется
+For freely reduced words of lengths (1,ldots,4),
 
 [
 4+12+36+108=160
 ]
 
-сырых слов. После дедупликации по exact class-response vector на конечной
-модели остаётся
+raw words occur. Deduplication by exact response vector on the finite model
+leaves
 
 [
 oxed{50}
 ]
 
-различных class queries.
+distinct class-valued queries.
 
 ## 3. Exact adaptive depth-four theorem
 
-Для query pool (mathcal W_4) точный dynamic programming даёт
+Let (D^*(W_4)) be the minimum worst-case depth of an adaptive class-query
+tree identifying the 114 generating orbit states.
+
+Exact dynamic programming proves
 
 [
-oxed{D^*(mathcal W_4)=4}.
+oxed{D^*(W_4)=4}.
 ]
 
-Depth three невозможна, depth four достижима.
+Depth three is impossible and depth four is sufficient.
 
-В том же query pool никакой fixed subset размеров 1–4 не разделяет все 114
-generating states. Пять слов
+Within the same query pool, no fixed set of one through four queries separates
+all 114 states. The five-query family
 
 [
 A, B, AB, Ab, ABab
 ]
 
-дают separating fixed family.
-
-Следовательно,
+does separate them. Hence
 
 [
 oxed{5_{m fixed}	o4_{m adaptive}}.
 ]
 
-Среди depth-four trees минимальная суммарная state-path length равна
+Among all depth-four trees, the minimum total state-path length is
 
 [
 382,
 ]
 
-а mean depth
+so the minimum mean depth is
 
 [
 oxed{ar D_{min}=191/57}.
 ]
 
-Один выбранный optimum имеет 48 внутренних узлов, root (	exttt{AAB}),
-74 состояния завершаются на depth 3 и 40 на depth 4.
+One selected optimum has 48 internal decision nodes, root query
+(	exttt{AAB}), with 74 states terminating at depth three and 40 at depth
+four.
 
-## 4. Nielsen dynamics
+## 4. Nielsen dynamics on orbit space
 
-Рассматриваются moves
+Consider elementary moves including
 
 [
 S(A,B)=(B,A),qquad I_A(A,B)=(A^{-1},B),
 ]
 
+and
+
 [
-N_A(A,B)=(AB,B),
+N_A(A,B)=(AB,B).
 ]
 
-и эквивалентные элементарные Nielsen transformations.
+They descend to permutations of the 114 generating orbit states.
 
-На 114 H17 states получаются connected components
+The Nielsen graph generated by standard moves has connected-component sizes
 
 [
 oxed{36, 32, 32, 14}
 ]
 
-с diameters
+with diameters
 
 [
-7, 6, 8, 4.
+oxed{7, 6, 8, 4}.
 ]
 
-По projective commutator class они имеют распределение:
+The projective commutator classes on these components are:
 
-- 36 states: (3A);
-- 32 states: (4A);
-- 32 states: (4A);
-- 14 states: (7A/7B).
+- (36) states in (3A);
+- (32) states in (4A);
+- (32) states in (4A);
+- (14) states split as (7A/7B).
 
-Обычный PSL commutator class не различает два 32-state worlds.
+Thus the projective commutator class does not separate the two 32-state
+components.
 
-## 5. Higman trace and the canonical lift
+## 5. Canonical lift trace and the Higman invariant
 
-Выберем lifts
+Choose determinant-one lifts
 
 [
 widetilde A,widetilde Bin SL(2,7).
 ]
 
-Коммутатор lift не зависит от знаков lifts, поэтому
+The commutator
 
 [
-oxed{	au(A,B)=operatorname{tr}([widetilde A,widetilde B])}
+[widetilde A,widetilde B]
 ]
 
-корректно определён на projective pair.
+is independent of the sign choices of the two lifts. Therefore
 
-На 114 states:
+[
+oxed{
+	au(A,B)=operatorname{tr}([widetilde A,widetilde B])
+}
+]
+
+is well-defined on the projective pair.
+
+On the 114 H17 states the exact fibers are
 
 [
 	au=6:36,qquad
@@ -247,35 +264,39 @@ widetilde A,widetilde Bin SL(2,7).
 	au=5:14.
 ]
 
-Каждый (	au)-fiber совпадает ровно с одним Nielsen component.
+Each fiber is exactly one Nielsen connected component.
 
-Особенно:
+In particular,
 
 [
+oxed{
 4A^{(+)}:	au=3,qquad
 4A^{(-)}:	au=4=-3pmod7.
+}
 ]
 
-Это идентифицирует наблюдавшееся H18 расщепление с classical
-Higman/commutator-trace invariant, а не объявляет новый общий invariant.
+This identifies the finite H18 component split with the classical Higman /
+commutator-trace invariant. H18 does not claim discovery of that invariant;
+its contribution is the exact connection to the H17/H18 orbit-tomography
+state space and adaptive observer language.
 
-## 6. Three-shadow reconstruction theorem
+## 6. Three projective shadows reconstruct the lift trace
 
-Пусть
+Put
 
 [
-x=operatorname{tr}widetilde A,quad
-y=operatorname{tr}widetilde B,quad
+x=operatorname{tr}widetilde A,qquad
+y=operatorname{tr}widetilde B,qquad
 z=operatorname{tr}(widetilde Awidetilde B).
 ]
 
-Fricke identity:
+Fricke's identity is
 
 [
 	au=x^2+y^2+z^2-xyz-2.
 ]
 
-Определим
+Define
 
 [
 R_z=A^2B^2,qquad
@@ -283,7 +304,7 @@ R_x=ABAB^{-1},qquad
 R_y=ABA^{-1}B.
 ]
 
-Тогда
+Then
 
 [
 operatorname{tr}(R_z)=z^2-	au,
@@ -297,98 +318,100 @@ operatorname{tr}(R_x)=x^2-	au,
 operatorname{tr}(R_y)=y^2-	au.
 ]
 
-Projective conjugacy class определяет trace-square lift-а. Поэтому классы трёх
-shadow words восстанавливают (	au) на generating locus.
+A projective conjugacy class determines the square of the trace of an
+(SL(2,7)) lift. Hence the three projective classes of these shadow words
+determine (	au) on the generating locus.
 
-Точный поиск по 50 W4 observers показывает:
+Exact search over the 50 (W_4) queries proves
 
 [
 oxed{m_	au(W_4)=3}.
 ]
 
-Ни один одинарный или двойной набор class queries не определяет (	au), а 16
-различных triples определяют.
+No single query or pair of queries determines (	au); exactly 16 query
+triples do.
 
-Это связывает projective word observations с SL(2,7) lift geometry.
+This is the structural bridge from projective word observations to the
+canonical lift invariant.
 
-## 7. Persistent known query erasure
+## 7. One persistent known query erasure
 
-Fault model:
+The fault model is:
 
-- не более одного requested query возвращает ERASED;
-- его identity известна;
-- тот же query запрещён до конца transaction;
-- повторять стёртый запрос нельзя.
+- at most one requested query returns ERASED;
+- the failed query identity is known;
+- that query becomes unavailable for the rest of the transaction;
+- it may not be repeated.
 
-Для полного 197-state identify-or-REJECT problem точный результат:
+For the full 197-state identify-or-REJECT task, exact dynamic programming
+gives
 
 [
 oxed{D_0=4}
 ]
 
-без erasure и
+without erasure and
 
 [
 oxed{S_1=4}
 ]
 
-успешных ответов при одном persistent erasure.
-
-Следовательно,
+successful answers under one persistent erasure. Therefore
 
 [
-oxed{A_1=5}.
+oxed{A_1=5}
 ]
 
-Это строгий adaptive аналог H17 known-coordinate erasure, но output contracts
-различаются: H17 восстанавливает fixed robust fingerprint, H18 идентифицирует
-orbit или выдаёт REJECT.
+total attempts suffice.
 
-## 8. First RTL realization
+The H17 and H18 output contracts are different: H17 reconstructs a fixed
+robust fingerprint, whereas H18 identifies a generating orbit or returns
+REJECT through a data-dependent interrogation program.
 
-H18-07 материализует exact strategy в sequential RTL:
+## 8. First adaptive RTL realization
+
+H18-07 materializes the exact H18-06 strategy as sequential RTL:
 
 - 308 nonterminal query states;
-- 69 pre-erasure;
-- 239 post-erasure;
+- 69 pre-erasure states;
+- 239 post-erasure states;
 - 24 distinct query labels;
-- maximum word length 4;
+- maximum word length four;
 - one shared word datapath;
 - one reused class engine.
 
-Проверенная regression:
+The regression result is
 
 [
-197	imes5=985/985 {m PASS}.
+197	imes5=985/985 mathrm{PASS}.
 ]
 
-Observed RTL maximum:
+The observed RTL maximum is five attempts and 32 cycles.
+
+Under a common technology-independent Yosys methodology:
 
 [
-5	ext{ attempts},qquad32	ext{ cycles}.
+H17	ext{-LAB-03}=13547
 ]
 
-Common generic Yosys methodology дала:
-
-[
-H17	ext{-LAB-03}=13547,
-]
+and
 
 [
 H18	ext{-LAB-01}=17205
 ]
 
-hierarchy-expanded generic cells.
+hierarchy-expanded generic cells. The first hardwired adaptive realization is
+therefore about 27% larger than the H17 reference under that methodology.
 
-То есть первая hardwired adaptive implementation была приблизительно на 27%
-больше H17 reference. Это engineering result текущей реализации, не общий
-theorem против adaptivity.
+This is an implementation result, not a theorem that adaptive tomography is
+intrinsically larger.
 
-## 9. Microcoded representation
+## 9. Canonical microcoded representation
 
-H18-08 заменяет hardwired 308-node decode на canonical microprogram.
+H18-08 replaces the large hardwired controller decode by a canonical
+microprogram.
 
-Program payload до vendor-specific packing:
+Before vendor-specific memory packing, the program payload is
 
 [
 1540+16632+621+264
@@ -396,86 +419,86 @@ Program payload до vendor-specific packing:
 oxed{19057	ext{ bits}}.
 ]
 
-Кроме того, direct loading первого letter уменьшает worst five-attempt word
-composition bound
+Direct loading of the first word letter also reduces the worst five-attempt
+word-composition count from
 
 [
 19	o14.
 ]
 
-Этот слой меняет representation, но не математическую decision strategy.
+This layer changes the representation while preserving the exact H18-06
+decision strategy.
 
 ## 10. Nielsen-normal query compression
 
-Из 50 canonical W4 queries ровно 24 являются primitive free-group words и
-конструктивно получаются Nielsen transformations координатного generator.
+Exactly 24 of the 50 canonical (W_4) queries are primitive free-group words,
+hence Nielsen transports of a coordinate observer.
 
-На 114 generating states эти 24 primitive observers дают 107 signatures и
-оставляют ровно семь doublets:
+On the 114 generating states, their joint signatures give 107 distinct
+classes and leave exactly seven doublets:
 
 [
 (12,27),(13,28),(14,29),(84,89),(90,92),(100,103),(106,107).
 ]
 
-Это те же H17 commutator-defect pairs.
+These are precisely the H17 depth-(le4) commutator-defect pairs.
 
-Они все разделяются oriented commutator query (	exttt{ABab}). Естественная
-Nielsen-normal family:
-
-[
-24	ext{ primitive}+2	ext{ commutator orientations}=26.
-]
-
-На этом сокращённом пуле всё ещё:
+They are all separated by the oriented commutator query (	exttt{ABab}).
+The natural Nielsen-normal query family therefore consists of
 
 [
-D_0=4,qquad S_1=4,qquad A_1=5,
+oxed{24	ext{ primitive}+2	ext{ commutator orientations}=26}.
 ]
 
-и сохраняется
+On this restricted pool the exact worst-case results remain
 
 [
-5_{m fixed}	o4_{m adaptive}.
+oxed{D_0=4,qquad S_1=4,qquad A_1=5}
 ]
 
-Для generating-only оптимального дерева total path length становится 386
-вместо 382:
+and the fixed/adaptive separation remains
 
 [
-rac{193}{57}approx3.385965
+oxed{5_{m fixed}	o4_{m adaptive}}.
 ]
 
-против (191/57). Worst-case depth остаётся 4.
+The generating-only optimum total path length increases only from 382 to 386,
+so the mean depth changes from (191/57) to (193/57), while worst-case
+depth remains four.
 
-## 11. Global query-alphabet theorem
+## 11. Global query-alphabet compression theorem
 
-Следующий вопрос: сколько query labels вообще обязана поддерживать машина?
+H18-10 asks how many distinct labels the machine must support globally.
 
-Для одного persistent erasure любой supported alphabet должен иметь
-coordinate distance не меньше двух на каждой required gen/gen и gen/non паре.
+Any alphabet tolerating one persistent query erasure must distinguish each
+required generating/generating and generating/non-generating pair by at least
+two supported labels.
 
-В полном W4 pool семь critical pairs имеют только два separating labels:
+In the complete 50-query (W_4) pool, exactly seven critical pairs have only
+two separating labels:
 
 [
-	exttt{ABab},qquad	exttt{AbaB}.
+oxed{	exttt{ABab},qquad	exttt{AbaB}}.
 ]
 
-Значит обе commutator orientations обязательны.
+Therefore both oriented commutator queries are forced in every distance-two
+alphabet.
 
-После их фиксации size-eight alphabet мог бы добавить только шесть из остальных
-48 labels. Полный перебор
+With those two labels fixed, an eight-query alphabet could add only six of the
+remaining 48 labels. Exhaustive search of all
 
 [
 inom{48}{6}=12,271,512
 ]
 
-вариантов показывает: ни один не достигает требуемого distance two.
+possibilities proves that none satisfies the necessary distance-two
+condition.
 
-Однако size-nine distance-two witness существует.
+A nine-query distance-two witness exists, so the minimum robust alphabet under
+that coding condition is exactly nine.
 
-Следовательно, minimum robust alphabet size по distance criterion равен 9.
-
-Для полного four-successful-answer adaptive contract найден 12-query witness:
+For the full adaptive four-successful-answer contract, the following
+12-query alphabet is sufficient:
 
 [
 oxed{
@@ -483,28 +506,28 @@ A,B,ABab,AbaB,ABB,Abb,AAb,AAAB,AAAb,Baa,aab,abb.
 }
 ]
 
-Для него exact DP снова даёт
+Exact dynamic programming on this restricted alphabet gives again
 
 [
-D_0=4,quad S_1=4,quad A_1=5.
+D_0=4,qquad S_1=4,qquad A_1=5.
 ]
 
-Поэтому
+Hence, for the minimum globally supported alphabet preserving the complete
+H18-06 contract,
 
 [
 oxed{9le M_1(W_4)le12}.
 ]
 
-Определение точного (M_1in{9,10,11,12}) остаётся следующим узким theorem
-target.
+Determining whether the exact value is 9, 10, 11, or 12 is the next finite
+theorem target.
 
-## 12. Main structural conclusion
+## 12. Structural interpretation
 
-H18 начинает с 50 unrelated-looking short-word queries, но постепенно выявляет
-меньшую структуру:
+The H18 query language contracts through the following chain:
 
 [
-50	ext{ W4 observers}
+50	ext{ canonical }W_4	ext{ queries}
 ]
 
 [
@@ -512,7 +535,9 @@ Downarrow
 ]
 
 [
-24	ext{ primitive Nielsen transports}+2	ext{ commutator orientations}
+24	ext{ primitive Nielsen transports}
++
+2	ext{ commutator orientations}
 ]
 
 [
@@ -520,47 +545,51 @@ Downarrow
 ]
 
 [
-12	ext{-label adaptive witness}
+12	ext{-label adaptive witness},
 ]
 
-при сохранении exact worst-case information bound
+while preserving the exact worst-case information bound
 
 [
-oxed{4	ext{ successful answers}+1	ext{ possible erasure}.}
+oxed{
+4	ext{ successful class answers}
++
+1	ext{ possible erasure}.
+}
 ]
 
-Это показывает, что adaptivity и Nielsen dynamics не являются двумя
-параллельными темами. Nielsen geometry объясняет, как сокращать сам язык
-опросной программы.
+The adaptive and Nielsen parts of H18 are therefore not separate themes.
+Nielsen geometry explains how the language of the interrogation program can
+be compressed.
 
 ## 13. Claim boundaries
 
-Доказано/сертифицировано:
+Certified or directly verified in the current project:
 
 - exact finite state counts;
-- adaptive depth four;
-- fixed/adaptive separation;
-- Nielsen component decomposition;
-- identification components with Higman trace fibers;
-- three-shadow reconstruction of (	au);
-- one persistent known erasure bound;
-- finite RTL regression H18-07;
-- generic synthesis comparison H17/H18;
-- Nielsen-normal 26-query reduction;
-- exact query-alphabet bracket (9le M_1le12).
+- exact adaptive depth four;
+- strict fixed/adaptive separation;
+- exact Nielsen component decomposition;
+- identification of components with canonical lift-trace fibers;
+- three-shadow reconstruction and its (W_4) minimality;
+- exact one-persistent-erasure bound;
+- finite RTL regression of H18-07;
+- generic synthesis comparison of current H17/H18 implementations;
+- 26-query Nielsen-normal reduction;
+- exact global alphabet bracket (9le M_1le12).
 
-Не заявляется:
+Not claimed:
 
-- общий theorem для всех (PSL(2,q));
+- a theorem for all (PSL(2,q));
 - cryptographic hardness;
 - physical fault tolerance;
-- target FPGA superiority H18 over H17;
-- exact value (M_1) до закрытия следующего finite search;
-- measured power/Fmax/board behavior для H18.
+- target-FPGA superiority of H18 over H17;
+- an exact value of (M_1) before the remaining finite optimization closes;
+- measured power, Fmax, or board behavior for H18.
 
 ## 14. Reproducibility
 
-Основные certificates:
+Principal certificates:
 
 - `h18_adaptive_depth4_certificate.py`;
 - `h18_nielsen_dynamics_certificate.py`;
@@ -571,19 +600,19 @@ Downarrow
 - `h18_nielsen_query_compression_certificate.py`;
 - `h18_query_alphabet_compression_certificate.py`.
 
-Аппаратные слои:
+Hardware layers:
 
 - H18-LAB-01 adaptive RTL;
 - H18-LAB-02 canonical microcoded dual RTL.
 
 ## 15. Literature boundary
 
-Классическая Nielsen equivalence и Higman invariant не являются результатами
-H18. McCullough и Wanderley систематически исследуют Nielsen equivalence
-generating pairs of (SL(2,q)) и (PSL(2,q)), где Higman invariant и trace
-commutator играют центральную роль.
+Classical Nielsen equivalence and the Higman invariant predate H18.
+McCullough and Wanderley study Nielsen equivalence of generating pairs of
+(SL(2,q)) and (PSL(2,q)), with the Higman invariant and the commutator
+trace playing central roles.
 
-H18-specific contribution состоит в exact finite connection:
+The H18-specific contribution is the exact finite chain
 
 [
 	ext{Nielsen dynamics}
@@ -599,16 +628,16 @@ leftrightarrow
 
 ## 16. Remaining theorem targets before publication freeze
 
-1. Закрыть точное значение
+1. Determine the exact value
    [
    M_1(W_4)in{9,10,11,12}.
    ]
-2. Проверить, существует ли cost-optimal adaptive tree одновременно
-   минимизирующий global alphabet и total path length.
-3. Сравнить direct-word и Nielsen-microprogram arithmetic cost, не предполагая
-   заранее, что Nielsen representation дешевле.
-4. Закрыть H18-08 dual-RTL CI.
-5. После этого провести final publication audit и собрать RU/EN PDF.
+2. Determine whether one can jointly minimize global query alphabet and total
+   adaptive path length.
+3. Compare direct-word execution with Nielsen-microprogram execution under an
+   explicit arithmetic cost model rather than assuming the latter is cheaper.
+4. Close H18-08 dual-RTL CI.
+5. Run a final theorem/claim/reproducibility audit and assemble RU/EN PDFs.
 
 ## References
 
