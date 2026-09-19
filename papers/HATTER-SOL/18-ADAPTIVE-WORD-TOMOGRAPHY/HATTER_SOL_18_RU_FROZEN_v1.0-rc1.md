@@ -1,5 +1,5 @@
 # HATTER-SOL-18
-# Адаптивная неабелева томография: Nielsen dynamics, Higman trace, сжатие языка опросов и аппаратные образы математики
+# Адаптивная неабелева томография: Nielsen dynamics, commutator-lift trace, сжатие языка опросов и аппаратные образы математики
 
 **Статус:** PUBLICATION FREEZE · RU v1.0-rc1  
 **Автор:** Alex Malachevsky / Малачевский А.А.  
@@ -1280,7 +1280,7 @@ returning IDENTIFIED/orbit 0.
 Проверено:
 
 - H18-LAB-03 exhaustive 985-run temporal RTL regression;
-- H18-LAB-03 Cyclone-IV physical fit/timing;
+- H18-LAB-03 Cyclone-IV/Cyclone-V physical fit/timing;
 - H18-LAB-04 exhaustive 2561-transaction static-erasure regression;
 - H18-LAB-04 Cyclone-IV 22K NO-FIT capacity boundary;
 - H18-LAB-04 Cyclone-IV 115K routed timing;
@@ -1425,7 +1425,7 @@ audit завершён 19 сентября 2026 года.
    Mathematics 12, American Mathematical Society (1969), 14–32.
    DOI: 10.1090/pspum/012/0262379.
 
-10. A. Malachevsky / Commander Sol programme archive, **HATTER-SOL-17 ·
+10. Alex Malachevsky (with Commander Sol as AI research collaborator), **HATTER-SOL-17 ·
     Non-Abelian Tomography Hardware**, repository
     `AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol`,
     `papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/`,
