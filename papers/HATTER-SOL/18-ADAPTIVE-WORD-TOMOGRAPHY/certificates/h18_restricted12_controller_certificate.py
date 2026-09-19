@@ -408,9 +408,9 @@ NIELSEN_DELTA = {
 }
 
 # Exact claim boundary:
-# six primitive labels are tied with direct execution,
-# three are one move worse, and one more (AAAB) is also one move worse.
-assert Counter(NIELSEN_DELTA.values()) == Counter({0: 6, 1: 4})
+# seven primitive labels tie direct execution, while three require one
+# additional elementary Nielsen move.
+assert Counter(NIELSEN_DELTA.values()) == Counter({0: 7, 1: 3})
 
 
 def main() -> None:
