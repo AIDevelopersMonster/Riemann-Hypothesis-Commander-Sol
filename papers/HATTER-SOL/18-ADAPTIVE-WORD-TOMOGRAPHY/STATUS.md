@@ -194,3 +194,68 @@ The structural threshold in RESEARCH_TZ §9 is now crossed in substance:
 
 A publication assembly can now begin while the one-query-erasure problem
 continues as a next theorem layer.
+
+
+## H18-06 · adaptive one-erasure identify-or-reject — CLOSED
+
+The fault model is now frozen as one **persistent known query erasure**:
+the erased query cannot be repeated during the transaction.
+
+The state space is the full simultaneous-conjugacy quotient of \(PSL(2,7)^2\):
+
+\[
+197=114\text{ generating}+83\text{ non-generating pair orbits}.
+\]
+
+All non-generating states share terminal output REJECT.
+
+For the 50 distinct class-valued \(W_4\) queries:
+
+\[
+D_0=4
+\]
+
+for the no-erasure identify-or-reject task, and under one persistent erasure
+
+\[
+\boxed{S_1=4}
+\]
+
+successful class answers still suffice.
+
+Therefore
+
+\[
+\boxed{A_1=5}
+\]
+
+total query attempts suffice in the worst case:
+
+\[
+4\text{ successful}+1\text{ possible ERASED}.
+\]
+
+Three successful answers are impossible even without erasure, so the
+successful-query bound is exact.
+
+A canonical robust root is \(AAB\); 16 query representatives can serve as
+valid roots of an exact strategy.
+
+### Comparison boundary
+
+H17 robust8 uses eight fixed probes and reconstructs a fixed robust
+fingerprint. H18-06 uses at most five adaptive attempts and returns
+orbit-ID-or-REJECT. Thus the observation-count advantage is exact, while
+hardware area/latency/throughput remains an open engineering comparison.
+
+### Next layer
+
+Construct the adaptive RTL controller/tree representation and compare:
+
+\[
+\text{H17 fixed robust8}
+\quad\text{vs}\quad
+\text{H18 adaptive erasure controller}
+\]
+
+under one common synthesis methodology.
