@@ -574,8 +574,8 @@ payload, потому что dominant term — six-way transition table.
 Для десяти primitive labels 12-query witness вычислены shortest elementary
 Nielsen programs.
 
-В six cases shortest Nielsen cost совпадает с direct \(L-1\) composition cost.
-В four cases Nielsen realization требует на один move больше.
+В seven cases shortest Nielsen cost совпадает с direct \(L-1\) composition cost.
+В three cases Nielsen realization требует на один move больше.
 
 Следовательно,
 
