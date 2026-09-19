@@ -293,8 +293,8 @@ length (L) costs (L-1) permutation compositions.
 
 For the ten primitive labels:
 
-- six are tied;
-- four require one more Nielsen move than direct word execution.
+- seven are tied;
+- three require one more Nielsen move than direct word execution.
 
 Thus:
 
