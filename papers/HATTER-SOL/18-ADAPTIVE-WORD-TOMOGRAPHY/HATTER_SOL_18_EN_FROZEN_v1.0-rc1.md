@@ -241,7 +241,7 @@ Their projective commutator classes are \(3A\), \(4A\), \(4A\), and
 \(7A/7B\), respectively. Projective commutator class alone does not distinguish
 the two 32-state sectors.
 
-## 5. Canonical lift trace and the Higman invariant
+## 5. Canonical lift trace and the Higman invariant [1,9]
 
 Choose determinant-one lifts
 
@@ -297,7 +297,7 @@ y=\operatorname{tr}\widetilde B,\qquad
 z=\operatorname{tr}(\widetilde A\widetilde B).
 \]
 
-Fricke's identity is
+Fricke's identity [1,9] is
 
 \[
 \tau=x^2+y^2+z^2-xyz-2.
@@ -787,6 +787,9 @@ the 42-cycle schedule gives much larger end-to-end latency.
 
 ## 16. H17 versus H18: two mathematical presentations
 
+The H17 construction and hardware baselines used here are archived in the
+programme repository [10].
+
 ### 16.1 Equivalence boundary
 
 H17 and H18 must not be described as two bit-identical fault-tolerant RTL
@@ -1149,8 +1152,9 @@ Comparison framework:
 
 ## 21. Literature boundary
 
-Classical Nielsen equivalence, Fricke identities, and the Higman invariant
-predate H18.
+Classical Nielsen equivalence, commutator-trace methods, Fricke identities,
+and the Higman invariant predate H18 [1,9].  For related generating-pair and
+lifting questions in projective special linear groups, see also [2].
 
 Within this manuscript, the H18 contribution is the exact finite integration
 
@@ -1168,11 +1172,11 @@ Within this manuscript, the H18 contribution is the exact finite integration
 }
 \]
 
-The hardware-image framework is adjacent to straight-line program complexity,
-relative complexity of algebraic implementations, circuits over finite
-algebraic structures, VLSI area-time complexity, and FPGA technology mapping.
-No priority claim over those fields, or over the general idea of connecting
-algebraic and hardware complexity, is made.
+The hardware-image framework is adjacent to straight-line program and relative
+algebraic complexity [3,4], algebraic implementation complexity [5], VLSI
+area-time complexity [6], FPGA LUT technology mapping [7], and circuits over
+finite algebraic structures [8].  No priority claim over those fields, or over
+the general idea of connecting algebraic and hardware complexity, is made.
 
 ## 22. Publication freeze
 
