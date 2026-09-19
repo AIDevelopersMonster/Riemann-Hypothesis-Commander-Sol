@@ -1,8 +1,8 @@
 # HATTER-SOL-17 · STATUS
 
 **Branch:** `research/hatter-sol-17-nonabelian-tomography-hardware`  
-**State:** active processor implementation research.  
-**Date:** 16 September 2026.
+**State:** target-FPGA physical evidence obtained; H17-09 supplement prepared.  
+**Date:** 19 September 2026.
 
 ## H17-01 · canonical golden model — CLOSED
 
@@ -219,7 +219,7 @@ closure-aware ROM-free core     PASS
 generic Yosys synthesis         PASS
 ```
 
-The still-open hardware gate is target-specific mapping / STA / physical-board verification.
+Target-specific mapping and STA are now completed for Cyclone IV E and Cyclone V E. Cyclone IV also has a matched post-fit SDF ModelSim witness. Physical-board verification remains open.
 
 ## Exact observer/processor tiers
 
@@ -229,6 +229,47 @@ The still-open hardware gate is target-specific mapping / STA / physical-board v
 4. **9-channel H16-compatible robust** — migration target if the original five H16 channels must remain externally visible.
 
 No final FPGA architecture selection is made until technology mapping and timing data exist.
+
+## H17-09 · target-FPGA physical evidence — CLOSED for board-free benchmark
+
+The closure-aware H17-LAB-02 processor has now been compiled through vendor place-and-route and TimeQuest.
+
+Cyclone IV E EP4CE22F17C6:
+
+```text
+LE                     19,540 / 22,320 = 88%
+registers              132
+Fmax slow 85 C         24.52 MHz
+worst data delay       41.082 ns
+logic levels           65
+cell / routing         15.017 / 25.873 ns
+```
+
+A matched slow-corner Verilog/SDF ModelSim run passes the canonical 20 MHz transaction.
+
+The equal-C7 capacity control gives 47.404 ns on EP4CE22F17C7 and 47.249 ns on EP4CE115F29C7: only about 0.33% difference despite the much larger nominal device. Thus the experiment does not support the simple hypothesis that high 22K occupancy is the dominant timing limit.
+
+Cyclone V E 5CEFA7F23C6, with unchanged RTL and normal automatic mapping:
+
+```text
+ALMs                   7,941 / 56,480 = 14%
+registers              132
+DSP blocks             40 / 156
+Fmax slow 85 C         27.85 MHz
+worst data delay       35.694 ns
+logic levels           34
+cell / routing         12.726 / 22.969 ns
+```
+
+Relative to the equal-grade Cyclone IV 22K C7 control, selected-path Fmax improves about 31% and data delay falls about 24.7%. This is a platform-level result, not a pure LUT/ALM comparison, because Quartus infers 40 DSP blocks.
+
+Routing remains about 62–64% of the selected critical path. The unchanged one-cycle architecture does not close at 100 MHz on the tested targets.
+
+Quartus II 13.1 generates a Cyclone V post-fit `.vo` but no timing `.sdo` for this family; Cyclone V physical-delay evidence is therefore TimeQuest, not an SDF-backed waveform.
+
+Detailed supplement: `docs/H17_09_TARGET_FPGA_PHYSICAL_EVIDENCE.md`.  
+Instructor laboratory: `labs/H17_LAB_02_INSTRUCTOR_GUIDE.md`.  
+Model student report: `labs/H17_LAB_02_MODEL_STUDENT_REPORT.md`.
 
 ## Arithmetic two-port frontend seed
 
@@ -245,13 +286,6 @@ Seed: `docs/INTEGER_TWO_PORT_MAXIMAL_FIRST_FRONTEND_SEED.md`.
 
 ## Next strike
 
-H17-08 closes the architecture-level generic synthesis question. The next hardware strike is target-specific:
+The board-free target-specific gate is now closed. The next hardware question is architectural rather than capacity-only: test registered/multi-cycle boundaries through the word/class/repair path under a separately versioned architecture, while preserving the current unchanged-RTL measurements as the baseline. Physical-board verification remains a later independent gate.
 
-1. choose a concrete FPGA family/part already available or intended for the experiment;
-2. map closure-aware flat and ROM-free cores under identical constraints;
-3. record LUT/FF/BRAM/DSP usage and inferred memories;
-4. run STA / place-and-route and record critical path and Fmax;
-5. select the first board architecture only from those target-specific results;
-6. then perform physical-board verification with exact golden vectors.
-
-A later mathematical extension, separate from this hardware gate, is the stronger unknown-location single-error problem (`d_min>=3`) rather than the present known-erasure problem (`d_min>=2`).
+A later mathematical extension, separate from the hardware gate, is the stronger unknown-location single-error problem (d_min>=3) rather than the present known-erasure problem (d_min>=2).
