@@ -1,0 +1,121 @@
+name: HATTER-SOL-18 publication PDFs
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-adaptive-word-tomography
+    paths:
+      - ".github/workflows/hatter-sol-18-publication-pdf.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/HATTER_SOL_18_RU_FROZEN_v1.0-rc1.md"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/HATTER_SOL_18_EN_FROZEN_v1.0-rc1.md"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Pandoc and XeLaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex texlive-latex-extra texlive-lang-cyrillic fonts-noto-core fonts-noto-mono poppler-utils
+
+      - name: Prepare publication build inputs
+        shell: python
+        run: |
+          from pathlib import Path
+          base = Path("papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY")
+          out = Path("build/hatter-sol-18")
+          out.mkdir(parents=True, exist_ok=True)
+
+          for lang, name in [
+              ("RU", "HATTER_SOL_18_RU_FROZEN_v1.0-rc1.md"),
+              ("EN", "HATTER_SOL_18_EN_FROZEN_v1.0-rc1.md"),
+          ]:
+              text = (base / name).read_text(encoding="utf-8")
+              lines = text.splitlines()
+              if len(lines) >= 2 and lines[0].startswith("# ") and lines[1].startswith("# "):
+                  lines = lines[2:]
+              (out / f"HATTER_SOL_18_{lang}_render.md").write_text(
+                  "\n".join(lines).lstrip() + "\n", encoding="utf-8"
+              )
+
+          header = r"""
+          \usepackage{microtype}
+          \usepackage{xurl}
+          \usepackage{booktabs}
+          \usepackage{longtable}
+          \usepackage{array}
+          \usepackage{ragged2e}
+          \usepackage{fvextra}
+          \usepackage{enumitem}
+          \setlist{nosep}
+          \setlength{\emergencystretch}{3em}
+          \setlength{\parskip}{0.35em}
+          \setlength{\parindent}{1.2em}
+          \widowpenalty=10000
+          \clubpenalty=10000
+          \displaywidowpenalty=10000
+          \hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black,pdfborder={0 0 0}}
+          """
+          (out / "header.tex").write_text(header, encoding="utf-8")
+
+      - name: Build RU PDF
+        run: |
+          pandoc build/hatter-sol-18/HATTER_SOL_18_RU_render.md \
+            --from=markdown+tex_math_single_backslash+raw_tex+pipe_tables \
+            --pdf-engine=xelatex --toc \
+            --metadata title="HATTER-SOL-18" \
+            --metadata subtitle="Адаптивная неабелева томография: Nielsen dynamics, commutator-lift trace, сжатие языка опросов и аппаратные образы математики" \
+            --metadata author="Alex Malachevsky / Малачевский А.А." \
+            --metadata date="Publication freeze: 19 September 2026" \
+            --metadata lang=ru-RU \
+            -V toc-title="Содержание" -V papersize=a4 -V geometry:margin=20mm -V fontsize=10pt \
+            -V mainfont="Noto Serif" -V sansfont="Noto Sans" -V monofont="Noto Sans Mono" \
+            -H build/hatter-sol-18/header.tex \
+            -o build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdf
+
+      - name: Build EN PDF
+        run: |
+          pandoc build/hatter-sol-18/HATTER_SOL_18_EN_render.md \
+            --from=markdown+tex_math_single_backslash+raw_tex+pipe_tables \
+            --pdf-engine=xelatex --toc \
+            --metadata title="HATTER-SOL-18" \
+            --metadata subtitle="Adaptive Non-Abelian Tomography: Nielsen Dynamics, Commutator-Lift Trace, Query-Language Compression, and Hardware Images of Mathematics" \
+            --metadata author="Alex Malachevsky" \
+            --metadata date="Publication freeze: 19 September 2026" \
+            --metadata lang=en-US \
+            -V toc-title="Contents" -V papersize=a4 -V geometry:margin=20mm -V fontsize=10pt \
+            -V mainfont="Noto Serif" -V sansfont="Noto Sans" -V monofont="Noto Sans Mono" \
+            -H build/hatter-sol-18/header.tex \
+            -o build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdf
+
+      - name: PDF sanity checks
+        run: |
+          pdfinfo build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdf | tee build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdfinfo.txt
+          pdftotext build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdf build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.txt
+          pdfinfo build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdf | tee build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdfinfo.txt
+          pdftotext build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdf build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.txt
+          test -s build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdf
+          test -s build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdf
+
+      - name: SHA-256
+        run: |
+          cd build/hatter-sol-18
+          sha256sum HATTER_SOL_18_RU_v1.0.pdf HATTER_SOL_18_EN_v1.0.pdf > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HATTER-SOL-18-publication-pdfs
+          path: |
+            build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdf
+            build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdf
+            build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.pdfinfo.txt
+            build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.pdfinfo.txt
+            build/hatter-sol-18/HATTER_SOL_18_RU_v1.0.txt
+            build/hatter-sol-18/HATTER_SOL_18_EN_v1.0.txt
+            build/hatter-sol-18/SHA256SUMS.txt
+          retention-days: 30
