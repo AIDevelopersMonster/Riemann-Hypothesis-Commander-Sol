@@ -475,3 +475,69 @@ backends.
 
 Until that CI evidence exists, H18-08 remains **IN PROGRESS** and no new area,
 BRAM, Fmax or FPGA-family claim is made.
+
+
+## H18-09 · Nielsen-compressed interrogation — CLOSED
+
+The 50-query W4 pool contains a much smaller structural core.
+
+Exactly 24 canonical W4 queries are primitive free-group words, hence
+Nielsen transports of a coordinate observer.  On the 114 generating H17
+states their joint signatures give 107 classes and leave exactly seven
+doublets:
+
+[
+(12,27),(13,28),(14,29),(84,89),(90,92),(100,103),(106,107).
+]
+
+These are precisely the seven H17 depth<=4 commutator-defect pairs.
+The oriented commutator query `ABab` splits all seven as (7A/7B).
+
+Restricting H18 to
+
+[
+oxed{24	ext{ primitive}+2	ext{ oriented commutator}=26	ext{ queries}}
+]
+
+preserves all worst-case query bounds:
+
+[
+oxed{D_0=4,qquad S_1=4,qquad A_1=5}
+]
+
+and preserves the fixed/adaptive separation
+
+[
+oxed{5_{m fixed}	o4_{m adaptive}}.
+]
+
+The generating-state optimum mean depth changes only from
+
+[
+191/57
+]
+
+to
+
+[
+193/57,
+]
+
+while worst-case depth stays four.
+
+This yields a new structural hardware target:
+
+[
+oxed{
+	ext{word-selector library}
+longrightarrow
+	ext{Nielsen move microprogram}+	ext{two observer types}
+}
+]
+
+where the semantic observer types are coordinate class and oriented
+commutator class.
+
+Next layer: build and synthesize a Nielsen-microcoded H18 controller, and test
+whether reduced observer diversity lowers the H18-08 program/storage and
+datapath cost.
