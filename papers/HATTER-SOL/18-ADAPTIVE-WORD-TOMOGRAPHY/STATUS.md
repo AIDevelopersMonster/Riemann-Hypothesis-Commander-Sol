@@ -259,3 +259,109 @@ Construct the adaptive RTL controller/tree representation and compare:
 \]
 
 under one common synthesis methodology.
+
+
+## H18-07 · first adaptive RTL / hardware-cost layer — CLOSED
+
+The exact H18-06 one-erasure strategy has now been materialized as a
+board-independent sequential RTL processor.
+
+Generated strategy:
+
+\[
+424\text{ controller nodes}
+=
+308\text{ query nodes}
++
+114\text{ orbit terminals}
++
+1\text{ REJECT}
++
+1\text{ FAULT}.
+\]
+
+It uses 24 distinct query words, all with \(|w|\le4\).
+
+Icarus regression in GitHub Actions run \`35428529384\`:
+
+\[
+\boxed{197\times5=985/985\ \mathrm{PASS}}.
+\]
+
+The five schedules per state are no erasure and erasure on attempted query
+1, 2, 3 or 4.
+
+Observed maxima:
+
+\[
+\boxed{\text{max attempts}=5},
+\qquad
+\boxed{\text{max RTL wait}=32\text{ cycles}}.
+\]
+
+Common technology-independent Yosys methodology, hierarchy-expanded cells:
+
+\[
+\boxed{
+H17\text{-LAB-03}=13547,
+\qquad
+H18\text{-LAB-01}=17205.
+}
+\]
+
+Thus the first hardwired adaptive realization is
+
+\[
+\boxed{+27.00\%}
+\]
+
+larger in generic cells, despite the exact observation-count reduction
+
+\[
+8_{\rm fixed}\to5_{\rm adaptive\ attempts}.
+\]
+
+At the same time H18 uses fewer sequential generic cells
+
+\[
+417\to177
+\]
+
+and fewer mux-family cells
+
+\[
+2439\to1855.
+\]
+
+The excess is dominated by controller decode / OR logic generated from the
+308-query-node hardwired strategy.
+
+### New engineering barrier
+
+The adaptive information advantage is real but is currently paid for as
+hardwired control logic.
+
+Next strike:
+
+\[
+\boxed{
+\text{compress the 424-node adaptive program}
+}
+\]
+
+using one or more of:
+
+1. microcoded ROM/BRAM node records;
+2. hardware-cost-aware decision-DAG factoring;
+3. Nielsen/Higman symmetry quotienting.
+
+The target is no longer to reduce query count -- that layer is closed -- but to
+turn the exact query advantage into an area/latency advantage.
+
+Evidence artifact from successful run \`35428529384\`:
+
+- artifact ID \`10579876480\`;
+- SHA-256
+  \`91c14f80d847c8811e230821149fee692a45f349a561b1231108fefcb815dcab\`.
+
+No target FPGA LUT/FF/Fmax/power claim is made.
