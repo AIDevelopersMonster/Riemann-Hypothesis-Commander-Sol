@@ -14,8 +14,34 @@ Write-Host "== Generate H18 restricted-12 microcode and RTL =="
 py -3 (Join-Path $Lab "tools\generate_h18_r12_rtl.py") --out-dir $Gen
 if ($LASTEXITCODE -ne 0) { throw "H18 restricted-12 generation failed" }
 
-if (-not (Get-Command iverilog -ErrorAction SilentlyContinue)) { throw "iverilog not found in PATH" }
-if (-not (Get-Command vvp -ErrorAction SilentlyContinue)) { throw "vvp not found in PATH" }
+function Resolve-Tool([string]$Name, [string[]]$Candidates) {
+  $cmd = Get-Command $Name -ErrorAction SilentlyContinue
+  if ($cmd) {
+    if ($cmd.Path) { return $cmd.Path }
+    if ($cmd.Source) { return $cmd.Source }
+  }
+  foreach ($candidate in $Candidates) {
+    if (Test-Path $candidate) {
+      return (Resolve-Path $candidate).Path
+    }
+  }
+  return $null
+}
+
+$IverilogExe = Resolve-Tool "iverilog" @(
+  "C:\iverilog\bin\iverilog.exe",
+  "C:\iverilog\bin\iverilog"
+)
+$VvpExe = Resolve-Tool "vvp" @(
+  "C:\iverilog\bin\vvp.exe",
+  "C:\iverilog\bin\vvp"
+)
+
+if (-not $IverilogExe) { throw "iverilog not found in PATH or C:\iverilog\bin" }
+if (-not $VvpExe) { throw "vvp not found in PATH or C:\iverilog\bin" }
+
+Write-Host ("Icarus compiler: " + $IverilogExe)
+Write-Host ("Icarus runtime : " + $VvpExe)
 
 Push-Location $Gen
 try {
@@ -29,10 +55,10 @@ try {
     "h18_r12_microcoded_core.sv",
     "tb_h18_r12_microcoded.sv"
   )
-  & iverilog @iverilogArgs
+  & $IverilogExe @iverilogArgs
   if ($LASTEXITCODE -ne 0) { throw "iverilog compile failed" }
 
-  & vvp ".\h18_r12_sim" "+VECTORS=h18_r12_vectors.txt" | Tee-Object -FilePath "h18_r12_sim.log"
+  & $VvpExe ".\h18_r12_sim" "+VECTORS=h18_r12_vectors.txt" | Tee-Object -FilePath "h18_r12_sim.log"
   if ($LASTEXITCODE -ne 0) { throw "restricted-12 regression failed" }
 
   if (Get-Command yosys -ErrorAction SilentlyContinue) {
