@@ -654,7 +654,7 @@ M_1(W_4)in{9,10,11,12}.
 ]
 
 
-## H18-LAB-03 · restricted-12 target FPGA — RTL VERIFIED / TARGET P&R IN PROGRESS
+## H18-LAB-03 · restricted-12 target FPGA — CYCLONE IV PHYSICAL CLOSED / CYCLONE V CONTROL READY
 
 A target-FPGA successor to H18-11 is now materialized.
 
@@ -695,11 +695,25 @@ with
 The 42-cycle figure is a sequential RTL architecture count, not a physical
 latency measurement and not evidence of 100 MHz timing closure.
 
-Target-FPGA LE/ALM, RAM, DSP, Fmax and routed-delay claims remain open until
-the local Quartus reports are produced.
+Cyclone IV EP4CE22F17C6 physical evidence is now closed for the frozen RTL:
+
+[
+oxed{5227/22320	ext{ LE}=23%}
+]
+
+with 211 registers, no inferred memory, Slow 1200 mV / 85 C
+(F_{max}=41.28) MHz, worst data delay 24.510 ns, and 42 reported logic
+levels. The verified worst transaction remains 42 RTL cycles, so this higher
+single-cycle Fmax does not imply lower end-to-end latency than a one-cycle
+architecture.
+
+The matched Cyclone V 5CEFA7F23C6 project and detailed worst-path scripts are
+present. A one-command wrapper `run_cyclonev_a7_full.ps1` now produces the
+remaining architecture-control dataset. No Cyclone-V LAB-03 physical numbers
+are claimed until that local Quartus run is recorded.
 
 
-## H18-LAB-04 · combinational restricted-12 — IN PROGRESS
+## H18-LAB-04 · combinational restricted-12 — RTL/PHYSICAL EVIDENCE CLOSED ON TESTED TARGETS
 
 This laboratory compiles the exact H18-11 restricted-12 adaptive decision DAG
 into a one-result-cycle registered circuit for direct comparison with
@@ -722,13 +736,48 @@ compositions with maximum composition depth three.  The decision DAG retains
 the exact H18-11 strategy and has maximum query depth five under one persistent
 known-query erasure.
 
-The exhaustive local test target is stronger than the LAB-03 temporal schedule
-set: all 197 pair-orbit states are tested with no erasure and with each of the
-12 query identities persistently unavailable, for 2,561 registered
-transactions.
+The exhaustive local test enumerates all 197 pair-orbit states with no erasure
+and with each of the 12 query identities persistently unavailable, for 2,561
+registered transactions. This is broader identity enumeration than the LAB-03
+five-schedule regression, but it is **not** labelled a stronger fault model:
+LAB-03 uses a temporal erasure schedule while LAB-04 uses a static erased-query
+identity. Their equivalence is a semantic translation claim, not a set-inclusion
+claim about raw test schedules.
 
-Target FPGA benchmark is EP4CE22F17C6 with the same Quartus II 13.1 / 100 MHz
-reference / Slow 1200 mV 85 C methodology as H17-LAB-02 and H18-LAB-03.
+Physical evidence now includes:
 
-No LAB-04 area or timing claim is made until ModelSim and Quartus evidence are
-produced.
+- EP4CE22F17C6: mapped demand 26,332 logic elements against 22,320 available,
+  hence NO FIT; no routed Fmax claim is made on this target;
+- EP4CE115F29C7: routed worst data delay 46.516 ns, 65 logic levels,
+  15.721 ns cell delay and 30.579 ns routing delay; exact area summary remains
+  to be extracted from the existing reports;
+- 5CEFA7F23C6: 10,627 / 56,480 ALMs, 69 registers, 48 / 156 DSP blocks,
+  Slow 1100 mV / 85 C (F_{max}=28.52) MHz, worst data delay 34.827 ns,
+  30 logic levels, 13.556 ns cell delay and 21.270 ns routing delay.
+
+The Cyclone-V result is a platform-level ALM+DSP mapping, not an ALM-only
+comparison.
+
+
+## Publication audit checkpoint · 2026-09-19
+
+The current publication draft must preserve the following claim boundaries.
+
+1. H17-LAB-02 versus H18-LAB-04 is an **E1 common-contract comparison** in the
+   fault-tolerant setting, not a claim that the two RTLs implement one identical
+   bit-level input/output function. The fault-free orbit-identification part is
+   pointwise comparable after the common encoding.
+2. H18-LAB-03 versus H18-LAB-04 is the clean same-mathematics architecture
+   control: temporal reuse versus full spatialization.
+3. A failed fit is a valid capacity observation but carries no routed timing.
+4. A Quartus result is a technology-relative realization witness, not a proof
+   of global minimum circuit complexity.
+5. Cyclone V uses inferred DSP blocks in both H17 and H18. The comparison is
+   therefore platform-level; DSP count must be reported alongside ALM count.
+6. The 2,561 LAB-04 transactions enumerate static erased identities; do not call
+   them a strictly stronger fault test than the LAB-03 temporal schedules.
+7. The near-stable H18/H17 area ratio across currently observed technologies is
+   an empirical regularity only, not an invariant.
+8. The H18-12 "hardware image" framework is currently a definition and research
+   program supported by controlled experiments. No technology-independent
+   theorem of mathematical complexity has yet been proved.
