@@ -546,9 +546,14 @@ Area, latency, memory, and routing are different resources.
 
 Therefore the primary order is Pareto dominance.
 
-For two measured profiles \(p,q\), say \(p\preceq q\) if all declared cost
-coordinates of \(p\) are no worse than those of \(q\), with at least one
-strictly better for strict dominance.
+For two measured profiles \(p,q\), say \(p\preceq q\) only after the
+optimization direction of every coordinate has been declared.  Area, register
+count, memory, DSP count, logic depth, cell/routing delay, cycle count and
+transaction latency are minimized; \(F_{\max}\) is maximized (equivalently one
+may replace it by the minimized coordinate \(1/F_{\max}\)).  Then
+\(p\preceq q\) means that every declared coordinate of \(p\) is no worse than
+the corresponding coordinate of \(q\), with at least one strict improvement
+for strict dominance.
 
 Scalar products such as
 
