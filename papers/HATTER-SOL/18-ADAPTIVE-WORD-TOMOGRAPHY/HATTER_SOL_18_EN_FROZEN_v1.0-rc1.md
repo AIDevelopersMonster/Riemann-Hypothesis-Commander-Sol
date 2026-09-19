@@ -1200,7 +1200,7 @@ The following remain open **without blocking this publication**:
 - a separate final-fit utilization line for the 115K H18 run, if later needed;
   the current \(26{,}460\) value remains a MAP estimate only.
 
-**Release status:** `PUBLICATION_READY_PENDING_RENDER_AUDIT`.
+**Release status:** `PUBLICATION_READY`.
 
 ## References
 
