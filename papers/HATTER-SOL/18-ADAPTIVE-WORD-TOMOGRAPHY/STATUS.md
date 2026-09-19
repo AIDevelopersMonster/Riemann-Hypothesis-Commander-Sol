@@ -399,3 +399,79 @@ not a LUT-area result.
 - generic-synthesize H18 and H17 LAB-03 under the same Yosys methodology;
 - then decide whether adaptive prefix caching is required before FPGA target
   selection.
+
+
+## H18-08 · canonical microcoded dual-RTL controller — IN PROGRESS
+
+The next hardware representation layer is now frozen.
+
+The exact H18-06 decision strategy is unchanged, but H18-08 replaces the
+H18-LAB-01 hardwired controller decode by a canonical microprogram.
+
+Canonical node encoding:
+
+\[
+0\ldots68
+\]
+
+are the 69 pre-erasure query nodes,
+
+\[
+69\ldots307
+\]
+
+are the 239 post-erasure query nodes,
+
+\[
+308+k,\quad 0\le k<114
+\]
+
+directly encodes generating orbit \(k\),
+
+\[
+422=\mathrm{REJECT},
+\qquad
+423=\mathrm{FAULT}.
+\]
+
+Thus only the 308 query nodes need program storage and a 9-bit node ID still
+suffices.
+
+The explicit microprogram representation is frozen as:
+
+- query word IDs: 1,540 bits;
+- six-way class transitions: 16,632 bits;
+- legal pre-erasure transitions: 621 bits;
+- 24 word descriptors: 264 bits;
+
+for a total of
+
+\[
+\boxed{19057\text{ bits}}
+\]
+
+before vendor-specific memory packing.
+
+The datapath also stops multiplying the identity by the first query letter.
+A word of length \(L\) therefore needs \(L-1\) permutation compositions.
+
+For the frozen H18-07 worst five-attempt path, the naive arithmetic upper bound
+becomes
+
+\[
+\boxed{19\to14}
+\]
+
+actual compositions without changing any query decision.
+
+A single deterministic generator now targets both:
+
+- SystemVerilog;
+- VHDL-2008.
+
+The new CI workflow must close H18-08 by proving the same 197-state / five-fault-
+schedule contract in both languages and by passing synthesis smoke for both
+backends.
+
+Until that CI evidence exists, H18-08 remains **IN PROGRESS** and no new area,
+BRAM, Fmax or FPGA-family claim is made.
