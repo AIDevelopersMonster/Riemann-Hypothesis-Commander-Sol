@@ -1,22 +1,40 @@
 #!/usr/bin/env python3
-"""Compare generic Yosys JSON netlists for H17-LAB-03 and H18-LAB-01."""
+"""Compare generic Yosys JSON netlists for H17-LAB-03 and H18-LAB-01.
+
+Counts are hierarchy-expanded: instantiated design modules are recursively
+replaced by their primitive/generic cell contents. This matches the Yosys
+"design hierarchy" total rather than counting only direct cells in the top.
+"""
 
 from __future__ import annotations
 import argparse
 import json
 from collections import Counter
+from functools import lru_cache
 from pathlib import Path
 
 
 def summarize(path: Path, top: str):
     data = json.loads(path.read_text(encoding="utf-8"))
-    mod = data["modules"][top]
-    cells = mod.get("cells", {})
-    types = Counter(cell["type"] for cell in cells.values())
-    total = len(cells)
+    modules = data["modules"]
+
+    @lru_cache(None)
+    def expand(module_name: str):
+        mod = modules[module_name]
+        out = Counter()
+        for cell in mod.get("cells", {}).values():
+            ctype = cell["type"]
+            if ctype in modules:
+                out.update(expand(ctype))
+            else:
+                out[ctype] += 1
+        return out
+
+    types = expand(top)
+    total = sum(types.values())
     seq = sum(
         n for t, n in types.items()
-        if "DFF" in t or "DLATCH" in t or t.startswith("$_SDFF")
+        if "DFF" in t or "DLATCH" in t
     )
     mux = sum(n for t, n in types.items() if "MUX" in t)
     return {
@@ -44,20 +62,21 @@ def main():
         "# H17-LAB-03 vs H18-LAB-01 generic Yosys comparison",
         "",
         "Technology-independent generic synthesis only.",
+        "Counts are hierarchy-expanded generic cells.",
         "No LUT/FF/Fmax/power claim is made.",
         "",
         "| Metric | H17-LAB-03 fixed robust8 | H18-LAB-01 adaptive erasure | Delta |",
         "|---|---:|---:|---:|",
-        f"| total generic cells | {h17['total_cells']} | {h18['total_cells']} | {delta:+d} ({pct:+.2f}%) |",
+        f"| hierarchy-expanded generic cells | {h17['total_cells']} | {h18['total_cells']} | {delta:+d} ({pct:+.2f}%) |",
         f"| sequential generic cells | {h17['sequential_cells']} | {h18['sequential_cells']} | {h18['sequential_cells']-h17['sequential_cells']:+d} |",
         f"| mux-family cells | {h17['mux_cells']} | {h18['mux_cells']} | {h18['mux_cells']-h17['mux_cells']:+d} |",
         "",
-        "## H17 top cell types",
+        "## H17 hierarchy-expanded top cell types",
         "",
     ]
     for t, n in h17["top_cell_types"].items():
         lines.append(f"- {t}: {n}")
-    lines += ["", "## H18 top cell types", ""]
+    lines += ["", "## H18 hierarchy-expanded top cell types", ""]
     for t, n in h18["top_cell_types"].items():
         lines.append(f"- {t}: {n}")
 
