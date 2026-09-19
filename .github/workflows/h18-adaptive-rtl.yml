@@ -1,0 +1,78 @@
+name: HATTER-SOL-18 adaptive RTL
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-18-adaptive-word-tomography
+    paths:
+      - 'papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/**'
+      - '.github/workflows/h18-adaptive-rtl.yml'
+
+jobs:
+  adaptive-rtl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog and Yosys
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys
+
+      - name: Generate H17 closure classifiers
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_closure_classifiers.py \
+            --out-dir ../18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/generated
+
+      - name: Generate H18 exact adaptive strategy and RTL
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
+        run: python3 tools/generate_h18_adaptive_rtl.py --out-dir generated
+
+      - name: Simulate H18 adaptive controller
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
+        run: |
+          iverilog -g2012 -s tb_h18_adaptive_erasure \
+            -o generated/h18_adaptive_sim \
+            generated/psl27_membership_only.sv \
+            generated/psl27_member_class_only.sv \
+            generated/h18_adaptive_erasure_core.sv \
+            generated/tb_h18_adaptive_erasure.sv
+          vvp generated/h18_adaptive_sim | tee h18_adaptive_sim.log
+
+      - name: Generate H17 closure classifiers for LAB-03
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_closure_classifiers.py \
+            --out-dir H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/generated
+          python3 tools/generate_psl27_romfree_repair.py \
+            --out-dir H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/generated
+
+      - name: Generic synthesize H18 adaptive core
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
+        run: |
+          yosys -Q -p 'read_verilog -sv generated/psl27_membership_only.sv generated/psl27_member_class_only.sv generated/h18_adaptive_erasure_core.sv; synth -top h18_adaptive_erasure_core; stat; write_json h18_adaptive.json' | tee h18_adaptive_yosys.log
+
+      - name: Generic synthesize H17 LAB-03 fixed robust8 core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL
+        run: |
+          yosys -Q -p 'read_verilog -sv generated/psl27_membership_only.sv generated/psl27_member_class_only.sv generated/psl27_robust8_repair.sv rtl/h17_lab03_sequential_core.sv; synth -top h17_lab03_sequential_core; stat; write_json h17_lab03.json' | tee h17_lab03_yosys.log
+
+      - name: Compare generic netlists
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL
+        run: |
+          python3 tools/compare_yosys_json.py \
+            --h17 ../../../17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/h17_lab03.json \
+            --h18 h18_adaptive.json \
+            --out H18_VS_H17_GENERIC_SYNTHESIS.md
+
+      - name: Upload simulation and synthesis evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: h18-adaptive-rtl-evidence
+          path: |
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/generated/h18_adaptive_strategy.json
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/generated/H18_ADAPTIVE_STRATEGY_SUMMARY.md
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h18_adaptive_sim.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/h18_adaptive_yosys.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_01_ADAPTIVE_RTL/H18_VS_H17_GENERIC_SYNTHESIS.md
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_03_SEQUENTIAL_RTL/h17_lab03_yosys.log
