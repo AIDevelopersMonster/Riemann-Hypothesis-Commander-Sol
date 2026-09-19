@@ -1,0 +1,104 @@
+name: HATTER-SOL-18 microcoded dual RTL
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-18-adaptive-word-tomography
+    paths:
+      - 'papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/**'
+      - 'papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_08_MICROCODED_DUAL_RTL.md'
+      - '.github/workflows/h18-microcoded-dual-rtl.yml'
+
+jobs:
+  microcoded-dual-rtl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install RTL tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog yosys ghdl
+
+      - name: Generate H17 closure-aware SystemVerilog support
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_closure_classifiers.py \
+            --out-dir ../18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/generated_microcode
+
+      - name: Generate H18-08 microcode and dual RTL
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL
+        run: |
+          python3 tools/generate_h18_microcoded_dual_rtl.py \
+            --out-dir generated_microcode
+          cat generated_microcode/H18_MICROCODE_SUMMARY.md
+
+      - name: SystemVerilog full regression
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL
+        run: |
+          iverilog -g2012 -s tb_h18_microcoded_erasure \
+            -o generated_microcode/h18_microcoded_sv_sim \
+            generated_microcode/psl27_membership_only.sv \
+            generated_microcode/psl27_member_class_only.sv \
+            generated_microcode/h18_microcoded_erasure_core.sv \
+            generated_microcode/tb_h18_microcoded_erasure.sv
+          vvp generated_microcode/h18_microcoded_sv_sim \
+            +VECTORS=generated_microcode/h18_adaptive_vectors.txt \
+            | tee h18_microcoded_sv_sim.log
+
+      - name: VHDL-2008 full regression
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL
+        run: |
+          ghdl -a --std=08 generated_microcode/psl27_membership_only.vhd
+          ghdl -a --std=08 generated_microcode/psl27_member_class_only.vhd
+          ghdl -a --std=08 generated_microcode/h18_microcode_pkg.vhd
+          ghdl -a --std=08 generated_microcode/h18_microcoded_erasure_core.vhd
+          ghdl -a --std=08 generated_microcode/tb_h18_microcoded_erasure.vhd
+          ghdl -e --std=08 tb_h18_microcoded_erasure
+          ghdl -r --std=08 tb_h18_microcoded_erasure \
+            --assert-level=error \
+            | tee h18_microcoded_vhdl_sim.log
+
+      - name: Generic synthesize SystemVerilog core
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL
+        run: |
+          yosys -Q -p '
+            read_verilog -sv generated_microcode/psl27_membership_only.sv generated_microcode/psl27_member_class_only.sv generated_microcode/h18_microcoded_erasure_core.sv;
+            hierarchy -top h18_microcoded_erasure_core;
+            proc; opt; memory_dff; memory_collect; opt;
+            stat;
+            write_json h18_microcoded_memory_preserved.json
+          ' | tee h18_microcoded_memory_preserved_yosys.log
+          yosys -Q -p '
+            read_verilog -sv generated_microcode/psl27_membership_only.sv generated_microcode/psl27_member_class_only.sv generated_microcode/h18_microcoded_erasure_core.sv;
+            synth -top h18_microcoded_erasure_core;
+            stat;
+            write_json h18_microcoded_generic.json
+          ' | tee h18_microcoded_generic_yosys.log
+
+      - name: VHDL synthesis smoke
+        working-directory: papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL
+        run: |
+          ghdl --synth --std=08 \
+            generated_microcode/psl27_membership_only.vhd \
+            generated_microcode/psl27_member_class_only.vhd \
+            generated_microcode/h18_microcode_pkg.vhd \
+            generated_microcode/h18_microcoded_erasure_core.vhd \
+            -e h18_microcoded_erasure_core \
+            > h18_microcoded_vhdl_synth.vhd
+          test -s h18_microcoded_vhdl_synth.vhd
+
+      - name: Upload H18-08 evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: h18-microcoded-dual-rtl-evidence
+          path: |
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/generated_microcode/**
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_sv_sim.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_vhdl_sim.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_memory_preserved_yosys.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_generic_yosys.log
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_memory_preserved.json
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_generic.json
+            papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/H18_LAB_02_MICROCODED_DUAL_RTL/h18_microcoded_vhdl_synth.vhd
