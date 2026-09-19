@@ -773,6 +773,60 @@ FPGA target.  They do not yet establish technology-independent ordering or
 circuit lower bounds.
 
 
+
+### Same-mathematics Cyclone V architecture control — CLOSED
+
+The H18-LAB-03 temporal and H18-LAB-04 spatial realizations have now both
+been fitted and timed on the same 5CEFA7F23C6 target.  They are generated from
+the same restricted-12 H18-11 mathematical certificate and differ principally
+in execution discipline.
+
+| quantity | LAB-03 temporal | LAB-04 spatial | spatial/temporal |
+| --- | ---: | ---: | ---: |
+| ALMs | 1,455 | 10,627 | 7.304 |
+| DSP blocks | 26 | 48 | 1.846 |
+| registers | 211 | 69 | 0.327 |
+| Fmax | 47.02 MHz | 28.52 MHz | 0.607 |
+| worst data delay | 21.075 ns | 34.827 ns | 1.653 |
+| logic levels | 18 | 30 | 1.667 |
+| cell delay | 10.227 ns | 13.556 ns | 1.326 |
+| routing delay | 10.850 ns | 21.270 ns | 1.960 |
+| worst transaction cycles | 42 | 1 | 0.0238 |
+
+At each implementation's measured Fmax,
+
+\[
+T_{\rm temporal}\approx
+\frac{42}{47.02\ {\rm MHz}}
+=
+0.893\,\mu{\rm s},
+\]
+
+whereas
+
+\[
+T_{\rm spatial}\approx
+\frac{1}{28.52\ {\rm MHz}}
+=
+0.0351\,\mu{\rm s}.
+\]
+
+Thus full spatialization multiplies ALM usage by about 7.30 and DSP usage by
+about 1.85, while reducing worst transaction latency by about 25.5 times.
+
+This is the cleanest present experimental isolation of the architecture effect
+
+\[
+\Pi_{\rm seq}\leftrightarrow\Pi_{\rm spat}
+\]
+
+for one fixed mathematical presentation.
+
+The result also shows why \(F_{\max}\) alone is not a transaction-speed
+metric: the temporal design has the higher Fmax and the shorter one-cycle
+critical path, yet its 42-cycle protocol has far larger end-to-end latency.
+
+
 ---
 
 ## 18. Preliminary hypotheses
@@ -846,11 +900,13 @@ These are future theorem targets.
 
 The next steps are:
 
-1. complete the missing 115K H18 area coordinate from the fit summary;
-2. retain the two matched H17/H18 technology points as the first
+1. retain the two matched H17/H18 technology points as the first
    presentation-effect dataset;
-3. retain H18-LAB-03/LAB-04 as the architecture-effect control;
-4. formalize a common H17/H18 abstract fault relation;
+2. retain the now-closed Cyclone-V H18-LAB-03/LAB-04 pair as the
+   same-mathematics architecture-effect control;
+3. treat the EP4CE115F29C7 H18 value 26,460 as a MAP estimate only until a
+   separately archived final fitter utilization line is available;
+4. use H18-13 as the common H17/H18 abstract fault contract;
 5. define a small family of alternative mathematically equivalent
    factorizations and test whether the area/depth ordering is stable;
 6. search for the first provable lower bound connecting decision/query
