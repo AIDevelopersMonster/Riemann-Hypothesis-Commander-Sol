@@ -24,7 +24,7 @@ Total wrapper-measured compile time:
 ]
 
 This establishes that the complete H17-LAB-02 combinational mathematical core,
-wrapped by input/output registers, can pass a real vendor synthesis, fitting,
+wrapped by input/output registers, passes a real vendor synthesis, fitting,
 assembler and STA flow.
 
 ## Fitter utilization
@@ -46,31 +46,98 @@ with
 This confirms the expected architecture character: the cost is overwhelmingly
 combinational logic, not state or RAM.
 
-The 134 unconstrained top-level pins consume 87% of the selected package pins.
-Quartus emits Critical Warning 169085 because no physical pin locations are
-assigned. This is expected for the board-free benchmark and is not evidence of
-a logic or timing failure.
+The 134 top-level pins consume 87% of the selected package pins. Quartus emits
+Critical Warning 169085 because no physical pin locations are assigned. This is
+expected for the board-free benchmark and is not evidence of a logic failure.
+
+## TimeQuest result
+
+The reference SDC asks for a 10 ns / 100 MHz clock. H17-LAB-02 does not meet
+that one-cycle target.
+
+At the sign-off-relevant slow 1200 mV, 85 C corner:
+
+[
+oxed{F_{max}=24.52 mathrm{MHz}}
+]
+
+with
+
+[
+oxed{	ext{setup slack}=-30.782 mathrm{ns}}
+]
+
+and positive hold slack
+
+[
+oxed{	ext{hold slack}=+0.343 mathrm{ns}}.
+]
+
+The worst reported setup path is
+
+[
+b_q[14]ightarrow repaired_signature[11]
+]
+
+with reported data delay
+
+[
+oxed{41.082 mathrm{ns}}.
+]
+
+Thus the natural one-cycle period of the fully combinational H17-LAB-02 core on
+this Cyclone IV E target is about
+
+[
+1/24.52 mathrm{MHz}approx 40.8 mathrm{ns}.
+]
+
+Other reported corners are consistent with the same interpretation:
+
+- slow 1200 mV, 0 C: Fmax 27.24 MHz, setup slack -26.712 ns, hold +0.299 ns;
+- fast 1200 mV, 0 C: setup slack -13.435 ns, hold +0.178 ns.
+
+The critical paths terminate in `repaired_signature`, so the dominant path is
+the intended mathematical chain from registered raw input through word
+construction, conjugacy-class logic and ROM-free repair to the registered
+fingerprint result.
+
+## Constraint caveat
+
+TimeQuest warns that no clock uncertainty assignment is present and that the
+design is not fully constrained for external setup/hold requirements.
+
+That warning matters for absolute sign-off precision, but it does not invalidate
+the internal same-clock register-to-register Fmax comparison used here. A later
+physical-target run should add derived clock uncertainty and real I/O timing.
 
 ## Interpretation
 
-The result materially changes the interpretation of the earlier Windows/Icarus
-smoke behavior.
+The experiment separates two different questions that were previously being
+conflated.
 
-A one-vector event-driven RTL simulation could take impractically long, while
-Quartus successfully reduced, mapped, placed and routed the same architecture
-in finite host time.
+### RTL simulation
 
-Therefore the simulation pathology must not be used as evidence that the
-combinational architecture is unsynthesizable.
+The modular LAB-02 event-driven Icarus simulation can be impractically slow,
+even on a single vector.
 
-The remaining decisive measurement is the TimeQuest register-to-register setup
-result for the 10 ns reference clock.
+### Hardware synthesis
 
-## Pending
+Quartus successfully synthesized, fitted, assembled and timing-analyzed the same
+architecture in about 9.8 minutes.
 
-Record from `h17_lab02_q13.sta.rpt`:
+Therefore
 
-- setup slack;
-- Fmax / Restricted Fmax if reported;
-- worst register-to-register path endpoints;
-- path delay / logic depth if available.
+[
+oxed{	ext{slow event-driven RTL simulation}
+eq	ext{unsynthesizable hardware}}
+]
+
+for H17-LAB-02.
+
+The fully combinational architecture is valid, but on this target it occupies
+88% of the device and its unpipelined one-cycle Fmax is about 24.5 MHz.
+
+This makes H17-LAB-02 a useful high-parallelism endpoint rather than a universal
+implementation optimum. Pipeline cuts or a hybrid sequential/combinational
+architecture are the natural next hardware comparisons.
