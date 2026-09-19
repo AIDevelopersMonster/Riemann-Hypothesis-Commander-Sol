@@ -793,3 +793,36 @@ The current publication draft must preserve the following claim boundaries.
 8. The H18-12 "hardware image" framework is currently a definition and research
    program supported by controlled experiments. No technology-independent
    theorem of mathematical complexity has yet been proved.
+
+
+## PUBLICATION FREEZE · 2026-09-19
+
+The HATTER-SOL-18 manuscript content is frozen after final theorem/claim,
+bibliography, reproducibility, and metadata audit.
+
+Canonical manuscripts:
+
+- `HATTER_SOL_18_RU_FROZEN_v1.0-rc1.md`;
+- `HATTER_SOL_18_EN_FROZEN_v1.0-rc1.md`.
+
+Canonical audit/freeze records:
+
+- `FINAL_PUBLICATION_AUDIT_2026-09-19.md`;
+- `PUBLICATION_FREEZE_2026-09-19.md`.
+
+Current release status:
+
+[
+oxed{	exttt{PUBLICATION_READY_PENDING_RENDER_AUDIT}}
+]
+
+No unresolved mathematical, claim-discipline, source-support, or bibliography
+blocker remains in the frozen Markdown.  The remaining publication gate is
+final RU/EN PDF assembly and visual/render audit.
+
+The exact value
+[
+M_1(W_4)in{9,10,11,12}
+]
+remains an explicit post-freeze open problem and is not a blocker for this
+release.
