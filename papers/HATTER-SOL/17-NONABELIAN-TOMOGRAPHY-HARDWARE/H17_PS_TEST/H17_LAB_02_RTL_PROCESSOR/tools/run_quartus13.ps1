@@ -56,9 +56,10 @@ try {
 
   Write-Host ("QUARTUS COMPILE ELAPSED: {0:N3} seconds" -f $sw.Elapsed.TotalSeconds)
 
-  $Fit = Join-Path $QuartusDir ($Project + ".fit.rpt")
-  $Sta = Join-Path $QuartusDir ($Project + ".sta.rpt")
-  $Map = Join-Path $QuartusDir ($Project + ".map.rpt")
+  $ReportDir = Join-Path $QuartusDir "output_files"
+  $Fit = Join-Path $ReportDir ($Project + ".fit.rpt")
+  $Sta = Join-Path $ReportDir ($Project + ".sta.rpt")
+  $Map = Join-Path $ReportDir ($Project + ".map.rpt")
 
   Write-Host "== Utilization lines =="
   if (Test-Path $Fit) {
