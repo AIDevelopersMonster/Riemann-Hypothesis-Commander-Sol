@@ -109,6 +109,11 @@ claim set for:
 - claim set changed: **yes — narrowed/clarified only; no expansion**
 - bibliography verified: **yes**
 - metadata verified: **yes, against repository CITATION.cff / HATTER-SOL metadata**
-- source compiled: **not supplied / Markdown freeze**
-- PDF visually inspected: **no — PDF not yet assembled**
-- release status: **PUBLICATION_READY_PENDING_RENDER_AUDIT**
+- source compiled: **yes — final RU/EN PDFs built from frozen Markdown**
+- PDF visually inspected: **yes — see `PDF_RENDER_AUDIT_2026-09-20.md`**
+- release status: **PUBLICATION_READY**
+
+
+## Render closure · 2026-09-20
+
+Final RU/EN PDFs were rebuilt after status promotion and passed the page-by-page render audit recorded in `PDF_RENDER_AUDIT_2026-09-20.md`. No additional mathematical or bibliographic change was introduced at render closure.
