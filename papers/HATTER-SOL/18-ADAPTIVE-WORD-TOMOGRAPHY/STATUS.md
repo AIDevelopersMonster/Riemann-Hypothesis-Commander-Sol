@@ -697,3 +697,38 @@ latency measurement and not evidence of 100 MHz timing closure.
 
 Target-FPGA LE/ALM, RAM, DSP, Fmax and routed-delay claims remain open until
 the local Quartus reports are produced.
+
+
+## H18-LAB-04 · combinational restricted-12 — IN PROGRESS
+
+This laboratory compiles the exact H18-11 restricted-12 adaptive decision DAG
+into a one-result-cycle registered circuit for direct comparison with
+H17-LAB-02.
+
+Architecture:
+
+\[
+\text{registered inputs}
+\rightarrow
+\text{parallel 12-query shared word-DAG}
+\rightarrow
+\text{compiled 305-node adaptive decision DAG}
+\rightarrow
+\text{registered result}.
+\]
+
+The generated query datapath has 19 shared prefix-DAG permutation
+compositions with maximum composition depth three.  The decision DAG retains
+the exact H18-11 strategy and has maximum query depth five under one persistent
+known-query erasure.
+
+The exhaustive local test target is stronger than the LAB-03 temporal schedule
+set: all 197 pair-orbit states are tested with no erasure and with each of the
+12 query identities persistently unavailable, for 2,561 registered
+transactions.
+
+Target FPGA benchmark is EP4CE22F17C6 with the same Quartus II 13.1 / 100 MHz
+reference / Slow 1200 mV 85 C methodology as H17-LAB-02 and H18-LAB-03.
+
+No LAB-04 area or timing claim is made until ModelSim and Quartus evidence are
+produced.
