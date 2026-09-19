@@ -595,3 +595,60 @@ New exact theorem target:
 
 In parallel, hardware should now target the 12-query witness rather than the
 older 24-word selected strategy.
+
+
+## H18-11 · restricted 12-query controller — CLOSED
+
+The H18-10 12-query alphabet has now been materialized as a complete exact
+one-erasure decision program.
+
+The same exact information bounds hold:
+
+[
+oxed{D_0=4,qquad S_1=4,qquad A_1=5}.
+]
+
+The selected deterministic strategy has
+
+[
+oxed{305=67+238}
+]
+
+nonterminal query nodes, versus (308=69+239) in H18-07/H18-08.
+
+All 12 query labels are used.
+
+With 9-bit node addresses and a 4-bit 12-way query selector, the explicit
+program payload is
+
+[
+oxed{18425	ext{ bits}},
+]
+
+down from H18-08's (19057) bits:
+
+[
+oxed{-632	ext{ bits}=-3.32%}.
+]
+
+The dominant cost remains the six-way class-transition table, so query-label
+compression alone cannot deliver a large memory reduction.
+
+Shortest elementary Nielsen programs were also computed for the ten primitive
+labels in the 12-query witness. Six tie direct word execution and four require
+one additional move. Therefore Nielsen structure is a semantic/control
+compression tool here, not an automatic permutation-arithmetic speedup.
+
+Next engineering target:
+
+[
+oxed{
+	ext{factor the transition program under Nielsen/Higman symmetry}
+}
+]
+
+while the parallel theorem target remains exact determination of
+
+[
+M_1(W_4)in{9,10,11,12}.
+]
