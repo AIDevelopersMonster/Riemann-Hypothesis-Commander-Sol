@@ -77,6 +77,31 @@ A fifth attempted query can occur only after the unique erasure has already
 been consumed, so a second erasure on attempt 5 is outside the frozen fault
 model.
 
+## 1A. Verified local result
+
+Altera ModelSim 10.1d has now completed the full regression:
+
+\[
+\boxed{197\times5=985/985\ \mathrm{PASS}}
+\]
+
+with observed maxima
+
+\[
+\boxed{\max\ attempts=5,\qquad \max\ RTL\ wait=42\ cycles}.
+\]
+
+This closes the SystemVerilog behavioral gate for H18-LAB-03.
+
+The 42-cycle value is an RTL cycle count only. It is not a physical latency
+claim until routed target \(F_{\max}\) is known.
+
+Evidence:
+
+\`\`\`text
+evidence/MODELSIM_R12_2026-09-19.md
+\`\`\`
+
 ## 2. Cyclone IV E C6 target
 
 Target:
