@@ -5,7 +5,7 @@
 **Author:** Alex Malachevsky  
 **ORCID:** 0009-0008-6009-3196  
 **AI research collaborator:** Commander Sol · Hatter Sol  
-**Branch:** \`research/hatter-sol-18-adaptive-word-tomography\`  
+**Branch:** `research/hatter-sol-18-adaptive-word-tomography`  
 **Parent:** HATTER-SOL-17  
 **State date:** 19 September 2026
 
@@ -281,7 +281,7 @@ Each fiber is exactly one Nielsen connected component. In particular,
 
 H18 does not claim discovery of the Higman invariant.  Classically, the
 Higman invariant is formulated through the conjugacy classes of the commutator
-and its inverse; the quantity (	au) used here is the canonical
+and its inverse; the quantity \(\tau\) used here is the canonical
 determinant-one commutator-lift trace.  The H18 result is the exact finite
 identification of its trace fibers with the Nielsen components in the H17/H18
 state model, together with the connection of this trace invariant to the
@@ -1126,15 +1126,15 @@ Not claimed:
 
 Principal certificates:
 
-- \`h18_adaptive_depth4_certificate.py\`;
-- \`h18_nielsen_dynamics_certificate.py\`;
-- \`h18_higman_trace_lift_certificate.py\`;
-- \`h18_adaptive_with_tau_certificate.py\`;
-- \`h18_three_shadow_higman_decoder.py\`;
-- \`h18_adaptive_one_erasure_certificate.py\`;
-- \`h18_nielsen_query_compression_certificate.py\`;
-- \`h18_query_alphabet_compression_certificate.py\`;
-- \`h18_restricted12_controller_certificate.py\`.
+- `h18_adaptive_depth4_certificate.py`;
+- `h18_nielsen_dynamics_certificate.py`;
+- `h18_higman_trace_lift_certificate.py`;
+- `h18_adaptive_with_tau_certificate.py`;
+- `h18_three_shadow_higman_decoder.py`;
+- `h18_adaptive_one_erasure_certificate.py`;
+- `h18_nielsen_query_compression_certificate.py`;
+- `h18_query_alphabet_compression_certificate.py`;
+- `h18_restricted12_controller_certificate.py`.
 
 Hardware layers:
 
@@ -1145,10 +1145,10 @@ Hardware layers:
 
 Comparison framework:
 
-- \`H18_12_ALGEBRA_TO_PHYSICAL_COMPLEXITY.md\`;
-- \`H18_12_MATHEMATICS_COMPARISON_PROTOCOL.md\`;
-- \`H18_13_H17_H18_COMMON_CONTRACT.md\`;
-- \`PUBLICATION_AUDIT_2026-09-19.md\`.
+- `H18_12_ALGEBRA_TO_PHYSICAL_COMPLEXITY.md`;
+- `H18_12_MATHEMATICS_COMPARISON_PROTOCOL.md`;
+- `H18_13_H17_H18_COMMON_CONTRACT.md`;
+- `PUBLICATION_AUDIT_2026-09-19.md`.
 
 ## 21. Literature boundary
 
@@ -1194,11 +1194,11 @@ The freeze includes:
 
 The following remain open **without blocking this publication**:
 
-- the exact value (M_1(W_4)in{9,10,11,12});
+- the exact value \(M_1(W_4)\in\{9,10,11,12\}\);
 - further technology points and DSP-disabled controls;
 - provable Boolean/circuit lower bounds;
 - a separate final-fit utilization line for the 115K H18 run, if later needed;
-  the current (26{,}460) value remains a MAP estimate only.
+  the current \(26{,}460\) value remains a MAP estimate only.
 
 **Release status:** `PUBLICATION_READY_PENDING_RENDER_AUDIT`.
 
