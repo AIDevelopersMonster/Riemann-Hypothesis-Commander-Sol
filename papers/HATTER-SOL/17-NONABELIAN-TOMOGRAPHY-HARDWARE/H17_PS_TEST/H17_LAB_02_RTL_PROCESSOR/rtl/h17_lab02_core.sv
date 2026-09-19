@@ -73,26 +73,36 @@ always_comb begin
     observed_signature = raw_signature;
     erased_idx = 3'd0;
 
-    case (mode)
-      4'd0: begin
-        // No visible erasure. The e=0 tree ignores coordinate 0, validates the
-        // generating domain from the other seven coordinates, and reconstructs
-        // coordinate 0. For a valid generating state the result must equal raw.
-        erased_idx = 3'd0;
-      end
-      4'd1: begin erased_idx=3'd0; observed_signature[23:21]=3'b111; end
-      4'd2: begin erased_idx=3'd1; observed_signature[20:18]=3'b111; end
-      4'd3: begin erased_idx=3'd2; observed_signature[17:15]=3'b111; end
-      4'd4: begin erased_idx=3'd3; observed_signature[14:12]=3'b111; end
-      4'd5: begin erased_idx=3'd4; observed_signature[11: 9]=3'b111; end
-      4'd6: begin erased_idx=3'd5; observed_signature[ 8: 6]=3'b111; end
-      4'd7: begin erased_idx=3'd6; observed_signature[ 5: 3]=3'b111; end
-      4'd8: begin erased_idx=3'd7; observed_signature[ 2: 0]=3'b111; end
-      default: begin
-        erased_idx = 3'd0;
+    // Preserve the LAB-01 public-output contract: invalid raw membership
+    // produces all-zero public signatures regardless of a syntactically valid
+    // erasure mode.  The erasure marker is meaningful only after A/B have
+    // passed PSL(2,7) membership.
+    if (!mode_valid || !raw_membership_valid) begin
         observed_signature = 24'h000000;
-      end
-    endcase
+        erased_idx = 3'd0;
+    end else begin
+        case (mode)
+          4'd0: begin
+            // No visible erasure. The e=0 tree ignores coordinate 0, validates
+            // the generating domain from the other seven coordinates, and
+            // reconstructs coordinate 0. For a valid generating state the
+            // result must equal raw.
+            erased_idx = 3'd0;
+          end
+          4'd1: begin erased_idx=3'd0; observed_signature[23:21]=3'b111; end
+          4'd2: begin erased_idx=3'd1; observed_signature[20:18]=3'b111; end
+          4'd3: begin erased_idx=3'd2; observed_signature[17:15]=3'b111; end
+          4'd4: begin erased_idx=3'd3; observed_signature[14:12]=3'b111; end
+          4'd5: begin erased_idx=3'd4; observed_signature[11: 9]=3'b111; end
+          4'd6: begin erased_idx=3'd5; observed_signature[ 8: 6]=3'b111; end
+          4'd7: begin erased_idx=3'd6; observed_signature[ 5: 3]=3'b111; end
+          4'd8: begin erased_idx=3'd7; observed_signature[ 2: 0]=3'b111; end
+          default: begin
+            erased_idx = 3'd0;
+            observed_signature = 24'h000000;
+          end
+        endcase
+    end
 
     fingerprint_valid = mode_valid && raw_membership_valid && repair_valid;
     repaired_signature = fingerprint_valid
