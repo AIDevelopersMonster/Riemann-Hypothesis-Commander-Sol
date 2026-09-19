@@ -58,7 +58,7 @@ jobs:
           \widowpenalty=10000
           \clubpenalty=10000
           \displaywidowpenalty=10000
-          \hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black,pdfborder={0 0 0}}
+          
           """
           (out / "header.tex").write_text(header, encoding="utf-8")
 
