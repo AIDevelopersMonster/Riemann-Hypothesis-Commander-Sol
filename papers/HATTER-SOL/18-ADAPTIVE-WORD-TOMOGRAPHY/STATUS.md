@@ -137,3 +137,60 @@ rooted at \(AAB\).
 
 So \(\tau\) is decisive for explaining Nielsen components but redundant for
 the already rich short-word class-query pool.
+
+
+## H18-05 · three-shadow Higman decoder — CLOSED structural theorem
+
+Define the three length-four shadow words
+
+\[
+R_z=A^2B^2,\qquad
+R_x=ABAB^{-1},\qquad
+R_y=ABA^{-1}B.
+\]
+
+For lifts with Fricke coordinates \(x,y,z\) and commutator trace \(\tau\),
+
+\[
+\operatorname{tr}(R_z)=z^2-\tau,\qquad
+\operatorname{tr}(R_x)=x^2-\tau,\qquad
+\operatorname{tr}(R_y)=y^2-\tau.
+\]
+
+Because projective conjugacy class determines the trace-square
+\(\sigma(g)=\operatorname{tr}(\widetilde g)^2\), the three projective word
+classes reconstruct \(\tau\) on the generating \(PSL(2,7)\) locus.
+
+Exact decoder for \(S=(s_1,s_2,s_3)\):
+
+- any \(s_i=0\) -> \(\tau=4\);
+- \(S=(2,2,2)\) -> \(\tau=5\);
+- at least two \(s_i=4\) -> \(\tau=6\);
+- otherwise -> \(\tau=3\).
+
+The full \(\mathbb F_7^3\) Fricke sweep has exactly seven exceptions, all with
+at least two of \(x,y,z\) equal to zero.  Such a point cannot represent a
+generating pair: trace zero gives a projective involution, and two zero Fricke
+coordinates yield a Nielsen-equivalent pair of two involutions, hence a
+dihedral subgroup.
+
+Within the 50-query \(W_4\) pool:
+
+\[
+\boxed{m_\tau(W_4)=3}.
+\]
+
+No one or two class queries determine \(\tau\); exactly 16 query triples do.
+
+### Publication threshold update
+
+The structural threshold in RESEARCH_TZ §9 is now crossed in substance:
+
+- exact adaptive optimum: closed;
+- strict fixed/adaptive comparison: closed;
+- exact Nielsen graph: closed;
+- structural bridge between word observations and Nielsen/Higman dynamics:
+  closed by H18-05.
+
+A publication assembly can now begin while the one-query-erasure problem
+continues as a next theorem layer.
