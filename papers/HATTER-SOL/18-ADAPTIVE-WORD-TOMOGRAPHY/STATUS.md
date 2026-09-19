@@ -813,12 +813,10 @@ Canonical audit/freeze records:
 Current release status:
 
 [
-oxed{	exttt{PUBLICATION_READY_PENDING_RENDER_AUDIT}}
+oxed{	exttt{PUBLICATION_READY}}
 ]
 
-No unresolved mathematical, claim-discipline, source-support, or bibliography
-blocker remains in the frozen Markdown.  The remaining publication gate is
-final RU/EN PDF assembly and visual/render audit.
+No unresolved mathematical, claim-discipline, source-support, bibliography, or render blocker remains. Final RU/EN PDFs have been assembled and visually audited; see `PDF_RENDER_AUDIT_2026-09-20.md`.
 
 The exact value
 [
