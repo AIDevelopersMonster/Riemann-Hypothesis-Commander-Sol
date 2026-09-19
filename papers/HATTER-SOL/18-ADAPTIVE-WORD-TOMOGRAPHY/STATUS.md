@@ -654,7 +654,7 @@ M_1(W_4)in{9,10,11,12}.
 ]
 
 
-## H18-LAB-03 · restricted-12 target FPGA — CYCLONE IV PHYSICAL CLOSED / CYCLONE V CONTROL READY
+## H18-LAB-03 · restricted-12 target FPGA — CYCLONE IV + CYCLONE V PHYSICAL CLOSED
 
 A target-FPGA successor to H18-11 is now materialized.
 
@@ -707,10 +707,21 @@ levels. The verified worst transaction remains 42 RTL cycles, so this higher
 single-cycle Fmax does not imply lower end-to-end latency than a one-cycle
 architecture.
 
-The matched Cyclone V 5CEFA7F23C6 project and detailed worst-path scripts are
-present. A one-command wrapper `run_cyclonev_a7_full.ps1` now produces the
-remaining architecture-control dataset. No Cyclone-V LAB-03 physical numbers
-are claimed until that local Quartus run is recorded.
+The matched Cyclone V 5CEFA7F23C6 control is now closed:
+
+[
+oxed{1455/56480	ext{ ALM}=3%}
+]
+
+with 211 registers, 26 / 156 DSP blocks, Slow 1100 mV / 85 C
+(F_{max}=47.02) MHz, worst data delay 21.075 ns and 18 reported logic
+levels. The selected path is `class_perm[23] -> next_node_q[4]`, with
+10.227 ns cell delay and 10.850 ns routing delay.
+
+Against H18-LAB-04 on the same Cyclone V, full spatialization costs about
+7.30x ALMs and 1.85x DSP blocks, but reduces worst transaction latency from
+approximately 0.893 us (42 cycles at 47.02 MHz) to 0.0351 us (one cycle at
+28.52 MHz), a factor of about 25.5.
 
 
 ## H18-LAB-04 · combinational restricted-12 — RTL/PHYSICAL EVIDENCE CLOSED ON TESTED TARGETS
@@ -749,8 +760,9 @@ Physical evidence now includes:
 - EP4CE22F17C6: mapped demand 26,332 logic elements against 22,320 available,
   hence NO FIT; no routed Fmax claim is made on this target;
 - EP4CE115F29C7: routed worst data delay 46.516 ns, 65 logic levels,
-  15.721 ns cell delay and 30.579 ns routing delay; exact area summary remains
-  to be extracted from the existing reports;
+  15.721 ns cell delay and 30.579 ns routing delay; the extracted MAP report
+  gives 26,460 logic elements and 69 registers. This 26,460 value is labelled
+  MAP estimate, not final fitter utilization;
 - 5CEFA7F23C6: 10,627 / 56,480 ALMs, 69 registers, 48 / 156 DSP blocks,
   Slow 1100 mV / 85 C (F_{max}=28.52) MHz, worst data delay 34.827 ns,
   30 logic levels, 13.556 ns cell delay and 21.270 ns routing delay.
