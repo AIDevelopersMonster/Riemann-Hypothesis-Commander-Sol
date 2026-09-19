@@ -779,6 +779,75 @@ LAB-03 занимает 5,227 LE.
 }
 \]
 
+
+### 15.4 Cyclone V: чистый same-mathematics architecture control
+
+На 5CEFA7F23C6 обе H18-реализации теперь измерены на одном device/tool/corner.
+
+| quantity | LAB-03 temporal | LAB-04 spatial | spatial/temporal |
+| --- | ---: | ---: | ---: |
+| ALM | 1,455 | 10,627 | 7.304 |
+| DSP blocks | 26 | 48 | 1.846 |
+| registers | 211 | 69 | 0.327 |
+| \(F_{\max}\) | 47.02 MHz | 28.52 MHz | 0.607 |
+| worst data delay | 21.075 ns | 34.827 ns | 1.653 |
+| logic levels | 18 | 30 | 1.667 |
+| cell delay | 10.227 ns | 13.556 ns | 1.326 |
+| routing delay | 10.850 ns | 21.270 ns | 1.960 |
+| worst transaction cycles | 42 | 1 | 0.0238 |
+
+LAB-03 critical path:
+
+\[
+\texttt{class\_perm[23]}
+\to
+\texttt{next\_node\_q[4]},
+\]
+
+с 10.227 ns cell delay и 10.850 ns routing delay.
+
+При работе каждой architecture на её measured \(F_{\max}\):
+
+\[
+T_{\rm temporal}
+=
+\frac{42}{47.02\text{ MHz}}
+\approx0.893\,\mu s,
+\]
+
+\[
+T_{\rm spatial}
+=
+\frac{1}{28.52\text{ MHz}}
+\approx0.0351\,\mu s.
+\]
+
+Следовательно, full spatialization одной и той же H18 mathematics:
+
+\[
+\boxed{
+A_{\rm spatial}/A_{\rm temporal}\approx7.30
+}
+\]
+
+по ALM и
+
+\[
+\boxed{
+T_{\rm temporal}/T_{\rm spatial}\approx25.5.
+}
+\]
+
+Это особенно важный контроль: здесь математическое представление фиксировано,
+а меняется только execution discipline. Поэтому разница не может быть
+приписана H17/H18 mathematical-presentation effect.
+
+Одновременно результат показывает, почему \(F_{\max}\) нельзя использовать как
+синоним transaction speed. Temporal LAB-03 имеет более высокий \(F_{\max}\)
+и более короткий single-cycle path, но проигрывает end-to-end latency из-за
+42-cycle schedule.
+
+
 ## 16. H17 против H18: сравнение двух математических представлений
 
 ### 16.1 Граница эквивалентности
@@ -875,8 +944,16 @@ delay и примерно на 2.1% больший routing delay.
 }
 \]
 
-Exact H18 area coordinate для этого 115K run в текущем article freeze не
-заявляется, пока отдельный fit-summary evidence не включён в dataset.
+Для этого 115K run отдельный extractor дал MAP estimate
+
+[
+oxed{26460	ext{ logic elements}}
+]
+
+и 69 registers. Это число в статье используется именно как **MAP estimate**,
+а не как final fitter utilization: текущий сохранённый вывод не содержит
+отдельной final-fit строки, которую можно было бы безопасно отождествить с этим
+значением.
 
 ### 16.4 Cyclone V 5CEFA7F23C6: второй matched technology point
 
@@ -1279,16 +1356,17 @@ discipline как воспроизводимое отображение для �
    \[
    M_1(W_4)\in\{9,10,11,12\}.
    \]
-2. Достать и архивировать exact H18-LAB-04 EP4CE115F29C7 fit-area summary.
-3. Выполнить H18-LAB-03 на том же Cyclone V, чтобы получить чистый
-   same-mathematics architecture control на второй технологии.
-4. Формализовать общий H17/H18 abstract erasure contract и явно отделить E0
-   fault-free identity от E1 fault-tolerant comparison.
+2. Архивировать 115K H18 MAP estimate 26,460 отдельно от final-fit claims;
+   при необходимости позже извлечь отдельную fitter utilization line.
+3. H18-LAB-03/LAB-04 Cyclone-V same-mathematics architecture control — CLOSED.
+4. Общий H17/H18 abstract erasure contract — CLOSED как H18-13; в финальном
+   тексте сохранять разделение E0 fault-free и E1 fault-tolerant.
 5. Проверить устойчивость H17/H18 area ratio ещё на одной technology point или
    при запрещённом DSP inference.
 6. Найти первый provable lower bound, связывающий adaptive decision structure
    с Boolean circuit size/depth.
-7. После theorem/claim/reproducibility audit собрать RU/EN publication PDF.
+7. После финального bibliography/claim/reproducibility audit собрать RU/EN
+   publication PDF.
 
 ## References
 
