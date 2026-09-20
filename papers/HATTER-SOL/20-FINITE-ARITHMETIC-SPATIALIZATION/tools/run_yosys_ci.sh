@@ -30,7 +30,8 @@ for w in 4 5 6; do
   miter="$GEN/w"$w"/nextprime_equiv_miter.sv"
   yosys -ql "$formal_log" -p "
     read_verilog -sv $miter;
-    prep -top equiv_top;
+    prep -top equiv_top -flatten;
+    opt;
     sat -verify -prove bad 0 -show x
   "
 
