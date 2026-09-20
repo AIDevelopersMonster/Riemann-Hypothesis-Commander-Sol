@@ -1,21 +1,16 @@
 #!/usr/bin/env python3
-"""Generate H18-LAB-04 combinational restricted-12 RTL.
+"""Generate H19 E0-equivalent restricted-12 one-cycle RTL variants.
 
-The exact H18-11 305-node adaptive decision DAG is compiled into pure
-combinational dataflow.  All 12 query values are evaluated in parallel through
-one shared prefix word-DAG.  Each controller node becomes a small mux whose
-children are the already-materialized decision-DAG targets.
+The frozen H18-11 305-node decision DAG, fault interface, output encoding and
+registered shell remain identical. Only the mathematical factorization of the
+12 observer words changes:
 
-A registered wrapper gives the same architectural shape as H17-LAB-02:
+  direct12  -- independent direct word chains;
+  prefix19  -- shared prefix DAG;
+  nielsen12 -- shortest elementary Nielsen programs for ten primitive words,
+               direct realization for the two oriented commutators.
 
-    registered inputs -> combinational mathematics -> registered result
-
-Fault input is a known persistent unavailable query identity:
-    erase_valid=0                      : no erasure
-    erase_valid=1, erased_word_id=0..11: that query is unavailable
-
-This is an offline/static realization of the same known-query-erasure
-mathematics.  It is not an online handshake protocol.
+The variants are intended for exact E0 regression and matched synthesis.
 """
 
 from __future__ import annotations
@@ -26,8 +21,8 @@ from functools import lru_cache
 from pathlib import Path
 
 HERE = Path(__file__).resolve()
-LAB = HERE.parents[1]
-H18 = LAB.parent
+HATTER = HERE.parents[2]
+H18 = HATTER / "18-ADAPTIVE-WORD-TOMOGRAPHY"
 CERT = H18 / "certificates" / "h18_restricted12_controller_certificate.py"
 
 spec = importlib.util.spec_from_file_location("h18_r12_cert", CERT)
