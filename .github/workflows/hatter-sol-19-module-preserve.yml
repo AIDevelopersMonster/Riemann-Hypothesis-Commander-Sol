@@ -1,0 +1,66 @@
+name: HATTER-SOL-19 primitive-module preservation
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-module-preserve.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py"
+
+jobs:
+  module-preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [direct12, prefix19, nielsen12]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus and Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog yosys
+      - name: Generate module-preserved variant
+        run: |
+          OUT="build/h19module/${{ matrix.mode }}"
+          mkdir -p "$OUT"
+          python papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py --out-dir "$OUT"
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py \
+            --mode "${{ matrix.mode }}" --module-primitives --out-dir "$OUT"
+      - name: Exhaustive E0 regression
+        run: |
+          OUT="build/h19module/${{ matrix.mode }}"
+          iverilog -g2012 -s tb_h18_r12_comb_controller -o "$OUT/simv" \
+            "$OUT/psl27_membership_only.sv" \
+            "$OUT/psl27_member_class_only.sv" \
+            "$OUT/h18_r12_comb_core.sv" \
+            "$OUT/h18_r12_comb_controller.sv" \
+            "$OUT/tb_h18_r12_comb_controller.sv"
+          (cd "$OUT" && vvp ./simv | tee regression.log)
+          grep -F "PASS H18-LAB-04 comb: 197 states x 13 erasure identities = 2561 runs" "$OUT/regression.log"
+      - name: Hierarchical Yosys structural image
+        run: |
+          OUT="build/h19module/${{ matrix.mode }}"
+          cat > "$OUT/module.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          opt
+          clean
+          stat -top h18_r12_comb_controller
+          select -count t:h19_compose_perm
+          select -count t:h19_inverse_perm
+          EOF
+          (cd "$OUT" && yosys -s module.ys | tee module-yosys.log)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H19-${{ matrix.mode }}-module-preserve
+          path: |
+            build/h19module/${{ matrix.mode }}/regression.log
+            build/h19module/${{ matrix.mode }}/module-yosys.log
+          retention-days: 30
