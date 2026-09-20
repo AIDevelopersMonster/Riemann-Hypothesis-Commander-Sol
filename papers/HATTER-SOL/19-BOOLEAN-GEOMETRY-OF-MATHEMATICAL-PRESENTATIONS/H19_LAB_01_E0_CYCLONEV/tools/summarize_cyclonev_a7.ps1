@@ -13,6 +13,58 @@ function First-MatchValue([string]$Path,[string]$Pattern,[string]$Group="v") {
   return $null
 }
 
+function Get-FirstDataPathStats([string]$Path) {
+  $result = @{
+    DataDelay = $null
+    LogicLevels = $null
+    CellDelay = $null
+    RoutingDelay = $null
+  }
+  if (!(Test-Path $Path)) { return $result }
+
+  $inFirstPath = $false
+  $inDataSection = $false
+
+  foreach ($line in Get-Content $Path) {
+    if (!$inFirstPath -and $line -match '^Path #1:') {
+      $inFirstPath = $true
+      continue
+    }
+    if (!$inFirstPath) { continue }
+
+    if (!$result.DataDelay) {
+      $m = [regex]::Match($line,';\s*Data Delay\s*;\s*(?<v>\d+(?:\.\d+)?)\s*;')
+      if ($m.Success) { $result.DataDelay = $m.Groups["v"].Value }
+    }
+
+    if (!$result.LogicLevels) {
+      $m = [regex]::Match($line,';\s*Number of Logic Levels\s*;\s*;\s*(?<v>\d+)\s*;')
+      if ($m.Success) { $result.LogicLevels = $m.Groups["v"].Value }
+    }
+
+    if ($line -match '^;\s+Data\s+;') {
+      $inDataSection = $true
+      continue
+    }
+
+    if ($inDataSection -and $line -match '^;\s+Required Path\s+;') {
+      break
+    }
+
+    if ($inDataSection -and !$result.CellDelay) {
+      $m = [regex]::Match($line,';\s*Cell\s*;\s*;\s*\d+\s*;\s*(?<v>\d+(?:\.\d+)?)\s*;')
+      if ($m.Success) { $result.CellDelay = $m.Groups["v"].Value }
+    }
+
+    if ($inDataSection -and !$result.RoutingDelay) {
+      $m = [regex]::Match($line,';\s*Routing Element\s*;\s*;\s*\d+\s*;\s*(?<v>\d+(?:\.\d+)?)\s*;')
+      if ($m.Success) { $result.RoutingDelay = $m.Groups["v"].Value }
+    }
+  }
+
+  return $result
+}
+
 foreach ($mode in $Modes) {
   $QDir = Join-Path $Lab ("quartus13_cyclonev_a7\" + $mode)
   $Project = "h19_" + $mode + "_cv_a7"
@@ -33,13 +85,15 @@ foreach ($mode in $Modes) {
   $dsp = First-MatchValue $Fit 'Total DSP Blocks\s*;\s*(?<v>[\d,]+)\s*/'
   if (!$dsp) { $dsp = First-MatchValue $Fit 'DSP block 18-bit elements\s*;\s*(?<v>[\d,]+)\s*/' }
 
-  $fmax = First-MatchValue $Sta '(?<v>\d+(?:\.\d+)?)\s*MHz.*clk'
-  if (!$fmax) { $fmax = First-MatchValue $Sta 'clk\s*;\s*(?<v>\d+(?:\.\d+)?)\s*MHz' }
+  # Match the first actual Fmax Summary row. Do not match the 100 MHz
+  # create_clock/clock-settings line.
+  $fmax = First-MatchValue $Sta ';\s*(?<v>\d+(?:\.\d+)?)\s*MHz\s*;\s*\d+(?:\.\d+)?\s*MHz\s*;\s*clk\s*;'
 
-  $delay = First-MatchValue $Worst 'Data Delay\s*:\s*(?<v>\d+(?:\.\d+)?)\s*ns'
-  $levels = First-MatchValue $Worst 'Number of Logic Levels\s*:\s*(?<v>\d+)'
-  $cell = First-MatchValue $Worst 'Data Cell Delay\s*:\s*(?<v>\d+(?:\.\d+)?)\s*ns'
-  $route = First-MatchValue $Worst 'Data Routing Delay\s*:\s*(?<v>\d+(?:\.\d+)?)\s*ns'
+  $pathStats = Get-FirstDataPathStats $Worst
+  $delay = $pathStats.DataDelay
+  $levels = $pathStats.LogicLevels
+  $cell = $pathStats.CellDelay
+  $route = $pathStats.RoutingDelay
 
   $rows += [pscustomobject]@{
     Mode = $mode
