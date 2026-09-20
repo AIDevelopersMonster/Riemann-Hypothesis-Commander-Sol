@@ -11,10 +11,10 @@ same, only response names are relabelled. Under persistent known query erasure,
 query *identity* still matters, so multiplicity 0/1/2 of each type is retained.
 
 The forced commutator type {ABab,AbaB} has multiplicity two in every robust
-alphabet. A size-10 alphabet therefore chooses seven query identities from the
+alphabet. A size-10 alphabet therefore chooses eight query identities from the
 remaining 24 partition types, each with available multiplicity two.
 
-We search exact multiplicity vectors x_t in {0,1,2}, sum x_t=7, subject to
+We search exact multiplicity vectors x_t in {0,1,2}, sum x_t=8, subject to
 distance-two constraints. One canonical representative alphabet per vector is
 then tested by the exact H18-06 adaptive DP.
 """
