@@ -1,0 +1,72 @@
+name: HATTER-SOL-19 preserved generic images
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-e0-keep.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py"
+
+jobs:
+  keep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [direct12, prefix19, nielsen12]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yosys
+      - name: Generate keep-preserved variant
+        run: |
+          OUT="build/h19keep/${{ matrix.mode }}"
+          mkdir -p "$OUT"
+          python papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py --out-dir "$OUT"
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py \
+            --mode "${{ matrix.mode }}" --keep-intermediates --out-dir "$OUT"
+      - name: Preserved post-proc stat
+        run: |
+          OUT="build/h19keep/${{ matrix.mode }}"
+          cat > "$OUT/keep-rtl.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          flatten
+          opt
+          clean
+          stat
+          EOF
+          (cd "$OUT" && yosys -s keep-rtl.ys | tee keep-rtl.log)
+      - name: Preserved post-techmap stat
+        run: |
+          OUT="build/h19keep/${{ matrix.mode }}"
+          cat > "$OUT/keep-tech.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          flatten
+          opt
+          techmap
+          opt
+          clean
+          stat
+          EOF
+          (cd "$OUT" && yosys -s keep-tech.ys | tee keep-tech.log)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H19-${{ matrix.mode }}-keep
+          path: |
+            build/h19keep/${{ matrix.mode }}/keep-rtl.log
+            build/h19keep/${{ matrix.mode }}/keep-tech.log
+          retention-days: 30
