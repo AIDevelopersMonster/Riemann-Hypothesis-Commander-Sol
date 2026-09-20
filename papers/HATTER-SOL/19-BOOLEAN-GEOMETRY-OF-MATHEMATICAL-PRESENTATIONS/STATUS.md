@@ -890,7 +890,7 @@ Priority targets:
 4. only after one of these succeeds, assemble the manuscript candidate.
 
 
-## H19-15 · physical visibility atlas protocol — CLOSED / MEASUREMENT PENDING
+## H19-15 · physical visibility atlas protocol — CLOSED / MEASURED
 
 The Cyclone-V H19-LAB-01 laboratory is now frozen as a physical partition
 experiment rather than a one-number FPGA comparison.
@@ -963,17 +963,133 @@ Current state:
 \quad+\quad
 \text{automation closed}
 \quad+\quad
-\text{physical numbers pending local Quartus run}.
+\text{physical measurement closed}
+\quad+\quad
+\text{provenance closed}.
 }
 \]
 
-The next user-side execution command is:
+All three frozen presentations reached FIT on 5CEFA7F23C6 under Quartus II 13.1.
 
-~~~powershell
-.\tools\test_physical_visibility_atlas.ps1
-.\tools\run_all_cyclonev_a7.ps1
-~~~
+Measured matched profile:
 
-from the H19_LAB_01_E0_CYCLONEV directory.
+| mode | ALM | registers | DSP | Fmax MHz | data delay ns | logic levels | cell ns | routing ns |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| DIRECT12 | 10,627 | 69 | 48 | 28.52 | 34.827 | 30 | 13.556 | 21.270 |
+| PREFIX19 | 10,627 | 69 | 48 | 28.52 | 34.827 | 30 | 13.556 | 21.270 |
+| NIELSEN12 | 12,017 | 69 | 48 | 27.50 | 36.212 | 31 | 14.026 | 22.182 |
 
-No physical result is claimed before those reports exist.
+The joint measured physical-profile partition is
+
+\[
+\boxed{
+\{\{DIRECT12,PREFIX19\},\{NIELSEN12\}\}.
+}
+\]
+
+For DIRECT12 versus PREFIX19 the declared physical visibility vector is
+
+\[
+\boxed{
+(0,0,0,0,0,0,0,0).
+}
+\]
+
+The physical result is tool/target/report-precision relative and is not a claim
+of bit-identical Quartus routed databases.
+
+The local physical evidence is preserved through:
+
+- H19_LAB01_CYCLONEV_SUMMARY.csv;
+- H19_LAB01_PHYSICAL_PARTITIONS.csv;
+- H19_LAB01_PHYSICAL_VISIBILITY_ATLAS.md;
+- H19_LAB01_PROVENANCE_SHA256.csv;
+- H19_LAB01_PROVENANCE_SHA256.md.
+
+The provenance manifest fingerprints 33 generated/input/report artifacts with
+SHA-256 while the heavy Quartus work directories remain intentionally ignored.
+
+
+## H19-16 · Cyclone-V physical profile quotient — CLOSED
+
+The first H19-specific physical gate is now closed.
+
+For the frozen E0 family
+
+\[
+\mathcal F=\{D,P,N\}
+=
+\{DIRECT12,PREFIX19,NIELSEN12\},
+\]
+
+the matched Cyclone-V experiment induces the measured physical quotient
+
+\[
+\boxed{
+\mathcal F/\sim_{\rm phys}^{\rm measured}
+=
+\{\{D,P\},\{N\}\}.
+}
+\]
+
+DIRECT12 and PREFIX19 are indistinguishable at the printed precision of all
+eight predeclared physical observers, while NIELSEN12 remains separated by
+ALM, Fmax, data delay, logic depth, cell delay, and routing delay.
+
+This gives the first measured compiler-to-physical partition trajectory in H19:
+
+\[
+\boxed{
+\{\{D,P\},\{N\}\}
+\to
+\{\{D,P\},\{N\}\}
+\to
+\{\{D\},\{P\},\{N\}\}
+\to
+\{\{D,P\},\{N\}\}.
+}
+\]
+
+The last step crosses from generic Yosys/ABC observables to the declared joint
+Quartus physical observer and therefore is not asserted as a partition-refinement law.
+
+Detailed layer:
+
+- H19_16_PHYSICAL_PROFILE_QUOTIENT_CYCLONEV.md.
+
+## Publication-threshold status after H19-16
+
+The hostile-audit publication gate is now materially stronger:
+
+\[
+\boxed{
+\text{controlled E0 family}
++
+\text{compiler-stage partition dynamics}
++
+\text{technology-specific physical quotient}
++
+\text{hashed provenance}.
+}
+\]
+
+A manuscript candidate is now justified, but a persistence claim is still
+deferred until a second technology/compiler endpoint is measured.
+
+## Immediate next strike
+
+Open H19-LAB-02 as a cross-technology replication of the identical
+DIRECT12/PREFIX19/NIELSEN12 family.
+
+The required question is not which implementation is globally "best", but
+
+\[
+\boxed{
+\text{Does the Cyclone-V physical quotient }
+\{\{D,P\},\{N\}\}
+\text{ persist, refine, or coarsen on a second FPGA technology?}
+}
+\]
+
+No source semantics, decision DAG, external contract, or observer definitions
+may be changed merely to make the second target fit.
