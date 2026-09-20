@@ -20,3 +20,7 @@ jobs:
       - name: Verify H19 source factorization certificate
         run: |
           python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/certificates/h19_source_factorization_certificate.py
+
+      - name: Verify NIELSEN12 source profile
+        run: |
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/certificates/h19_nielsen12_source_certificate.py
