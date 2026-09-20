@@ -428,3 +428,108 @@ It is not a technology-independent invariant of mathematics.
 The theoretical object is the pullback equivalence relation of a declared map.
 The scientific work is to identify useful observables and determine whether
 their survival/forgetting behavior has stable structural predictors.
+
+
+## 13. First strict kernel-separation experiment
+
+H19-05 supplies a direct comparison of two realization disciplines on the same
+E0 family.
+
+Let
+
+\[
+\mathcal F=
+\{DIRECT12,PREFIX19,NIELSEN12\}.
+\]
+
+### Open flow
+
+At the post-techmap generic cell-histogram level,
+
+\[
+DIRECT12\sim PREFIX19,
+\]
+
+while NIELSEN12 is separated.
+
+Thus
+
+\[
+\boxed{
+N_{\rm open,cellhist}(\mathcal F)=2.
+}
+\]
+
+The observed classes are
+
+\[
+\{DIRECT12,PREFIX19\},
+\qquad
+\{NIELSEN12\}.
+\]
+
+### Module-preserving flow
+
+With declared permutation primitives retained as hierarchy, the core instance
+profiles are:
+
+\[
+DIRECT12:
+24\,compose+2\,inverse,
+\]
+
+\[
+PREFIX19:
+19\,compose+2\,inverse,
+\]
+
+\[
+NIELSEN12_{\rm decomposed}:
+24\,compose+21\,inverse.
+\]
+
+The corresponding core cell counts are
+
+\[
+1591,\qquad1586,\qquad1610.
+\]
+
+Hence all three presentations are distinguished by the hierarchical
+cell/instance observable:
+
+\[
+\boxed{
+N_{\rm module,hier}(\mathcal F)=3.
+}
+\]
+
+In particular, on the controlled pair
+
+\[
+\mathcal F_2=\{DIRECT12,PREFIX19\},
+\]
+
+the open compiler identifies the pair while the module-preserving compiler
+separates it.
+
+Therefore, for the induced equivalence relations on \(\mathcal F_2\),
+
+\[
+\boxed{
+\ker(C_{\Pi_{\rm module}})
+\subsetneq
+\ker(C_{\Pi_{\rm open}})
+}
+\]
+
+at the stated profile resolutions.
+
+This is a finite experimental theorem-example of **compiler-controlled
+presentation forgetting**.
+
+### Caution
+
+The current NIELSEN12 module profile decomposes Nielsen moves into direct
+permutation primitives.  A native Nielsen-move hierarchy is being tested
+separately.  The strict DIRECT12/PREFIX19 kernel separation does not depend on
+that refinement.
