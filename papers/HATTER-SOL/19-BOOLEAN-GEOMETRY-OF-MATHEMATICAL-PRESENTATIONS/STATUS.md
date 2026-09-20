@@ -182,3 +182,91 @@ The immediate gate is:
 \]
 
 before any FPGA-specific place-and-route comparison.
+
+
+## H19-04 · compiler forgetting — CLOSED
+
+All three E0 RTL variants pass the same exhaustive 2561-transaction functional
+contract.
+
+Under Yosys 0.33
+
+\[
+\texttt{proc}\to\texttt{flatten}\to\texttt{opt}
+\]
+
+the total cell counts are:
+
+\[
+\boxed{
+DIRECT12=4919,\qquad
+PREFIX19=4919,\qquad
+NIELSEN12=5230.
+}
+\]
+
+Under the further generic Boolean mapping
+
+\[
+\texttt{techmap}\to\texttt{opt}
+\]
+
+the counts become:
+
+\[
+\boxed{
+DIRECT12=63719,\qquad
+PREFIX19=63719,\qquad
+NIELSEN12=72867.
+}
+\]
+
+DIRECT12 and PREFIX19 have identical reported Boolean-cell histograms despite
+the source-level exact difference
+
+\[
+24\to19
+\]
+
+permutation-composition nodes.
+
+Thus this flow gives the first controlled compiler-forgetting witness:
+
+\[
+\boxed{
+\text{different source presentation}
+\to
+\text{same measured optimized Boolean cell histogram}.
+}
+\]
+
+NIELSEN12 remains distinct and is approximately 14.36% larger than
+DIRECT12/PREFIX19 at the post-techmap generic-cell layer.
+
+Claim boundary: this is compiler-relative evidence, not equality of minimum
+Boolean circuit complexity.
+
+Detailed record:
+
+- \`H19_04_COMPILER_FORGETTING_RESULT.md\`.
+
+## H19-05 · presentation-preserving compiler discipline — NEXT
+
+Construct a second flow in which declared observer-factorization operations are
+explicit module instances with preservation boundaries.
+
+Compare
+
+\[
+\Pi_{\rm open}
+\quad\text{versus}\quad
+\Pi_{\rm preserve}.
+\]
+
+The key question is now:
+
+\[
+\boxed{
+\text{How much hardware difference is hidden by semantic optimization?}
+}
+\]
