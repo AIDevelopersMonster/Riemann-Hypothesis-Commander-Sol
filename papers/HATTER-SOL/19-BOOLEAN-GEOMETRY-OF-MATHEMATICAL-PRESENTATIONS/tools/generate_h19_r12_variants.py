@@ -116,7 +116,7 @@ def perm_expr(word: str) -> str:
 
 
 
-def emit_word_realization(lines, mode: str):
+def emit_word_realization(lines, mode: str, keep_intermediates: bool = False):
     """Emit one of three E0-equivalent observer factorizations.
 
     Returns a dict word -> SystemVerilog expression carrying exactly that word
@@ -124,6 +124,7 @@ def emit_word_realization(lines, mode: str):
     """
     a = lines.append
     out = {}
+    wire_kw = "(* keep *) wire" if keep_intermediates else "wire"
 
     def letter_expr(ch: str) -> str:
         return {"A": "A", "B": "B", "a": "invA", "b": "invB"}[ch]
@@ -134,7 +135,7 @@ def emit_word_realization(lines, mode: str):
         cur = letter_expr(word[0])
         for k, ch in enumerate(word[1:], start=1):
             name = f"{tag}_{k}"
-            a(f"wire [23:0] {name} = compose_perm({cur}, {letter_expr(ch)});")
+            a(f"{wire_kw} [23:0] {name} = compose_perm({cur}, {letter_expr(ch)});")
             cur = name
         return cur
 
@@ -142,7 +143,7 @@ def emit_word_realization(lines, mode: str):
         for pref in PREFIXES:
             parent = pref[:-1]
             last = pref[-1]
-            a(f"wire [23:0] p_{pref} = compose_perm({perm_expr(parent)}, {perm_expr(last)});")
+            a(f"{wire_kw} [23:0] p_{pref} = compose_perm({perm_expr(parent)}, {perm_expr(last)});")
         for word in WORDS:
             out[word] = perm_expr(word)
         return out
@@ -169,31 +170,31 @@ def emit_word_realization(lines, mode: str):
                     u, v = v, u
                 elif op == "I_A":
                     nu = f"n{wid}_{step}_u"
-                    a(f"wire [23:0] {nu} = inverse_perm({u});")
+                    a(f"{wire_kw} [23:0] {nu} = inverse_perm({u});")
                     u = nu
                 elif op == "I_B":
                     nv = f"n{wid}_{step}_v"
-                    a(f"wire [23:0] {nv} = inverse_perm({v});")
+                    a(f"{wire_kw} [23:0] {nv} = inverse_perm({v});")
                     v = nv
                 elif op == "N_A+":
                     nu = f"n{wid}_{step}_u"
-                    a(f"wire [23:0] {nu} = compose_perm({u}, {v});")
+                    a(f"{wire_kw} [23:0] {nu} = compose_perm({u}, {v});")
                     u = nu
                 elif op == "N_A-":
                     iv = f"n{wid}_{step}_iv"
                     nu = f"n{wid}_{step}_u"
-                    a(f"wire [23:0] {iv} = inverse_perm({v});")
-                    a(f"wire [23:0] {nu} = compose_perm({u}, {iv});")
+                    a(f"{wire_kw} [23:0] {iv} = inverse_perm({v});")
+                    a(f"{wire_kw} [23:0] {nu} = compose_perm({u}, {iv});")
                     u = nu
                 elif op == "N_B+":
                     nv = f"n{wid}_{step}_v"
-                    a(f"wire [23:0] {nv} = compose_perm({v}, {u});")
+                    a(f"{wire_kw} [23:0] {nv} = compose_perm({v}, {u});")
                     v = nv
                 elif op == "N_B-":
                     iu = f"n{wid}_{step}_iu"
                     nv = f"n{wid}_{step}_v"
-                    a(f"wire [23:0] {iu} = inverse_perm({u});")
-                    a(f"wire [23:0] {nv} = compose_perm({v}, {iu});")
+                    a(f"{wire_kw} [23:0] {iu} = inverse_perm({u});")
+                    a(f"{wire_kw} [23:0] {nv} = compose_perm({v}, {iu});")
                     v = nv
                 else:
                     raise AssertionError(op)
@@ -207,7 +208,7 @@ def emit_word_realization(lines, mode: str):
     raise ValueError(f"unknown realization mode: {mode}")
 
 
-def emit_core(path: Path, mode: str) -> None:
+def emit_core(path: Path, mode: str, keep_intermediates: bool = False) -> None:
     lines = []
     a = lines.append
 
@@ -260,7 +261,7 @@ def emit_core(path: Path, mode: str) -> None:
     a("psl27_membership_only u_mem_B(.perm(B),.valid(valid_B));")
     a("")
 
-    word_expr = emit_word_realization(lines, mode)
+    word_expr = emit_word_realization(lines, mode, keep_intermediates)
     a("")
 
     for wid, word in enumerate(WORDS):
@@ -542,11 +543,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out-dir", type=Path, default=Path("generated_comb"))
     parser.add_argument("--mode", choices=("direct12","prefix19","nielsen12"), default="prefix19")
+    parser.add_argument("--keep-intermediates", action="store_true",
+                        help="mark declared word-factorization intermediates with Yosys keep")
     args = parser.parse_args()
     out = args.out_dir
     out.mkdir(parents=True, exist_ok=True)
 
-    emit_core(out / "h18_r12_comb_core.sv", args.mode)
+    emit_core(out / "h18_r12_comb_core.sv", args.mode, args.keep_intermediates)
     emit_wrapper(out / "h18_r12_comb_controller.sv")
     emit_vectors(out / "h18_r12_comb_vectors.txt")
     emit_tb(out / "tb_h18_r12_comb_controller.sv")
@@ -554,6 +557,7 @@ def main() -> None:
 
     print("H19 restricted-12 E0 comparison generator")
     print("mode =", args.mode)
+    print("keep_intermediates =", args.keep_intermediates)
     print("words =", list(WORDS))
     print("shared prefix-DAG compositions =", len(PREFIXES))
     print("maximum word-DAG composition depth =", max(len(p)-1 for p in PREFIXES))
