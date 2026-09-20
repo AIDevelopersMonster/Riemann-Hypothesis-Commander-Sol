@@ -1,0 +1,89 @@
+name: HATTER-SOL-19 E0 RTL comparison
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-e0-rtl.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_restricted12_controller_certificate.py"
+      - "papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py"
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [direct12, prefix19, nielsen12]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Icarus and Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog yosys
+
+      - name: Generate exact variant
+        run: |
+          OUT="build/h19/${{ matrix.mode }}"
+          mkdir -p "$OUT"
+          python papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py --out-dir "$OUT"
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py \
+            --mode "${{ matrix.mode }}" \
+            --out-dir "$OUT"
+          cat "$OUT/H18_R12_COMB_SUMMARY.md"
+
+      - name: Exhaustive 2561-transaction RTL regression
+        run: |
+          OUT="build/h19/${{ matrix.mode }}"
+          iverilog -g2012 -s tb_h18_r12_comb_controller \
+            -o "$OUT/simv" \
+            "$OUT/psl27_membership_only.sv" \
+            "$OUT/psl27_member_class_only.sv" \
+            "$OUT/h18_r12_comb_core.sv" \
+            "$OUT/h18_r12_comb_controller.sv" \
+            "$OUT/tb_h18_r12_comb_controller.sv"
+          (
+            cd "$OUT"
+            vvp ./simv | tee regression.log
+          )
+          grep -F "PASS H18-LAB-04 comb: 197 states x 13 erasure identities = 2561 runs" "$OUT/regression.log"
+
+      - name: Generic Yosys synthesis
+        run: |
+          OUT="build/h19/${{ matrix.mode }}"
+          cat > "$OUT/synth.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          opt
+          flatten
+          opt
+          techmap
+          opt
+          abc
+          clean
+          stat
+          EOF
+          (
+            cd "$OUT"
+            yosys -s synth.ys | tee yosys.log
+          )
+          grep -E "Number of cells:|\\$_(AND|OR|XOR|MUX|NOT|DFF)" "$OUT/yosys.log" | tail -n 80 | tee "$OUT/yosys-stat-extract.txt"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H19-${{ matrix.mode }}-generic
+          path: |
+            build/h19/${{ matrix.mode }}/regression.log
+            build/h19/${{ matrix.mode }}/yosys.log
+            build/h19/${{ matrix.mode }}/yosys-stat-extract.txt
+            build/h19/${{ matrix.mode }}/H18_R12_COMB_SUMMARY.md
+          retention-days: 30
