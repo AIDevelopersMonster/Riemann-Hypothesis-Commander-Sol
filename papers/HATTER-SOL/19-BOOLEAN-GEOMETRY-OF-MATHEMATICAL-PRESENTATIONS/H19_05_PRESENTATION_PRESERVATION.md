@@ -217,3 +217,83 @@ is itself the declared mathematical primitive in that presentation.
 The next refinement will represent elementary Nielsen moves as retained
 primitive modules before comparing the Nielsen presentation against DIRECT12
 and PREFIX19.
+
+
+## 7. Native Nielsen primitive hierarchy — CLOSED
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35488601863}}
+\]
+
+replaces the decomposed compose/inverse surrogate for the primitive part of
+NIELSEN12 by retained elementary Nielsen-move modules.
+
+The exact native module profile inside the restricted-12 core is
+
+\[
+\boxed{
+2\,I_A
++
+1\,I_B
++
+8\,N_A^{-}
++
+2\,N_A^{+}
++
+8\,N_B^{-}
+}
+\]
+
+for a total of
+
+\[
+\boxed{21\text{ elementary Nielsen modules}}
+\]
+
+on the ten primitive observers.
+
+This matches the source certificate exactly:
+
+\[
+\boxed{
+18\text{ shear}+3\text{ inversion}=21\text{ moves}.
+}
+\]
+
+The two non-primitive oriented commutator observers remain direct and contribute
+
+\[
+\boxed{6\ \texttt{h19\_compose\_perm}}
+\]
+
+instances.  Their inverse letters use the shared
+
+\[
+\boxed{2\ \texttt{h19\_inverse\_perm}}
+\]
+
+instances for \(A^{-1},B^{-1}\).
+
+All 2561 E0 regression transactions pass.
+
+The complete hierarchical Yosys design contains 6120 cells before flattening,
+but this scalar is **not** compared directly with the DIRECT12/PREFIX19
+primitive-instance counts as a mathematical cost because native Nielsen
+modules and permutation-compose modules are heterogeneous objects.
+
+The result closes the presentation-preserving source/RTL correspondence:
+
+\[
+\boxed{
+\text{NIELSEN source programme}
+\longleftrightarrow
+\text{native retained Nielsen module hierarchy}.
+}
+\]
+
+The next comparison must therefore use either a common lower-level Boolean
+observable after releasing hierarchy, or a declared vector-valued primitive
+cost model.  No arbitrary unit weight is assigned to unlike mathematical
+primitives.
