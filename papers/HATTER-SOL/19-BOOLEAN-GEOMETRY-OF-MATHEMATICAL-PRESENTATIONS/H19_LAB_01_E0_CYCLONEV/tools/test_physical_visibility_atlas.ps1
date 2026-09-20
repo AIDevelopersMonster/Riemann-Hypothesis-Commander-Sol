@@ -35,7 +35,7 @@ function Need([string]$observer,[string]$partition,[string]$dp) {
   $r = $rows | Where-Object { $_.Observer -eq $observer } | Select-Object -First 1
   if (!$r) { throw "missing observer row: $observer" }
   if ($r.Partition -ne $partition) {
-    throw "partition mismatch for $observer: got $($r.Partition), expected $partition"
+    throw ("partition mismatch for {0}: got {1}, expected {2}" -f $observer,$r.Partition,$partition)
   }
   if ([string]$r.DirectPrefixVisible -ne $dp) {
     throw "D/P visibility mismatch for $observer"
