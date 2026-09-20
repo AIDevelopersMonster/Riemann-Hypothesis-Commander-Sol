@@ -315,3 +315,88 @@ alphabets in the full 50-query pool remain possible.
 
 The global size-10 partition-type quotient search remains the decisive next
 gate.
+
+
+## C7 · exact global size-10 partition-type search — CLOSED NEGATIVE
+
+The exact size-10 quotient search completed successfully.
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35488658329}}.
+\]
+
+The 50 W4 query identities were represented by the already certified 25
+partition types, preserving multiplicity \(0/1/2\) because erasure acts on
+query identity.
+
+After fixing the forced commutator type at multiplicity two, the search selected
+total multiplicity eight from the remaining 24 types.
+
+Exact statistics:
+
+\[
+\boxed{1\,493\,502\text{ DFS states}}
+\]
+
+with
+
+\[
+\boxed{88\,100}
+\]
+
+complete distance-two size-10 multiplicity vectors.
+
+Every one of those 88,100 alphabets was passed to the exact H18-06 adaptive
+dynamic programme.
+
+Among them,
+
+\[
+\boxed{6\,368}
+\]
+
+support the fault-free depth-four contract
+
+\[
+D_0(A)\le4.
+\]
+
+But the number supporting the full one-persistent-erasure depth-four contract is
+
+\[
+\boxed{0}.
+\]
+
+Therefore no size-10 W4 alphabet can realize the H18-06 robust adaptive
+contract, and the certified bracket improves to
+
+\[
+\boxed{
+11\le M_1(W_4)\le12.
+}
+\]
+
+This is a global exact result, not a neighborhood or witness-family search.
+
+### Structural consequence
+
+The gap between ordinary and fault-tolerant adaptive tomography is now visible
+globally at size 10:
+
+\[
+6368
+\]
+
+alphabets preserve fault-free depth four, while none preserves one-erasure
+successful depth four.
+
+Thus the obstruction at size 10 is specifically the robust adaptive contract,
+not merely insufficient ordinary distinguishing power.
+
+The global size-11 exact search is now the decisive closure gate:
+
+- a size-11 witness gives \(M_1(W_4)=11\);
+- global size-11 exclusion, by the alphabet-monotonicity lemma and the existing
+  size-12 witness, gives \(M_1(W_4)=12\).
