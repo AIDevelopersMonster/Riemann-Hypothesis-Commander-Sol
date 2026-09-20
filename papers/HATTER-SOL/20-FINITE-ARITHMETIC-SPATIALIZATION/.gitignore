@@ -1,0 +1,4 @@
+generated/
+yosys_out/
+*.vvp
+PRIME_SPATIAL_YOSYS_SUMMARY.csv
