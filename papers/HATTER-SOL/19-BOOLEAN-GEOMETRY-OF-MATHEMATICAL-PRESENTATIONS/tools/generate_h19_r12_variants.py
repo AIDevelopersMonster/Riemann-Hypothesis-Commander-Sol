@@ -116,7 +116,7 @@ def perm_expr(word: str) -> str:
 
 
 
-def emit_word_realization(lines, mode: str, keep_intermediates: bool = False, module_primitives: bool = False):
+def emit_word_realization(lines, mode: str, keep_intermediates: bool = False, module_primitives: bool = False, nielsen_move_modules: bool = False):
     """Emit one of three E0-equivalent observer factorizations.
 
     Returns a dict word -> SystemVerilog expression carrying exactly that word
@@ -180,6 +180,29 @@ def emit_word_realization(lines, mode: str, keep_intermediates: bool = False, mo
             length, coordinate, program, final_pair = r12.PROGRAMS[word]
             u = "A"
             v = "B"
+
+            if nielsen_move_modules:
+                module_name = {
+                    "S": "h19_nielsen_S",
+                    "I_A": "h19_nielsen_IA",
+                    "I_B": "h19_nielsen_IB",
+                    "N_A+": "h19_nielsen_NA_plus",
+                    "N_A-": "h19_nielsen_NA_minus",
+                    "N_B+": "h19_nielsen_NB_plus",
+                    "N_B-": "h19_nielsen_NB_minus",
+                }
+                for step, op in enumerate(program):
+                    nu = f"nm{wid}_{step}_A"
+                    nv = f"nm{wid}_{step}_B"
+                    a(f"wire [23:0] {nu}, {nv};")
+                    a(f"(* keep_hierarchy *) {module_name[op]} u_nm{wid}_{step}(.A({u}),.B({v}),.Ao({nu}),.Bo({nv}));")
+                    u, v = nu, nv
+                expr = u if coordinate == 0 else v
+                assert final_pair[coordinate] == word
+                assert length == len(program)
+                out[word] = expr
+                continue
+
             for step, op in enumerate(program):
                 if op == "S":
                     u, v = v, u
@@ -223,7 +246,7 @@ def emit_word_realization(lines, mode: str, keep_intermediates: bool = False, mo
     raise ValueError(f"unknown realization mode: {mode}")
 
 
-def emit_core(path: Path, mode: str, keep_intermediates: bool = False, module_primitives: bool = False) -> None:
+def emit_core(path: Path, mode: str, keep_intermediates: bool = False, module_primitives: bool = False, nielsen_move_modules: bool = False) -> None:
     lines = []
     a = lines.append
 
@@ -242,6 +265,26 @@ def emit_core(path: Path, mode: str, keep_intermediates: bool = False, module_pr
         a("  always @* begin r='0; for(i=0;i<8;i=i+1) begin pi=gp(p,i); r[pi*3 +:3]=i[2:0]; end end")
         a("endmodule")
         a("")
+    if nielsen_move_modules:
+        # Elementary Nielsen moves are preserved as the mathematical primitive
+        # boundaries of the NIELSEN12 presentation.
+        a("(* keep_hierarchy *) module h19_nielsen_S(input logic [23:0] A,B, output logic [23:0] Ao,Bo); always @* begin Ao=B; Bo=A; end endmodule")
+        a("")
+        # Emit fixed move modules with local exact permutation helpers.
+        def emit_nm(name, body):
+            a(f"(* keep_hierarchy *) module {name}(input logic [23:0] A,B, output logic [23:0] Ao,Bo);")
+            a("  function automatic [2:0] gp(input logic [23:0] x, input integer idx); gp=x[idx*3 +:3]; endfunction")
+            a("  function automatic [23:0] cp(input logic [23:0] p,input logic [23:0] q); integer i; logic [23:0] rr; logic [2:0] qi; begin rr='0; for(i=0;i<8;i=i+1) begin qi=gp(q,i); rr[i*3 +:3]=gp(p,qi); end cp=rr; end endfunction")
+            a("  function automatic [23:0] ip(input logic [23:0] p); integer i; logic [23:0] rr; logic [2:0] pi; begin rr='0; for(i=0;i<8;i=i+1) begin pi=gp(p,i); rr[pi*3 +:3]=i[2:0]; end ip=rr; end endfunction")
+            a(f"  always @* begin {body} end")
+            a("endmodule")
+            a("")
+        emit_nm("h19_nielsen_IA", "Ao=ip(A); Bo=B;")
+        emit_nm("h19_nielsen_IB", "Ao=A; Bo=ip(B);")
+        emit_nm("h19_nielsen_NA_plus", "Ao=cp(A,B); Bo=B;")
+        emit_nm("h19_nielsen_NA_minus", "Ao=cp(A,ip(B)); Bo=B;")
+        emit_nm("h19_nielsen_NB_plus", "Ao=A; Bo=cp(B,A);")
+        emit_nm("h19_nielsen_NB_minus", "Ao=A; Bo=cp(B,ip(A));")
     a("module h18_r12_comb_core(")
     a("    input  logic [23:0] A,")
     a("    input  logic [23:0] B,")
@@ -294,7 +337,7 @@ def emit_core(path: Path, mode: str, keep_intermediates: bool = False, module_pr
     a("psl27_membership_only u_mem_B(.perm(B),.valid(valid_B));")
     a("")
 
-    word_expr = emit_word_realization(lines, mode, keep_intermediates, module_primitives)
+    word_expr = emit_word_realization(lines, mode, keep_intermediates, module_primitives, nielsen_move_modules)
     a("")
 
     for wid, word in enumerate(WORDS):
@@ -580,11 +623,13 @@ def main() -> None:
                         help="mark declared word-factorization intermediates with Yosys keep")
     parser.add_argument("--module-primitives", action="store_true",
                         help="realize compose/inverse as retained primitive module instances")
+    parser.add_argument("--nielsen-move-modules", action="store_true",
+                        help="for nielsen12, preserve each elementary Nielsen move as one module instance")
     args = parser.parse_args()
     out = args.out_dir
     out.mkdir(parents=True, exist_ok=True)
 
-    emit_core(out / "h18_r12_comb_core.sv", args.mode, args.keep_intermediates, args.module_primitives)
+    emit_core(out / "h18_r12_comb_core.sv", args.mode, args.keep_intermediates, args.module_primitives, args.nielsen_move_modules)
     emit_wrapper(out / "h18_r12_comb_controller.sv")
     emit_vectors(out / "h18_r12_comb_vectors.txt")
     emit_tb(out / "tb_h18_r12_comb_controller.sv")
@@ -594,6 +639,7 @@ def main() -> None:
     print("mode =", args.mode)
     print("keep_intermediates =", args.keep_intermediates)
     print("module_primitives =", args.module_primitives)
+    print("nielsen_move_modules =", args.nielsen_move_modules)
     print("words =", list(WORDS))
     print("shared prefix-DAG compositions =", len(PREFIXES))
     print("maximum word-DAG composition depth =", max(len(p)-1 for p in PREFIXES))
