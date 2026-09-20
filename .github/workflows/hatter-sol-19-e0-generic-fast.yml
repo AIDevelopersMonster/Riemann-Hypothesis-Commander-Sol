@@ -1,0 +1,57 @@
+name: HATTER-SOL-19 fast generic images
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-e0-generic-fast.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py"
+
+jobs:
+  generic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [direct12, prefix19, nielsen12]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yosys
+      - name: Generate variant
+        run: |
+          OUT="build/h19fast/${{ matrix.mode }}"
+          mkdir -p "$OUT"
+          python papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py --out-dir "$OUT"
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py \
+            --mode "${{ matrix.mode }}" --out-dir "$OUT"
+      - name: Pre-ABC generic structural synthesis
+        run: |
+          OUT="build/h19fast/${{ matrix.mode }}"
+          cat > "$OUT/fast.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          flatten
+          opt
+          techmap
+          opt
+          clean
+          stat
+          EOF
+          (cd "$OUT" && yosys -s fast.ys | tee fast-yosys.log)
+          grep -E "Number of cells:|^[[:space:]]+\\$_|^[[:space:]]+\$" "$OUT/fast-yosys.log" | tail -n 120 | tee "$OUT/fast-stat.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H19-${{ matrix.mode }}-fast-generic
+          path: |
+            build/h19fast/${{ matrix.mode }}/fast-yosys.log
+            build/h19fast/${{ matrix.mode }}/fast-stat.txt
+          retention-days: 30
