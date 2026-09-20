@@ -718,3 +718,173 @@ partialmathcal V_i
 
 at each compiler stage and test which source quantities predict movement of
 that frontier.
+
+
+## H19-11 · visibility-frontier migration — CLOSED
+
+For DIRECT12 versus PREFIX19, the minimal declared observer that still
+distinguishes the pair migrates across the open compiler tower as
+
+\[
+\boxed{
+O_{\rm comp}
+\to
+O_{\rm wiretot}
+\to
+O_{\rm wiretot}
+\to
+O_{\rm celltot}.
+}
+\]
+
+Thus the presentation distinction moves from source factorization into wiring
+structure and later reappears already in scalar Boolean cell count after
+ABC-fast.
+
+Detailed layer: H19_11_VISIBILITY_FRONTIER_MIGRATION.md.
+
+## H19-12 · presentation partition lattice — CLOSED
+
+For the E0-equivalent family
+
+\[
+\mathcal F=\{DIRECT12,PREFIX19,NIELSEN12\},
+\]
+
+each observer induces a partition of \(\mathcal F\).
+
+Post-proc and post-techmap cell histograms give
+
+\[
+\boxed{
+\{\{D,P\},\{N\}\}.
+}
+\]
+
+Post-proc wire count and ABC-fast total cell count give the discrete partition
+
+\[
+\boxed{
+\{\{D\},\{P\},\{N\}\}.
+}
+\]
+
+Pairwise survival words are therefore the two-presentation special case of a
+presentation-partition signature.
+
+Detailed layer: H19_12_PRESENTATION_PARTITION_LATTICE.md.
+
+## H19-13 · hostile prior-art audit — CLOSED FIRST PASS
+
+The audit found that the following are classical/background and must not carry
+H19 novelty claims:
+
+- decision-tree / branching-program / circuit comparisons;
+- multiplexer/address-selection separation examples;
+- observational equivalence;
+- compiler semantic preservation / translation validation;
+- partition lattices;
+- equality saturation and e-graphs;
+- compiler phase-ordering / representation-preservation ideas.
+
+Therefore H19-10 remains a calibration theorem inside \(\Pi_{\rm DAG}\), not a
+new unrestricted circuit-complexity result.
+
+The plausible H19-specific contribution is narrower:
+
+\[
+\boxed{
+\text{controlled E0 mathematical presentations}
++
+\text{compiler-stage observer partitions/frontiers}
++
+\text{physical realization atlas}.
+}
+\]
+
+Detailed audit: H19_13_PRIOR_ART_AND_NOVELTY_AUDIT.md.
+
+## H19-14 · latent partition gap — CLOSED
+
+For a finite presentation family, define the full-state partition
+
+\[
+\mathcal P_i^{\rm full}
+\]
+
+and the observer partition
+
+\[
+\mathcal P_i^O.
+\]
+
+Always
+
+\[
+\mathcal P_i^{\rm full}
+\preceq
+\mathcal P_i^O.
+\]
+
+Under deterministic compiler transport, full-state partitions can only
+coarsen:
+
+\[
+\boxed{
+\mathcal P_i^{\rm full}
+\preceq
+\mathcal P_{i+1}^{\rm full}.
+}
+\]
+
+Define the hidden-pair latent gap
+
+\[
+L_i(O)
+=
+Q(\mathcal P_i^O)
+-
+Q(\mathcal P_i^{\rm full}).
+\]
+
+For the cell-histogram observer on the frozen H19 family:
+
+\[
+\boxed{
+L_{\rm cellhist}:1\to1\to0
+}
+\]
+
+from post-proc to post-techmap to ABC-fast, while the full-state partition
+remains discrete throughout.
+
+Thus the measured DIRECT12/PREFIX19 event is rigorously classified as
+observer hiding followed by re-exposure, not a compiler state merge followed
+by resurrection.
+
+Detailed layer: H19_14_LATENT_PARTITION_GAP.md.
+
+## Publication-threshold status after prior-art audit
+
+Corrected status:
+
+\[
+\boxed{
+\text{FRAMEWORK THRESHOLD CROSSED;}
+\quad
+\text{NOVELTY/PUBLICATION THRESHOLD NOT YET SECURE.}
+}
+\]
+
+The earlier stronger wording has been superseded by the hostile audit.
+
+The next publication-grade gate should be H19-specific and not reducible to
+classical decision-tree or order-theory facts.
+
+Priority targets:
+
+1. close H19-LAB-01 physical visibility atlas;
+2. test whether latent-gap/frontier trajectories persist across a second
+   technology or compiler flow;
+3. identify a predictive source quantity for frontier/partition movement;
+4. only after one of these succeeds, assemble the manuscript candidate.
