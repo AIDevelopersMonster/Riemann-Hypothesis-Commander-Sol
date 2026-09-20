@@ -184,3 +184,135 @@ presentations.
 3. introduce a presentation-preserving \`keep\` flow;
 4. compare unrestricted and presentation-preserving synthesis;
 5. only then move the surviving distinctions to matched Quartus targets.
+
+
+## 7. Post-techmap generic Boolean image
+
+A second matched flow continued the same three designs through
+
+\[
+\texttt{techmap}\to\texttt{opt}\to\texttt{clean},
+\]
+
+still without ABC and without FPGA technology mapping.
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35487902211}}.
+\]
+
+### Boolean-cell profiles
+
+| cell type | DIRECT12 | PREFIX19 | NIELSEN12 |
+| --- | ---: | ---: | ---: |
+| total cells | 63,719 | 63,719 | 72,867 |
+| \`$_AND_\` | 5,242 | 5,242 | 6,458 |
+| \`$_MUX_\` | 49,445 | 49,445 | 55,253 |
+| \`$_NOT_\` | 2,324 | 2,324 | 3,232 |
+| \`$_OR_\` | 3,583 | 3,583 | 4,320 |
+| \`$_XOR_\` | 3,056 | 3,056 | 3,535 |
+| sequential cells | 69 | 69 | 69 |
+
+DIRECT12 and PREFIX19 are exactly identical on the full reported Boolean-cell
+histogram.
+
+Their wire graphs remain slightly different:
+
+\[
+17674\text{ wires / }600635\text{ bits}
+\]
+
+for DIRECT12 versus
+
+\[
+17531\text{ wires / }597020\text{ bits}
+\]
+
+for PREFIX19.
+
+Thus the compiler has forgotten the source-level \(24\to19\) composition-node
+difference at the Boolean cell-count level while retaining a small net/wire
+representation difference.
+
+NIELSEN12 remains distinct:
+
+\[
+72867-63719=9148
+\]
+
+additional generic cells, i.e.
+
+\[
+\boxed{+14.36\%}
+\]
+
+relative to DIRECT12/PREFIX19.
+
+### Two-stage compiler-forgetting result
+
+The same phenomenon is now observed at two compiler depths:
+
+\[
+\begin{array}{c|ccc}
+& DIRECT12 & PREFIX19 & NIELSEN12\\
+\hline
+\text{post-proc/opt cells} & 4919 & 4919 & 5230\\
+\text{post-techmap cells} & 63719 & 63719 & 72867
+\end{array}
+\]
+
+Therefore, for this exact E0 family,
+
+\[
+\boxed{
+DIRECT12\not\equiv PREFIX19\text{ as source presentations}
+}
+\]
+
+but
+
+\[
+\boxed{
+C_{\rm opt}(DIRECT12)
+\equiv
+C_{\rm opt}(PREFIX19)
+}
+\]
+
+with respect to the measured optimized cell histograms of both tested Yosys
+layers.
+
+By contrast,
+
+\[
+\boxed{
+C_{\rm opt}(NIELSEN12)
+\neq
+C_{\rm opt}(DIRECT12)
+}
+\]
+
+under the same flows.
+
+This is a compiler-relative empirical equality/inequality, not a theorem of
+Boolean-function canonicality.
+
+## 8. Revised next experiment
+
+The next comparison must deliberately separate two synthesis disciplines:
+
+\[
+\Pi_{\rm open}
+\]
+
+— unrestricted optimizer allowed to forget factorization, and
+
+\[
+\Pi_{\rm preserve}
+\]
+
+— explicit hierarchy/keep boundaries preserving declared observer
+factorization.
+
+The difference between these flows is itself now an H19 observable.
