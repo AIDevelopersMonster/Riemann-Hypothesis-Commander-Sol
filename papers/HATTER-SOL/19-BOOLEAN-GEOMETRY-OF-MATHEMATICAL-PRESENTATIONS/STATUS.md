@@ -346,3 +346,38 @@ Next exact measurement:
 for DIRECT12, PREFIX19 and NIELSEN12 under one frozen open flow.
 
 Only after this stage will the first E0 family move to matched Quartus targets.
+
+
+## H19-LAB-01 · matched Cyclone-V E0 physical family — READY
+
+A parameterized Quartus II 13.1 laboratory has been added for
+
+\[
+DIRECT12,\qquad PREFIX19,\qquad NIELSEN12
+\]
+
+on the frozen target
+
+\[
+\boxed{\texttt{5CEFA7F23C6}}.
+\]
+
+All variants use the same:
+
+- generated 305-node decision DAG;
+- static persistent-erasure interface;
+- registered one-cycle shell;
+- 100 MHz reference SDC;
+- Slow 1100 mV / 85 C worst-path protocol.
+
+Runner:
+
+\[
+\boxed{
+\texttt{H19\_LAB\_01\_E0\_CYCLONEV/tools/run\_all\_cyclonev\_a7.ps1}
+}
+\]
+
+The laboratory is intentionally single-technology first.  No second FPGA
+family will be added until the first physical presentation-survival result is
+understood.
