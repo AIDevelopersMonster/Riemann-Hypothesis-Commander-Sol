@@ -1,0 +1,23 @@
+name: HATTER-SOL-18 M1 size9 fast exact search
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-m1-size9-fast.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size9_constraint_search_fast.py"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_adaptive_one_erasure_certificate.py"
+
+jobs:
+  exact-size9-fast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run optimized exact 48-bit size-9 search
+        run: |
+          python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size9_constraint_search_fast.py
