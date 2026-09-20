@@ -381,3 +381,76 @@ Runner:
 The laboratory is intentionally single-technology first.  No second FPGA
 family will be added until the first physical presentation-survival result is
 understood.
+
+
+## H19-07 · non-monotone presentation survival — CLOSED FIRST EXAMPLE
+
+Matched Yosys 0.33 \`abc -fast\` run:
+
+\[
+\boxed{\texttt{35489140510}}.
+\]
+
+Cell totals:
+
+\[
+\boxed{
+DIRECT12=60374,\quad
+PREFIX19=60383,\quad
+NIELSEN12=68406.
+}
+\]
+
+This is the first H19 re-separation result.
+
+DIRECT12 and PREFIX19 were indistinguishable by complete reported cell
+histogram after both
+
+\[
+\texttt{proc/opt}
+\]
+
+and
+
+\[
+\texttt{techmap},
+\]
+
+but become distinguishable after \`abc -fast\`.
+
+Therefore presentation survival is not assumed monotone along the compiler
+tower:
+
+\[
+\boxed{
+\text{visible}
+\to
+\text{hidden}
+\to
+\text{hidden}
+\to
+\text{visible}.
+}
+\]
+
+The source ordering also reverses at this compiler-relative scalar:
+
+\[
+19<24
+\]
+
+composition nodes for PREFIX19 versus DIRECT12, but
+
+\[
+60383>60374
+\]
+
+ABC-fast cells.
+
+Detailed record:
+
+- \`H19_07_NONMONOTONE_PRESENTATION_SURVIVAL.md\`.
+
+Next physical gate:
+
+- H19-LAB-01 on 5CEFA7F23C6.
