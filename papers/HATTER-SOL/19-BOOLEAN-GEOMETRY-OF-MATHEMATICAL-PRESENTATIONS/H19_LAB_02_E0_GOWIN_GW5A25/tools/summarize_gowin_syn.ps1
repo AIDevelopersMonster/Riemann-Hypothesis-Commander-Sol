@@ -62,13 +62,14 @@ if ($m.Success) {
   }
 }
 
-$logs = Get-ChildItem -Path $Work -Filter "*.log" -File -Recurse
-$finishCount = 0
-$warn3791 = 0
-foreach ($log in $logs) {
-  $finishCount += @(Select-String -Path $log.FullName -SimpleMatch "GowinSynthesis finish" -ErrorAction SilentlyContinue).Count
-  $warn3791 += @(Select-String -Path $log.FullName -SimpleMatch "EX3791" -ErrorAction SilentlyContinue).Count
+$Project = "h19_" + $Mode + "_gw5a25_syn"
+$PrimaryLog = Join-Path $Work ($Project + ".log")
+if (!(Test-Path $PrimaryLog)) {
+  throw "Primary Gowin transcript not found: $PrimaryLog"
 }
+
+$finishCount = @(Select-String -Path $PrimaryLog -SimpleMatch "GowinSynthesis finish" -ErrorAction SilentlyContinue).Count
+$warn3791 = @(Select-String -Path $PrimaryLog -SimpleMatch "EX3791" -ErrorAction SilentlyContinue).Count
 
 $status = if ($finishCount -gt 0) { "PASS" } else { "UNKNOWN" }
 
