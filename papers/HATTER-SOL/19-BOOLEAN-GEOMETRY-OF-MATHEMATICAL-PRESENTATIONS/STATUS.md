@@ -270,3 +270,79 @@ The key question is now:
 \text{How much hardware difference is hidden by semantic optimization?}
 }
 \]
+
+
+## H19-05 · presentation preservation — CLOSED FIRST FAMILY
+
+Two preservation attempts are now distinguished.
+
+### Weak wire preservation
+
+\`(* keep *)\` on intermediate wires did not preserve the source factorization
+at the optimized Boolean-cell histogram level.
+
+### Module preservation
+
+Retained mathematical primitive modules preserve the declared factorization.
+
+DIRECT12:
+
+\[
+24\,compose+2\,inverse.
+\]
+
+PREFIX19:
+
+\[
+19\,compose+2\,inverse.
+\]
+
+Native NIELSEN12:
+
+\[
+21\text{ elementary Nielsen moves}
++
+6\text{ direct commutator compositions}
++
+2\text{ shared base inversions}.
+\]
+
+All three variants pass the common 2561-transaction E0 regression.
+
+The DIRECT12/PREFIX19 pair gives a strict finite compiler-kernel separation:
+
+\[
+\ker_{\rm module}
+\subsetneq
+\ker_{\rm open}
+\]
+
+at the declared observables.
+
+Native Nielsen module evidence:
+
+\[
+\boxed{\texttt{run 35488601863}}.
+\]
+
+## H19-06 · compiler survival tower — ACTIVE
+
+Current survival evidence:
+
+\[
+\text{source}
+\to
+\text{proc/opt}
+\to
+\text{techmap}.
+\]
+
+Next exact measurement:
+
+\[
+\boxed{\text{ABC generic logic image}}
+\]
+
+for DIRECT12, PREFIX19 and NIELSEN12 under one frozen open flow.
+
+Only after this stage will the first E0 family move to matched Quartus targets.
