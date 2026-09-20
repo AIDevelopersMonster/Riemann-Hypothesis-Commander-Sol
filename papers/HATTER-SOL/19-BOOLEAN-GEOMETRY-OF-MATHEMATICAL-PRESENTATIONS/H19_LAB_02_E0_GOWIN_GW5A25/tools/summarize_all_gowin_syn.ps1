@@ -126,7 +126,7 @@ $Rows | Export-Csv -NoTypeInformation -Encoding UTF8 $Csv
 $mdLines = @()
 $mdLines += "# H19-LAB-02 Gowin synthesis summary"
 $mdLines += ""
-$mdLines += "Target: `GW5A-25A / GW5A-LV25MG121NC1/I0`"
+$mdLines += 'Target: `GW5A-25A / GW5A-LV25MG121NC1/I0`'
 $mdLines += ""
 $mdLines += "| Mode | Synthesis | Logic | Capacity | Logic % | LUT | ALU | Registers | DSP | EX3791 |"
 $mdLines += "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"
@@ -135,7 +135,7 @@ foreach ($r in $Rows) {
     $r.Mode,$r.Synthesis,$r.Logic,$r.LogicCapacity,$r.LogicPct,$r.LUT,$r.ALU,$r.Registers,$r.DSP,$r.EX3791)
 }
 $mdLines += ""
-$mdLines += "Measured synthesis-resource quotient: `$quotient`"
+$mdLines += ('Measured synthesis-resource quotient: `{0}`' -f $quotient)
 $mdLines += ""
 $mdLines += ("NIELSEN12 vs DIRECT12/PREFIX19: Logic {0:+#;-#;0} ({1:+0.00;-0.00;0.00}%), LUT {2:+#;-#;0} ({3:+0.00;-0.00;0.00}%), ALU {4:+#;-#;0} ({5:+0.00;-0.00;0.00}%)." -f
   $DeltaLogic,$DeltaLogicPct,$DeltaLut,$DeltaLutPct,$DeltaAlu,$DeltaAluPct)
