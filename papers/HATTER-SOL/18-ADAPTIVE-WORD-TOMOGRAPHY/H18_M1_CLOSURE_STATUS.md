@@ -254,3 +254,64 @@ If it finds a full one-erasure depth-four witness,
 \[
 M_1(W_4)=10.
 \]
+
+
+## C6 · subsets of the certified adaptive12 witness — CLOSED NEGATIVE
+
+All
+
+\[
+\binom{12}{10}=66
+\]
+
+size-10 subsets and all
+
+\[
+\binom{12}{11}=12
+\]
+
+size-11 subsets of the frozen H18-11 adaptive12 alphabet were tested against
+the exact H18-06 dynamic programme.
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35489231268}}.
+\]
+
+Results:
+
+\[
+\begin{array}{c|cc}
+& |A|=10 & |A|=11\\
+\hline
+\text{tested} & 66 & 12\\
+D_0(A)\le4 & 56 & 12\\
+S_1(A)\le4 & 0 & 0
+\end{array}
+\]
+
+Thus many proper subsets preserve ordinary depth-four tomography, but **none**
+preserves the full one-persistent-erasure depth-four contract.
+
+This yields a structural observation:
+
+\[
+\boxed{
+\text{fault-tolerant adaptive sufficiency is strictly more fragile than}
+\atop
+\text{fault-free depth-four sufficiency inside the certified witness family}.
+}
+\]
+
+No global lower bound beyond
+
+\[
+10\le M_1(W_4)\le12
+\]
+
+is inferred from this subset experiment, because other size-10 or size-11
+alphabets in the full 50-query pool remain possible.
+
+The global size-10 partition-type quotient search remains the decisive next
+gate.
