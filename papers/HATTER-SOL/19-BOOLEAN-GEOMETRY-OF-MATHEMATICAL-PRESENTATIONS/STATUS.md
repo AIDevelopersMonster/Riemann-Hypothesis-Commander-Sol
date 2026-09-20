@@ -159,7 +159,7 @@ family.
 
 GitHub Actions run \`35487642123\` verifies the NIELSEN12 source certificate.
 
-## H19-04 · E0 RTL comparison — IN PROGRESS
+## H19-04 · E0 RTL comparison — CLOSED
 
 A common generator now emits
 
@@ -454,3 +454,68 @@ Detailed record:
 Next physical gate:
 
 - H19-LAB-01 on 5CEFA7F23C6.
+
+
+## H19-08 · presentation-survival words — CLOSED FIRST FORMALIZATION
+
+For a presentation pair and a declared compiler/observable tower define the
+visibility bits
+
+\[
+\nu_i=
+\mathbf 1[
+O_i(C_i(M_1))\neq O_i(C_i(M_2))
+]
+\]
+
+and the presentation-survival word
+
+\[
+\boxed{
+W(M_1,M_2)=\nu_0\nu_1\cdots\nu_k.
+}
+\]
+
+For DIRECT12 versus PREFIX19, using source composition count, post-proc cell
+histogram, post-techmap Boolean-cell histogram, and ABC-fast total cell count:
+
+\[
+24\neq19,
+\]
+
+\[
+4919=4919,
+\]
+
+\[
+63719=63719,
+\]
+
+\[
+60374\neq60383.
+\]
+
+Hence the first H19 word is
+
+\[
+\boxed{
+W(DIRECT12,PREFIX19)=1001.
+}
+\]
+
+The first forgetting and re-separation indices are
+
+\[
+\boxed{
+f=1,\qquad r=3.
+}
+\]
+
+This is **observable forgetting**, not proof that the full intermediate
+netlists became identical: the post-techmap wire profiles remained different.
+
+Detailed layer:
+
+- \`H19_08_PRESENTATION_SURVIVAL_WORDS.md\`.
+
+H19-LAB-01 will append the physical stage to this survival record.
