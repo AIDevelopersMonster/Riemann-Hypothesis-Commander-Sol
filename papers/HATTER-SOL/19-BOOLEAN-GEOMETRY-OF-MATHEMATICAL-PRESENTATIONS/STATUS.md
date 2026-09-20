@@ -68,3 +68,117 @@ control.
 Initial strike: test the certified minimum distance-two 9-query alphabet against
 the full adaptive one-erasure depth-four contract before launching a global
 9/10/11 alphabet search.
+
+
+## H19-03 · first E0 source-factorization dataset — CLOSED
+
+Three exact source presentations of the same restricted-12 observer semantics
+have now been certified before Boolean synthesis.
+
+### DIRECT12
+
+Independent direct evaluation of every observer word:
+
+\[
+\boxed{24\text{ permutation-composition nodes}}
+\]
+
+with maximum composition depth
+
+\[
+\boxed{3}.
+\]
+
+### PREFIX19
+
+Global prefix sharing across the same 12 observers:
+
+\[
+\boxed{19\text{ shared composition nodes}}
+\]
+
+with the same maximum depth
+
+\[
+\boxed{3}.
+\]
+
+Thus source-level common-subexpression sharing gives the exact E0 reduction
+
+\[
+\boxed{24\to19}
+\]
+
+without increasing composition depth.
+
+### NIELSEN12
+
+The ten primitive observers use exact shortest elementary Nielsen programmes
+from H18-11. Their aggregate source profile is:
+
+\[
+\boxed{
+18\text{ shear}
++
+3\text{ inverse}
+}
+\]
+
+elementary Nielsen moves.
+
+The two oriented commutator observers remain direct and require six
+permutation compositions in this first mixed presentation.
+
+Hence the exact source resource vector is
+
+\[
+\boxed{
+(\text{swap}=0,\ \text{inverse}=3,\ \text{shear}=18,\
+\text{direct commutator compositions}=6).
+}
+\]
+
+The scalar mixed step count is 27, but it is **not** interpreted as a Boolean
+gate-count or FPGA-area metric because the operation types are heterogeneous.
+
+Shortest-program comparison on primitive words gives seven ties with direct
+execution and three labels that require one additional elementary Nielsen move.
+
+### Structural conclusion
+
+\[
+\boxed{
+\text{semantic / algebraic compression}
+\not\Rightarrow
+\text{source-operation-count compression}.
+}
+\]
+
+This is now an exact finite statement for the frozen restricted-12 observer
+family.
+
+GitHub Actions run \`35487642123\` verifies the NIELSEN12 source certificate.
+
+## H19-04 · E0 RTL comparison — IN PROGRESS
+
+A common generator now emits
+
+- \`direct12\`,
+- \`prefix19\`,
+- \`nielsen12\`
+
+with one identical 305-node H18 decision DAG, identical static-erasure
+interface, identical input/output register shell, and identical 2561-vector
+regression contract.
+
+The immediate gate is:
+
+\[
+\boxed{
+\text{source factorization}
+\to
+\text{generic Yosys Boolean image}
+}
+\]
+
+before any FPGA-specific place-and-route comparison.
