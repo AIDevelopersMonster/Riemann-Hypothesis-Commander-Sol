@@ -31,6 +31,7 @@ for w in 4 5 6; do
   yosys -ql "$formal_log" -p "
     read_verilog -sv $miter;
     prep -top equiv_top -flatten;
+    memory_map;
     opt;
     sat -verify -prove bad 0 -show x
   "
