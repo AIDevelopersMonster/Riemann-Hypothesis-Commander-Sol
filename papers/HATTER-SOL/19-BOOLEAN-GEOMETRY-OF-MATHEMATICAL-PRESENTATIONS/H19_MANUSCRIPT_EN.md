@@ -5,6 +5,7 @@
 ## Observability, hiding, and re-exposure of structure across compilation and FPGA realization
 
 Author: Alex Malachevsky  
+ORCID: 0009-0008-6009-3196  
 AI research collaborator: Commander Sol · Hatter Sol  
 Status: publication candidate  
 Date: 20 September 2026
@@ -401,3 +402,38 @@ A hardware image of a mathematical presentation is therefore more faithfully des
 7. Ross Tate, Michael Stepp, Zachary Tatlock, Sorin Lerner. Equality Saturation: A New Approach to Optimization. POPL 2009, 264-276. DOI 10.1145/1480881.1480915.
 8. Clifford Wolf, Johann Glaser. Yosys - A Free Verilog Synthesis Suite. Austrochip 2013, 47-52.
 9. Robert K. Brayton, Alan Mishchenko. ABC: An Academic Industrial-Strength Verification Tool. CAV 2010, 24-40. DOI 10.1007/978-3-642-14295-6_5.
+
+
+## Appendix A. Position of H19 in the HATTER-SOL programme
+
+HATTER-SOL is the research series “Tea Parties in the Additive-Multiplicative World with Hatter Sol.”
+
+Programme author: Malachevsky, A.A. / Alex Malachevsky.  
+ORCID: 0009-0008-6009-3196.  
+Programme repository: https://github.com/AIDevelopersMonster/Riemann-Hypothesis-Commander-Sol/tree/main/papers/HATTER-SOL
+
+Main research folders:
+
+1. HATTER-SOL-01 - NUMBER-LINE-OBSERVER-TWO-OPERATIONS.
+2. HATTER-SOL-02 - TWO-TEAPOTS-ONE-CUP.
+3. HATTER-SOL-03 - CUP-ASKS-ITSELF.
+4. HATTER-SOL-04 - RADICAL-PREDECESSOR.
+5. HATTER-SOL-05 - MISSING-GUEST.
+6. HATTER-SOL-06 - ORBITWISE-SURVIVAL.
+7. HATTER-SOL-07 - FREE-PORT-FACTORIZATION.
+8. HATTER-SOL-08 - DIMENSIONAL-FACTOR-ARCHITECTURES.
+9. HATTER-SOL-09 - WORLD-INTERFACE-OPERATORS.
+10. HATTER-SOL-10 - IDEAL-FACTOR-NETWORKS.
+11. HATTER-SOL-11 - ORBITAL-PORT-FILTRATIONS.
+12. HATTER-SOL-12 - OBSERVER-WORLD-STRUCTURAL-MEMORY.
+13. HATTER-SOL-13 - UNBOUNDED-WORLD-DIVERSITY.
+14. HATTER-SOL-14 - GALOIS-EQUIVARIANT-CARRIERS.
+15. HATTER-SOL-15 - NONABELIAN-TWO-PORT-DIHEDRAL.
+16. HATTER-SOL-16 - NONSOLVABLE-PORTS.
+17. HATTER-SOL-17 - NONABELIAN-TOMOGRAPHY-HARDWARE.
+18. HATTER-SOL-18 - ADAPTIVE-WORD-TOMOGRAPHY.
+19. HATTER-SOL-19 - BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS.
+
+The repository also contains the parallel HATTER-SOL-18-HOLONOMY-AUTHENTICATION folder and an HATTER-SOL-08--10 research map.
+
+The direct experimental lineage of the present paper is HATTER-SOL-16 -> HATTER-SOL-17 -> HATTER-SOL-18 -> HATTER-SOL-19: nonsolvable observer family -> hardware tomography -> adaptive word tomography -> observer-dependent compiler/FPGA presentation geometry.
