@@ -1,0 +1,31 @@
+name: HATTER-SOL-18 M1 size11 sharded exact
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-m1-size11-sharded.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size11_type_bitset_shard.py"
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        prefix: ["000", "001", "002", "010", "011", "012", "020", "021", "022", "100", "101", "102", "110", "111", "112", "120", "121", "122", "200", "201", "202", "210", "211", "212", "220", "221", "222"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Exact size11 shard
+        run: |
+          python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size11_type_bitset_shard.py --prefix "${{ matrix.prefix }}" | tee size11-${{ matrix.prefix }}.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H18-M1-size11-${{ matrix.prefix }}
+          path: size11-${{ matrix.prefix }}.log
+          retention-days: 30
