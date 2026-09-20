@@ -4,7 +4,7 @@
 
 **Branch:** \`research/hatter-sol-19-boolean-geometry\`  
 **Parent:** HATTER-SOL-18 · Adaptive Word Tomography  
-**Status:** OPEN / FOUNDATIONAL LAYER  
+**Status:** ACTIVE / THEORETICAL THRESHOLD CROSSED · PHYSICAL GATE OPEN  
 **Author:** Alex Malachevsky  
 **AI research collaborator:** Commander Sol · Hatter Sol  
 **Opened:** 20 September 2026
@@ -80,3 +80,56 @@ M_1(W_4)\in\{9,10,11,12\}
 
 remains a finite H18 closure problem.  It is being pursued independently on
 \`research/hatter-sol-18-m1-closure\` and does not modify the frozen H18 paper.
+
+
+## Current theorem spine
+
+The first H19 theorem spine is now explicit:
+
+[
+oxed{
+	ext{presentation}
+	o
+	ext{observer visibility}
+	o
+	ext{compiler survival}
+	o
+	ext{temporal/spatial separation}.
+}
+]
+
+Closed layers include:
+
+- exact source-factorization comparison for DIRECT12 / PREFIX19 / NIELSEN12;
+- compiler-profile quotient and controlled presentation preservation;
+- non-monotone coarse survival word
+  [
+  1001;
+  ]
+- no-resurrection theorem for complete deterministic compiler states;
+- exact full-state interpretation
+  [
+  1111
+  ]
+  through the measured ABC-fast stage;
+- exact parameterized address-selection family with
+  [
+  D_{m query}=n+1,
+  qquad
+  N_{m spatial}=2^{D_{m query}}-1
+  ]
+  under the declared compiled-DAG discipline.
+
+The theoretical publication threshold is crossed in substance, but the branch
+is not frozen. A hostile prior-art audit and manuscript-level claim audit are
+still required.
+
+## Immediate programme
+
+1. build the stage-by-observer visibility matrix for DIRECT12 versus PREFIX19;
+2. identify the minimal visible observer frontier at each compiler stage;
+3. run or explicitly defer H19-LAB-01 Cyclone-V physical extension;
+4. audit H19-09/H19-10 against branching-program, multiplexer, compiler and
+   circuit-complexity literature;
+5. only then decide whether the present theorem spine is sufficient for the
+   HATTER-SOL-19 publication candidate.
