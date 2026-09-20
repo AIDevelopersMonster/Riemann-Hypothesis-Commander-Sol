@@ -519,3 +519,202 @@ Detailed layer:
 - \`H19_08_PRESENTATION_SURVIVAL_WORDS.md\`.
 
 H19-LAB-01 will append the physical stage to this survival record.
+
+
+## H19-09 · Boolean observability and no-resurrection — CLOSED
+
+H19-08's survival word is now separated into two layers:
+
+1. **coarse observable visibility**;
+2. **complete compiler-state distinction**.
+
+At one fixed compiler stage, observer refinement is monotone:
+
+[
+O_apreceq O_b
+quadLongrightarrowquad
+
+u_i(O_a)le
+u_i(O_b).
+]
+
+For joint observers,
+
+[
+oxed{
+
+u_i(O_aee O_b)
+=
+
+u_i(O_a)lor
+u_i(O_b).
+}
+]
+
+Thus the visible-observer family is an upset in the observer poset and can be
+represented by its minimal visible antichain.
+
+For the complete compiler state (C_i), determinism gives the exact
+no-resurrection law
+
+[
+oxed{
+C_i(M_1)=C_i(M_2)
+Longrightarrow
+C_{i+1}(M_1)=C_{i+1}(M_2).
+}
+]
+
+Hence exact-state survival words cannot contain (0	o1).
+
+Because ABC-fast later distinguishes DIRECT12 and PREFIX19, the complete
+post-proc and post-techmap states must already have been distinct. Therefore
+
+[
+oxed{
+W_{m coarse}(DIRECT12,PREFIX19)=1001
+}
+]
+
+but, through the measured ABC-fast stage,
+
+[
+oxed{
+W_{m full state}(DIRECT12,PREFIX19)=1111.
+}
+]
+
+The correct reading is observable hiding and re-exposure, not destruction and
+recreation of compiler information.
+
+Detailed layer:
+
+- `H19_09_BOOLEAN_OBSERVABILITY_AND_NO_RESURRECTION.md`.
+
+
+## H19-10 · exact adaptive/spatialization separation family — CLOSED
+
+A parameterized address-selection family now gives an exact construction-level
+separation.
+
+For
+
+[
+ain{0,1}^n,
+qquad
+xin{0,1}^{2^n},
+]
+
+define
+
+[
+Phi_n(a,x)=x_a.
+]
+
+The canonical adaptive presentation queries the (n) address bits and then the
+single selected payload bit:
+
+[
+oxed{
+D_{m query}(M_n)=n+1.
+}
+]
+
+Its residual frontier grows exactly as
+
+[
+oxed{
+R_j(M_n)=2^j.
+}
+]
+
+Under the frozen presentation-preserving compiled-DAG discipline
+(Pi_{m DAG}), full spatialization instantiates
+
+[
+2^n
+]
+
+payload observers and
+
+[
+2^n-1
+]
+
+binary selectors. Therefore
+
+[
+oxed{
+N_{m spatial}(M_n)
+=
+2^{n+1}-1
+=
+2^{D_{m query}}-1
+}
+]
+
+when address inputs themselves are treated as wires.
+
+This is an exact exponential temporal-depth/spatial-presentation separation
+**within the declared compiler discipline**.
+
+It is not an unrestricted Boolean circuit lower bound and does not claim the
+standard multiplexer semantics as novel.
+
+Detailed layer:
+
+- `H19_10_ADAPTIVE_SPATIALIZATION_SEPARATION.md`.
+
+
+## Publication threshold update
+
+The theoretical publication threshold defined in `DIALOGUE_TZ.md` is now
+crossed in substance by two independent theorem layers:
+
+1. H19-09: exact observer-order/no-resurrection structure for compiler
+   survival;
+2. H19-10: exact parameterized adaptive/spatialization separation under
+   (Pi_{m DAG}).
+
+Publication is **not yet frozen**.
+
+Before manuscript assembly, H19 still requires:
+
+1. hostile prior-art/novelty audit, especially against standard multiplexer,
+   branching-program, decision-tree, and circuit-compilation literature;
+2. claim tightening so construction-level exactness is never promoted to
+   unrestricted circuit complexity;
+3. completion or explicit deferral of H19-LAB-01 physical Cyclone-V extension;
+4. consolidation of the finite DIRECT12/PREFIX19/NIELSEN12 visibility matrix.
+
+## Immediate next strike
+
+The next mathematical/experimental object is the finite visibility matrix
+
+[
+Gamma_{i,alpha}
+=
+mathbf 1[
+O_alpha(C_i(M_1))
+e O_alpha(C_i(M_2))
+].
+]
+
+For DIRECT12 versus PREFIX19, populate it with:
+
+- source composition count;
+- cell total;
+- full cell histogram;
+- wire profile;
+- module-instance profile;
+- ABC-fast cell profile;
+- later Cyclone-V physical coordinates.
+
+Then determine the minimal visible frontier
+
+[
+partialmathcal V_i
+]
+
+at each compiler stage and test which source quantities predict movement of
+that frontier.
