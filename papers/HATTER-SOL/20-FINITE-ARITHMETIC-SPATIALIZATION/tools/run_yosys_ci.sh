@@ -7,8 +7,8 @@ OUT="$LAB/yosys_ci_out"
 mkdir -p "$OUT"
 
 python3 "$LAB/tools/verify_python_models.py" --widths 4 5 6 7 8 9 10
-python3 "$LAB/tools/generate_prime_spatial_lab.py" --out-dir "$GEN" --widths 4 5 6
-python3 "$LAB/tools/generate_equiv_miter.py" --out-dir "$GEN" --widths 4 5 6
+python3 "$LAB/tools/generate_prime_spatial_lab.py" --out-dir "$GEN" --widths 4 5 6 7 8 9 10
+python3 "$LAB/tools/generate_equiv_miter.py" --out-dir "$GEN" --widths 4 5 6 7 8 9 10
 
 echo "width,mode,stage,cells,wires,wire_bits" > "$OUT/PRIME_SPATIAL_YOSYS_SUMMARY.csv"
 
@@ -24,7 +24,7 @@ extract_stat () {
   echo "$width,$mode,$stage,$cells,$wires,$bits" >> "$OUT/PRIME_SPATIAL_YOSYS_SUMMARY.csv"
 }
 
-for w in 4 5 6; do
+for w in 4 5 6 7 8 9 10; do
   echo "=== FORMAL EQUIVALENCE W=$w ==="
   formal_log="$OUT/w"$w"_formal.log"
   miter="$GEN/w"$w"/nextprime_equiv_miter.sv"
