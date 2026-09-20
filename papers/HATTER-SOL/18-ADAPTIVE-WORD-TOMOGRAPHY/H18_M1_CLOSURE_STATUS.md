@@ -138,3 +138,119 @@ This explains why simple forced propagation alone is weak: even the most
 constrained pair still offers 14 candidate labels.
 
 No new bound on \(M_1(W_4)\) is inferred from this profile alone.
+
+
+## C3 · query partition quotient — CLOSED STRUCTURAL LAYER
+
+The 50 canonical \(W_4\) queries form exactly 25 equality-partition types on
+the full 197-state H18 quotient:
+
+\[
+\boxed{50=25\times2}.
+\]
+
+Every type has multiplicity exactly two.  The pairs include
+
+\[
+(A,a),\quad(B,b),\quad(AB,ab),\quad\ldots,
+\]
+
+and the forced oriented commutators are one type:
+
+\[
+\boxed{(ABab,AbaB)}.
+\]
+
+Members of one type induce exactly the same partition of the 197 states; their
+used response labels differ only by a bijective relabelling.
+
+Therefore adaptive feasibility is invariant under replacing one query by its
+partner, while the multiplicity \(0/1/2\) of a type must still be retained
+because persistent erasure acts on query identity.
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35488360846}}.
+\]
+
+## C4 · exact size-9 quotient search — CLOSED NEGATIVE
+
+The size-9 problem was quotiented exactly by the 25 partition types.
+
+The forced commutator type contributes both of its identities.  The remaining
+seven query identities were represented by multiplicities
+
+\[
+x_t\in\{0,1,2\}
+\]
+
+over the other 24 types.
+
+After quotienting the 3,556 raw remaining pair constraints, only
+
+\[
+\boxed{882}
+\]
+
+distinct distance constraints remain.
+
+The exact DFS visited
+
+\[
+\boxed{332254}
+\]
+
+states and found
+
+\[
+\boxed{2816}
+\]
+
+complete size-9 distance-two multiplicity vectors.
+
+Every one was tested by the exact H18-06 adaptive dynamic programme.
+
+Result:
+
+\[
+\boxed{
+\#\{A:|A|=9,\ D_0(A)\le4\}=0.
+}
+\]
+
+Hence no size-9 alphabet can satisfy the full one-erasure H18 contract.
+
+Therefore the certified global bound is now
+
+\[
+\boxed{
+10\le M_1(W_4)\le12.
+}
+\]
+
+This is strictly stronger than H18-10.
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35488545595}}.
+\]
+
+The result does not depend on the earlier particular ROBUST9 witness.  It is
+an exhaustive quotient search over **all** size-9 alphabets.
+
+## C5 · exact size-10 quotient search — RUNNING
+
+The same exact partition-type quotient is now applied to total alphabet size
+10.  If it finds no witness,
+
+\[
+M_1(W_4)\ge11.
+\]
+
+If it finds a full one-erasure depth-four witness,
+
+\[
+M_1(W_4)=10.
+\]
