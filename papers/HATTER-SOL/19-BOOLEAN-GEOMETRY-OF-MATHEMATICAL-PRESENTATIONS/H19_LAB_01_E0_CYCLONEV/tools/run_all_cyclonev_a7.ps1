@@ -16,3 +16,9 @@ Write-Host "PASS: all H19-LAB-01 Cyclone V presentations completed"
 Write-Host ""
 Write-Host "== FINAL MATCHED SUMMARY =="
 & (Join-Path $Tools "summarize_cyclonev_a7.ps1")
+
+
+Write-Host ""
+Write-Host "== PHYSICAL VISIBILITY ATLAS =="
+& (Join-Path $Tools "analyze_physical_visibility_atlas.ps1")
+if ($LASTEXITCODE -ne 0) { throw "physical visibility atlas analysis failed" }
