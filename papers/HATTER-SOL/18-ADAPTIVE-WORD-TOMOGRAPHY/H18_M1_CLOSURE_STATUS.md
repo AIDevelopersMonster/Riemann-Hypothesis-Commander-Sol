@@ -400,3 +400,50 @@ The global size-11 exact search is now the decisive closure gate:
 - a size-11 witness gives \(M_1(W_4)=11\);
 - global size-11 exclusion, by the alphabet-monotonicity lemma and the existing
   size-12 witness, gives \(M_1(W_4)=12\).
+
+
+## C8 · constructive size-11 neighborhood — CLOSED NEGATIVE
+
+A targeted witness search scanned every size-11 alphabet obtained from the
+certified adaptive12 witness by
+
+\[
+\text{remove two labels}+\text{add one outside label}.
+\]
+
+The search therefore tested exactly
+
+\[
+\binom{12}{2}(50-12)=66\cdot38=2508
+\]
+
+distinct candidates.
+
+GitHub Actions run:
+
+\[
+\boxed{\texttt{35489478046}}.
+\]
+
+Results:
+
+\[
+\boxed{2238}
+\]
+
+of the 2,508 candidates preserve fault-free depth-four tomography, but
+
+\[
+\boxed{0}
+\]
+
+satisfy the full one-persistent-erasure depth-four contract.
+
+This is constructive/neighborhood evidence only and gives no additional global
+lower bound.  The exact global bound remains
+
+\[
+\boxed{11\le M_1(W_4)\le12}
+\]
+
+pending the exhaustive size-11 quotient search.
