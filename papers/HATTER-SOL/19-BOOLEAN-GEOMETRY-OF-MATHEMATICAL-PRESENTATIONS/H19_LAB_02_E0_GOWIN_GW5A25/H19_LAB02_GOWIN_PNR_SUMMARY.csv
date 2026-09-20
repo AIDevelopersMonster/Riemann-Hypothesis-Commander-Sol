@@ -1,0 +1,4 @@
+"Mode","PnR","Timing100MHz","Logic","LogicCapacity","LogicPct","LUT","ALU","Registers","CLS","IO","DSP","ActualFmaxMHz","CriticalLevels","WNSns","SetupTNSns","SetupEndpoints","HoldTNSns","HoldEndpoints"
+"direct12","PASS","FAIL","19628","23040","85,19","18882","746","69","10150","71","28","16,276","49","-51,44","-644,501","13","0","0"
+"prefix19","PASS","FAIL","19628","23040","85,19","18882","746","69","10150","71","28","16,276","49","-51,44","-644,501","13","0","0"
+"nielsen12","PASS","FAIL","21448","23040","93,09","20729","719","69","10941","71","28","16,599","49","-50,243","-628,206","13","0","0"
