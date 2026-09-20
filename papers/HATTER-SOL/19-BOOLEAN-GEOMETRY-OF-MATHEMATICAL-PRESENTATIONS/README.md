@@ -4,7 +4,7 @@
 
 **Branch:** \`research/hatter-sol-19-boolean-geometry\`  
 **Parent:** HATTER-SOL-18 · Adaptive Word Tomography  
-**Status:** ACTIVE / THEORETICAL THRESHOLD CROSSED · PHYSICAL GATE OPEN  
+**Status:** PUBLICATION CANDIDATE · TWO-VENDOR PHYSICAL REPLICATION CLOSED  
 **Author:** Alex Malachevsky  
 **AI research collaborator:** Commander Sol · Hatter Sol  
 **Opened:** 20 September 2026
@@ -133,3 +133,29 @@ still required.
    circuit-complexity literature;
 5. only then decide whether the present theorem spine is sufficient for the
    HATTER-SOL-19 publication candidate.
+
+
+## H19-17 · cross-vendor physical quotient — CLOSED
+
+The frozen E0 family has now been realized on two independent FPGA vendor/toolchains:
+
+- Cyclone V / Quartus II 13.1;
+- Gowin GW5A-25A / Gowin Education IDE 1.9.9Beta-4.
+
+Both joint measured post-route physical observers induce
+
+[
+oxed{
+{{DIRECT12,PREFIX19},{NIELSEN12}}.
+}
+]
+
+This is a replicated finite experimental partition result. It is not a claim of universal technology-independence or routed-state identity.
+
+The assembled Russian manuscript is:
+
+- `H19_MANUSCRIPT_RU.md`
+
+Publication-candidate claim boundary and the cross-vendor result are formalized in:
+
+- `H19_17_CROSS_VENDOR_PHYSICAL_QUOTIENT.md`.
