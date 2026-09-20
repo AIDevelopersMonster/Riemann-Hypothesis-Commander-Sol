@@ -1,0 +1,47 @@
+name: H20 finite arithmetic spatialization
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-finite-arithmetic-spatialization
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/**"
+      - ".github/workflows/h20-finite-arithmetic-spatialization.yml"
+
+jobs:
+  formal-and-synthesis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yosys
+          yosys -V
+
+      - name: Run formal equivalence and matched synthesis
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION
+        run: |
+          chmod +x tools/run_yosys_ci.sh
+          ./tools/run_yosys_ci.sh
+
+      - name: Show formal proofs
+        if: always()
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION
+        run: |
+          grep -R "SUCCESS" yosys_ci_out/*_formal.log || true
+          cat yosys_ci_out/PRIME_SPATIAL_YOSYS_SUMMARY.csv || true
+
+      - name: Upload H20 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-prime-spatialization
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/yosys_ci_out/
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/generated/
