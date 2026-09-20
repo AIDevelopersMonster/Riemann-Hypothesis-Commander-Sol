@@ -1,0 +1,30 @@
+name: HATTER-SOL-18 M1 size9 exact
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-m1-size9-exact.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size9_exact_search.py"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_adaptive_one_erasure_certificate.py"
+
+jobs:
+  exact-size9:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install exact SMT solver
+        run: python -m pip install --disable-pip-version-check z3-solver==4.13.3.0
+      - name: Exhaust size-9 robust alphabets and test adaptive contract
+        run: |
+          python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size9_exact_search.py | tee h18_m1_size9_exact.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H18-M1-size9-exact
+          path: h18_m1_size9_exact.log
+          retention-days: 30
