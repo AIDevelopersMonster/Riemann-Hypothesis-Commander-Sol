@@ -61,6 +61,7 @@ set_option -output_base_name $Project
 set_option -gen_text_timing_rpt 1
 set_option -timing_driven 1
 set_option -use_mspi_as_gpio 1
+set_option -use_ready_as_gpio 1
 saveto -all_options {$Snapshot}
 run all
 "@
