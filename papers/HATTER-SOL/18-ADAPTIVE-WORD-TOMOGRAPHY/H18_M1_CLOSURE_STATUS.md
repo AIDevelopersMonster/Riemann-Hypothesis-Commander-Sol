@@ -96,3 +96,45 @@ If no size-9 adaptive alphabet exists, repeat at sizes 10 then 11.
 
 The first successful size \(k\), combined with exhaustive failure below \(k\),
 will close \(M_1(W_4)=k\).
+
+
+## C2a · exact constraint profile — CLOSED
+
+The forced oriented commutator pair already covers some required state pairs
+twice.  Exactly
+
+\[
+\boxed{3556}
+\]
+
+required pairs remain with zero forced hits and therefore need two hits from
+the remaining 48 labels.
+
+The number of available distinguishing labels per remaining pair ranges from
+
+\[
+\boxed{14\text{ to }48}.
+\]
+
+The exact minimum occurs for two constraints.
+
+Coverer-count histogram:
+
+\[
+\begin{array}{c|rrrrrrrrr}
+\#\text{coverers}&14&16&18&20&22&24&26&28&30\\
+\#\text{pairs}&2&24&22&34&42&34&20&116&142
+\end{array}
+\]
+
+\[
+\begin{array}{c|rrrrrrrrr}
+\#\text{coverers}&32&34&36&38&40&42&44&46&48\\
+\#\text{pairs}&200&424&308&432&528&548&400&228&52.
+\end{array}
+\]
+
+This explains why simple forced propagation alone is weak: even the most
+constrained pair still offers 14 candidate labels.
+
+No new bound on \(M_1(W_4)\) is inferred from this profile alone.
