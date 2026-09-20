@@ -1093,3 +1093,63 @@ The required question is not which implementation is globally "best", but
 
 No source semantics, decision DAG, external contract, or observer definitions
 may be changed merely to make the second target fit.
+
+
+## H19-17 · cross-vendor physical replication — CLOSED
+
+Cyclone V joint measured physical partition:
+
+[
+{{D,P},{N}}.
+]
+
+Gowin GW5A-25A joint measured post-P&R partition:
+
+[
+{{D,P},{N}}.
+]
+
+Therefore the two-vendor measured quotient signature is
+
+[
+oxed{
+mathfrak Q_{m phys}^{(2)}
+=
+left(
+{{D,P},{N}},
+{{D,P},{N}}
+ight).
+}
+]
+
+The result is partition replication only. Numerical resource ratios and timing directions are not asserted to be invariant.
+
+Both physical laboratories preserve SHA-256 provenance manifests over 33 local run artifacts.
+
+## H19 manuscript assembly — CLOSED FIRST RU CANDIDATE
+
+A complete Russian manuscript has been assembled:
+
+- `H19_MANUSCRIPT_RU.md`
+
+The manuscript integrates:
+
+- temporal/spatial formalization;
+- observer refinement and no-resurrection;
+- compiler forgetting as observer hiding;
+- non-monotone visibility and frontier migration;
+- family partition dynamics and latent-gap formalism;
+- Cyclone-V physical atlas;
+- Gowin synthesis and post-P&R replication;
+- cross-vendor conclusion;
+- explicit non-claims and publication claim boundary.
+
+Current status:
+
+[
+oxed{	ext{PUBLICATION CANDIDATE THRESHOLD CROSSED}}
+]
+
+for the finite observer-relative claim set.
+
+Remaining work is publication hardening: bibliography audit, English manuscript, notation audit, reviewer prompt, PDF/Zenodo packaging.
