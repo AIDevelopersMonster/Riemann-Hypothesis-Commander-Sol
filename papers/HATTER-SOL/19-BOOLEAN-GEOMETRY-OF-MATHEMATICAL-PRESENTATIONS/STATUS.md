@@ -888,3 +888,92 @@ Priority targets:
    technology or compiler flow;
 3. identify a predictive source quantity for frontier/partition movement;
 4. only after one of these succeeds, assemble the manuscript candidate.
+
+
+## H19-15 · physical visibility atlas protocol — CLOSED / MEASUREMENT PENDING
+
+The Cyclone-V H19-LAB-01 laboratory is now frozen as a physical partition
+experiment rather than a one-number FPGA comparison.
+
+Target:
+
+\[
+\boxed{\mathrm{5CEFA7F23C6}}
+\]
+
+Tool/protocol:
+
+\[
+\boxed{
+\text{Quartus II 13.1, 100 MHz reference, Slow 1100 mV / 85 C}
+}
+\]
+
+Physical observer coordinates:
+
+\[
+O_{\rm ALM},
+O_{\rm reg},
+O_{\rm DSP},
+O_{F_{\max}},
+O_{\rm delay},
+O_{\rm logicdepth},
+O_{\rm celldelay},
+O_{\rm routedelay}.
+\]
+
+The matched runner now automatically emits:
+
+- H19_LAB01_CYCLONEV_SUMMARY.csv;
+- H19_LAB01_PHYSICAL_PARTITIONS.csv;
+- H19_LAB01_PHYSICAL_VISIBILITY_ATLAS.md.
+
+A new analyzer computes:
+
+1. one partition of \(\{D,P,N\}\) per physical observer;
+2. the finest joint partition supported by all successfully extracted physical
+   coordinates;
+3. a profile-relative latent gap
+   \[
+   L_{\rm profile}(O)
+   =
+   Q(\mathcal P_O)-Q(\mathcal P_{\rm joint});
+   \]
+4. the DIRECT12/PREFIX19 physical visibility vector.
+
+The joint measured profile is explicitly **not** identified with the complete
+Quartus routed state.
+
+The analyzer refuses to build the atlas unless all three designs have FIT
+status.
+
+A deterministic synthetic self-test for the partition logic is included:
+
+- tools/test_physical_visibility_atlas.ps1.
+
+Detailed protocol:
+
+- H19_15_PHYSICAL_VISIBILITY_ATLAS_PROTOCOL.md.
+
+Current state:
+
+\[
+\boxed{
+\text{protocol closed}
+\quad+\quad
+\text{automation closed}
+\quad+\quad
+\text{physical numbers pending local Quartus run}.
+}
+\]
+
+The next user-side execution command is:
+
+~~~powershell
+.\tools\test_physical_visibility_atlas.ps1
+.\tools\run_all_cyclonev_a7.ps1
+~~~
+
+from the H19_LAB_01_E0_CYCLONEV directory.
+
+No physical result is claimed before those reports exist.
