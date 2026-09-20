@@ -400,8 +400,7 @@ run pnr
 
 ## 7. saveto — сохранить проектный Tcl
 
-Официально документировано SUG1220; на локальной 1.9.9Beta-4 пока не
-проверено вручную.
+Проверено локально на Gowin Education 1.9.9Beta-4.
 
 Синтаксис документации:
 
@@ -419,13 +418,26 @@ saveto -all_options project_snapshot_full.tcl
 Это особенно полезно для provenance: после успешного GUI/CLI setup можно
 сохранить фактическое состояние проекта в воспроизводимый Tcl script.
 
-Перед включением в frozen HATTER-SOL runner выполнить локально:
+Локально подтверждён help:
 
-~~~tcl
-saveto -h
+~~~text
+Brief:
+  Export a tcl script, containing current project's design information.
+Usage:
+  saveto [options] <file>
+Arguments:
+  <file>  The script file name.
+Options:
+  -h, --help
+  -all_options
 ~~~
 
-и сравнить help с этой справкой.
+Таким образом синтаксис ниже считается VERIFIED:
+
+~~~tcl
+saveto project_snapshot.tcl
+saveto -all_options project_snapshot_full.tcl
+~~~
 
 ---
 
@@ -605,7 +617,7 @@ saveto -h
 | `set_option -h` | VERIFIED |
 | `run -h` | VERIFIED |
 | `run syn/pnr/all` syntax | VERIFIED BY LOCAL HELP |
-| `saveto` | OFFICIAL DOC; LOCAL CHECK PENDING |
+| `saveto` | VERIFIED |
 | full H19-LAB-02 synthesis | PENDING |
 | full H19-LAB-02 P&R | PENDING |
 | timing/utilization parser | PENDING |
