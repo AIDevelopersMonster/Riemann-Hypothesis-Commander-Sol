@@ -116,7 +116,7 @@ def perm_expr(word: str) -> str:
 
 
 
-def emit_word_realization(lines, mode: str, keep_intermediates: bool = False):
+def emit_word_realization(lines, mode: str, keep_intermediates: bool = False, module_primitives: bool = False):
     """Emit one of three E0-equivalent observer factorizations.
 
     Returns a dict word -> SystemVerilog expression carrying exactly that word
@@ -129,21 +129,36 @@ def emit_word_realization(lines, mode: str, keep_intermediates: bool = False):
     def letter_expr(ch: str) -> str:
         return {"A": "A", "B": "B", "a": "invA", "b": "invB"}[ch]
 
+    def emit_comp(name: str, p: str, q: str) -> str:
+        if module_primitives:
+            a(f"wire [23:0] {name};")
+            a(f"(* keep_hierarchy *) h19_compose_perm u_{name}(.p({p}),.q({q}),.r({name}));")
+        else:
+            a(f"{wire_kw} [23:0] {name} = compose_perm({p}, {q});")
+        return name
+
+    def emit_inv(name: str, p: str) -> str:
+        if module_primitives:
+            a(f"wire [23:0] {name};")
+            a(f"(* keep_hierarchy *) h19_inverse_perm u_{name}(.p({p}),.r({name}));")
+        else:
+            a(f"{wire_kw} [23:0] {name} = inverse_perm({p});")
+        return name
+
     def emit_direct(word: str, tag: str) -> str:
         if len(word) == 1:
             return letter_expr(word)
         cur = letter_expr(word[0])
         for k, ch in enumerate(word[1:], start=1):
             name = f"{tag}_{k}"
-            a(f"{wire_kw} [23:0] {name} = compose_perm({cur}, {letter_expr(ch)});")
-            cur = name
+            cur = emit_comp(name, cur, letter_expr(ch))
         return cur
 
     if mode == "prefix19":
         for pref in PREFIXES:
             parent = pref[:-1]
             last = pref[-1]
-            a(f"{wire_kw} [23:0] p_{pref} = compose_perm({perm_expr(parent)}, {perm_expr(last)});")
+            emit_comp(f"p_{pref}", perm_expr(parent), perm_expr(last))
         for word in WORDS:
             out[word] = perm_expr(word)
         return out
@@ -170,31 +185,31 @@ def emit_word_realization(lines, mode: str, keep_intermediates: bool = False):
                     u, v = v, u
                 elif op == "I_A":
                     nu = f"n{wid}_{step}_u"
-                    a(f"{wire_kw} [23:0] {nu} = inverse_perm({u});")
+                    emit_inv(nu, u)
                     u = nu
                 elif op == "I_B":
                     nv = f"n{wid}_{step}_v"
-                    a(f"{wire_kw} [23:0] {nv} = inverse_perm({v});")
+                    emit_inv(nv, v)
                     v = nv
                 elif op == "N_A+":
                     nu = f"n{wid}_{step}_u"
-                    a(f"{wire_kw} [23:0] {nu} = compose_perm({u}, {v});")
+                    emit_comp(nu, u, v)
                     u = nu
                 elif op == "N_A-":
                     iv = f"n{wid}_{step}_iv"
                     nu = f"n{wid}_{step}_u"
-                    a(f"{wire_kw} [23:0] {iv} = inverse_perm({v});")
-                    a(f"{wire_kw} [23:0] {nu} = compose_perm({u}, {iv});")
+                    emit_inv(iv, v)
+                    emit_comp(nu, u, iv)
                     u = nu
                 elif op == "N_B+":
                     nv = f"n{wid}_{step}_v"
-                    a(f"{wire_kw} [23:0] {nv} = compose_perm({v}, {u});")
+                    emit_comp(nv, v, u)
                     v = nv
                 elif op == "N_B-":
                     iu = f"n{wid}_{step}_iu"
                     nv = f"n{wid}_{step}_v"
-                    a(f"{wire_kw} [23:0] {iu} = inverse_perm({u});")
-                    a(f"{wire_kw} [23:0] {nv} = compose_perm({v}, {iu});")
+                    emit_inv(iu, u)
+                    emit_comp(nv, v, iu)
                     v = nv
                 else:
                     raise AssertionError(op)
@@ -208,12 +223,25 @@ def emit_word_realization(lines, mode: str, keep_intermediates: bool = False):
     raise ValueError(f"unknown realization mode: {mode}")
 
 
-def emit_core(path: Path, mode: str, keep_intermediates: bool = False) -> None:
+def emit_core(path: Path, mode: str, keep_intermediates: bool = False, module_primitives: bool = False) -> None:
     lines = []
     a = lines.append
 
     a("// Auto-generated H19 restricted-12 E0 comparison core.")
     a("// Exact H18-11 decision DAG; observer factorization selected by generator mode.")
+    if module_primitives:
+        a("(* keep_hierarchy *) module h19_compose_perm(input logic [23:0] p, input logic [23:0] q, output logic [23:0] r);")
+        a("  function automatic [2:0] gp(input logic [23:0] x, input integer idx); gp=x[idx*3 +: 3]; endfunction")
+        a("  integer i; logic [2:0] qi;")
+        a("  always @* begin r='0; for(i=0;i<8;i=i+1) begin qi=gp(q,i); r[i*3 +:3]=gp(p,qi); end end")
+        a("endmodule")
+        a("")
+        a("(* keep_hierarchy *) module h19_inverse_perm(input logic [23:0] p, output logic [23:0] r);")
+        a("  function automatic [2:0] gp(input logic [23:0] x, input integer idx); gp=x[idx*3 +: 3]; endfunction")
+        a("  integer i; logic [2:0] pi;")
+        a("  always @* begin r='0; for(i=0;i<8;i=i+1) begin pi=gp(p,i); r[pi*3 +:3]=i[2:0]; end end")
+        a("endmodule")
+        a("")
     a("module h18_r12_comb_core(")
     a("    input  logic [23:0] A,")
     a("    input  logic [23:0] B,")
@@ -255,13 +283,18 @@ def emit_core(path: Path, mode: str, keep_intermediates: bool = False) -> None:
     a("endfunction")
     a("")
     a("wire valid_A, valid_B;")
-    a("wire [23:0] invA = inverse_perm(A);")
-    a("wire [23:0] invB = inverse_perm(B);")
+    if module_primitives:
+        a("wire [23:0] invA, invB;")
+        a("(* keep_hierarchy *) h19_inverse_perm u_invA(.p(A),.r(invA));")
+        a("(* keep_hierarchy *) h19_inverse_perm u_invB(.p(B),.r(invB));")
+    else:
+        a("wire [23:0] invA = inverse_perm(A);")
+        a("wire [23:0] invB = inverse_perm(B);")
     a("psl27_membership_only u_mem_A(.perm(A),.valid(valid_A));")
     a("psl27_membership_only u_mem_B(.perm(B),.valid(valid_B));")
     a("")
 
-    word_expr = emit_word_realization(lines, mode, keep_intermediates)
+    word_expr = emit_word_realization(lines, mode, keep_intermediates, module_primitives)
     a("")
 
     for wid, word in enumerate(WORDS):
@@ -545,11 +578,13 @@ def main() -> None:
     parser.add_argument("--mode", choices=("direct12","prefix19","nielsen12"), default="prefix19")
     parser.add_argument("--keep-intermediates", action="store_true",
                         help="mark declared word-factorization intermediates with Yosys keep")
+    parser.add_argument("--module-primitives", action="store_true",
+                        help="realize compose/inverse as retained primitive module instances")
     args = parser.parse_args()
     out = args.out_dir
     out.mkdir(parents=True, exist_ok=True)
 
-    emit_core(out / "h18_r12_comb_core.sv", args.mode, args.keep_intermediates)
+    emit_core(out / "h18_r12_comb_core.sv", args.mode, args.keep_intermediates, args.module_primitives)
     emit_wrapper(out / "h18_r12_comb_controller.sv")
     emit_vectors(out / "h18_r12_comb_vectors.txt")
     emit_tb(out / "tb_h18_r12_comb_controller.sv")
@@ -558,6 +593,7 @@ def main() -> None:
     print("H19 restricted-12 E0 comparison generator")
     print("mode =", args.mode)
     print("keep_intermediates =", args.keep_intermediates)
+    print("module_primitives =", args.module_primitives)
     print("words =", list(WORDS))
     print("shared prefix-DAG compositions =", len(PREFIXES))
     print("maximum word-DAG composition depth =", max(len(p)-1 for p in PREFIXES))
