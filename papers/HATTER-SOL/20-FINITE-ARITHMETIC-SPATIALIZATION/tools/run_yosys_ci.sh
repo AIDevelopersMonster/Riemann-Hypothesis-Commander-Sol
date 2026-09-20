@@ -45,7 +45,9 @@ for w in 4 5 6; do
       read_verilog -sv $src;
       hierarchy -top nextprime_top;
       proc; flatten; opt;
-      tee -o $od/post_proc.stat stat;
+      tee -o $od/post_proc_raw.stat stat;
+      memory_map; opt;
+      tee -o $od/post_boolnorm.stat stat;
       techmap; opt;
       tee -o $od/post_techmap.stat stat;
       abc -fast; opt;
@@ -53,7 +55,8 @@ for w in 4 5 6; do
       write_json $od/post_abc.json
     "
 
-    extract_stat "$w" "$mode" "proc" "$od/post_proc.stat"
+    extract_stat "$w" "$mode" "proc_raw" "$od/post_proc_raw.stat"
+    extract_stat "$w" "$mode" "boolnorm" "$od/post_boolnorm.stat"
     extract_stat "$w" "$mode" "techmap" "$od/post_techmap.stat"
     extract_stat "$w" "$mode" "abc" "$od/post_abc.stat"
   done
