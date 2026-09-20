@@ -143,3 +143,78 @@ worst_path_full.rpt
 
 Quartus покажет, исчезает ли различие снова, сохраняется или меняет знак ещё
 раз.
+
+
+## 6. Новый автоматический physical visibility atlas
+
+Перед реальным Quartus-запуском можно проверить сам анализатор:
+
+~~~powershell
+.\tools\test_physical_visibility_atlas.ps1
+~~~
+
+Ожидаемый финал:
+
+~~~text
+PASS: H19 physical visibility atlas analyzer self-test
+~~~
+
+После обычного полного запуска
+
+~~~powershell
+.\tools\run_all_cyclonev_a7.ps1
+~~~
+
+теперь автоматически формируются три итоговых файла:
+
+~~~text
+H19_LAB01_CYCLONEV_SUMMARY.csv
+H19_LAB01_PHYSICAL_PARTITIONS.csv
+H19_LAB01_PHYSICAL_VISIBILITY_ATLAS.md
+~~~
+
+Первый содержит сырые сопоставимые физические координаты.
+
+Второй автоматически строит разбиения тройки
+
+~~~text
+D = DIRECT12
+P = PREFIX19
+N = NIELSEN12
+~~~
+
+по каждому наблюдателю:
+
+~~~text
+ALM
+Registers
+DSP
+Fmax_MHz
+DataDelay_ns
+LogicLevels
+Cell_ns
+Routing_ns
+~~~
+
+Третий файл уже является научной сводкой H19: в нем фиксируются physical
+partitions, joint measured-profile partition, profile-relative latent gap и
+вектор видимости DIRECT12/PREFIX19.
+
+Важно: joint measured-profile считается самым тонким только среди реально
+извлеченных координат. Он не объявляется полным состоянием Quartus database.
+
+Анализатор также откажется строить atlas, если хотя бы один из трех вариантов
+не имеет статуса FIT. Поэтому NOFIT не может случайно попасть в таблицу
+routed timing как обычная физическая точка.
+
+## 7. Что прислать после запуска
+
+Теперь достаточно прислать два файла:
+
+~~~text
+H19_LAB01_CYCLONEV_SUMMARY.csv
+H19_LAB01_PHYSICAL_VISIBILITY_ATLAS.md
+~~~
+
+Если atlas покажет неожиданное совпадение или резкое расхождение одной
+координаты, тогда дополнительно нужен соответствующий worst_path_full.rpt.
