@@ -59,3 +59,44 @@ This verifies the mathematical direct/linear/balanced models only.
 5. Only after the baseline: add arithmetic/spectral/zeta-derived observers.
 
 No RH-related claim is open at this stage.
+
+
+## H20-01 closed result
+
+Formal SAT equivalence is now proved for DIRECT / LINEAR / BALANCED for every W=4..10.
+
+After Boolean normalization with memory_map and matched techmap + ABC-fast, all three presentations remain structurally distinct for every tested width.
+
+ABC-fast cell counts:
+
+| W | DIRECT | BALANCED | LINEAR |
+|---:|---:|---:|---:|
+| 4 | 18 | 26 | 37 |
+| 5 | 35 | 56 | 75 |
+| 6 | 56 | 112 | 158 |
+| 7 | 93 | 175 | 292 |
+| 8 | 156 | 315 | 562 |
+| 9 | 243 | 588 | 1128 |
+| 10 | 407 | 1079 | 2226 |
+
+Measured ordering:
+
+\[
+D_W < B_W < L_W
+\]
+
+for ABC cell count throughout W=4..10.
+
+Observer partitions:
+
+\[
+\mathcal P_W^{sem}=\{\{D,L,B\}\},
+\qquad
+\mathcal P_W^{ABC}=\{\{D\},\{B\},\{L\}\}.
+\]
+
+Detailed layer:
+
+H20_01_PRIME_PRESENTATION_SEPARATION.md
+
+Next gate: determine whether this separation survives vendor FPGA mapping and whether the growth differences persist under a second arithmetic family.
