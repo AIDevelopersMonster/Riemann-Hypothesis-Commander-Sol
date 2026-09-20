@@ -131,6 +131,33 @@ def adaptive_flags(local_mask:int)->tuple[bool,bool]:
 
     return True,one(c.ALL_MASK,4)
 
+def propagate_forced(chosen:int):
+    """Apply logically forced labels until a fixed point.
+
+    If a deficient pair needs r additional hits and exactly r unchosen labels
+    can still hit it, every valid completion must contain all of them.
+    """
+    while True:
+        if chosen.bit_count()>7:
+            return None
+        inv=(~chosen)&ALL_LOCAL
+        changed=False
+        for cm in CONSTRAINTS:
+            have=(cm & chosen).bit_count()
+            if have>=2:
+                continue
+            need=2-have
+            avail=cm & inv
+            n=avail.bit_count()
+            if n<need:
+                return None
+            if n==need:
+                chosen |= avail
+                changed=True
+                break
+        if not changed:
+            return chosen
+
 def choose_constraint(chosen:int):
     """Return (need, available_local_mask) for best deficient constraint."""
     best=None
@@ -203,6 +230,10 @@ def evaluate_full(mask:int):
 def search(chosen:int):
     global nodes,witness
     if witness is not None:
+        return
+
+    chosen=propagate_forced(chosen)
+    if chosen is None:
         return
     if chosen in visited:
         return
