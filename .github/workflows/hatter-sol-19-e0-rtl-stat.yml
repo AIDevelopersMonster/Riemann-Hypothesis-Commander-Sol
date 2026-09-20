@@ -1,0 +1,52 @@
+name: HATTER-SOL-19 RTL structural images
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-e0-rtl-stat.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py"
+
+jobs:
+  rtl-stat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [direct12, prefix19, nielsen12]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yosys
+      - name: Generate variant and post-proc stat
+        run: |
+          OUT="build/h19rtl/${{ matrix.mode }}"
+          mkdir -p "$OUT"
+          python papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py --out-dir "$OUT"
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py \
+            --mode "${{ matrix.mode }}" --out-dir "$OUT"
+          cat > "$OUT/rtl.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          flatten
+          opt
+          clean
+          stat
+          EOF
+          (cd "$OUT" && yosys -s rtl.ys | tee rtl-yosys.log)
+          sed -n '/=== h18_r12_comb_controller ===/,$p' "$OUT/rtl-yosys.log" | tail -n 100 | tee "$OUT/rtl-stat.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H19-${{ matrix.mode }}-rtl-stat
+          path: |
+            build/h19rtl/${{ matrix.mode }}/rtl-yosys.log
+            build/h19rtl/${{ matrix.mode }}/rtl-stat.txt
+          retention-days: 30
