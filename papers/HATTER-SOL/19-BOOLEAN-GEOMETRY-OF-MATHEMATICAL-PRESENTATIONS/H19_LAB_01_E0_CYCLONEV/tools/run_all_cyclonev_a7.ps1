@@ -12,3 +12,7 @@ foreach ($mode in @("direct12","prefix19","nielsen12")) {
 
 Write-Host ""
 Write-Host "PASS: all H19-LAB-01 Cyclone V presentations completed"
+
+Write-Host ""
+Write-Host "== FINAL MATCHED SUMMARY =="
+& (Join-Path $Tools "summarize_cyclonev_a7.ps1")
