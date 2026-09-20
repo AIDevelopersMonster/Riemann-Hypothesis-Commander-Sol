@@ -181,79 +181,87 @@ def adaptive_ok(alphabet:tuple[int,...])->bool:
 nodes=0
 prune_suffix=0
 prune_slots=0
+prune_capacity=0
 distance2_leaves=0
 adaptive_tests=0
 witness=None
 
 def dfs(idx:int, chosen:tuple[int,...], cur_once:int, cur_twice:int):
-    global nodes,prune_suffix,prune_slots,distance2_leaves,adaptive_tests,witness
+    """Complete canonical include/exclude search over EXTRAS[idx:].
+
+    Every 7-subset of the 48 extras occurs exactly once as a root-to-leaf
+    include/exclude pattern.  All pruning predicates below are necessary
+    conditions only, so they cannot remove a valid solution.
+    """
+    global nodes,prune_suffix,prune_slots,prune_capacity
+    global distance2_leaves,adaptive_tests,witness
+
     if witness is not None:
         return
+
     nodes += 1
-    slots=7-len(chosen)
-    if slots<0:
+    used=len(chosen)
+    slots=7-used
+
+    if slots < 0:
         return
-    if cur_twice==ALL:
-        if slots==0:
+
+    remaining=len(EXTRAS)-idx
+    if remaining < slots:
+        prune_capacity += 1
+        return
+
+    # If exactly enough labels remain, all are forced; collapse the tail.
+    if remaining == slots:
+        o=cur_once
+        t=cur_twice
+        tail=[]
+        for qi in EXTRAS[idx:]:
+            h=HIT[qi]
+            t |= o & h
+            o |= h
+            tail.append(qi)
+        final=chosen+tuple(tail)
+        if t == ALL:
+            distance2_leaves += 1
+            alphabet=FORCED+final
+            adaptive_tests += 1
+            if adaptive_ok(alphabet):
+                witness=alphabet
+        return
+
+    # Complete candidate must be capable of eventually reaching distance two.
+    if not feasible_suffix(idx,cur_once,cur_twice):
+        prune_suffix += 1
+        return
+
+    lb=greedy_slot_lower_bound(idx,cur_once,cur_twice)
+    if lb>slots:
+        prune_slots += 1
+        return
+
+    if slots==0:
+        if cur_twice==ALL:
             distance2_leaves += 1
             alphabet=FORCED+chosen
             adaptive_tests += 1
             if adaptive_ok(alphabet):
                 witness=alphabet
         return
-    if idx>=len(EXTRAS):
-        return
-    if len(EXTRAS)-idx < slots:
-        return
-    if not feasible_suffix(idx,cur_once,cur_twice):
-        prune_suffix += 1
-        return
-    lb=greedy_slot_lower_bound(idx,cur_once,cur_twice)
-    if lb>slots:
-        prune_slots += 1
-        return
-    if slots==0:
-        return
 
-    # Choose a deficient pair with fewest remaining covering labels to guide branching.
-    deficient = (~cur_twice) & ALL
-    best_pair=None
-    best_cover=None
-    tmp=deficient
-    while tmp:
-        lsb=tmp & -tmp
-        b=lsb.bit_length()-1
-        candidates=[j for j in range(idx,len(EXTRAS)) if (HIT[EXTRAS[j]]>>b)&1]
-        need=2 if ((cur_once>>b)&1)==0 else 1
-        if len(candidates) < need:
-            prune_suffix += 1
-            return
-        score=(len(candidates),-need,b)
-        if best_pair is None or score<best_pair:
-            best_pair=score
-            best_cover=(candidates,need)
-            if len(candidates)==need:
-                break
-        tmp ^= lsb
-
-    candidates,need=best_cover
-
-    # Canonical branching: force inclusion choices among labels capable of
-    # satisfying the selected deficient pair. We branch by the next candidate
-    # position while keeping combinations unique.
-    first=candidates[0]
-
-    # Include EXTRAS[first].
-    qi=EXTRAS[first]
+    qi=EXTRAS[idx]
     h=HIT[qi]
-    new_twice=cur_twice | (cur_once & h)
-    new_once=cur_once | h
-    dfs(first+1, chosen+(qi,), new_once, new_twice)
 
-    # Exclude it, but only if enough covering labels remain for selected pair.
-    remaining_cover=sum(1 for j in candidates[1:] if j>first)
-    if remaining_cover >= need:
-        dfs(first+1, chosen, cur_once, cur_twice)
+    # Include current label.
+    dfs(
+        idx+1,
+        chosen+(qi,),
+        cur_once | h,
+        cur_twice | (cur_once & h),
+    )
+
+    # Exclude current label.
+    dfs(idx+1,chosen,cur_once,cur_twice)
 
 dfs(0,tuple(),once,twice)
 
@@ -262,6 +270,7 @@ print("forced =", tuple(WORDS[q] for q in FORCED))
 print("search nodes =", nodes)
 print("suffix prunes =", prune_suffix)
 print("slot-lower-bound prunes =", prune_slots)
+print("capacity prunes =", prune_capacity)
 print("distance-2 size9 leaves =", distance2_leaves)
 print("adaptive tests =", adaptive_tests)
 print("adaptive size9 witness =", None if witness is None else tuple(WORDS[q] for q in witness))
