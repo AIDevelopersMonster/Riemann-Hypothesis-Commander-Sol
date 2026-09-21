@@ -7,6 +7,7 @@ on:
       - research/hatter-sol-20-computational-structure-mining
     paths:
       - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/walsh_degree_spectrum.py"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/summarize_walsh_validation.py"
       - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB03_PROTOCOL.md"
       - ".github/workflows/h20-ext-walsh-spectrum.yml"
 
@@ -28,6 +29,10 @@ jobs:
       - name: Show report
         working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
         run: cat lab03_out/H20_EXT_LAB03_REPORT.md
+
+      - name: Show validation diagnostics
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: python3 tools/summarize_walsh_validation.py lab03_out/walsh_degree_summary.json
 
       - name: Upload LAB-03 artifacts
         uses: actions/upload-artifact@v4
