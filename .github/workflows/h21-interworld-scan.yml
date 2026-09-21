@@ -1,0 +1,30 @@
+name: H21 interworld quadratic scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/**"
+      - ".github/workflows/h21-interworld-scan.yml"
+
+jobs:
+  lab01:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run H21-LAB-01
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: |
+          python3 tools/quadratic_world_scan.py --bits 22 --out-dir lab01_out
+          cat lab01_out/H21_LAB01_REPORT.md
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab01-world-scan
+          path: |
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab01_out/world_scan.csv
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab01_out/world_scan.json
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab01_out/H21_LAB01_REPORT.md
