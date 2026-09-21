@@ -108,3 +108,26 @@ This replaces five sampled baselines with an exact combinatorial expectation.
 If C1 disappears against that exact expectation, close it.
 
 If it persists, formulate the exact finite discrepancy and begin a targeted theorem/prior-art audit.
+
+
+## LAB-06 · exact conditional expectation
+
+The five-seed weakness of C1 has been removed.
+
+Exact conditional expectation under independent uniform within-stratum permutations was derived and computed.
+
+For every W=13..19:
+
+[
+L_W(4)_{m prime}
+<
+mathbb E[L_W(4)_{m mod210+dyadic}].
+]
+
+All exact deltas are negative; run 35580373007 passed the frozen criterion.
+
+C1 remains open, but publication threshold is still not declared crossed because:
+
+1. within-shell density variation remains an uncontrolled confound;
+2. exact tail significance has not been computed;
+3. targeted novelty audit against Fourier-Walsh prime literature is incomplete.
