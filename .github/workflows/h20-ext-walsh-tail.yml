@@ -1,0 +1,34 @@
+name: H20-EXT conditional Walsh tail
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB08_PROTOCOL.md"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/lab08_tail.cpp"
+      - ".github/workflows/h20-ext-walsh-tail.yml"
+
+jobs:
+  lab08:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build batched permutation engine
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: g++ -O3 -std=c++17 -march=native tools/lab08_tail.cpp -o lab08_tail
+      - name: Run frozen LAB-08
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          ./lab08_tail
+          cat H20_EXT_LAB08_REPORT.md
+      - name: Upload LAB-08 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-walsh-tail
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab08_tail_summary.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB08_REPORT.md
