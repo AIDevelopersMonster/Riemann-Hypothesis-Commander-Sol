@@ -1,0 +1,31 @@
+name: H21 real-world surface scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_04_REAL_QUADRATIC_WORLD_SURFACE.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/real_world_surface_scan.py"
+      - ".github/workflows/h21-real-world-surface.yml"
+
+jobs:
+  lab03:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run H21-LAB-03
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: |
+          python3 tools/real_world_surface_scan.py --bits 19 --out-dir lab03_out
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab03-real-world-surface
+          path: |
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab03_out/prefix_surface.csv
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab03_out/trajectory_stats.csv
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab03_out/real_world_surface_scan.json
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab03_out/H21_LAB03_REPORT.md
