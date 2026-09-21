@@ -1,0 +1,24 @@
+name: H21 defect factor tomography v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/defect_factor_tomography_v2.py"
+      - ".github/workflows/h21-defect-factor-tomography-v2.yml"
+
+jobs:
+  lab05v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run optimized H21-LAB-05
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/defect_factor_tomography_v2.py --bits 19 --out-dir lab05_v2_out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab05-v2
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab05_v2_out/
