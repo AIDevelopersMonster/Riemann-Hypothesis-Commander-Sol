@@ -7,72 +7,37 @@ Parent H20 physical layer: **CLOSED**
 H20-EXT status:
 
 [
-oxed{	ext{CLOSED RESEARCH BRANCH}}
+oxed{	ext{CLOSED}}
 ]
 
 Publication status:
 
 [
-oxed{	ext{THRESHOLD NOT REACHED}}
+oxed{	ext{NO PAPER}}
 ]
 
-## Closed candidate 1 · continuation quotient
+Final conclusion:
 
-Raw compressibility signal found.
+> Systematic evidence-first mining of continuation/residual and Walsh/Fourier finite observers did not produce a robust, null-model-independent structural object strong enough for a new theorem or publication.
 
-Falsified by wheel-conditioned baselines.
+Closed lines:
 
-Status: **CLOSED**.
+- continuation quotient / residual compressibility;
+- robust low-degree Walsh deficit;
+- conditioning-resolution crossover.
 
-## Closed candidate 2 · robust low-degree Walsh deficit
+Preserved outputs:
 
-A strong finite low-degree Walsh-energy deficit was established under multiple
-conditioned null ensembles.
+- exact finite data;
+- exact conditional-expectation formulas;
+- reproducible CPU tools;
+- GitHub Actions workflows;
+- falsification records;
+- negative results.
 
-Strengthening steps passed:
+No further H20-EXT experiments are planned.
 
-- fresh W=17,18 hold-out;
-- W=19 extrapolation;
-- exact conditional expectation;
-- mod210 + local blocks down to 4096;
-- 2048-sample conditional-tail gate with zero null samples below observed;
-- squarefree and semiprime arithmetic controls;
-- mod2310 extended-wheel conditioning.
-
-Final practical mod30030 wheel gate failed at W=19.
-
-Therefore the deficit is not invariant under null-model strengthening.
-
-Status: **ROBUST-INVARIANT VERSION CLOSED**.
-
-## Closed candidate 3 · conditioning crossover law
-
-At W=19 mod30030, discrepancy signs across 1/2/4 magnitude blocks were
-
-[
-(+,-,-).
-]
-
-Fresh W=20,21 hold-out produced
-
-[
-(+,+,-).
-]
-
-The frozen cross-width pattern failed.
-
-Status: **CLOSED**.
-
-## Final conclusion
-
-The branch discovered and rigorously falsified several natural candidates.
-
-Exact finite results and reproducible tools are preserved, but no result meets
-the H20-EXT publication threshold.
-
-No H20-EXT article should be prepared from the present evidence.
-
-Reopen only on genuinely new external or computational evidence.
+Reopen only on genuinely new external evidence or a materially different mathematical object.
 
 [
 oxed{	ext{NO RH CLAIMS}}
