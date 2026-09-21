@@ -1,0 +1,34 @@
+name: H20-EXT conditioning crossover holdout
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB12_PROTOCOL.md"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/lab12_crossover.cpp"
+      - ".github/workflows/h20-ext-crossover-holdout.yml"
+
+jobs:
+  lab12:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build crossover engine
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: g++ -O3 -std=c++17 -march=native tools/lab12_crossover.cpp -o lab12
+      - name: Run frozen LAB-12
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          ./lab12
+          cat H20_EXT_LAB12_REPORT.md
+      - name: Upload LAB-12 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-crossover-holdout
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab12_crossover.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB12_REPORT.md
