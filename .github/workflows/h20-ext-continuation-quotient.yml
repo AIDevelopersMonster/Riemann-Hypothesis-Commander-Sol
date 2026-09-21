@@ -1,0 +1,37 @@
+name: H20-EXT continuation quotient
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/**"
+      - ".github/workflows/h20-ext-continuation-quotient.yml"
+
+jobs:
+  exact-continuation-quotient:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run exact quotient census
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          python3 tools/continuation_quotient.py             --out-dir lab01_out             --widths 4 5 6 7 8 9 10 11 12 13 14 15 16
+
+      - name: Show report
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          cat lab01_out/H20_EXT_LAB01_REPORT.md
+
+      - name: Upload exact artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-continuation-quotient
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab01_out/continuation_quotient.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab01_out/continuation_quotient.json
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab01_out/H20_EXT_LAB01_REPORT.md
