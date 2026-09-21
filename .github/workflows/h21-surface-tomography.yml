@@ -1,0 +1,29 @@
+name: H21 multiworld surface tomography
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_03_MULTIWORLD_SURFACE_TOMOGRAPHY.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/surface_tomography_lab.py"
+      - ".github/workflows/h21-surface-tomography.yml"
+
+jobs:
+  lab02:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run H21-LAB-02
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: |
+          python3 tools/surface_tomography_lab.py --p 7 --rank 3 --out-dir lab02_out
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab02-surface-tomography
+          path: |
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab02_out/surface_tomography.csv
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab02_out/surface_tomography.json
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab02_out/H21_LAB02_REPORT.md
