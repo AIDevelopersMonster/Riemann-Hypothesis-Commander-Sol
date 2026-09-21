@@ -1,0 +1,35 @@
+name: H20-EXT exact stratified Walsh expectation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB06_PROTOCOL.md"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/exact_stratified_walsh_expectation.cpp"
+      - ".github/workflows/h20-ext-exact-walsh-expectation.yml"
+
+jobs:
+  lab06:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build exact expectation engine
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          g++ -O3 -std=c++17 -march=native tools/exact_stratified_walsh_expectation.cpp -o exact_walsh
+      - name: Run frozen LAB-06
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          ./exact_walsh --csv exact_stratified_expectation.csv --md H20_EXT_LAB06_REPORT.md 13 14 15 16 17 18 19
+          cat H20_EXT_LAB06_REPORT.md
+      - name: Upload LAB-06 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-exact-walsh-expectation
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/exact_stratified_expectation.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB06_REPORT.md
