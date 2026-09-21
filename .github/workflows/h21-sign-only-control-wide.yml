@@ -1,0 +1,22 @@
+name: H21 sign-only periodicity control wide
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - ".github/workflows/h21-sign-only-control-wide.yml"
+
+jobs:
+  lab04wide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run sign-only wide control
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/sign_only_surface_control_v2.py --bits 21 --out-dir lab04_wide_out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab04-sign-only-wide
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab04_wide_out/
