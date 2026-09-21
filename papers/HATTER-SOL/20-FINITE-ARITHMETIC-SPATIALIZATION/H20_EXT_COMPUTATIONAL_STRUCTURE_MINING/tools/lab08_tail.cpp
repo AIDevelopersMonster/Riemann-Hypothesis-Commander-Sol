@@ -83,8 +83,7 @@ static std::vector<Group> make_groups(int W){
     }
     std::vector<Group> out;
     out.reserve(g.size());
-    for(auto &x:g) if(!x.idx.empty() && x.kprime>0 && x.kprime<(int)x.idx.size()) out.push_back(std::move(x));
-    // Constant all-prime/all-nonprime groups need no randomization and are set through base labels below.
+    for(auto &x:g) if(!x.idx.empty()) out.push_back(std::move(x));
     return out;
 }
 
@@ -107,6 +106,11 @@ static void generate_batch(int W,int sample0,int B,std::vector<int>& a,const std
         RNG rng(MASTER_SEED ^ (uint64_t(W)<<48) ^ uint64_t(sid)*0xD1342543DE82EF95ULL);
         for(const auto &g:groups){
             const int m=(int)g.idx.size(), k=g.kprime;
+            if(k==0) continue;
+            if(k==m){
+                for(int n:g.idx) a[(size_t)n*B+b]=-1;
+                continue;
+            }
             // Choose k positions without replacement via partial Fisher-Yates on local 0..m-1.
             // m is about 19-20 for B=4096 x mod210.
             std::array<int,64> tmp{};
@@ -176,7 +180,7 @@ int main(){
         ld se=sd/std::sqrt((ld)v.size());
         ld phat=(k+1.0L)/(v.size()+1.0L);
         ld z=(obs-mean)/sd;
-        bool meanok=std::fabsl(mean-exactExp[wi])<=5*se;
+        bool meanok=std::fabs(mean-exactExp[wi])<=5*se;
         bool tail=phat<=0.001L;
         bool pass=meanok&&tail;
         overall &= pass;
