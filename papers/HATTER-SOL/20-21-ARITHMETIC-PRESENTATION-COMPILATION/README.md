@@ -17,4 +17,7 @@ H20 supplies finite two-vendor evidence that formally equivalent arithmetic pres
 
 H21 supplies an exact descriptor-level (B=0) specialization to a scalar Euler-Jacobi observer, followed by matched RTL and Cyclone V measurement.
 
-Author names/affiliations are intentionally left unresolved until archival release.
+Author: Malachevsky, A.A.  
+ORCID: 0009-0008-6009-3196  
+Series: HATTER-SOL · Arithmetic Tea Party  
+DOI: 10.5281/zenodo.22905505
