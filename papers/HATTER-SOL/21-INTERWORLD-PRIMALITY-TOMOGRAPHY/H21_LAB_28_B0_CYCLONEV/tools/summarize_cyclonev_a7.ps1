@@ -63,9 +63,9 @@ if ($scalar.Fmax_MHz -and $quad.Fmax_MHz) {
   Write-Host ("Fmax ratio scalar/quadratic: {0:N4}x" -f ($sf/$qf))
 }
 
-# LAB-27 mean cycles for the unchanged RTL pair.
-$ScalarMeanCycles = 183.333333
-$QuadMeanCycles = 899.000000
+# Authoritative LAB-27 run 35741867585 mean cycles for the unchanged RTL pair.
+$ScalarMeanCycles = 175.000000
+$QuadMeanCycles = 861.000000
 
 if ($scalar.Fmax_MHz -and $quad.Fmax_MHz) {
   $sf = [double]$scalar.Fmax_MHz
