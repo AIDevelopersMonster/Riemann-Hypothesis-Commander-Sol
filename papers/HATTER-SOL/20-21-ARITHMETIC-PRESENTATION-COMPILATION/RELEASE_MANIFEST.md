@@ -13,11 +13,11 @@ Status: **PRE-ARCHIVE**
 - [x] LAB-28 Cyclone V evidence retained.
 - [x] Conservative prior-art boundary frozen.
 - [x] BibTeX source created.
-- [ ] Author names and affiliations inserted.
+- [x] Author metadata inserted: Malachevsky, A.A.; ORCID 0009-0008-6009-3196.
 - [ ] Final release commit inserted.
 - [ ] Final tag inserted.
 - [ ] Final PDF independently reviewed.
-- [ ] Zenodo DOI minted and inserted.
+- [x] Zenodo DOI minted and inserted: 10.5281/zenodo.22905505.
 
 ## Headline H21 device result
 
