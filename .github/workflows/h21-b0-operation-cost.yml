@@ -1,0 +1,23 @@
+name: H21 B0 operation cost
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_37_B0_RUNTIME_COST_COLLAPSE.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/b0_operation_cost.py"
+      - ".github/workflows/h21-b0-operation-cost.yml"
+
+jobs:
+  lab26:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Count modular multiplications
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/b0_operation_cost.py --bits 22 --out-dir lab26
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab26-b0-cost
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab26/
