@@ -1,6 +1,13 @@
 name: H21 expanded binary lift
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/expanded_binary_lift.py"
+      - ".github/workflows/h21-expanded-binary-lift.yml"
 
 jobs:
   lab22:
