@@ -1,0 +1,28 @@
+name: H21 binary lift coupling
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_30_BINARY_LIFT_OBSERVER_THEOREM.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/binary_lift_coupling.py"
+      - ".github/workflows/h21-binary-lift.yml"
+
+jobs:
+  lab21:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        dmax: [63, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run binary lift coupling lab
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/binary_lift_coupling.py --bits 18 --dmax ${{ matrix.dmax }} --out-dir lab21_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab21-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab21_d${{ matrix.dmax }}/
