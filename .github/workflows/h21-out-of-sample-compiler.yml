@@ -1,0 +1,26 @@
+name: H21 out of sample compiler
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/out_of_sample_compiler.py"
+      - ".github/workflows/h21-out-of-sample-compiler.yml"
+
+jobs:
+  lab24:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        dmax: [63,127]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run out-of-sample compiler
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/out_of_sample_compiler.py --dmax ${{ matrix.dmax }} --K 20 --out-dir lab24_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab24-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab24_d${{ matrix.dmax }}/
