@@ -2,27 +2,42 @@
 
 Status: **ACTIVE MONITOR**
 
-This file is updated whenever a laboratory materially changes publication readiness.
+Updated after H21-LAB-20/21 and PRIOR-ART AUDIT 01.
 
 ## Gate A — exact H21-specific mathematical core
 
-Current:
-
 \[
-\boxed{\text{STRONG PARTIAL / CLOSE, BUT NOT YET SUFFICIENT}}
+\boxed{\text{STRONG PARTIAL / NEAR THRESHOLD}}
 \]
 
-Established exact H21-specific architecture now includes:
+The coherent exact architecture now includes:
 
-- semiprime zero-mask factor-exposure theorem;
-- torsion-world no-go;
-- Lucas local-clock reduction;
-- scalar-coset orbit/line incidence theorem;
-- projective orbit phase-placement theorem;
-- projective-shadow observer decomposition.
+- semiprime zero-mask factor observer;
+- torsion-world elimination;
+- Lucas local-clock representation;
+- scalar-coset orbit/line incidence;
+- projective phase placement;
+- projective-shadow coupling decomposition;
+- single-scalar fiber observer;
+- norm-lift / double-cover reduction;
+- binary-lift observer reduction.
 
-The remaining missing piece is a theorem controlling reciprocal prime sampling
-inside identical projective observer codes.
+The strongest structural reduction is
+
+\[
+\boxed{
+\text{local quadratic phase}
+\to
+\text{projective ray}
+\to
+\text{norm datum}
+\to
+\text{at most one binary lift bit}.
+}
+\]
+
+However the remaining reciprocal lift-bit sampling is not yet controlled by an
+H21-specific arithmetic theorem.
 
 ## Gate B — independent reproducible validation
 
@@ -30,73 +45,90 @@ inside identical projective observer codes.
 \boxed{\text{PASS}}
 \]
 
+Broad CI grids, exact reconstruction checks, negative controls, and documented
+implementation corrections are present.
+
 ## Gate C — broad-family nontriviality
 
 \[
 \boxed{\text{PASS}}
 \]
 
+Fundamental-discriminant scans and common-core populations show that the
+observer/compiler phenomena are not confined to the original hand-selected
+worlds.
+
 ## Gate D — novelty / prior-art audit
 
 \[
-\boxed{\text{NOT YET PASSED}}
+\boxed{\text{PARTIAL / DIRECT OVERLAP RISK IDENTIFIED}}
 \]
 
-Required audit:
+Audit 01 establishes that the following are prior art or directly adjacent:
 
-- Frobenius probable-prime tests;
-- Lucas sequences and Lucas pseudoprimes;
-- quadratic algebra primality tests;
-- multiplicative subgroup intersections with affine lines / trace hyperplanes;
-- projective cyclic orbits in finite fields;
-- reciprocal congruence / discrete-log correlations;
-- adaptive arithmetic test scheduling;
-- FPGA representations of Lucas/Frobenius arithmetic.
+- quadratic Frobenius probable-prime testing;
+- Lucas/Frobenius reductions;
+- semiprime factor-local Frobenius congruences and gcd consequences;
+- multiplicative-order elements with prescribed trace;
+- Hilbert-90 / norm-one / projective quadratic-extension structure;
+- Lucas primality hardware.
 
-No publication claim may be made before this audit.
+The principal overlap risk is the Khashin semiprime Frobenius analysis.
+
+Therefore publication novelty **cannot** rest on the early cross-Frobenius
+factor mechanism or on individual finite-field/projective identities.
+
+Still required:
+
+- deeper search for projective/norm compression specifically used in
+  Frobenius/Lucas observers;
+- adaptive multi-parameter Frobenius/Lucas scheduling;
+- reciprocal lift-bit/discrete-log correlation literature;
+- hardware scheduling driven by algebraic observer compression.
 
 ## Gate E — publication-level contribution
-
-At least one required:
-
-1. arithmetic theorem controlling reciprocal scalar/projective phase placement;
-2. nontrivial compiler bound beyond generic probability inequalities;
-3. measured FPGA representation/area/latency advantage caused by the exact
-   projective/scalar compression;
-4. another comparably specific H21 result surviving prior-art audit.
-
-Current:
 
 \[
 \boxed{\text{NOT YET}}
 \]
 
-LAB-18 strengthens the case but does not yet satisfy this gate.
+Best remaining routes:
+
+1. a nontrivial theorem on reciprocal binary-lift sampling;
+2. a compiler theorem not reducible to generic covariance/finite-group facts;
+3. measured FPGA area/latency/energy advantage caused specifically by the H21
+   projective/norm/binary representation.
+
+LAB-20 makes route 3 technically concrete.
 
 ## Gate F — manuscript architecture
 
 \[
-\boxed{\text{READY TO FREEZE ONCE GATE D OR E PASSES}}
+\boxed{\text{READY TO FREEZE ON GATE D+E}}
 \]
 
-A viable manuscript spine now exists:
+Provisional spine:
 
 1. world-response observer;
-2. semiprime zero-mask mechanism;
-3. local Lucas reduction;
+2. zero-mask semiprime mechanism, explicitly placed against Frobenius prior art;
+3. Lucas representation;
 4. orbit/affine-line incidence;
-5. projective/scalar phase geometry;
-6. broad compiler experiments;
-7. reciprocal coupling problem;
-8. hardware consequences.
+5. projective/scalar geometry;
+6. norm-lift double cover;
+7. broad world compiler;
+8. reciprocal binary-lift problem;
+9. hardware consequence.
 
 ## Decision
 
-Publication threshold:
-
 \[
-\boxed{\text{NOT YET CROSSED}}
+\boxed{\text{PUBLICATION THRESHOLD NOT YET CROSSED}}
 \]
 
-Distance to threshold is now small enough that every new theorem or hardware
-result must trigger immediate prior-art review and publication re-evaluation.
+But the project is now close enough that:
+
+- every new reciprocal-lift theorem;
+- every meaningful hardware compression result;
+- or every decisive novelty-audit result
+
+must trigger immediate publication re-evaluation.
