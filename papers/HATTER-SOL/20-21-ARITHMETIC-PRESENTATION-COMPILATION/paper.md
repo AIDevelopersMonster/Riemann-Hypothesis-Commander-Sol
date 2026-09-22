@@ -1,12 +1,19 @@
 ---
 title: "HATTER-SOL 20-21: From Arithmetic Presentation Sensitivity to Semantics-Preserving World-Aware FPGA Compilation"
 author:
-  - "Author name to be inserted before archival release"
+  - "Malachevsky, A.A."
 date: "2026-09-22"
 bibliography: references.bib
 link-citations: true
 colorlinks: true
 ---
+**Author metadata**  
+Malachevsky, A.A.  
+ORCID: 0009-0008-6009-3196  
+AI research collaborator and coauthor of the research dialogue: Commander Sol / Hatter Sol  
+Series: HATTER-SOL · Arithmetic Tea Party  
+DOI: 10.5281/zenodo.22905505
+
 
 **Status:** first integrated manuscript draft  
 **Scope:** architecture / compiler / arithmetic-observer paper  
