@@ -30,6 +30,8 @@ foreach ($mode in @("scalar","quadratic")) {
   $dsp = First-MatchValue $Fit 'Total DSP Blocks\s*;\s*(?<v>[\d,]+)\s*/'
   if (!$dsp) { $dsp = First-MatchValue $Fit 'DSP block 18-bit elements\s*;\s*(?<v>[\d,]+)\s*/' }
   $fmax = First-MatchValue $Sta ';\s*(?<v>\d+(?:\.\d+)?)\s*MHz\s*;\s*\d+(?:\.\d+)?\s*MHz\s*;\s*clk\s*;'
+  if (!$fmax) { $fmax = First-MatchValue $Sta 'clk\s*;?\s*(?<v>\d+(?:\.\d+)?)\s*MHz' }
+  if (!$fmax) { $fmax = First-MatchValue $Sta 'Fmax[^\r\n]*?(?<v>\d+(?:\.\d+)?)\s*MHz' }
 
   $rows += [pscustomobject]@{
     Mode = $mode
@@ -59,6 +61,30 @@ if ($scalar.Fmax_MHz -and $quad.Fmax_MHz) {
   $sf = [double]$scalar.Fmax_MHz
   $qf = [double]$quad.Fmax_MHz
   Write-Host ("Fmax ratio scalar/quadratic: {0:N4}x" -f ($sf/$qf))
+}
+
+# LAB-27 mean cycles for the unchanged RTL pair.
+$ScalarMeanCycles = 183.333333
+$QuadMeanCycles = 899.000000
+
+if ($scalar.Fmax_MHz -and $quad.Fmax_MHz) {
+  $sf = [double]$scalar.Fmax_MHz
+  $qf = [double]$quad.Fmax_MHz
+  $scalarUs = $ScalarMeanCycles / $sf
+  $quadUs = $QuadMeanCycles / $qf
+  Write-Host ("Mean latency scalar: {0:N6} us" -f $scalarUs)
+  Write-Host ("Mean latency quadratic: {0:N6} us" -f $quadUs)
+  Write-Host ("Latency ratio quadratic/scalar: {0:N4}x" -f ($quadUs/$scalarUs))
+
+  if ($scalar.ALM -and $quad.ALM) {
+    $sa = [double](($scalar.ALM -replace ',',''))
+    $qa = [double](($quad.ALM -replace ',',''))
+    $scalarAreaTime = $sa * $scalarUs
+    $quadAreaTime = $qa * $quadUs
+    Write-Host ("ALM*us scalar: {0:N6}" -f $scalarAreaTime)
+    Write-Host ("ALM*us quadratic: {0:N6}" -f $quadAreaTime)
+    Write-Host ("ALM*latency ratio quadratic/scalar: {0:N4}x" -f ($quadAreaTime/$scalarAreaTime))
+  }
 }
 
 Write-Host ("CSV: {0}" -f $csv)
