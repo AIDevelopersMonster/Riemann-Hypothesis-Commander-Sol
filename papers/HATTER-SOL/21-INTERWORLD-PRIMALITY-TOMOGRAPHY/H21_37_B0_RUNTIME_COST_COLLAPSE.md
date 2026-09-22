@@ -105,6 +105,7 @@ M(e)
 \lfloor\log_2 e\rfloor
 +
 \operatorname{popcount}(e)
+-1
 }
 \]
 
