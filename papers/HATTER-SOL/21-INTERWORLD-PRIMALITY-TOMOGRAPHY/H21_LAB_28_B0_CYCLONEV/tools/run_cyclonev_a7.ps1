@@ -29,7 +29,6 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name SYSTEMVERILOG_FILE ../../../H21_LAB_27_B0_RTL/h21_b0_cores.sv
 set_global_assignment -name SDC_FILE $Project.sdc
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
-set_global_assignment -name OPTIMIZATION_MODE "BALANCED PERFORMANCE"
 "@
 
 Set-Content -Path (Join-Path $QDir "$Project.qsf") -Value $Qsf -Encoding ascii
