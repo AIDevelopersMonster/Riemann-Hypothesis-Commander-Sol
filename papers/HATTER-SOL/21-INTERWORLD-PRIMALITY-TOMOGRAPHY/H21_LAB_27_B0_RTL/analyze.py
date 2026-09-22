@@ -21,7 +21,10 @@ qc,qt=cells("quad.json","h21_quad_pow_b0")
 out=[
 "# H21-LAB-27 · B=0 RTL comparison","",
 f"Vectors: **{len(pairs)}**; functional mismatches: **0**.","",
-f"Mean cycle ratio quad/scalar: **{sum(x[4] for x in pairs)/len(pairs):.6f}x**.","",
+f"Mean scalar cycles: **{sum(x[2] for x in pairs)/len(pairs):.6f}**.","",
+f"Mean quadratic cycles: **{sum(x[3] for x in pairs)/len(pairs):.6f}**.","",
+f"Ratio of mean cycles quad/scalar: **{(sum(x[3] for x in pairs)/len(pairs))/(sum(x[2] for x in pairs)/len(pairs)):.6f}x**.","",
+f"Mean per-vector cycle ratio quad/scalar: **{sum(x[4] for x in pairs)/len(pairs):.6f}x**.","",
 f"Min cycle ratio: **{min(x[4] for x in pairs):.6f}x**.","",
 f"Max cycle ratio: **{max(x[4] for x in pairs):.6f}x**.","",
 f"Yosys flattened cells, scalar core: **{sc}**.","",
