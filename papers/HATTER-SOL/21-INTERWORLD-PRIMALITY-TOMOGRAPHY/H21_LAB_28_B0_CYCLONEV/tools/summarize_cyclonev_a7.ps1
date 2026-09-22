@@ -88,3 +88,48 @@ if ($scalar.Fmax_MHz -and $quad.Fmax_MHz) {
 }
 
 Write-Host ("CSV: {0}" -f $csv)
+
+
+$md = @()
+$md += "# H21-LAB-28 · Cyclone V device-specific result"
+$md += ""
+$md += "Target: 5CEFA7F23C6"
+$md += ""
+$md += "| mode | FIT | ALM | registers | DSP | Fmax MHz |"
+$md += "|---|---|---:|---:|---:|---:|"
+foreach ($r in $rows) {
+  $md += ("| {0} | {1} | {2} | {3} | {4} | {5} |" -f $r.Mode,$r.Fit,$r.ALM,$r.Registers,$r.DSP,$r.Fmax_MHz)
+}
+$md += ""
+
+if ($scalar.Fmax_MHz -and $quad.Fmax_MHz -and $scalar.ALM -and $quad.ALM) {
+  $sf = [double]$scalar.Fmax_MHz
+  $qf = [double]$quad.Fmax_MHz
+  $sa = [double](($scalar.ALM -replace ',',''))
+  $qa = [double](($quad.ALM -replace ',',''))
+  $scalarUs = $ScalarMeanCycles / $sf
+  $quadUs = $QuadMeanCycles / $qf
+  $scalarAreaTime = $sa * $scalarUs
+  $quadAreaTime = $qa * $quadUs
+
+  $md += ("Mean scalar cycles: {0:N3}" -f $ScalarMeanCycles)
+  $md += ("Mean quadratic cycles: {0:N3}" -f $QuadMeanCycles)
+  $md += ""
+  $md += ("Mean latency scalar: {0:N6} us" -f $scalarUs)
+  $md += ("Mean latency quadratic: {0:N6} us" -f $quadUs)
+  $md += ("Latency ratio quadratic/scalar: {0:N4}x" -f ($quadUs/$scalarUs))
+  $md += ""
+  $md += ("ALM ratio quadratic/scalar: {0:N4}x" -f ($qa/$sa))
+  $md += ("Fmax ratio scalar/quadratic: {0:N4}x" -f ($sf/$qf))
+  $md += ("ALM*us scalar: {0:N6}" -f $scalarAreaTime)
+  $md += ("ALM*us quadratic: {0:N6}" -f $quadAreaTime)
+  $md += ("ALM*latency ratio quadratic/scalar: {0:N4}x" -f ($quadAreaTime/$scalarAreaTime))
+  $md += ""
+  $md += "Publication-gate trigger: device-specific specialization evidence is complete enough for immediate claim re-evaluation, subject to prior-art boundary and report audit."
+} else {
+  $md += "INCOMPLETE: missing ALM or Fmax values; publication gate must remain unchanged."
+}
+
+$resultMd = Join-Path $Lab "H21_LAB28_DEVICE_RESULT.md"
+$md | Set-Content -Path $resultMd -Encoding UTF8
+Write-Host ("Markdown result: {0}" -f $resultMd)
