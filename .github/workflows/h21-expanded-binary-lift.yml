@@ -1,0 +1,20 @@
+name: H21 expanded binary lift
+
+on: [workflow_dispatch]
+
+jobs:
+  lab22:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        dmax: [63, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Expanded binary lift
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/expanded_binary_lift.py --bits 20 --dmax ${{ matrix.dmax }} --out-dir lab22_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab22-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab22_d${{ matrix.dmax }}/
