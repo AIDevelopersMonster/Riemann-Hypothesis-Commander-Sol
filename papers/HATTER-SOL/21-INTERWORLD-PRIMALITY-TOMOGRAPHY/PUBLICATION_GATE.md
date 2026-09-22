@@ -2,42 +2,35 @@
 
 Status: **ACTIVE MONITOR**
 
-Updated after H21-LAB-20/21 and PRIOR-ART AUDIT 01.
+Updated after H21-LAB-27, PRIOR-ART AUDIT 03, and preparation of H21-LAB-28.
 
 ## Gate A — exact H21-specific mathematical core
 
 \[
-\boxed{\text{STRONG PARTIAL / NEAR THRESHOLD}}
+\boxed{\text{PASS FOR AN ARCHITECTURE PAPER CLAIM SET}}
 \]
 
-The coherent exact architecture now includes:
+The claim set is deliberately narrow.
 
-- semiprime zero-mask factor observer;
-- torsion-world elimination;
-- Lucas local-clock representation;
-- scalar-coset orbit/line incidence;
-- projective phase placement;
-- projective-shadow coupling decomposition;
-- single-scalar fiber observer;
-- norm-lift / double-cover reduction;
-- binary-lift observer reduction.
-
-The strongest structural reduction is
+The central runtime-safe theorem is:
 
 \[
 \boxed{
-\text{local quadratic phase}
-\to
-\text{projective ray}
-\to
-\text{norm datum}
-\to
-\text{at most one binary lift bit}.
+B=0
+\Longrightarrow
+\delta_W(n)=
+\left(
+0,\,
+C^{(n-1)/2}-\left(\frac Cn\right)
+\right),
 }
 \]
 
-However the remaining reciprocal lift-bit sampling is not yet controlled by an
-H21-specific arithmetic theorem.
+so the canonical \(B=0\) quadratic-world observer lowers exactly to a scalar
+Euler-Jacobi observer while preserving factor-gcd semantics.
+
+Earlier projective/norm results remain supporting analysis, not novelty claims,
+because Audits 01--02 found strong classical overlap.
 
 ## Gate B — independent reproducible validation
 
@@ -45,90 +38,133 @@ H21-specific arithmetic theorem.
 \boxed{\text{PASS}}
 \]
 
-Broad CI grids, exact reconstruction checks, negative controls, and documented
-implementation corrections are present.
+Evidence includes:
 
-## Gate C — broad-family nontriviality
+- H21-LAB-25:
+  \[
+  2,762,496
+  \]
+  quadratic/scalar equivalence checks and the same number of factor-gcd checks,
+  with zero failures;
+
+- H21-LAB-27:
+  bit-exact Icarus simulation with zero mismatches;
+
+- generic Yosys synthesis of both matched RTL cores.
+
+## Gate C — broad-family / operational nontriviality
 
 \[
 \boxed{\text{PASS}}
 \]
 
-Fundamental-discriminant scans and common-core populations show that the
-observer/compiler phenomena are not confined to the original hand-selected
-worlds.
+The \(B=0\) rule applies to the entire canonical even-discriminant world class,
+not a hand-selected descriptor.
+
+The broader world-compiler experiments also survive common-core and held-out
+range controls, although their scheduling gain is modest.
 
 ## Gate D — novelty / prior-art audit
 
 \[
-\boxed{\text{PARTIAL / DIRECT OVERLAP RISK IDENTIFIED}}
+\boxed{\text{PARTIAL / CLAIM NARROWED}}
 \]
 
-Audit 01 establishes that the following are prior art or directly adjacent:
+Established prior art includes:
 
-- quadratic Frobenius probable-prime testing;
-- Lucas/Frobenius reductions;
-- semiprime factor-local Frobenius congruences and gcd consequences;
-- multiplicative-order elements with prescribed trace;
-- Hilbert-90 / norm-one / projective quadratic-extension structure;
-- Lucas primality hardware.
+- Solovay-Strassen / Euler-Jacobi;
+- Lucas/Frobenius tests;
+- norm-one / root-ratio Lucas structure;
+- semiprime local Frobenius conditions;
+- Lucas FPGA hardware.
 
-The principal overlap risk is the Khashin semiprime Frobenius analysis.
+The current potentially distinctive engineering claim is **not** any of those
+ingredients.
 
-Therefore publication novelty **cannot** rest on the early cross-Frobenius
-factor mechanism or on individual finite-field/projective identities.
+It is the semantics-preserving compiler lowering inside a declared
+parameterized quadratic-world observer family:
 
-Still required:
+\[
+\boxed{
+B=0\to\text{scalar Euler-Jacobi datapath},
+\qquad
+B\ne0\to\text{quadratic datapath}.
+}
+\]
 
-- deeper search for projective/norm compression specifically used in
-  Frobenius/Lucas observers;
-- adaptive multi-parameter Frobenius/Lucas scheduling;
-- reciprocal lift-bit/discrete-log correlation literature;
-- hardware scheduling driven by algebraic observer compression.
+Audit 03 did not locate a direct published analogue of this exact lowering plus
+matched hardware comparison, but absence from the search is not proof of
+novelty.
+
+A final literature check remains required before manuscript submission.
 
 ## Gate E — publication-level contribution
 
 \[
-\boxed{\text{NOT YET}}
+\boxed{\text{CONDITIONAL PASS — PENDING DEVICE-SPECIFIC LAB-28}}
 \]
 
-Best remaining routes:
+H21-LAB-27 measured, using the same sequential base modular multiplier:
 
-1. a nontrivial theorem on reciprocal binary-lift sampling;
-2. a compiler theorem not reducible to generic covariance/finite-group facts;
-3. measured FPGA area/latency/energy advantage caused specifically by the H21
-   projective/norm/binary representation.
+\[
+\boxed{
+4.981273\times
+}
+\]
 
-LAB-20 makes route 3 technically concrete.
+mean cycle reduction and
+
+\[
+\boxed{
+1.992297\times
+}
+\]
+
+generic flattened-cell reduction for the compiled scalar \(B=0\) observer.
+
+This is a material measured representation consequence.
+
+The remaining condition is technology mapping on the matched Cyclone V flow:
+
+- ALMs;
+- registers;
+- DSPs;
+- Fmax;
+- area×cycle metric.
+
+LAB-28 is prepared for Quartus II 13.1 and target
+
+\[
+5CEFA7F23C6.
+\]
 
 ## Gate F — manuscript architecture
 
 \[
-\boxed{\text{READY TO FREEZE ON GATE D+E}}
+\boxed{\text{READY TO FREEZE}}
 \]
 
-Provisional spine:
+Recommended paper spine:
 
-1. world-response observer;
-2. zero-mask semiprime mechanism, explicitly placed against Frobenius prior art;
-3. Lucas representation;
-4. orbit/affine-line incidence;
-5. projective/scalar geometry;
-6. norm-lift double cover;
-7. broad world compiler;
-8. reciprocal binary-lift problem;
-9. hardware consequence.
+1. H21 world-observer problem and claim boundary;
+2. canonical quadratic world family;
+3. exact \(B=0\) Euler-Jacobi collapse theorem;
+4. semantics-preserving world compiler;
+5. exhaustive software equivalence;
+6. matched shared-modmult RTL architecture;
+7. generic Yosys cycle/cell result;
+8. Cyclone V matched result;
+9. broader scheduling experiments as secondary evidence;
+10. conservative prior-art and non-claims.
 
 ## Decision
 
 \[
-\boxed{\text{PUBLICATION THRESHOLD NOT YET CROSSED}}
+\boxed{\text{PUBLICATION THRESHOLD: HOLD FOR LAB-28}}
 \]
 
-But the project is now close enough that:
+This is no longer a request for another exploratory theorem.
 
-- every new reciprocal-lift theorem;
-- every meaningful hardware compression result;
-- or every decisive novelty-audit result
-
-must trigger immediate publication re-evaluation.
+If LAB-28 preserves a substantial device-level benefit without functional or
+timing pathologies, the H21 architecture-paper publication threshold should be
+considered crossed, subject only to final claim/bibliography audit.
