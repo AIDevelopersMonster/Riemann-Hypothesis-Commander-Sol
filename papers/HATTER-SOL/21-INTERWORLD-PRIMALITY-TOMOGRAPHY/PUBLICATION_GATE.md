@@ -168,3 +168,47 @@ This is no longer a request for another exploratory theorem.
 If LAB-28 preserves a substantial device-level benefit without functional or
 timing pathologies, the H21 architecture-paper publication threshold should be
 considered crossed, subject only to final claim/bibliography audit.
+
+
+## Immediate engineering trigger — LAB-28
+
+The next decisive engineering gate is:
+
+\[
+\boxed{
+\text{Cyclone V technology-mapped comparison of unchanged LAB-27 RTL}
+}
+\]
+
+for target
+
+\[
+5CEFA7F23C6
+\]
+
+under Quartus II 13.1.
+
+If both scalar and quadratic cores FIT and the compiled \(B=0\) path preserves a material advantage in:
+
+- ALMs;
+- measured latency
+  \[
+  \text{cycles}/F_{\max};
+  \]
+- and area-latency
+  \[
+  \text{ALM}\times\text{latency},
+  \]
+
+then Gate E must be re-evaluated immediately against PRIOR-ART AUDIT 03.
+
+The strongest safe claim candidate would be:
+
+\[
+\boxed{
+\text{semantics-preserving compiler lowering of canonical }B=0\text{ quadratic worlds to a scalar Euler-Jacobi datapath yields a measured device-specific implementation advantage.}
+}
+\]
+
+This trigger does not authorize claims of a new Euler-Jacobi algorithm, a new
+Lucas algorithm, or universal FPGA speedup.
