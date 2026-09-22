@@ -1,0 +1,24 @@
+name: H21 B0 Euler Jacobi collapse
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_36_B0_EULER_JACOBI_COLLAPSE.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/b0_euler_jacobi_validation.py"
+      - ".github/workflows/h21-b0-euler-jacobi.yml"
+
+jobs:
+  lab25:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate B0 collapse
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/b0_euler_jacobi_validation.py --limit 262144 --out-dir lab25
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab25-b0-euler-jacobi
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab25/
