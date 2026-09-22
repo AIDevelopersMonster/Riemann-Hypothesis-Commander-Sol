@@ -1,0 +1,28 @@
+name: H21 coupling structure bounds
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_15_COUPLING_STRUCTURE_BOUNDS.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/coupling_structure_scan.py"
+      - ".github/workflows/h21-coupling-structure.yml"
+
+jobs:
+  lab11:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        dmax: [127, 255]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run coupling structure scan
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/coupling_structure_scan.py --bits 18 --dmax ${{ matrix.dmax }} --out-dir lab11_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab11-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab11_d${{ matrix.dmax }}/
