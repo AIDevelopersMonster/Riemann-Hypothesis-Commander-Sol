@@ -1,0 +1,29 @@
+name: H21 2-primary lift validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_38_2PRIMARY_LIFT_CHARACTER.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/two_primary_lift_validation.py"
+      - ".github/workflows/h21-two-primary-lift.yml"
+
+jobs:
+  lab29:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        pmax: [257, 509]
+        dmax: [63, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate 2-primary lift theorem
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/two_primary_lift_validation.py --pmax ${{ matrix.pmax }} --dmax ${{ matrix.dmax }} --out-dir lab29_p${{ matrix.pmax }}_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab29-p${{ matrix.pmax }}-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab29_p${{ matrix.pmax }}_d${{ matrix.dmax }}/
