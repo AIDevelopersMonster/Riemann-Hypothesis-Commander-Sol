@@ -1,0 +1,28 @@
+name: H21 nontrivial clock locks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_20_SHARED_CLOCK_LOCK_EQUIVALENCE.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/nontrivial_clock_lock.py"
+      - ".github/workflows/h21-nontrivial-clock-lock.yml"
+
+jobs:
+  lab14:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        dmax: [127, 255]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run nontrivial clock locks
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/nontrivial_clock_lock.py --bits 18 --dmax ${{ matrix.dmax }} --out-dir lab14_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab14-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab14_d${{ matrix.dmax }}/
