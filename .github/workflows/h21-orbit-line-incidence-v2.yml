@@ -1,0 +1,28 @@
+name: H21 orbit line incidence validation v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/orbit_line_incidence_validation_v2.py"
+      - ".github/workflows/h21-orbit-line-incidence-v2.yml"
+
+jobs:
+  lab16v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        pmax: [127, 257]
+        dmax: [31, 63]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate scalar-coset incidence theorem v2
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/orbit_line_incidence_validation_v2.py --pmax ${{ matrix.pmax }} --dmax ${{ matrix.dmax }} --out-dir lab16v2_p${{ matrix.pmax }}_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab16v2-p${{ matrix.pmax }}-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab16v2_p${{ matrix.pmax }}_d${{ matrix.dmax }}/
