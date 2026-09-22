@@ -1,0 +1,29 @@
+name: H21 projective orbit geometry
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_24_PROJECTIVE_ORBIT_GEOMETRY.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/projective_orbit_geometry.py"
+      - ".github/workflows/h21-projective-orbit.yml"
+
+jobs:
+  lab17:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        pmax: [127, 257]
+        dmax: [31, 63]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate projective orbit geometry
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/projective_orbit_geometry.py --pmax ${{ matrix.pmax }} --dmax ${{ matrix.dmax }} --out-dir lab17_p${{ matrix.pmax }}_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab17-p${{ matrix.pmax }}-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab17_p${{ matrix.pmax }}_d${{ matrix.dmax }}/
