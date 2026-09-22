@@ -1,0 +1,30 @@
+name: H21 lock stratified coupling
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_13_RESULT.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_14_RESULT.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_21_LOCK_STRATIFIED_COUPLING.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/lock_stratified_coupling.py"
+      - ".github/workflows/h21-lock-stratified-coupling.yml"
+
+jobs:
+  lab15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        dmax: [127, 255]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run lock-stratified coupling
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/lock_stratified_coupling.py --bits 18 --dmax ${{ matrix.dmax }} --out-dir lab15_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab15-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab15_d${{ matrix.dmax }}/
