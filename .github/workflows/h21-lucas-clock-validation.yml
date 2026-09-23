@@ -1,0 +1,25 @@
+name: H21 Lucas local clock validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_11_LUCAS_LOCAL_CLOCK_THEOREM.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/lucas_clock_validation.py"
+      - ".github/workflows/h21-lucas-clock-validation.yml"
+
+jobs:
+  lab08:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Lucas local clocks
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/lucas_clock_validation.py --bits 18 --out-dir lab08_out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab08-lucas-clock
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab08_out/

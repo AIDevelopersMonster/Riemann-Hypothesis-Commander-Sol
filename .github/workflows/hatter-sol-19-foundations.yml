@@ -1,0 +1,26 @@
+name: HATTER-SOL-19 foundations
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-foundations.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/**"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_restricted12_controller_certificate.py"
+
+jobs:
+  source-factorization:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify H19 source factorization certificate
+        run: |
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/certificates/h19_source_factorization_certificate.py
+
+      - name: Verify NIELSEN12 source profile
+        run: |
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/certificates/h19_nielsen12_source_certificate.py

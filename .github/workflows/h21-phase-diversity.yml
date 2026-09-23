@@ -1,0 +1,28 @@
+name: H21 zero-mask diversity coupling
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_13_CROSS_MASK_COUPLING_DECOMPOSITION.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/phase_diversity_analysis.py"
+      - ".github/workflows/h21-phase-diversity.yml"
+
+jobs:
+  lab09:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        bits: [17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run diversity/coupling analysis
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/phase_diversity_analysis.py --bits ${{ matrix.bits }} --out-dir lab09_${{ matrix.bits }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab09-b${{ matrix.bits }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab09_${{ matrix.bits }}/

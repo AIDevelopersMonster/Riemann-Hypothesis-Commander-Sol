@@ -1,0 +1,39 @@
+name: H21 B0 RTL comparison
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL/**"
+      - ".github/workflows/h21-b0-rtl.yml"
+
+jobs:
+  lab27:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus and Yosys
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys
+      - name: Simulate scalar and quadratic cores
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL
+        run: |
+          iverilog -g2012 -s tb_h21_b0_rtl -o h21_b0_sim h21_b0_cores.sv tb_h21_b0_rtl.sv
+          vvp h21_b0_sim | tee h21_b0_sim.log
+      - name: Synthesize scalar core
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL
+        run: yosys -Q -p 'read_verilog -sv h21_b0_cores.sv; hierarchy -top h21_scalar_pow; synth -flatten -top h21_scalar_pow; stat; write_json scalar.json' | tee scalar_yosys.log
+      - name: Synthesize quadratic core
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL
+        run: yosys -Q -p 'read_verilog -sv h21_b0_cores.sv; hierarchy -top h21_quad_pow_b0; synth -flatten -top h21_quad_pow_b0; stat; write_json quad.json' | tee quad_yosys.log
+      - name: Analyze
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL
+        run: python3 analyze.py | tee analysis.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab27-b0-rtl
+          path: |
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL/h21_b0_sim.log
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL/scalar_yosys.log
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL/quad_yosys.log
+            papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_27_B0_RTL/H21_LAB27_REPORT.md

@@ -1,0 +1,29 @@
+{
+  "title": "HATTER-SOL-19: Boolean Geometry of Mathematical Presentations - Observability, Hiding, and Re-exposure Across Compilation and FPGA Realization",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "A controlled study of three E0-equivalent mathematical presentations tracked through generic synthesis and two FPGA vendor toolchains. The main empirical result is a replicated joint measured physical partition {{DIRECT12,PREFIX19},{NIELSEN12}} on Cyclone V / Quartus II 13.1 and Gowin GW5A-25A / Gowin Education IDE 1.9.9Beta-4, despite DIRECT12/PREFIX19 re-separation at an earlier generic ABC-fast observer. The claim is finite, observer-relative, and does not assert routed-netlist identity, universal technology invariance, or unrestricted circuit lower bounds.",
+  "creators": [
+    {
+      "name": "Malachevsky, Alex",
+      "orcid": "0009-0008-6009-3196"
+    }
+  ],
+  "keywords": [
+    "FPGA",
+    "logic synthesis",
+    "mathematical presentations",
+    "observational equivalence",
+    "compiler synthesis",
+    "place and route",
+    "Cyclone V",
+    "Gowin",
+    "Yosys",
+    "ABC",
+    "reproducibility"
+  ],
+  "language": "eng",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "notes": "HATTER-SOL-19 preprint package. Two physical laboratories each preserve a SHA-256 provenance manifest over 33 key local run artifacts. DOI to be inserted after Zenodo publication."
+}

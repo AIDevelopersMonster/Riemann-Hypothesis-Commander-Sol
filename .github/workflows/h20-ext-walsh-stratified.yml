@@ -1,0 +1,32 @@
+name: H20-EXT Walsh stratified falsification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/walsh_stratified_falsification.py"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB04_PROTOCOL.md"
+      - ".github/workflows/h20-ext-walsh-stratified.yml"
+
+jobs:
+  lab04:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run frozen LAB-04
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          python3 tools/walsh_stratified_falsification.py --out-dir lab04_out --widths 8 9 10 11 12 13 14 15 16
+      - name: Show report
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: cat lab04_out/H20_EXT_LAB04_REPORT.md
+      - name: Upload LAB-04 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-walsh-stratified
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab04_out/walsh_stratified_summary.json
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab04_out/H20_EXT_LAB04_REPORT.md

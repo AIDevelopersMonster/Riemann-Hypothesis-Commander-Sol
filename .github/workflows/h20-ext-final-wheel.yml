@@ -1,0 +1,34 @@
+name: H20-EXT final wheel gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB11_PROTOCOL.md"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/lab11_mod30030.cpp"
+      - ".github/workflows/h20-ext-final-wheel.yml"
+
+jobs:
+  lab11:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build exact mod30030 engine
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: g++ -O3 -std=c++17 -march=native tools/lab11_mod30030.cpp -o lab11
+      - name: Run frozen LAB-11
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          ./lab11
+          cat H20_EXT_LAB11_REPORT.md
+      - name: Upload LAB-11 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-final-wheel
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab11_mod30030.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB11_REPORT.md

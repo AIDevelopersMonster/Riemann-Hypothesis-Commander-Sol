@@ -1,0 +1,28 @@
+name: H21 character stratified coupling
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_17_CHARACTER_STRATIFIED_COUPLING.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/character_stratified_coupling.py"
+      - ".github/workflows/h21-character-coupling.yml"
+
+jobs:
+  lab12:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        dmax: [127, 255]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run character-stratified coupling
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/character_stratified_coupling.py --bits 18 --dmax ${{ matrix.dmax }} --out-dir lab12_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab12-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab12_d${{ matrix.dmax }}/

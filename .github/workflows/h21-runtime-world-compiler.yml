@@ -1,0 +1,29 @@
+name: H21 runtime world compiler
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_33_RUNTIME_WORLD_COMPILER.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/runtime_world_compiler.py"
+      - ".github/workflows/h21-runtime-world-compiler.yml"
+
+jobs:
+  lab23:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        bits: [17,18]
+        dmax: [63,127]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run runtime-safe compiler
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/runtime_world_compiler.py --bits ${{ matrix.bits }} --dmax ${{ matrix.dmax }} --max-worlds 20 --out-dir lab23_b${{ matrix.bits }}_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab23-b${{ matrix.bits }}-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab23_b${{ matrix.bits }}_d${{ matrix.dmax }}/

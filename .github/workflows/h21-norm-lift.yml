@@ -1,0 +1,29 @@
+name: H21 norm lift double cover
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_29_NORM_LIFT_DOUBLE_COVER.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/norm_lift_geometry.py"
+      - ".github/workflows/h21-norm-lift.yml"
+
+jobs:
+  lab20:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        pmax: [257, 509]
+        dmax: [63, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate norm-lift theorem
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/norm_lift_geometry.py --pmax ${{ matrix.pmax }} --dmax ${{ matrix.dmax }} --out-dir lab20_p${{ matrix.pmax }}_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab20-p${{ matrix.pmax }}-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab20_p${{ matrix.pmax }}_d${{ matrix.dmax }}/

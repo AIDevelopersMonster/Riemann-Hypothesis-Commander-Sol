@@ -1,0 +1,39 @@
+name: H20-EXT wheel-conditioned quotient
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/wheel_conditioned_quotient.py"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB02_PROTOCOL.md"
+      - ".github/workflows/h20-ext-wheel-conditioned-quotient.yml"
+
+jobs:
+  wheel-conditioned-falsification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run frozen LAB-02
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          python3 tools/wheel_conditioned_quotient.py \
+            --out-dir lab02_out \
+            --widths 8 9 10 11 12 13 14 15 16
+
+      - name: Show report
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: cat lab02_out/H20_EXT_LAB02_REPORT.md
+
+      - name: Upload LAB-02 exact artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-wheel-conditioned-quotient
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab02_out/wheel_conditioned_quotient.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab02_out/wheel_conditioned_summary.json
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/lab02_out/H20_EXT_LAB02_REPORT.md

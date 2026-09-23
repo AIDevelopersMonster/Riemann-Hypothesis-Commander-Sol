@@ -1,0 +1,63 @@
+name: HATTER-SOL-19 ABC fast survival
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-19-boolean-geometry
+    paths:
+      - ".github/workflows/hatter-sol-19-abc-fast.yml"
+      - "papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py"
+
+jobs:
+  abc-fast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [direct12, prefix19, nielsen12]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yosys
+
+      - name: Generate E0 variant
+        run: |
+          OUT="build/h19abcfast/${{ matrix.mode }}"
+          mkdir -p "$OUT"
+          python papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/tools/generate_psl27_closure_classifiers.py --out-dir "$OUT"
+          python papers/HATTER-SOL/19-BOOLEAN-GEOMETRY-OF-MATHEMATICAL-PRESENTATIONS/tools/generate_h19_r12_variants.py \
+            --mode "${{ matrix.mode }}" --out-dir "$OUT"
+
+      - name: Fast ABC Boolean image
+        run: |
+          OUT="build/h19abcfast/${{ matrix.mode }}"
+          cat > "$OUT/abc-fast.ys" <<'EOF'
+          read_verilog -sv psl27_membership_only.sv
+          read_verilog -sv psl27_member_class_only.sv
+          read_verilog -sv h18_r12_comb_core.sv
+          read_verilog -sv h18_r12_comb_controller.sv
+          hierarchy -check -top h18_r12_comb_controller
+          proc
+          flatten
+          opt
+          techmap
+          opt
+          abc -fast
+          clean
+          stat
+          EOF
+          (cd "$OUT" && yosys -s abc-fast.ys | tee abc-fast-yosys.log)
+          sed -n '/=== h18_r12_comb_controller ===/,$p' "$OUT/abc-fast-yosys.log" | tail -n 120 | tee "$OUT/abc-fast-stat.txt"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H19-${{ matrix.mode }}-abc-fast
+          path: |
+            build/h19abcfast/${{ matrix.mode }}/abc-fast-yosys.log
+            build/h19abcfast/${{ matrix.mode }}/abc-fast-stat.txt
+          retention-days: 30

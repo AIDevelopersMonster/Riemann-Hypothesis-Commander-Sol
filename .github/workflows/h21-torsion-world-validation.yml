@@ -1,0 +1,25 @@
+name: H21 torsion world no-go validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_10_TORSION_WORLD_NO_GO_THEOREM.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/torsion_world_validation.py"
+      - ".github/workflows/h21-torsion-world-validation.yml"
+
+jobs:
+  lab07:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate torsion-world no-go
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/torsion_world_validation.py --bits 21 --out-dir lab07_out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab07-torsion-world
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab07_out/

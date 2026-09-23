@@ -1,0 +1,25 @@
+name: H21 semiprime exposure theorem validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_08_SEMIPRIME_DEFECT_ASYMMETRY_THEOREM.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/semiprime_exposure_validation.py"
+      - ".github/workflows/h21-semiprime-exposure-validation.yml"
+
+jobs:
+  lab06:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate semiprime exposure theorem
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/semiprime_exposure_validation.py --bits 19 --out-dir lab06_out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab06-semiprime-exposure
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab06_out/

@@ -1,0 +1,24 @@
+name: H21 sign-only surface control
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_LAB_03_RESULT.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/sign_only_surface_control.py"
+      - ".github/workflows/h21-sign-only-control.yml"
+
+jobs:
+  lab04:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run sign-only control
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/sign_only_surface_control.py --bits 19 --out-dir lab04_out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab04-sign-only-control
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab04_out/

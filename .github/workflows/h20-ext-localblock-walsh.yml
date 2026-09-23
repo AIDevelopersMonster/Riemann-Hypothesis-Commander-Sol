@@ -1,0 +1,34 @@
+name: H20-EXT local-density exact Walsh gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-20-computational-structure-mining
+    paths:
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB07_PROTOCOL.md"
+      - "papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/tools/exact_localblock_walsh_expectation.cpp"
+      - ".github/workflows/h20-ext-localblock-walsh.yml"
+
+jobs:
+  lab07:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: g++ -O3 -std=c++17 -march=native tools/exact_localblock_walsh_expectation.cpp -o exact_local
+      - name: Run frozen LAB-07
+        working-directory: papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING
+        run: |
+          ./exact_local
+          cat H20_EXT_LAB07_REPORT.md
+      - name: Upload LAB-07 artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h20-ext-localblock-walsh
+          path: |
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/exact_localblock_expectation.csv
+            papers/HATTER-SOL/20-FINITE-ARITHMETIC-SPATIALIZATION/H20_EXT_COMPUTATIONAL_STRUCTURE_MINING/H20_EXT_LAB07_REPORT.md

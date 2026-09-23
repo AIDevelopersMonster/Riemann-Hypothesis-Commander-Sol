@@ -1,0 +1,29 @@
+name: H21 broad world quality scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/H21_14_BROAD_WORLD_SCAN.md"
+      - "papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/tools/broad_world_quality_scan.py"
+      - ".github/workflows/h21-broad-world-scan.yml"
+
+jobs:
+  lab10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        bits: [17, 18]
+        dmax: [127, 255]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run broad world scan
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        run: python3 tools/broad_world_quality_scan.py --bits ${{ matrix.bits }} --dmax ${{ matrix.dmax }} --out-dir lab10_b${{ matrix.bits }}_d${{ matrix.dmax }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h21-lab10-b${{ matrix.bits }}-d${{ matrix.dmax }}
+          path: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY/lab10_b${{ matrix.bits }}_d${{ matrix.dmax }}/

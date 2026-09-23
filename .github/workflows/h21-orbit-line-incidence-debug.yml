@@ -1,0 +1,30 @@
+name: H21 orbit line incidence debug
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-world-response-rubik-machine
+    paths:
+      - ".github/workflows/h21-orbit-line-incidence-debug.yml"
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run validator without stopping
+        working-directory: papers/HATTER-SOL/21-INTERWORLD-PRIMALITY-TOMOGRAPHY
+        shell: bash
+        run: |
+          set +e
+          python3 tools/orbit_line_incidence_validation.py --pmax 31 --dmax 15 --out-dir lab16_debug
+          rc=$?
+          echo "validator_rc=$rc"
+          python3 - <<'PY'
+          import json
+          p='lab16_debug/orbit_line_incidence.json'
+          d=json.load(open(p))
+          print(json.dumps(d.get('failure_examples', []), indent=2))
+          PY
+          exit 0
