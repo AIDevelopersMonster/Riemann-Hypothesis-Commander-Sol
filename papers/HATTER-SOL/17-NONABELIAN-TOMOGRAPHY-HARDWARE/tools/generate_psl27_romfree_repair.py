@@ -137,7 +137,7 @@ def emit_repair(path: Path):
         "    output logic        valid,",
         "    output logic [23:0] repaired_signature",
         ");",
-        "always_comb begin",
+        "always @* begin",
         "  valid = 1'b0;",
         "  repaired_signature = signature;",
         "  case (erased_idx)",

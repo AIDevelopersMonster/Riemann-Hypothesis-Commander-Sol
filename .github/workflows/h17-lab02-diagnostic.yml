@@ -1,0 +1,124 @@
+name: H17-LAB-02 diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/hatter-sol-17-lab02-romfree-rtl
+    paths:
+      - '.github/workflows/h17-lab02-diagnostic.yml'
+      - 'papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR/**'
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Icarus and Yosys
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys
+
+      - name: Tool versions
+        run: |
+          iverilog -V | head -n 3
+          vvp -V 2>&1 | head -n 3
+          yosys -V
+
+      - name: Generate LAB-02 RTL
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_robust8_closure.py \
+            --out-dir H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR/generated_ci
+          python3 tools/generate_psl27_romfree_repair.py \
+            --out-dir H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR/generated_ci
+
+      - name: Compile LAB-02 one-vector smoke
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR
+        run: |
+          printf '%s\n' '5e3b88 7ecc11 1 2 00 8d256a ed256a 8d256a' > build_smoke1.txt
+          iverilog -g2012 -s tb_h17_lab02_vectors \
+            -o h17_lab02_smoke_sim \
+            generated_ci/psl27_membership_only.sv \
+            generated_ci/psl27_member_class_only.sv \
+            generated_ci/psl27_robust8_engine.sv \
+            generated_ci/psl27_robust8_repair.sv \
+            rtl/h17_lab02_core.sv \
+            tb/tb_h17_lab02_vectors.sv
+
+      - name: Run LAB-02 one-vector smoke
+        timeout-minutes: 2
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR
+        run: |
+          /usr/bin/time -v timeout 90s \
+            vvp ./h17_lab02_smoke_sim +VECTORS=build_smoke1.txt \
+            | tee h17_lab02_smoke.log
+
+      - name: Generate old self-contained H17-08 comparison core
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          python3 tools/generate_psl27_closure_compare.py --out-dir generated_diag_h17_08
+
+      - name: Compile and run one self-contained H17-08 ROM-free vector
+        timeout-minutes: 2
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE
+        run: |
+          cat > generated_diag_h17_08/tb_one.sv <<'EOF'
+          \`timescale 1ns/1ps
+          module tb_one;
+            logic [23:0] A,B;
+            logic [2:0] erased_idx;
+            logic input_valid,fingerprint_valid;
+            logic [23:0] raw_signature,orbit_fingerprint;
+            psl27_closure_romfree_core dut(
+              .A(A),.B(B),.erased_idx(erased_idx),
+              .input_valid(input_valid),
+              .fingerprint_valid(fingerprint_valid),
+              .raw_signature(raw_signature),
+              .orbit_fingerprint(orbit_fingerprint)
+            );
+            initial begin
+              A=24'h5e3b88; B=24'h7ecc11; erased_idx=3'd0;
+              #1;
+              if(!input_valid || !fingerprint_valid ||
+                 raw_signature!==24'h8d256a ||
+                 orbit_fingerprint!==24'h8d256a) $fatal(1);
+              $display("PASS H17-08 self-contained one vector");
+              $finish;
+            end
+          endmodule
+          EOF
+          iverilog -g2012 -s tb_one \
+            -o generated_diag_h17_08/one_sim \
+            generated_diag_h17_08/psl27_closure_romfree_core.sv \
+            generated_diag_h17_08/tb_one.sv
+          /usr/bin/time -v timeout 90s \
+            vvp generated_diag_h17_08/one_sim \
+            | tee h17_08_one.log
+
+      - name: Yosys synthesize actual LAB-02 core
+        timeout-minutes: 4
+        working-directory: papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR
+        run: |
+          /usr/bin/time -v timeout 180s yosys -Q -p '
+            read_verilog -sv
+              generated_ci/psl27_membership_only.sv
+              generated_ci/psl27_member_class_only.sv
+              generated_ci/psl27_robust8_engine.sv
+              generated_ci/psl27_robust8_repair.sv
+              rtl/h17_lab02_core.sv;
+            synth -top h17_lab02_core;
+            stat;
+            write_json h17_lab02_synth.json
+          ' | tee h17_lab02_yosys.log
+
+      - name: Upload diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h17-lab02-diagnostic-evidence
+          path: |
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR/h17_lab02_smoke.log
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR/h17_lab02_yosys.log
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/H17_PS_TEST/H17_LAB_02_RTL_PROCESSOR/h17_lab02_synth.json
+            papers/HATTER-SOL/17-NONABELIAN-TOMOGRAPHY-HARDWARE/h17_08_one.log

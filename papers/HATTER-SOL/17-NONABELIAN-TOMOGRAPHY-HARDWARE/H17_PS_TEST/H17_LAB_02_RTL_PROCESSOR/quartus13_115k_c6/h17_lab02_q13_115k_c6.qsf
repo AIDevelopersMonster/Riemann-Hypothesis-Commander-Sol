@@ -1,0 +1,14 @@
+# H17-LAB-02 Quartus II 13.1 large-device C6 board-free benchmark.
+# Same RTL as EP4CE22 baseline and EP4CE115 C7 run; target is EP4CE115F29C6.
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C6
+set_global_assignment -name TOP_LEVEL_ENTITY h17_lab02_controller
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_q13/psl27_membership_only.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_q13/psl27_member_class_only.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_q13/psl27_robust8_engine.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../generated_q13/psl27_robust8_repair.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/h17_lab02_core.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/h17_lab02_controller.sv
+set_global_assignment -name SDC_FILE h17_lab02_q13_115k_c6.sdc
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
