@@ -1,0 +1,22 @@
+name: HATTER-SOL-18 M1 adaptive12 subset strike
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-m1-subsets12.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_subsets_of_adaptive12.py"
+
+jobs:
+  subsets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan size10 and size11 subsets of certified adaptive12
+        run: |
+          python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_subsets_of_adaptive12.py

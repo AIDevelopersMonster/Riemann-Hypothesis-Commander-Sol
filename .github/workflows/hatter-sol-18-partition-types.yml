@@ -1,0 +1,19 @@
+name: HATTER-SOL-18 query partition types
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-partition-types.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_query_partition_types.py"
+
+jobs:
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_query_partition_types.py

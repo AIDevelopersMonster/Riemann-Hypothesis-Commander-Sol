@@ -1,0 +1,30 @@
+name: HATTER-SOL-18 M1 size11 refined shards
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-m1-size11-refine.yml"
+
+jobs:
+  shard:
+    strategy:
+      fail-fast: false
+      matrix:
+        prefix: ["0000","0001","0002","0010","0011","0012","0100","0101","0102","1000","1001","1002"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Exact refined size11 shard
+        run: |
+          python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size11_type_bitset_shard.py --prefix "${{ matrix.prefix }}" | tee "size11-${{ matrix.prefix }}.log"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: H18-M1-size11-${{ matrix.prefix }}
+          path: size11-${{ matrix.prefix }}.log
+          retention-days: 30

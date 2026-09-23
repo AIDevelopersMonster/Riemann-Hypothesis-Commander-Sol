@@ -1,0 +1,22 @@
+name: HATTER-SOL-18 M1 type quotient
+
+on:
+  push:
+    branches:
+      - research/hatter-sol-18-m1-closure
+    paths:
+      - ".github/workflows/hatter-sol-18-m1-type-quotient.yml"
+      - "papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size9_type_quotient.py"
+
+jobs:
+  exact-type-quotient:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run exact partition-type quotient search
+        run: |
+          python papers/HATTER-SOL/18-ADAPTIVE-WORD-TOMOGRAPHY/certificates/h18_m1_size9_type_quotient.py
