@@ -2,7 +2,7 @@
 
 Branch: \`research/hatter-sol-18-m1-closure\`
 
-Status: **ACTIVE POST-FREEZE CLOSURE**
+Status: **CLOSED EXACT — M1(W4)=12**
 
 The frozen H18 publication remains unchanged.
 
@@ -447,3 +447,45 @@ lower bound.  The exact global bound remains
 \]
 
 pending the exhaustive size-11 quotient search.
+
+
+## C9 · exact global size-11 sharded search — CLOSED NEGATIVE
+
+The remaining size-11 search was split into 27 exact ternary prefix shards.
+Twenty-three shards completed directly. Four heavy prefixes
+`000`, `001`, `010`, and `100` were refined into three exact subshards
+each.
+
+The refined GitHub Actions run
+
+[
+oxed{	exttt{35490225077}}
+]
+
+completed all 12 jobs successfully. Every refined job reported
+
+```text
+witness = None
+RESULT: no size-11 witness in this exact prefix shard
+PASS
+```
+
+Together with the completed direct shards, these jobs exhaust the full exact
+size-11 quotient search space. Therefore
+
+[
+oxed{M_1(W_4)ge 12}.
+]
+
+The frozen H18 programme already contains a certified adaptive size-12 witness,
+so the upper and lower bounds meet:
+
+[
+oxed{M_1(W_4)=12}.
+]
+
+This closes the H18-M1 finite post-publication tail. No reopening of the frozen
+H18 paper is required; this result is archived as a post-publication exact
+closure certificate.
+
+Programme status after C9: **CLOSED**.
